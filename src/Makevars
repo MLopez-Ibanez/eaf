@@ -1,0 +1,3 @@
+# Do not put GCC specific flags here. Put them instead in CLAGS and
+# CXXLAGS in ~/.R/Makevars
+PKG_CPPFLAGS = -DR_PACKAGE -DDEBUG=1

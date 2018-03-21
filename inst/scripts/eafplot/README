@@ -1,0 +1,78 @@
+-------------------
+ eafplot.pl
+-------------------
+
+Perl script to plot attainment surfaces for a set of input points.
+
+
+ Requirements of `eafplot.pl'
+ ----------------------------
+
+The program has been tested on GNU/Linux using bash shell. If you
+have success or problems using other systems, please let me know.
+
+The following programs are required:
+
+ * Perl 5
+
+ * eaf R package: http://iridia.ulb.ac.be/~manuel/eaftools
+
+The following programs are only required if the corresponding features
+are enabled by editing the script:
+
+ * ps2eps: Filter PS files and remove excessive margin whitespace.
+
+ * gzip
+
+ * ImageMagick (in particular, the program `convert')
+
+
+  Using `eafplot.pl'
+  --------------------
+
+See the output of
+
+  eafplot.pl --help
+
+
+  License
+  -------
+
+Copyright (c) 2010
+Manuel Lopez-Ibanez  <manuel.lopez-ibanez@ulb.ac.be>
+
+This program is free software (software libre); you can redistribute
+it and/or modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+ IMPORTANT NOTE: Please be aware that the fact that this program is
+ released as Free Software does not excuse you from scientific
+ propriety, which obligates you to give appropriate credit!  If you
+ write a scientific paper describing research that made substantive
+ use of this program, it is your obligation as a scientist to (a)
+ mention the fashion in which this software was used in the Methods
+ section; (b) mention the algorithm in the References section. The
+ appropriate citation is:
+
+    Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle.
+    Exploratory Analysis of Stochastic Local Search Algorithms in
+    Biobjective Optimization. In T. Bartz-Beielstein, M. Chiarandini, 
+    L. Paquete, and M. Preuss, editors, Experimental Methods for the
+    Analysis of Optimization Algorithms, pages 209–222. Springer, 
+    Berlin, Germany, 2010.
+    doi: 10.1007/978-3-642-02538-9_9
+
+ Moreover, as a personal note, I would appreciate it if you would
+ email <manuel.lopez-ibanez@ulb.ac.be> with citations of papers
+ referencing this work so I can mention them to my funding agent and
+ tenure committee.
+
+You can obtain a copy of the GNU General Public License at
+http://www.gnu.org/licenses/gpl.html or writing to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.

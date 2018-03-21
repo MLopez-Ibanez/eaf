@@ -1,0 +1,13 @@
+
+eaf_input.c :
+ * Experiment with different values for PAGE_SIZE in eaf_input.c.
+
+ * Experiment reading whole lines and then sscanf the line.
+ 
+ * Consider mmaping the input file (or a big chunk of few megabytes),
+   then read, then unmap.
+
+ * Perhaps add --obj=X so it reads only that number of columns from input.
+
+ 
+

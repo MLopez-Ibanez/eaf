@@ -1,0 +1,16 @@
+inst/.+\.svn
+inst/.+~
+TODO
+DEVEL-README
+v2
+.+\.diff
+^Makefile
+^eaf-Ex.R
+^cleanup
+\.Rhistory
+.+\.o
+.+\.so
+doc
+^svn_version
+testing
+web

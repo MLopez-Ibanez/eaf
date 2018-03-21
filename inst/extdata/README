@@ -1,0 +1,12 @@
+This directory contains the files needed to reproduce the examples
+described in 
+
+     Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle.
+     Exploratory Analysis of Stochastic Local Search Algorithms in
+     Biobjective Optimization. In T. Bartz-Beielstein, M. Chiarandini,
+     L. Paquete, and M. Preuß, editors, Experimental Methods for the
+     Analysis of Optimization Algorithms, pages 209-233, Springer, 2010.
+
+The script run.sh contains the commands necessary to reproduce all
+examples. Please, read the comments within run.sh.
+
