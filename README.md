@@ -61,7 +61,7 @@ The software is implemented as an R package, but the code for only computing the
 
 The visualization of the EAFs require installing the eaf package. Therefore, for making use of all the features, a basic knowledge of R is recommended. However, the eaf package contains two Perl scripts that allow to generate standard plots without any knowledge about R. See `inst/scripts/eafplot/` and `inst/scripts/eafdiff/` in the package source code. The scripts use the eaf package internally to generate the plots, and, hence, the eaf package must be installed and working.
 
-The first step before installing the eaf package is to [install R](http://cran.r-project.org/). Once R is installed in the system, there are two methods for installing the eaf package:
+The first step before installing the eaf package is to [install R](https://cran.r-project.org/). Once R is installed in the system, there are two methods for installing the eaf package:
 
  1. Install within R (automatic download, internet connection required). Invoke
     R, then
@@ -74,11 +74,11 @@ The first step before installing the eaf package is to [install R](http://cran.r
 ```
 where `<package>` is one of the three versions available: `.tar.gz` (Unix/BSD/GNU/Linux), `.tgz` (MacOS X), or `.zip` (Windows).
 
-Search the [R documentation](http://cran.r-project.org/faqs.html) if you need more help to install an R package on your system.
+Search the [R documentation](https://cran.r-project.org/faqs.html) if you need more help to install an R package on your system.
 
 If you wish to be notified of bugfixes and new versions, please subscribe to the [low-volume emo-list](https://lists.dei.uc.pt/mailman/listinfo/emo-list), where announcements will be made.
 
-[ [Download eaf package from CRAN](http://cran.r-project.org/web/packages/eaf/) ] [ [Download Reference manual](http://cran.r-project.org/web/packages/eaf/eaf.pdf) ] 
+[ [Download eaf package from CRAN](https://cran.r-project.org/package=eaf) ] [ [Download Reference manual](https://cran.r-project.org/package=eaf/eaf.pdf) ] 
 
 
 Usage

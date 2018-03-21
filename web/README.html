@@ -48,10 +48,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <body>
 <p><img src="http://lopez-ibanez.eu/img/ALG_1_dat-ALG_2_dat.png" width="455" height="242" alt= "EAF
    differences between two bi-objective optimizers" title= "EAF differences
-   between two bi-objective optimizers" style= "border:0; float:right;"/> <img src="http://lopez-ibanez.eu/img/eafdiff-color.png" width="480"
+   between two bi-objective optimizers" style= "border:0; align:right; float:right;"/> <img src="http://lopez-ibanez.eu/img/eafdiff-color.png" width="480"
    height="240" alt="EAF differences between two variants of W-RoTS (color)"
    title="EAF differences between two variants of W-RoTS (color)"
-   style="border:0; float:right; clear:right"/></p>
+   style="border:0; align:right; float:right; clear:right"/></p>
 <h1 id="eaf-empirical-attainment-function-eaf-tools"><strong>eaf</strong>: Empirical Attainment Function (EAF) Tools</h1>
 <p><a href="https://cran.r-project.org/package=eaf"><img src="https://www.r-pkg.org/badges/version-last-release/eaf" alt="CRAN Status" /></a> <a href="https://CRAN.R-project.org/package=eaf"><img src="https://cranlogs.r-pkg.org/badges/grand-total/eaf" alt="CRAN Downloads" /></a></p>
 <p>[ <a href="http://lopez-ibanez.eu/eaftools"><strong>Homepage</strong></a> ]</p>
@@ -69,7 +69,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2 id="download-and-installation">Download and installation</h2>
 <p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just download the package source code, uncompress it, and look for the directory <code>inst/scripts/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the eaf package.</p>
 <p>The visualization of the EAFs require installing the eaf package. Therefore, for making use of all the features, a basic knowledge of R is recommended. However, the eaf package contains two Perl scripts that allow to generate standard plots without any knowledge about R. See <code>inst/scripts/eafplot/</code> and <code>inst/scripts/eafdiff/</code> in the package source code. The scripts use the eaf package internally to generate the plots, and, hence, the eaf package must be installed and working.</p>
-<p>The first step before installing the eaf package is to <a href="http://cran.r-project.org/">install R</a>. Once R is installed in the system, there are two methods for installing the eaf package:</p>
+<p>The first step before installing the eaf package is to <a href="https://cran.r-project.org/">install R</a>. Once R is installed in the system, there are two methods for installing the eaf package:</p>
 <ol style="list-style-type: decimal">
 <li><p>Install within R (automatic download, internet connection required). Invoke R, then</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;modeltools&quot;</span>, <span class="st">&quot;eaf&quot;</span>))</code></pre></div></li>
@@ -77,9 +77,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    <span class="kw">R</span> CMD INSTALL <span class="kw">&lt;</span>package<span class="kw">&gt;</span></code></pre></div>
 <p>where <code>&lt;package&gt;</code> is one of the three versions available: <code>.tar.gz</code> (Unix/BSD/GNU/Linux), <code>.tgz</code> (MacOS X), or <code>.zip</code> (Windows).</p></li>
 </ol>
-<p>Search the <a href="http://cran.r-project.org/faqs.html">R documentation</a> if you need more help to install an R package on your system.</p>
+<p>Search the <a href="https://cran.r-project.org/faqs.html">R documentation</a> if you need more help to install an R package on your system.</p>
 <p>If you wish to be notified of bugfixes and new versions, please subscribe to the <a href="https://lists.dei.uc.pt/mailman/listinfo/emo-list">low-volume emo-list</a>, where announcements will be made.</p>
-<p>[ <a href="http://cran.r-project.org/web/packages/eaf/">Download eaf package from CRAN</a> ] [ <a href="http://cran.r-project.org/web/packages/eaf/eaf.pdf">Download Reference manual</a> ]</p>
+<p>[ <a href="https://cran.r-project.org/package=eaf">Download eaf package from CRAN</a> ] [ <a href="https://cran.r-project.org/package=eaf/eaf.pdf">Download Reference manual</a> ]</p>
 <h2 id="usage">Usage</h2>
 <p>Once the eaf package is installed, the following R commands will give more information:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">library</span>(eaf)

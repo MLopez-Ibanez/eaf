@@ -941,7 +941,7 @@ eafplot.default <-
 #'   areas was provided by Carlos M. Fonseca.  The implementation uses R
 #'   polygons, which some PDF viewers may have trouble rendering correctly
 #'   (See
-#'   \url{http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders}). Plots (should) look correct when printed.
+#'   \url{https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders}). Plots (should) look correct when printed.
 #' 
 #'   Large differences that appear when using \code{type = "points"} may
 #'   seem to dissapear when using \code{type = "area"}. The explanation is
