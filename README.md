@@ -1,6 +1,14 @@
 **eaf**: Empirical Attainment Function (EAF) Tools
 ================================================================
 
+<img src="http://lopez-ibanez.eu/img/ALG_1_dat-ALG_2_dat.png" width="455" height="242" alt= "EAF
+   differences between two bi-objective optimizers" title= "EAF differences
+   between two bi-objective optimizers" style= "border:0; align:right;"/>
+<img src="http://lopez-ibanez.eu/img/eafdiff-color.png" width="480"
+   height="240" alt="EAF differences between two variants of W-RoTS (color)"
+   title="EAF differences between two variants of W-RoTS (color)"
+   style="border:0; align:right;"/>
+
 [![CRAN Status](https://www.r-pkg.org/badges/version-last-release/eaf)](https://cran.r-project.org/package=eaf) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/eaf)](https://CRAN.R-project.org/package=eaf) 
 
 [ [**Homepage**](http://lopez-ibanez.eu/eaftools) ]
@@ -15,12 +23,7 @@
     [Thomas Stützle](http://iridia.ulb.ac.be/~stuetzle)
     
 
-![EAF differences between two bi-objective optimizers](http://lopez-ibanez.eu/img/ALG_1_dat-ALG_2_dat.png)
-
-![EAF differences between two variants of W-RoTS (color)](http://lopez-ibanez.eu/img/eafdiff-color.png)
-
 ---------------------------------------
-
 Introduction
 ============
 
