@@ -1,0 +1,124 @@
+# Report: 
+#  Metah: Weighted RoTS, version 2.1.88M (#DEBUG = 1)
+#  bQAP (0.1.88Msvn)
+#  Data File: /home/manu/personal/2005-JMMA/data/qapUni.50.p75.1   Size: 50    Averages: Distance=47.49  Flow1=49.90  Flow2=49.96
+#  Parameter settings: 
+# 	number trials : 15
+# 	time limit : 3.40282e+38
+# 	seed : 1234567
+# 	num weights: 100
+# 	Taboo Search Length : 1
+
+
+# Initialization time: 0.004 s
+# start_trial(0) :
+# end_trial(0) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8921 s
+# Pareto: 0  Size: 7
+5261548	5340738
+5283204	5340630
+5287522	5336320
+5291202	5331366
+5292270	5318304
+5298876	5290408
+5312952	5277832
+# start_trial(1) :
+# end_trial(1) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8641 s
+# Pareto: 1  Size: 4
+5246946	5368942
+5249068	5328154
+5277710	5321710
+5280132	5281080
+# start_trial(2) :
+# end_trial(2) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8641 s
+# Pareto: 2  Size: 2
+5255914	5312620
+5285994	5294248
+# start_trial(3) :
+# end_trial(3) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 3  Size: 6
+5254586	5341368
+5265448	5336434
+5266332	5329290
+5278158	5328006
+5293084	5304026
+5316378	5285680
+# start_trial(4) :
+# end_trial(4) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8641 s
+# Pareto: 4  Size: 5
+5257008	5385896
+5260020	5354180
+5261932	5351978
+5265120	5343482
+5272604	5280450
+# start_trial(5) :
+# end_trial(5) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.9121 s
+# Pareto: 5  Size: 3
+5251436	5304740
+5260634	5289432
+5261388	5278662
+# start_trial(6) :
+# end_trial(6) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8761 s
+# Pareto: 6  Size: 3
+5260462	5303782
+5309662	5298112
+5338894	5292426
+# start_trial(7) :
+# end_trial(7) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8761 s
+# Pareto: 7  Size: 4
+5238158	5302220
+5266616	5301604
+5277362	5291346
+5328374	5283152
+# start_trial(8) :
+# end_trial(8) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 8  Size: 5
+5259568	5344514
+5260078	5323590
+5275688	5304758
+5295860	5299490
+5321894	5280216
+# start_trial(9) :
+# end_trial(9) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 9  Size: 5
+5252950	5337456
+5258962	5303668
+5273430	5301298
+5311040	5291910
+5319530	5279154
+# start_trial(10) :
+# end_trial(10) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8761 s
+# Pareto: 10  Size: 6
+5255088	5362366
+5260872	5337164
+5276254	5307774
+5278846	5302382
+5287324	5301484
+5290398	5284198
+# start_trial(11) :
+# end_trial(11) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 11  Size: 3
+5257462	5328600
+5262892	5302082
+5306682	5293358
+# start_trial(12) :
+# end_trial(12) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 12  Size: 5
+5255536	5369466
+5265974	5314044
+5276688	5311924
+5301892	5288482
+5319394	5278344
+# start_trial(13) :
+# end_trial(13) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.9041 s
+# Pareto: 13  Size: 4
+5243484	5327056
+5262810	5312496
+5265234	5288336
+5305096	5285540
+# start_trial(14) :
+# end_trial(14) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.9161 s
+# Pareto: 14  Size: 3
+5254326	5373688
+5258282	5328368
+5277040	5290704
+# Average Number Scalarizations = 100, Average Trial Time = 0.8817 s

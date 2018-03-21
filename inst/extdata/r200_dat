@@ -1,0 +1,1450 @@
+# Report: 
+#  Metah: Weighted RoTS, version 2.1.88M (#DEBUG = 1)
+#  bQAP (0.1.88Msvn)
+#  Data File: /home/manu/personal/2005-JMMA/data/qapUni.50.p75.1   Size: 50    Averages: Distance=47.49  Flow1=49.90  Flow2=49.96
+#  Parameter settings: 
+# 	number trials : 200
+# 	time limit : 3.40282e+38
+# 	seed : 1234567
+# 	num weights: 100
+# 	Taboo Search Length : 1
+
+
+# Initialization time: 0.004 s
+# start_trial(0) :
+# end_trial(0) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.9121 s
+# Pareto: 0  Size: 7
+5261548	5340738
+5283204	5340630
+5287522	5336320
+5291202	5331366
+5292270	5318304
+5298876	5290408
+5312952	5277832
+# start_trial(1) :
+# end_trial(1) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 1  Size: 4
+5246946	5368942
+5249068	5328154
+5277710	5321710
+5280132	5281080
+# start_trial(2) :
+# end_trial(2) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 2  Size: 2
+5255914	5312620
+5285994	5294248
+# start_trial(3) :
+# end_trial(3) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 3  Size: 6
+5254586	5341368
+5265448	5336434
+5266332	5329290
+5278158	5328006
+5293084	5304026
+5316378	5285680
+# start_trial(4) :
+# end_trial(4) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 4  Size: 5
+5257008	5385896
+5260020	5354180
+5261932	5351978
+5265120	5343482
+5272604	5280450
+# start_trial(5) :
+# end_trial(5) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 5  Size: 3
+5251436	5304740
+5260634	5289432
+5261388	5278662
+# start_trial(6) :
+# end_trial(6) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 6  Size: 3
+5260462	5303782
+5309662	5298112
+5338894	5292426
+# start_trial(7) :
+# end_trial(7) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 7  Size: 4
+5238158	5302220
+5266616	5301604
+5277362	5291346
+5328374	5283152
+# start_trial(8) :
+# end_trial(8) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 8  Size: 5
+5259568	5344514
+5260078	5323590
+5275688	5304758
+5295860	5299490
+5321894	5280216
+# start_trial(9) :
+# end_trial(9) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 9  Size: 5
+5252950	5337456
+5258962	5303668
+5273430	5301298
+5311040	5291910
+5319530	5279154
+# start_trial(10) :
+# end_trial(10) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 10  Size: 6
+5255088	5362366
+5260872	5337164
+5276254	5307774
+5278846	5302382
+5287324	5301484
+5290398	5284198
+# start_trial(11) :
+# end_trial(11) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 11  Size: 3
+5257462	5328600
+5262892	5302082
+5306682	5293358
+# start_trial(12) :
+# end_trial(12) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 12  Size: 5
+5255536	5369466
+5265974	5314044
+5276688	5311924
+5301892	5288482
+5319394	5278344
+# start_trial(13) :
+# end_trial(13) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 13  Size: 4
+5243484	5327056
+5262810	5312496
+5265234	5288336
+5305096	5285540
+# start_trial(14) :
+# end_trial(14) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 14  Size: 3
+5254326	5373688
+5258282	5328368
+5277040	5290704
+# start_trial(15) :
+# end_trial(15) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 15  Size: 5
+5251220	5334532
+5258622	5318388
+5274694	5318056
+5275588	5299916
+5307866	5281706
+# start_trial(16) :
+# end_trial(16) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 16  Size: 4
+5252238	5320246
+5297660	5319870
+5302690	5316084
+5305034	5293474
+# start_trial(17) :
+# end_trial(17) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 17  Size: 3
+5256636	5364154
+5262016	5294988
+5264892	5269504
+# start_trial(18) :
+# end_trial(18) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 18  Size: 6
+5228108	5347760
+5281796	5327312
+5286788	5320758
+5292364	5312668
+5305786	5297640
+5319554	5296596
+# start_trial(19) :
+# end_trial(19) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 19  Size: 3
+5258012	5349460
+5262532	5294728
+5311364	5285878
+# start_trial(20) :
+# end_trial(20) : Pareto Size = 9, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 20  Size: 9
+5262846	5351252
+5268224	5332648
+5286336	5329542
+5291024	5323824
+5291052	5311388
+5322204	5305956
+5337348	5305340
+5338120	5302878
+5350520	5288884
+# start_trial(21) :
+# end_trial(21) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 21  Size: 6
+5257942	5373498
+5259552	5357156
+5267384	5330886
+5279304	5315890
+5286088	5309012
+5287040	5284718
+# start_trial(22) :
+# end_trial(22) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 22  Size: 3
+5253764	5351678
+5265558	5309298
+5290820	5295606
+# start_trial(23) :
+# end_trial(23) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 23  Size: 3
+5243858	5338614
+5261776	5332340
+5286980	5290820
+# start_trial(24) :
+# end_trial(24) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 24  Size: 4
+5251984	5322490
+5293588	5309414
+5295572	5298376
+5313146	5297746
+# start_trial(25) :
+# end_trial(25) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 25  Size: 3
+5238488	5294964
+5265768	5287358
+5274538	5282446
+# start_trial(26) :
+# end_trial(26) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 26  Size: 3
+5240112	5318798
+5285086	5296794
+5297420	5288042
+# start_trial(27) :
+# end_trial(27) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 27  Size: 3
+5253562	5315656
+5258408	5295302
+5297444	5294720
+# start_trial(28) :
+# end_trial(28) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 28  Size: 3
+5243092	5314062
+5243248	5286716
+5296000	5284678
+# start_trial(29) :
+# end_trial(29) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 29  Size: 4
+5254042	5338584
+5260876	5330882
+5276202	5313170
+5286874	5286552
+# start_trial(30) :
+# end_trial(30) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 30  Size: 4
+5249126	5334774
+5263022	5312306
+5281242	5309470
+5284318	5282482
+# start_trial(31) :
+# end_trial(31) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 31  Size: 6
+5257878	5347536
+5275036	5339680
+5281738	5334044
+5282030	5309294
+5292442	5286754
+5305288	5276742
+# start_trial(32) :
+# end_trial(32) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 32  Size: 4
+5262822	5336322
+5287408	5314374
+5288480	5303274
+5297530	5296626
+# start_trial(33) :
+# end_trial(33) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 33  Size: 4
+5262302	5350178
+5268796	5320690
+5287784	5307578
+5303060	5291696
+# start_trial(34) :
+# end_trial(34) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 34  Size: 4
+5255158	5363060
+5265740	5316854
+5280842	5287822
+5295982	5271860
+# start_trial(35) :
+# end_trial(35) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 35  Size: 4
+5236920	5323144
+5275658	5316252
+5295276	5291846
+5320036	5287242
+# start_trial(36) :
+# end_trial(36) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 36  Size: 7
+5245320	5350028
+5265846	5346862
+5269172	5329214
+5289792	5317436
+5291128	5309678
+5300432	5300306
+5320356	5299120
+# start_trial(37) :
+# end_trial(37) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 37  Size: 6
+5256692	5369864
+5258244	5351398
+5260990	5318888
+5276810	5304172
+5307654	5301888
+5349612	5294114
+# start_trial(38) :
+# end_trial(38) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 38  Size: 4
+5245000	5402680
+5261294	5355072
+5280504	5342928
+5281916	5279952
+# start_trial(39) :
+# end_trial(39) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 39  Size: 1
+5256756	5291420
+# start_trial(40) :
+# end_trial(40) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 40  Size: 3
+5240372	5339244
+5269234	5300968
+5292588	5291350
+# start_trial(41) :
+# end_trial(41) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 41  Size: 3
+5238810	5321212
+5254626	5315172
+5260078	5296038
+# start_trial(42) :
+# end_trial(42) : Pareto Size = 8, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 42  Size: 8
+5262120	5384314
+5262892	5343884
+5264312	5331836
+5279288	5323156
+5287766	5316696
+5288662	5313878
+5299640	5305808
+5304502	5281312
+# start_trial(43) :
+# end_trial(43) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 43  Size: 6
+5251856	5339406
+5260988	5322928
+5285486	5322566
+5290320	5308872
+5302434	5302166
+5318698	5289714
+# start_trial(44) :
+# end_trial(44) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 44  Size: 4
+5235812	5381636
+5236334	5354730
+5270128	5301072
+5305764	5283634
+# start_trial(45) :
+# end_trial(45) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 45  Size: 2
+5230660	5301340
+5293106	5289332
+# start_trial(46) :
+# end_trial(46) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 46  Size: 4
+5228398	5320810
+5238488	5307248
+5282654	5305988
+5299924	5287560
+# start_trial(47) :
+# end_trial(47) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 47  Size: 2
+5260116	5305420
+5269468	5286560
+# start_trial(48) :
+# end_trial(48) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 48  Size: 5
+5249848	5325302
+5296612	5310710
+5309120	5306430
+5317752	5305550
+5342704	5304442
+# start_trial(49) :
+# end_trial(49) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 49  Size: 4
+5261944	5309926
+5288296	5307688
+5312776	5304054
+5327484	5298724
+# start_trial(50) :
+# end_trial(50) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 50  Size: 5
+5253764	5347418
+5257354	5335486
+5259120	5308196
+5319244	5299520
+5342200	5282958
+# start_trial(51) :
+# end_trial(51) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 51  Size: 4
+5261206	5322822
+5288592	5320284
+5316748	5302208
+5335480	5286420
+# start_trial(52) :
+# end_trial(52) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 52  Size: 6
+5247862	5344898
+5267480	5338488
+5279426	5311808
+5286042	5310946
+5297888	5298750
+5304450	5295776
+# start_trial(53) :
+# end_trial(53) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 53  Size: 4
+5242284	5315430
+5299172	5300900
+5342822	5296088
+5358172	5295926
+# start_trial(54) :
+# end_trial(54) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 54  Size: 6
+5235754	5344592
+5258078	5328266
+5264712	5304666
+5280648	5300618
+5285308	5276622
+5310290	5276322
+# start_trial(55) :
+# end_trial(55) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 55  Size: 2
+5242082	5306670
+5328674	5299828
+# start_trial(56) :
+# end_trial(56) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.9081 s
+# Pareto: 56  Size: 1
+5256734	5284984
+# start_trial(57) :
+# end_trial(57) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 57  Size: 7
+5242010	5369404
+5248032	5330344
+5286322	5316662
+5289386	5307442
+5326316	5306350
+5328532	5295078
+5341172	5287608
+# start_trial(58) :
+# end_trial(58) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.9401 s
+# Pareto: 58  Size: 6
+5260496	5391364
+5262604	5351568
+5263442	5324760
+5277952	5316794
+5292546	5307408
+5304486	5289422
+# start_trial(59) :
+# end_trial(59) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 59  Size: 6
+5259588	5363620
+5260464	5334398
+5271884	5333010
+5276300	5315924
+5299660	5308920
+5326834	5306774
+# start_trial(60) :
+# end_trial(60) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.9281 s
+# Pareto: 60  Size: 1
+5234320	5262976
+# start_trial(61) :
+# end_trial(61) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 61  Size: 3
+5254722	5330798
+5258722	5312162
+5306164	5277030
+# start_trial(62) :
+# end_trial(62) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 62  Size: 6
+5252284	5385672
+5270528	5327488
+5281022	5314692
+5296408	5305058
+5318856	5301588
+5330258	5288516
+# start_trial(63) :
+# end_trial(63) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 63  Size: 4
+5252048	5332752
+5259582	5296404
+5290924	5292414
+5296594	5282124
+# start_trial(64) :
+# end_trial(64) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 64  Size: 4
+5254176	5344870
+5264204	5335046
+5268688	5308428
+5275096	5304396
+# start_trial(65) :
+# end_trial(65) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.9081 s
+# Pareto: 65  Size: 6
+5253734	5350752
+5266398	5327920
+5274224	5324300
+5281920	5313874
+5313554	5307624
+5316664	5301172
+# start_trial(66) :
+# end_trial(66) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 66  Size: 5
+5266576	5355532
+5269280	5344320
+5276966	5342668
+5278770	5314612
+5315252	5296102
+# start_trial(67) :
+# end_trial(67) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 67  Size: 6
+5269788	5328620
+5273672	5324206
+5287004	5315594
+5302912	5314092
+5308178	5283444
+5347098	5281286
+# start_trial(68) :
+# end_trial(68) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8961 s
+# Pareto: 68  Size: 2
+5250266	5283778
+5291518	5274832
+# start_trial(69) :
+# end_trial(69) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.9521 s
+# Pareto: 69  Size: 6
+5263826	5354972
+5273308	5346828
+5274692	5341542
+5280736	5323828
+5282256	5319488
+5286150	5286728
+# start_trial(70) :
+# end_trial(70) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.9401 s
+# Pareto: 70  Size: 2
+5256726	5303656
+5291596	5289432
+# start_trial(71) :
+# end_trial(71) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.9401 s
+# Pareto: 71  Size: 4
+5258136	5343598
+5269662	5334022
+5289226	5315086
+5292162	5293562
+# start_trial(72) :
+# end_trial(72) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 72  Size: 1
+5248776	5290344
+# start_trial(73) :
+# end_trial(73) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 73  Size: 5
+5218454	5334926
+5260938	5322806
+5291370	5297718
+5304592	5287938
+5314982	5285268
+# start_trial(74) :
+# end_trial(74) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.9081 s
+# Pareto: 74  Size: 4
+5258702	5360220
+5263454	5334720
+5275412	5330956
+5291384	5277334
+# start_trial(75) :
+# end_trial(75) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 75  Size: 1
+5245122	5270788
+# start_trial(76) :
+# end_trial(76) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 76  Size: 3
+5258602	5325318
+5290268	5311812
+5314862	5296934
+# start_trial(77) :
+# end_trial(77) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 77  Size: 2
+5241944	5296114
+5282260	5280460
+# start_trial(78) :
+# end_trial(78) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 78  Size: 4
+5250786	5332162
+5280702	5314016
+5290956	5292046
+5293478	5285544
+# start_trial(79) :
+# end_trial(79) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.8881 s
+# Pareto: 79  Size: 1
+5244758	5281034
+# start_trial(80) :
+# end_trial(80) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 80  Size: 6
+5244094	5358484
+5252686	5336058
+5261452	5327250
+5281694	5319124
+5283896	5307338
+5304106	5265076
+# start_trial(81) :
+# end_trial(81) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8761 s
+# Pareto: 81  Size: 7
+5263662	5380452
+5269740	5337070
+5285200	5324712
+5289394	5324456
+5292320	5297070
+5320574	5292384
+5350206	5284230
+# start_trial(82) :
+# end_trial(82) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 82  Size: 7
+5254466	5343314
+5273292	5327148
+5273646	5321210
+5281792	5318952
+5297958	5308136
+5305154	5302466
+5313004	5296520
+# start_trial(83) :
+# end_trial(83) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 83  Size: 3
+5274740	5318122
+5278544	5301430
+5362482	5295038
+# start_trial(84) :
+# end_trial(84) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.9081 s
+# Pareto: 84  Size: 2
+5249768	5339684
+5258262	5293812
+# start_trial(85) :
+# end_trial(85) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 85  Size: 2
+5256640	5315028
+5306908	5297420
+# start_trial(86) :
+# end_trial(86) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 86  Size: 4
+5245982	5344194
+5258992	5333040
+5287224	5324826
+5288672	5284450
+# start_trial(87) :
+# end_trial(87) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 87  Size: 7
+5255464	5371998
+5261372	5346970
+5263790	5322536
+5286590	5321710
+5289168	5317450
+5297930	5309896
+5307946	5278906
+# start_trial(88) :
+# end_trial(88) : Pareto Size = 10, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 88  Size: 10
+5262622	5400986
+5265912	5382320
+5270982	5378326
+5278382	5371032
+5281176	5350530
+5285532	5339452
+5292918	5326392
+5294868	5309878
+5327076	5306252
+5332918	5296722
+# start_trial(89) :
+# end_trial(89) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 89  Size: 6
+5249178	5355160
+5258192	5321030
+5264166	5315014
+5284102	5310674
+5292936	5307192
+5304938	5274502
+# start_trial(90) :
+# end_trial(90) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 90  Size: 5
+5251208	5351068
+5257866	5344442
+5266680	5319614
+5273044	5309560
+5331924	5291808
+# start_trial(91) :
+# end_trial(91) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 91  Size: 6
+5235292	5347606
+5262632	5312126
+5275892	5306426
+5298398	5301830
+5325094	5297634
+5334632	5281888
+# start_trial(92) :
+# end_trial(92) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 92  Size: 4
+5250116	5352672
+5258824	5343600
+5279978	5309544
+5295378	5301240
+# start_trial(93) :
+# end_trial(93) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 93  Size: 4
+5246462	5310508
+5291544	5302102
+5319288	5299960
+5325884	5285786
+# start_trial(94) :
+# end_trial(94) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 94  Size: 3
+5252000	5302482
+5293538	5300674
+5303910	5288250
+# start_trial(95) :
+# end_trial(95) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8881 s
+# Pareto: 95  Size: 2
+5245366	5308014
+5256896	5298362
+# start_trial(96) :
+# end_trial(96) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 96  Size: 2
+5256672	5307198
+5260802	5304284
+# start_trial(97) :
+# end_trial(97) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 97  Size: 3
+5259914	5376072
+5261922	5352874
+5266982	5285696
+# start_trial(98) :
+# end_trial(98) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 98  Size: 3
+5260882	5348806
+5263884	5318024
+5270396	5286306
+# start_trial(99) :
+# end_trial(99) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 99  Size: 2
+5250308	5316120
+5252958	5293300
+# start_trial(100) :
+# end_trial(100) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 100  Size: 4
+5250390	5329390
+5261540	5328954
+5289164	5328796
+5290310	5275050
+# start_trial(101) :
+# end_trial(101) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 101  Size: 5
+5253072	5361462
+5254608	5337038
+5270882	5335940
+5275714	5298076
+5300910	5293890
+# start_trial(102) :
+# end_trial(102) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 102  Size: 5
+5243478	5344086
+5267936	5341394
+5279958	5332910
+5280782	5314720
+5285232	5275010
+# start_trial(103) :
+# end_trial(103) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 103  Size: 3
+5235504	5320670
+5263384	5310056
+5302036	5304832
+# start_trial(104) :
+# end_trial(104) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 104  Size: 3
+5227330	5330544
+5240298	5280132
+5308070	5275390
+# start_trial(105) :
+# end_trial(105) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 105  Size: 1
+5248426	5277914
+# start_trial(106) :
+# end_trial(106) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 106  Size: 2
+5255756	5317174
+5274796	5273690
+# start_trial(107) :
+# end_trial(107) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 107  Size: 5
+5244958	5357934
+5261804	5337972
+5265596	5314642
+5295872	5301766
+5302656	5296712
+# start_trial(108) :
+# end_trial(108) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.9201 s
+# Pareto: 108  Size: 4
+5265300	5396848
+5278934	5355400
+5286066	5343848
+5288282	5277112
+# start_trial(109) :
+# end_trial(109) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.9241 s
+# Pareto: 109  Size: 3
+5248312	5313382
+5278584	5288376
+5350914	5273140
+# start_trial(110) :
+# end_trial(110) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.9201 s
+# Pareto: 110  Size: 5
+5260570	5366182
+5261138	5327354
+5265384	5319300
+5276072	5315454
+5320900	5292374
+# start_trial(111) :
+# end_trial(111) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.9241 s
+# Pareto: 111  Size: 6
+5259020	5371016
+5262886	5316222
+5266652	5314362
+5268656	5314344
+5287836	5305634
+5340968	5303026
+# start_trial(112) :
+# end_trial(112) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.9201 s
+# Pareto: 112  Size: 4
+5246474	5346104
+5263294	5310064
+5270142	5303812
+5272096	5300444
+# start_trial(113) :
+# end_trial(113) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.9201 s
+# Pareto: 113  Size: 4
+5263220	5378332
+5263998	5327640
+5267114	5307732
+5330296	5307354
+# start_trial(114) :
+# end_trial(114) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 114  Size: 4
+5262548	5402950
+5270176	5345758
+5275424	5318398
+5276992	5236250
+# start_trial(115) :
+# end_trial(115) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 115  Size: 6
+5233790	5319090
+5264518	5319008
+5264536	5318920
+5276542	5316952
+5288210	5298584
+5304666	5292444
+# start_trial(116) :
+# end_trial(116) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8641 s
+# Pareto: 116  Size: 4
+5254910	5338252
+5260136	5318360
+5290766	5300026
+5334682	5290058
+# start_trial(117) :
+# end_trial(117) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 117  Size: 3
+5249998	5357374
+5267810	5305306
+5297790	5288126
+# start_trial(118) :
+# end_trial(118) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 118  Size: 4
+5246196	5351106
+5255360	5314966
+5265678	5297074
+5295686	5284642
+# start_trial(119) :
+# end_trial(119) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 119  Size: 3
+5262708	5311982
+5269482	5307826
+5305344	5288686
+# start_trial(120) :
+# end_trial(120) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 120  Size: 5
+5271874	5369380
+5277576	5340570
+5280818	5291898
+5282712	5289454
+5300780	5280476
+# start_trial(121) :
+# end_trial(121) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 121  Size: 4
+5248424	5335144
+5249960	5331024
+5256802	5285296
+5298484	5283738
+# start_trial(122) :
+# end_trial(122) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 122  Size: 6
+5256520	5336596
+5260378	5322566
+5273802	5311874
+5288902	5307538
+5311962	5293074
+5323786	5288510
+# start_trial(123) :
+# end_trial(123) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 123  Size: 4
+5258636	5364368
+5259878	5327640
+5268400	5303050
+5307924	5295254
+# start_trial(124) :
+# end_trial(124) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 124  Size: 4
+5237430	5357268
+5265556	5342644
+5286146	5304570
+5325270	5280718
+# start_trial(125) :
+# end_trial(125) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 125  Size: 2
+5262556	5301992
+5304798	5287750
+# start_trial(126) :
+# end_trial(126) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 126  Size: 5
+5244792	5329616
+5302508	5327468
+5305302	5316252
+5320352	5313348
+5339836	5298872
+# start_trial(127) :
+# end_trial(127) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 127  Size: 2
+5259772	5308780
+5278412	5280542
+# start_trial(128) :
+# end_trial(128) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 128  Size: 3
+5258142	5333230
+5284148	5329706
+5305316	5292932
+# start_trial(129) :
+# end_trial(129) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 129  Size: 2
+5251582	5295028
+5325122	5292932
+# start_trial(130) :
+# end_trial(130) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 130  Size: 7
+5253764	5377948
+5261100	5376560
+5262886	5348078
+5268516	5331016
+5284602	5308580
+5304954	5307342
+5350956	5306594
+# start_trial(131) :
+# end_trial(131) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 131  Size: 3
+5247364	5341168
+5255072	5309098
+5257812	5293934
+# start_trial(132) :
+# end_trial(132) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 132  Size: 1
+5248088	5300746
+# start_trial(133) :
+# end_trial(133) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 133  Size: 5
+5243774	5339600
+5260430	5331044
+5261064	5317618
+5284230	5294324
+5309232	5282052
+# start_trial(134) :
+# end_trial(134) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 134  Size: 7
+5210172	5342470
+5268604	5332856
+5272310	5329524
+5287224	5313622
+5297324	5306942
+5297552	5295804
+5319088	5290708
+# start_trial(135) :
+# end_trial(135) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 135  Size: 4
+5237578	5320140
+5267828	5311316
+5293642	5289788
+5315048	5287112
+# start_trial(136) :
+# end_trial(136) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 136  Size: 4
+5256000	5378382
+5265996	5347036
+5272834	5320852
+5296750	5294544
+# start_trial(137) :
+# end_trial(137) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 137  Size: 7
+5248054	5337248
+5271552	5336002
+5276270	5319376
+5282786	5318792
+5289352	5307728
+5299360	5294498
+5335696	5287664
+# start_trial(138) :
+# end_trial(138) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 138  Size: 4
+5249970	5351738
+5262156	5329990
+5273030	5300160
+5284834	5268814
+# start_trial(139) :
+# end_trial(139) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 139  Size: 4
+5260472	5322856
+5267366	5309662
+5294148	5305270
+5356184	5300892
+# start_trial(140) :
+# end_trial(140) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 140  Size: 4
+5247614	5319096
+5255140	5297600
+5292146	5295294
+5292856	5274260
+# start_trial(141) :
+# end_trial(141) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 141  Size: 4
+5241520	5324764
+5269646	5323274
+5271470	5303358
+5280230	5283868
+# start_trial(142) :
+# end_trial(142) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 142  Size: 3
+5251808	5307900
+5319016	5306842
+5325528	5302748
+# start_trial(143) :
+# end_trial(143) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 143  Size: 4
+5232352	5331690
+5273332	5316496
+5279668	5305118
+5331000	5299232
+# start_trial(144) :
+# end_trial(144) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 144  Size: 6
+5256082	5351070
+5270108	5341410
+5271946	5331824
+5289960	5321778
+5298824	5298102
+5316372	5297098
+# start_trial(145) :
+# end_trial(145) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 145  Size: 7
+5240608	5349646
+5256128	5346218
+5261404	5345828
+5270440	5328984
+5275350	5303866
+5279460	5299088
+5312672	5290524
+# start_trial(146) :
+# end_trial(146) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 146  Size: 5
+5229068	5331358
+5247820	5319718
+5279928	5314066
+5293434	5301422
+5293870	5284408
+# start_trial(147) :
+# end_trial(147) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 147  Size: 4
+5265888	5381896
+5268672	5311472
+5302546	5299700
+5336824	5287200
+# start_trial(148) :
+# end_trial(148) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 148  Size: 5
+5246992	5371468
+5266244	5308672
+5276688	5302090
+5315516	5294950
+5319938	5284618
+# start_trial(149) :
+# end_trial(149) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 149  Size: 4
+5241468	5358336
+5244606	5340366
+5267342	5297432
+5332938	5276904
+# start_trial(150) :
+# end_trial(150) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 150  Size: 7
+5244244	5376114
+5250468	5354044
+5278652	5340352
+5281488	5333600
+5284324	5310560
+5331200	5296610
+5333906	5293128
+# start_trial(151) :
+# end_trial(151) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 151  Size: 7
+5255280	5352872
+5268406	5343326
+5289330	5342400
+5292076	5336504
+5292286	5312784
+5301596	5307448
+5391774	5307228
+# start_trial(152) :
+# end_trial(152) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 152  Size: 3
+5255694	5351886
+5271362	5307726
+5283454	5285084
+# start_trial(153) :
+# end_trial(153) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 153  Size: 3
+5253714	5313704
+5263676	5299808
+5275022	5284336
+# start_trial(154) :
+# end_trial(154) : Pareto Size = 8, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 154  Size: 8
+5241616	5362236
+5255426	5346276
+5262784	5332708
+5269108	5325460
+5277288	5323876
+5277498	5307024
+5310020	5301512
+5352002	5293254
+# start_trial(155) :
+# end_trial(155) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 155  Size: 6
+5252906	5366638
+5257382	5334862
+5258428	5308712
+5303022	5298936
+5327690	5289806
+5339530	5283106
+# start_trial(156) :
+# end_trial(156) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 156  Size: 6
+5214054	5387936
+5244092	5333448
+5290884	5324472
+5299138	5315958
+5301466	5313770
+5315072	5295644
+# start_trial(157) :
+# end_trial(157) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 157  Size: 5
+5251526	5385648
+5266708	5365138
+5267846	5303184
+5293826	5297860
+5319616	5295318
+# start_trial(158) :
+# end_trial(158) : Pareto Size = 8, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 158  Size: 8
+5246382	5364572
+5255166	5321574
+5287178	5321104
+5288952	5315294
+5289520	5313774
+5289734	5312258
+5295552	5298740
+5320318	5292216
+# start_trial(159) :
+# end_trial(159) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8761 s
+# Pareto: 159  Size: 7
+5255790	5350878
+5270496	5328194
+5273050	5323448
+5283064	5322406
+5299868	5311574
+5311458	5296820
+5369294	5296484
+# start_trial(160) :
+# end_trial(160) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 160  Size: 4
+5263060	5345028
+5263346	5329268
+5263630	5309538
+5270548	5274536
+# start_trial(161) :
+# end_trial(161) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 161  Size: 4
+5249782	5343552
+5278364	5331734
+5293258	5321236
+5314122	5294300
+# start_trial(162) :
+# end_trial(162) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8841 s
+# Pareto: 162  Size: 4
+5248654	5311618
+5273862	5309422
+5282368	5301892
+5323902	5294724
+# start_trial(163) :
+# end_trial(163) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8961 s
+# Pareto: 163  Size: 4
+5242876	5337732
+5272238	5304110
+5296404	5302756
+5302736	5300562
+# start_trial(164) :
+# end_trial(164) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.9201 s
+# Pareto: 164  Size: 2
+5257106	5322472
+5257872	5291056
+# start_trial(165) :
+# end_trial(165) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.9281 s
+# Pareto: 165  Size: 3
+5246412	5301200
+5257102	5296406
+5282938	5281232
+# start_trial(166) :
+# end_trial(166) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.9041 s
+# Pareto: 166  Size: 1
+5261344	5278434
+# start_trial(167) :
+# end_trial(167) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 167  Size: 2
+5207768	5285096
+5251774	5262174
+# start_trial(168) :
+# end_trial(168) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 168  Size: 5
+5252476	5341930
+5259994	5339162
+5261246	5300000
+5287272	5296960
+5295622	5294608
+# start_trial(169) :
+# end_trial(169) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 169  Size: 6
+5226264	5328500
+5277464	5326176
+5283500	5325496
+5292540	5307144
+5297542	5293280
+5302886	5289706
+# start_trial(170) :
+# end_trial(170) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.9001 s
+# Pareto: 170  Size: 6
+5258608	5349086
+5262004	5348740
+5271162	5328506
+5278050	5304684
+5298656	5286344
+5351610	5279252
+# start_trial(171) :
+# end_trial(171) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.9081 s
+# Pareto: 171  Size: 4
+5255400	5336540
+5255508	5317544
+5266526	5311184
+5295340	5285696
+# start_trial(172) :
+# end_trial(172) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8961 s
+# Pareto: 172  Size: 2
+5250304	5297874
+5283074	5265846
+# start_trial(173) :
+# end_trial(173) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8881 s
+# Pareto: 173  Size: 4
+5210334	5328068
+5269816	5306036
+5311530	5305230
+5364628	5302930
+# start_trial(174) :
+# end_trial(174) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 174  Size: 3
+5240600	5302258
+5303732	5299116
+5315600	5295118
+# start_trial(175) :
+# end_trial(175) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8641 s
+# Pareto: 175  Size: 2
+5245444	5328246
+5278910	5297264
+# start_trial(176) :
+# end_trial(176) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 176  Size: 3
+5262744	5333626
+5286060	5321404
+5303996	5286016
+# start_trial(177) :
+# end_trial(177) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8881 s
+# Pareto: 177  Size: 4
+5266860	5381622
+5268472	5326842
+5272178	5318748
+5272624	5286186
+# start_trial(178) :
+# end_trial(178) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8641 s
+# Pareto: 178  Size: 3
+5252908	5329620
+5266834	5322330
+5271910	5286698
+# start_trial(179) :
+# end_trial(179) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 179  Size: 3
+5262210	5341652
+5286860	5325636
+5290370	5281614
+# start_trial(180) :
+# end_trial(180) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8761 s
+# Pareto: 180  Size: 3
+5266766	5332104
+5274192	5325700
+5290394	5286536
+# start_trial(181) :
+# end_trial(181) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 181  Size: 2
+5223996	5264934
+5276944	5259324
+# start_trial(182) :
+# end_trial(182) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 182  Size: 6
+5254596	5376180
+5269014	5329152
+5274636	5306446
+5297442	5301974
+5299942	5300198
+5311514	5299176
+# start_trial(183) :
+# end_trial(183) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 183  Size: 6
+5261394	5354636
+5265378	5346184
+5268934	5338140
+5273124	5334504
+5273154	5318460
+5285648	5287704
+# start_trial(184) :
+# end_trial(184) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 184  Size: 2
+5244120	5337354
+5256384	5285550
+# start_trial(185) :
+# end_trial(185) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 185  Size: 2
+5262862	5302662
+5277674	5291722
+# start_trial(186) :
+# end_trial(186) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 186  Size: 4
+5255174	5330402
+5276800	5312808
+5293146	5279082
+5346592	5266638
+# start_trial(187) :
+# end_trial(187) : Pareto Size = 7, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 187  Size: 7
+5246804	5400388
+5250178	5352570
+5266038	5328910
+5280858	5320198
+5290784	5316988
+5309158	5298146
+5354416	5291594
+# start_trial(188) :
+# end_trial(188) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 188  Size: 2
+5259684	5349314
+5262814	5286348
+# start_trial(189) :
+# end_trial(189) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 189  Size: 5
+5247922	5341922
+5267178	5329290
+5271752	5318494
+5291980	5306488
+5322930	5301076
+# start_trial(190) :
+# end_trial(190) : Pareto Size = 1, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 190  Size: 1
+5234970	5275712
+# start_trial(191) :
+# end_trial(191) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 191  Size: 6
+5254424	5378850
+5255612	5369634
+5260926	5349398
+5267362	5338284
+5273240	5303014
+5280820	5289176
+# start_trial(192) :
+# end_trial(192) : Pareto Size = 4, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 192  Size: 4
+5241760	5327686
+5274282	5324544
+5275572	5308086
+5275822	5287264
+# start_trial(193) :
+# end_trial(193) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 193  Size: 3
+5255512	5333632
+5267168	5322190
+5282082	5279046
+# start_trial(194) :
+# end_trial(194) : Pareto Size = 6, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 194  Size: 6
+5244070	5360390
+5244866	5318190
+5268138	5317572
+5289852	5314910
+5321016	5314668
+5325172	5302966
+# start_trial(195) :
+# end_trial(195) : Pareto Size = 2, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 195  Size: 2
+5223050	5316882
+5339314	5304744
+# start_trial(196) :
+# end_trial(196) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 196  Size: 5
+5247650	5360362
+5254704	5324760
+5263442	5309510
+5312364	5303634
+5316266	5295334
+# start_trial(197) :
+# end_trial(197) : Pareto Size = 5, Scalarizations = 100, Elapsed time = 0.8681 s
+# Pareto: 197  Size: 5
+5264462	5341904
+5267506	5312252
+5268108	5297324
+5294678	5290524
+5304892	5288808
+# start_trial(198) :
+# end_trial(198) : Pareto Size = 3, Scalarizations = 100, Elapsed time = 0.8721 s
+# Pareto: 198  Size: 3
+5263722	5332598
+5290170	5327584
+5295962	5289366
+# start_trial(199) :
+# end_trial(199) : Pareto Size = 9, Scalarizations = 100, Elapsed time = 0.8801 s
+# Pareto: 199  Size: 9
+5239548	5364766
+5253792	5355244
+5265338	5344000
+5272150	5343382
+5276076	5325734
+5283462	5321062
+5285448	5299064
+5290246	5297754
+5325178	5288796
+# Average Number Scalarizations = 100, Average Trial Time = 0.8809 s

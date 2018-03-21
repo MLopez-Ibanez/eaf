@@ -1,0 +1,23 @@
+Package: eaf
+Type: Package
+Title: Plots of the Empirical Attainment Function 
+Version: 1.08
+Date: 2018-03-21
+Authors@R: c(person("Manuel", "López-Ibáñez", role = c("aut", "cre"),
+                              email = "manuel.lopez-ibanez@manchester.ac.uk",
+                              comment = c(ORCID = "0000-0001-9974-1295")),
+             person("Marco", "Chiarandini", role = "aut"),
+             person("Carlos", "Fonseca", role = "aut"),
+             person("Luis", "Paquete", role = "aut"),
+             person("Thomas", "Stützle", role = "aut"))
+Description: Plots of the empirical attainment function for two objectives.
+Depends: R (>= 2.10.0)
+Imports: modeltools, graphics, grDevices, stats
+Suggests: testthat
+License: GPL (>= 2) + file LICENSE
+BugReports: https://github.com/MLopez-Ibanez/eaf/issues
+URL: http://lopez-ibanez.eu/eaftools, https://github.com/MLopez-Ibanez/eaf
+LazyLoad: true
+LazyData: true
+Encoding: UTF-8
+RoxygenNote: 6.0.1

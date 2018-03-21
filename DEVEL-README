@@ -1,0 +1,55 @@
+README file for developers
+===========================
+
+RELEASE Process:
+
+1. svn up
+
+2. "make check" passes
+
+3. "make cran" passes
+
+4. make releasebuild # Inspect the output for strange files!
+
+5. "make winbuild" passes. Wait for email and check logs!
+
+6. Update NEWS (add version number on top)
+
+7. make closeversion
+
+8. Use http://cran.r-project.org/submit.html to submit
+   Read http://cran.r-project.org/web/packages/policies.html
+
+* IF the package requires further changes:
+
+  * Make the changes.
+
+  * Repeat the whole RELEASE process above without changing the version number.
+
+* IF the package is released in CRAN:
+
+  9. Bump the version number in Makefile.
+
+  10.  make build # To update DESCRIPTION and other files with the new version."
+
+  11.  svn ci -m " * Bump development version to $NEW_VERSION
+
+
+
+Submission email
+================
+To: cran@R-project.org
+Subject: CRAN submission $PACKAGE $VERSION
+
+Dear CRAN maintainers,
+
+I would like to submit version $VERSION of the $PACKAGE package to CRAN.
+
+(I know the leading zero in the version number does not have any effect, but it helps me to sort filenames.)
+
+The NEWS section corresponding to this version is:
+
+Thanks in advance,
+
+    Manuel López-Ibáñez.
+    
