@@ -3,7 +3,7 @@ README file for developers
 
 RELEASE Process:
 
-1. svn up
+1. git pull
 
 2. "make check" passes
 
@@ -32,7 +32,7 @@ RELEASE Process:
 
   10.  make build # To update DESCRIPTION and other files with the new version."
 
-  11.  svn ci -m " * Bump development version to $NEW_VERSION
+  11.  git ci -a  -m "Bump development version to $NEW_VERSION
 
 
 
