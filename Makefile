@@ -7,23 +7,23 @@ BINDIR=$(CURDIR)/..
 RNODE=iridiacluster
 RDIR=~/
 INSTALL_FLAGS=
-REALVERSION=$(PACKAGEVERSION).$(SVN_REV)
+REALVERSION=$(PACKAGEVERSION)$(SVN_REV)
 DATE=$(shell date +%F)
 PACKAGEDIR=$(CURDIR)
 FTP_COMMANDS="user anonymous anonymous\nbinary\ncd incoming\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
 WINBUILD_FTP_COMMANDS="user anonymous anonymous\nbinary\ncd R-devel\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
 
 
-## Do we have svnversion?
-ifeq ($(shell sh -c 'which svnversion 1> /dev/null 2>&1 && echo y'),y)
+## Do we have git?
+ifeq ($(shell sh -c 'which git 1> /dev/null 2>&1 && echo y'),y)
   ## Is this a working copy?
-  ifeq ($(shell sh -c 'LC_ALL=C svnversion -n . | grep -q ^[0-9] && echo y'),y)
-    $(shell sh -c 'svnversion -n . > svn_version')
+  ifeq ($(shell sh -c 'LC_ALL=C  git describe --first-parent --always | sed "s/v[0-9]\.[0-9]//" | grep -q ^[0-9] && echo y'),y)
+    $(shell sh -c 'git describe --first-parent --always | sed "s/v[0-9]\.[0-9]//" > git_version')
   endif
 endif
 ## Set version information:
-SVN_REV = $(shell sh -c 'cat svn_version 2> /dev/null')
-REVNUM = $(shell sh -c 'cat svn_version | tr -d -c "[:digit:]" 2> /dev/null')
+SVN_REV = $(shell sh -c 'cat git_version 2> /dev/null')
+REVNUM = $(shell sh -c 'cat git_version 2> /dev/null')
 
 .PHONY: build check clean install pdf rsync scripts submit bumpdate version cran winbuild help
 
@@ -50,8 +50,9 @@ build: clean scripts bumpdate gendoc
 
 closeversion:
 	git ci NEWS -m " * NEWS: Close version $(PACKAGEVERSION)"
-	git tag -a v$(PACKAGEVERSION) -m "Version $(PACKAGEVERSION)"
-	git push
+	git push origin :refs/tags/v$(PACKAGEVERSION) # Remove any existing tag
+	git tag -f -a v$(PACKAGEVERSION) -m "Version $(PACKAGEVERSION)"
+	git push --tags
 
 releasebuild:
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
@@ -99,7 +100,7 @@ ifndef RDIR
 	@echo "ERROR: You must specify a remote dir (e.g., RDIR=~/)"
 endif
 ifdef RNODE
-	rsync -rlp -CIzc -L --delete --copy-unsafe-links --exclude=.svn --exclude=/examples/ --progress --relative  \
+	rsync -rlp -CIzc -L --delete --copy-unsafe-links --exclude=.git --exclude=/examples/ --progress --relative  \
 	.     \
 	$(RNODE):$(RDIR)/eaf/
 	ssh $(RNODE) "cd $(RDIR)/eaf && make install"

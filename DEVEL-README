@@ -45,8 +45,6 @@ Dear CRAN maintainers,
 
 I would like to submit version $VERSION of the $PACKAGE package to CRAN.
 
-(I know the leading zero in the version number does not have any effect, but it helps me to sort filenames.)
-
 The NEWS section corresponding to this version is:
 
 Thanks in advance,
