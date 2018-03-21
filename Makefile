@@ -1,4 +1,4 @@
-PACKAGEVERSION=1.08
+PACKAGEVERSION=1.8
 PACKAGE=$(shell sh -c 'grep -F "Package: " DESCRIPTION | cut -f2 -d" "')
 
 # FIXME: This Makefile only works with this BINDIR!
@@ -49,10 +49,9 @@ build: clean scripts bumpdate gendoc
 	cd $(BINDIR) && R CMD build $(PACKAGEDIR)
 
 closeversion:
-	svn ci NEWS -m " * NEWS: Close version $(PACKAGEVERSION)"
-# No tags yet:	svn cp ^/trunk ^/tags/$(PACKAGEVERSION) -m " * Tag version $(PACKAGEVERSION)"
-	svn up
-	make build # again to update version.R and svn_version
+	git ci NEWS -m " * NEWS: Close version $(PACKAGEVERSION)"
+	git tag -a v$(PACKAGEVERSION) -m "Version $(PACKAGEVERSION)"
+	git push
 
 releasebuild:
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
