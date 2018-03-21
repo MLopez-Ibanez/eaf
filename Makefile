@@ -117,6 +117,6 @@ winbuild:
 	@echo "Winbuild: http://win-builder.r-project.org/"
 	cd $(BINDIR) && echo $(WINBUILD_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
 
-readme: ./README.md web/pandoc_header.yaml web/pandoc-simple.css
+readme: ./README.md web/pandoc-simple.css
 	pandoc -s   --css web/pandoc-simple.css  ./README.md > web/README.html
 

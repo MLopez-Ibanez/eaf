@@ -1,13 +1,13 @@
-**eaf**: Empirical Attainment Function (EAF) Tools
-================================================================
-
 <img src="http://lopez-ibanez.eu/img/ALG_1_dat-ALG_2_dat.png" width="455" height="242" alt= "EAF
    differences between two bi-objective optimizers" title= "EAF differences
-   between two bi-objective optimizers" style= "border:0; align:right;"/>
+   between two bi-objective optimizers" style= "border:0; float:right;"/>
 <img src="http://lopez-ibanez.eu/img/eafdiff-color.png" width="480"
    height="240" alt="EAF differences between two variants of W-RoTS (color)"
    title="EAF differences between two variants of W-RoTS (color)"
-   style="border:0; align:right;"/>
+   style="border:0; float:right; clear:right"/>
+   
+**eaf**: Empirical Attainment Function (EAF) Tools
+================================================================
 
 [![CRAN Status](https://www.r-pkg.org/badges/version-last-release/eaf)](https://cran.r-project.org/package=eaf) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/eaf)](https://CRAN.R-project.org/package=eaf) 
 
@@ -22,8 +22,8 @@
     [Luís Paquete](http://eden.dei.uc.pt/~paquete), and
     [Thomas Stützle](http://iridia.ulb.ac.be/~stuetzle)
     
-
 ---------------------------------------
+
 Introduction
 ============
 
@@ -64,16 +64,15 @@ The visualization of the EAFs require installing the eaf package. Therefore, for
 The first step before installing the eaf package is to [install R](http://cran.r-project.org/). Once R is installed in the system, there are two methods for installing the eaf package:
 
  1. Install within R (automatic download, internet connection required). Invoke
-    R
-
-        R
-        > install.packages(c("modeltools", "eaf"))
-
+    R, then
+```r
+        install.packages(c("modeltools", "eaf"))
+```
  2. Download the package from CRAN (you may also need to download and install first the package modeltools), and invoke at the command-line:
-
+```bash
         R CMD INSTALL <package>
-
-    where `<package>` is one of the three versions available: `.tar.gz` (Unix/BSD/GNU/Linux), `.tgz` (MacOS X), or `.zip` (Windows).
+```
+where `<package>` is one of the three versions available: `.tar.gz` (Unix/BSD/GNU/Linux), `.tgz` (MacOS X), or `.zip` (Windows).
 
 Search the [R documentation](http://cran.r-project.org/faqs.html) if you need more help to install an R package on your system.
 
@@ -86,7 +85,7 @@ Usage
 -----
 
 Once the eaf package is installed, the following R commands will give more information:
-
+```r
     library(eaf)
     ?eaf
     ?eafplot
@@ -94,6 +93,7 @@ Once the eaf package is installed, the following R commands will give more infor
     ?read.data.sets
     example(eafplot)
     example(eafdiffplot) # This one takes some time
+```
 
 Apart from the main R package, the source code contains the following extras in
 the directory `inst/` (after installation, these files can be found at the
