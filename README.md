@@ -1,10 +1,10 @@
 <img src="http://lopez-ibanez.eu/img/ALG_1_dat-ALG_2_dat.png" width="455" height="242" alt= "EAF
    differences between two bi-objective optimizers" title= "EAF differences
-   between two bi-objective optimizers" style= "border:0; float:right;"/>
+   between two bi-objective optimizers" style= "border:0; align:right; float:right;"/>
 <img src="http://lopez-ibanez.eu/img/eafdiff-color.png" width="480"
    height="240" alt="EAF differences between two variants of W-RoTS (color)"
    title="EAF differences between two variants of W-RoTS (color)"
-   style="border:0; float:right; clear:right"/>
+   style="border:0; align:right; float:right; clear:right"/>
    
 **eaf**: Empirical Attainment Function (EAF) Tools
 ================================================================
