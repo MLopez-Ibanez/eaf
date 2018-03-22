@@ -94,7 +94,7 @@ compute.eaf.as.list <- function(data, percentiles = NULL)
                  function(x) { x[, -(nobjs + 1L), drop = FALSE] }))
 }
 
-compute.eafdiff.helper <- function(cfun, data, intervals)
+compute.eafdiff.helper <- function(data, intervals)
 {
   # Last column is the set number.
   nobjs <- ncol(data) - 1L
@@ -107,33 +107,53 @@ compute.eafdiff.helper <- function(cfun, data, intervals)
   ## division <- nsets %/% 2
   ## nsets1 <- division
   ## nsets2 <- nsets - division
-  return(.Call(cfun,
+  return(.Call("compute_eafdiff_C",
+                as.double(t(as.matrix(data[, 1L:nobjs]))),
+                nobjs,
+                as.integer(cumsum(npoints)),
+                as.integer(nsets),
+                as.integer(intervals)))
+}
+
+compute.eafdiff.area <- function(data, intervals)
+{
+  # Last column is the set number.
+  nobjs <- ncol(data) - 1L
+  # the C code expects points within a set to be contiguous.
+  data <- data[order(data[, nobjs + 1L]), ]
+  sets <- data[ , nobjs + 1L]
+  nsets <- length(unique(sets))
+  npoints <- tabulate (sets)
+  # FIXME: Ideally this would be computed by the C code, but it is hard-coded.
+  ## division <- nsets %/% 2
+  ## nsets1 <- division
+  ## nsets2 <- nsets - division
+  return(.Call("compute_eafdiff_area_C",
                as.double(t(as.matrix(data[, 1L:nobjs]))),
                nobjs,
                as.integer(cumsum(npoints)),
                as.integer(nsets),
-               as.integer(intervals)
-               ))
+               as.integer(intervals)))
 }
 
 # FIXME: The default intervals should be nsets / 2
-compute.eafdiff <- function(DATA, intervals = 1)
+compute.eafdiff <- function(data, intervals = 1)
 {
-  DIFF <- compute.eafdiff.helper("compute_eafdiff_C", DATA, intervals)
+  DIFF <- compute.eafdiff.helper(data, intervals)
   #print(DIFF)
   # FIXME: Do this computation in C code.
+  eafval <- DIFF[, ncol(data)]
   eafdiff <- list(left = NULL, right = NULL)
-  eafval <- DIFF[, ncol(DATA)]
   eafdiff$left <- unique(DIFF[ eafval >= 1L, , drop = FALSE])
   eafdiff$right <- unique(DIFF[ eafval <= -1L, , drop = FALSE])
-  eafdiff$right[, ncol(DATA)] <- -eafdiff$right[, ncol(DATA)]
+  eafdiff$right[, ncol(data)] <- -eafdiff$right[, ncol(data)]
   return(eafdiff)
 }
 
 # FIXME: The default intervals should be nsets / 2
-compute.eafdiff.polygon <- function(DATA, intervals = 1L)
+compute.eafdiff.polygon <- function(data, intervals = 1L)
 {
-  return(compute.eafdiff.helper ("compute_eafdiff_area_C", DATA, intervals))
+  return(compute.eafdiff.area (data, intervals))
 }
 
 rm.inf <- function(x, xmax)
@@ -962,9 +982,9 @@ eafplot.default <-
 #' @examples
 #' A1 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "ALG_1_dat"))
 #' A2 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat"))
+#' \donttest{# These take time
 #' eafdiffplot(A1, A2, full.eaf = TRUE)
 #' eafdiffplot(A1, A2, type = "area")
-#' \dontrun{# These take time
 #' eafdiffplot(A1, A2, type = "point")
 #' }
 #' # A more complex example

@@ -109,9 +109,9 @@ This function calculates the differences between the EAFs of two
 \examples{
 A1 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "ALG_1_dat"))
 A2 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat"))
+\donttest{# These take time
 eafdiffplot(A1, A2, full.eaf = TRUE)
 eafdiffplot(A1, A2, type = "area")
-\dontrun{# These take time
 eafdiffplot(A1, A2, type = "point")
 }
 # A more complex example

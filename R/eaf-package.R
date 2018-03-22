@@ -39,7 +39,7 @@
 #'
 #' @import graphics grDevices stats
 #'
-#' @useDynLib eaf, compute_eaf_C, .registration = TRUE
+#' @useDynLib eaf, .registration = TRUE
 #'
 #' @aliases eaf
 #' 
