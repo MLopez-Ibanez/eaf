@@ -20,6 +20,8 @@
 
 * The documentation is now generated with Roxygen2.
 
+* Entry points to C code are now properly registered.
+
 
 1.07
 
