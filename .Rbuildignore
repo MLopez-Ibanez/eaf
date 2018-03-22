@@ -12,5 +12,6 @@ v2
 .+\.so
 doc
 ^svn_version
+^git_version
 testing
 web
