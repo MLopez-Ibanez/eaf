@@ -137,12 +137,11 @@ compute_eaf_helper (SEXP DATA, int nobj, SEXP CUMSIZES, int nruns,
     return eaf;
 }
 
-SEXP compute_eaf_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
-                   SEXP PERCENTILES);
+extern SEXP compute_eaf_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
+                          SEXP PERCENTILES);
 
 SEXP
-compute_eaf_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
-              SEXP PERCENTILE)
+compute_eaf_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS, SEXP PERCENTILE)
 {
     SEXP_2_INT(NOBJ, nobj);
     SEXP_2_INT(NRUNS, nruns);
