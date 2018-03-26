@@ -1,10 +1,9 @@
  * If the plots were based on ggplot2, we could use plotly to make them
    interactive.
- * Update eafplot.pl and eafdiff.pl for new maximise options.
  * Make examples run faster (make data smaller). Move current examples
    to tests/
  * Fix all FIXMEs
  * eafplot.default and .plot.eafdiff.side duplicate a lot of code.
- * Allow create eafdiff plots with a single plot using two different colors.
+ * Create eafdiff plots with a single plot using two different colors.
  * Profile memory/computation time to find bottle-necks.
-
+ * Create a Python interface using: https://rpy2.github.io/doc/latest/html/introduction.html
