@@ -13,7 +13,7 @@
 
 [ [**Homepage**](http://lopez-ibanez.eu/eaftools) ] [ [**GitHub**](https://github.com/MLopez-Ibanez/eaf) ]
 
-**Maintainers:** [Manuel López-Ibáñez](http://lopez-ibanez.eu)
+**Maintainer:** [Manuel López-Ibáñez](http://lopez-ibanez.eu)
 
 **Contributors:**
     [Manuel López-Ibáñez](http://lopez-ibanez.eu),
@@ -48,10 +48,10 @@ visualization.
 **Relevant literature:**
 
  1. Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. [Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization](http://dx.doi.org/10.1007/978-3-642-02538-9_9). In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.<br>
-    (This chapter is also available in a slightly extended form as [Technical Report TR/IRIDIA/2009-015](http://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf)).
-    [ [bibtex](./LopezIbanez_bib.html#LopPaqStu09emaa) |
+    (This chapter is also available in a slightly extended form as [Technical Report TR/IRIDIA/2009-015](http://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf)).<br>
+    [ [bibtex](http://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa) |
     doi:[10.1007/978-3-642-02538-9_9](http://dx.doi.org/10.1007/978-3-642-02538-9_9)
-    | [Presentation](./doc/gecco2010moworkshop.pdf) ]
+    | [Presentation](http://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf) ]
 
 
 Download and installation
