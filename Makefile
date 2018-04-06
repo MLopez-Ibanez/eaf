@@ -28,8 +28,6 @@ REVNUM = $(shell sh -c 'cat git_version 2> /dev/null')
 
 .PHONY: build check clean install pdf rsync scripts submit bumpdate version cran winbuild help
 
-
-
 help :
 	@echo 'This makefile has the following targets                  '
 	@echo '   build     build $(PACKAGE) at $(BINDIR)		'
@@ -74,6 +72,8 @@ pdf:
 
 scripts:
 	@if [ -d $(SCRIPTSDIR) ]; then \
+	cp -f ~/work/perfassess/mo-tools/*.[ch] $(PACKAGEDIR)/inst/scripts/mo-tools/ && \
+	cp -f ~/work/perfassess/hyperv/trunk/hv.[ch] $(PACKAGEDIR)/src/ && \
 	cp -f $(SCRIPTSDIR)/eafplot/eafplot.pl $(SCRIPTSDIR)/eafplot/README \
 		$(PACKAGEDIR)/inst/scripts/eafplot/ && \
 	chmod a-w $(PACKAGEDIR)/inst/scripts/eafplot/eafplot.pl $(PACKAGEDIR)/inst/scripts/eafplot/README && \
