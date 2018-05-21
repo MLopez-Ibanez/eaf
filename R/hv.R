@@ -49,7 +49,7 @@ check.hv.data <- function(x)
 #' data(SPEA2minstoptimeRichmond)
 #' # The second objective must be maximized
 #' # We calculate the hypervolume of the union of all sets.
-#' hypervolume(SPEA2minstoptimeRichmond[, 1:2], reference = c(250, 86401),
+#' hypervolume(SPEA2minstoptimeRichmond[, 1:2], reference = c(250, 0),
 #'             maximise = c(FALSE, TRUE))
 #'
 #' @export
@@ -72,6 +72,72 @@ hypervolume <- function(data, reference, maximise = FALSE)
     reference[maximise] <- -reference[maximise]
   }
   return(.Call("hypervolume_C",
+               as.double(t(data)),
+               as.integer(nobjs),
+               as.integer(npoints),
+               as.double(reference)
+               ))
+}
+
+#' Hypervolume contribution of a set of points
+#'
+#' Computes the hypervolume contribution of each point given a set of points
+#' with respect to a given reference point assuming minimization of all
+#' objectives.
+#'
+#' @param data Either a matrix or a data frame of numerical values, where
+#'   each row gives the coordinates of a point.
+#'
+#' @param reference Reference point as a vector of numerical values. 
+#'
+#' @param maximise Whether the objectives must be maximised instead of
+#'   minimised. Either a single boolean value that applies to all objectives or
+#'   a vector boolean values, with one value per objective.
+#' 
+#' @return  A numerical vector
+#'
+#' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
+#'
+#'@seealso \code{\link{read.table}} \code{\link{hypervolume}}
+#'
+#' @references
+#'
+#' C. M. Fonseca, L. Paquete, and M. López-Ibáñez. An improved dimension-sweep
+#' algorithm for the hypervolume indicator. In IEEE Congress on Evolutionary
+#' Computation, pages 1157-1163, Vancouver, Canada, July 2006.
+#'
+#' Nicola Beume, Carlos M. Fonseca, Manuel López-Ibáñez, Luís Paquete, and
+#' J. Vahrenhold. On the complexity of computing the hypervolume indicator.
+#' IEEE Transactions on Evolutionary Computation, 13(5):1075-1082, 2009.
+#'
+#' @examples
+#'
+#' data(SPEA2minstoptimeRichmond)
+#' # The second objective must be maximized
+#' # We calculate the hypervolume contribution of each point of the union of all sets.
+#' hv_contributions(SPEA2minstoptimeRichmond[, 1:2], reference = c(250, 0),
+#'             maximise = c(FALSE, TRUE))
+#'
+#' @export
+hv_contributions <- function(data, reference, maximise = FALSE)
+{
+  data <- check.hv.data(data)
+  nobjs <- ncol(data) 
+  npoints <- nrow(data)
+  if (is.null(reference)) {
+    stop("reference cannot be NULL")
+  }
+  if (any(maximise)) {
+    if (length(maximise) == 1) {
+      data <- -data
+      reference <- -reference
+    } else if (length(maximise) != nobjs) {
+      stop("length of maximise must be either 1 or ncol(data)")
+    }
+    data[,maximise] <- -data[,maximise]
+    reference[maximise] <- -reference[maximise]
+  }
+  return(.Call("hv_contributions_C",
                as.double(t(data)),
                as.integer(nobjs),
                as.integer(npoints),
