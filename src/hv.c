@@ -54,6 +54,9 @@
 #include <R.h>
 #define fatal_error(...) Rf_error(__VA_ARGS__)
 #else
+#include <stdarg.h>
+#include "gcc_attribs.h"
+
 static void fatal_error(const char * str,...) __attribute__ ((format(printf, 1, 2))) __noreturn;
 
 static void fatal_error(const char *template,...)
