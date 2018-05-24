@@ -25,18 +25,14 @@ hv_contrib (double *hvc, double *points, int dim, int size, const double * ref,
     double * tmp = malloc (sizeof(double) * dim);
 
     double * data = points + dim;
-    if (keep_uevs && uev[0]) {
-        //assert (pointi[0] == ubound[0] || pointi[1] == ubound[1]);
-        hvc[0] = 0.0;
-    } else 
-        hvc[0] = fpli_hv(data, dim, size - 1, ref);
+    hvc[0] = (keep_uevs && uev[0])
+        ? 0.0
+        : fpli_hv(data, dim, size - 1, ref);
     for (int i = 1; i < size; i++) {
         swap_points(points, &data[i * dim], tmp, dim);
-        if (keep_uevs && uev[i]) {
-            hvc[i] = 0.0;
-        } else 
-            hvc[i] = fpli_hv(data, dim, size - 1, ref);
-        fprintf(stderr, "i = %3d <-> 0 : hv_i = %g\n", i, hvc[i]);
+        hvc[i] = (keep_uevs && uev[i])
+            ? 0.0
+            : fpli_hv(data, dim, size - 1, ref);
     }
     free(tmp);
     return hvc;
