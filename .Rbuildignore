@@ -1,6 +1,6 @@
 inst/.+\.svn
 inst/.+~
-^TODO$
+^TODO
 ^DEVEL-README$
 ^v2
 .+\.diff
