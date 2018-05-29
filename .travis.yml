@@ -1,0 +1,18 @@
+language: R
+cache: packages
+sudo: true
+dist: trusty
+
+r:
+- oldrel
+- release
+- devel
+
+env:
+  global:
+  - _R_CHECK_FORCE_SUGGESTS_=false
+  - NOT_CRAN=true
+
+after_success:
+  - Rscript -e 'covr::codecov()'
+
