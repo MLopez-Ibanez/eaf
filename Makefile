@@ -26,7 +26,7 @@ endif
 SVN_REV = $(shell sh -c 'cat git_version 2> /dev/null')
 REVNUM = $(shell sh -c 'cat git_version 2> /dev/null')
 
-.PHONY: build check clean install pdf rsync scripts submit bumpdate version cran winbuild help
+.PHONY: build check clean install pdf rsync scripts submit bumpdate version cran winbuild help gendoc
 
 help :
 	@echo 'This makefile has the following targets                  '
@@ -41,7 +41,8 @@ help :
 install: clean scripts
 	cd $(BINDIR) && R CMD INSTALL $(INSTALL_FLAGS) $(PACKAGEDIR)
 
-gendoc: 
+gendoc: $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
+$(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
 	R --slave -e 'library(devtools);document()'
 
 build: clean scripts bumpdate gendoc
@@ -91,11 +92,10 @@ scripts:
 
 bumpdate: version
 	@sed -i 's/Date: .*/Date: $(DATE)/' $(PACKAGEDIR)/DESCRIPTION
-	@sed -i 's/Date: .*$$/Date: \\tab $(DATE) \\cr/' $(PACKAGEDIR)/man/eaf-package.Rd
 
 version :
 	@sed -i 's/Version:.*$$/Version: $(PACKAGEVERSION)/' $(PACKAGEDIR)/DESCRIPTION
-	@sed -i 's/Version:.*$$/Version: \\tab $(PACKAGEVERSION) \\cr/' $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
+
 rsync : version
 ifndef RDIR
 	@echo "ERROR: You must specify a remote dir (e.g., RDIR=~/)"
