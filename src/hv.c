@@ -550,11 +550,10 @@ typedef struct dlnode {
 #endif
 } dlnode_t;
 
-static avl_tree_t *tree;
 #if VARIANT < 4
-int stop_dimension = 1; /* default: stop on dimension 2 */
+# define STOP_DIMENSION 1 /* default: stop on dimension 2 */
 #else
-int stop_dimension = 2; /* default: stop on dimension 3 */
+# define STOP_DIMENSION 2 /* default: stop on dimension 3 */
 #endif
 
 static int compare_node(const void *p1, const void* p2)
@@ -690,13 +689,13 @@ static void reinsert (dlnode_t *nodep, int dim, double * bound __variant3_only)
 }
 
 static double
-hv_recursive(dlnode_t *list, int dim, int c, const double * ref,
-             double * bound)
+hv_recursive(avl_tree_t *tree, dlnode_t *list,
+             int dim, int c, const double * ref, double * bound)
 {
     /* ------------------------------------------------------
-       General case for dimensions higher than stop_dimension
+       General case for dimensions higher than STOP_DIMENSION
        ------------------------------------------------------ */
-    if ( dim > stop_dimension ) {
+    if ( dim > STOP_DIMENSION ) {
         dlnode_t *p0 = list;
         dlnode_t *p1 = list->prev[dim];
         double hyperv = 0;
@@ -726,7 +725,7 @@ hv_recursive(dlnode_t *list, int dim, int c, const double * ref,
         }
 
 #if VARIANT == 1
-        hypera = hv_recursive(list, dim-1, c, ref, bound);
+        hypera = hv_recursive(tree, list, dim-1, c, ref, bound);
 #elif VARIANT >= 3
         if (c > 1) {
             hyperv = p1->prev[dim]->vol[dim] + p1->prev[dim]->area[dim]
@@ -744,7 +743,7 @@ hv_recursive(dlnode_t *list, int dim, int c, const double * ref,
         if (p1->ignore >= dim) {
             p1->area[dim] = p1->prev[dim]->area[dim];
         } else {
-            p1->area[dim] = hv_recursive(list, dim-1, c, ref, bound);
+            p1->area[dim] = hv_recursive(tree, list, dim-1, c, ref, bound);
             if (p1->area[dim] <= p1->prev[dim]->area[dim])
                 p1->ignore = dim;
         }
@@ -768,12 +767,12 @@ hv_recursive(dlnode_t *list, int dim, int c, const double * ref,
             p1->vol[dim] = hyperv;
 #endif
 #if VARIANT == 1
-            hypera = hv_recursive(list, dim-1, c, ref, NULL);
+            hypera = hv_recursive(tree, list, dim-1, c, ref, NULL);
 #elif VARIANT >= 2
             if (p1->ignore >= dim) {
                 p1->area[dim] = p1->prev[dim]->area[dim];
             } else {
-                p1->area[dim] = hv_recursive(list, dim-1, c, ref, bound);
+                p1->area[dim] = hv_recursive(tree, list, dim-1, c, ref, bound);
                 if (p1->area[dim] <= p1->prev[dim]->area[dim])
                     p1->ignore = dim;
             }
@@ -955,39 +954,37 @@ filter(dlnode_t *list, int d, int n, const double *ref)
 
 double fpli_hv(double *data, int d, int n, const double *ref)
 {
-    dlnode_t *list;
     double hyperv;
-    double * bound = NULL;
     int i;
-
+    
     if (n == 0) return 0.0;
 
-#if VARIANT >= 3
-    bound = malloc (d * sizeof(double));
-    for (i = 0; i < d; i++) bound[i] = -DBL_MAX;
-#endif
-
-    tree  = avl_alloc_tree ((avl_compare_t) compare_tree_asc,
-                            (avl_freeitem_t) NULL);
-
-    list = setup_cdllist(data, d, n);
+    avl_tree_t *tree = avl_alloc_tree ((avl_compare_t) compare_tree_asc,
+                                       (avl_freeitem_t) NULL);
+    dlnode_t *list = setup_cdllist(data, d, n);
 
     n = filter(list, d, n, ref);
     if (n == 0) { 
         /* Returning here would leak memory.  */
 	hyperv = 0.0;
     } else if (n == 1) {
+        int i;
         dlnode_t * p = list->next[0];
         hyperv = 1;
         for (i = 0; i < d; i++)
             hyperv *= ref[i] - p->x[i];
     } else {
-	hyperv = hv_recursive(list, d-1, n, ref, bound);
+        double * bound = NULL;
+#if VARIANT >= 3
+        bound = malloc (d * sizeof(double));
+        for (i = 0; i < d; i++) bound[i] = -DBL_MAX;
+#endif
+	hyperv = hv_recursive(tree, list, d-1, n, ref, bound);
+        free (bound); 
     }
     /* Clean up.  */
     free_cdllist (list);
     free (tree);  /* The nodes are freed by free_cdllist ().  */
-    free (bound); 
 
     return hyperv;
 }
