@@ -1,3 +1,10 @@
+* Functions for computing hypervolume and hypervolume contributions.
+                                                       (Manuel López-Ibáñez)
+
+* Compute Vorob'ev threshold, expectation and deviation. Plots of the symmetric
+  deviation.
+                                                              (Mickael Binois)
+
 1.8
 
 * Development version moved to GitHub: https://github.com/MLopez-Ibanez/eaf
