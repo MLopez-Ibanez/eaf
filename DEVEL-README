@@ -51,3 +51,31 @@ Thanks in advance,
 
     Manuel López-Ibáñez.
     
+Sanitizers
+==========
+
+sudo apt install docker.io
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+newgrp docker
+docker run --rm -ti -v /home/manu/work/perfassess/eaf/R/:/host rocker/r-devel-san /bin/bash
+
+
+apt update
+apt install libssl-dev
+apt install r-cran-modeltools  r-cran-devtools
+Rscript -e 'install.packages("roxygen2")'
+mkdir ~/.R/
+echo > ~/.R/Makevars <<EOF
+CC = gcc -std=gnu99 -fsanitize=address,undefined,signed-integer-overflow -fno-omit-frame-pointer
+CXX = g++ -fsanitize=address,undefined,signed-integer-overflow -fno-omit-frame-pointer
+MAIN_LDFLAGS = -fsanitize=address,undefined,signed-integer-overflow
+EOF
+export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libasan.so.4
+export NOT_CRAN=true
+cd /host
+R CMD build git && R CMD check eaf_1.9.tar.gz  --run-dontrun --run-donttest --as-cran
+
+# On a different shell
+docker ps
+docker commit CONTAINER_ID manu/r-devel-san
