@@ -1,44 +1,42 @@
 language: r
 cache: packages
 fortran: false
-sudo: required
+sudo: true
 
 r:
-- 3.0
-- oldrel
-- release
+  - 3.0
+  - oldrel
+  - release
 
 
 matrix:
   include:
     - os: linux
       dist: trusty
-      before_install:
-        - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes 
-        - sudo apt-get --yes --force-yes update -qq 
-        - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
-        - Rscript -e 'update.packages(ask = FALSE)'
     - os: osx
-      before_install:
-        - sudo tlmgr update --self
-        - Rscript -e 'update.packages(ask = FALSE)'
        
 r_check_args: '--ignore-vignettes --no-examples'
 
 addons:
   apt:
     packages:
-     - libfreetype6
-
+      - libfreetype6
 
 # work around temporary travis + R 3.5 bug
 r_packages: devtools
             
 env:
   global:
-  - _R_CHECK_FORCE_SUGGESTS_=false
-  - NOT_CRAN=true
+    - _R_CHECK_FORCE_SUGGESTS_=false
+    - NOT_CRAN=true
 
 r_check_args: '--run-donttest --run-dontrun --timings'
 
   
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get --yes --force-yes update -qq ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo tlmgr update --self ; fi
+  - Rscript -e 'update.packages(ask = FALSE)'
+
