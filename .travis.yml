@@ -4,7 +4,6 @@ fortran: false
 sudo: false
 dist: trusty
 
-# matrix doesn't work
 os:
   - linux
   - osx
@@ -14,6 +13,11 @@ r:
   - oldrel
   - release
 
+# Combinations that don't work in travis-ci
+matrix:
+  exclude:
+  - os: osx
+    r: 3.1
 
 r_check_args: '--ignore-vignettes --no-examples'
 
@@ -25,7 +29,7 @@ r_check_args: '--ignore-vignettes --no-examples'
 # work around temporary travis + R 3.5 bug
 r_packages:
   - devtools
-            
+
 env:
   global:
     - _R_CHECK_FORCE_SUGGESTS_=false
