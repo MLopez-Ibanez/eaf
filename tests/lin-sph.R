@@ -1,3 +1,4 @@
+# FIXME: Move this to testthat
 # Test compute eaf3D differences.
 library(eaf)
 lin <- read.data.sets("lin.S.txt")
