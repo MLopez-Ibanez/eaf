@@ -3,18 +3,19 @@ cache: packages
 fortran: false
 sudo: true
 
+# matrix doesn't work
+
+os:
+  - linux
+  - osx
+  
 r:
   - 3.0
   - oldrel
   - release
 
+dist: trusty
 
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-    - os: osx
-       
 r_check_args: '--ignore-vignettes --no-examples'
 
 addons:
