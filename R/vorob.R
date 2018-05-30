@@ -61,15 +61,14 @@ vorobDev <- function(x, VE, reference)
   
   # hypervolume of the symmetric difference between A and B: 2*H(AUB) - H(A) - H(B)
   H2 <- hypervolume(VE, reference = reference)
-  # FIXME: This could use sapply(split.data.frame())
-  for(i in 1:nruns) {
-    H1 <- hypervolume(x[x[,3] == i,1:2], reference = reference)
+  H1 <- mean(sapply(split.data.frame(x[,1:2], x[,3]), hypervolume, reference = reference))
 
-    # FIXME: This could be the union and remove dominated points.
+  for(i in 1:nruns) {
+    # FIXME: This could be the union and remove dominated points. Mi: Not sure I understant this point
     H12 <- hypervolume(rbind(x[x[,3] == i,1:2], VE), reference = reference)
-    VD <- VD + 2 * H12 - H1 - H2
+    VD <- VD + 2 * H12
   }
-  return(VD/nruns)
+  return(VD/nruns - H1 - H2)
 }
 
 ##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
