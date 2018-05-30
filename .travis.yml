@@ -21,9 +21,9 @@ env:
   - _R_CHECK_FORCE_SUGGESTS_=false
   - NOT_CRAN=true
 
-after_success:
-  - Rscript -e 'covr::codecov()'
-
+r_check_args:
+ - --run-donttest --run-dontrun --timings
+ 
 before_install:
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
   - sudo apt-get --yes --force-yes update -qq
