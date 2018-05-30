@@ -9,7 +9,8 @@
 **eaf**: Empirical Attainment Function (EAF) Tools
 ================================================================
 
-[![CRAN Status](https://www.r-pkg.org/badges/version-last-release/eaf)](https://cran.r-project.org/package=eaf) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/eaf)](https://CRAN.R-project.org/package=eaf) 
+[![CRAN Status](https://www.r-pkg.org/badges/version-last-release/eaf)](https://cran.r-project.org/package=eaf) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/eaf)](https://CRAN.R-project.org/package=eaf) [![Travis Build
+Status](https://travis-ci.org/MLopez-Ibanez/eaf.svg?branch=master)](https://travis-ci.org/MLopez-Ibanez/eaf)
 
 [ [**Homepage**](http://lopez-ibanez.eu/eaftools) ] [ [**GitHub**](https://github.com/MLopez-Ibanez/eaf) ]
 

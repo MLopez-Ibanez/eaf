@@ -58,7 +58,8 @@ check.eaf.data <- function(x)
   if (ncol(x) < 3)
     stop("'", name, "' must have at least 3 columns: 2D points and set index")
   # Re-encode the sets so that they are consecutive and numeric
-  x[,3] <- as.numeric(as.factor(x[,3]))
+  setcol <- ncol(x)
+  x[, setcol] <- as.numeric(as.factor(x[, setcol]))
   x <-  as.matrix(x)
   if (!is.numeric(x))
     stop("The two first columns of '", name, "' must be numeric")
@@ -312,15 +313,17 @@ sciNotation <- function(x, digits = 1)
 #' 
 #' # Compute only best, median and worst
 #' eafs(x[,1:2], x[,3], percentiles = c(0, 50, 100))
-#' 
+#'
 #' x <- read.data.sets(file.path(eaf.path,"extdata","spherical-250-10-3d.txt"))
 #' y <- read.data.sets(file.path(eaf.path,"extdata","uniform-250-10-3d.txt"))
-#' x <- data.frame(x, group = "spherical")
-#' x <- rbind(x, data.frame(y, group = "uniform"))
-#' 
+#' x <- data.frame(x, groups = "spherical")
+#' x <- rbind(x, data.frame(y, groups = "uniform"))
 #' # Compute only median separately for each group
-#' eafs(x[,1:3], sets = x[,4], groups = x[,5], percentiles = 50)
-#'
+#' z <- eafs(x[,1:3], sets = x[,4], groups = x[,5], percentiles = 50)
+#' str(z)
+#' # library(plotly)
+#' # plot_ly(z, x = ~X1, y = ~X2, z = ~X3, color = ~groups,
+#' #         colors = c('#BF382A', '#0C4B8E')) %>% add_markers()
 #'@export
 eafs <- function (points, sets, groups = NULL, percentiles = NULL)
 {
@@ -419,9 +422,8 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' \dontrun{ # These take time
 #' eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2)
 #' eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2,
-#' 	percentiles=c(0,50,100),include.extremes=TRUE,
-#' 	cex=1.4, lty=c(2,1,2),lwd=c(2,2,2),
-#'         col=c("black","blue","grey50"))
+#' 	percentiles=c(0,50,100), cex = 1.4, lty = c(2,1,2), lwd = c(2,2,2),
+#'      col = c("black","blue","grey50"))
 #' 
 #' A1 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
 #' A2 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
