@@ -26,14 +26,18 @@
 vorobT <- function(x, reference)
 {
   x <- check.eaf.data(x)
+  setcol <- ncol(x)
+  nobjs <- setcol - 1L
+
   # First step: compute average hypervolume over conditional Pareto fronts
-  avg_hyp <- mean(sapply(split.data.frame(x[,1:2], x[,3]), hypervolume, reference = reference))
+  avg_hyp <- mean(sapply(split.data.frame(x[,1:nobjs], x[, setcol]),
+                         hypervolume, reference = reference))
 
   prev_hyp <- diff <- Inf # hypervolume of quantile at previous step
   a <- 0
   b <- 100
   while (diff != 0) {
-    eaf_res <- eafs(x[,1:2], x[,3], percentiles = (a + b) / 2)[,1:2]
+    eaf_res <- eafs(x[,1:nobjs], x[,setcol], percentiles = (a + b) / 2)[,1:nobjs]
     tmp <- hypervolume(eaf_res, reference = reference)
     if (tmp > avg_hyp) a <- (a+b)/2 else b <- (a+b)/2
     diff <- prev_hyp - tmp
@@ -55,20 +59,22 @@ vorobT <- function(x, reference)
 vorobDev <- function(x, VE, reference)
 {
   if(is.null(VE)) VE <- vorobT(x, reference)$VE
-  
-  nruns <- max(x[,3])
-  VD <- 0
-  
-  # hypervolume of the symmetric difference between A and B: 2*H(AUB) - H(A) - H(B)
-  H2 <- hypervolume(VE, reference = reference)
-  H1 <- mean(sapply(split.data.frame(x[,1:2], x[,3]), hypervolume, reference = reference))
 
-  for(i in 1:nruns) {
-    # FIXME: This could be the union and remove dominated points. Mi: Not sure I understant this point
-    H12 <- hypervolume(rbind(x[x[,3] == i,1:2], VE), reference = reference)
-    VD <- VD + 2 * H12
-  }
-  return(VD/nruns - H1 - H2)
+  setcol <- ncol(x)
+  nobjs <- setcol - 1L
+
+  # Hypervolume of the symmetric difference between A and B:
+  # 2 * H(AUB) - H(A) - H(B)
+  H2 <- hypervolume(VE, reference = reference)
+  x.split <- split.data.frame(x[,1:nobjs], x[,setcol])
+  H1 <- mean(sapply(x.split, hypervolume, reference = reference))
+
+  hv.union.VE <- function(y)
+    return(hypervolume(rbind(y[, 1:nobjs], VE), reference = reference))
+  
+  VD <- 2 * sum(sapply(x.split, hv.union.VE))
+  nruns <- length(x.split)
+  return((VD / nruns) - H1 - H2)
 }
 
 ##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
@@ -93,12 +99,12 @@ vorobDev <- function(x, VE, reference)
 ##' # Now display symmetric deviation function
 ##' symDifPlot(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
 ##' 
-symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 21)
+symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 21,
+                       ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
 {
   if(!add)
     plot(NA, xlim = range(x[,1]), ylim = range(x[,2]),
          xlab = expression(f[1]), ylab = expression(f[2]))
-  lines(VE, col = "cyan", lwd = 2)
   levs <- seq(0, 100, length.out = nlevels)
   tmp <- eafs(x[,1:2], x[,3], percentiles = levs)
   cols <- rev(gray.colors(nlevels))
@@ -106,7 +112,50 @@ symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 21)
   # Denote p_n the attainment probability, the value of the symmetric
   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
   # otherwise.
+
+  ## FIXME: I think the code in the for-loop may generate cols[0], which is
+  ## invalid. The code below should be correct.
+  #  cols <- ifelse(levs > threshold, rev(cols), cols)
+  # Then the for-loop can use col = cols[i]
+  
   for(i in 1:length(levs)) {
     lines(tmp[tmp[,3] == levs[i], 1:2], col = if (levs[i] > threshold) cols[nlevels-i] else cols[i])
   }
+
+  lines(VE, col = ve.col, lwd = ve.lwd, lty = ve.lty)
+  
+  legend.txt <- c("VE", sprintf("%.2g %%", levs / 100))
+  legend.pos <- "topright"
+  legend(x = legend.pos, y = NULL,
+         legend = legend.txt, xjust=1, yjust=1, bty="n",
+         lty = c(ve.lty, rep("solid", nlevels)),
+         lwd = c(ve.lwd, rep(1, nlevels)),
+         col = c(ve.col, ifelse(levs > threshold, rev(cols), cols)))
+}
+
+##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
+##'   by \code{\link[eaf]{vorobT}}.
+##' @param nlevels number of levels in which is divided the range of the
+##'   symmetric deviation
+##' @param add if \code{FALSE}, a new graph is created
+##' @export
+##' @rdname Vorob
+##' @examples
+##' # Now display symmetric deviation function
+##' symDifPlot2(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
+##'
+symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 21,
+                       ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
+{
+  levs <- seq(0, 100, length.out = nlevels)
+
+  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
+
+  cols <- gray.colors(nlevels)
+  # Denote p_n the attainment probability, the value of the symmetric
+  # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
+  # otherwise.
+  cols <- ifelse(levs > threshold, cols, rev(cols))
+  eafplot.default(x, attsurfs = c(attsurfs,list(VE=VE)),
+                  percentiles = levs, col = c(cols,ve.col), lty = "solid")
 }
