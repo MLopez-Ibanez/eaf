@@ -60,16 +60,15 @@ vorobDev <- function(x, VE, reference)
   VD <- 0
   
   # hypervolume of the symmetric difference between A and B: 2*H(AUB) - H(A) - H(B)
-  # FIXME: This could use sapply(split.data.frame())
+  H2 <- hypervolume(VE, reference = reference)
+  H1 <- mean(sapply(split.data.frame(x[,1:2], x[,3]), hypervolume, reference = reference))
+
   for(i in 1:nruns) {
-    H1 <- hypervolume(x[x[,3] == i,1:2], reference = reference)
-    # FIXME: this seems a constant that can be computed once outside the loop.
-    H2 <- hypervolume(VE, reference = reference)
-    # FIXME: This could be the union and remove dominated points.
+    # FIXME: This could be the union and remove dominated points. Mi: Not sure I understant this point
     H12 <- hypervolume(rbind(x[x[,3] == i,1:2], VE), reference = reference)
-    VD <- VD + 2 * H12 - H1 - H2
+    VD <- VD + 2 * H12
   }
-  return(VD)
+  return(VD/nruns - H1 - H2)
 }
 
 ##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
@@ -108,7 +107,6 @@ symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 21)
   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
   # otherwise.
   for(i in 1:length(levs)) {
-    # FIXME: What does it mean cols[-5] ? That seems wrong.
-    lines(tmp[tmp[,3] == levs[i],1:2], col = if (levs[i] > threshold) cols[1-i] else cols[i])
+    lines(tmp[tmp[,3] == levs[i], 1:2], col = if (levs[i] > threshold) cols[nlevels-i] else cols[i])
   }
 }
