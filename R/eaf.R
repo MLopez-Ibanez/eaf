@@ -90,9 +90,9 @@ compute.eaf <- function(data, percentiles = NULL)
 compute.eaf.as.list <- function(data, percentiles = NULL)
 {
   eaf <- compute.eaf (data, percentiles = percentiles)
-  nobjs <- 2 # FIXME: Is this ncol (eaf) - 1L ?
-  return (lapply(split.data.frame(eaf, as.factor(eaf[, nobjs + 1L])),
-                 function(x) { x[, -(nobjs + 1L), drop = FALSE] }))
+  setcol <- ncol(eaf)
+  nobjs <- setcol - 1L
+  return (split.data.frame(eaf[,1:nobjs], as.factor(eaf[, setcol])))
 }
 
 compute.eafdiff.helper <- function(data, intervals)

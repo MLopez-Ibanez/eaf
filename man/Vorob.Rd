@@ -4,13 +4,18 @@
 \alias{vorobT}
 \alias{vorobDev}
 \alias{symDifPlot}
+\alias{symDifPlot2}
 \title{Vorob'ev computations}
 \usage{
 vorobT(x, reference)
 
 vorobDev(x, VE, reference)
 
-symDifPlot(x, VE, threshold, add = FALSE, nlevels = 21)
+symDifPlot(x, VE, threshold, add = FALSE, nlevels = 21, ve.col = "red",
+  ve.lwd = 3, ve.lty = "dashed")
+
+symDifPlot2(x, VE, threshold, add = FALSE, nlevels = 21, ve.col = "red",
+  ve.lwd = 3, ve.lty = "dashed")
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of data
@@ -26,6 +31,14 @@ by \code{\link[eaf]{vorobT}}.}
 
 \item{nlevels}{number of levels in which is divided the range of the
 symmetric deviation}
+
+\item{VE, threshold}{Vorob'ev expectation and threshold, e.g., as returned
+by \code{\link[eaf]{vorobT}}.}
+
+\item{nlevels}{number of levels in which is divided the range of the
+symmetric deviation}
+
+\item{add}{if \code{FALSE}, a new graph is created}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold} and
@@ -58,6 +71,9 @@ print(VD)
 
 # Now display symmetric deviation function
 symDifPlot(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
+
+# Now display symmetric deviation function
+symDifPlot2(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
 
 }
 \references{
