@@ -8,7 +8,6 @@ RNODE=iridiacluster
 RDIR=~/
 INSTALL_FLAGS=
 REALVERSION=$(PACKAGEVERSION)$(SVN_REV)
-DATE=$(shell date +%F)
 PACKAGEDIR=$(CURDIR)
 # This could be replaced by devtools::build_win(version = "R-devel")
 FTP_COMMANDS="user anonymous anonymous\nbinary\ncd incoming\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
@@ -26,7 +25,7 @@ endif
 SVN_REV = $(shell sh -c 'cat git_version 2> /dev/null')
 REVNUM = $(shell sh -c 'cat git_version 2> /dev/null')
 
-.PHONY: build check clean install pdf rsync scripts submit bumpdate version cran winbuild help gendoc
+.PHONY: build check clean install pdf rsync scripts submit version cran winbuild help gendoc
 
 help :
 	@echo 'This makefile has the following targets                  '
@@ -45,7 +44,7 @@ gendoc: $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
 $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
 	R --slave -e 'library(devtools);document()'
 
-build: clean scripts bumpdate gendoc
+build: clean scripts gendoc
 	cd $(BINDIR) && R CMD build $(PACKAGEDIR)
 
 closeversion:
@@ -89,9 +88,6 @@ scripts:
 	else \
 	echo "WARNING: $(SCRIPTSDIR) not found!"; \
 	fi
-
-bumpdate: version
-	@sed -i 's/Date: .*/Date: $(DATE)/' $(PACKAGEDIR)/DESCRIPTION
 
 version :
 	@sed -i 's/Version:.*$$/Version: $(PACKAGEVERSION)/' $(PACKAGEDIR)/DESCRIPTION
