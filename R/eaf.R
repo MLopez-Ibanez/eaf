@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                       Copyright (c) 2011-2013
+#                       Copyright (c) 2011-2018
 #         Manuel Lopez-Ibanez <manuel.lopez-ibanez@ulb.ac.be>
 #                Marco Chiarandini <marco@imada.sdu.dk>
 #
@@ -345,6 +345,17 @@ eafs <- function (points, sets, groups = NULL, percentiles = NULL)
   return (attsurfs)
 }
 
+
+# Get correct xlim or ylim when maximising / minimising.
+get.xylim <- function(lim, maximise, data)
+{
+  # FIXME: This seems too complicated.
+  if (!is.null(lim) && maximise) lim <- -lim 
+  if (is.null(lim)) lim <- range(data)
+  if (maximise) lim <- range(-lim)
+  return(lim)
+}
+  
 get.extremes <- function(xlim, ylim, maximise, log)
 {
   if (length(log) && log != "")
@@ -536,16 +547,9 @@ eafplot.default <-
     attsurfs <- lapply(attsurfs, matrix.maximise, maximise = maximise)
   }
 
-  # FIXME: This seems too complicated, what is going on?
-  if (!is.null(xlim) && maximise[1]) xlim <- -xlim 
-  if (!is.null(ylim) && maximise[2]) ylim <- -ylim
-  
   # FIXME: We should take the range from the attsurfs to not make x mandatory.
-  if (is.null (xlim)) xlim <- range(x[,1])
-  if (is.null (ylim)) ylim <- range(x[,2])
-
-  if (maximise[1]) xlim <- range(-xlim)
-  if (maximise[2]) ylim <- range(-ylim)
+  xlim <- get.xylim(xlim, maximise[1], data = x[,1])
+  ylim <- get.xylim(ylim, maximise[2],data = x[,2])
   extreme <- get.extremes(xlim, ylim, maximise, log)
 
   # FIXME: Find a better way to handle different x-y scale.
@@ -578,40 +582,9 @@ eafplot.default <-
        xlim = xlim, ylim = ylim, log = log, axes = FALSE,
        panel.first = ({
          if (axes) {
-           at <- axTicks(1)
-           labels <- formatC(at, format="g")
-           ## tck=1 draws the vertical grid lines (grid() is seriously broken).
-           axis(xaxis.side, at=at, labels=FALSE, tck=1, col='lightgray',
-                ## Work-around for R bug:
-                lwd=0.5, lty="26") ##  This should be instead: lty='dotted', lwd=par("lwd"))
-           axis(xaxis.side, at=at, labels=labels, las = las)
-           mtext(xlab, xaxis.side, line=2.1, cex=par("cex.axis"), las=0)
-           
-           at <- axTicks(2)
-           labels <- formatC(at, format="g")
-           ## if (log == "y") {
-           ##   ## Custom log axis (like gnuplot but in R is hard)
-           ##   max.pow <- 6
-           ##   at <- c(1, 5, 10, 50, 100, 500, 1000, 1500, 10^c(4:max.pow))
-           ##   labels <- c(1, 5, 10, 50, 100, 500, 1000, 1500,
-           ##               parse(text = paste("10^", 4:max.pow, sep = "")))
-             
-           ##   #at <- c(60, 120, 180, 240, 300, 480, 600, 900, 1200, 1440)
-           ##   #labels <- formatC(at,format="g")
-             
-           ##   ## Now do the minor ticks, at 1/10 of each power of 10 interval
-           ##   ##at.minor <- 2:9 * rep(c(10^c(1:max.pow)) / 10, each = length(2:9))
-           ##   at.minor <- 1:10 * rep(c(10^c(1:max.pow)) / 10, each = length(1:10))
-           ##   axis (yaxis.side, at = at.minor, tcl = -0.25, labels = FALSE, las=las)
-           ##   axis (yaxis.side, at = at.minor, labels = FALSE, tck=1,
-           ##         col='lightgray', lty='dotted', lwd=par("lwd"))
-           ## }
-           
-           ## tck=1 draws the horizontal grid lines (grid() is seriously broken).
-           axis (yaxis.side, at=at, labels=FALSE, tck=1,
-                 col='lightgray', lty='dotted', lwd=par("lwd"))
-           axis (yaxis.side, at=at, labels=labels, las = las)
-           mtext(ylab, yaxis.side, line=2.75, cex=par("cex.axis"), las=0)
+           .plot.eaf.axis(xaxis.side, xlab, las = las)
+           # FIXME: Why the different line?
+           .plot.eaf.axis(yaxis.side, ylab, las = las, line = 2.75)
          }
          
          # FIXME: Perhaps have a function plot.eaf.lines that computes
@@ -708,6 +681,39 @@ eafplot.default <-
   invisible()
 }
 
+.plot.eaf.axis <- function(axis.side, lab, las,
+                           col='lightgray', lty = 'dotted', lwd = par("lwd"),
+                           line = 2.1)
+  ## FIXME: Do we still need lwd=0.5, lty="26" to work-around for R bug?
+{
+  at <- axTicks(if (axis.side %% 2 == 0) 2 else 1)
+  labels <- formatC(at, format = "g")
+  ## if (log == "y") {
+  ##   ## Custom log axis (like gnuplot but in R is hard)
+  ##   max.pow <- 6
+  ##   at <- c(1, 5, 10, 50, 100, 500, 1000, 1500, 10^c(4:max.pow))
+  ##   labels <- c(1, 5, 10, 50, 100, 500, 1000, 1500,
+  ##               parse(text = paste("10^", 4:max.pow, sep = "")))
+  
+  ##   #at <- c(60, 120, 180, 240, 300, 480, 600, 900, 1200, 1440)
+  ##   #labels <- formatC(at,format="g")
+  
+  ##   ## Now do the minor ticks, at 1/10 of each power of 10 interval
+  ##   ##at.minor <- 2:9 * rep(c(10^c(1:max.pow)) / 10, each = length(2:9))
+  ##   at.minor <- 1:10 * rep(c(10^c(1:max.pow)) / 10, each = length(1:10))
+  ##   axis (yaxis.side, at = at.minor, tcl = -0.25, labels = FALSE, las=las)
+  ##   axis (yaxis.side, at = at.minor, labels = FALSE, tck=1,
+  ##         col='lightgray', lty='dotted', lwd=par("lwd"))
+  ## }
+  
+  ## tck=1 draws the horizontal grid lines (grid() is seriously broken).
+  axis (axis.side, at=at, labels=FALSE, tck = 1,
+        col='lightgray', lty = 'dotted', lwd = par("lwd"))
+  axis(axis.side, at=at, labels=labels, las = las)
+  mtext(lab, axis.side, line = line, cex = par("cex") * par("cex.axis"), las = 0)
+}
+
+
 .plot.eaf.full.lines <- function(attsurfs, extreme, maximise,
                                  col, lty, lwd, pch = NULL, cex = par("cex"))
 {
@@ -800,44 +806,9 @@ eafplot.default <-
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        ylim = ylim, xlim = xlim, log = log, axes = FALSE,
        panel.first = ({
-         at <- axTicks(1)
-         labels <- formatC(at, format="g")
-         ## tck=1 draws the vertical grid lines (grid() is seriously broken).
-         axis(xaxis.side, at=at, labels=FALSE, tck=1, col='lightgray',
-              ## Work-around for R bug:
-              ##  This should be instead: lty='dotted', lwd=par("lwd"))
-              lwd = 0.5, lty = "26")
-         axis(xaxis.side, at=at, labels=labels, las = las)
-         mtext(xlab, xaxis.side, line=2.1, las = 0,
-               cex = par("cex") * par("cex.axis"))
-
-         at <- axTicks(2)
-         labels <- formatC(at, format="g")
-         ## if (log == "y") {
-         ##   ## Custom log axis (like gnuplot but in R is hard)
-         ##   max.pow <- 6
-         ##   ##at <- c(1, 5, 10, 50, 100, 500, 1000, 1500, 10^c(4:max.pow))
-         ##   ##labels <- c(1, 5, 10, 50, 100, 500, 1000, 1500,
-         ##   ##            parse(text = paste("10^", 4:max.pow, sep = "")))
-
-         ##   at <- c(60, 120, 180, 240, 300, 480, 600, 900, 1200, 1440)
-         ##   labels <- formatC(at,format="g")
-
-         ##   ## Now do the minor ticks, at 1/10 of each power of 10 interval
-         ##   at.minor <- 2:9 * rep(c(10^c(1:max.pow)) / 10, each = length(2:9))
-         ##   at.minor <- 1:10 * rep(c(10^c(1:max.pow)) / 10, each = length(1:10))
-         ##   ##axis (yaxis.side, at = at.minor, tcl = -0.25, labels = FALSE, las=las)
-         ##   ##axis (yaxis.side, at = at.minor, labels = FALSE, tck=1,
-         ##   ##      col='lightgray', lty='dotted', lwd=par("lwd"))
-         ## }
-
-         ## tck=1 draws the horizontal grid lines (grid() is seriously broken).
-         axis(yaxis.side, at=at, labels=FALSE, tck=1,
-              col='lightgray', lty='dotted', lwd=par("lwd"))
-         axis(yaxis.side, at=at, labels=labels, las = las)
-         mtext(ylab, yaxis.side, line = 2.2, las = 0,
-               cex = par("cex") * par("cex.axis"))
-
+         .plot.eaf.axis (xaxis.side, xlab, las = las)
+         .plot.eaf.axis (yaxis.side, ylab, las = las, line = 2.2)
+                         
          if (nrow(eafdiff)) {
            if (type == "area") {
              if (full.eaf) {
@@ -1089,25 +1060,17 @@ eafdiffplot <-
   grand.best <- grand.attsurf[["0"]]
   grand.worst <- grand.attsurf[["100"]]
 
-  if (!is.null(xlim) && maximise[1]) xlim <- -xlim 
-  if (!is.null(ylim) && maximise[2]) ylim <- -ylim
-
-  if (is.null(xlim)) {
-    xlim <- range(c(grand.best[,1], grand.worst[,1],
-                    range.finite(DIFF$left[,1]), range.finite(DIFF$right[,1])))
-  }
-
-  if (is.null(ylim)) {
-    ylim <- range(c(grand.best[,2], grand.worst[,2],
-                    range.finite(DIFF$left[,2]), range.finite(DIFF$right[,2])))
-  }
-  if (maximise[1]) xlim <- range(-xlim)
-  if (maximise[2]) ylim <- range(-ylim)
+  xlim <- get.xylim(xlim, maximise[1],
+                    data = c(grand.best[,1], grand.worst[,1],
+                             range.finite(DIFF$left[,1]), range.finite(DIFF$right[,1])))
+  ylim <- get.xylim(ylim, maximise[2],
+                    data = c(grand.best[,2], grand.worst[,2],
+                             range.finite(DIFF$left[,2]), range.finite(DIFF$right[,2])))
 
   grand.best <- matrix.maximise(grand.best, maximise)
   grand.worst <- matrix.maximise(grand.worst, maximise)
-  DIFF$left <- matrix.maximise(DIFF$left,maximise)
-  DIFF$right <- matrix.maximise(DIFF$right,maximise)
+  DIFF$left <- matrix.maximise(DIFF$left, maximise)
+  DIFF$right <- matrix.maximise(DIFF$right, maximise)
   
   # FIXME: This does not generate empty space between the two plots, but the
   # plots are not squared.
