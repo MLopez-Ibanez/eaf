@@ -17,15 +17,14 @@ eafplot(x, ...)
 \method{eafplot}{data.frame}(x, y = NULL, ...)
 
 \method{eafplot}{default}(x, sets = NULL, groups = NULL,
-  percentiles = c(0, 50, 100), attsurfs = NULL, xlab = "objective 1",
-  ylab = "objective 2", xlim = NULL, ylim = NULL, log = "",
-  type = "point", col = NULL, lty = c("dashed", "solid", "solid", "solid",
-  "dashed"), lwd = c(1.75), pch = NA, cex.pch = par("cex"),
-  las = par("las"), legend.pos = "topright", legend.txt = NULL,
-  extra.points = NULL, extra.legend = NULL, extra.pch = c(4:25),
-  extra.lwd = 0.5, extra.lty = "dashed", extra.col = "black",
-  maximise = c(FALSE, FALSE), xaxis.side = "below", yaxis.side = "left",
-  axes = TRUE, ...)
+  percentiles = c(0, 50, 100), attsurfs = NULL, xlab = NULL,
+  ylab = NULL, xlim = NULL, ylim = NULL, log = "", type = "point",
+  col = NULL, lty = c("dashed", "solid", "solid", "solid", "dashed"),
+  lwd = c(1.75), pch = NA, cex.pch = par("cex"), las = par("las"),
+  legend.pos = "topright", legend.txt = NULL, extra.points = NULL,
+  extra.legend = NULL, extra.pch = c(4:25), extra.lwd = 0.5,
+  extra.lty = "dashed", extra.col = "black", maximise = c(FALSE, FALSE),
+  xaxis.side = "below", yaxis.side = "left", axes = TRUE, ...)
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of

@@ -474,7 +474,7 @@ eafplot.default <-
   function (x, sets = NULL, groups = NULL,
             percentiles = c(0,50,100),
             attsurfs = NULL,
-            xlab = "objective 1", ylab = "objective 2",
+            xlab = NULL, ylab = NULL,
             xlim = NULL, ylim = NULL,
             log = "",
             type = "point",
@@ -515,7 +515,11 @@ eafplot.default <-
     }
   }
 
- 
+  if (is.null(xlab))
+    xlab <- if(!is.null(colnames(x)[1])) colnames(x)[1] else "objective 1"
+  if (is.null(ylab))
+    ylab <- if(!is.null(colnames(x)[2])) colnames(x)[2] else "objective 2"
+     
   if (!is.null (attsurfs)) {
     # Don't we need to apply maximise?
     attsurfs <- lapply(attsurfs, function(x) { as.matrix(x[, 1:2, drop = FALSE]) })
@@ -574,9 +578,6 @@ eafplot.default <-
   ##     'len' _is unimplemented_ in R.
   op <- par(cex = 1.0, cex.lab = 1.1, cex.axis = 1.0, lab = c(10,5,7))
   on.exit(par(op))
-
-  if (!is.null(colnames(x)[1])) xlab <- colnames(x)[1]
-  if (!is.null(colnames(x)[2])) ylab <- colnames(x)[2]
   
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        xlim = xlim, ylim = ylim, log = log, axes = FALSE,
@@ -812,8 +813,6 @@ eafplot.default <-
          if (nrow(eafdiff)) {
            if (type == "area") {
              if (full.eaf) {
-               # FIXME: eafplot.default is doing the same thing as
-               # below, but with different defaults
                .plot.eaf.full.area(split.data.frame(eafdiff[,1:2], eafdiff[,3]),
                                    extreme, maximise, col)
              } else {
