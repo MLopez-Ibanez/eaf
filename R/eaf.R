@@ -69,10 +69,11 @@ check.eaf.data <- function(x)
 compute.eaf <- function(data, percentiles = NULL)
 {
   data <- check.eaf.data(data)
-  nobjs <- ncol(data) - 1L
+  setcol <- ncol(data)
+  nobjs <- setcol - 1L
   # The C code expects points within a set to be contiguous.
-  data <- data[order(data[, nobjs + 1L]), ]
-  sets <- data[, nobjs + 1L]
+  data <- data[order(data[, setcol]), ]
+  sets <- data[, setcol]
   nsets <- length(unique(sets))
   npoints <- tabulate(sets)
   if (is.null(percentiles)) {
@@ -98,12 +99,13 @@ compute.eaf.as.list <- function(data, percentiles = NULL)
 compute.eafdiff.helper <- function(data, intervals)
 {
   # Last column is the set number.
-  nobjs <- ncol(data) - 1L
+  setcol <- ncol(data)
+  nobjs <- setcol - 1L
   # the C code expects points within a set to be contiguous.
-  data <- data[order(data[, nobjs + 1L]), ]
-  sets <- data[ , nobjs + 1L]
+  data <- data[order(data[, setcol]), ]
+  sets <- data[, setcol]
   nsets <- length(unique(sets))
-  npoints <- tabulate (sets)
+  npoints <- tabulate(sets)
   # FIXME: Ideally this would be computed by the C code, but it is hard-coded.
   ## division <- nsets %/% 2
   ## nsets1 <- division
@@ -143,11 +145,12 @@ compute.eafdiff <- function(data, intervals = 1)
   DIFF <- compute.eafdiff.helper(data, intervals)
   #print(DIFF)
   # FIXME: Do this computation in C code.
-  eafval <- DIFF[, ncol(data)]
+  setcol <- ncol(data)
+  eafval <- DIFF[, setcol]
   eafdiff <- list(left = NULL, right = NULL)
   eafdiff$left <- unique(DIFF[ eafval >= 1L, , drop = FALSE])
   eafdiff$right <- unique(DIFF[ eafval <= -1L, , drop = FALSE])
-  eafdiff$right[, ncol(data)] <- -eafdiff$right[, ncol(data)]
+  eafdiff$right[, setcol] <- -eafdiff$right[, setcol]
   return(eafdiff)
 }
 
@@ -258,21 +261,21 @@ read.data.sets <- function(file, col.names)
 points.steps <- function(x)
 {
   n <- nrow(x)
-  if (n == 1) return(x)
-  x <- rbind(x, cbind(x[-1, 1], x[-n, 2]))
-  return(x[c(as.vector(outer(c(0, n), 1:(n - 1), "+")), n),])
+  if (n == 1L) return(x)
+  x <- rbind(x, cbind(x[-1L, 1L], x[-n, 2L]))
+  return(x[c(as.vector(outer(c(0L, n), 1L:(n - 1L), "+")), n),])
 }
 
-sciNotation <- function(x, digits = 1)
+sciNotation <- function(x, digits = 1L)
 {
-  if (length(x) > 1) {
+  if (length(x) > 1L) {
     return(append(sciNotation(x[1]), sciNotation(x[-1])))
   }
   if (!x) return(0)
   exponent <- floor(log10(x))
   base <- round(x / 10^exponent, digits)
   as.expression(substitute(base %*% 10^exponent,
-      list(base = base, exponent = exponent)))
+                           list(base = base, exponent = exponent)))
 }
 
 #' Exact computation of the EAF
@@ -506,19 +509,12 @@ eafplot.default <-
     # Don't we need to apply maximise?
     attsurfs <- lapply(attsurfs, function(x) { as.matrix(x[, 1:2, drop = FALSE]) })
   } else {
-    if (length(dim(x)) != 2L)
-      stop("'x' must be a data.frame or a matrix")
-    if (nrow(x) < 1L)
-      stop("not enough points (rows) in 'x'")
-    if (ncol(x) < 2)
-      stop("'x' must have at least 2 columns")
-    # Re-encode the sets so that they are consecutive and numeric
-    sets <- as.numeric(as.factor(sets))
-    if (length(sets) != nrow(x))
-      stop("'sets' must be a vector of length equal to the number of rows in 'x'")
-    x <- as.matrix(x)
-    if (!is.numeric(x))
-      stop("The two first columns of 'x' must be numeric")
+    # FIXME: This is a bit of wasted effort. We should decide what is more
+    # efficient, one large matrix or separate points and sets, then be
+    # consistent everywhere.
+    x <- check.eaf.data(cbind(x, sets))
+    sets <- x[, 3L]
+    x <- x[,1:2]
     x <- matrix.maximise(x, maximise)
 
     # Transform EAF matrix into attsurfs list.
@@ -550,10 +546,6 @@ eafplot.default <-
 
   if (maximise[1]) xlim <- range(-xlim)
   if (maximise[2]) ylim <- range(-ylim)
-
-  best1 <- if (maximise[1]) max else min
-  best2 <- if (maximise[2]) max else min
-
   extreme <- get.extremes(xlim, ylim, maximise, log)
 
   # FIXME: Find a better way to handle different x-y scale.
@@ -633,27 +625,15 @@ eafplot.default <-
              stop ("length(col) != 2, but with 'type=area', eafplot.default needs just two colors")
            }
            colfunc <- colorRampPalette(col)
-           col <- colfunc(length(attsurfs))
-           for (k in 1:length(attsurfs)) {
-             poli <- points.steps(attsurfs[[k]])
-             poli <- rbind(c(best1(poli[,1]), extreme[2]), poli,
-                           c(extreme[1], best2(poli[,2])), extreme)
-             polygon(poli[,1], poli[,2], border = NA, col = col[k])
-           }
+           .plot.eaf.full.area(attsurfs, extreme, maximise, col = colfunc(length(attsurfs)))
          } else {
            ## Recycle values
            lwd <- rep(lwd, length=length(attsurfs))
            lty <- rep(lty, length=length(attsurfs))
            col <- rep(col, length=length(attsurfs))
            pch <- rep(pch, length=length(attsurfs))
-           for (k in 1:length(attsurfs)) {
-             tmp <- attsurfs[[k]]
-             tmp <- rbind(c(best1(tmp[,1]), extreme[2]), tmp,
-                          c(extreme[1], best2(tmp[,2])))
-
-             points(tmp, type="p", col=col[k], pch = pch[k], cex = cex.pch)
-             points(tmp, type="s", col=col[k], lty = lty[k], lwd = lwd[k])
-           }
+           .plot.eaf.full.lines(attsurfs, extreme, maximise,
+                                col = col, lty = lty, lwd = lwd, pch = pch, cex = cex.pch)
          }
        }),
        las = las, ...)
@@ -728,6 +708,41 @@ eafplot.default <-
   invisible()
 }
 
+.plot.eaf.full.lines <- function(attsurfs, extreme, maximise,
+                                 col, lty, lwd, pch = NULL, cex = par("cex"))
+{
+  best1 <- if (maximise[1]) max else min
+  best2 <- if (maximise[2]) max else min
+  ## Recycle values
+  lwd <- rep(lwd, length = length(attsurfs))
+  lty <- rep(lty, length = length(attsurfs))
+  col <- rep(col, length = length(attsurfs))
+  pch <- rep(pch, length = length(attsurfs))
+  
+  for (k in seq_along(attsurfs)) {
+    tmp <- attsurfs[[k]]
+    tmp <- rbind(c(best1(tmp[,1]), extreme[2]), tmp,
+                 c(extreme[1], best2(tmp[,2])))
+    # FIXME: Is there a way to plot points and steps in one call?
+    if (!is.null(pch))
+      points(tmp, type = "p", col = col[k], pch = pch[k], cex = cex)
+    points(tmp, type = "s", col = col[k], lty = lty[k], lwd = lwd[k])
+  }
+  
+}
+.plot.eaf.full.area <- function(attsurfs, extreme, maximise, col)
+{
+  best1 <- if (maximise[1]) max else min
+  best2 <- if (maximise[2]) max else min
+  stopifnot(length(attsurfs) == length(col))
+  
+  for (i in seq_along(attsurfs)) {
+    poli <- points.steps(attsurfs[[i]])
+    poli <- rbind(c(best1(poli[,1]), extreme[2]), poli,
+                  c(extreme[1], best2(poli[,2])), extreme)
+    polygon(poli[,1], poli[,2], border = NA, col = col[i])
+  }
+}
 
 .plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
                                 col = c("#FFFFFF", "#BFBFBF","#808080","#404040","#000000"),
@@ -768,9 +783,9 @@ eafplot.default <-
   }
 
   extreme <- get.extremes(xlim, ylim, maximise, log)
-
   yscale <- 1
-#    yscale <- 60
+  ## FIXME log == "y" and yscaling
+  #    yscale <- 60
   ## if (yscale != 1) {
   ##   # This doesn't work with polygons.
   ##   stopifnot (full.eaf || type == "point")
@@ -781,14 +796,7 @@ eafplot.default <-
   ##   ylim <- ylim / yscale
   ##   if (log == "y") extreme[2] <- 1
   ## }
-
-  best1 <- if (maximise[1]) max else min
-  best2 <- if (maximise[2]) max else min
   
-  attsurfs <- lapply (attsurfs, function (x) {
-    x <- rbind(c(best1(x[,1]), extreme[2]), x[,1:2],
-               c(extreme[1], best2(x[,2]))) })
-
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        ylim = ylim, xlim = xlim, log = log, axes = FALSE,
        panel.first = ({
@@ -835,12 +843,8 @@ eafplot.default <-
              if (full.eaf) {
                # FIXME: eafplot.default is doing the same thing as
                # below, but with different defaults
-               for (i in 1:length(col)) {
-                 poli <- points.steps(eafdiff[eafdiff[,3] == i, c(1,2), drop = FALSE])
-                 poli <- rbind(c(best1(poli[,1]), extreme[2]), poli,
-                               c(extreme[1], best2(poli[,2])), extreme)
-                 polygon(poli[,1], poli[,2], border = NA, col = col[i])
-               }
+               .plot.eaf.full.area(split.data.frame(eafdiff[,1:2], eafdiff[,3]),
+                                   extreme, maximise, col)
              } else {
                eafdiff[,1] <- rm.inf(eafdiff[,1], extreme[1])
                eafdiff[,2] <- rm.inf(eafdiff[,2], extreme[2])
@@ -872,17 +876,9 @@ eafplot.default <-
     col <- c("black")
   }
 
-  ## Recycle values
-  lwd <- rep(lwd, len = length(attsurfs))
-  lty <- rep(lty, len = length(attsurfs))
-  col <- rep(col, len = length(attsurfs))
-
-  for (k in seq_along(attsurfs)) {
-    tmp <- attsurfs[[k]]
-    lines(tmp[,1], tmp[,2], type = "s", lty = lty[k], lwd = lwd[k], col = col[k])
-  }
-
-  mtext(title, 1, line=3.5, cex=par("cex.lab"), las = 0, font = 2)
+  .plot.eaf.full.lines(attsurfs, extreme, maximise,
+                       col = col, lty = lty, lwd = lwd)
+  mtext(title, 1, line = 3.5, cex = par("cex.lab"), las = 0, font = 2)
   box()
 }
 
@@ -1177,6 +1173,9 @@ eafdiffplot <-
   invisible(DIFF)
 }
 
+# Create labels:
+# eaf:::nintervals.labels(5)
+# "[0.0, 0.2)" "[0.2, 0.4)" "[0.4, 0.6)" "[0.6, 0.8)" "[0.8, 1.0]"
 nintervals.labels <- function(n)
 {
   if (n < 2) stop ("number of intervals must be larger than 1")
