@@ -10,8 +10,8 @@ eafdiffplot(data.left, data.right, col = c("#FFFFFF", "#808080", "#000000"),
   title.left = deparse(substitute(data.left)),
   title.right = deparse(substitute(data.right)), xlim = NULL, ylim = NULL,
   cex = par("cex"), cex.lab = par("cex.lab"), cex.axis = par("cex.axis"),
-  maximise = c(FALSE, FALSE), grand.lines = TRUE, left.panel.last = NULL,
-  right.panel.last = NULL, ...)
+  maximise = c(FALSE, FALSE), grand.lines = TRUE, sci.notation = FALSE,
+  left.panel.last = NULL, right.panel.last = NULL, ...)
 }
 \arguments{
 \item{data.left, data.right}{Data frames corresponding to the input data of
@@ -52,6 +52,8 @@ a maximisation problem.}
 
 \item{grand.lines}{Whether to plot the grand-best and grand-worst
 attainment surfaces.}
+
+\item{sci.notation}{Generate prettier labels}
 
 \item{left.panel.last, right.panel.last}{An expression to be evaluated after
 plotting has taken place on each panel (left or right). This can be useful
@@ -112,7 +114,7 @@ A2 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat
 \donttest{# These take time
 eafdiffplot(A1, A2, full.eaf = TRUE)
 eafdiffplot(A1, A2, type = "area")
-eafdiffplot(A1, A2, type = "point")
+eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
 }
 # A more complex example
 a1 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "wrots_l100w10_dat"))
