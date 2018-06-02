@@ -24,7 +24,8 @@ eafplot(x, ...)
   legend.pos = "topright", legend.txt = NULL, extra.points = NULL,
   extra.legend = NULL, extra.pch = c(4:25), extra.lwd = 0.5,
   extra.lty = "dashed", extra.col = "black", maximise = c(FALSE, FALSE),
-  xaxis.side = "below", yaxis.side = "left", axes = TRUE, ...)
+  xaxis.side = "below", yaxis.side = "left", axes = TRUE,
+  sci.notation = FALSE, ...)
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of
@@ -83,6 +84,8 @@ and "right". See \code{\link{axis}}.}
 
 \item{axes}{A logical value indicating whether both axes should be drawn
 on the plot.}
+
+\item{sci.notation}{Generate prettier labels}
 }
 \value{
 No value is returned.
@@ -126,8 +129,8 @@ eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2,
 
 A1 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
 A2 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
-eafplot(A1, A2, percentiles = c(50))
-eafplot(list(A1 = A1, A2 = A2), percentiles = c(50))
+eafplot(A1, percentiles = 50, sci.notation = TRUE)
+eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 
 ## Save as a PDF file.
 # dev.copy2pdf(file = "eaf.pdf", onefile = TRUE, width = 5, height = 4)
