@@ -82,6 +82,7 @@ vorobDev <- function(x, VE, reference)
 ##' @param nlevels number of levels in which is divided the range of the
 ##'   symmetric deviation
 ##' @param add if \code{FALSE}, a new graph is created
+##' @param ve.col,ve.lwd,ve.lty graphical parameters for plotting VE
 ##' @export
 ##' @rdname Vorob
 ##' @references
@@ -102,51 +103,6 @@ vorobDev <- function(x, VE, reference)
 symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 21,
                        ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
 {
-  if(!add)
-    plot(NA, xlim = range(x[,1]), ylim = range(x[,2]),
-         xlab = expression(f[1]), ylab = expression(f[2]))
-  levs <- seq(0, 100, length.out = nlevels)
-  tmp <- eafs(x[,1:2], x[,3], percentiles = levs)
-  cols <- rev(gray.colors(nlevels))
-  
-  # Denote p_n the attainment probability, the value of the symmetric
-  # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
-  # otherwise.
-
-  ## FIXME: I think the code in the for-loop may generate cols[0], which is
-  ## invalid. The code below should be correct.
-  #  cols <- ifelse(levs > threshold, rev(cols), cols)
-  # Then the for-loop can use col = cols[i]
-  
-  for(i in 1:length(levs)) {
-    lines(tmp[tmp[,3] == levs[i], 1:2], col = if (levs[i] > threshold) cols[nlevels-i] else cols[i])
-  }
-
-  lines(VE, col = ve.col, lwd = ve.lwd, lty = ve.lty)
-  
-  legend.txt <- c("VE", sprintf("%.2g %%", levs / 100))
-  legend.pos <- "topright"
-  legend(x = legend.pos, y = NULL,
-         legend = legend.txt, xjust=1, yjust=1, bty="n",
-         lty = c(ve.lty, rep("solid", nlevels)),
-         lwd = c(ve.lwd, rep(1, nlevels)),
-         col = c(ve.col, ifelse(levs > threshold, rev(cols), cols)))
-}
-
-##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
-##'   by \code{\link[eaf]{vorobT}}.
-##' @param nlevels number of levels in which is divided the range of the
-##'   symmetric deviation
-##' @param add if \code{FALSE}, a new graph is created
-##' @export
-##' @rdname Vorob
-##' @examples
-##' # Now display symmetric deviation function
-##' symDifPlot2(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
-##'
-symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 21,
-                       ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
-{
   levs <- seq(0, 100, length.out = nlevels)
 
   attsurfs <- compute.eaf.as.list(x, percentiles = levs)
@@ -156,6 +112,42 @@ symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 21,
   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
   # otherwise.
   cols <- ifelse(levs > threshold, cols, rev(cols))
+  # FIXME: Handle add == TRUE by using the internal plot functions instead of
+  # the general eafplot.default
   eafplot.default(x, attsurfs = c(attsurfs,list(VE=VE)),
                   percentiles = levs, col = c(cols,ve.col), lty = "solid")
 }
+# Old implementation.
+## symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 21,
+##                        ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
+## {
+##   if(!add)
+##     plot(NA, xlim = range(x[,1]), ylim = range(x[,2]),
+##          xlab = expression(f[1]), ylab = expression(f[2]))
+##   levs <- seq(0, 100, length.out = nlevels)
+##   tmp <- eafs(x[,1:2], x[,3], percentiles = levs)
+##   cols <- rev(gray.colors(nlevels))
+  
+##   # Denote p_n the attainment probability, the value of the symmetric
+##   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
+##   # otherwise.
+
+##   ## FIXME: I think the code in the for-loop may generate cols[0], which is
+##   ## invalid. The code below should be correct.
+##   #  cols <- ifelse(levs > threshold, rev(cols), cols)
+##   # Then the for-loop can use col = cols[i]
+  
+##   for(i in 1:length(levs)) {
+##     lines(tmp[tmp[,3] == levs[i], 1:2], col = if (levs[i] > threshold) cols[nlevels-i] else cols[i])
+##   }
+
+##   lines(VE, col = ve.col, lwd = ve.lwd, lty = ve.lty)
+  
+##   legend.txt <- c("VE", sprintf("%.2g %%", levs / 100))
+##   legend.pos <- "topright"
+##   legend(x = legend.pos, y = NULL,
+##          legend = legend.txt, xjust=1, yjust=1, bty="n",
+##          lty = c(ve.lty, rep("solid", nlevels)),
+##          lwd = c(ve.lwd, rep(1, nlevels)),
+##          col = c(ve.col, ifelse(levs > threshold, rev(cols), cols)))
+## }
