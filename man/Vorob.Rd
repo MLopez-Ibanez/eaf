@@ -70,10 +70,10 @@ VD <- vorobDev(data_t, res$VE, reference = c(2, 200))
 print(VD)
 
 # Now display symmetric deviation function
-symDifPlot(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
+symDifPlot(data_t, res$VE, res$threshold, add = FALSE, nlevels = 21)
 
 # Now display symmetric deviation function
-symDifPlot2(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
+symDifPlot2(data_t, res$VE, res$threshold, add = FALSE, nlevels = 21)
 
 }
 \references{
