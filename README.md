@@ -110,6 +110,29 @@ directory printed by the R command `system.file(package="eaf")`):
 For more information, consult the `README` files at each subdirectory.
 
 
+Python
+------
+
+Thanks to [rpy2](https://rpy2.github.io/doc/latest/html/index.html), you can
+use the `eaf` package from Python. A complete example would be:
+
+```python
+    import numpy as np
+    from rpy2.robjects.packages import importr
+    from rpy2.robjects import r as R
+    from rpy2.interactive import process_revents
+    process_revents.start()
+
+    eaf = importr("eaf")
+    path = R('system.file(package="eaf")')[0] + "/extdata/"
+    alg1 = eaf.read_data_sets_(path + "ALG_1_dat")
+    alg1 = np.array(alg1).transpose()
+    eaf.eafplot(alg1[:, 0:2], sets=alg1[:,2])
+
+    alg2 = np.array(eaf.read_data_sets_(path + "ALG_2_dat")).transpose()
+    eaf.eafdiffplot(alg1, alg2)
+```
+
 License
 --------
 

@@ -64,7 +64,7 @@ check: build
 
 clean:
 	cd $(PACKAGEDIR) && ($(RM) ./$(PACKAGE)-Ex.R ./src/*.o ./src/*.so; \
-		find . -name '*.orig' | xargs $(RM) )
+		find . -name '*.orig' -o -name '.Rhistory' | xargs $(RM) )
 
 pdf:
 	$(RM) $(BINDIR)/$(PACKAGE).pdf
