@@ -300,30 +300,20 @@ read_data_sets (SEXP FILENAME)
     read_objective_t_data (filename, &data, &nobj, &cumsizes, &nruns);
 
     const int ntotal = cumsizes[nruns - 1];
-    int * runtab = malloc (ntotal * sizeof(int));
-    int k, j, i;
-    for (k = 0, j = 0; k < ntotal; k++) {
-        if (k == cumsizes[j])
-            j++;
-        runtab[k] = j + 1;
-    }
 
     SEXP DATA;
     PROTECT(DATA = allocMatrix(REALSXP, cumsizes[nruns-1], nobj + 1));
     double *rdata = REAL(DATA);
-    int pos = 0;
-    for (j = 0; j < nobj; j++) {
-        for (i = 0; i < ntotal; i++) {
-            rdata[pos] = data[j + i * nobj];
-            pos++;
-        }
-    }
-    for (j = 0; j < ntotal; j++, pos++) {
-        rdata[pos] = runtab[j];
+    double_transpose (rdata, data, ntotal, nobj);
+
+    int k, j, i;
+    size_t pos = ntotal * nobj;
+    for (k = 0, j = 0; k < ntotal; k++, pos++) {
+        if (k == cumsizes[j]) j++;
+        rdata[pos] = j + 1;
     }
     free(data);
     free(cumsizes);
-    free(runtab);
     UNPROTECT (1);
     return DATA;
 }
