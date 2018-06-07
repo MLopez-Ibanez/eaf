@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                       Copyright (c) 2011-2013
+#                       Copyright (c) 2011-2018
 #         Manuel Lopez-Ibanez <manuel.lopez-ibanez@ulb.ac.be>
 #                Marco Chiarandini <marco@imada.sdu.dk>
 #
@@ -69,10 +69,11 @@ check.eaf.data <- function(x)
 compute.eaf <- function(data, percentiles = NULL)
 {
   data <- check.eaf.data(data)
-  nobjs <- ncol(data) - 1L
+  setcol <- ncol(data)
+  nobjs <- setcol - 1L
   # The C code expects points within a set to be contiguous.
-  data <- data[order(data[, nobjs + 1L]), ]
-  sets <- data[, nobjs + 1L]
+  data <- data[order(data[, setcol]), ]
+  sets <- data[, setcol]
   nsets <- length(unique(sets))
   npoints <- tabulate(sets)
   if (is.null(percentiles)) {
@@ -98,12 +99,13 @@ compute.eaf.as.list <- function(data, percentiles = NULL)
 compute.eafdiff.helper <- function(data, intervals)
 {
   # Last column is the set number.
-  nobjs <- ncol(data) - 1L
+  setcol <- ncol(data)
+  nobjs <- setcol - 1L
   # the C code expects points within a set to be contiguous.
-  data <- data[order(data[, nobjs + 1L]), ]
-  sets <- data[ , nobjs + 1L]
+  data <- data[order(data[, setcol]), ]
+  sets <- data[, setcol]
   nsets <- length(unique(sets))
-  npoints <- tabulate (sets)
+  npoints <- tabulate(sets)
   # FIXME: Ideally this would be computed by the C code, but it is hard-coded.
   ## division <- nsets %/% 2
   ## nsets1 <- division
@@ -143,11 +145,12 @@ compute.eafdiff <- function(data, intervals = 1)
   DIFF <- compute.eafdiff.helper(data, intervals)
   #print(DIFF)
   # FIXME: Do this computation in C code.
-  eafval <- DIFF[, ncol(data)]
+  setcol <- ncol(data)
+  eafval <- DIFF[, setcol]
   eafdiff <- list(left = NULL, right = NULL)
   eafdiff$left <- unique(DIFF[ eafval >= 1L, , drop = FALSE])
   eafdiff$right <- unique(DIFF[ eafval <= -1L, , drop = FALSE])
-  eafdiff$right[, ncol(data)] <- -eafdiff$right[, ncol(data)]
+  eafdiff$right[, setcol] <- -eafdiff$right[, setcol]
   return(eafdiff)
 }
 
@@ -258,22 +261,11 @@ read.data.sets <- function(file, col.names)
 points.steps <- function(x)
 {
   n <- nrow(x)
-  if (n == 1) return(x)
-  x <- rbind(x, cbind(x[-1, 1], x[-n, 2]))
-  return(x[c(as.vector(outer(c(0, n), 1:(n - 1), "+")), n),])
+  if (n == 1L) return(x)
+  x <- rbind(x, cbind(x[-1L, 1L], x[-n, 2L]))
+  return(x[c(as.vector(outer(c(0L, n), 1L:(n - 1L), "+")), n),])
 }
 
-sciNotation <- function(x, digits = 1)
-{
-  if (length(x) > 1) {
-    return(append(sciNotation(x[1]), sciNotation(x[-1])))
-  }
-  if (!x) return(0)
-  exponent <- floor(log10(x))
-  base <- round(x / 10^exponent, digits)
-  as.expression(substitute(base %*% 10^exponent,
-      list(base = base, exponent = exponent)))
-}
 
 #' Exact computation of the EAF
 #'
@@ -342,6 +334,17 @@ eafs <- function (points, sets, groups = NULL, percentiles = NULL)
   return (attsurfs)
 }
 
+
+# Get correct xlim or ylim when maximising / minimising.
+get.xylim <- function(lim, maximise, data)
+{
+  # FIXME: This seems too complicated.
+  if (!is.null(lim) && maximise) lim <- -lim 
+  if (is.null(lim)) lim <- range(data)
+  if (maximise) lim <- range(-lim)
+  return(lim)
+}
+  
 get.extremes <- function(xlim, ylim, maximise, log)
 {
   if (length(log) && log != "")
@@ -407,6 +410,8 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' @param axes A logical value indicating whether both axes should be drawn
 #'   on the plot.
 #'
+#' @param sci.notation Generate prettier labels
+#'
 #' @param ... Other graphical parameters to \code{\link{plot.default}}.
 #' 
 #' @return No value is returned.
@@ -427,8 +432,8 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' 
 #' A1 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
 #' A2 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
-#' eafplot(A1, A2, percentiles = c(50))
-#' eafplot(list(A1 = A1, A2 = A2), percentiles = c(50))
+#' eafplot(A1, percentiles = 50, sci.notation = TRUE)
+#' eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 #' 
 #' ## Save as a PDF file.
 #' # dev.copy2pdf(file = "eaf.pdf", onefile = TRUE, width = 5, height = 4)
@@ -460,7 +465,7 @@ eafplot.default <-
   function (x, sets = NULL, groups = NULL,
             percentiles = c(0,50,100),
             attsurfs = NULL,
-            xlab = "objective 1", ylab = "objective 2",
+            xlab = NULL, ylab = NULL,
             xlim = NULL, ylim = NULL,
             log = "",
             type = "point",
@@ -482,6 +487,7 @@ eafplot.default <-
             maximise = c(FALSE, FALSE),
             xaxis.side = "below", yaxis.side = "left",
             axes = TRUE,
+            sci.notation = FALSE,
             ... )
 {
   type <- match.arg (type, c("point", "area"))
@@ -501,24 +507,21 @@ eafplot.default <-
     }
   }
 
- 
+  if (is.null(xlab))
+    xlab <- if(!is.null(colnames(x)[1])) colnames(x)[1] else "objective 1"
+  if (is.null(ylab))
+    ylab <- if(!is.null(colnames(x)[2])) colnames(x)[2] else "objective 2"
+     
   if (!is.null (attsurfs)) {
     # Don't we need to apply maximise?
     attsurfs <- lapply(attsurfs, function(x) { as.matrix(x[, 1:2, drop = FALSE]) })
   } else {
-    if (length(dim(x)) != 2L)
-      stop("'x' must be a data.frame or a matrix")
-    if (nrow(x) < 1L)
-      stop("not enough points (rows) in 'x'")
-    if (ncol(x) < 2)
-      stop("'x' must have at least 2 columns")
-    # Re-encode the sets so that they are consecutive and numeric
-    sets <- as.numeric(as.factor(sets))
-    if (length(sets) != nrow(x))
-      stop("'sets' must be a vector of length equal to the number of rows in 'x'")
-    x <- as.matrix(x)
-    if (!is.numeric(x))
-      stop("The two first columns of 'x' must be numeric")
+    # FIXME: This is a bit of wasted effort. We should decide what is more
+    # efficient, one large matrix or separate points and sets, then be
+    # consistent everywhere.
+    x <- check.eaf.data(cbind(x, sets))
+    sets <- x[, 3L]
+    x <- x[,1:2]
     x <- matrix.maximise(x, maximise)
 
     # Transform EAF matrix into attsurfs list.
@@ -540,20 +543,9 @@ eafplot.default <-
     attsurfs <- lapply(attsurfs, matrix.maximise, maximise = maximise)
   }
 
-  # FIXME: This seems too complicated, what is going on?
-  if (!is.null(xlim) && maximise[1]) xlim <- -xlim 
-  if (!is.null(ylim) && maximise[2]) ylim <- -ylim
-  
   # FIXME: We should take the range from the attsurfs to not make x mandatory.
-  if (is.null (xlim)) xlim <- range(x[,1])
-  if (is.null (ylim)) ylim <- range(x[,2])
-
-  if (maximise[1]) xlim <- range(-xlim)
-  if (maximise[2]) ylim <- range(-ylim)
-
-  best1 <- if (maximise[1]) max else min
-  best2 <- if (maximise[2]) max else min
-
+  xlim <- get.xylim(xlim, maximise[1], data = x[,1])
+  ylim <- get.xylim(ylim, maximise[2],data = x[,2])
   extreme <- get.extremes(xlim, ylim, maximise, log)
 
   # FIXME: Find a better way to handle different x-y scale.
@@ -578,48 +570,15 @@ eafplot.default <-
   ##     'len' _is unimplemented_ in R.
   op <- par(cex = 1.0, cex.lab = 1.1, cex.axis = 1.0, lab = c(10,5,7))
   on.exit(par(op))
-
-  if (!is.null(colnames(x)[1])) xlab <- colnames(x)[1]
-  if (!is.null(colnames(x)[2])) ylab <- colnames(x)[2]
   
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        xlim = xlim, ylim = ylim, log = log, axes = FALSE,
        panel.first = ({
          if (axes) {
-           at <- axTicks(1)
-           labels <- formatC(at, format="g")
-           ## tck=1 draws the vertical grid lines (grid() is seriously broken).
-           axis(xaxis.side, at=at, labels=FALSE, tck=1, col='lightgray',
-                ## Work-around for R bug:
-                lwd=0.5, lty="26") ##  This should be instead: lty='dotted', lwd=par("lwd"))
-           axis(xaxis.side, at=at, labels=labels, las = las)
-           mtext(xlab, xaxis.side, line=2.1, cex=par("cex.axis"), las=0)
-           
-           at <- axTicks(2)
-           labels <- formatC(at, format="g")
-           ## if (log == "y") {
-           ##   ## Custom log axis (like gnuplot but in R is hard)
-           ##   max.pow <- 6
-           ##   at <- c(1, 5, 10, 50, 100, 500, 1000, 1500, 10^c(4:max.pow))
-           ##   labels <- c(1, 5, 10, 50, 100, 500, 1000, 1500,
-           ##               parse(text = paste("10^", 4:max.pow, sep = "")))
-             
-           ##   #at <- c(60, 120, 180, 240, 300, 480, 600, 900, 1200, 1440)
-           ##   #labels <- formatC(at,format="g")
-             
-           ##   ## Now do the minor ticks, at 1/10 of each power of 10 interval
-           ##   ##at.minor <- 2:9 * rep(c(10^c(1:max.pow)) / 10, each = length(2:9))
-           ##   at.minor <- 1:10 * rep(c(10^c(1:max.pow)) / 10, each = length(1:10))
-           ##   axis (yaxis.side, at = at.minor, tcl = -0.25, labels = FALSE, las=las)
-           ##   axis (yaxis.side, at = at.minor, labels = FALSE, tck=1,
-           ##         col='lightgray', lty='dotted', lwd=par("lwd"))
-           ## }
-           
-           ## tck=1 draws the horizontal grid lines (grid() is seriously broken).
-           axis (yaxis.side, at=at, labels=FALSE, tck=1,
-                 col='lightgray', lty='dotted', lwd=par("lwd"))
-           axis (yaxis.side, at=at, labels=labels, las = las)
-           mtext(ylab, yaxis.side, line=2.75, cex=par("cex.axis"), las=0)
+           plot.eaf.axis(xaxis.side, xlab, las = las, sci.notation = sci.notation)
+           # FIXME: Why the different line?
+           plot.eaf.axis(yaxis.side, ylab, las = las, sci.notation = sci.notation,
+                         line = 2.75)
          }
          
          # FIXME: Perhaps have a function plot.eaf.lines that computes
@@ -634,26 +593,16 @@ eafplot.default <-
            }
            colfunc <- colorRampPalette(col)
            col <- colfunc(length(attsurfs))
-           for (k in 1:length(attsurfs)) {
-             poli <- points.steps(attsurfs[[k]])
-             poli <- rbind(c(best1(poli[,1]), extreme[2]), poli,
-                           c(extreme[1], best2(poli[,2])), extreme)
-             polygon(poli[,1], poli[,2], border = NA, col = col[k])
-           }
+           plot.eaf.full.area(attsurfs, extreme, maximise, col = col)
          } else {
            ## Recycle values
            lwd <- rep(lwd, length=length(attsurfs))
            lty <- rep(lty, length=length(attsurfs))
            col <- rep(col, length=length(attsurfs))
-           pch <- rep(pch, length=length(attsurfs))
-           for (k in 1:length(attsurfs)) {
-             tmp <- attsurfs[[k]]
-             tmp <- rbind(c(best1(tmp[,1]), extreme[2]), tmp,
-                          c(extreme[1], best2(tmp[,2])))
-
-             points(tmp, type="p", col=col[k], pch = pch[k], cex = cex.pch)
-             points(tmp, type="s", col=col[k], lty = lty[k], lwd = lwd[k])
-           }
+           if (!is.null(pch))
+             pch <- rep(pch, length=length(attsurfs))
+           plot.eaf.full.lines(attsurfs, extreme, maximise,
+                                col = col, lty = lty, lwd = lwd, pch = pch, cex = cex.pch)
          }
        }),
        las = las, ...)
@@ -728,8 +677,88 @@ eafplot.default <-
   invisible()
 }
 
+prettySciNotation <- function(x, digits = 1L)
+{
+  if (length(x) > 1L) {
+    return(append(prettySciNotation(x[1]), prettySciNotation(x[-1])))
+  }
+  if (!x) return(0)
+  exponent <- floor(log10(x))
+  base <- round(x / 10^exponent, digits)
+  as.expression(substitute(base %*% 10^exponent,
+                           list(base = base, exponent = exponent)))
+}
 
-.plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
+plot.eaf.axis <- function(axis.side, lab, las,
+                          col = 'lightgray', lty = 'dotted', lwd = par("lwd"),
+                          line = 2.1, sci.notation = FALSE)
+{
+  ## FIXME: Do we still need lwd=0.5, lty="26" to work-around for R bug?
+  at <- axTicks(if (axis.side %% 2 == 0) 2 else 1)
+  labels <- if (sci.notation) prettySciNotation(at) else formatC(at, format = "g")
+  ## if (log == "y") {
+  ##   ## Custom log axis (like gnuplot but in R is hard)
+  ##   max.pow <- 6
+  ##   at <- c(1, 5, 10, 50, 100, 500, 1000, 1500, 10^c(4:max.pow))
+  ##   labels <- c(1, 5, 10, 50, 100, 500, 1000, 1500,
+  ##               parse(text = paste("10^", 4:max.pow, sep = "")))
+  
+  ##   #at <- c(60, 120, 180, 240, 300, 480, 600, 900, 1200, 1440)
+  ##   #labels <- formatC(at,format="g")
+  
+  ##   ## Now do the minor ticks, at 1/10 of each power of 10 interval
+  ##   ##at.minor <- 2:9 * rep(c(10^c(1:max.pow)) / 10, each = length(2:9))
+  ##   at.minor <- 1:10 * rep(c(10^c(1:max.pow)) / 10, each = length(1:10))
+  ##   axis (yaxis.side, at = at.minor, tcl = -0.25, labels = FALSE, las=las)
+  ##   axis (yaxis.side, at = at.minor, labels = FALSE, tck=1,
+  ##         col='lightgray', lty='dotted', lwd=par("lwd"))
+  ## }
+  
+  ## tck=1 draws the horizontal grid lines (grid() is seriously broken).
+  axis (axis.side, at=at, labels=FALSE, tck = 1,
+        col='lightgray', lty = 'dotted', lwd = par("lwd"))
+  axis(axis.side, at=at, labels=labels, las = las)
+  mtext(lab, axis.side, line = line, cex = par("cex") * par("cex.axis"),
+        las = 0)
+}
+
+add.extremes <- function(x, extremes, maximise)
+{
+  best1 <- if (maximise[1]) max else min
+  best2 <- if (maximise[2]) max else min
+  return(rbind(c(best1(x[,1]), extremes[2]), x, c(extremes[1], best2(x[,2]))))
+}
+
+plot.eaf.full.lines <- function(attsurfs, extreme, maximise,
+                                 col, lty, lwd, pch = NULL, cex = par("cex"))
+{
+  ## Recycle values
+  lwd <- rep(lwd, length = length(attsurfs))
+  lty <- rep(lty, length = length(attsurfs))
+  col <- rep(col, length = length(attsurfs))
+  if (!is.null(pch))
+    pch <- rep(pch, length = length(attsurfs))
+  
+  for (k in seq_along(attsurfs)) {
+    tmp <- add.extremes(attsurfs[[k]], extreme, maximise)
+    # FIXME: Is there a way to plot points and steps in one call?
+    if (!is.null(pch))
+      points(tmp, type = "p", col = col[k], pch = pch[k], cex = cex)
+    points(tmp, type = "s", col = col[k], lty = lty[k], lwd = lwd[k])
+  }
+  
+}
+plot.eaf.full.area <- function(attsurfs, extreme, maximise, col)
+{
+  stopifnot(length(attsurfs) == length(col))
+  for (i in seq_along(attsurfs)) {
+    poli <- add.extremes(points.steps(attsurfs[[i]]), extreme, maximise)
+    poli <- rbind(poli, extreme)
+    polygon(poli[,1], poli[,2], border = NA, col = col[i])
+  }
+}
+
+plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
                                 col = c("#FFFFFF", "#BFBFBF","#808080","#404040","#000000"),
                                 side = stop("Argument 'side' is required"),
                                 type = "point",
@@ -738,8 +767,9 @@ eafplot.default <-
                                 full.eaf = FALSE,
                                 title = "",
                                 maximise = c(FALSE, FALSE),
-                                xlab = "objective 1", ylab = "objective 2",
-                                ...)
+                               xlab = "objective 1", ylab = "objective 2",
+                               sci.notation = FALSE,
+                               ...)
 {
   side <- match.arg (side, c("left", "right"))
   type <- match.arg (type, c("point", "area"))
@@ -768,9 +798,9 @@ eafplot.default <-
   }
 
   extreme <- get.extremes(xlim, ylim, maximise, log)
-
   yscale <- 1
-#    yscale <- 60
+  ## FIXME log == "y" and yscaling
+  #    yscale <- 60
   ## if (yscale != 1) {
   ##   # This doesn't work with polygons.
   ##   stopifnot (full.eaf || type == "point")
@@ -781,66 +811,19 @@ eafplot.default <-
   ##   ylim <- ylim / yscale
   ##   if (log == "y") extreme[2] <- 1
   ## }
-
-  best1 <- if (maximise[1]) max else min
-  best2 <- if (maximise[2]) max else min
   
-  attsurfs <- lapply (attsurfs, function (x) {
-    x <- rbind(c(best1(x[,1]), extreme[2]), x[,1:2],
-               c(extreme[1], best2(x[,2]))) })
-
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        ylim = ylim, xlim = xlim, log = log, axes = FALSE,
        panel.first = ({
-         at <- axTicks(1)
-         labels <- formatC(at, format="g")
-         ## tck=1 draws the vertical grid lines (grid() is seriously broken).
-         axis(xaxis.side, at=at, labels=FALSE, tck=1, col='lightgray',
-              ## Work-around for R bug:
-              ##  This should be instead: lty='dotted', lwd=par("lwd"))
-              lwd = 0.5, lty = "26")
-         axis(xaxis.side, at=at, labels=labels, las = las)
-         mtext(xlab, xaxis.side, line=2.1, las = 0,
-               cex = par("cex") * par("cex.axis"))
-
-         at <- axTicks(2)
-         labels <- formatC(at, format="g")
-         ## if (log == "y") {
-         ##   ## Custom log axis (like gnuplot but in R is hard)
-         ##   max.pow <- 6
-         ##   ##at <- c(1, 5, 10, 50, 100, 500, 1000, 1500, 10^c(4:max.pow))
-         ##   ##labels <- c(1, 5, 10, 50, 100, 500, 1000, 1500,
-         ##   ##            parse(text = paste("10^", 4:max.pow, sep = "")))
-
-         ##   at <- c(60, 120, 180, 240, 300, 480, 600, 900, 1200, 1440)
-         ##   labels <- formatC(at,format="g")
-
-         ##   ## Now do the minor ticks, at 1/10 of each power of 10 interval
-         ##   at.minor <- 2:9 * rep(c(10^c(1:max.pow)) / 10, each = length(2:9))
-         ##   at.minor <- 1:10 * rep(c(10^c(1:max.pow)) / 10, each = length(1:10))
-         ##   ##axis (yaxis.side, at = at.minor, tcl = -0.25, labels = FALSE, las=las)
-         ##   ##axis (yaxis.side, at = at.minor, labels = FALSE, tck=1,
-         ##   ##      col='lightgray', lty='dotted', lwd=par("lwd"))
-         ## }
-
-         ## tck=1 draws the horizontal grid lines (grid() is seriously broken).
-         axis(yaxis.side, at=at, labels=FALSE, tck=1,
-              col='lightgray', lty='dotted', lwd=par("lwd"))
-         axis(yaxis.side, at=at, labels=labels, las = las)
-         mtext(ylab, yaxis.side, line = 2.2, las = 0,
-               cex = par("cex") * par("cex.axis"))
-
+         plot.eaf.axis (xaxis.side, xlab, las = las, sci.notation = sci.notation)
+         plot.eaf.axis (yaxis.side, ylab, las = las, sci.notation = sci.notation,
+                        line = 2.2)
+                         
          if (nrow(eafdiff)) {
            if (type == "area") {
              if (full.eaf) {
-               # FIXME: eafplot.default is doing the same thing as
-               # below, but with different defaults
-               for (i in 1:length(col)) {
-                 poli <- points.steps(eafdiff[eafdiff[,3] == i, c(1,2), drop = FALSE])
-                 poli <- rbind(c(best1(poli[,1]), extreme[2]), poli,
-                               c(extreme[1], best2(poli[,2])), extreme)
-                 polygon(poli[,1], poli[,2], border = NA, col = col[i])
-               }
+               plot.eaf.full.area(split.data.frame(eafdiff[,1:2], eafdiff[,3]),
+                                   extreme, maximise, col)
              } else {
                eafdiff[,1] <- rm.inf(eafdiff[,1], extreme[1])
                eafdiff[,2] <- rm.inf(eafdiff[,2], extreme[2])
@@ -872,17 +855,9 @@ eafplot.default <-
     col <- c("black")
   }
 
-  ## Recycle values
-  lwd <- rep(lwd, len = length(attsurfs))
-  lty <- rep(lty, len = length(attsurfs))
-  col <- rep(col, len = length(attsurfs))
-
-  for (k in seq_along(attsurfs)) {
-    tmp <- attsurfs[[k]]
-    lines(tmp[,1], tmp[,2], type = "s", lty = lty[k], lwd = lwd[k], col = col[k])
-  }
-
-  mtext(title, 1, line=3.5, cex=par("cex.lab"), las = 0, font = 2)
+  plot.eaf.full.lines(attsurfs, extreme, maximise,
+                       col = col, lty = lty, lwd = lwd)
+  mtext(title, 1, line = 3.5, cex = par("cex.lab"), las = 0, font = 2)
   box()
 }
 
@@ -931,7 +906,9 @@ eafplot.default <-
 #' 
 #' @param grand.lines Whether to plot the grand-best and grand-worst
 #'   attainment surfaces.
-#' 
+#'
+#' @param sci.notation Generate prettier labels
+#'
 #' @param left.panel.last,right.panel.last An expression to be evaluated after
 #'   plotting has taken place on each panel (left or right). This can be useful
 #'   for adding points or text to either panel.  Note that this works by lazy
@@ -987,7 +964,7 @@ eafplot.default <-
 #' \donttest{# These take time
 #' eafdiffplot(A1, A2, full.eaf = TRUE)
 #' eafdiffplot(A1, A2, type = "area")
-#' eafdiffplot(A1, A2, type = "point")
+#' eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
 #' }
 #' # A more complex example
 #' a1 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "wrots_l100w10_dat"))
@@ -1021,6 +998,7 @@ eafdiffplot <-
            cex = par("cex"), cex.lab = par("cex.lab"), cex.axis = par("cex.axis"),
            maximise = c(FALSE, FALSE),
            grand.lines = TRUE,
+           sci.notation = FALSE,
            left.panel.last = NULL,
            right.panel.last = NULL,
            ...)
@@ -1034,9 +1012,9 @@ eafdiffplot <-
     stop ("'col' must provide three colors (minimum, medium maximum)")
   }
   col <- colorRampPalette(col)(length(intervals))
-
   title.left <- title.left
   title.right <- title.right
+
   maximise <- as.logical(maximise)
 
   data.left <- matrix.maximise(check.eaf.data(data.left), maximise)
@@ -1093,25 +1071,17 @@ eafdiffplot <-
   grand.best <- grand.attsurf[["0"]]
   grand.worst <- grand.attsurf[["100"]]
 
-  if (!is.null(xlim) && maximise[1]) xlim <- -xlim 
-  if (!is.null(ylim) && maximise[2]) ylim <- -ylim
-
-  if (is.null(xlim)) {
-    xlim <- range(c(grand.best[,1], grand.worst[,1],
-                    range.finite(DIFF$left[,1]), range.finite(DIFF$right[,1])))
-  }
-
-  if (is.null(ylim)) {
-    ylim <- range(c(grand.best[,2], grand.worst[,2],
-                    range.finite(DIFF$left[,2]), range.finite(DIFF$right[,2])))
-  }
-  if (maximise[1]) xlim <- range(-xlim)
-  if (maximise[2]) ylim <- range(-ylim)
+  xlim <- get.xylim(xlim, maximise[1],
+                    data = c(grand.best[,1], grand.worst[,1],
+                             range.finite(DIFF$left[,1]), range.finite(DIFF$right[,1])))
+  ylim <- get.xylim(ylim, maximise[2],
+                    data = c(grand.best[,2], grand.worst[,2],
+                             range.finite(DIFF$left[,2]), range.finite(DIFF$right[,2])))
 
   grand.best <- matrix.maximise(grand.best, maximise)
   grand.worst <- matrix.maximise(grand.worst, maximise)
-  DIFF$left <- matrix.maximise(DIFF$left,maximise)
-  DIFF$right <- matrix.maximise(DIFF$right,maximise)
+  DIFF$left <- matrix.maximise(DIFF$left, maximise)
+  DIFF$right <- matrix.maximise(DIFF$right, maximise)
   
   # FIXME: This does not generate empty space between the two plots, but the
   # plots are not squared.
@@ -1143,13 +1113,14 @@ eafdiffplot <-
     attsurfs <- attsurfs.left
   }
   
-  .plot.eafdiff.side (DIFF$left,
+  plot.eafdiff.side (DIFF$left,
                      attsurfs = attsurfs,
                      col = col,
                      type = type, full.eaf = full.eaf,
                      title = title.left,
                      xlim = xlim, ylim = ylim,
-                     side = "left", maximise = maximise, ...)
+                     side = "left", maximise = maximise,
+                     sci.notation = sci.notation, ...)
 
   if (nchar(legend.pos) > 0 && !(legend.pos %in% c("no", "none"))) {
     legend(x = legend.pos, y = NULL,
@@ -1166,17 +1137,21 @@ eafdiffplot <-
     attsurfs <- attsurfs.right
   }
   
-  .plot.eafdiff.side (DIFF$right,
+  plot.eafdiff.side (DIFF$right,
                       attsurfs = attsurfs,
                       col = col,
                       type = type, full.eaf = full.eaf,
                       title = title.right,
                       xlim = xlim, ylim = ylim,
-                      side = "right", maximise = maximise, ...)
+                     side = "right", maximise = maximise,
+                     sci.notation = sci.notation, ...)
   right.panel.last
   invisible(DIFF)
 }
 
+# Create labels:
+# eaf:::nintervals.labels(5)
+# "[0.0, 0.2)" "[0.2, 0.4)" "[0.4, 0.6)" "[0.6, 0.8)" "[0.8, 1.0]"
 nintervals.labels <- function(n)
 {
   if (n < 2) stop ("number of intervals must be larger than 1")
