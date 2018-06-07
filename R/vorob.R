@@ -97,7 +97,7 @@ vorobDev <- function(x, VE, reference)
 ##'
 ##' @examples
 ##' # Now display symmetric deviation function
-##' symDifPlot(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
+##' symDifPlot(data_t, res$VE, res$threshold, add = FALSE, nlevels = 21)
 ##' 
 symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 21,
                        ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
@@ -142,7 +142,7 @@ symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 21,
 ##' @rdname Vorob
 ##' @examples
 ##' # Now display symmetric deviation function
-##' symDifPlot2(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
+##' symDifPlot2(data_t, res$VE, res$threshold, add = FALSE, nlevels = 21)
 ##'
 symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 21,
                        ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
@@ -157,5 +157,6 @@ symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 21,
   # otherwise.
   cols <- ifelse(levs > threshold, cols, rev(cols))
   eafplot.default(x, attsurfs = c(attsurfs,list(VE=VE)),
-                  percentiles = levs, col = c(cols,ve.col), lty = "solid")
+                  percentiles = levs, col = c(cols,ve.col),
+                  lty = c(rep("solid", nlevels), ve.lty))
 }
