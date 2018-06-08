@@ -154,8 +154,9 @@ eafplot (SPEA2relativeRichmond, percentiles = c(25, 50, 75),
 data(SPEA2minstoptimeRichmond)
 SPEA2minstoptimeRichmond[,2] <- SPEA2minstoptimeRichmond[,2] / 60
 eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
-         ylab = "Minimum idle time (minutes)",
-         las = 1, log = "y", maximise = c(FALSE, TRUE), main = "SPEA2 (Richmond)")
+         ylab = "Minimum idle time (minutes)", maximise = c(FALSE, TRUE),
+         las = 1, log = "y", main = "SPEA2 (Richmond)",
+         legend.pos = "bottomright")
 }
 }
 \seealso{
