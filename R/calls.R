@@ -175,7 +175,7 @@ eafplot.list <- function(x,...)
 #'
 #' @param y Either a matrix of data values, or a data frame.
 #' @export
-eafplot.data.frame <- function(x, y = NULL, ...)
+eafplot.data.frame <- function(x, y = NULL, sets = NULL, ...)
 {
   namex <- deparse(substitute(x))
   namey <- deparse(substitute(y))
@@ -184,8 +184,11 @@ eafplot.data.frame <- function(x, y = NULL, ...)
   eafplot.data.frame2 <- function(x, groups, main = DNAME, ...)
     eafplot(as.matrix(x[,c(1,2)]), as.numeric(x[,3]),
             groups = groups, main = main, ...)
-  check.eaf.data.frame <- function(x) {
+  check.eaf.data.frame <- function(x, sets = NULL) {
     xname <- deparse(substitute(x))
+    if (!is.null(sets))
+      x <- cbind.data.frame(x, sets)
+
     if (!is.data.frame(x) || ncol(x) != 3L)
       stop("'", xname, "' must be a data.frame with exactly three columns.\n",
            "  If you have grouping and conditioning variables, please consider using this format: 'eafplot(formula, data, ...)'")
@@ -197,9 +200,9 @@ eafplot.data.frame <- function(x, y = NULL, ...)
       x[,3] <- as.factor(x[,3])
     return(x)
   }
-  x <- check.eaf.data.frame(x)
+  x <- check.eaf.data.frame(x, sets)
   if (!is.null(y)) {
-    y <- check.eaf.data.frame(y)
+    y <- check.eaf.data.frame(y, sets)
     DNAME <- paste0(namex, " and ", namey)
     DT <- rbind(data.frame(x, groups = namex),
                 data.frame(y, groups = namey))
