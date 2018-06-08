@@ -6,6 +6,15 @@
 
 enum objs_agree_t { AGREE_MINIMISE = -1, AGREE_NONE = 0, AGREE_MAXIMISE = 1 };
 
+static inline bool *
+nondom_init (size_t size)
+{
+    bool * nondom = malloc (sizeof(bool) * size);
+    for (size_t n = 0; n <  size; n++)
+        nondom[n] = true;
+    return nondom;
+}
+
 static inline int
 find_nondominated_set_ (const double *points, int dim, int size,
                         const signed char *minmax, const signed char agree,
@@ -82,15 +91,11 @@ static inline int
 find_dominated_point (const double *points, int dim, int size,
                       const signed char *minmax)
 {
-    int k, pos;
-    bool *nondom =  malloc (sizeof(bool) * size);
+    bool *nondom = nondom_init (size);
 
-    for (k = 0; k < size; k++)
-        nondom[k] = true;
-
-    pos = find_nondominated_set_ (points, dim, size, minmax,
-                                  AGREE_NONE, nondom, 
-                                  /* find_dominated_p = */true);
+    int pos = find_nondominated_set_ (points, dim, size, minmax,
+                                      AGREE_NONE, nondom, 
+                                      /* find_dominated_p = */true);
     free (nondom);
     return pos;
 }
@@ -110,6 +115,39 @@ find_nondominated_set (const double *points, int dim, int size,
 {
     return find_nondominated_set_ (points, dim, size, minmax, AGREE_NONE,
                                    nondom, false);
+}
+
+static inline int
+get_nondominated_set (double **pareto_set_p,
+                      const double *points, int dim, int size,
+                      const signed char *minmax)
+{
+    bool *nondom  = nondom_init(size);
+    int new_size = find_nondominated_set (points, dim, size, minmax, nondom);
+
+    DEBUG2 (
+        fprintf (stderr, "# size\tnondom\tdom\n");
+        fprintf (stderr, "  %d\t%d\t%d\n",
+                 size, new_size, size - new_size);
+        );
+
+    if (new_size > size) {/* This can't happen.  */
+        fatal_error ("a bug happened in %s: new_size > old_size!\n",
+                     __FUNCTION__);
+    }
+
+    double *pareto_set = malloc (sizeof (double) * new_size * dim);
+    int n, k;
+    // FIXME: We could use new_size to stop earlier.
+    for (n = 0, k = 0; n < size; n++) {
+        if (!nondom[n]) continue;
+        memcpy(&pareto_set[dim * k], &points[dim * n], sizeof(points[0]) * dim);
+        k++;
+    }
+    assert (k == new_size);
+    free (nondom);
+    *pareto_set_p = pareto_set;
+    return new_size;
 }
 
 static inline void
