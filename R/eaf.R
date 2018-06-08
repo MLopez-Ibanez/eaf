@@ -611,7 +611,9 @@ eafplot.default <-
 
   if (!is.null (extra.points)) {
     if (!is.list (extra.points[[1]])) {
+      extra.name <- deparse(substitute(extra.points))
       extra.points <- list(extra.points)
+      names(extra.points) <- extra.name
     }
     ## Recycle values
     extra.length <- length(extra.points)
@@ -619,7 +621,11 @@ eafplot.default <-
     extra.lty <- rep(extra.lty, length=extra.length)
     extra.col <- rep(extra.col, length=extra.length)
     extra.pch <- rep(extra.pch, length=extra.length)
-
+    if (is.null(extra.legend)) {
+      extra.legend <- names(extra.points)
+      if (is.null(extra.legend))
+        extra.legend <- paste0("extra.points ", 1:length(extra.points))
+    }
     for (i in 1:length(extra.points)) {
       if (any(is.na(extra.points[[i]][,1]))) {
         ## Extra points are given in the correct order so no reverse
@@ -646,6 +652,7 @@ eafplot.default <-
       lty <- c(lty, extra.lty[i])
       col <- c(col, extra.col[i])
       pch <- c(pch, extra.pch[i])
+      if (is.null(extra.legend[i])) extra.legend[i]
     }
   }
 
