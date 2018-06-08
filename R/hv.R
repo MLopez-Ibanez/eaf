@@ -203,3 +203,46 @@ normalise <- function(data, to.range = c(1, 2), lower = NA, upper = NA, maximise
                  as.double(to.range),
                  lower, upper, maximise)))
 }
+
+#' Identify nondominated points
+#'
+#' @param data Either a matrix or a data frame of numerical values, where
+#'   each row gives the coordinates of a point.
+#'
+#' @param maximise Whether the objectives must be maximised instead of
+#'   minimised. Either a single boolean value that applies to all objectives or
+#'   a vector boolean values, with one value per objective.
+#'
+#' @return A logical vector of the same length as the number of rows of
+#'   \code{data}, where \code{TRUE} means that the point is not dominated by
+#'   any other point.
+#'
+#' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
+#'
+#' @examples
+#' path.A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
+#' path.A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
+#' set <- rbind(read.data.sets(path.A1)[,1:2], read.data.sets(path.A2)[,1:2])
+#'
+#' is.nondom <- is.nondominated(set)
+#' cat("There are ", sum(is.nondom), " nondominated points\n")
+#'
+#' ndset <- set[is.nondom,]
+#' ndset <- ndset[order(ndset[,1]),]
+#' plot(set, col = "blue", type = "p", pch = 20)
+#' points(ndset, col = "red", pch = 21)
+#' 
+#' @export
+is.nondominated <- function(data, maximise = FALSE)
+{
+  data <- check.hv.data(data)
+  nobjs <- ncol(data)
+  npoints <- nrow(data)
+  maximise <- as.logical(rep_len(maximise, nobjs))
+
+  return(.Call("is_nondominated_C",
+               as.double(t(data)),
+               as.integer(nobjs),
+               as.integer(npoints),
+               maximise))
+}

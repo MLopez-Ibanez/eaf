@@ -46,6 +46,11 @@
     PROTECT(Rexp_##LISTVAR = allocVector(VECSXP, (LENGTH)));                   \
     ++nprotected
 
+#define new_logical_vector(VAR, DIM)                                           \
+    SEXP Rexp_##VAR; int *VAR;                                                 \
+    PROTECT(Rexp_##VAR = allocVector(LGLSXP, (DIM)));                          \
+    nprotected++; VAR = LOGICAL(Rexp_##VAR)
+
 #define list_len(VAR) Rexp_##VAR##_len
 
 #define list_push_back(LISTVAR, ELEMENT)                                       \
@@ -86,9 +91,18 @@
         error ("Argument '" #S "' is not a string");                    \
     const char * var = CHAR(STRING_ELT(S,0));
 
+static inline SEXP
+bool_2_logical_vector(SEXP dst, bool *src, size_t n)
+{
+    int * tmp = LOGICAL(dst);
+    for (size_t i = 0; i < n; i++)
+        tmp[i] = src[i];
+    return dst;
+}
 
 static inline void
-double_transpose(double *dst, const double *src, const size_t nrows, const size_t ncols)
+double_transpose(double *dst, const double *src,
+                 const size_t nrows, const size_t ncols)
 {
     size_t j, i, pos = 0;
     

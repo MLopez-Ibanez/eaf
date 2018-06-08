@@ -1,6 +1,28 @@
 #ifndef   	LIBMISC_COMMON_H_
 # define   	LIBMISC_COMMON_H_
 
+#ifdef R_PACKAGE
+#include <R.h>
+#define fatal_error(...) Rf_error(__VA_ARGS__)
+#include "gcc_attribs.h"
+#else
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "gcc_attribs.h"
+
+static void fatal_error(const char * str,...) __attribute__ ((format(printf, 1, 2))) __noreturn;
+
+static void fatal_error(const char *template,...)
+{
+    va_list ap;
+    va_start(ap,template);
+    vfprintf(stderr, template, ap);
+    va_end(ap);
+    exit(EXIT_FAILURE);
+}
+#endif
+
 #if __GNUC__ >= 3
 #define MAX(x,y) \
        ({ typeof (x) _x__ = (x);        \
@@ -59,7 +81,6 @@
 #define FALSE false
 #endif
 
-#include "gcc_attribs.h"
 
 typedef unsigned long ulong;
 typedef long long longlong;
@@ -68,4 +89,5 @@ static inline const char *str_is_default(bool flag)
 {
     return flag ? "(default)" : "";
 }
+
 #endif 	    /* !LIBMISC_COMMON_H_ */
