@@ -87,3 +87,15 @@
     const char * var = CHAR(STRING_ELT(S,0));
 
 
+static inline void
+double_transpose(double *dst, const double *src, const size_t nrows, const size_t ncols)
+{
+    size_t j, i, pos = 0;
+    
+    for (j = 0; j < ncols; j++) {
+        for (i = 0; i < nrows; i++) {
+            dst[pos] = src[j + i * ncols];
+            pos++;
+        }
+    }
+}

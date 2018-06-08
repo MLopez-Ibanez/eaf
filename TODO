@@ -6,4 +6,3 @@
  * eafplot.default and .plot.eafdiff.side duplicate a lot of code.
  * Create eafdiff plots with a single plot using two different colors.
  * Profile memory/computation time to find bottle-necks.
- * Create a Python interface using: https://rpy2.github.io/doc/latest/html/introduction.html
