@@ -160,3 +160,35 @@ symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 21,
                   percentiles = levs, col = c(cols,ve.col),
                   lty = c(rep("solid", nlevels), ve.lty))
 }
+
+##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
+##'   by \code{\link[eaf]{vorobT}}.
+##' @param nlevels number of levels in which is divided the range of the
+##'   symmetric deviation
+##' @param add if \code{FALSE}, a new graph is created
+##' @export
+##' @rdname Vorob
+##' @examples
+##' # Now display symmetric deviation function
+##' symDifPlot3(data_t, res$VE, res$threshold, add = FALSE, nlevels = 21)
+##'
+symDifPlot3 <- function(x, VE, threshold, add = FALSE, nlevels = 21,
+                        ve.col = "red", ve.lwd = 3, ve.lty = "dashed", type = "area")
+{
+  levs <- sort(c(threshold, seq(0, 100, length.out = nlevels)))
+  
+  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
+  
+  cols <- gray.colors(nlevels + 1)
+  # Denote p_n the attainment probability, the value of the symmetric
+  # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
+  # otherwise.
+  cols <- ifelse(levs >= threshold, cols, rev(cols))
+  cols[nlevels + 1] <- "#FFFFFF" # To have white after worse case
+  
+  eafplot.default(x, attsurfs = attsurfs,
+                  legend.txt = c(ifelse(levs <= threshold, levs, rev(levs)), "VE"),
+                  percentiles = levs, col = cols,
+                  extra.points = VE, extra.col = ve.col, extra.lty = 1,
+                  lty = "solid", type = "area")
+}
