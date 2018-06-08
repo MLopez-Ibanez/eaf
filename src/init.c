@@ -1,7 +1,7 @@
 #include <R.h>
 #include <Rinternals.h>
-#include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
+#include <stdlib.h> // for NULL
 
 /* .Call calls */
 extern SEXP compute_eaf_C(SEXP, SEXP, SEXP, SEXP, SEXP);
