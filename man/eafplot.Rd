@@ -14,7 +14,7 @@ eafplot(x, ...)
 
 \method{eafplot}{list}(x, ...)
 
-\method{eafplot}{data.frame}(x, y = NULL, ...)
+\method{eafplot}{data.frame}(x, y = NULL, sets = NULL, ...)
 
 \method{eafplot}{default}(x, sets = NULL, groups = NULL,
   percentiles = c(0, 50, 100), attsurfs = NULL, xlab = NULL,
