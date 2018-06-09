@@ -1,7 +1,7 @@
 ###############################################################################
 #
 #                       Copyright (c) 2011-2018
-#         Manuel Lopez-Ibanez <manuel.lopez-ibanez@ulb.ac.be>
+#         Manuel Lopez-Ibanez <manuel.lopez-ibanez@manchester.ac.uk>
 #                Marco Chiarandini <marco@imada.sdu.dk>
 #
 # This program is free software (software libre); you can redistribute
@@ -35,8 +35,8 @@
 #    Berlin, Germany, 2010. doi: 10.1007/978-3-642-02538-9_9
 # 
 # Moreover, as a personal note, I would appreciate it if you would email
-# manuel.lopez-ibanez@ulb.ac.be with citations of papers referencing this
-# work so I can mention them to my funding agent and tenure committee.
+# manuel.lopez-ibanez@manchester.ac.uk with citations of papers referencing
+# this work so I can mention them to my funding agent and tenure committee.
 #
 ################################################################################
 #
