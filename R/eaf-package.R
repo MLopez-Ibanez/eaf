@@ -45,7 +45,7 @@
 #' 
 #' @author
 #' Maintainer:  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
-#' \email{manuel.lopez-ibanez@ulb.ac.be}
+#' \email{manuel.lopez-ibanez@manchester.ac.uk}
 #'
 #'  Contributors: Carlos Fonseca, Luis Paquete, Thomas \enc{Stützle}{Stuetzle}, 
 #'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez} and Marco Chiarandini.
