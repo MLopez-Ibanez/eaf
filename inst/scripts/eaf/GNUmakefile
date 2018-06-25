@@ -41,8 +41,8 @@ VERSION = 0.1svn$(SVN_REV)
 DEBUG=0
 BINDIR := ./
 
-OBJS =  eaf.o eaf_input.o eaf_main.o eaf3d.o avl.o
-HEADERS = eaf.h eaf_io_priv.h eaf_io.h cvector.h avl.h
+OBJS =  eaf.o io.o eaf_main.o eaf3d.o avl.o
+HEADERS = eaf.h io_priv.h io.h cvector.h avl.h
 
 EAFEXE=eaf
 
@@ -87,8 +87,8 @@ $(BINDIR)/$(EAFEXE) :
 	$(call ECHO,--> Building $@ version $(VERSION) <---)
 	$(CC) -o $@ $(OBJS) $(CFLAGS) $(LINKERFLAGS)
 
-$(OBJS) : eaf.h eaf_io.h
-eaf_input.o : eaf_io_priv.h
+$(OBJS) : eaf.h io.h
+io.o : io_priv.h
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
