@@ -76,7 +76,7 @@ endif
 override CFLAGS += $(OPT_CFLAGS) -DDEBUG=$(DEBUG) \
 		   -D VERSION='"$(VERSION)"'
 
-.PHONY : default all clean distclean ps test dist
+.PHONY : default all clean distclean test dist
 
 default: $(BINDIR)/$(EAFEXE) 
 
@@ -115,7 +115,7 @@ dist : DEBUG=0
 dist : CDEBUG=
 dist :
 	@(mkdir -p ../$(DIST_SRC) \
-	&& rsync -rlpC --exclude=.svn $(DIST_SRC_FILES) ../$(DIST_SRC)/ \
+	&& rsync -rlpC --copy-unsafe-links --exclude=.svn $(DIST_SRC_FILES) ../$(DIST_SRC)/ \
 	&& cd .. \
 	&& tar cf - $(DIST_SRC) | gzip -f9 > $(DIST_SRC).tar.gz \
 	&& rm -rf ./$(DIST_SRC)/* && rmdir ./$(DIST_SRC)/ \
