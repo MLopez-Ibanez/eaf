@@ -43,12 +43,15 @@
 #include <unistd.h>  // for getopt()
 #define _GNU_SOURCE
 #include <getopt.h> // for getopt_long()
+#include <errno.h>
+
+char *program_invocation_short_name = "eaf";
 
 static void usage(void)
 {
     printf("\n"
            "Usage:\n"
-           " %s [OPTIONS] [FILE...]\n\n", PROGRAM_NAME);
+           " %s [OPTIONS] [FILE...]\n\n", program_invocation_short_name);
 
     printf(
 "Computes the empirical attainment function (EAF) of all input FILEs. \n"
@@ -84,7 +87,7 @@ static void version(void)
 #ifndef VERSION
 #define VERSION "unknown"
 #endif
-           "\n\n", PROGRAM_NAME, VERSION);
+           "\n\n", program_invocation_short_name, VERSION);
     printf(
 "Copyright (C) 2009\n"
 "Carlos Fonseca <cmfonsec@ualg.pt>\n"
@@ -151,6 +154,8 @@ void read_input_data (const char *filename, objective_t **data_p,
 {
     int error = read_objective_t_data (filename, data_p, nobjs_p, cumsizes_p, nsets_p);
     switch (error) {
+      case 0: /* No error */
+          break;
       case READ_INPUT_FILE_EMPTY:
       case READ_INPUT_WRONG_INITIAL_DIM:
           break;
@@ -159,7 +164,7 @@ void read_input_data (const char *filename, objective_t **data_p,
       case ERROR_COLUMNS:
           exit (EXIT_FAILURE);
       default:
-          break;
+          exit (EXIT_FAILURE);
     }
 }
 
@@ -169,18 +174,6 @@ int main(int argc, char *argv[])
     bool best_flag   = false;
     bool median_flag = false;
     bool worst_flag  = false;
-
-    int *level;
-    int nlevels = 0;
-
-    int *percentile;
-    int npercentiles = 0;
-
-    objective_t *data = NULL;
-
-    int* cumsizes = NULL;
-    int nobj = 0, nruns = 0;
-    eaf_t **eaf;
     const char *coord_filename = NULL;
     const char *indic_filename = NULL;
     const char *diff_filename  = NULL;
@@ -213,8 +206,10 @@ int main(int argc, char *argv[])
         {NULL, 0, NULL, 0} /* marks end of list */
     };
 #define MAX_LEVELS 50
-    level = malloc(MAX_LEVELS * sizeof(int));
-    percentile = malloc(MAX_LEVELS * sizeof(int));
+    int *level = malloc(MAX_LEVELS * sizeof(int));
+    int nlevels = 0;
+    int *percentile = malloc(MAX_LEVELS * sizeof(int));
+    int npercentiles = 0;
 
     while (0 < (option = getopt_long(argc, argv, short_options,
                                   long_options, &longopt_index))) {
@@ -234,8 +229,7 @@ int main(int argc, char *argv[])
 	    if (!strcmp(optarg,"-")) {
 		coord_file = stdout;
                 coord_filename = NULL;
-            }
-            else 
+            } else 
                 coord_filename = optarg;
 	    break;
 
@@ -298,14 +292,17 @@ int main(int argc, char *argv[])
         case '?':
             // getopt prints an error message right here
             fprintf(stderr, "Try `%s --help' for more information.\n",
-                    PROGRAM_NAME);
+                    program_invocation_short_name);
             exit(EXIT_FAILURE);
 
         default:
             abort ();
         }
     }
-    
+
+    objective_t *data = NULL;
+    int* cumsizes = NULL;
+    int nobj = 0, nruns = 0;
     if (optind < argc) {
         for (k = optind; k < argc; k++) {
             if (strcmp (argv[k],"-")) 
@@ -410,13 +407,13 @@ int main(int argc, char *argv[])
         fprintf (stderr, "# objectives (%d): --\n", nobj);
         fprintf (stderr, "# sets: %d\n", nruns);
         fprintf (stderr, "# points: %d\n", cumsizes[nruns - 1]);
-        fprintf (stderr, "%s: calculating levels:", PROGRAM_NAME);
+        fprintf (stderr, "%s: calculating levels:", program_invocation_short_name);
         for (k = 0; k < nlevels; k++) 
             fprintf (stderr, " %d", level[k]);
         fprintf (stderr, "\n");
     }   
 
-    eaf = attsurf (data, nobj, cumsizes, nruns, level, nlevels);
+    eaf_t **eaf = attsurf (data, nobj, cumsizes, nruns, level, nlevels);
     eaf_print (eaf, nlevels, 
                coord_file, indic_file, diff_file);
 
