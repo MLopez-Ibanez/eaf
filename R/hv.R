@@ -145,6 +145,123 @@ hv_contributions <- function(data, reference, maximise = FALSE)
                ))
 }
 
+#' Epsilon metric
+#'
+#' Computes the epsilon metric, either additive or multiplicative.
+#'
+#' @param data Either a matrix or a data frame of numerical values, where
+#'   each row gives the coordinates of a point.
+#'
+#' @param reference Reference set as a matrix or data.frame of numerical
+#'   values.
+#'
+#' @param maximise Whether the objectives must be maximised instead of
+#'   minimised. Either a single boolean value that applies to all objectives or
+#'   a vector boolean values, with one value per objective.
+#' 
+#' @return  A single numerical value.
+#'
+#' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
+#'
+#' @details
+#'
+#' Given objective vectors a and b, epsilon(a,b) is computed in the case of
+#' minimization as a/b for the multiplicative variant (respectively, a - b for
+#' the additive variant), whereas in the case of maximization it is computed as
+#' b/a for the multiplicative variant (respectively, b - a for the additive
+#' variant). This allows computing a single value for mixed optimization
+#' problems, where some objectives are to be maximized while others are to be
+#' minimized. Moreover, a lower value corresponds to a better approximation
+#' set, independently of the type of problem (minimization, maximization or
+#' mixed). However, the meaning of the value is different for each objective
+#' type. For example, imagine that f1 is to be minimized and f2 is to be
+#' maximized, and the multiplicative epsilon computed here for epsilon(A,B) =
+#' 3. This means that A needs to be multiplied by 1/3 for all f1 values and by
+#' 3 for all f2 values in order to weakly dominate B.
+#'
+#' This also means that the computation of the multiplicative version for
+#' negative values doesn't make sense.
+#'
+#' @seealso \code{\link{read.table}}
+#'
+#' @references
+#'
+#' E. Zitzler, L. Thiele, M. Laumanns, C. M. Fonseca, and V. Grunert da
+#' Fonseca.  Performance Assessment of Multiobjective Optimizers: an Analysis
+#' and Review. IEEE Transactions on Evolutionary Computation, 7(2):117-132,
+#' 2003.
+#' 
+#' @examples
+#' path.A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
+#' path.A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
+#' A1 <- read.data.sets(path.A1)[,1:2]
+#' A2 <- read.data.sets(path.A2)[,1:2]
+#' epsilon_additive(A1, A2)
+#' epsilon_additive(A2, A1)
+#' ref <- filter_dominated(A1, A2)
+#' epsilon_additive(A1, ref)
+#' epsilon_additive(A2, ref)
+#' 
+#' @rdname epsilon
+#' @export
+epsilon_additive <- function(data, reference, maximise = FALSE)
+{
+  data <- check.hv.data(data)
+  nobjs <- ncol(data) 
+  npoints <- nrow(data)
+  if (is.null(reference)) {
+    stop("reference cannot be NULL")
+  }
+  reference <- check.hv.data(reference)
+  if (ncol(reference) != nobjs)
+    stop("data and reference must have the same number of columns")
+  reference_size <- nrow(reference)
+  
+  maximise <- as.logical(rep_len(maximise, nobjs))
+    
+  return(.Call("epsilon_add_C",
+               as.double(t(data)),
+               as.integer(nobjs),
+               as.integer(npoints),
+               as.double(t(reference)),
+               as.integer(reference_size),
+               maximise))
+}
+
+#' @examples
+#' # Multiplicative version of epsilon metric
+#' epsilon_mult(A1, A2)
+#' epsilon_mult(A2, A1)
+#' ref <- filter_dominated(A1, A2)
+#' epsilon_mult(A1, ref)
+#' epsilon_mult(A2, ref)
+#' 
+#' @rdname epsilon
+#' @export
+epsilon_mult <- function(data, reference, maximise = FALSE)
+{
+  data <- check.hv.data(data)
+  nobjs <- ncol(data) 
+  npoints <- nrow(data)
+  if (is.null(reference)) {
+    stop("reference cannot be NULL")
+  }
+  reference <- check.hv.data(reference)
+  if (ncol(reference) != nobjs)
+    stop("data and reference must have the same number of columns")
+  reference_size <- nrow(reference)
+  
+  maximise <- as.logical(rep_len(maximise, nobjs))
+    
+  return(.Call("epsilon_mul_C",
+               as.double(t(data)),
+               as.integer(nobjs),
+               as.integer(npoints),
+               as.double(t(reference)),
+               as.integer(reference_size),
+               maximise))
+}
+
 #' Normalise points
 #'
 #' Normalise points per coordinate to a range, e.g., \code{c(1,2)}, where the
@@ -245,4 +362,24 @@ is.nondominated <- function(data, maximise = FALSE)
                as.integer(nobjs),
                as.integer(npoints),
                maximise))
+}
+
+#' Remove dominated points
+#' 
+#' @param ... matrices or data frames of numerical values, where
+#'   each row gives the coordinates of a point.
+#'
+#' @param maximise Whether the objectives must be maximised instead of
+#'   minimised. Either a single boolean value that applies to all objectives or
+#'   a vector boolean values, with one value per objective.
+#'
+#' @return a matrix or data.frame with only mutually nondominated points.
+#'
+#' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
+#' @export
+filter_dominated <- function(..., maximise = FALSE)
+{
+  set <- rbind(...)
+  is.nondom <- is.nondominated(set, maximise = maximise)
+  return(set[is.nondom, , drop = FALSE]) 
 }
