@@ -6,6 +6,19 @@
 
 enum objs_agree_t { AGREE_MINIMISE = -1, AGREE_NONE = 0, AGREE_MAXIMISE = 1 };
 
+/* Convert from int vector to minmax vector.  */
+static inline signed char *
+create_minmax(int nobj, const int * maximise)
+{
+    signed char * minmax = malloc(sizeof(signed char) * nobj);
+    for (int k = 0; k < nobj; k++) {
+        minmax[k] = (maximise[k] == TRUE)
+            ? AGREE_MAXIMISE
+            : (maximise[k] == FALSE) ? AGREE_MINIMISE : AGREE_NONE;
+    }
+    return minmax;
+}
+
 static inline bool *
 nondom_init (size_t size)
 {

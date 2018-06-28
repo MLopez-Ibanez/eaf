@@ -73,12 +73,13 @@ void warnprintf(const char *format,...)  __attribute__ ((format(printf, 1, 2)));
          DEBUG2_PRINT (__VA_ARGS__); } while(0)
 #endif
 
+/* This is deprecated. See https://www.gnu.org/software/libc/manual/html_node/Heap-Consistency-Checking.html
 #if DEBUG >= 1
 #ifndef MALLOC_CHECK_
 #define MALLOC_CHECK_ 3
 #endif
 #endif
-
+*/
 #include <stdbool.h>
 #define TRUE  true
 #define FALSE false

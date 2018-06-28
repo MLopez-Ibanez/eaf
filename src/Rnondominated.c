@@ -8,17 +8,6 @@ normalise_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
 extern SEXP
 is_nondominated_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP MAXIMISE);
 
-static inline signed char *
-create_minmax(int nobj, const int * maximise)
-{
-    signed char * minmax = malloc(sizeof(signed char) * nobj);
-    for (int k = 0; k < nobj; k++) {
-        minmax[k] = (maximise[k] == TRUE)
-            ? AGREE_MAXIMISE
-            : (maximise[k] == FALSE) ? AGREE_MINIMISE : AGREE_NONE;
-    }
-    return minmax;
-}
 
 SEXP
 normalise_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
