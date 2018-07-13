@@ -1,3 +1,4 @@
+ * Use eaxis for prettier labels.
  * If the plots were based on ggplot2, we could use plotly to make them
    interactive.
  * Make examples run faster (make data smaller). Move current examples

@@ -1,7 +1,7 @@
 ###############################################################################
 #
-#                          Copyright (c) 2011
-#         Manuel Lopez-Ibanez <manuel.lopez-ibanez@ulb.ac.be>
+#                          Copyright (c) 2011-2018
+#         Manuel Lopez-Ibanez <manuel.lopez-ibanez@manchester.ac.uk>
 #             Marco Chiarandini <marco@imada.sdu.dk>
 #
 # This program is free software (software libre); you can redistribute
@@ -35,7 +35,7 @@
 #    Berlin, Germany, 2010. doi: 10.1007/978-3-642-02538-9_9
 # 
 # Moreover, as a personal note, I would appreciate it if you would email
-# manuel.lopez-ibanez@ulb.ac.be with citations of papers referencing this
+# manuel.lopez-ibanez@manchester.ac.uk with citations of papers referencing this
 # work so I can mention them to my funding agent and tenure committee.
 #
 ################################################################################
@@ -175,7 +175,7 @@ eafplot.list <- function(x,...)
 #'
 #' @param y Either a matrix of data values, or a data frame.
 #' @export
-eafplot.data.frame <- function(x, y = NULL, ...)
+eafplot.data.frame <- function(x, y = NULL, sets = NULL, ...)
 {
   namex <- deparse(substitute(x))
   namey <- deparse(substitute(y))
@@ -184,8 +184,11 @@ eafplot.data.frame <- function(x, y = NULL, ...)
   eafplot.data.frame2 <- function(x, groups, main = DNAME, ...)
     eafplot(as.matrix(x[,c(1,2)]), as.numeric(x[,3]),
             groups = groups, main = main, ...)
-  check.eaf.data.frame <- function(x) {
+  check.eaf.data.frame <- function(x, sets = NULL) {
     xname <- deparse(substitute(x))
+    if (!is.null(sets))
+      x <- cbind.data.frame(x, sets)
+
     if (!is.data.frame(x) || ncol(x) != 3L)
       stop("'", xname, "' must be a data.frame with exactly three columns.\n",
            "  If you have grouping and conditioning variables, please consider using this format: 'eafplot(formula, data, ...)'")
@@ -197,9 +200,9 @@ eafplot.data.frame <- function(x, y = NULL, ...)
       x[,3] <- as.factor(x[,3])
     return(x)
   }
-  x <- check.eaf.data.frame(x)
+  x <- check.eaf.data.frame(x, sets)
   if (!is.null(y)) {
-    y <- check.eaf.data.frame(y)
+    y <- check.eaf.data.frame(y, sets)
     DNAME <- paste0(namex, " and ", namey)
     DT <- rbind(data.frame(x, groups = namex),
                 data.frame(y, groups = namey))

@@ -520,7 +520,7 @@ for (k in seq_along(output.files)) {
              legend.pos = legend.pos, extra.legend = extra.legend,
              legend.txt = legend.txt, maximise = maximise)
     } else {
-      eafplot.default (data[[k]][,1:2], sets = data[[k]][,3],
+      eafplot (data[[k]][,1:2], sets = data[[k]][,3],
                        attsurfs = attsurfs[[k]], percentiles = percentiles,
                        xlab = xlab, ylab = ylab, las = 0, log = log,
                        type = eaf.type, lty = lty, col = col, pch=pch, cex.pch=0.75,

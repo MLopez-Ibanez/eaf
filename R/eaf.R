@@ -1,7 +1,7 @@
 ###############################################################################
 #
 #                       Copyright (c) 2011-2018
-#         Manuel Lopez-Ibanez <manuel.lopez-ibanez@ulb.ac.be>
+#         Manuel Lopez-Ibanez <manuel.lopez-ibanez@manchester.ac.uk>
 #                Marco Chiarandini <marco@imada.sdu.dk>
 #
 # This program is free software (software libre); you can redistribute
@@ -35,8 +35,8 @@
 #    Berlin, Germany, 2010. doi: 10.1007/978-3-642-02538-9_9
 # 
 # Moreover, as a personal note, I would appreciate it if you would email
-# manuel.lopez-ibanez@ulb.ac.be with citations of papers referencing this
-# work so I can mention them to my funding agent and tenure committee.
+# manuel.lopez-ibanez@manchester.ac.uk with citations of papers referencing
+# this work so I can mention them to my funding agent and tenure committee.
 #
 ################################################################################
 #
@@ -457,8 +457,9 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' data(SPEA2minstoptimeRichmond)
 #' SPEA2minstoptimeRichmond[,2] <- SPEA2minstoptimeRichmond[,2] / 60
 #' eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
-#'          ylab = "Minimum idle time (minutes)",
-#'          las = 1, log = "y", maximise = c(FALSE, TRUE), main = "SPEA2 (Richmond)")
+#'          ylab = "Minimum idle time (minutes)", maximise = c(FALSE, TRUE),
+#'          las = 1, log = "y", main = "SPEA2 (Richmond)",
+#'          legend.pos = "bottomright")
 #' }
 #' @export
 eafplot.default <-
@@ -613,7 +614,9 @@ eafplot.default <-
 
   if (!is.null (extra.points)) {
     if (!is.list (extra.points[[1]])) {
+      extra.name <- deparse(substitute(extra.points))
       extra.points <- list(extra.points)
+      names(extra.points) <- extra.name
     }
     ## Recycle values
     extra.length <- length(extra.points)
@@ -621,7 +624,11 @@ eafplot.default <-
     extra.lty <- rep(extra.lty, length=extra.length)
     extra.col <- rep(extra.col, length=extra.length)
     extra.pch <- rep(extra.pch, length=extra.length)
-
+    if (is.null(extra.legend)) {
+      extra.legend <- names(extra.points)
+      if (is.null(extra.legend))
+        extra.legend <- paste0("extra.points ", 1:length(extra.points))
+    }
     for (i in 1:length(extra.points)) {
       if (any(is.na(extra.points[[i]][,1]))) {
         ## Extra points are given in the correct order so no reverse
@@ -648,6 +655,7 @@ eafplot.default <-
       lty <- c(lty, extra.lty[i])
       col <- c(col, extra.col[i])
       pch <- c(pch, extra.pch[i])
+      if (is.null(extra.legend[i])) extra.legend[i]
     }
   }
 

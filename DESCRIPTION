@@ -8,7 +8,8 @@ Authors@R: c(person("Manuel", "López-Ibáñez", role = c("aut", "cre"),
              person("Marco", "Chiarandini", role = "aut"),
              person("Carlos", "Fonseca", role = "aut"),
              person("Luis", "Paquete", role = "aut"),
-             person("Thomas", "Stützle", role = "aut"))
+             person("Thomas", "Stützle", role = "aut"),
+             person("Mickaël", "Binois", role = "ctb"))
 Description: Plots of the empirical attainment function for two objectives.
 Depends: R (>= 2.10.0)
 Imports: modeltools, graphics, grDevices, stats

@@ -13,6 +13,12 @@ extern SEXP hv_contributions_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP REFERENCE
 extern SEXP normalise_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
                         SEXP RANGE, SEXP LBOUND, SEXP UBOUND, SEXP MAXIMISE);
 
+extern SEXP is_nondominated_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP MAXIMISE);
+extern SEXP epsilon_mul_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
+                          SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE);
+extern SEXP epsilon_add_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
+                          SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE);
+
 static const R_CallMethodDef CallEntries[] = {
     {"compute_eaf_C",          (DL_FUNC) &compute_eaf_C,          5},
     {"compute_eafdiff_area_C", (DL_FUNC) &compute_eafdiff_area_C, 5},
@@ -21,6 +27,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"hypervolume_C",          (DL_FUNC) &hypervolume_C,          4},
     {"hv_contributions_C",     (DL_FUNC) &hv_contributions_C,     4},
     {"normalise_C",            (DL_FUNC) &normalise_C,            7},
+    {"is_nondominated_C",      (DL_FUNC) &is_nondominated_C,      4},
+    {"epsilon_add_C",          (DL_FUNC) &epsilon_add_C,          6},
+    {"epsilon_mul_C",          (DL_FUNC) &epsilon_mul_C,          6},
     {NULL, NULL, 0}
 };
 
