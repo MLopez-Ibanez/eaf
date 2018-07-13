@@ -54,7 +54,7 @@
     do { errprintf (X); exit (EXIT_FAILURE); } while(0)
 #endif
 
-#include "eaf_io.h"
+#include "io.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>

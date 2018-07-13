@@ -41,8 +41,8 @@ VERSION = 0.1svn$(SVN_REV)
 DEBUG=0
 BINDIR := ./
 
-OBJS =  eaf.o eaf_input.o eaf_main.o eaf3d.o avl.o
-HEADERS = eaf.h eaf_io_priv.h eaf_io.h cvector.h avl.h
+OBJS =  eaf.o io.o eaf_main.o eaf3d.o avl.o
+HEADERS = eaf.h io_priv.h io.h cvector.h avl.h
 
 EAFEXE=eaf
 
@@ -76,7 +76,7 @@ endif
 override CFLAGS += $(OPT_CFLAGS) -DDEBUG=$(DEBUG) \
 		   -D VERSION='"$(VERSION)"'
 
-.PHONY : default all clean distclean ps test dist
+.PHONY : default all clean distclean test dist
 
 default: $(BINDIR)/$(EAFEXE) 
 
@@ -87,8 +87,8 @@ $(BINDIR)/$(EAFEXE) :
 	$(call ECHO,--> Building $@ version $(VERSION) <---)
 	$(CC) -o $@ $(OBJS) $(CFLAGS) $(LINKERFLAGS)
 
-$(OBJS) : eaf.h eaf_io.h
-eaf_input.o : eaf_io_priv.h
+$(OBJS) : eaf.h io.h
+io.o : io_priv.h
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -115,7 +115,7 @@ dist : DEBUG=0
 dist : CDEBUG=
 dist :
 	@(mkdir -p ../$(DIST_SRC) \
-	&& rsync -rlpC --exclude=.svn $(DIST_SRC_FILES) ../$(DIST_SRC)/ \
+	&& rsync -rlpC --copy-unsafe-links --exclude=.svn $(DIST_SRC_FILES) ../$(DIST_SRC)/ \
 	&& cd .. \
 	&& tar cf - $(DIST_SRC) | gzip -f9 > $(DIST_SRC).tar.gz \
 	&& rm -rf ./$(DIST_SRC)/* && rmdir ./$(DIST_SRC)/ \

@@ -3,12 +3,8 @@
 #include <string.h> /* for strerror() */
 #include <errno.h> /* for errno  */
 
-#define PAGE_SIZE 4096
+#define PAGE_SIZE 4096           /* allocate one page at a time      */
 #define DATA_INC (PAGE_SIZE/sizeof(objective_t))
-
-#ifndef DEBUG
-#define DEBUG 0
-#endif
 
 /*
  * Read an array of objective values from a stream.  This function may
@@ -16,38 +12,29 @@
  *
  *  nobjs : number of objectives, also the number of columns.
  */
-
 int
 read_objective_t_data (const char *filename, objective_t **data_p, 
                        int *nobjs_p, int **cumsizes_p, int *nsets_p)
 {
-    FILE *instream;
-
     int nobjs = *nobjs_p;        /* number of objectives (and columns).  */
     int *cumsizes = *cumsizes_p; /* cumulative sizes of data sets.       */
     int nsets    = *nsets_p;     /* number of data sets.                 */
     objective_t *data = *data_p;
 
-    int retval;			/* return value for fscanf */
-    char newline[2];
-    int ntotal;			/* the current element of (*datap) */
-
-    int column = 0,
-        line = 0;
-
-    int datasize;
-    int sizessize;
-
     int errorcode = 0;
+    FILE *instream;
 
     if (filename == NULL) {
         instream = stdin;
-        filename = "<stdin>"; /* used to diagnose errors.  */
+        filename = stdin_name; /* used to diagnose errors.  */
     } else if (NULL == (instream = fopen (filename,"rb"))) {
         errprintf ("%s: %s", filename, strerror (errno));
-        return (ERROR_FOPEN);
+        return ERROR_FOPEN;
     }
 
+    int ntotal;			/* the current element of (*datap) */
+    int datasize;
+    int sizessize;
     if (nsets == 0) {
         ntotal = 0;
         sizessize = 0;
@@ -64,6 +51,9 @@ read_objective_t_data (const char *filename, objective_t **data_p,
     data = realloc (data, datasize * sizeof(objective_t));
 
     /* skip over leading whitespace, comments and empty lines.  */
+    int retval;			/* return value for fscanf */
+    int column = 0,
+        line = 0;
     do { 
         line++;
         /* skip full lines starting with # */
@@ -114,14 +104,14 @@ read_objective_t_data (const char *filename, objective_t **data_p,
                 }
                 data[ntotal] = number;
                 ntotal++;
-#if DEBUG > 1
-                fprintf(stderr, "%s:%d:%d(%d) %d (set %d) = %.15g\n", 
-                        filename, line, column, nobjs, 
-                        cumsizes[nsets], nsets, (double)number);
-#endif
+                DEBUG2(fprintf(stderr, "%s:%d:%d(%d) %d (set %d) = "
+                               point_printf_format "\n",
+                               filename, line, column, nobjs, 
+                               cumsizes[nsets], nsets, (double)number));
+
                 /* skip possible trailing whitespace */
-                ignore_unused_result (fscanf (instream, "%*[ \t\r]"));
-                retval = fscanf (instream, "%1[\n]", newline);
+                skip_trailing_whitespace(instream);
+                retval = fscanf_newline(instream);
 	    } while (retval == 0);
             
 	    if (!nobjs)
@@ -149,11 +139,8 @@ read_objective_t_data (const char *filename, objective_t **data_p,
 	} while (retval == 0);
 
 	nsets++; /* new data set */
-
-#if DEBUG > 1
-	fprintf (stderr, "%s: set %d, read %d rows\n", 
-                 filename, nsets, cumsizes[nsets - 1]);
-#endif
+        DEBUG2(fprintf (stderr, "%s: set %d, read %d rows\n", 
+                    filename, nsets, cumsizes[nsets - 1]));
         /* skip over successive empty lines */
         do { 
             line++;
@@ -165,7 +152,7 @@ read_objective_t_data (const char *filename, objective_t **data_p,
     /* adjust to real size (saves memory but probably slower).  */
     cumsizes = realloc (cumsizes, nsets * sizeof(int));
     data = realloc (data, ntotal * sizeof(objective_t));
-
+    
 read_data_finish:
 
     *nobjs_p = nobjs;
@@ -175,9 +162,11 @@ read_data_finish:
 
     if (instream != stdin) 
         fclose(instream);
-
+    
     return errorcode;
 }
 
 #undef PAGE_SIZE
 #undef DATA_INC
+                
+                
