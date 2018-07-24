@@ -249,7 +249,7 @@
 #' Conditional Pareto fronts obtained from Gaussian processes simulations.
 #'
 #' The data has the only goal of providing an example of use of \code{\link[eaf]{vorobT}} 
-#' and \code{\link[eaf]{vorobD}}. It has been obtained by fitting two Gaussian processes
+#' and \code{\link[eaf]{vorobDev}}. It has been obtained by fitting two Gaussian processes
 #' on 20 observations of a bi-objective problem, before generating conditional simulation 
 #' of both GPs at different locations and extracting non-dominated values of coupled simulations. 
 #'
