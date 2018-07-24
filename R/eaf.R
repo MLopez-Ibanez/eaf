@@ -589,11 +589,14 @@ eafplot.default <-
          # the code below and use it in plot.eaf and plot.eafdiff
 
          if (type == "area") {
-           if (length(col) != 2) {
+           # FIXME (Proposition): allow the user to provide the palette colors?
+           if (!(length(col) %in% c(2, length(attsurfs)))) {
              stop ("length(col) != 2, but with 'type=area', eafplot.default needs just two colors")
            }
-           colfunc <- colorRampPalette(col)
-           col <- colfunc(length(attsurfs))
+           if(length(col) == 2){
+             colfunc <- colorRampPalette(col)
+             col <- colfunc(length(attsurfs))
+           }
            plot.eaf.full.area(attsurfs, extreme, maximise, col = col)
          } else {
            ## Recycle values
