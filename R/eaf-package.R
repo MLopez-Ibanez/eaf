@@ -245,3 +245,35 @@
 #' data(gcp2x2)
 #'
 "gcp2x2"
+
+#' Conditional Pareto fronts obtained from Gaussian processes simulations.
+#'
+#' The data has the only goal of providing an example of use of \code{\link[eaf]{vorobT}} 
+#' and \code{\link[eaf]{vorobD}}. It has been obtained by fitting two Gaussian processes
+#' on 20 observations of a bi-objective problem, before generating conditional simulation 
+#' of both GPs at different locations and extracting non-dominated values of coupled simulations. 
+#'
+#' @format 
+#'  A data frame with 2967 observations on the following 3 variables.
+#'  \describe{
+#'    \item{\code{f1}}{first objective values.}
+#'    \item{\code{f2}}{second objective values.}
+#'    \item{\code{set}}{indices of corresponding conditional Pareto fronts.}
+#'  }
+#'
+#'@source
+#'  
+#' M. Binois, D. Ginsbourger and O. Roustant. Quantifying Uncertainty on Pareto Fronts with
+#' Gaussian process conditional simulations, European Journal of Operational Research, 2015, 243(2), 386-394. 
+#'
+#'@examples 
+#' data(CPFs)
+#' 
+#' res <- vorobT(CPFs, reference = c(2, 200))
+#' eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
+#'        col=gray(seq(0.8, 0.1, length.out = 6)^2), type = "area", legend.pos = "bottomleft",
+#'        extra.points = res$VE, extra.col = "cyan")
+#'
+"CPFs"
+
+
