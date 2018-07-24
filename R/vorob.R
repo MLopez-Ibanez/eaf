@@ -191,7 +191,7 @@ symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 8,
   
   attsurfs <- compute.eaf.as.list(x, percentiles = levs)
   
-  cols <- gray.colors(nlevels + 1)
+  cols <- gray(seq(0, 0.9, length.out = nlevels+1)^2)
   # Denote p_n the attainment probability, the value of the symmetric
   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
   # otherwise.
@@ -199,7 +199,7 @@ symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 8,
   cols[nlevels + 1] <- "#FFFFFF" # To have white after worse case
   
   eafplot.default(x, attsurfs = attsurfs,
-                  legend.txt = c(ifelse(levs <= threshold, levs, rev(levs)), "VE"),
+                  legend.txt = c(ifelse(levs <= threshold, levs, rev(levs))),
                   percentiles = levs, col = cols,
                   extra.points = VE, extra.col = ve.col, extra.lty = 1,
                   lty = "solid", type = "area",
