@@ -46,10 +46,8 @@ static inline const signed char *
 read_minmax (const char *str, int *nobj)
 {
     signed char * minmax;
-    int len;
     int i;
-    bool all_ignored = true;
-
+    
     if (str == NULL) { /* Default all minimised.  */
         assert (*nobj > 0);
         minmax = malloc (sizeof(signed char) * *nobj);
@@ -58,7 +56,8 @@ read_minmax (const char *str, int *nobj)
         return minmax;
     }
 
-    len = strlen (str);
+    int len = strlen (str);
+    bool all_ignored = true;
     minmax = malloc (sizeof(signed char) * len);
     for (i = 0; i < len; i++) {
         switch (str[i])
@@ -94,7 +93,6 @@ static inline const bool *
 read_bitvector (const char *str, int *nobj)
 {
     bool * vec;
-    int len;
     int i;
 
     if (str == NULL) { /* Default all false.  */
@@ -105,19 +103,18 @@ read_bitvector (const char *str, int *nobj)
         return vec;
     }
 
-    len = strlen (str);
+    int len = strlen (str);
     vec = malloc (sizeof(bool) * len);
     for (i = 0; i < len; i++) {
-        switch (str[i])
-        {
-        case '1':
-            vec[i] = true;
-            break;
-        case '0':
-            vec[i] = false;
-            break;
-        default: /* something unexpected was found */
-            return NULL;
+        switch (str[i]) {
+          case '1':
+              vec[i] = true;
+              break;
+          case '0':
+              vec[i] = false;
+              break;
+          default: /* something unexpected was found */
+              return NULL;
         }
     }
     *nobj = len;
