@@ -587,15 +587,13 @@ eafplot.default <-
          # points() or polygon() as appropriate to add attainment
          # surfaces to an existing plot. This way we can factor out
          # the code below and use it in plot.eaf and plot.eafdiff
-
          if (type == "area") {
            # FIXME (Proposition): allow the user to provide the palette colors?
-           if (!(length(col) %in% c(2, length(attsurfs)))) {
-             stop ("length(col) != 2, but with 'type=area', eafplot.default needs just two colors")
-           }
-           if(length(col) == 2){
+           if (length(col) == 2) {
              colfunc <- colorRampPalette(col)
              col <- colfunc(length(attsurfs))
+           } else if (length(col) != length(attsurfs)) {
+             stop ("length(col) != 2, but with 'type=area', eafplot.default needs just two colors")
            }
            plot.eaf.full.area(attsurfs, extreme, maximise, col = col)
          } else {
@@ -1177,6 +1175,19 @@ nintervals.labels <- function(n)
     x <- nx
   }
   return(c(intervals, paste0("[", x, ", 1.0]")))
+}
+
+seq.intervals.labels <- function(s)
+{
+  if (length(s) < 2) stop ("sequence must have at least 3 values")
+  intervals <- NULL
+  if (length(s) > 2) {
+    for (k in seq(2, length(s)-1)) {
+      intervals <- c(intervals, paste0("[", s[k - 1], ", ", s[k], ")"))
+    }
+  }
+  return(c(intervals,
+           paste0("[", s[length(s) - 1], ", ", s[length(s)], "]")))
 }
 
 ### Local Variables:
