@@ -10,7 +10,7 @@ vorobT(x, reference)
 
 vorobDev(x, VE, reference)
 
-symDifPlot(x, VE, threshold, add = FALSE, nlevels = 21, ve.col = "red",
+symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
   ve.lwd = 3, ve.lty = "dashed")
 }
 \arguments{
@@ -28,13 +28,13 @@ by \code{\link[eaf]{vorobT}}.}
 \item{nlevels}{number of levels in which is divided the range of the
 symmetric deviation}
 
-\item{ve.col, ve.lwd, ve.lty}{graphical parameters for plotting VE}
+\item{ve.col, ve.lwd, ve.lty}{plotting parameters for the Vorob'ev expectation}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold} and
   \code{VE}
 
-\code{vorobdev} returns the Vorob'ev deviation.
+\code{vorobDev} returns the Vorob'ev deviation.
 }
 \description{
 Compute Vorob'ev threshold, expectation and deviation. Also, displaying the
@@ -47,31 +47,31 @@ realization of the (random) attained set.
 Are x's supposed to be sets of Pareto optimal points?
 }
 \examples{
-data(gcp2x2)
-data_t <- as.matrix(subset(gcp2x2, alg != "TSinN1" & inst == "DSJC500.5", c("time", "best", "run")))
-res <- vorobT(data_t, reference = c(2, 200))
+data(CPFs)
+res <- vorobT(CPFs, reference = c(2, 200))
 print(res$threshold)
 
-# Display Vorob'ev expectation
-eafplot(data_t[,1:2], sets = data_t[,3], percentiles = c(0, 25, 50, 75, 100, res$threshold))
+## Display Vorob'ev expectation and attainment function
+# First style
+eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 25, 50, 75, 100, res$threshold),
+        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a),
+                          list(a = formatC(res$threshold, digits = 2))))
+
+# Second style
+eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
+        col=gray(seq(0.8, 0.1, length.out = 6)^0.5), type = "area", 
+        legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan", extra.legend = "VE",
+        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a),
+                          list(a = formatC(res$threshold, digits = 2))))
+
 
 # Now print Vorob'ev deviation
-VD <- vorobDev(data_t, res$VE, reference = c(2, 200))
+VD <- vorobDev(CPFs, res$VE, reference = c(2, 200))
 print(VD)
 
 # Now display symmetric deviation function
-symDifPlot(data_t, res$VE, res$threshold, add = FALSE, nlevels = 51)
+symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
 
-}
-\references{
-M. Binois, D. Ginsbourger and O. Roustant (2015), Quantifying Uncertainty
-on Pareto Fronts with Gaussian process conditional simulations, European
-Journal of Operational Research, 243(2), 386-394.
-
-C. Chevalier (2013), Fast uncertainty reduction strategies relying on
-Gaussian process models, University of Bern, PhD thesis.
-
-I. Molchanov (2005), Theory of random sets, Springer.
 }
 \author{
 Mickael Binois
