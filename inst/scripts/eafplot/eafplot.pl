@@ -518,7 +518,7 @@ for (k in seq_along(output.files)) {
              extra.points = extra.points, extra.pch = extra.pch, extra.col = extra.col,
              xlim = xlim, ylim = ylim,
              legend.pos = legend.pos, extra.legend = extra.legend,
-             legend.txt = legend.txt, maximise = maximise)
+             legend.txt = legend.txt, maximise = maximise, main = NULL)
     } else {
       eafplot (data[[k]][,1:2], sets = data[[k]][,3],
                        attsurfs = attsurfs[[k]], percentiles = percentiles,
@@ -527,7 +527,7 @@ for (k in seq_along(output.files)) {
                        extra.points = extra.points, extra.pch = extra.pch, extra.col = extra.col,
                        xlim=xlim, ylim=ylim,
                        legend.pos = legend.pos, extra.legend = extra.legend,
-                       maximise = maximise)
+                       maximise = maximise, main = NULL)
     }
   dev.null <- dev.off()
   cat ("Plot: ", output.file, "\n", sep='')
