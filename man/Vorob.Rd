@@ -4,6 +4,7 @@
 \alias{vorobT}
 \alias{vorobDev}
 \alias{symDifPlot}
+\alias{symDifPlot2}
 \title{Vorob'ev computations}
 \usage{
 vorobT(x, reference)
@@ -11,7 +12,10 @@ vorobT(x, reference)
 vorobDev(x, VE, reference)
 
 symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
-  ve.lwd = 3, ve.lty = "dashed")
+  ve.pch = 4)
+
+symDifPlot2(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
+  ve.pch = 4)
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of data
@@ -28,7 +32,7 @@ by \code{\link[eaf]{vorobT}}.}
 \item{nlevels}{number of levels in which is divided the range of the
 symmetric deviation}
 
-\item{ve.col, ve.lwd, ve.lty}{plotting parameters for the Vorob'ev expectation}
+\item{ve.col, }{ve.pch plotting parameters for the Vorob'ev expectation}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold} and
@@ -71,6 +75,7 @@ print(VD)
 
 # Now display symmetric deviation function
 symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
+symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
 
 }
 \author{
