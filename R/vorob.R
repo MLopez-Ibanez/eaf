@@ -177,7 +177,7 @@ vorobDev <- function(x, VE, reference)
 ##' @param nlevels number of levels in which is divided the range of the
 ##'   symmetric deviation
 ##' @param add if \code{FALSE}, a new graph is created
-##' @param ve.col, ve.pch plotting parameters for the Vorob'ev expectation
+##' @param ve.col,ve.pch plotting parameters for the Vorob'ev expectation
 ##' @export
 ##' @rdname Vorob
 ##' @examples
