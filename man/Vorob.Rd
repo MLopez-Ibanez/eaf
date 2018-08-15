@@ -32,7 +32,7 @@ by \code{\link[eaf]{vorobT}}.}
 \item{nlevels}{number of levels in which is divided the range of the
 symmetric deviation}
 
-\item{ve.col, }{ve.pch plotting parameters for the Vorob'ev expectation}
+\item{ve.col, ve.pch}{plotting parameters for the Vorob'ev expectation}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold} and
