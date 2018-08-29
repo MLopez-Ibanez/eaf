@@ -10,8 +10,8 @@ vorobT(x, reference)
 
 vorobDev(x, VE, reference)
 
-symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
-  ve.lwd = 3, ve.lty = "dashed")
+symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8,
+  ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of data
@@ -54,15 +54,15 @@ print(res$threshold)
 ## Display Vorob'ev expectation and attainment function
 # First style
 eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 25, 50, 75, 100, res$threshold),
-        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a),
-                          list(a = formatC(res$threshold, digits = 2))))
+        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "\%"),
+                          list(a = formatC(res$threshold, digits = 2, format = "f"))))
 
 # Second style
 eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
         col=gray(seq(0.8, 0.1, length.out = 6)^0.5), type = "area", 
         legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan", extra.legend = "VE",
-        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a),
-                          list(a = formatC(res$threshold, digits = 2))))
+        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "\%"),
+                          list(a = formatC(res$threshold, digits = 2, format = "f"))))
 
 
 # Now print Vorob'ev deviation
