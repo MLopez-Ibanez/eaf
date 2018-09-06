@@ -184,6 +184,7 @@ vorobDev <- function(x, VE, reference)
 ##' # Now display symmetric deviation function
 ##' symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
 ##' symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
+##' symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
 ##'
 symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 8,
                         ve.col = "red", ve.pch = 4)
@@ -228,4 +229,41 @@ symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 8,
                   extra.points = VE, extra.col = ve.col, extra.pch = ve.pch,
                   type = "area",
                   main = "Symmetric deviation function")
+}
+##' @export
+##' @rdname Vorob
+symDifPlot3 <- function(x, VE, threshold, add = FALSE, nlevels = 8, maximise = c(FALSE, FALSE),
+                        ve.col = "red", ve.pch = 4, xlim = NULL, ylim = NULL, legend.pos = NULL)
+{
+  if(is.null(legend.pos)) legend.pos <- "topright"
+  maximise <- as.logical(maximise)
+  levs <- sort(c(threshold, seq(0, 100, length.out = nlevels)))
+  
+  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
+  
+  cols <- gray(seq(0, 0.9, length.out = nlevels)^2)
+  # Denote p_n the attainment probability, the value of the symmetric
+  # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
+  # otherwise.
+  cols <- ifelse(levs >= threshold, cols, rev(cols))
+  cols[nlevels + 1] <- "#FFFFFF" # To have white after worst case
+
+  # FIXME: We should take the range from the attsurfs to not make x mandatory.
+  xlim <- get.xylim(xlim, maximise[1], data = x[,1])
+  ylim <- get.xylim(ylim, maximise[2],data = x[,2])
+  extreme <- get.extremes(xlim, ylim, maximise, "")
+  
+  plot(NA, xlim = xlim, ylim = ylim, main = "Symmetric deviation function", xlab = colnames(x)[1], ylab = colnames(x)[2])
+    
+  plot.eaf.full.area(attsurfs, extreme, maximise, cols)
+  plot.eaf.full.lines(list(VE), extreme, maximise,
+                      col = ve.col, lty = 1, lwd = 2)
+  
+  intervals <- nintervals.labels(nlevels-1)[levs <= threshold]
+  
+  legend.txt <- paste0(intervals[levs <= threshold], "%")
+
+  legend(legend.pos, legend = rev(legend.txt), fill = c(rev(cols), "#FFFFFF"),
+         bg="white",bty="n", xjust=0, yjust=0, cex=0.9)
+
 }
