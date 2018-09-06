@@ -20,8 +20,9 @@ Status](https://travis-ci.org/MLopez-Ibanez/eaf.svg?branch=master)](https://trav
     [Manuel López-Ibáñez](http://lopez-ibanez.eu),
     [Marco Chiarandini](http://www.imada.sdu.dk/~marco),
     [Carlos M. Fonseca](http://eden.dei.uc.pt/~cmfonsec),
-    [Luís Paquete](http://eden.dei.uc.pt/~paquete), and
-    [Thomas Stützle](http://iridia.ulb.ac.be/~stuetzle)
+    [Luís Paquete](http://eden.dei.uc.pt/~paquete),
+    [Thomas Stützle](http://iridia.ulb.ac.be/~stuetzle),
+    and Mickaël Binois.
     
 ---------------------------------------
 
