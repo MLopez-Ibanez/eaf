@@ -4,6 +4,8 @@
 \alias{vorobT}
 \alias{vorobDev}
 \alias{symDifPlot}
+\alias{symDifPlot2}
+\alias{symDifPlot3}
 \title{Vorob'ev computations}
 \usage{
 vorobT(x, reference)
@@ -11,7 +13,13 @@ vorobT(x, reference)
 vorobDev(x, VE, reference)
 
 symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8,
-  ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
+  ve.col = "red", ve.pch = 4)
+
+symDifPlot2(x, VE, threshold, add = FALSE, nlevels = 8,
+  ve.col = "red", ve.pch = 4)
+
+symDifPlot3(x, VE, threshold, add = FALSE, nlevels = 11,
+  ve.col = "blue", xlim = NULL, ylim = NULL, legend.pos = NULL)
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of data
@@ -23,12 +31,16 @@ run identifier, from 1 to the number of runs.}
 \item{VE, threshold}{Vorob'ev expectation and threshold, e.g., as returned
 by \code{\link[eaf]{vorobT}}.}
 
-\item{add}{if \code{FALSE}, a new graph is created}
+\item{add}{if \code{FALSE}, a new graph is created.}
 
 \item{nlevels}{number of levels in which is divided the range of the
-symmetric deviation}
+symmetric deviation.}
 
-\item{ve.col, ve.lwd, ve.lty}{plotting parameters for the Vorob'ev expectation}
+\item{ve.col, ve.pch}{plotting parameters for the Vorob'ev expectation.}
+
+\item{xlim, ylim}{Graphical parameters, see \code{\link{plot.default}}.}
+
+\item{legend.pos}{the position of the legend, see \code{\link{legend}}.}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold} and
@@ -70,7 +82,9 @@ VD <- vorobDev(CPFs, res$VE, reference = c(2, 200))
 print(VD)
 
 # Now display symmetric deviation function
-symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
+symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
+symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
+symDifPlot3(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
 
 }
 \author{
