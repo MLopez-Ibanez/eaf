@@ -493,13 +493,9 @@ eafplot.default <-
 {
   type <- match.arg (type, c("point", "area"))
   maximise <- as.logical(maximise)
-  xaxis.side <- switch(match.arg (xaxis.side, c("below", "above")),
-                       below = 1,
-                       above = 3)
-  yaxis.side <- switch(match.arg (yaxis.side, c("left", "right")),
-                       left = 2,
-                       right = 4)
-
+  xaxis.side <- match.arg (xaxis.side, c("below", "above"))
+  yaxis.side <- match.arg (yaxis.side, c("left", "right"))
+                      
   if (is.null(col)) {
     if (type == "point") {
       col <- c("black", "darkgrey", "black", "grey40", "darkgrey")
@@ -546,7 +542,7 @@ eafplot.default <-
 
   # FIXME: We should take the range from the attsurfs to not make x mandatory.
   xlim <- get.xylim(xlim, maximise[1], data = x[,1])
-  ylim <- get.xylim(ylim, maximise[2],data = x[,2])
+  ylim <- get.xylim(ylim, maximise[2], data = x[,2])
   extreme <- get.extremes(xlim, ylim, maximise, log)
 
   # FIXME: Find a better way to handle different x-y scale.
@@ -573,7 +569,7 @@ eafplot.default <-
   on.exit(par(op))
   
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
-       xlim = xlim, ylim = ylim, log = log, axes = FALSE,
+       xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
        panel.first = ({
          if (axes) {
            plot.eaf.axis(xaxis.side, xlab, las = las, sci.notation = sci.notation)
@@ -606,8 +602,7 @@ eafplot.default <-
            plot.eaf.full.lines(attsurfs, extreme, maximise,
                                 col = col, lty = lty, lwd = lwd, pch = pch, cex = cex.pch)
          }
-       }),
-       las = las, ...)
+       }), ...)
 
 
   if (!is.null (extra.points)) {
@@ -698,12 +693,23 @@ prettySciNotation <- function(x, digits = 1L)
                            list(base = base, exponent = exponent)))
 }
 
-plot.eaf.axis <- function(axis.side, lab, las,
+axis.side <- function(side)
+{
+  if (!is.character(side)) return(side)
+  return(switch(side,
+                below = 1,
+                left = 2,
+                above = 3,
+                right = 4))
+}
+
+plot.eaf.axis <- function(side, lab, las,
                           col = 'lightgray', lty = 'dotted', lwd = par("lwd"),
                           line = 2.1, sci.notation = FALSE)
 {
+  side <- axis.side(side)
   ## FIXME: Do we still need lwd=0.5, lty="26" to work-around for R bug?
-  at <- axTicks(if (axis.side %% 2 == 0) 2 else 1)
+  at <- axTicks(if (side %% 2 == 0) 2 else 1)
   labels <- if (sci.notation) prettySciNotation(at) else formatC(at, format = "g")
   ## if (log == "y") {
   ##   ## Custom log axis (like gnuplot but in R is hard)
@@ -724,10 +730,10 @@ plot.eaf.axis <- function(axis.side, lab, las,
   ## }
   
   ## tck=1 draws the horizontal grid lines (grid() is seriously broken).
-  axis (axis.side, at=at, labels=FALSE, tck = 1,
+  axis (side, at=at, labels=FALSE, tck = 1,
         col='lightgray', lty = 'dotted', lwd = par("lwd"))
-  axis(axis.side, at=at, labels=labels, las = las)
-  mtext(lab, axis.side, line = line, cex = par("cex") * par("cex.axis"),
+  axis(side, at=at, labels=labels, las = las)
+  mtext(lab, side, line = line, cex = par("cex") * par("cex.axis"),
         las = 0)
 }
 
@@ -782,8 +788,8 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 {
   side <- match.arg (side, c("left", "right"))
   type <- match.arg (type, c("point", "area"))
-  xaxis.side <- if (side == "left") 1 else 3
-  yaxis.side <- if (side == "left") 2 else 4
+  xaxis.side <- if (side == "left") "below" else "above"
+  yaxis.side <- if (side == "left") "left" else "right"
   maximise <- as.logical(maximise)
 
   # We do not paint with the same color as the background since this
@@ -822,7 +828,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
   ## }
   
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
-       ylim = ylim, xlim = xlim, log = log, axes = FALSE,
+       xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
        panel.first = ({
          plot.eaf.axis (xaxis.side, xlab, las = las, sci.notation = sci.notation)
          plot.eaf.axis (yaxis.side, ylab, las = las, sci.notation = sci.notation,
@@ -854,7 +860,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
            }
          }
 
-       }), las = las, ...)
+       }), ...)
 
   lty <- c("solid", "dashed")
   lwd <- c(1)

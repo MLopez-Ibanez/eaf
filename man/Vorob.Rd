@@ -12,14 +12,15 @@ vorobT(x, reference)
 
 vorobDev(x, VE, reference)
 
-symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8,
-  ve.col = "red", ve.pch = 4)
+symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
+  ve.pch = 4)
 
-symDifPlot2(x, VE, threshold, add = FALSE, nlevels = 8,
-  ve.col = "red", ve.pch = 4)
+symDifPlot2(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
+  ve.pch = 4)
 
-symDifPlot3(x, VE, threshold, add = FALSE, nlevels = 11,
-  ve.col = "blue", xlim = NULL, ylim = NULL, legend.pos = NULL)
+symDifPlot3(x, VE, threshold, add = FALSE, nlevels = 11, ve.col = "blue",
+  xlim = NULL, ylim = NULL, legend.pos = "topright",
+  main = "Symmetric deviation function")
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of data
@@ -38,7 +39,7 @@ symmetric deviation.}
 
 \item{ve.col, ve.pch}{plotting parameters for the Vorob'ev expectation.}
 
-\item{xlim, ylim}{Graphical parameters, see \code{\link{plot.default}}.}
+\item{xlim, ylim, main}{Graphical parameters, see \code{\link{plot.default}}.}
 
 \item{legend.pos}{the position of the legend, see \code{\link{legend}}.}
 }

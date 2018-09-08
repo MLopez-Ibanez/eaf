@@ -231,41 +231,62 @@ symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 8,
                   main = "Symmetric deviation function")
 }
 ##' @export
-##' @param xlim,ylim Graphical parameters, see \code{\link{plot.default}}.
+##' @param xlim,ylim,main Graphical parameters, see \code{\link{plot.default}}.
 ##' @param legend.pos the position of the legend, see \code{\link{legend}}.
 ##' @rdname Vorob
 symDifPlot3 <- function(x, VE, threshold, add = FALSE, nlevels = 11,
-                        ve.col = "blue", xlim = NULL, ylim = NULL, legend.pos = NULL)
+                        ve.col = "blue", xlim = NULL, ylim = NULL,
+                        legend.pos = "topright", main = "Symmetric deviation function")
 {
-  if(is.null(legend.pos)) legend.pos <- "topright"
+  # FIXME: These maybe should be parameters of the function in the future.
   maximise <- c(FALSE, FALSE)
+  xaxis.side <- "below"
+  yaxis.side <- "left"
+  log <- ""
+  xlab <- colnames(x)[1]
+  ylab <- colnames(x)[2]
+  las <- par("las")
+  sci.notation <- FALSE
+  
   threshold <- round(threshold, 4)
   levs <- round(sort(c(threshold, seq(0, 100, length.out = nlevels))), 4)
   
   attsurfs <- compute.eaf.as.list(x, percentiles = levs)
   
+  # Right now, the color is p if p < threshold, 1-p otherwise. Given threshold
+  # = 44.9219, the color at exactly p==threshold (or slightly larger) should be
+  # 100 - 44.9219 = 55.0781, which is a color that we don't plot. That seems
+  # strange.
   cols <- colscale <- gray(seq(0.9, 0, length.out = nlevels)^2)
   # Denote p_n the attainment probability, the value of the symmetric
   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
   # otherwise.
   iVE <- which(levs == threshold)
   cols[1:(iVE -1)] <- colscale[1:(iVE - 1)]
-  cols[iVE:nlevels] <-  colscale[(nlevels + 1 - iVE):1]#rev(cols)[1:(nlevels - iVE)] 
+  cols[iVE:nlevels] <-  colscale[(nlevels + 1 - iVE):1]
   cols[nlevels + 1] <- "#FFFFFF" # To have white after worst case
 
   # FIXME: We should take the range from the attsurfs to not make x mandatory.
   xlim <- get.xylim(xlim, maximise[1], data = x[,1])
   ylim <- get.xylim(ylim, maximise[2], data = x[,2])
-  extreme <- get.extremes(xlim, ylim, maximise, "")
-  
-  plot(NA, xlim = xlim, ylim = ylim, main = "Symmetric deviation function", xlab = colnames(x)[1], ylab = colnames(x)[2])
-    
-  plot.eaf.full.area(attsurfs, extreme, maximise, cols)
-  plot.eaf.full.lines(list(VE), extreme, maximise,
-                      col = ve.col, lty = 1, lwd = 2)
-  
-  intervals <- seq.intervals.labels(levs)[1:(length(unique(cols)) - 1)]
+  extreme <- get.extremes(xlim, ylim, maximise, log = log)
 
+  plot(xlim, ylim, type = "n", xlab = "", ylab = "",
+       xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
+       panel.first = {
+         plot.eaf.full.area(attsurfs, extreme, maximise, cols)
+         # We place the axis after so that we get grid lines.
+         plot.eaf.axis (xaxis.side, xlab, las = las, sci.notation = sci.notation)
+         plot.eaf.axis (yaxis.side, ylab, las = las, sci.notation = sci.notation,
+                        line = 2.2)
+         plot.eaf.full.lines(list(VE), extreme, maximise,
+                             col = ve.col, lty = 1, lwd = 2)
+       })
+
+  # FIXME: The legend prints [0,10]. However, the color for 0 should be white,
+  # like the color of 100. I don't think we are actually plotting 0, but
+  # "(0,10)" or even "(1/length(unique(x[,3])), 10)".
+  intervals <- seq.intervals.labels(levs)[1:(length(unique(cols)) - 1)]
   legend(legend.pos, legend = c(intervals, "VE"), fill = c(colscale[1:length(intervals)], ve.col),
          bg="white", bty="n", xjust=0, yjust=0, cex=0.9)
 
