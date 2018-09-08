@@ -65,6 +65,7 @@ check: build
 clean:
 	cd $(PACKAGEDIR) && ($(RM) ./$(PACKAGE)-Ex.R ./src/*.o ./src/*.so; \
 		find . -name '*.orig' -o -name '.Rhistory' | xargs $(RM) )
+	make -C $(PACKAGEDIR)/inst/scripts/eaf clean
 
 pdf:
 	$(RM) $(BINDIR)/$(PACKAGE).pdf
