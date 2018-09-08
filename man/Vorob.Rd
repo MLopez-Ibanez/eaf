@@ -5,17 +5,21 @@
 \alias{vorobDev}
 \alias{symDifPlot}
 \alias{symDifPlot2}
+\alias{symDifPlot3}
 \title{Vorob'ev computations}
 \usage{
 vorobT(x, reference)
 
 vorobDev(x, VE, reference)
 
-symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
-  ve.pch = 4)
+symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8,
+  ve.col = "red", ve.pch = 4)
 
-symDifPlot2(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
-  ve.pch = 4)
+symDifPlot2(x, VE, threshold, add = FALSE, nlevels = 8,
+  ve.col = "red", ve.pch = 4)
+
+symDifPlot3(x, VE, threshold, add = FALSE, nlevels = 11,
+  ve.col = "blue", xlim = NULL, ylim = NULL, legend.pos = NULL)
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of data
@@ -27,12 +31,16 @@ run identifier, from 1 to the number of runs.}
 \item{VE, threshold}{Vorob'ev expectation and threshold, e.g., as returned
 by \code{\link[eaf]{vorobT}}.}
 
-\item{add}{if \code{FALSE}, a new graph is created}
+\item{add}{if \code{FALSE}, a new graph is created.}
 
 \item{nlevels}{number of levels in which is divided the range of the
-symmetric deviation}
+symmetric deviation.}
 
-\item{ve.col, ve.pch}{plotting parameters for the Vorob'ev expectation}
+\item{ve.col, ve.pch}{plotting parameters for the Vorob'ev expectation.}
+
+\item{xlim, ylim}{Graphical parameters, see \code{\link{plot.default}}.}
+
+\item{legend.pos}{the position of the legend, see \code{\link{legend}}.}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold} and
@@ -58,15 +66,15 @@ print(res$threshold)
 ## Display Vorob'ev expectation and attainment function
 # First style
 eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 25, 50, 75, 100, res$threshold),
-        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a),
-                          list(a = formatC(res$threshold, digits = 2))))
+        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "\%"),
+                          list(a = formatC(res$threshold, digits = 2, format = "f"))))
 
 # Second style
 eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
         col=gray(seq(0.8, 0.1, length.out = 6)^0.5), type = "area", 
         legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan", extra.legend = "VE",
-        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a),
-                          list(a = formatC(res$threshold, digits = 2))))
+        main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "\%"),
+                          list(a = formatC(res$threshold, digits = 2, format = "f"))))
 
 
 # Now print Vorob'ev deviation
@@ -74,8 +82,9 @@ VD <- vorobDev(CPFs, res$VE, reference = c(2, 200))
 print(VD)
 
 # Now display symmetric deviation function
-symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
-symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
+symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
+symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
+symDifPlot3(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
 
 }
 \author{

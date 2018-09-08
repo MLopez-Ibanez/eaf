@@ -22,15 +22,15 @@
 ##' ## Display Vorob'ev expectation and attainment function
 ##' # First style
 ##' eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 25, 50, 75, 100, res$threshold),
-##'         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a),
-##'                           list(a = formatC(res$threshold, digits = 2))))
+##'         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "%"),
+##'                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
 ##' 
 ##' # Second style
 ##' eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
 ##'         col=gray(seq(0.8, 0.1, length.out = 6)^0.5), type = "area", 
 ##'         legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan", extra.legend = "VE",
-##'         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a),
-##'                           list(a = formatC(res$threshold, digits = 2))))
+##'         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "%"),
+##'                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
 ##' 
 ##' @export
 vorobT <- function(x, reference)
@@ -175,15 +175,16 @@ vorobDev <- function(x, VE, reference)
 ##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
 ##'   by \code{\link[eaf]{vorobT}}.
 ##' @param nlevels number of levels in which is divided the range of the
-##'   symmetric deviation
-##' @param add if \code{FALSE}, a new graph is created
-##' @param ve.col,ve.pch plotting parameters for the Vorob'ev expectation
+##'   symmetric deviation.
+##' @param add if \code{FALSE}, a new graph is created.
+##' @param ve.col,ve.pch plotting parameters for the Vorob'ev expectation.
 ##' @export
 ##' @rdname Vorob
 ##' @examples
 ##' # Now display symmetric deviation function
-##' symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
-##' symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 8)
+##' symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
+##' symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
+##' symDifPlot3(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
 ##'
 symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 8,
                         ve.col = "red", ve.pch = 4)
@@ -228,4 +229,44 @@ symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 8,
                   extra.points = VE, extra.col = ve.col, extra.pch = ve.pch,
                   type = "area",
                   main = "Symmetric deviation function")
+}
+##' @export
+##' @param xlim,ylim Graphical parameters, see \code{\link{plot.default}}.
+##' @param legend.pos the position of the legend, see \code{\link{legend}}.
+##' @rdname Vorob
+symDifPlot3 <- function(x, VE, threshold, add = FALSE, nlevels = 11,
+                        ve.col = "blue", xlim = NULL, ylim = NULL, legend.pos = NULL)
+{
+  if(is.null(legend.pos)) legend.pos <- "topright"
+  maximise <- c(FALSE, FALSE)
+  threshold <- round(threshold, 4)
+  levs <- round(sort(c(threshold, seq(0, 100, length.out = nlevels))), 4)
+  
+  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
+  
+  cols <- colscale <- gray(seq(0.9, 0, length.out = nlevels)^2)
+  # Denote p_n the attainment probability, the value of the symmetric
+  # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
+  # otherwise.
+  iVE <- which(levs == threshold)
+  cols[1:(iVE -1)] <- colscale[1:(iVE - 1)]
+  cols[iVE:nlevels] <-  colscale[(nlevels + 1 - iVE):1]#rev(cols)[1:(nlevels - iVE)] 
+  cols[nlevels + 1] <- "#FFFFFF" # To have white after worst case
+
+  # FIXME: We should take the range from the attsurfs to not make x mandatory.
+  xlim <- get.xylim(xlim, maximise[1], data = x[,1])
+  ylim <- get.xylim(ylim, maximise[2], data = x[,2])
+  extreme <- get.extremes(xlim, ylim, maximise, "")
+  
+  plot(NA, xlim = xlim, ylim = ylim, main = "Symmetric deviation function", xlab = colnames(x)[1], ylab = colnames(x)[2])
+    
+  plot.eaf.full.area(attsurfs, extreme, maximise, cols)
+  plot.eaf.full.lines(list(VE), extreme, maximise,
+                      col = ve.col, lty = 1, lwd = 2)
+  
+  intervals <- seq.intervals.labels(levs)[1:(length(unique(cols)) - 1)]
+
+  legend(legend.pos, legend = c(intervals, "VE"), fill = c(colscale[1:length(intervals)], ve.col),
+         bg="white", bty="n", xjust=0, yjust=0, cex=0.9)
+
 }
