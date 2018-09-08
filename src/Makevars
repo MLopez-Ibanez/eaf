@@ -1,8 +1,7 @@
 # 							-*- mode: makefile -*-
 # Do not put GCC specific flags here. Put them instead in CLAGS and
 # CXXLAGS in ~/.R/Makevars
-PKG_CPPFLAGS = -DVARIANT=4 -DR_PACKAGE -DDEBUG=1 -I../inst/scripts/eaf/
-EAF_SRC_FILES=avl.c eaf3d.c eaf.c io.c
-SOURCES = $(wildcard *.c) $(EAF_SRC_FILES:%=../inst/scripts/eaf/%)
+PKG_CPPFLAGS = -DVARIANT=4 -DR_PACKAGE -DDEBUG=1 -I../inst/scripts/eaf/ -I../inst/scripts/mo-tools/
+EAF_SRC_FILES= avl.c eaf3d.c eaf.c io.c
+SOURCES = init.c  Reaf.c  Repsilon.c  Rhv.c  Rnondominated.c  hv.c  hv_contrib.c  $(EAF_SRC_FILES:%=../inst/scripts/eaf/%)
 OBJECTS = $(SOURCES:.c=.o)
-
