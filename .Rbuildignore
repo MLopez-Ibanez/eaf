@@ -16,3 +16,4 @@ inst/.+~
 ^testing
 ^web
 ^\.travis\.yml$
+TAGS
