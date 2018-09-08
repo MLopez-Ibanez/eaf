@@ -289,5 +289,5 @@ symDifPlot3 <- function(x, VE, threshold, add = FALSE, nlevels = 11,
   intervals <- seq.intervals.labels(levs)[1:(length(unique(cols)) - 1)]
   legend(legend.pos, legend = c(intervals, "VE"), fill = c(colscale[1:length(intervals)], ve.col),
          bg="white", bty="n", xjust=0, yjust=0, cex=0.9)
-
+  box()
 }
