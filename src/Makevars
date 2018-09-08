@@ -1,3 +1,5 @@
 # Do not put GCC specific flags here. Put them instead in CLAGS and
 # CXXLAGS in ~/.R/Makevars
-PKG_CPPFLAGS = -DVARIANT=4 -DR_PACKAGE -DDEBUG=1
+PKG_CPPFLAGS = -DVARIANT=4 -DR_PACKAGE -DDEBUG=1 -I../inst/scripts/eaf/
+#SOURCES = $(wildcard ../inst/scripts/eaf/libfoo/*.c)
+#OBJECTS = foo.o RcppExports.o $(SOURCES:.c=.o)

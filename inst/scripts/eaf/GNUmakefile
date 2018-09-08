@@ -42,7 +42,7 @@ DEBUG=0
 BINDIR := ./
 
 OBJS =  eaf.o io.o eaf_main.o eaf3d.o avl.o
-HEADERS = eaf.h io_priv.h io.h cvector.h avl.h
+HEADERS = eaf.h io_priv.h io.h cvector.h avl.h common.h gcc_attribs.h
 
 EAFEXE=eaf
 
