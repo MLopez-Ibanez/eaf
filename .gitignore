@@ -8,3 +8,4 @@ revdep/library
 src/*.o
 src/*.so
 git_version
+R/TAGS
