@@ -4,22 +4,14 @@
 \alias{vorobT}
 \alias{vorobDev}
 \alias{symDifPlot}
-\alias{symDifPlot2}
-\alias{symDifPlot3}
 \title{Vorob'ev computations}
 \usage{
 vorobT(x, reference)
 
 vorobDev(x, VE, reference)
 
-symDifPlot(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
-  ve.pch = 4)
-
-symDifPlot2(x, VE, threshold, add = FALSE, nlevels = 8, ve.col = "red",
-  ve.pch = 4)
-
-symDifPlot3(x, VE, threshold, add = FALSE, nlevels = 11, ve.col = "blue",
-  xlim = NULL, ylim = NULL, legend.pos = "topright",
+symDifPlot(x, VE, threshold, nlevels = 11, ve.col = "blue", xlim = NULL,
+  ylim = NULL, legend.pos = "topright",
   main = "Symmetric deviation function")
 }
 \arguments{
@@ -32,12 +24,10 @@ run identifier, from 1 to the number of runs.}
 \item{VE, threshold}{Vorob'ev expectation and threshold, e.g., as returned
 by \code{\link[eaf]{vorobT}}.}
 
-\item{add}{if \code{FALSE}, a new graph is created.}
-
 \item{nlevels}{number of levels in which is divided the range of the
 symmetric deviation.}
 
-\item{ve.col, ve.pch}{plotting parameters for the Vorob'ev expectation.}
+\item{ve.col}{plotting parameters for the Vorob'ev expectation.}
 
 \item{xlim, ylim, main}{Graphical parameters, see \code{\link{plot.default}}.}
 
@@ -83,10 +73,17 @@ VD <- vorobDev(CPFs, res$VE, reference = c(2, 200))
 print(VD)
 
 # Now display symmetric deviation function
-symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
-symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
-symDifPlot3(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
+symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
+}
+\references{
+M. Binois, D. Ginsbourger and O. Roustant (2015), Quantifying Uncertainty
+on Pareto Fronts with Gaussian process conditional simulations, European
+Journal of Operational Research, 243(2), 386-394.
 
+C. Chevalier (2013), Fast uncertainty reduction strategies relying on
+Gaussian process models, University of Bern, PhD thesis.
+
+I. Molchanov (2005), Theory of random sets, Springer.
 }
 \author{
 Mickael Binois

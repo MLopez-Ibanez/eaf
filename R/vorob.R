@@ -88,155 +88,32 @@ vorobDev <- function(x, VE, reference)
   return((VD / nruns) - H1 - H2)
 }
 
-# ##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
-# ##'   by \code{\link[eaf]{vorobT}}.
-# ##' @param nlevels number of levels in which is divided the range of the
-# ##'   symmetric deviation
-# ##' @param add if \code{FALSE}, a new graph is created
-# ##' @export
-# ##' @rdname Vorob
-# ##' @references
-# ##' 
-# ##' M. Binois, D. Ginsbourger and O. Roustant (2015), Quantifying Uncertainty
-# ##' on Pareto Fronts with Gaussian process conditional simulations, European
-# ##' Journal of Operational Research, 243(2), 386-394.
-# ##'
-# ##' C. Chevalier (2013), Fast uncertainty reduction strategies relying on
-# ##' Gaussian process models, University of Bern, PhD thesis.
-# ##'
-# ##' I. Molchanov (2005), Theory of random sets, Springer.
-# ##'
-# ##' @examples
-# ##' # Now display symmetric deviation function
-# ##' symDifPlot(data_t, res$VE, res$threshold, add = FALSE, nlevels = 21)
-# ##' 
-# symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 21,
-#                        ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
-# {
-#   if(!add)
-#     plot(NA, xlim = range(x[,1]), ylim = range(x[,2]),
-#          xlab = expression(f[1]), ylab = expression(f[2]))
-#   levs <- seq(0, 100, length.out = nlevels)
-#   tmp <- eafs(x[,1:2], x[,3], percentiles = levs)
-#   cols <- rev(gray.colors(nlevels))
-#   
-#   # Denote p_n the attainment probability, the value of the symmetric
-#   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
-#   # otherwise.
-# 
-#   ## FIXME: I think the code in the for-loop may generate cols[0], which is
-#   ## invalid. The code below should be correct.
-#   #  cols <- ifelse(levs > threshold, rev(cols), cols)
-#   # Then the for-loop can use col = cols[i]
-#   
-#   for(i in 1:length(levs)) {
-#     lines(tmp[tmp[,3] == levs[i], 1:2], col = if (levs[i] > threshold) cols[nlevels-i] else cols[i])
-#   }
-# 
-#   lines(VE, col = ve.col, lwd = ve.lwd, lty = ve.lty)
-#   
-#   legend.txt <- c("VE", sprintf("%.2g %%", levs / 100))
-#   legend.pos <- "topright"
-#   legend(x = legend.pos, y = NULL,
-#          legend = legend.txt, xjust=1, yjust=1, bty="n",
-#          lty = c(ve.lty, rep("solid", nlevels)),
-#          lwd = c(ve.lwd, rep(1, nlevels)),
-#          col = c(ve.col, ifelse(levs > threshold, rev(cols), cols)))
-# }
-# 
-# ##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
-# ##'   by \code{\link[eaf]{vorobT}}.
-# ##' @param nlevels number of levels in which is divided the range of the
-# ##'   symmetric deviation
-# ##' @param add if \code{FALSE}, a new graph is created
-# ##' @export
-# ##' @rdname Vorob
-# ##' @examples
-# ##' # Now display symmetric deviation function
-# ##' symDifPlot2(data_t, res$VE, res$threshold, add = FALSE, nlevels = 21)
-# ##'
-# symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 21,
-#                        ve.col = "red", ve.lwd = 3, ve.lty = "dashed")
-# {
-#   levs <- seq(0, 100, length.out = nlevels)
-# 
-#   attsurfs <- compute.eaf.as.list(x, percentiles = levs)
-# 
-#   cols <- gray.colors(nlevels)
-#   # Denote p_n the attainment probability, the value of the symmetric
-#   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
-#   # otherwise.
-#   cols <- ifelse(levs > threshold, cols, rev(cols))
-#   eafplot.default(x, attsurfs = c(attsurfs,list(VE=VE)),
-#                   percentiles = levs, col = c(cols,ve.col),
-#                   lty = c(rep("solid", nlevels), ve.lty))
-# }
-
+##' @rdname Vorob
+##' @references
+##' 
+##' M. Binois, D. Ginsbourger and O. Roustant (2015), Quantifying Uncertainty
+##' on Pareto Fronts with Gaussian process conditional simulations, European
+##' Journal of Operational Research, 243(2), 386-394.
+##'
+##' C. Chevalier (2013), Fast uncertainty reduction strategies relying on
+##' Gaussian process models, University of Bern, PhD thesis.
+##'
+##' I. Molchanov (2005), Theory of random sets, Springer.
+##'
 ##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
 ##'   by \code{\link[eaf]{vorobT}}.
 ##' @param nlevels number of levels in which is divided the range of the
 ##'   symmetric deviation.
-##' @param add if \code{FALSE}, a new graph is created.
-##' @param ve.col,ve.pch plotting parameters for the Vorob'ev expectation.
-##' @export
-##' @rdname Vorob
-##' @examples
-##' # Now display symmetric deviation function
-##' symDifPlot(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
-##' symDifPlot2(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
-##' symDifPlot3(CPFs, res$VE, res$threshold, add = FALSE, nlevels = 11)
-##'
-symDifPlot <- function(x, VE, threshold, add = FALSE, nlevels = 8,
-                        ve.col = "red", ve.pch = 4)
-{
-  levs <- sort(c(threshold, seq(0, 100, length.out = nlevels)))
-  
-  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
-  
-  cols <- gray(seq(0, 0.9, length.out = nlevels+1)^2)
-  # Denote p_n the attainment probability, the value of the symmetric
-  # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
-  # otherwise.
-  cols <- ifelse(levs >= threshold, cols, rev(cols))
-  cols[nlevels + 1] <- "#FFFFFF" # To have white after worst case
-  
-  eafplot.default(x, attsurfs = attsurfs,
-                  legend.txt = ifelse(levs <= threshold, levs, rev(levs)),
-                  percentiles = levs, col = cols,
-                  extra.points = VE, extra.col = ve.col, extra.pch = ve.pch,
-                  type = "area",
-                  main = "Symmetric deviation function")
-}
-##' @export
-##' @rdname Vorob
-symDifPlot2 <- function(x, VE, threshold, add = FALSE, nlevels = 8,
-                        ve.col = "red", ve.pch = 4)
-{
-  levs <- sort(c(threshold, seq(0, 100, length.out = nlevels)))
-  
-  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
-  
-  cols <- gray(seq(0, 0.9, length.out = nlevels)^2)
-  # Denote p_n the attainment probability, the value of the symmetric
-  # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
-  # otherwise.
-  cols <- ifelse(levs >= threshold, cols, rev(cols))
-  cols[nlevels + 1] <- "#FFFFFF" # To have white after worst case
-  
-  eafplot.default(x, attsurfs = attsurfs,
-                  legend.txt = c(seq.intervals.labels(round(ifelse(levs <= threshold, levs, rev(levs)),4)),"0.0"),
-                  percentiles = levs, col = cols,
-                  extra.points = VE, extra.col = ve.col, extra.pch = ve.pch,
-                  type = "area",
-                  main = "Symmetric deviation function")
-}
-##' @export
+##' @param ve.col plotting parameters for the Vorob'ev expectation.
 ##' @param xlim,ylim,main Graphical parameters, see \code{\link{plot.default}}.
 ##' @param legend.pos the position of the legend, see \code{\link{legend}}.
-##' @rdname Vorob
-symDifPlot3 <- function(x, VE, threshold, add = FALSE, nlevels = 11,
-                        ve.col = "blue", xlim = NULL, ylim = NULL,
-                        legend.pos = "topright", main = "Symmetric deviation function")
+##' @examples
+##' # Now display symmetric deviation function
+##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
+##' @export
+symDifPlot <- function(x, VE, threshold, nlevels = 11,
+                       ve.col = "blue", xlim = NULL, ylim = NULL,
+                       legend.pos = "topright", main = "Symmetric deviation function")
 {
   # FIXME: These maybe should be parameters of the function in the future.
   maximise <- c(FALSE, FALSE)
