@@ -93,7 +93,10 @@ compute.eaf.as.list <- function(data, percentiles = NULL)
   eaf <- compute.eaf (data, percentiles = percentiles)
   setcol <- ncol(eaf)
   nobjs <- setcol - 1L
-  return (split.data.frame(eaf[,1:nobjs], as.factor(eaf[, setcol])))
+  return(split.data.frame(eaf[,1:nobjs],
+                          factor(eaf[, setcol],
+                                 levels = unique.default(eaf[, setcol]),
+                                 labels = percentiles)))
 }
 
 compute.eafdiff.helper <- function(data, intervals)
@@ -730,8 +733,8 @@ plot.eaf.axis <- function(side, lab, las,
   ## }
   
   ## tck=1 draws the horizontal grid lines (grid() is seriously broken).
-  axis (side, at=at, labels=FALSE, tck = 1,
-        col='lightgray', lty = 'dotted', lwd = par("lwd"))
+  axis(side, at=at, labels=FALSE, tck = 1,
+       col='lightgray', lty = 'dotted', lwd = par("lwd"))
   axis(side, at=at, labels=labels, las = las)
   mtext(lab, side, line = line, cex = par("cex") * par("cex.axis"),
         las = 0)
@@ -1183,17 +1186,17 @@ nintervals.labels <- function(n)
   return(c(intervals, paste0("[", x, ", 1.0]")))
 }
 
-seq.intervals.labels <- function(s)
+seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE)
 {
-  if (length(s) < 2) stop ("sequence must have at least 3 values")
-  intervals <- NULL
-  if (length(s) > 2) {
-    for (k in seq(2, length(s)-1)) {
-      intervals <- c(intervals, paste0("[", s[k - 1], ", ", s[k], ")"))
-    }
+  if (length(s) < 2) stop ("sequence must have at least 2 values")
+  intervals <- paste0("[", s[-length(s)],", ", s[-1], ")")
+  if (first.open)
+    substr(intervals[1], 0, 1) <- "("
+  if (!last.open) {
+    len <- nchar(intervals[length(intervals)])
+    substr(intervals[length(intervals)], len, len+1) <- "]"
   }
-  return(c(intervals,
-           paste0("[", s[length(s) - 1], ", ", s[length(s)], "]")))
+  return(intervals)
 }
 
 ### Local Variables:
