@@ -457,6 +457,12 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #'          extra.points = HybridGA$richmond, extra.lty = "dashed",
 #'          extra.legend = "Hybrid GA")
 #' 
+#' eafplot (SPEA2relativeRichmond, percentiles = c(25, 50, 75),
+#'          xlab = expression(C[E]), ylab = "Total switches",
+#'          xlim = c(90, 140), ylim = c(0, 25), type = "area",
+#'          extra.points = HybridGA$richmond, extra.lty = "dashed",
+#'          extra.legend = "Hybrid GA", legend.pos = "bottomright")
+#' 
 #' data(SPEA2minstoptimeRichmond)
 #' SPEA2minstoptimeRichmond[,2] <- SPEA2minstoptimeRichmond[,2] / 60
 #' eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
@@ -473,10 +479,9 @@ eafplot.default <-
             xlim = NULL, ylim = NULL,
             log = "",
             type = "point",
-            # FIXME: This default doesn't work when type == "area"
             col = NULL,
             lty = c("dashed", "solid", "solid", "solid", "dashed"),
-            lwd = c(1.75),
+            lwd = 1.75,
             pch = NA,
             cex.pch = par("cex"),
             las = par("las"),
@@ -484,7 +489,7 @@ eafplot.default <-
             legend.txt = NULL,
             # FIXME: Can we get rid of the extra. stuff? Replace it with calling points after eafplot.default in examples and eafplot.pl.
             extra.points = NULL, extra.legend = NULL,
-            extra.pch = c(4:25),
+            extra.pch = 4:25,
             extra.lwd = 0.5,
             extra.lty = "dashed",
             extra.col = "black",
@@ -576,8 +581,8 @@ eafplot.default <-
        panel.first = ({
          if (axes) {
            plot.eaf.axis(xaxis.side, xlab, las = las, sci.notation = sci.notation)
-           # FIXME: Why the different line?
            plot.eaf.axis(yaxis.side, ylab, las = las, sci.notation = sci.notation,
+                         # FIXME: eafplot uses 2.2, why the difference?
                          line = 2.75)
          }
          
@@ -600,10 +605,9 @@ eafplot.default <-
            lwd <- rep(lwd, length=length(attsurfs))
            lty <- rep(lty, length=length(attsurfs))
            col <- rep(col, length=length(attsurfs))
-           if (!is.null(pch))
-             pch <- rep(pch, length=length(attsurfs))
+           if (!is.null(pch)) pch <- rep(pch, length=length(attsurfs))
            plot.eaf.full.lines(attsurfs, extreme, maximise,
-                                col = col, lty = lty, lwd = lwd, pch = pch, cex = cex.pch)
+                               col = col, lty = lty, lwd = lwd, pch = pch, cex = cex.pch)
          }
        }), ...)
 
@@ -668,10 +672,12 @@ eafplot.default <-
   }
   legend.txt <- c(legend.txt, extra.legend)
 
-  if (!is.null (legend.txt) && is.na(pmatch(legend.pos,"none"))) {
+  if (!is.null(legend.txt) && is.na(pmatch(legend.pos,"none"))) {
     if (type == "area") {
+      print(legend.txt)
+      print(col)
       legend(x = legend.pos, y = NULL,
-             legend = rev(legend.txt), fill = c(rev(col), "#FFFFFF"),
+             legend = legend.txt, fill = c(col, "#FFFFFF"),
              bg="white",bty="n", xjust=0, yjust=0, cex=0.9)
     } else {
       legend(legend.pos,
@@ -789,16 +795,11 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
                                sci.notation = FALSE,
                                ...)
 {
-  side <- match.arg (side, c("left", "right"))
   type <- match.arg (type, c("point", "area"))
+  maximise <- as.logical(maximise)
+  side <- match.arg (side, c("left", "right"))
   xaxis.side <- if (side == "left") "below" else "above"
   yaxis.side <- if (side == "left") "left" else "right"
-  maximise <- as.logical(maximise)
-
-  # We do not paint with the same color as the background since this
-  # will override the grid lines
-  ## FIXME: This should actually look at the bg color of the plot
-  col[col == "#FFFFFF"] <- NA
 
   # For !full.eaf && type == "area", str(eafdiff) is a polygon:
   ##  $  num [, 1:2]
@@ -814,6 +815,11 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
       stop ("Too few colors: length(unique(eafdiff[,3])) > length(col)")
     }
   }
+
+  # We do not paint with the same color as the background since this
+  # will override the grid lines.
+  ## FIXME: This should actually look at the bg color of the plot
+  col[col == "#FFFFFF"] <- NA
 
   extreme <- get.extremes(xlim, ylim, maximise, log)
   yscale <- 1
@@ -862,7 +868,6 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
              points(eafdiff[,1], eafdiff[,2], col = col[eafdiff[,3]], type = "p", pch=20)
            }
          }
-
        }), ...)
 
   lty <- c("solid", "dashed")
@@ -1024,7 +1029,8 @@ eafdiffplot <-
   type <- match.arg (type, c("point", "area"))
   # FIXME: check that it is either an integer or a character vector.
   if (length(intervals) == 1) {
-    intervals <- nintervals.labels(intervals)
+    intervals <- seq.intervals.labels(
+      round(seq(0,1 , length.out = 1 + intervals),4), digits = 1)
   }
   if (length(col) != 3) {
     stop ("'col' must provide three colors (minimum, medium maximum)")
@@ -1168,28 +1174,14 @@ eafdiffplot <-
 }
 
 # Create labels:
-# eaf:::nintervals.labels(5)
+# eaf:::seq.intervals.labels(seq(0,1, length.out=5), digits = 1)
 # "[0.0, 0.2)" "[0.2, 0.4)" "[0.4, 0.6)" "[0.6, 0.8)" "[0.8, 1.0]"
-nintervals.labels <- function(n)
+seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE,
+                                 digits = NULL)
 {
-  if (n < 2) stop ("number of intervals must be larger than 1")
-  step <- round(1.0 / n, 4);
-  if (step == 0) stop ("number of intervals is too large")
-  intervals <- paste0("[0.0, ", step , ")")
-  x <- step
-  repeat {
-    nx <- round(x + step, 4)
-    if (nx >= 1) break
-    intervals <- c(intervals, paste0("[", x, ", ", nx, ")"))
-    x <- nx
-  }
-  return(c(intervals, paste0("[", x, ", 1.0]")))
-}
-
-seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE)
-{
+  s <- formatC(s, digits = digits, format = if (is.null(digits)) "g" else "f")
   if (length(s) < 2) stop ("sequence must have at least 2 values")
-  intervals <- paste0("[", s[-length(s)],", ", s[-1], ")")
+  intervals <- paste0("[", s[-length(s)], ", ", s[-1], ")")
   if (first.open)
     substr(intervals[1], 0, 1) <- "("
   if (!last.open) {

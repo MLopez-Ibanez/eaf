@@ -28,8 +28,8 @@ data(CPFs)
 
 res <- vorobT(CPFs, reference = c(2, 200))
 eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
-       col=gray(seq(0.8, 0.1, length.out = 6)^2), type = "area", legend.pos = "bottomleft",
-       extra.points = res$VE, extra.col = "cyan")
+       col = gray(seq(0.8, 0.1, length.out = 6)^2), type = "area",
+       legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan")
 
 }
 \keyword{datasets}

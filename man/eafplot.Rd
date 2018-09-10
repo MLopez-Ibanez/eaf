@@ -20,9 +20,9 @@ eafplot(x, ...)
   percentiles = c(0, 50, 100), attsurfs = NULL, xlab = NULL,
   ylab = NULL, xlim = NULL, ylim = NULL, log = "", type = "point",
   col = NULL, lty = c("dashed", "solid", "solid", "solid", "dashed"),
-  lwd = c(1.75), pch = NA, cex.pch = par("cex"), las = par("las"),
+  lwd = 1.75, pch = NA, cex.pch = par("cex"), las = par("las"),
   legend.pos = "topright", legend.txt = NULL, extra.points = NULL,
-  extra.legend = NULL, extra.pch = c(4:25), extra.lwd = 0.5,
+  extra.legend = NULL, extra.pch = 4:25, extra.lwd = 0.5,
   extra.lty = "dashed", extra.col = "black", maximise = c(FALSE, FALSE),
   xaxis.side = "below", yaxis.side = "left", axes = TRUE,
   sci.notation = FALSE, ...)
@@ -150,6 +150,12 @@ eafplot (SPEA2relativeRichmond, percentiles = c(25, 50, 75),
          xlim = c(90, 140), ylim = c(0, 25),
          extra.points = HybridGA$richmond, extra.lty = "dashed",
          extra.legend = "Hybrid GA")
+
+eafplot (SPEA2relativeRichmond, percentiles = c(25, 50, 75),
+         xlab = expression(C[E]), ylab = "Total switches",
+         xlim = c(90, 140), ylim = c(0, 25), type = "area",
+         extra.points = HybridGA$richmond, extra.lty = "dashed",
+         extra.legend = "Hybrid GA", legend.pos = "bottomright")
 
 data(SPEA2minstoptimeRichmond)
 SPEA2minstoptimeRichmond[,2] <- SPEA2minstoptimeRichmond[,2] / 60
