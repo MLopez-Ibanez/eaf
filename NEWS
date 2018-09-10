@@ -1,5 +1,9 @@
-* Functions for computing hypervolume and hypervolume contributions.
-                                                       (Manuel López-Ibáñez)
+* Various aesthetic improvements in eafplot and eafdiffplot.
+                                                         (Manuel López-Ibáñez)
+
+* Functions for computing hypervolume, hypervolume contributions, epsilon
+  metric, filter dominated points, and fast normalisation of ranges.
+                                                         (Manuel López-Ibáñez)
 
 * Compute Vorob'ev threshold, expectation and deviation. Plots of the symmetric
   deviation.
