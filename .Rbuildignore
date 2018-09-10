@@ -7,6 +7,7 @@ inst/.+~
 ^Makefile
 ^eaf-Ex.R
 ^cleanup
+\.RData
 \.Rhistory
 .+\.o$
 .+\.so$
