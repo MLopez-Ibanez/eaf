@@ -126,23 +126,28 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
   sci.notation <- FALSE
   
   threshold <- round(threshold, 4)
-  levs <- round(sort(c(threshold, seq(0, 100, length.out = nlevels))), 4)
-  
-  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
-  
-  # Right now, the color is p if p < threshold, 1-p otherwise. Given threshold
-  # = 44.9219, the color at exactly p==threshold (or slightly larger) should be
-  # 100 - 44.9219 = 55.0781, which is a color that we don't plot. That seems
-  # strange.
-  cols <- colscale <- gray(seq(0.9, 0, length.out = nlevels)^2)
+  levs <- unique(round(sort(c(threshold, seq(0, 100, length.out = nlevels))), 4))
+
   # Denote p_n the attainment probability, the value of the symmetric
   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
-  # otherwise.
-  iVE <- which(levs == threshold)
-  cols[1:(iVE -1)] <- colscale[1:(iVE - 1)]
-  cols[iVE:nlevels] <-  colscale[(nlevels + 1 - iVE):1]
-  cols[nlevels + 1] <- "#FFFFFF" # To have white after worst case
-
+  # otherwise. Therefore, there is a sharp transition at alpha.  For example,
+  # for threshold = 44.5 and 5 levels, we color the following intervals:
+  #
+  # [0, 25) [25, 44.9) [44.9, 50) [50, 75) [75, 100]
+  #
+  # with the following colors:
+  #
+  # [0, 25) [25, 50) [50, 75) [25, 50) [0, 25) 
+  colscale <- round(seq(0, 100, length.out = nlevels), 4)
+  names(colscale) <- gray(seq(0.9, 0, length.out = nlevels)^2)
+  print(colscale)
+  cols <- c(names(colscale[colscale < threshold]),
+            rev(names(colscale[1:max(which(colscale < 100 - threshold))])),
+            "#FFFFFF") # To have white after worst case
+  names(levs) <- cols
+  print(levs)
+    
+  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
   # FIXME: We should take the range from the attsurfs to not make x mandatory.
   xlim <- get.xylim(xlim, maximise[1], data = x[,1])
   ylim <- get.xylim(ylim, maximise[2], data = x[,2])
@@ -151,7 +156,7 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
        panel.first = {
-         plot.eaf.full.area(attsurfs, extreme, maximise, cols)
+         plot.eaf.full.area(attsurfs, extreme = extreme, maximise = maximise, col = cols)
          # We place the axis after so that we get grid lines.
          plot.eaf.axis (xaxis.side, xlab, las = las, sci.notation = sci.notation)
          plot.eaf.axis (yaxis.side, ylab, las = las, sci.notation = sci.notation,
@@ -160,11 +165,13 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
                              col = ve.col, lty = 1, lwd = 2)
        })
 
-  # FIXME: The legend prints [0,10]. However, the color for 0 should be white,
-  # like the color of 100. I don't think we are actually plotting 0, but
-  # "(0,10)" or even "(1/length(unique(x[,3])), 10)".
-  intervals <- seq.intervals.labels(levs)[1:(length(unique(cols)) - 1)]
-  legend(legend.pos, legend = c(intervals, "VE"), fill = c(colscale[1:length(intervals)], ve.col),
+  # Use first.open to print "(0,X)", because the color for 0 is white.
+  intervals <- seq.intervals.labels(colscale, first.open = TRUE)
+  max.interval <- max(which(colscale < max(100 - threshold, threshold))) 
+  intervals <- intervals[1:max.interval]
+  names(intervals) <- names(colscale[1:max.interval])
+  print(intervals)
+  legend(legend.pos, legend = c("VE", intervals), fill = c(ve.col, names(intervals)),
          bg="white", bty="n", xjust=0, yjust=0, cex=0.9)
   box()
 }
