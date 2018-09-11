@@ -12,7 +12,8 @@ vorobDev(x, VE, reference)
 
 symDifPlot(x, VE, threshold, nlevels = 11, ve.col = "blue", xlim = NULL,
   ylim = NULL, legend.pos = "topright",
-  main = "Symmetric deviation function")
+  main = "Symmetric deviation function", col.fun = function(n) gray(seq(0,
+  0.9, length.out = n)^2))
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of data
@@ -32,6 +33,8 @@ symmetric deviation.}
 \item{xlim, ylim, main}{Graphical parameters, see \code{\link{plot.default}}.}
 
 \item{legend.pos}{the position of the legend, see \code{\link{legend}}.}
+
+\item{col.fun}{function that creates a vector of \code{n} colors, see \code{\link{heat.colors}}.}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold} and
@@ -73,8 +76,12 @@ eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
 VD <- vorobDev(CPFs, res$VE, reference = c(2, 200))
 print(VD)
 
-# Now display symmetric deviation function
+# Now display the symmetric deviation function.
 symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
+# Levels are adjusted automatically if too large.
+symDifPlot(CPFs, res$VE, res$threshold, nlevels = 200)
+# Use a different palette.
+symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
 }
 \references{
 M. Binois, D. Ginsbourger and O. Roustant (2015), Quantifying Uncertainty

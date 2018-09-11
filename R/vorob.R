@@ -108,13 +108,19 @@ vorobDev <- function(x, VE, reference)
 ##' @param ve.col plotting parameters for the Vorob'ev expectation.
 ##' @param xlim,ylim,main Graphical parameters, see \code{\link{plot.default}}.
 ##' @param legend.pos the position of the legend, see \code{\link{legend}}.
+##' @param col.fun function that creates a vector of \code{n} colors, see \code{\link{heat.colors}}.
 ##' @examples
-##' # Now display symmetric deviation function
+##' # Now display the symmetric deviation function.
 ##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
+##' # Levels are adjusted automatically if too large.
+##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 200)
+##' # Use a different palette.
+##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
 ##' @export
 symDifPlot <- function(x, VE, threshold, nlevels = 11,
                        ve.col = "blue", xlim = NULL, ylim = NULL,
-                       legend.pos = "topright", main = "Symmetric deviation function")
+                       legend.pos = "topright", main = "Symmetric deviation function",
+                       col.fun = function(n) gray(seq(0, 0.9, length.out = n)^2))
 {
   # FIXME: These maybe should be parameters of the function in the future.
   maximise <- c(FALSE, FALSE)
@@ -125,10 +131,13 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
   ylab <- colnames(x)[2]
   las <- par("las")
   sci.notation <- FALSE
+  nlevels <- min(length(unique.default(x[, 3])) - 1, nlevels)
   
   threshold <- round(threshold, 4)
-  levs <- unique(round(sort(c(threshold, seq(0, 100, length.out = nlevels))), 4))
-
+  seq.levs <- round(seq(0, 100, length.out = nlevels), 4)
+  levs <- sort.int(unique.default(c(threshold, seq.levs)))
+  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
+    
   # Denote p_n the attainment probability, the value of the symmetric
   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
   # otherwise. Therefore, there is a sharp transition at alpha.  For example,
@@ -139,16 +148,17 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
   # with the following colors:
   #
   # [0, 25) [25, 50) [50, 75) [25, 50) [0, 25) 
-  colscale <- round(seq(0, 100, length.out = nlevels), 4)
-  names(colscale) <- gray(seq(0.9, 0, length.out = nlevels)^2)
+  max.interval <- max(which(seq.levs < max(100 - threshold, threshold)))
+  colscale <- seq.levs[1:max.interval]
+  # Reversed so that darker colors are associated to higher values
+  names(colscale) <- rev(col.fun(max.interval))
   print(colscale)
   cols <- c(names(colscale[colscale < threshold]),
             rev(names(colscale[1:max(which(colscale < 100 - threshold))])),
             "#FFFFFF") # To have white after worst case
   names(levs) <- cols
   print(levs)
-    
-  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
+  
   # FIXME: We should take the range from the attsurfs to not make x mandatory.
   xlim <- get.xylim(xlim, maximise[1], data = x[,1])
   ylim <- get.xylim(ylim, maximise[2], data = x[,2])
@@ -156,6 +166,7 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
 
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
+       main = main,
        panel.first = {
          plot.eaf.full.area(attsurfs, extreme = extreme, maximise = maximise, col = cols)
          # We place the axis after so that we get grid lines.
@@ -167,10 +178,10 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
        })
 
   # Use first.open to print "(0,X)", because the color for 0 is white.
-  intervals <- seq.intervals.labels(colscale, first.open = TRUE)
-  max.interval <- max(which(colscale < max(100 - threshold, threshold))) 
+  intervals <- seq.intervals.labels(seq.levs, first.open = TRUE)
   intervals <- intervals[1:max.interval]
-  names(intervals) <- names(colscale[1:max.interval])
+  names(intervals) <- names(colscale)
+  #names(intervals) <- names(colscale[1:max.interval])
   print(intervals)
   legend(legend.pos, legend = c("VE", intervals), fill = c(ve.col, names(intervals)),
          bg="white", bty="n", xjust=0, yjust=0, cex=0.9)
