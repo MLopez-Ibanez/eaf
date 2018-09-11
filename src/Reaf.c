@@ -3,7 +3,7 @@
 
 static eaf_t **
 compute_eaf_helper (SEXP DATA, int nobj, SEXP CUMSIZES, int nruns, 
-                    const int *percentile, int nlevels)
+                    const double *percentile, int nlevels)
 {
     int k;
     SEXP_2_INT_VECTOR(CUMSIZES, cumsizes, cumsizes_len);
@@ -62,10 +62,9 @@ compute_eaf_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS, SEXP PERCENTILE)
 {
     SEXP_2_INT(NOBJ, nobj);
     SEXP_2_INT(NRUNS, nruns);
-    SEXP_2_INT_VECTOR(PERCENTILE, percentile, nlevels);
+    SEXP_2_DOUBLE_VECTOR(PERCENTILE, percentile, nlevels);
 
     eaf_t **eaf = compute_eaf_helper(DATA, nobj, CUMSIZES, nruns, percentile, nlevels);
-
     int totalpoints = eaf_totalpoints (eaf, nlevels);
 
     SEXP mat;

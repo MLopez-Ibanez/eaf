@@ -79,13 +79,13 @@ compute.eaf <- function(data, percentiles = NULL)
   if (is.null(percentiles)) {
     percentiles <- 1:nsets * 100 / nsets
   }
+  percentiles <- unique.default(sort.int(percentiles))
   return(.Call("compute_eaf_C",
                as.double(t(as.matrix(data[, 1L:nobjs]))),
                nobjs,
                as.integer(cumsum(npoints)),
                as.integer(nsets),
-               as.integer(percentiles)
-               ))
+               percentiles))
 }
 
 compute.eaf.as.list <- function(data, percentiles = NULL)
@@ -96,7 +96,7 @@ compute.eaf.as.list <- function(data, percentiles = NULL)
   return(split.data.frame(eaf[,1:nobjs],
                           factor(eaf[, setcol],
                                  levels = unique.default(eaf[, setcol]),
-                                 labels = percentiles)))
+                                 labels = unique.default(eaf[, setcol]))))
 }
 
 compute.eafdiff.helper <- function(data, intervals)
