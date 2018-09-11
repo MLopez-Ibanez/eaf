@@ -63,7 +63,8 @@ eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 25, 50, 75, 100, res$thr
 # Second style
 eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
         col = gray(seq(0.8, 0.1, length.out = 6)^0.5), type = "area", 
-        legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan", extra.legend = "VE",
+        legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan",
+        extra.legend = "VE", extra.lty = "solid", extra.pch = NA, extra.lwd = 2,
         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "\%"),
                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
 

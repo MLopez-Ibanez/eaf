@@ -23,7 +23,7 @@ eafplot(x, ...)
   lwd = 1.75, pch = NA, cex.pch = par("cex"), las = par("las"),
   legend.pos = "topright", legend.txt = NULL, extra.points = NULL,
   extra.legend = NULL, extra.pch = 4:25, extra.lwd = 0.5,
-  extra.lty = "dashed", extra.col = "black", maximise = c(FALSE, FALSE),
+  extra.lty = NA, extra.col = "black", maximise = c(FALSE, FALSE),
   xaxis.side = "below", yaxis.side = "left", axes = TRUE,
   sci.notation = FALSE, ...)
 }

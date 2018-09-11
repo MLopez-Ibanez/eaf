@@ -491,7 +491,7 @@ eafplot.default <-
             extra.points = NULL, extra.legend = NULL,
             extra.pch = 4:25,
             extra.lwd = 0.5,
-            extra.lty = "dashed",
+            extra.lty = NA,
             extra.col = "black",
             maximise = c(FALSE, FALSE),
             xaxis.side = "below", yaxis.side = "left",
@@ -631,13 +631,15 @@ eafplot.default <-
     }
     for (i in 1:length(extra.points)) {
       if (any(is.na(extra.points[[i]][,1]))) {
+        if (is.na(extra.lty[i])) extra.lty <- "dashed"
         ## Extra points are given in the correct order so no reverse
         extra.points[[i]][,2] <- extra.points[[i]][,2] / yscale
         abline(h=extra.points[[i]][,2], lwd = extra.lwd[i], col = extra.col[i],
                lty = extra.lty[i])
-        extra.pch[i] <- 0
+        extra.pch[i] <- NA
 
       } else if (any(is.na(extra.points[[i]][,2]))) {
+        if (is.na(extra.lty[i])) extra.lty <- "dashed"
         abline(v=extra.points[[i]][,1], lwd = extra.lwd[i], col = extra.col[i],
                lty = extra.lty[i])
         extra.pch[i] <- NA
@@ -645,11 +647,12 @@ eafplot.default <-
       } else {
         ## Extra points are given in the correct order so no reverse
         extra.points[[i]][,2] <- extra.points[[i]][,2] / yscale
-        points (extra.points[[i]], type="p", pch=extra.pch[i],
-                col=extra.col[i], cex = cex.pch)
-
-        extra.lty[i] <- "blank"
-        extra.lwd[i] <- NA
+        if (!is.na(extra.pch[i])) 
+          points (extra.points[[i]], type = "p", pch = extra.pch[i],
+                  col = extra.col[i], cex = cex.pch)
+        if (!is.na(extra.lty[i]))
+          points (extra.points[[i]], type = "s", lty = extra.lty[i],
+                  col = extra.col[i], lwd = extra.lwd[i])
       }
       lwd <- c(lwd, extra.lwd[i])
       lty <- c(lty, extra.lty[i])
