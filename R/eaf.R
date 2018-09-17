@@ -386,7 +386,7 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' @param xlab,ylab,xlim,ylim,log,col,lty,lwd,pch,cex.pch,las Graphical
 #'   parameters, see \code{\link{plot.default}}.
 #' 
-#'@param legend.pos the position of the legend, see \code{\link{legend}}.
+#'@param legend.pos the position of the legend, see \code{\link{legend}}.  A value of \code{"none"} hides the legend.
 #'
 #'@param legend.txt a character or expression vector to appear in the
 #'   legend. If \code{NULL}, appropriate labels will be generated.
@@ -920,7 +920,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #'   (\samp{points}) or whether to color the areas that have at least a
 #'   certain value (\samp{area}).
 #' 
-#'@param legend.pos The position of the legend. See \code{\link{legend}}.
+#'@param legend.pos The position of the legend. See \code{\link{legend}}.  A value of \code{"none"} hides the legend.
 #' 
 #'@param title.left,title.right Title for left and right panels, respectively.
 #'  
@@ -1149,7 +1149,8 @@ eafdiffplot <-
                      side = "left", maximise = maximise,
                      sci.notation = sci.notation, ...)
 
-  if (nchar(legend.pos) > 0 && !(legend.pos %in% c("no", "none"))) {
+  if (is.na(pmatch(legend.pos,"none"))) {
+    #nchar(legend.pos) > 0 && !(legend.pos %in% c("no", "none"))) {
     legend(x = legend.pos, y = NULL,
            rev(intervals), rev(col),
            bg = "white", bty = "n", xjust=0, yjust=0, cex=0.9)

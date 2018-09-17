@@ -107,13 +107,14 @@ vorobDev <- function(x, VE, reference)
 ##'   symmetric deviation.
 ##' @param ve.col plotting parameters for the Vorob'ev expectation.
 ##' @param xlim,ylim,main Graphical parameters, see \code{\link{plot.default}}.
-##' @param legend.pos the position of the legend, see \code{\link{legend}}.
+##' @param legend.pos the position of the legend, see \code{\link{legend}}. A value of \code{"none"} hides the legend.
 ##' @param col.fun function that creates a vector of \code{n} colors, see \code{\link{heat.colors}}.
 ##' @examples
 ##' # Now display the symmetric deviation function.
 ##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
 ##' # Levels are adjusted automatically if too large.
-##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 200)
+##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 200, legend.pos = "none")
+##' 
 ##' # Use a different palette.
 ##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
 ##' @export
@@ -187,7 +188,8 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
   names(intervals) <- names(colscale)
   #names(intervals) <- names(colscale[1:max.interval])
   print(intervals)
-  legend(legend.pos, legend = c("VE", intervals), fill = c(ve.col, names(intervals)),
-         bg="white", bty="n", xjust=0, yjust=0, cex=0.9)
+  if (is.na(pmatch(legend.pos, "none")))
+    legend(legend.pos, legend = c("VE", intervals), fill = c(ve.col, names(intervals)),
+           bg="white", bty="n", xjust=0, yjust=0, cex=0.9)
   box()
 }

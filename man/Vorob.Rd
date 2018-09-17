@@ -32,7 +32,7 @@ symmetric deviation.}
 
 \item{xlim, ylim, main}{Graphical parameters, see \code{\link{plot.default}}.}
 
-\item{legend.pos}{the position of the legend, see \code{\link{legend}}.}
+\item{legend.pos}{the position of the legend, see \code{\link{legend}}. A value of \code{"none"} hides the legend.}
 
 \item{col.fun}{function that creates a vector of \code{n} colors, see \code{\link{heat.colors}}.}
 }
@@ -79,7 +79,8 @@ print(VD)
 # Now display the symmetric deviation function.
 symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
 # Levels are adjusted automatically if too large.
-symDifPlot(CPFs, res$VE, res$threshold, nlevels = 200)
+symDifPlot(CPFs, res$VE, res$threshold, nlevels = 200, legend.pos = "none")
+
 # Use a different palette.
 symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
 }

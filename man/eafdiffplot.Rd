@@ -40,7 +40,7 @@ differences between the EAFs.}
 (\samp{points}) or whether to color the areas that have at least a
 certain value (\samp{area}).}
 
-\item{legend.pos}{The position of the legend. See \code{\link{legend}}.}
+\item{legend.pos}{The position of the legend. See \code{\link{legend}}.  A value of \code{"none"} hides the legend.}
 
 \item{title.left, title.right}{Title for left and right panels, respectively.}
 

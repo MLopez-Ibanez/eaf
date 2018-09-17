@@ -58,7 +58,7 @@ parameters, see \code{\link{plot.default}}.}
 \item{type}{string giving the type of plot desired.  The following values
 are possible, \samp{points} and \samp{area}.}
 
-\item{legend.pos}{the position of the legend, see \code{\link{legend}}.}
+\item{legend.pos}{the position of the legend, see \code{\link{legend}}.  A value of \code{"none"} hides the legend.}
 
 \item{legend.txt}{a character or expression vector to appear in the
 legend. If \code{NULL}, appropriate labels will be generated.}
