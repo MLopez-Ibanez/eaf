@@ -1,6 +1,7 @@
  * Use eaxis for prettier labels.
  * If the plots were based on ggplot2, we could use plotly to make them
-   interactive.
+   interactive:
+   https://ggplot2.tidyverse.org/articles/extending-ggplot2.html
  * Make examples run faster (make data smaller). Move current examples
    to tests/
  * Fix all FIXMEs
