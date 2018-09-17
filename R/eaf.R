@@ -765,16 +765,16 @@ plot.eaf.full.lines <- function(attsurfs, extreme, maximise,
   col <- rep(col, length = length(attsurfs))
   if (!is.null(pch))
     pch <- rep(pch, length = length(attsurfs))
-  
+
+  attsurfs = lapply(attsurfs, add.extremes, extreme, maximise)
   for (k in seq_along(attsurfs)) {
-    tmp <- add.extremes(attsurfs[[k]], extreme, maximise)
     # FIXME: Is there a way to plot points and steps in one call?
     if (!is.null(pch))
-      points(tmp, type = "p", col = col[k], pch = pch[k], cex = cex)
-    points(tmp, type = "s", col = col[k], lty = lty[k], lwd = lwd[k])
+      points(attsurfs[[k]], type = "p", col = col[k], pch = pch[k], cex = cex)
+    points(attsurfs[[k]], type = "s", col = col[k], lty = lty[k], lwd = lwd[k])
   }
-  
 }
+
 plot.eaf.full.area <- function(attsurfs, extreme, maximise, col)
 {
   stopifnot(length(attsurfs) == length(col))
@@ -882,7 +882,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
   }
 
   plot.eaf.full.lines(attsurfs, extreme, maximise,
-                       col = col, lty = lty, lwd = lwd)
+                      col = col, lty = lty, lwd = lwd)
   mtext(title, 1, line = 3.5, cex = par("cex.lab"), las = 0, font = 2)
   box()
 }
