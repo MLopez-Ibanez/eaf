@@ -117,6 +117,10 @@ vorobDev <- function(x, VE, reference)
 ##' # Use a different palette.
 ##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
 ##' @export
+# FIXME: Implement "add=TRUE" option that just plots the lines,points or
+# surfaces and does not create the plot nor the legend (but returns the info
+# needed to create a legend), so that one can use the function to add stuff to
+# another plot.
 symDifPlot <- function(x, VE, threshold, nlevels = 11,
                        ve.col = "blue", xlim = NULL, ylim = NULL,
                        legend.pos = "topright", main = "Symmetric deviation function",
