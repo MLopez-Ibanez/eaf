@@ -18,6 +18,11 @@ extern SEXP epsilon_mul_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
                           SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE);
 extern SEXP epsilon_add_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
                           SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE);
+extern SEXP igd_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
+                  SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE);
+extern SEXP igd_plus_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
+                       SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE);
+
 
 static const R_CallMethodDef CallEntries[] = {
     {"compute_eaf_C",          (DL_FUNC) &compute_eaf_C,          5},
@@ -30,6 +35,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"is_nondominated_C",      (DL_FUNC) &is_nondominated_C,      4},
     {"epsilon_add_C",          (DL_FUNC) &epsilon_add_C,          6},
     {"epsilon_mul_C",          (DL_FUNC) &epsilon_mul_C,          6},
+    {"igd_C",                  (DL_FUNC) &igd_C,                  6},
+    {"igd_plus_C",             (DL_FUNC) &igd_plus_C,             6},
     {NULL, NULL, 0}
 };
 
