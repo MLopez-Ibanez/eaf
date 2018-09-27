@@ -72,12 +72,13 @@ compute.eaf <- function(data, percentiles = NULL)
   setcol <- ncol(data)
   nobjs <- setcol - 1L
   # The C code expects points within a set to be contiguous.
-  data <- data[order(data[, setcol]), ]
+  data <- data[order(data[, setcol]), , drop = FALSE]
   sets <- data[, setcol]
   nsets <- length(unique(sets))
   npoints <- tabulate(sets)
   if (is.null(percentiles)) {
-    percentiles <- 1:nsets * 100 / nsets
+    # FIXME: We should probably compute this in the C code.
+    percentiles <- 1L:nsets * 100.0 / nsets
   }
   percentiles <- unique.default(sort.int(percentiles))
   return(.Call("compute_eaf_C",
