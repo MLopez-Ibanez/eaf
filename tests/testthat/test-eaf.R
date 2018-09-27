@@ -9,6 +9,7 @@ test_that("eaf", {
   test.eaf.dataset <- function(name, percentiles = NULL) {
     dataset <- get(name)
     x <- eaf:::compute.eaf(dataset, percentiles)
+    # FIXME: work-around for change in the computation
     x[,3] <- floor(x[,3])
     #saveRDS(x, paste0(name, "-eaf.rds"))
     return(x)
@@ -16,8 +17,6 @@ test_that("eaf", {
   test.eaf.file <- function(file, percentiles = NULL) {
     dataset <- read.data.sets(file)
     x <- eaf:::compute.eaf(dataset, percentiles)
-    # FIXME: work-around for change in the computation
-    x[,3] <- floor(x[,3])
     #saveRDS(x, paste0(basename(file), "-eaf.rds"))
     return(x)
   }
@@ -25,4 +24,7 @@ test_that("eaf", {
                readRDS("ALG_1_dat-eaf.rds"))
   expect_equal(test.eaf.dataset("SPEA2relativeRichmond"),
                readRDS("SPEA2relativeRichmond-eaf.rds"))
+
+  for(i in seq_len(399))
+    expect_equal(anyDuplicated(eafs(cbind(0:i, 0:i), 0:i)[,1]), 0L)
 })
