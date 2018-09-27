@@ -172,7 +172,11 @@ attained_left_right (const bool *attained, int division, int total,
 
 static inline int percentile2level (double p, int n)
 {
-    int level = (int) ceil(n * p / 100.0);
+    double tolerance = 1e-12;
+    double x = (n * p) / 100.0;
+    double level = (x - floor(x) <= tolerance)
+        ? (int) floor(x) : (int) ceil(x);
+    
     eaf_assert(level <= n);
     eaf_assert(level >= 0);
     if (level < 1) level = 1;
