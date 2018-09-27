@@ -8,3 +8,9 @@
  * eafplot.default and .plot.eafdiff.side duplicate a lot of code.
  * Create eafdiff plots with a single plot using two different colors.
  * Profile memory/computation time to find bottle-necks.
+ * Implement fast algorithms from:
+ 
+    M. T. Jensen. Reducing the run-time complexity of multiobjective EAs: The
+    NSGA-II and other algorithms. IEEE Transactions on Evolutionary Computation,
+    7(5):503–515, 2003.
+
