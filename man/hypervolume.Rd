@@ -23,6 +23,11 @@ A single numerical value.
 Computes the hypervolume metric with respect to a given reference point
 assuming minimization of all objectives.
 }
+\details{
+The algorithm has \eqn{O(n^{d-2} \log n)} time and linear space
+  complexity in the worst-case, but experimental results show that the
+  pruning techniques used may reduce the time complexity even further.
+}
 \examples{
 
 data(SPEA2minstoptimeRichmond)
@@ -34,8 +39,8 @@ hypervolume(SPEA2minstoptimeRichmond[, 1:2], reference = c(250, 0),
 }
 \references{
 C. M. Fonseca, L. Paquete, and M. López-Ibáñez. An improved dimension-sweep
- algorithm for the hypervolume indicator. In IEEE Congress on Evolutionary
- Computation, pages 1157-1163, Vancouver, Canada, July 2006.
+algorithm for the hypervolume indicator. In IEEE Congress on Evolutionary
+Computation, pages 1157-1163, Vancouver, Canada, July 2006.
 
 Nicola Beume, Carlos M. Fonseca, Manuel López-Ibáñez, Luís Paquete, and
 J. Vahrenhold. On the complexity of computing the hypervolume indicator.

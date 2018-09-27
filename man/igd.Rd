@@ -31,10 +31,9 @@ The generational distance (GD) of a set \eqn{A} is defined as the distance
 between each point \eqn{a \in A} and the closest point \eqn{r} in a
 reference set \eqn{R}, averaged over the size of \eqn{A}. Formally,
 
-\deqn{GD(A,R) =
-              \frac{1}{|A|}\left(\sum_{a\in A}\min_{r\in R} d(a,r)^p\right)^{\frac{1}{p}} }
+\deqn{GD(A,R) = \frac{1}{|A|}\left(\sum_{a\in A}\min_{r\in R} d(a,r)^p\right)^{\frac{1}{p}} }{GD(A,R) = (1/|A|) * ( sum_{a in A} min_{r in R} d(a,r)^p )^(1/p)}
 where:
-\deqn{d(a,r) = \sqrt{\sum_{k=1}^M (a_k - r_k)^2} }
+\deqn{d(a,r) = \sqrt{\sum_{k=1}^M (a_k - r_k)^2} }{d(a,r) = sqrt( sum_{k=1}^M (a_k - r_k)^2)}
 
 The inverted generational distance (IGD) is calculated as \eqn{IGD(A,R) = GD(R,A)}
 with \eqn{p=1}.
@@ -49,7 +48,7 @@ Ishibuchi et all. (2015) to ensure that IGD+ is weakly Pareto compliant,
 similarly to unary epsilon. It averages over \eqn{|R|} within the exponent
 \eqn{1/p} and modifies the distance measure as:
 
-\deqn{d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}}
+\deqn{d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}}{d^+(r,a) = sqrt(sum_{k=1}^M (max {r_k - a_k, 0 })^2)}
 
 See Bezerra et al. (2017) for a comparison.
 }
