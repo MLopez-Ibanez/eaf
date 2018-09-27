@@ -170,16 +170,12 @@ attained_left_right (const bool *attained, int division, int total,
     *count_right = count_r;
 }
 
-static inline int fast_round (double x)
+static inline int percentile2level (double p, int n)
 {
-    return (int) (x > 0) ? x + .5 : (x < 0) ? x - .5 : x;
-}
-
-static inline int percentile2level (int p, int n)
-{
-    int level = fast_round (n * p / 100.0);
-    if (level > n) level = n;
-    else if (level < 1) level = 1;
+    int level = (int) ceil(n * p / 100.0);
+    eaf_assert(level <= n);
+    eaf_assert(level >= 0);
+    if (level < 1) level = 1;
     return level;
 }
 

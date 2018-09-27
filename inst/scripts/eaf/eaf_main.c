@@ -67,8 +67,8 @@ static void usage(void)
 " -b, --best          compute best attainment surface                       \n"
 " -m, --median        compute median attainment surface                     \n"
 " -w, --worst         compute worst attainment surface                      \n"
-" -p, --percentile INT compute the given percentile of the EAF.             \n"
-" -l, --level  LEVEL  compute the given level of the attainment function    \n"
+" -p, --percentile REAL compute the given percentile of the EAF             \n"
+" -l, --level  LEVEL    compute the given level of the EAF                  \n"
 " -i[FILE], --indices[=FILE]  write attainment indices to FILE.             \n"
 "                     If FILE is '-', print to stdout.                      \n"
 "                     If FILE is missing use the same file as for output.   \n"
@@ -100,6 +100,40 @@ static void version(void)
 }
 
 // FIXME: How to implement this with const char *str?
+static int read_doubles (double *vec, char *str)
+{
+    char * cursor;
+    char * endp = str;
+    int k = 0;
+
+    do {
+        cursor = endp;
+        vec[k] = strtod(cursor, &endp);
+        if (cursor == endp && (*endp == ',' || *endp == ';')) {
+            endp++;
+            continue;
+        }
+        k++;
+    } while (cursor != endp);
+
+    // not end of string: error
+    while (*cursor != '\0') {
+        if (!isspace(*cursor)) {
+            errprintf ("invalid argument to --percentiles '%s'", str);
+            exit (EXIT_FAILURE);
+        }
+        cursor++;
+    }
+
+    // no number: error
+    if (k == 1) {            
+        errprintf ("invalid argument to --percentiles '%s'", str);
+        exit (EXIT_FAILURE);
+    }
+
+    return k - 1;
+}
+
 static int read_ints (int *levels, char *str)
 {
     char * cursor;
@@ -208,11 +242,11 @@ int main(int argc, char *argv[])
 #define MAX_LEVELS 50
     int *level = malloc(MAX_LEVELS * sizeof(int));
     int nlevels = 0;
-    int *percentile = malloc(MAX_LEVELS * sizeof(int));
+    double *percentile = malloc(MAX_LEVELS * sizeof(double));
     int npercentiles = 0;
 
     while (0 < (option = getopt_long(argc, argv, short_options,
-                                  long_options, &longopt_index))) {
+                                     long_options, &longopt_index))) {
         switch (option)
         {
         case 'l':
@@ -222,7 +256,7 @@ int main(int argc, char *argv[])
 
         case 'p':
             assert(npercentiles < MAX_LEVELS);
-            npercentiles += read_ints(percentile + npercentiles, optarg);
+            npercentiles += read_doubles(percentile + npercentiles, optarg);
             break;
 
         case 'o':
