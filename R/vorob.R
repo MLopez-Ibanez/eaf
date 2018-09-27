@@ -9,9 +9,8 @@
 ##'   frames of exactly three columns.  The third column is assumed to give the
 ##'   run identifier, from 1 to the number of runs.
 ##' @param reference Reference point as a vector of numerical values.
-##' @note Are x's supposed to be sets of Pareto optimal points?
-##' @return \code{vorobT} returns a list with elements \code{threshold} and
-##'   \code{VE}
+##' @return \code{vorobT} returns a list with elements \code{threshold},
+##'   \code{VE}, and \code{avg_hyp} (average hypervolume)
 ##' @rdname Vorob
 ##' @author Mickael Binois
 ##' @examples
@@ -55,7 +54,7 @@ vorobT <- function(x, reference)
     prev_hyp <- tmp
   }
   
-  return(list(threshold = a, VE = eaf_res))
+  return(list(threshold = a, VE = eaf_res, avg_hyp = avg_hyp))
 } 
 
 ##' @export

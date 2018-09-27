@@ -37,8 +37,8 @@ symmetric deviation.}
 \item{col.fun}{function that creates a vector of \code{n} colors, see \code{\link{heat.colors}}.}
 }
 \value{
-\code{vorobT} returns a list with elements \code{threshold} and
-  \code{VE}
+\code{vorobT} returns a list with elements \code{threshold},
+  \code{VE}, and \code{avg_hyp} (average hypervolume)
 
 \code{vorobDev} returns the Vorob'ev deviation.
 }
@@ -48,9 +48,6 @@ symmetric deviation function is possible.  The symmetric deviation
 function is the probability for a given target in the objective space to
 belong to the symmetric difference between the Vorob'ev expectation and a
 realization of the (random) attained set.
-}
-\note{
-Are x's supposed to be sets of Pareto optimal points?
 }
 \examples{
 data(CPFs)
