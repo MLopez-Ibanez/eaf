@@ -238,10 +238,10 @@ matrix.maximise <- function(z, maximise)
 #'@seealso \code{\link{read.table}}, \code{\link{eafplot}}, \code{\link{eafdiffplot}}
 #'
 #'@examples
-#'A1<-read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
-#'str(A1)
-#'A2<-read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
-#'str(A2)
+#' A1 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
+#' str(A1)
+#' A2 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
+#' str(A2)
 #'
 #' @keywords file
 #' @export
