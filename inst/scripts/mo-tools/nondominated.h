@@ -164,6 +164,18 @@ get_nondominated_set (double **pareto_set_p,
 }
 
 static inline void
+agree_objectives (double *points, int dim, int size,
+                  const signed char *minmax, const signed char agree)
+{
+    for (int d = 0; d < dim; d++)
+        if ((agree > 0 && minmax[d] < 0)
+            || (agree < 0 && minmax[d] > 0))
+            for (int k = 0; k < size; k++)
+                points[k * dim + d] = -(points[k * dim + d]);
+}
+
+
+static inline void
 normalise (double *points, int dim, int size,
            const signed char *minmax, signed char agree,
            const double lower_range, const double upper_range,
@@ -171,9 +183,8 @@ normalise (double *points, int dim, int size,
 {
     int k, d;
     const double range = upper_range - lower_range;
-    double *diff;
-
-    diff = malloc (dim * sizeof(double));
+    
+    double *diff = malloc (dim * sizeof(double));
     for (d = 0; d < dim; d++) {
         diff[d] = ubound[d] - lbound[d];
         if (diff[d] == 0.0) // FIXME: Should we use approximate equality?

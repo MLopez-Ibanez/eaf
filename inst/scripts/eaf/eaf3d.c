@@ -725,8 +725,8 @@ freetree2(avl_tree_t *avltree)
 }
 
 
-void free_removed(){
-    
+static void free_removed(removed_list_t * removed_list)
+{
     avl_node_t * aux, * node = removed_list->head;
     
     while(node != NULL){
@@ -734,19 +734,18 @@ void free_removed(){
         node = node->next;
         free(aux);
     }
-    
     free(removed_list);
 }
 
-void freeoutput(avl_tree_t **output, int nset){
-
+static void
+freeoutput(avl_tree_t **output, int nset)
+{
     int i;
     for(i = 0; i < nset; i++){
         freetree(output[i]);
     }
     free(output);
-    
-    free_removed();
+    free_removed(removed_list);
 }
 
 
@@ -802,7 +801,7 @@ eaf3d (objective_t *data, const int *cumsize, int nruns,
     
     }
     
-    removed_list = (removed_list_t *) malloc(sizeof(removed_list));
+    removed_list = (removed_list_t *) malloc(sizeof(removed_list_t));
     removed_list->head = NULL;
     dlnode_t *list = setup_cdllist(data, nobj, cumsize, nruns);
     eaf3df(list, set, level, output, nruns);

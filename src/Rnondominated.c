@@ -41,7 +41,11 @@ normalise_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
     for (int i = 0; i < nobj * npoint; i++)
         out[i] = data[i];
 
-    normalise(out, nobj, npoint, minmax, AGREE_NONE, range[0], range[1],
+    // We have to make the objectives agree before normalisation.
+    // FIXME: Do normalisation and agree in one step.
+    const signed char agree = AGREE_MINIMISE;
+    agree_objectives (out, nobj, npoint, minmax, agree);
+    normalise(out, nobj, npoint, minmax, agree, range[0], range[1],
               lbound, ubound);
 
     free (minmax);
