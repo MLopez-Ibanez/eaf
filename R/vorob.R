@@ -6,8 +6,8 @@
 ##' 
 ##' @title Vorob'ev computations
 ##' @param x Either a matrix of data values, or a data frame, or a list of data
-##'   frames of exactly three columns.  The third column is assumed to give the
-##'   run identifier, from 1 to the number of runs.
+##'   frames of exactly three columns.  The third column gives the set (run,
+##'   sample, ...) identifier.
 ##' @param reference Reference point as a vector of numerical values.
 ##' @return \code{vorobT} returns a list with elements \code{threshold},
 ##'   \code{VE}, and \code{avg_hyp} (average hypervolume)
@@ -47,14 +47,15 @@ vorobT <- function(x, reference)
   a <- 0
   b <- 100
   while (diff != 0) {
-    eaf_res <- eafs(x[,1:nobjs], x[,setcol], percentiles = (a + b) / 2)[,1:nobjs]
+    c <- (a + b) / 2
+    eaf_res <- eafs(x[,1:nobjs], x[,setcol], percentiles = c)[,1:nobjs]
     tmp <- hypervolume(eaf_res, reference = reference)
-    if (tmp > avg_hyp) a <- (a+b)/2 else b <- (a+b)/2
+    if (tmp > avg_hyp) a <- c else b <- c
     diff <- prev_hyp - tmp
     prev_hyp <- tmp
   }
   
-  return(list(threshold = a, VE = eaf_res, avg_hyp = avg_hyp))
+  return(list(threshold = c, VE = eaf_res, avg_hyp = avg_hyp))
 } 
 
 ##' @export
