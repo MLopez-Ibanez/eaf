@@ -74,7 +74,7 @@ The first step before installing the eaf package is to [install R](https://cran.
 ```bash
         R CMD INSTALL <package>
 ```  
-   where `<package>` is one of the three versions available: `.tar.gz` (Unix/BSD/GNU/Linux), `.tgz` (MacOS X), or `.zip` (Windows).
+    where `<package>` is one of the three versions available: `.tar.gz` (Unix/BSD/GNU/Linux), `.tgz` (MacOS X), or `.zip` (Windows).
 
 Search the [R documentation](https://cran.r-project.org/faqs.html) if you need more help to install an R package on your system.
 
