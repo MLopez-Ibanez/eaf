@@ -42,7 +42,7 @@ install: clean scripts
 
 gendoc: $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
 $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
-	R --slave -e 'library(devtools);document()'
+	R --slave -e 'devtools::document();pkgdown::build_site()'
 
 build: clean scripts gendoc
 	cd $(BINDIR) && R CMD build $(PACKAGEDIR)
