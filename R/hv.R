@@ -184,8 +184,6 @@ hv_contributions <- function(data, reference, maximise = FALSE)
 #' This also means that the computation of the multiplicative version for
 #' negative values doesn't make sense.
 #'
-#' @seealso \code{\link[base]{read.table}}
-#'
 #' @references
 #'
 #' E. Zitzler, L. Thiele, M. Laumanns, C. M. Fonseca, and V. Grunert da

@@ -65,9 +65,6 @@ Fonseca.  Performance Assessment of Multiobjective Optimizers: an Analysis
 and Review. IEEE Transactions on Evolutionary Computation, 7(2):117-132,
 2003.
 }
-\seealso{
-\code{\link[base]{read.table}}
-}
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 }
