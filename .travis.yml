@@ -47,6 +47,10 @@ notifications:
 
 before_deploy: Rscript -e 'devtools::install_github("r-lib/pkgdown")'
 deploy:
+  r: release
+  os: linux
   provider: script
   script: Rscript -e 'pkgdown::deploy_site_github()'
   skip_cleanup: true
+  
+
