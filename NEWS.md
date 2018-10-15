@@ -1,4 +1,4 @@
-# 1.9 
+# eaf 1.9 
 
 * Compute Vorob'ev threshold, expectation and deviation. Plots of the symmetric
   deviation.
@@ -14,7 +14,7 @@
                                                          (Manuel López-Ibáñez)
 
 
-# 1.8
+# eaf 1.8
 
 * Development version moved to GitHub: https://github.com/MLopez-Ibanez/eaf
 
@@ -39,13 +39,13 @@
 * Entry points to C code are now properly registered.
 
 
-# 1.07
+# eaf 1.07
 
 * Silence CRAN warning for GNU extensions in Makefiles in
   inst/scripts/eaf/Makefile.
 
 
-# 1.06
+# eaf 1.06
 
 * Fix bug when automatically generating a legend in eafplot with the
   formula interface (Thanks to Bernd Bischl for reporting this)
@@ -64,7 +64,7 @@
   different levels plotted (Thanks to Alexandre Quemy for the suggestion).
 
 
-# 1.05
+# eaf 1.05
 
 * Implement eafdiffplot(, type = "area"). This is now the default. 
 
@@ -115,17 +115,17 @@
 
 * Add missing Makefile in inst/scripts/eaf/.
 
-# 1.04
+# eaf 1.04
 
 * Fix issues with only one point in the EAF.
 
-# 1.03
+# eaf 1.03
 
 * Handle maximise argument in eafdiffplot and --maximise command-line
   option in eafdiff.pl
 
 * R/calls.R (eafplot.data.frame): Fix problem with main parameter.
 
-# 1.00 
+# eaf 1.00 
 
 * Initial release available in CRAN.
