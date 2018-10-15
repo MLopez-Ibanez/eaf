@@ -29,7 +29,6 @@ r_check_args: '--ignore-vignettes --no-examples'
 # work around temporary travis + R 3.5 bug
 r_packages:
   - devtools
-  - pkgdown
 
 env:
   global:
@@ -46,8 +45,8 @@ before_install:
 notifications:
   email: false
 
-#before_deploy: Rscript -e 'install.packages("pkgdown")'
+before_deploy: Rscript -e 'devtools::install_github("r-lib/pkgdown")'
 deploy:
   provider: script
-  script: Rscript -e 'library(pkgdown);pkgdown::deploy_site_github()'
+  script: Rscript -e 'pkgdown::deploy_site_github()'
   skip_cleanup: true
