@@ -1,3 +1,5 @@
+# 1.9 
+
 * Compute Vorob'ev threshold, expectation and deviation. Plots of the symmetric
   deviation.
                                                               (Mickael Binois)
