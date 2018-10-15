@@ -37,9 +37,9 @@ There are several examples of data sets in \code{file.path(system.file(package="
 }
 
 \examples{
-A1<-read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
+A1 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
 str(A1)
-A2<-read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
+A2 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
 str(A2)
 
 }

@@ -17,8 +17,8 @@ symDifPlot(x, VE, threshold, nlevels = 11, ve.col = "blue", xlim = NULL,
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of data
-frames of exactly three columns.  The third column is assumed to give the
-run identifier, from 1 to the number of runs.}
+frames of exactly three columns.  The third column gives the set (run,
+sample, ...) identifier.}
 
 \item{reference}{Reference point as a vector of numerical values.}
 
