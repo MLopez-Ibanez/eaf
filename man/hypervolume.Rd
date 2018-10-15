@@ -46,9 +46,6 @@ Nicola Beume, Carlos M. Fonseca, Manuel López-Ibáñez, Luís Paquete, and
 J. Vahrenhold. On the complexity of computing the hypervolume indicator.
 IEEE Transactions on Evolutionary Computation, 13(5):1075-1082, 2009.
 }
-\seealso{
-\code{\link{read.table}}
-}
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 }

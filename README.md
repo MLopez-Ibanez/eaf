@@ -12,7 +12,9 @@
 [![CRAN Status](https://www.r-pkg.org/badges/version-last-release/eaf)](https://cran.r-project.org/package=eaf) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/eaf)](https://CRAN.R-project.org/package=eaf) [![Travis Build
 Status](https://travis-ci.org/MLopez-Ibanez/eaf.svg?branch=master)](https://travis-ci.org/MLopez-Ibanez/eaf)
 
-[ [**Homepage**](http://lopez-ibanez.eu/eaftools) ] [ [**GitHub**](https://github.com/MLopez-Ibanez/eaf) ] [ [**Documentation**](https://mlopez-ibanez.github.io/eaf/) ]
+[ [**Homepage**](http://lopez-ibanez.eu/eaftools) ]  
+[ [**GitHub**](https://github.com/MLopez-Ibanez/eaf) ] 
+[ [**Documentation**](https://mlopez-ibanez.github.io/eaf/) ]
 
 **Maintainer:** [Manuel López-Ibáñez](http://lopez-ibanez.eu)
 
@@ -37,10 +39,10 @@ exploring the performance of stochastic local search algorithms for biobjective
 optimization problems and help in identifying certain algorithmic behaviors in
 a graphical way.
 
-The corresponding
-[book chapter](http://lopez-ibanez.eu/eaftools.html#LopPaqStu09emaa) explains
-the use of these visualization tools and illustrate them with examples arising
-from practice.
+The corresponding [book
+chapter](#LopPaqStu09emaa) [1] explains the
+use of these visualization tools and illustrate them with examples arising from
+practice.
 
 **Keywords**: empirical attainment function, summary attainment surfaces, EAF
 differences, multi-objective optimization, bi-objective optimization,
@@ -49,10 +51,10 @@ visualization.
 
 **Relevant literature:**
 
- 1. Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. [Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization](http://dx.doi.org/10.1007/978-3-642-02538-9_9). In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.<br>
+ 1. <a name="#LopPaqStu09emaa"/>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. [Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization](http://dx.doi.org/10.1007/978-3-642-02538-9_9). In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.<br>
     (This chapter is also available in a slightly extended form as [Technical Report TR/IRIDIA/2009-015](http://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf)).<br>
     [ [bibtex](http://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa) |
-    doi:[10.1007/978-3-642-02538-9_9](http://dx.doi.org/10.1007/978-3-642-02538-9_9)
+    doi: [10.1007/978-3-642-02538-9_9](http://dx.doi.org/10.1007/978-3-642-02538-9_9)
     | [Presentation](http://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf) ]
 
 
@@ -69,19 +71,19 @@ The first step before installing the eaf package is to [install R](https://cran.
     R, then
 ```r
         install.packages(c("modeltools", "eaf"))
-```
+```  
  2. Download the package from CRAN (you may also need to download and install first the package modeltools), and invoke at the command-line:
 ```bash
         R CMD INSTALL <package>
-```
-where `<package>` is one of the three versions available: `.tar.gz` (Unix/BSD/GNU/Linux), `.tgz` (MacOS X), or `.zip` (Windows).
+```  
+   where `<package>` is one of the three versions available: `.tar.gz` (Unix/BSD/GNU/Linux), `.tgz` (MacOS X), or `.zip` (Windows).
 
 Search the [R documentation](https://cran.r-project.org/faqs.html) if you need more help to install an R package on your system.
 
 If you wish to be notified of bugfixes and new versions, please subscribe to the [low-volume emo-list](https://lists.dei.uc.pt/mailman/listinfo/emo-list), where announcements will be made.
 
-[ [Download eaf package from CRAN](https://cran.r-project.org/package=eaf) ]
-[ [Download Reference manual](https://cran.r-project.org/package=eaf/eaf.pdf) ]
+[ [Download eaf package from CRAN](https://cran.r-project.org/package=eaf) ]  
+[ [Documentation](https://mlopez-ibanez.github.io/eaf/) ] 
 [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
 
 
@@ -106,7 +108,7 @@ directory printed by the R command `system.file(package="eaf")`):
  * `scripts/eaf` : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at http://www.tik.ee.ethz.ch/pisa/. Another version of the code that handles three dimensions is available at [Prof. Fonseca's website](http://eden.dei.uc.pt/~cmfonsec/software.html#aft).
  * `scripts/eafplot` : Perl script to plot summary attainment surfaces.
  * `scripts/eafdiff` : Perl script to plot the differences between the EAFs of two input sets.
- * `extdata/` : Examples of utilization of the above programs. These are discussed in the corresponding chapter [1].
+ * `extdata/` : Examples of utilization of the above programs. These are discussed in the corresponding [book chapter](#LopPaqStu09emaa) [1].
 
 For more information, consult the `README` files at each subdirectory.
 
@@ -157,11 +159,7 @@ scientist to (a) mention the fashion in which this software was used in the
 Methods section; (b) mention the algorithm in the References section. The
 appropriate citation is:
 
-  Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. **Exploratory Analysis
-  of Stochastic Local Search Algorithms in Biobjective Optimization.** In
-  T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors,
-  *Experimental Methods for the Analysis of Optimization Algorithms*, pages
-  209–222. Springer, Berlin, Germany, 2010.  doi: 10.1007/978-3-642-02538-9_9
+ * Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. **Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization.** In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.  doi: 10.1007/978-3-642-02538-9_9
 
 Moreover, as a personal note, I would appreciate it if you would email
 `manuel.lopez-ibanez@manchester.ac.uk` with citations of papers referencing

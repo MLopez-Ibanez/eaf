@@ -43,7 +43,7 @@ J. Vahrenhold. On the complexity of computing the hypervolume indicator.
 IEEE Transactions on Evolutionary Computation, 13(5):1075-1082, 2009.
 }
 \seealso{
-\code{\link{read.table}} \code{\link{hypervolume}}
+\code{\link{hypervolume}}
 }
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}

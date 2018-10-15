@@ -216,7 +216,7 @@ matrix.maximise <- function(z, maximise)
 #' @param file Filename that contains the data.  Each row of the table appears
 #'   as one line of the file.  If it does not contain an \emph{absolute} path,
 #'   the file name is \emph{relative} to the current working directory,
-#'   \code{getwd()}.  Tilde-expansion is performed where supported.
+#'   \code{\link[base]{getwd}()}.  Tilde-expansion is performed where supported.
 #'
 #' @param col.names Vector of optional names for the variables.  The
 #'   default is to use \samp{"V"} followed by the column number.
@@ -235,7 +235,7 @@ matrix.maximise <- function(z, maximise)
 #'  misinterpreted. In GNU/Linux the program \code{dos2unix} may be used
 #'  to fix newline characters.
 #'
-#'@seealso \code{\link{read.table}}, \code{\link{eafplot}}, \code{\link{eafdiffplot}}
+#'@seealso \code{\link[utils]{read.table}}, \code{\link{eafplot}}, \code{\link{eafdiffplot}}
 #'
 #'@examples
 #' A1 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))

@@ -25,7 +25,7 @@ endif
 SVN_REV = $(shell sh -c 'cat git_version 2> /dev/null')
 REVNUM = $(shell sh -c 'cat git_version 2> /dev/null')
 
-.PHONY: build check clean install pdf rsync scripts submit version cran winbuild help gendoc
+.PHONY: build check clean install pdf rsync scripts submit version cran winbuild help gendoc pkgdown
 
 help :
 	@echo 'This makefile has the following targets                  '
@@ -42,7 +42,10 @@ install: clean scripts
 
 gendoc: $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
 $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
-	R --slave -e 'devtools::document();pkgdown::build_site()'
+	R --slave -e 'devtools::document()'
+
+pkgdown: gendoc
+	R --slave -e 'pkgdown::build_site(run_dont_run = TRUE)'
 
 build: clean scripts gendoc
 	cd $(BINDIR) && R CMD build $(PACKAGEDIR)
@@ -56,7 +59,7 @@ closeversion:
 releasebuild:
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
-cran : build
+cran : pkgdown build
 	cd $(BINDIR) && _R_CHECK_FORCE_SUGGESTS_=false R CMD check --as-cran $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
 check: build

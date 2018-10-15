@@ -157,13 +157,11 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
   colscale <- seq.levs[1:max.interval]
   # Reversed so that darker colors are associated to higher values
   names(colscale) <- rev(col.fun(max.interval))
-  print(colscale)
   cols <- c(names(colscale[colscale < threshold]),
             rev(names(colscale[1:max(which(colscale < 100 - threshold))])),
             "#FFFFFF") # To have white after worst case
   names(levs) <- cols
-  print(levs)
-  
+    
   # FIXME: We should take the range from the attsurfs to not make x mandatory.
   xlim <- get.xylim(xlim, maximise[1], data = x[,1])
   ylim <- get.xylim(ylim, maximise[2], data = x[,2])
@@ -187,7 +185,6 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
   intervals <- intervals[1:max.interval]
   names(intervals) <- names(colscale)
   #names(intervals) <- names(colscale[1:max.interval])
-  print(intervals)
   if (is.na(pmatch(legend.pos, "none")))
     legend(legend.pos, legend = c("VE", intervals), fill = c(ve.col, names(intervals)),
            bg="white", bty="n", xjust=0, yjust=0, cex=0.9)

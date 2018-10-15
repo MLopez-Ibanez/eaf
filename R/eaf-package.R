@@ -15,7 +15,7 @@
 #'\code{\link{eafdiffplot}} \tab  Empirical attainment function differences\cr
 #'\code{\link{eafplot}} \tab  Plot the Empirical Attainment Function for two
 #'objectives\cr
-#'\code{\link{read.data.sets}}\tab  Read several data.frame sets\cr
+#'\code{\link{read.data.sets}}\tab  Read several data.frame sets
 #'}
 #'
 #'Data:
@@ -34,7 +34,7 @@
 #'\code{extdata}        \tab  External data sets (see \code{\link{read.data.sets}})\cr
 #'\code{scripts/eaf}    \tab  EAF command-line program\cr
 #'\code{scripts/eafplot}\tab  Perl script to generate plots of attainment surfaces\cr
-#'\code{scripts/eafdiff}\tab  Perl script to generate plots of EAF differences\cr
+#'\code{scripts/eafdiff}\tab  Perl script to generate plots of EAF differences
 #'}
 #'
 #' @import graphics grDevices stats

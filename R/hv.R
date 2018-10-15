@@ -36,8 +36,6 @@ check.hv.data <- function(x)
 #' 
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 #'
-#'@seealso \code{\link{read.table}}
-#'
 #' @references
 #'
 #' C. M. Fonseca, L. Paquete, and M. López-Ibáñez. An improved dimension-sweep
@@ -102,7 +100,7 @@ hypervolume <- function(data, reference, maximise = FALSE)
 #'
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 #'
-#'@seealso \code{\link{read.table}} \code{\link{hypervolume}}
+#'@seealso \code{\link{hypervolume}}
 #'
 #' @references
 #'
@@ -186,7 +184,7 @@ hv_contributions <- function(data, reference, maximise = FALSE)
 #' This also means that the computation of the multiplicative version for
 #' negative values doesn't make sense.
 #'
-#' @seealso \code{\link{read.table}}
+#' @seealso \code{\link[base]{read.table}}
 #'
 #' @references
 #'
@@ -307,8 +305,6 @@ epsilon_mult <- function(data, reference, maximise = FALSE)
 #'
 #' See Bezerra et al. (2017) for a comparison.
 #' 
-#' @seealso \code{\link{read.table}}
-#'
 #' @references
 #'
 #' D. A. Van Veldhuizen and G. B. Lamont. Evolutionary Computation and
@@ -439,10 +435,11 @@ igd_plus <- function(data, reference, maximise = FALSE)
 #'
 #' data(SPEA2minstoptimeRichmond)
 #' # The second objective must be maximized
-#' # We calculate the hypervolume of the union of all sets.
-#' normalise(SPEA2minstoptimeRichmond[, 1:2], maximise = c(FALSE, TRUE))
-#' normalise(SPEA2minstoptimeRichmond[, 1:2], to.range = c(0,1), maximise = c(FALSE, TRUE))
+#' head(SPEA2minstoptimeRichmond[, 1:2])
+
+#' head(normalise(SPEA2minstoptimeRichmond[, 1:2], maximise = c(FALSE, TRUE)))
 #'
+#' head(normalise(SPEA2minstoptimeRichmond[, 1:2], to.range = c(0,1), maximise = c(FALSE, TRUE)))
 #' 
 #' @export
 normalise <- function(data, to.range = c(1, 2), lower = NA, upper = NA, maximise = FALSE)

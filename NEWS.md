@@ -66,19 +66,16 @@
 
 # eaf 1.05
 
-* Implement eafdiffplot(, type = "area"). This is now the default. 
-
-  The idea for the algorithm to compute the areas was provided by
-  Carlos M. Fonseca.  The implementation uses R polygons, which some
-  PDF viewers may have trouble rendering correctly (See
-  https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders).
-  Plots will look correct when printed. To get the previous behaviour
-  use eafdiffplot(, type = "point").
+ *  Implement `eafdiffplot(, type = "area")`. This is now the default.
+ 
+    The idea for the algorithm to compute the areas was provided by Carlos M. Fonseca. The implementation uses R polygons, which some PDF viewers may have trouble rendering correctly (See https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders).
+    
+    Plots will look correct when printed. To get the previous behavior use `eafdiffplot(, type = "point")`.
   
 * Attempt to deal with DOS/Unix newlines correctly.
 
-* eafplot.pl: Lots of cleanup.
-  (--single, --output, --legend): New options.
+* eafplot.pl: Lots of cleanup.  
+  (--single, --output, --legend): New options.  
   Default to PDF.
 
 * eafdiff.pl: Many cleanups.

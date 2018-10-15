@@ -10,7 +10,7 @@ read.data.sets(file, col.names)
 \item{file}{Filename that contains the data.  Each row of the table appears
 as one line of the file.  If it does not contain an \emph{absolute} path,
 the file name is \emph{relative} to the current working directory,
-\code{getwd()}.  Tilde-expansion is performed where supported.}
+\code{\link[base]{getwd}()}.  Tilde-expansion is performed where supported.}
 
 \item{col.names}{Vector of optional names for the variables.  The
 default is to use \samp{"V"} followed by the column number.}
@@ -44,7 +44,7 @@ str(A2)
 
 }
 \seealso{
-\code{\link{read.table}}, \code{\link{eafplot}}, \code{\link{eafdiffplot}}
+\code{\link[utils]{read.table}}, \code{\link{eafplot}}, \code{\link{eafdiffplot}}
 }
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}

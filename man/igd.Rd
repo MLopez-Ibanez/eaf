@@ -101,9 +101,6 @@ G. Rudolph, K. Klamroth, O. Schütze, M. M. Wiecek, Y. Jin, and C. Grimme,
 editors, Evolutionary Multi-criterion Optimization, EMO 2017, Lecture
 Notes in Computer Science, pages 31–45. Springer, 2017.
 }
-\seealso{
-\code{\link{read.table}}
-}
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 }

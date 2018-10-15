@@ -34,10 +34,10 @@ given, they are used for the normalisation.
 
 data(SPEA2minstoptimeRichmond)
 # The second objective must be maximized
-# We calculate the hypervolume of the union of all sets.
-normalise(SPEA2minstoptimeRichmond[, 1:2], maximise = c(FALSE, TRUE))
-normalise(SPEA2minstoptimeRichmond[, 1:2], to.range = c(0,1), maximise = c(FALSE, TRUE))
+head(SPEA2minstoptimeRichmond[, 1:2])
+head(normalise(SPEA2minstoptimeRichmond[, 1:2], maximise = c(FALSE, TRUE)))
 
+head(normalise(SPEA2minstoptimeRichmond[, 1:2], to.range = c(0,1), maximise = c(FALSE, TRUE)))
 
 }
 \author{

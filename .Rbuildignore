@@ -14,7 +14,9 @@ inst/.+~
 ^doc
 ^svn_version
 ^git_version
+^pkgdown
 ^testing
 ^web
 ^\.travis\.yml$
 TAGS
+^_pkgdown.yml
