@@ -70,11 +70,11 @@ The first step before installing the eaf package is to [install R](https://cran.
 ```r
         install.packages(c("modeltools", "eaf"))
 ```  
- 2. Download the package from CRAN (you may also need to download and install first the package modeltools), and invoke at the command-line:
+ 2. Download the package from CRAN (you may also need to download and install first the package modeltools), and invoke at the command-line:  
 ```bash
         R CMD INSTALL <package>
 ```  
-    where `<package>` is one of the three versions available: `.tar.gz` (Unix/BSD/GNU/Linux), `.tgz` (MacOS X), or `.zip` (Windows).
+   where `<package>` is one of the three versions available: `.tar.gz` (Unix/BSD/GNU/Linux), `.tgz` (MacOS X), or `.zip` (Windows).
 
 Search the [R documentation](https://cran.r-project.org/faqs.html) if you need more help to install an R package on your system.
 
