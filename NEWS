@@ -8,7 +8,7 @@
                                                          (Manuel López-Ibáñez)
 
 * Functions for computing hypervolume, hypervolume contributions, epsilon
-  metric, filter dominated points, and fast normalisation of ranges.
+  metric, IGD+, filter dominated points, and fast normalisation of ranges.
                                                          (Manuel López-Ibáñez)
 
 
