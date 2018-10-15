@@ -52,7 +52,8 @@ deploy:
   skip_cleanup: true
   on:
     r: release
-    os: linux
+    condition: $TRAVIS_OS_NAME = linux
+    
 
   
 
