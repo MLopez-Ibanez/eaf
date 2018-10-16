@@ -31,7 +31,7 @@ Introduction
 
 The empirical attainment function (EAF) describes the probabilistic
 distribution of the outcomes obtained by a stochastic algorithm in the
-objective space. This R package implements plots of summary attainment surfaces
+objective space. This [R](http://www.r-project.org/) package implements plots of summary attainment surfaces
 and differences between the first-order EAFs. These plots may be used for
 exploring the performance of stochastic local search algorithms for biobjective
 optimization problems and help in identifying certain algorithmic behaviors in
@@ -59,7 +59,7 @@ visualization.
 Download and installation
 -------------------------
 
-The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just download the package source code, uncompress it, and look for the directory `inst/scripts/eaf`. This code can be used to implement your own visualizations instead of the visualizations provided by the eaf package.
+The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just [download the package source code](https://cran.r-project.org/package=eaf), uncompress it, and look for the directory `inst/scripts/eaf`. This code can be used to implement your own visualizations instead of the visualizations provided by the eaf package.
 
 The visualization of the EAFs require installing the eaf package. Therefore, for making use of all the features, a basic knowledge of R is recommended. However, the eaf package contains two Perl scripts that allow to generate standard plots without any knowledge about R. See `inst/scripts/eafplot/` and `inst/scripts/eafdiff/` in the package source code. The scripts use the eaf package internally to generate the plots, and, hence, the eaf package must be installed and working.
 
@@ -72,8 +72,8 @@ The first step before installing the eaf package is to [install R](https://cran.
         install.packages(c("modeltools", "eaf"))
     ```
     
- 2. Download the package from CRAN (you may also need to download and install
-    first the package modeltools), and invoke at the command-line:
+ 2. (Download the eaf package from CRAN)[https://cran.r-project.org/package=eaf] (you may also need to download and install
+    first the (package modeltools)[https://cran.r-project.org/package=modeltools]), and invoke at the command-line:
     
     ```bash
         R CMD INSTALL <package>
