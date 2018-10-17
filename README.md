@@ -31,15 +31,14 @@ Introduction
 
 The empirical attainment function (EAF) describes the probabilistic
 distribution of the outcomes obtained by a stochastic algorithm in the
-objective space. This [R](http://www.r-project.org/) package implements plots of summary attainment surfaces
-and differences between the first-order EAFs. These plots may be used for
-exploring the performance of stochastic local search algorithms for biobjective
-optimization problems and help in identifying certain algorithmic behaviors in
-a graphical way.
+objective space. This [R](http://www.r-project.org/) package implements plots
+of summary attainment surfaces and differences between the first-order
+EAFs. These plots may be used for exploring the performance of stochastic local
+search algorithms for biobjective optimization problems and help in identifying
+certain algorithmic behaviors in a graphical way.
 
-The corresponding [book
-chapter](#LopPaqStu09emaa) [1] explains the
-use of these visualization tools and illustrate them with examples arising from
+The corresponding [book chapter](#LopPaqStu09emaa) [1] explains the use of
+these visualization tools and illustrates them with examples arising from
 practice.
 
 **Keywords**: empirical attainment function, summary attainment surfaces, EAF

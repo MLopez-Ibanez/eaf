@@ -3,7 +3,7 @@
 * Compute Vorob'ev threshold, expectation and deviation. Plots of the symmetric
   deviation.
                                                               (Mickael Binois)
-* Non-integer percentiles are computed correctly.
+* Non-integer EAF percentiles are computed correctly.
                                                          (Manuel López-Ibáñez)
 
 * Various aesthetic improvements in eafplot and eafdiffplot.
@@ -13,6 +13,8 @@
   metric, IGD+, filter dominated points, and fast normalisation of ranges.
                                                          (Manuel López-Ibáñez)
 
+* Online documentation available at: http://lopez-ibanez.eu/eaftools
+                                                         (Manuel López-Ibáñez)
 
 # eaf 1.8
 
