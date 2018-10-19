@@ -28,6 +28,13 @@ nondom_init (size_t size)
     return nondom;
 }
 
+/* When find_dominated_p == true, then stop as soon as one dominated point is
+   found and return its position.
+
+   When find_dominated_p == true, store which points are nondominated in nondom
+   and return the number of nondominated points.
+
+*/
 static inline int
 find_nondominated_set_ (const double *points, int dim, int size,
                         const signed char *minmax, const signed char agree,
@@ -38,19 +45,15 @@ find_nondominated_set_ (const double *points, int dim, int size,
 
     for (k = 0; k < size - 1; k++){
         for (j = k + 1; j < size; j++){
-            bool j_leq_k, k_leq_j;
-            const double *pk;
-            const double *pj;
 
-            if (!nondom[k])
-                break;
-            if (!nondom[j])
-                continue;
+            if (!nondom[k]) break;
+            if (!nondom[j]) continue;
 
-            k_leq_j = j_leq_k = true;
+            bool k_leq_j = true;
+            bool j_leq_k = true;
 
-            pk = points + k * dim;
-            pj = points + j * dim;
+            const double *pk = points + k * dim;
+            const double *pj = points + j * dim;
 
             /* FIXME: As soon as j_leq_k and k_leq_j become false,
                neither k or j will be removed, so break.  */
@@ -88,7 +91,6 @@ find_nondominated_set_ (const double *points, int dim, int size,
             if (find_dominated_p && (!nondom[k] || !nondom[j])) {
                 return nondom[k] ? j : k;
             }
-
         }
     }
 

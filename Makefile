@@ -77,7 +77,6 @@ pdf:
 scripts:
 	@if [ -d $(SCRIPTSDIR) ]; then \
 	cp -f ~/work/perfassess/mo-tools/*.[ch] $(PACKAGEDIR)/inst/scripts/mo-tools/ && \
-	cp -f ~/work/perfassess/hyperv/trunk/hv.[ch] $(PACKAGEDIR)/src/ && \
 	cp -f $(SCRIPTSDIR)/eafplot/eafplot.pl $(SCRIPTSDIR)/eafplot/README \
 		$(PACKAGEDIR)/inst/scripts/eafplot/ && \
 	chmod a-w $(PACKAGEDIR)/inst/scripts/eafplot/eafplot.pl $(PACKAGEDIR)/inst/scripts/eafplot/README && \
