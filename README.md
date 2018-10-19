@@ -83,7 +83,7 @@ Search the [R documentation](https://cran.r-project.org/faqs.html) if you need m
 
 If you wish to be notified of bugfixes and new versions, please subscribe to the [low-volume emo-list](https://lists.dei.uc.pt/mailman/listinfo/emo-list), where announcements will be made.
 
-[ [Download eaf package from CRAN](https://cran.r-project.org/package=eaf) ]  [ [Documentation](https://lopez-ibanez.eu/eaftools) ]  [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
+[ [Download eaf package from CRAN](https://cran.r-project.org/package=eaf) ]  [ [Documentation](http://lopez-ibanez.eu/eaftools) ]  [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
 
 
 Usage

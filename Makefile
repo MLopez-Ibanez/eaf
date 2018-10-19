@@ -119,6 +119,4 @@ winbuild: build
 	@echo "Winbuild: http://win-builder.r-project.org/"
 	cd $(BINDIR) && echo $(WINBUILD_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
 
-web: ./README.md web/pandoc-simple.css
-	pandoc -s   --css web/pandoc-simple.css  ./README.md > web/README.html
 
