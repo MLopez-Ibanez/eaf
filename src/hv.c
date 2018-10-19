@@ -127,7 +127,7 @@ typedef struct avl_node_t {
 	struct avl_node_t *parent;
 	struct avl_node_t *left;
 	struct avl_node_t *right;
-	void *item;
+        const void *item;
 	double domr;
 #ifdef AVL_DEPTH
 	unsigned char depth;
@@ -537,7 +537,7 @@ avl_rebalance(avl_tree_t *avltree, avl_node_t *avlnode) {
 #endif
 
 typedef struct dlnode {
-    double *x;                    /* The data vector              */
+    const double *x;                    /* The data vector              */
     struct dlnode **next;         /* Next-node vector             */
     struct dlnode **prev;         /* Previous-node vector         */
     struct avl_node_t * tnode;
@@ -578,7 +578,7 @@ static int compare_tree_asc(const void *p1, const void *p2)
  */
 
 static dlnode_t *
-setup_cdllist(double *data, int d, int n)
+setup_cdllist(const double *data, int d, int n)
 {
     dlnode_t *head;
     dlnode_t **scratch;
@@ -916,11 +916,9 @@ hv_recursive(avl_tree_t *tree, dlnode_t *list,
 static void
 filter_delete_node(dlnode_t *node, int d)
 {
-    int i;
-
     /* The memory allocated for the deleted node is lost (leaked)
        until the end of the program, but this should not be a problem. */
-    for (i = 0; i < d; i++) {
+    for (int i = 0; i < d; i++) {
         node->next[i]->prev[i] = node->prev[i];
         node->prev[i]->next[i] = node->next[i];
     }
@@ -939,7 +937,7 @@ filter(dlnode_t *list, int d, int n, const double *ref)
     /* fprintf (stderr, "%d points initially\n", n); */
     for (i = 0; i < d; i++) {
         dlnode_t *aux = list->prev[i];
-        int np = n;
+        const int np = n;
         for (j = 0; j < np; j++) {
             if (aux->x[i] < ref[i])
                 break;
@@ -952,10 +950,9 @@ filter(dlnode_t *list, int d, int n, const double *ref)
     return n;
 }
 
-double fpli_hv(double *data, int d, int n, const double *ref)
+double fpli_hv(const double *data, int d, int n, const double *ref)
 {
     double hyperv;
-    int i;
     
     if (n == 0) return 0.0;
 
@@ -968,16 +965,15 @@ double fpli_hv(double *data, int d, int n, const double *ref)
         /* Returning here would leak memory.  */
 	hyperv = 0.0;
     } else if (n == 1) {
-        int i;
         dlnode_t * p = list->next[0];
         hyperv = 1;
-        for (i = 0; i < d; i++)
+        for (int i = 0; i < d; i++)
             hyperv *= ref[i] - p->x[i];
     } else {
         double * bound = NULL;
 #if VARIANT >= 3
         bound = malloc (d * sizeof(double));
-        for (i = 0; i < d; i++) bound[i] = -DBL_MAX;
+        for (int i = 0; i < d; i++) bound[i] = -DBL_MAX;
 #endif
 	hyperv = hv_recursive(tree, list, d-1, n, ref, bound);
         free (bound); 
