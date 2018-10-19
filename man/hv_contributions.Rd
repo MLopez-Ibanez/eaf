@@ -22,7 +22,8 @@ A numerical vector
 \description{
 Computes the hypervolume contribution of each point given a set of points
 with respect to a given reference point assuming minimization of all
-objectives.
+objectives. If the set contains duplicated or dominated points, then each individual
+point contributes zero.
 }
 \examples{
 
@@ -31,6 +32,12 @@ data(SPEA2minstoptimeRichmond)
 # We calculate the hypervolume contribution of each point of the union of all sets.
 hv_contributions(SPEA2minstoptimeRichmond[, 1:2], reference = c(250, 0),
             maximise = c(FALSE, TRUE))
+
+# Duplicated points contributed zero even if nondominated, however,
+# filter_dominated removes all duplicates except one. Hence, nondominated
+# points will have nonzero contribution.
+hv_contributions(filter_dominated(SPEA2minstoptimeRichmond[, 1:2], maximise = c(FALSE, TRUE)),
+                 reference = c(250, 0), maximise = c(FALSE, TRUE))
 
 }
 \references{

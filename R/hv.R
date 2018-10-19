@@ -85,7 +85,8 @@ hypervolume <- function(data, reference, maximise = FALSE)
 #'
 #' Computes the hypervolume contribution of each point given a set of points
 #' with respect to a given reference point assuming minimization of all
-#' objectives.
+#' objectives. If the set contains duplicated or dominated points, then each individual
+#' point contributes zero.
 #'
 #' @param data Either a matrix or a data frame of numerical values, where
 #'   each row gives the coordinates of a point.
@@ -120,6 +121,12 @@ hypervolume <- function(data, reference, maximise = FALSE)
 #' hv_contributions(SPEA2minstoptimeRichmond[, 1:2], reference = c(250, 0),
 #'             maximise = c(FALSE, TRUE))
 #'
+#' # Duplicated points contributed zero even if nondominated, however,
+#' # filter_dominated removes all duplicates except one. Hence, nondominated
+#' # points will have nonzero contribution.
+#' hv_contributions(filter_dominated(SPEA2minstoptimeRichmond[, 1:2], maximise = c(FALSE, TRUE)),
+#'                  reference = c(250, 0), maximise = c(FALSE, TRUE))
+#' 
 #' @export
 hv_contributions <- function(data, reference, maximise = FALSE)
 {

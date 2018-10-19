@@ -2,7 +2,6 @@
 #define NONDOMINATED_H
 
 #include "common.h"
-#include <assert.h>
 
 enum objs_agree_t { AGREE_MINIMISE = -1, AGREE_NONE = 0, AGREE_MAXIMISE = 1 };
 
@@ -86,7 +85,7 @@ find_nondominated_set_ (const double *points, int dim, int size,
             nondom[k] = !j_leq_k;
             nondom[j] = (!k_leq_j || j_leq_k);
 
-            assert(nondom[k] || nondom[j]); /* both cannot be removed.  */
+            eaf_assert(nondom[k] || nondom[j]); /* both cannot be removed.  */
 
             if (find_dominated_p && (!nondom[k] || !nondom[j])) {
                 return nondom[k] ? j : k;
@@ -159,7 +158,7 @@ get_nondominated_set (double **pareto_set_p,
         memcpy(&pareto_set[dim * k], &points[dim * n], sizeof(points[0]) * dim);
         k++;
     }
-    assert (k == new_size);
+    eaf_assert (k == new_size);
     free (nondom);
     *pareto_set_p = pareto_set;
     return new_size;

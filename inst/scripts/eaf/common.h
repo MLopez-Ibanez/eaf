@@ -3,6 +3,9 @@
 
 #ifdef R_PACKAGE
 #include <R.h>
+#define eaf_assert(EXP)                                                       \
+    do { if (!(EXP)) { error("eaf package: error: assertion failed: '%s'",    \
+                             #EXP); }} while(0)
 #define fatal_error(...) Rf_error(__VA_ARGS__)
 #define errprintf error
 #define warnprintf warning
@@ -12,6 +15,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "gcc_attribs.h"
+#include <assert.h>
+#define eaf_assert(X) assert(X)
 
 static void fatal_error(const char * format,...) __attribute__ ((format(printf, 1, 2))) __noreturn;
 

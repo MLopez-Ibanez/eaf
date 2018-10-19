@@ -22,3 +22,14 @@ expect_equal(test.hv.file("duplicated3.inp",
                           reference = c(-14324, -14906, -14500, -14654, -14232, -14093)),
              1.52890128312393e+20)
 })
+
+test_that("hv_contributions", {
+  hv_contributions_slow <- function(dataset, reference, maximise) {
+    return(hypervolume(dataset, reference, maximise) -
+           sapply(1:nrow(dataset), function(x) hypervolume(dataset[-x,], reference, maximise)))
+  }
+  reference = c(250,0)
+  maximise = c(FALSE,TRUE)
+  expect_equal(hv_contributions(SPEA2minstoptimeRichmond[,1:2], reference = reference, maximise = maximise),
+               hv_contributions_slow(SPEA2minstoptimeRichmond[,1:2], reference = reference, maximise = maximise))
+})
