@@ -91,7 +91,7 @@ hv_contributions (double *hvc, double *points, int dim, int size, const double *
     hv_contrib(hvc, points, dim, size, ref, NULL);
     double * hvc2 = hv_contrib2(points, dim, size, ref, NULL);
     for (int i = 0; i < size; i++) {
-        assert(hvc[i] == hvc2[i]);
+        assert(fabs(hvc[i] - hvc2[i]) <= tolerance);;
         hvc[i] = hv_total - hvc[i];
         // Handle very small values.
         hvc[i] = fabs(hvc[i]) >= tolerance ? hvc[i] : 0.0;
