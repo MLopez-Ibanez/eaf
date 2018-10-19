@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <math.h>
+#include <float.h>
 
 /* It does not actually compute the contribution but HV_total - HV_i,
    where HV_total is the total HV and HV_i is the contribution of the
@@ -23,7 +25,6 @@ hv_contrib2 (const double *points, int dim, int size, const double * ref,
     // them to the end.
     for (int i = 0; i < size; i++) {
         int pos = 0;
-//        const double * pointi = &points[i * dim];
 
         // FIXME: Check which points are dominated. Those contribute zero, so
         // we should return fpli_hv for total.
@@ -83,6 +84,8 @@ hv_contrib (double *hvc, double *points, int dim, int size, const double * ref,
 void
 hv_contributions (double *hvc, double *points, int dim, int size, const double * ref)
 {
+    const double tolerance = sqrt(DBL_EPSILON);
+
     double hv_total = fpli_hv(points, dim, size, ref);
     // FIXME: Find which points are dominated and simply return 0 for those.
     hv_contrib(hvc, points, dim, size, ref, NULL);
@@ -90,6 +93,9 @@ hv_contributions (double *hvc, double *points, int dim, int size, const double *
     for (int i = 0; i < size; i++) {
         assert(hvc[i] == hvc2[i]);
         hvc[i] = hv_total - hvc[i];
+        // Handle very small values.
+        hvc[i] = fabs(hvc[i]) >= tolerance ? hvc[i] : 0.0;
+        assert(hvc[i] >= 0);
     }
 }
 

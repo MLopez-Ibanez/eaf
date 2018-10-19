@@ -172,7 +172,8 @@ attained_left_right (const bool *attained, int division, int total,
 
 static inline int percentile2level (double p, int n)
 {
-    double tolerance = 1e-12;
+    // FIXME: Should we do something smarter here? Like sqrt(DBL_EPSILON)
+    const double tolerance = sqrt(DBL_EPSILON);
     double x = (n * p) / 100.0;
     int level = (x - floor(x) <= tolerance)
         ? (int) floor(x) : (int) ceil(x);
