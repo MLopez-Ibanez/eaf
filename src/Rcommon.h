@@ -91,13 +91,11 @@
         error ("Argument '" #S "' is not a string");                    \
     const char * var = CHAR(STRING_ELT(S,0));
 
-static inline SEXP
-bool_2_logical_vector(SEXP dst, bool *src, size_t n)
+static inline void
+bool_2_logical_vector(int *dst, const bool *src, size_t n)
 {
-    int * tmp = LOGICAL(dst);
     for (size_t i = 0; i < n; i++)
-        tmp[i] = src[i];
-    return dst;
+        dst[i] = src[i];
 }
 
 static inline void

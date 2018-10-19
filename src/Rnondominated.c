@@ -72,7 +72,7 @@ is_nondominated_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP MAXIMISE)
     find_nondominated_set(data, nobj, npoint, minmax, bool_is_nondom);
     
     new_logical_vector (is_nondom, npoint);
-    Rexp_is_nondom = bool_2_logical_vector(Rexp_is_nondom, bool_is_nondom, npoint);
+    bool_2_logical_vector(is_nondom, bool_is_nondom, npoint);
     free (minmax);
     free (bool_is_nondom);
     UNPROTECT(nprotected);
