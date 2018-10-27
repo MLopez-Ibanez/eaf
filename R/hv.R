@@ -1,19 +1,3 @@
-
-check.hv.data <- function(x)
-{
-  name <- deparse(substitute(x))
-  if (length(dim(x)) != 2L)
-    stop("'", name, "' must be a data.frame or a matrix")
-  if (nrow(x) < 1L)
-    stop("not enough points (rows) in '", name, "'")
-  if (ncol(x) < 2)
-    stop("'", name, "' must have at least 2 columns")
-  x <-  as.matrix(x)
-  if (!is.numeric(x))
-    stop("'", name, "' must be numeric")
-  return(x)
-}
-
 #' Hypervolume metric
 #'
 #' Computes the hypervolume metric with respect to a given reference point
@@ -57,7 +41,7 @@ check.hv.data <- function(x)
 #' @export
 hypervolume <- function(data, reference, maximise = FALSE)
 {
-  data <- check.hv.data(data)
+  data <- check_dataset(data)
   nobjs <- ncol(data) 
   npoints <- nrow(data)
   if (is.null(reference)) {
@@ -130,7 +114,7 @@ hypervolume <- function(data, reference, maximise = FALSE)
 #' @export
 hv_contributions <- function(data, reference, maximise = FALSE)
 {
-  data <- check.hv.data(data)
+  data <- check_dataset(data)
   nobjs <- ncol(data) 
   npoints <- nrow(data)
   if (is.null(reference)) {
@@ -211,13 +195,13 @@ hv_contributions <- function(data, reference, maximise = FALSE)
 #' @export
 epsilon_additive <- function(data, reference, maximise = FALSE)
 {
-  data <- check.hv.data(data)
+  data <- check_dataset(data)
   nobjs <- ncol(data) 
   npoints <- nrow(data)
   if (is.null(reference)) {
     stop("reference cannot be NULL")
   }
-  reference <- check.hv.data(reference)
+  reference <- check_dataset(reference)
   if (ncol(reference) != nobjs)
     stop("data and reference must have the same number of columns")
   reference_size <- nrow(reference)
@@ -233,23 +217,23 @@ epsilon_additive <- function(data, reference, maximise = FALSE)
                maximise))
 }
 
+#' @rdname epsilon
+#' @export
 #' @examples
 #' # Multiplicative version of epsilon metric
 #' ref <- filter_dominated(rbind(A1, A2))
 #' epsilon_mult(A1, ref)
 #' epsilon_mult(A2, ref)
 #' 
-#' @rdname epsilon
-#' @export
 epsilon_mult <- function(data, reference, maximise = FALSE)
 {
-  data <- check.hv.data(data)
+  data <- check_dataset(data)
   nobjs <- ncol(data) 
   npoints <- nrow(data)
   if (is.null(reference)) {
     stop("reference cannot be NULL")
   }
-  reference <- check.hv.data(reference)
+  reference <- check_dataset(reference)
   if (ncol(reference) != nobjs)
     stop("data and reference must have the same number of columns")
   reference_size <- nrow(reference)
@@ -269,6 +253,8 @@ epsilon_mult <- function(data, reference, maximise = FALSE)
 #'
 #' Computes the inverted generational distance (IGD and IGD+)
 #'
+#' @rdname igd
+#' @export
 #' @param data Either a matrix or a data frame of numerical values, where
 #'   each row gives the coordinates of a point.
 #'
@@ -354,17 +340,15 @@ epsilon_mult <- function(data, reference, maximise = FALSE)
 #' igd(A1, ref)
 #' igd(A2, ref)
 #' 
-#' @rdname igd
-#' @export
 igd <- function(data, reference, maximise = FALSE)
 {
-  data <- check.hv.data(data)
+  data <- check_dataset(data)
   nobjs <- ncol(data) 
   npoints <- nrow(data)
   if (is.null(reference)) {
     stop("reference cannot be NULL")
   }
-  reference <- check.hv.data(reference)
+  reference <- check_dataset(reference)
   if (ncol(reference) != nobjs)
     stop("data and reference must have the same number of columns")
   reference_size <- nrow(reference)
@@ -380,23 +364,23 @@ igd <- function(data, reference, maximise = FALSE)
                maximise))
 }
 
+#' @rdname igd
+#' @export
 #' @examples
 #' # IGD+ (Pareto compliant)
 #' ref <- filter_dominated(rbind(A1, A2))
 #' igd_plus(A1, ref)
 #' igd_plus(A2, ref)
 #' 
-#' @rdname igd
-#' @export
 igd_plus <- function(data, reference, maximise = FALSE)
 {
-  data <- check.hv.data(data)
+  data <- check_dataset(data)
   nobjs <- ncol(data) 
   npoints <- nrow(data)
   if (is.null(reference)) {
     stop("reference cannot be NULL")
   }
-  reference <- check.hv.data(reference)
+  reference <- check_dataset(reference)
   if (ncol(reference) != nobjs)
     stop("data and reference must have the same number of columns")
   reference_size <- nrow(reference)
@@ -441,7 +425,7 @@ igd_plus <- function(data, reference, maximise = FALSE)
 #' data(SPEA2minstoptimeRichmond)
 #' # The second objective must be maximized
 #' head(SPEA2minstoptimeRichmond[, 1:2])
-
+#'
 #' head(normalise(SPEA2minstoptimeRichmond[, 1:2], maximise = c(FALSE, TRUE)))
 #'
 #' head(normalise(SPEA2minstoptimeRichmond[, 1:2], to.range = c(0,1), maximise = c(FALSE, TRUE)))
@@ -449,7 +433,7 @@ igd_plus <- function(data, reference, maximise = FALSE)
 #' @export
 normalise <- function(data, to.range = c(1, 2), lower = NA, upper = NA, maximise = FALSE)
 {
-  data <- check.hv.data(data)
+  data <- check_dataset(data)
   nobjs <- ncol(data)
   npoints <- nrow(data)
   lower <- as.double(rep_len(lower, nobjs))
@@ -470,122 +454,4 @@ normalise <- function(data, to.range = c(1, 2), lower = NA, upper = NA, maximise
                  as.integer(npoints),
                  as.double(to.range),
                  lower, upper, maximise)))
-}
-
-#' Identify nondominated points
-#'
-#' @param data Either a matrix or a data frame of numerical values, where
-#'   each row gives the coordinates of a point.
-#'
-#' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single logical value that applies to all objectives or
-#'   a vector of logical values, with one value per objective.
-#' 
-#' @param keep_weakly If \code{FALSE}, return \code{FALSE} for any duplicates
-#'   of nondominated points.
-#' 
-#' @return A logical vector of the same length as the number of rows of
-#'   \code{data}, where \code{TRUE} means that the point is not dominated by
-#'   any other point.
-#'
-#' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
-#' @seealso \code{filter_dominated}
-#' @examples
-#' path_A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
-#' path_A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
-#' set <- rbind(read.data.sets(path_A1)[,1:2], read.data.sets(path_A2)[,1:2])
-#'
-#' is_nondom <- is_nondominated(set)
-#' cat("There are ", sum(is_nondom), " nondominated points\n")
-#'
-#' ndset <- set[is_nondom, ] # or ndset <- filter_dominated(set)
-#' ndset <- ndset[order(ndset[,1]),]
-#' plot(set, col = "blue", type = "p", pch = 20)
-#' points(ndset, col = "red", pch = 21)
-#' 
-#' @export
-is_nondominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
-{
-  data <- check.hv.data(data)
-  nobjs <- ncol(data)
-  npoints <- nrow(data)
-  maximise <- as.logical(rep_len(maximise, nobjs))
-
-  return(.Call("is_nondominated_C",
-               as.double(t(data)),
-               as.integer(nobjs),
-               as.integer(npoints),
-               maximise,
-               as.logical(keep_weakly)))
-}
-
-#' Remove dominated points
-#' 
-#' @param data Either a matrix or a data frame of numerical values, where
-#'   each row gives the coordinates of a point.
-#'
-#' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single logical value that applies to all objectives or
-#'   a vector of logical values, with one value per objective.
-#'
-#' @param keep_weakly If \code{FALSE}, return \code{FALSE} for any duplicates
-#'   of nondominated points.
-#' 
-#' @return a matrix or data.frame with only mutually nondominated points.
-#'
-#' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
-#' @export
-filter_dominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
-{
-  return(data[is_nondominated(data, maximise = maximise, keep_weakly = keep_weakly),
-            , drop = FALSE])
-}
-
-#' Pareto ranking (i.e., nondominated sorting)
-#'
-#' @param data Either a matrix or a data frame of numerical values, where
-#'   each row gives the coordinates of a point.
-#'
-#' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single logical value that applies to all objectives or
-#'   a vector of logical values, with one value per objective.
-#'
-#' @return An integer vector of the same length as the number of rows of
-#'   \code{data}, where each value gives the rank of each point.
-#'
-#' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
-#'
-#' @details This function is meant to be used like \code{rank()}, but it
-#'   assigns ranks according to Pareto dominance. Duplicated points are kept on
-#'   the same front.
-#' 
-#' @references
-#'
-#' Deb, K., S. Agrawal, A. Pratap, and T. Meyarivan. A fast elitist non-dominated
-#' sorting genetic algorithm for multi-objective optimization: NSGA-II.
-#' IEEE Transactions on Evolutionary Computation, 6(2): 182-197, 2002.
-#' 
-#' M. T. Jensen. Reducing the run-time complexity of multiobjective
-#' EAs: The NSGA-II and other algorithms. IEEE Transactions on
-#' Evolutionary Computation, 7(5):503–515, 2003.
-#' 
-#' @examples
-#' path_A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
-#' set <- read.data.sets(path.A1)[,1:2]
-#' ranks <- pareto_rank(set)
-#' colors <- colorRampPalette(c("red","yellow","springgreen","royalblue"))(max(ranks))
-#' plot(set, col = colors[ranks], type = "p", pch = 20)
-#'
-#' @export
-pareto_rank <- function(data, maximise = FALSE)
-{
-  data <- check.hv.data(data)
-  nobjs <- ncol(data)
-  npoints <- nrow(data)
-  maximise <- as.logical(rep_len(maximise, nobjs))
-  data <- matrix.maximise(data, maximise)
-  return(.Call("pareto_ranking_C",
-               as.double(t(data)),
-               as.integer(nobjs),
-               as.integer(npoints)))
 }
