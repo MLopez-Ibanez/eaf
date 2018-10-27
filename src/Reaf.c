@@ -54,9 +54,6 @@ compute_eaf_helper (SEXP DATA, int nobj, SEXP CUMSIZES, int nruns,
     return eaf;
 }
 
-extern SEXP compute_eaf_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
-                          SEXP PERCENTILES);
-
 SEXP
 compute_eaf_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS, SEXP PERCENTILE)
 {
@@ -96,10 +93,6 @@ compute_eaf_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS, SEXP PERCENTILE)
     UNPROTECT (1);
     return mat;
 }
-
-
-SEXP compute_eafdiff_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
-                       SEXP INTERVALS);
 
 SEXP 
 compute_eafdiff_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
@@ -290,12 +283,10 @@ SEXP
 read_data_sets (SEXP FILENAME)
 {
     SEXP_2_STRING(FILENAME, filename);
-    objective_t *data = NULL;
-    int* cumsizes = NULL;
-    int nobj = 0, nruns = 0;
-
     /* Rprintf ("filename: %s\n", filename); */
-
+    objective_t * data = NULL;
+    int * cumsizes = NULL;
+    int nobj = 0, nruns = 0;
     read_objective_t_data (filename, &data, &nobj, &cumsizes, &nruns);
 
     const int ntotal = cumsizes[nruns - 1];
@@ -305,7 +296,7 @@ read_data_sets (SEXP FILENAME)
     double *rdata = REAL(DATA);
     double_transpose (rdata, data, ntotal, nobj);
 
-    int k, j, i;
+    int k, j;
     size_t pos = ntotal * nobj;
     for (k = 0, j = 0; k < ntotal; k++, pos++) {
         if (k == cumsizes[j]) j++;
