@@ -13,9 +13,9 @@
    where HV_total is the total HV and HV_i is the contribution of the
    point, that is, it actually computes the HV minus the point i.
 */
-double *
-hv_contrib (double *hvc, double *points, int dim, int size, const double * ref,
-            const bool * uev)
+static double *
+hv_1point_diffs (double *hvc, double *points, int dim, int size, const double * ref,
+                 const bool * uev)
 {
     bool keep_uevs = uev != NULL;
 
@@ -40,7 +40,7 @@ hv_contributions (double *hvc, double *points, int dim, int size, const double *
 {
     const double tolerance = sqrt(DBL_EPSILON);
     double hv_total = fpli_hv(points, dim, size, ref);
-    hv_contrib(hvc, points, dim, size, ref, NULL);
+    hv_1point_diffs(hvc, points, dim, size, ref, NULL);
     for (int i = 0; i < size; i++) {
         hvc[i] = hv_total - hvc[i];
         // Handle very small values.

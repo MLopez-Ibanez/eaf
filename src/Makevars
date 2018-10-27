@@ -3,6 +3,6 @@
 # CXXLAGS in ~/.R/Makevars
 PKG_CPPFLAGS = -DVARIANT=4 -DR_PACKAGE -DDEBUG=1 -I../inst/scripts/eaf/ -I../inst/scripts/mo-tools/
 EAF_SRC_FILES= avl.c eaf3d.c eaf.c io.c
-MOTOOLS_SRC_FILES = hv_contrib.c hv.c
+MOTOOLS_SRC_FILES = hv_contrib.c hv.c pareto.c
 SOURCES = init.c  Reaf.c  Repsilon.c  Rhv.c  Rnondominated.c  $(EAF_SRC_FILES:%=../inst/scripts/eaf/%) $(MOTOOLS_SRC_FILES:%=../inst/scripts/mo-tools/%)
 OBJECTS = $(SOURCES:.c=.o)

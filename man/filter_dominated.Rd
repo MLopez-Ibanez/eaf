@@ -4,15 +4,18 @@
 \alias{filter_dominated}
 \title{Remove dominated points}
 \usage{
-filter_dominated(..., maximise = FALSE)
+filter_dominated(data, maximise = FALSE, keep_weakly = FALSE)
 }
 \arguments{
-\item{...}{matrices or data frames of numerical values, where
+\item{data}{Either a matrix or a data frame of numerical values, where
 each row gives the coordinates of a point.}
 
 \item{maximise}{Whether the objectives must be maximised instead of
-minimised. Either a single boolean value that applies to all objectives or
-a vector boolean values, with one value per objective.}
+minimised. Either a single logical value that applies to all objectives or
+a vector of logical values, with one value per objective.}
+
+\item{keep_weakly}{If \code{FALSE}, return \code{FALSE} for any duplicates
+of nondominated points.}
 }
 \value{
 a matrix or data.frame with only mutually nondominated points.

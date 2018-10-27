@@ -17,8 +17,8 @@ each row gives the coordinates of a point.}
 values.}
 
 \item{maximise}{Whether the objectives must be maximised instead of
-minimised. Either a single boolean value that applies to all objectives or
-a vector boolean values, with one value per objective.}
+minimised. Either a single logical value that applies to all objectives or
+a vector of logical values, with one value per objective.}
 }
 \value{
 A single numerical value.
@@ -57,12 +57,12 @@ path.A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
 path.A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
 A1 <- read.data.sets(path.A1)[,1:2]
 A2 <- read.data.sets(path.A2)[,1:2]
-ref <- filter_dominated(A1, A2)
+ref <- filter_dominated(rbind(A1, A2))
 igd(A1, ref)
 igd(A2, ref)
 
 # IGD+ (Pareto compliant)
-ref <- filter_dominated(A1, A2)
+ref <- filter_dominated(rbind(A1, A2))
 igd_plus(A1, ref)
 igd_plus(A2, ref)
 

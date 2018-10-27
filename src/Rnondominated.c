@@ -1,14 +1,6 @@
 #include "Rcommon.h"
 #include "nondominated.h"
 
-extern SEXP
-normalise_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
-            SEXP RANGE, SEXP LBOUND, SEXP UBOUND, SEXP MAXIMISE);
-
-extern SEXP
-is_nondominated_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP MAXIMISE);
-
-
 SEXP
 normalise_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
             SEXP RANGE, SEXP LBOUND, SEXP UBOUND, SEXP MAXIMISE)
@@ -54,13 +46,15 @@ normalise_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
 }
 
 SEXP
-is_nondominated_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP MAXIMISE)
+is_nondominated_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP MAXIMISE,
+                  SEXP KEEP_WEAKLY)
 {
     int nprotected = 0;
     SEXP_2_INT(NOBJ, nobj);
     SEXP_2_INT(NPOINT, npoint);
     SEXP_2_LOGICAL_VECTOR(MAXIMISE, maximise, maximise_len);
-
+    SEXP_2_LOGICAL(KEEP_WEAKLY, keep_weakly);
+    
     if (nobj != maximise_len)
         error("length of maximise (%d) is different from number of objectives (%d)",
               maximise_len, nobj);
@@ -69,7 +63,11 @@ is_nondominated_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP MAXIMISE)
     bool * bool_is_nondom = nondom_init(npoint);
     double * data = REAL(DATA);
 
-    find_nondominated_set(data, nobj, npoint, minmax, bool_is_nondom);
+    if (keep_weakly) {
+        find_weak_nondominated_set(data, nobj, npoint, minmax, bool_is_nondom);
+    } else {
+        find_nondominated_set(data, nobj, npoint, minmax, bool_is_nondom);
+    }
     
     new_logical_vector (is_nondom, npoint);
     bool_2_logical_vector(is_nondom, bool_is_nondom, npoint);
@@ -77,5 +75,24 @@ is_nondominated_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP MAXIMISE)
     free (bool_is_nondom);
     UNPROTECT(nprotected);
     return Rexp_is_nondom;
+}
+
+SEXP
+pareto_ranking_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT)
+{
+    int nprotected = 0;
+    SEXP_2_INT(NOBJ, nobj);
+    SEXP_2_INT(NPOINT, npoint);
+    double * data = REAL(DATA);
+
+    /* FIXME: How to assign directly? */
+    new_int_vector (rank, npoint);
+    int * rank2 = pareto_rank(data, nobj, npoint);
+    for (int i = 0; i < npoint; i++) {
+        rank[i] = rank2[i];
+    }
+    free (rank2);
+    UNPROTECT(nprotected);
+    return Rexp_rank;
 }
 

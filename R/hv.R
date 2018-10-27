@@ -25,8 +25,8 @@ check.hv.data <- function(x)
 #' @param reference Reference point as a vector of numerical values. 
 #'
 #' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single boolean value that applies to all objectives or
-#'   a vector boolean values, with one value per objective.
+#'   minimised. Either a single logical value that applies to all objectives or
+#'   a vector of logical values, with one value per objective.
 #' 
 #' @return  A single numerical value.
 #'
@@ -94,8 +94,8 @@ hypervolume <- function(data, reference, maximise = FALSE)
 #' @param reference Reference point as a vector of numerical values. 
 #'
 #' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single boolean value that applies to all objectives or
-#'   a vector boolean values, with one value per objective.
+#'   minimised. Either a single logical value that applies to all objectives or
+#'   a vector of logical values, with one value per objective.
 #' 
 #' @return  A numerical vector
 #'
@@ -165,8 +165,8 @@ hv_contributions <- function(data, reference, maximise = FALSE)
 #'   values.
 #'
 #' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single boolean value that applies to all objectives or
-#'   a vector boolean values, with one value per objective.
+#'   minimised. Either a single logical value that applies to all objectives or
+#'   a vector of logical values, with one value per objective.
 #' 
 #' @return  A single numerical value.
 #'
@@ -203,7 +203,7 @@ hv_contributions <- function(data, reference, maximise = FALSE)
 #' path.A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
 #' A1 <- read.data.sets(path.A1)[,1:2]
 #' A2 <- read.data.sets(path.A2)[,1:2]
-#' ref <- filter_dominated(A1, A2)
+#' ref <- filter_dominated(rbind(A1, A2))
 #' epsilon_additive(A1, ref)
 #' epsilon_additive(A2, ref)
 #' 
@@ -235,7 +235,7 @@ epsilon_additive <- function(data, reference, maximise = FALSE)
 
 #' @examples
 #' # Multiplicative version of epsilon metric
-#' ref <- filter_dominated(A1, A2)
+#' ref <- filter_dominated(rbind(A1, A2))
 #' epsilon_mult(A1, ref)
 #' epsilon_mult(A2, ref)
 #' 
@@ -276,8 +276,8 @@ epsilon_mult <- function(data, reference, maximise = FALSE)
 #'   values.
 #'
 #' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single boolean value that applies to all objectives or
-#'   a vector boolean values, with one value per objective.
+#'   minimised. Either a single logical value that applies to all objectives or
+#'   a vector of logical values, with one value per objective.
 #' 
 #' @return  A single numerical value.
 #'
@@ -350,7 +350,7 @@ epsilon_mult <- function(data, reference, maximise = FALSE)
 #' path.A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
 #' A1 <- read.data.sets(path.A1)[,1:2]
 #' A2 <- read.data.sets(path.A2)[,1:2]
-#' ref <- filter_dominated(A1, A2)
+#' ref <- filter_dominated(rbind(A1, A2))
 #' igd(A1, ref)
 #' igd(A2, ref)
 #' 
@@ -382,7 +382,7 @@ igd <- function(data, reference, maximise = FALSE)
 
 #' @examples
 #' # IGD+ (Pareto compliant)
-#' ref <- filter_dominated(A1, A2)
+#' ref <- filter_dominated(rbind(A1, A2))
 #' igd_plus(A1, ref)
 #' igd_plus(A2, ref)
 #' 
@@ -427,8 +427,8 @@ igd_plus <- function(data, reference, maximise = FALSE)
 #'   values of each coordinate are used.
 #'
 #' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single boolean value that applies to all objectives or
-#'   a vector boolean values, with one value per objective. A true value means
+#'   minimised. Either a single logical value that applies to all objectives or
+#'   a vector of logical values, with one value per objective. A true value means
 #'   that the corresponding objective is normalised to \code{c(to.range[1],
 #'   to.range[0])} instead.
 #'
@@ -478,30 +478,33 @@ normalise <- function(data, to.range = c(1, 2), lower = NA, upper = NA, maximise
 #'   each row gives the coordinates of a point.
 #'
 #' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single boolean value that applies to all objectives or
-#'   a vector boolean values, with one value per objective.
-#'
+#'   minimised. Either a single logical value that applies to all objectives or
+#'   a vector of logical values, with one value per objective.
+#' 
+#' @param keep_weakly If \code{FALSE}, return \code{FALSE} for any duplicates
+#'   of nondominated points.
+#' 
 #' @return A logical vector of the same length as the number of rows of
 #'   \code{data}, where \code{TRUE} means that the point is not dominated by
 #'   any other point.
 #'
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
-#'
+#' @seealso \code{filter_dominated}
 #' @examples
-#' path.A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
-#' path.A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
-#' set <- rbind(read.data.sets(path.A1)[,1:2], read.data.sets(path.A2)[,1:2])
+#' path_A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
+#' path_A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
+#' set <- rbind(read.data.sets(path_A1)[,1:2], read.data.sets(path_A2)[,1:2])
 #'
-#' is.nondom <- is.nondominated(set)
-#' cat("There are ", sum(is.nondom), " nondominated points\n")
+#' is_nondom <- is_nondominated(set)
+#' cat("There are ", sum(is_nondom), " nondominated points\n")
 #'
-#' ndset <- set[is.nondom,]
+#' ndset <- set[is_nondom, ] # or ndset <- filter_dominated(set)
 #' ndset <- ndset[order(ndset[,1]),]
 #' plot(set, col = "blue", type = "p", pch = 20)
 #' points(ndset, col = "red", pch = 21)
 #' 
 #' @export
-is.nondominated <- function(data, maximise = FALSE)
+is_nondominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 {
   data <- check.hv.data(data)
   nobjs <- ncol(data)
@@ -512,25 +515,77 @@ is.nondominated <- function(data, maximise = FALSE)
                as.double(t(data)),
                as.integer(nobjs),
                as.integer(npoints),
-               maximise))
+               maximise,
+               as.logical(keep_weakly)))
 }
 
 #' Remove dominated points
 #' 
-#' @param ... matrices or data frames of numerical values, where
+#' @param data Either a matrix or a data frame of numerical values, where
 #'   each row gives the coordinates of a point.
 #'
 #' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single boolean value that applies to all objectives or
-#'   a vector boolean values, with one value per objective.
+#'   minimised. Either a single logical value that applies to all objectives or
+#'   a vector of logical values, with one value per objective.
 #'
+#' @param keep_weakly If \code{FALSE}, return \code{FALSE} for any duplicates
+#'   of nondominated points.
+#' 
 #' @return a matrix or data.frame with only mutually nondominated points.
 #'
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 #' @export
-filter_dominated <- function(..., maximise = FALSE)
+filter_dominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 {
-  set <- rbind(...)
-  is.nondom <- is.nondominated(set, maximise = maximise)
-  return(set[is.nondom, , drop = FALSE]) 
+  return(data[is_nondominated(data, maximise = maximise, keep_weakly = keep_weakly),
+            , drop = FALSE])
+}
+
+#' Pareto ranking (i.e., nondominated sorting)
+#'
+#' @param data Either a matrix or a data frame of numerical values, where
+#'   each row gives the coordinates of a point.
+#'
+#' @param maximise Whether the objectives must be maximised instead of
+#'   minimised. Either a single logical value that applies to all objectives or
+#'   a vector of logical values, with one value per objective.
+#'
+#' @return An integer vector of the same length as the number of rows of
+#'   \code{data}, where each value gives the rank of each point.
+#'
+#' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
+#'
+#' @details This function is meant to be used like \code{rank()}, but it
+#'   assigns ranks according to Pareto dominance. Duplicated points are kept on
+#'   the same front.
+#' 
+#' @references
+#'
+#' Deb, K., S. Agrawal, A. Pratap, and T. Meyarivan. A fast elitist non-dominated
+#' sorting genetic algorithm for multi-objective optimization: NSGA-II.
+#' IEEE Transactions on Evolutionary Computation, 6(2): 182-197, 2002.
+#' 
+#' M. T. Jensen. Reducing the run-time complexity of multiobjective
+#' EAs: The NSGA-II and other algorithms. IEEE Transactions on
+#' Evolutionary Computation, 7(5):503–515, 2003.
+#' 
+#' @examples
+#' path_A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
+#' set <- read.data.sets(path.A1)[,1:2]
+#' ranks <- pareto_rank(set)
+#' colors <- colorRampPalette(c("red","yellow","springgreen","royalblue"))(max(ranks))
+#' plot(set, col = colors[ranks], type = "p", pch = 20)
+#'
+#' @export
+pareto_rank <- function(data, maximise = FALSE)
+{
+  data <- check.hv.data(data)
+  nobjs <- ncol(data)
+  npoints <- nrow(data)
+  maximise <- as.logical(rep_len(maximise, nobjs))
+  data <- matrix.maximise(data, maximise)
+  return(.Call("pareto_ranking_C",
+               as.double(t(data)),
+               as.integer(nobjs),
+               as.integer(npoints)))
 }

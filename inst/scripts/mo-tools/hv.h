@@ -39,8 +39,7 @@ extern "C" {
 #endif
 
 double fpli_hv(const double *data, int d, int n, const double *ref);
-extern void
-hv_contributions (double *hvc, double *points, int dim, int size, const double * ref);
+void hv_contributions (double *hvc, double *points, int dim, int size, const double * ref);
 #ifdef __cplusplus
 }
 #endif

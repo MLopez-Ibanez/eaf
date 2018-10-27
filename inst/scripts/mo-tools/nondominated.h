@@ -2,6 +2,7 @@
 #define NONDOMINATED_H
 
 #include "common.h"
+#include <string.h> // memcpy
 
 enum objs_agree_t { AGREE_MINIMISE = -1, AGREE_NONE = 0, AGREE_MAXIMISE = 1 };
 
@@ -37,13 +38,12 @@ nondom_init (size_t size)
 static inline int
 find_nondominated_set_ (const double *points, int dim, int size,
                         const signed char *minmax, const signed char agree,
-                        bool *nondom, bool find_dominated_p)
+                        bool *nondom, bool find_dominated_p, bool keep_weakly)
 {
     int j, k, d;
-    int new_size = 0;
-
-    for (k = 0; k < size - 1; k++){
-        for (j = k + 1; j < size; j++){
+    
+    for (k = 0; k < size - 1; k++) {
+        for (j = k + 1; j < size; j++) {
 
             if (!nondom[k]) break;
             if (!nondom[j]) continue;
@@ -80,11 +80,12 @@ find_nondominated_set_ (const double *points, int dim, int size,
                     }
                 }
             }
-            /* k is removed if it is weakly dominated by j. j is
-               removed if it is dominated by k. */
-            nondom[k] = !j_leq_k;
-            nondom[j] = (!k_leq_j || j_leq_k);
 
+            // k is removed if it is weakly dominated by j (unless remove_weakly).
+            nondom[k] = !j_leq_k || (keep_weakly && k_leq_j);
+            // j is removed if it is dominated by k.
+            nondom[j] = (!k_leq_j || j_leq_k);
+            
             eaf_assert(nondom[k] || nondom[j]); /* both cannot be removed.  */
 
             if (find_dominated_p && (!nondom[k] || !nondom[j])) {
@@ -95,9 +96,9 @@ find_nondominated_set_ (const double *points, int dim, int size,
 
     if (find_dominated_p) return -1;
 
+    int new_size = 0;
     for (k = 0; k < size; k++)
         if (nondom[k]) new_size++;
-
     return new_size;
 }
 
@@ -109,7 +110,8 @@ find_dominated_point (const double *points, int dim, int size,
 
     int pos = find_nondominated_set_ (points, dim, size, minmax,
                                       AGREE_NONE, nondom, 
-                                      /* find_dominated_p = */true);
+                                      /* find_dominated_p = */true,
+                                      /* keep_weakly = */false);
     free (nondom);
     return pos;
 }
@@ -120,15 +122,26 @@ find_nondominated_set_agree (const double *points, int dim, int size,
                              bool *nondom)
 {
     return find_nondominated_set_ (points, dim, size, minmax, agree, nondom, 
-                                   false);
+                                   /* find_dominated_p = */false,
+                                   /* keep_weakly = */false);
 }
 
 static inline int
 find_nondominated_set (const double *points, int dim, int size,
                        const signed char *minmax, bool *nondom)
 {
-    return find_nondominated_set_ (points, dim, size, minmax, AGREE_NONE,
-                                   nondom, false);
+    return find_nondominated_set_ (points, dim, size, minmax, AGREE_NONE, nondom,
+                                   /* find_dominated_p = */false,
+                                   /* keep_weakly = */false);
+}
+
+static inline int
+find_weak_nondominated_set (const double *points, int dim, int size,
+                            const signed char *minmax, bool *nondom)
+{
+    return find_nondominated_set_ (points, dim, size, minmax, AGREE_NONE, nondom,
+                                   /* find_dominated_p = */false,
+                                   /* keep_weakly = */true);
 }
 
 static inline int
@@ -204,6 +217,8 @@ normalise (double *points, int dim, int size,
 
     free (diff);
 }
+
+int * pareto_rank (const double *points, int dim, int size);
 
 
 #endif /* NONDOMINATED_H */
