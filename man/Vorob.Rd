@@ -32,9 +32,11 @@ symmetric deviation.}
 
 \item{xlim, ylim, main}{Graphical parameters, see \code{\link{plot.default}}.}
 
-\item{legend.pos}{the position of the legend, see \code{\link{legend}}. A value of \code{"none"} hides the legend.}
+\item{legend.pos}{the position of the legend, see \code{\link{legend}}. A
+value of \code{"none"} hides the legend.}
 
-\item{col.fun}{function that creates a vector of \code{n} colors, see \code{\link{heat.colors}}.}
+\item{col.fun}{function that creates a vector of \code{n} colors, see
+\code{\link{heat.colors}}.}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold},

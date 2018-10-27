@@ -107,8 +107,10 @@ vorobDev <- function(x, VE, reference)
 ##'   symmetric deviation.
 ##' @param ve.col plotting parameters for the Vorob'ev expectation.
 ##' @param xlim,ylim,main Graphical parameters, see \code{\link{plot.default}}.
-##' @param legend.pos the position of the legend, see \code{\link{legend}}. A value of \code{"none"} hides the legend.
-##' @param col.fun function that creates a vector of \code{n} colors, see \code{\link{heat.colors}}.
+##' @param legend.pos the position of the legend, see \code{\link{legend}}. A
+##'   value of \code{"none"} hides the legend.
+##' @param col.fun function that creates a vector of \code{n} colors, see
+##'   \code{\link{heat.colors}}.
 ##' @examples
 ##' # Now display the symmetric deviation function.
 ##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
