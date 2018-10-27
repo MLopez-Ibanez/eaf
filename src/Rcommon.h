@@ -22,15 +22,20 @@
 
 #define Rexp(VAR) Rexp_##VAR
 
-#define new_real_matrix(DOUBLEVAR, DIM1, DIM2)                                 \
-    SEXP Rexp_##DOUBLEVAR; double *DOUBLEVAR;                                  \
-    PROTECT(Rexp_##DOUBLEVAR = allocMatrix(REALSXP, (DIM1), (DIM2)));          \
-    nprotected++; DOUBLEVAR = REAL(Rexp_##DOUBLEVAR)
+#define new_real_matrix(VAR, DIM1, DIM2)                                 \
+    SEXP Rexp_##VAR; double *VAR;                                        \
+    PROTECT(Rexp_##VAR = allocMatrix(REALSXP, (DIM1), (DIM2)));          \
+    nprotected++; VAR = REAL(Rexp_##VAR)
 
-#define new_real_vector(DOUBLEVAR, DIM)                                        \
-    SEXP Rexp_##DOUBLEVAR; double *DOUBLEVAR;                                  \
-    PROTECT(Rexp_##DOUBLEVAR = allocVector(REALSXP, (DIM)));                   \
-    nprotected++; DOUBLEVAR = REAL(Rexp_##DOUBLEVAR)
+#define new_real_vector(VAR, DIM)                                        \
+    SEXP Rexp_##VAR; double *VAR;                                        \
+    PROTECT(Rexp_##VAR = allocVector(REALSXP, (DIM)));                   \
+    nprotected++; VAR = REAL(Rexp_##VAR)
+
+#define new_int_vector(VAR, DIM)                                        \
+    SEXP Rexp_##VAR; int *VAR;                                          \
+    PROTECT(Rexp_##VAR = allocVector(INTSXP, (DIM)));                   \
+    nprotected++; VAR = INTEGER(Rexp_##VAR)
 
 #define new_string_vector(VAR, DIM)                                            \
     SEXP Rexp_##VAR; int Rexp_##VAR##_len = 0;                                 \
@@ -81,10 +86,15 @@
     int *I = LOGICAL(S);                             \
     const R_len_t N = length(S);
 
-#define SEXP_2_INT(S,var)                                               \
-    int var = asInteger(S);                                             \
-    if (var == NA_INTEGER)                                              \
+#define SEXP_2_INT(S,VAR)                                               \
+    int VAR = asInteger(S);                                             \
+    if (VAR == NA_INTEGER)                                              \
         error ("Argument '" #S "' is not an integer");
+
+#define SEXP_2_LOGICAL(S,VAR)                                           \
+    int VAR = asLogical(S);                                             \
+    if (VAR == NA_LOGICAL)                                              \
+        error ("Argument '" #S "' is not a logical");
 
 #define SEXP_2_STRING(S,var)                                            \
     if (!isString(S) || length(S) != 1)                                 \
@@ -98,6 +108,7 @@ bool_2_logical_vector(int *dst, const bool *src, size_t n)
         dst[i] = src[i];
 }
 
+/* FIXME: Measure if this is faster than the R implementation of t()  */
 static inline void
 double_transpose(double *dst, const double *src,
                  const size_t nrows, const size_t ncols)
