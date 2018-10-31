@@ -305,13 +305,13 @@ points.steps <- function(x)
 #' 
 #' x <- read.data.sets(file.path(eaf.path, "extdata","example1_dat"))
 #' # Compute full EAF
-#' eafs(x[,1:2], x[,3])
+#' str(eafs(x[,1:2], x[,3]))
 #' 
 #' # Compute only best, median and worst
-#' eafs(x[,1:2], x[,3], percentiles = c(0, 50, 100))
+#' str(eafs(x[,1:2], x[,3], percentiles = c(0, 50, 100)))
 #'
-#' x <- read.data.sets(file.path(eaf.path,"extdata","spherical-250-10-3d.txt"))
-#' y <- read.data.sets(file.path(eaf.path,"extdata","uniform-250-10-3d.txt"))
+#' x <- read.data.sets(file.path(eaf.path,"extdata", "spherical-250-10-3d.txt"))
+#' y <- read.data.sets(file.path(eaf.path,"extdata", "uniform-250-10-3d.txt"))
 #' x <- data.frame(x, groups = "spherical")
 #' x <- rbind(x, data.frame(y, groups = "uniform"))
 #' # Compute only median separately for each group
