@@ -48,7 +48,7 @@ notifications:
 before_deploy: Rscript -e 'devtools::install_github("r-lib/pkgdown")'
 deploy:
   provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github()'
+  script: Rscript -e 'pkgdown::deploy_site_github(run_dont_run = TRUE)'
   skip_cleanup: true
   on:
     condition: $TRAVIS_OS_NAME = linux && $TRAVIS_R_VERSION_STRING = release
