@@ -137,9 +137,10 @@ eafplot.formula <- function(formula, data, groups = NULL, subset = NULL, ...)
     #                   subscr[id]
     cond.current.level <- .cupdate(cond.current.level, cond.max.level)
   }
-  # FIXME: I don't think this is doing the right thing.
-  op <- par(mfrow = .check.layout(NULL,cond.max.level)[2:3])
+  op <- par(no.readonly = TRUE)  # save default, for resetting...
   on.exit(par(op))
+  ## FIXME: I don't think this is doing the right thing.
+  par(mfrow = .check.layout(NULL,cond.max.level)[2:3])
   for (i in seq_len(length(panel.args))) {
     eafplot.default(panel.args[[i]]$points,
                     panel.args[[i]]$sets,
