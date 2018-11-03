@@ -6,7 +6,7 @@
 * Non-integer EAF percentiles are computed correctly.
                                                          (Manuel López-Ibáñez)
 
-* Various aesthetic improvements in eafplot and eafdiffplot.
+* Various aesthetic improvements in `eafplot()` and `eafdiffplot()`.
                                                          (Manuel López-Ibáñez)
 
 * Functions for computing hypervolume, hypervolume contributions, epsilon
@@ -22,15 +22,15 @@
 
 * Remove leading zeros from version number.
 
-* New parameters left.panel.last and right.panel.last of eafdiffplot.
+* New parameters `left.panel.last` and `right.panel.last` of `eafdiffplot()`.
 
-* Export and document function 'eafs' to compute EAFs.
+* Export and document function `eafs()` to compute EAFs.
 
-* eafdiff.pl: Handle --colors=, --intervals=.
+* `eafdiff.pl`: Handle `--colors=`, `--intervals=`.
  
-* Fix crash in eafplot if 'sets' is a vector of strings.
+* Fix crash in `eafplot()` if `sets` is a vector of strings.
 
-* Reset layout in eafdiffplot.
+* Reset layout in `eafdiffplot()`.
 
 * Compute eaf for 3D.
 
@@ -43,8 +43,7 @@
 
 # eaf 1.07
 
-* Silence CRAN warning for GNU extensions in Makefiles in
-  inst/scripts/eaf/Makefile.
+* Silence CRAN warning for GNU extensions in Makefiles in `inst/scripts/eaf/Makefile`.
 
 
 # eaf 1.06
@@ -56,19 +55,19 @@
 
 * Reduce memory consumption (up to four times less memory).
 
-* eafdiff.pl: Mention option --legendpos=none to hide the legend.
+* `eafdiff.pl`: Mention option --legendpos=none to hide the legend.
 
 * eafplot.pl: Add options --maximise and --xmaximise and --colors=.
   Fix bug with --area.
 
-* eafplot.default now requires two colors when type=="area" and a
+* `eafplot.default()` now requires two colors when `type=="area"` and a
   palette is interpolated between these two colors for all the
   different levels plotted (Thanks to Alexandre Quemy for the suggestion).
 
 
 # eaf 1.05
 
- *  Implement `eafdiffplot(, type = "area")`. This is now the default.
+ *  Implement `type = "area")` for `eafdiffplot()`. This is now the default.
  
     The idea for the algorithm to compute the areas was provided by Carlos M. Fonseca. The implementation uses R polygons, which some PDF viewers may have trouble rendering correctly (See https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders).
     
@@ -91,7 +90,7 @@
 
 * Force eafdiff plots to use a square plotting region.
 
-* read.data.sets() normalizes paths, thus it works with files such as ~/file.
+* `read.data.sets()` normalizes paths, thus it works with files such as ~/file.
 
 * Function eafdiffplot() handles percentiles=NA and grand.lines
   parameter.
