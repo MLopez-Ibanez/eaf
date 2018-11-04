@@ -210,15 +210,17 @@ matrix.maximise <- function(z, maximise)
 #' Read several data.frame sets
 #'
 #' Reads a text file in table format and creates a data frame from it. The file
-#' may contain several sets, separated by empty lines. The function adds an
-#' additional column \code{set} to indicate to which set each row belongs.
+#' may contain several sets, separated by empty lines. Lines starting by
+#' \code{'#'} are considered comments and treated as empty lines. The function
+#' adds an additional column \code{set} to indicate to which set each row
+#' belongs.
 #'
 #' @param file Filename that contains the data.  Each row of the table appears
 #'   as one line of the file.  If it does not contain an \emph{absolute} path,
 #'   the file name is \emph{relative} to the current working directory,
 #'   \code{\link[base]{getwd}()}.  Tilde-expansion is performed where supported.
 #'
-#' @param col.names Vector of optional names for the variables.  The
+#' @param col_names,col.names Vector of optional names for the variables.  The
 #'   default is to use \samp{"V"} followed by the column number.
 #'
 #' @return  A data frame (\code{data.frame}) containing a representation of the
@@ -227,9 +229,13 @@ matrix.maximise <- function(z, maximise)
 #'
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 #'
-#'@note  There are several examples of data sets in \code{file.path(system.file(package="eaf"),"extdata")}. 
+#' @note There are several examples of data sets in
+#'   \code{file.path(system.file(package="eaf"),"extdata")}.
 #'
-#'@section Warning:
+#' \code{read.data.sets} is a deprecated alias. It will be removed in the next
+#'   major release.
+#' 
+#' @section Warning:
 #'  A known limitation is that the input file must use newline characters
 #'  native to the host system, otherwise they will be, possibly silently,
 #'  misinterpreted. In GNU/Linux the program \code{dos2unix} may be used
@@ -238,24 +244,32 @@ matrix.maximise <- function(z, maximise)
 #'@seealso \code{\link[utils]{read.table}}, \code{\link{eafplot}}, \code{\link{eafdiffplot}}
 #'
 #'@examples
-#' A1 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
+#' A1 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
 #' str(A1)
-#' A2 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
+#' A2 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
 #' str(A2)
 #'
 #' @keywords file
 #' @export
-read.data.sets <- function(file, col.names)
+read_datasets <- function(file, col_names)
 {
   if (!file.exists(file))
     stop("error: ", file, ": No such file or directory");
 
   file <- normalizePath(file)
   out <- .Call("read_data_sets", as.character(file))
-  if (missing(col.names))
-    col.names <- paste0("V", 1L:(ncol(out)-1))
-  colnames(out) <- c(col.names, "set")
+  if (missing(col_names))
+    col_names <- paste0("V", 1L:(ncol(out)-1))
+  colnames(out) <- c(col_names, "set")
   return(as.data.frame(out))
+}
+
+#' @rdname read_datasets
+#' @export
+read.data.sets <- function(file, col.names)
+{
+  .Deprecated("read_datasets")
+  return(read_datasets(file, col.names))
 }
 
 ## Calculate the intermediate points in order to plot a staircase-like
@@ -297,21 +311,21 @@ points.steps <- function(x)
 #'
 #'@note There are several examples of data sets in \code{file.path(system.file(package="eaf"),"extdata")}.
 #'
-#'@seealso \code{\link{read.data.sets}}
+#'@seealso \code{\link{read_datasets}}
 #'
 #'@examples
 #'
 #' eaf.path <- system.file(package="eaf")
 #' 
-#' x <- read.data.sets(file.path(eaf.path, "extdata","example1_dat"))
+#' x <- read_datasets(file.path(eaf.path, "extdata","example1_dat"))
 #' # Compute full EAF
 #' str(eafs(x[,1:2], x[,3]))
 #' 
 #' # Compute only best, median and worst
 #' str(eafs(x[,1:2], x[,3], percentiles = c(0, 50, 100)))
 #'
-#' x <- read.data.sets(file.path(eaf.path,"extdata", "spherical-250-10-3d.txt"))
-#' y <- read.data.sets(file.path(eaf.path,"extdata", "uniform-250-10-3d.txt"))
+#' x <- read_datasets(file.path(eaf.path,"extdata", "spherical-250-10-3d.txt"))
+#' y <- read_datasets(file.path(eaf.path,"extdata", "uniform-250-10-3d.txt"))
 #' x <- data.frame(x, groups = "spherical")
 #' x <- rbind(x, data.frame(y, groups = "uniform"))
 #' # Compute only median separately for each group
@@ -420,7 +434,7 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' 
 #' @return No value is returned.
 #' 
-#' @seealso   \code{\link{read.data.sets}} \code{\link{eafdiffplot}}
+#' @seealso   \code{\link{read_datasets}} \code{\link{eafdiffplot}}
 #'
 #'@examples
 #'data(gcp2x2)
@@ -434,8 +448,8 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' 	percentiles=c(0,50,100), cex = 1.4, lty = c(2,1,2), lwd = c(2,2,2),
 #'      col = c("black","blue","grey50"))
 #' 
-#' A1 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
-#' A2 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
+#' A1 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
+#' A2 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
 #' eafplot(A1, percentiles = 50, sci.notation = TRUE)
 #' eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 #' 
@@ -898,7 +912,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' @param data.left,data.right Data frames corresponding to the input data of
 #'   left and right sides, respectively. Each data frame has at least three
 #'   columns, the third one being the set of each point. See also
-#'   \code{\link{read.data.sets}}.
+#'   \code{\link{read_datasets}}.
 #' 
 #' @param col A character vector of three colors for the magnitude of the
 #'   differences of 0, 0.5, and 1. Intermediate colors are computed
@@ -983,19 +997,19 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' 
 #' @return No return value.
 #' 
-#' @seealso    \code{\link{read.data.sets}}, \code{\link{eafplot}}
+#' @seealso    \code{\link{read_datasets}}, \code{\link{eafplot}}
 #' 
 #' @examples
-#' A1 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "ALG_1_dat"))
-#' A2 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat"))
+#' A1 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_1_dat"))
+#' A2 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat"))
 #' \donttest{# These take time
 #' eafdiffplot(A1, A2, full.eaf = TRUE)
 #' eafdiffplot(A1, A2, type = "area")
 #' eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
 #' }
 #' # A more complex example
-#' a1 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "wrots_l100w10_dat"))
-#' a2 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "wrots_l10w100_dat"))
+#' a1 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "wrots_l100w10_dat"))
+#' a2 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "wrots_l10w100_dat"))
 #' DIFF <- eafdiffplot(a1, a2, col = c("white", "blue", "red"), intervals = 5,
 #' type = "point",
 #'             title.left = expression("W-RoTS, " * lambda * "=" * 100 * ", " * omega * "=" * 10),

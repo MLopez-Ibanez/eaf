@@ -127,8 +127,8 @@ eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2,
 	percentiles=c(0,50,100), cex = 1.4, lty = c(2,1,2), lwd = c(2,2,2),
      col = c("black","blue","grey50"))
 
-A1 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
-A2 <- read.data.sets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
+A1 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
+A2 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
 eafplot(A1, percentiles = 50, sci.notation = TRUE)
 eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 
@@ -166,6 +166,6 @@ eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
 }
 }
 \seealso{
-\code{\link{read.data.sets}} \code{\link{eafdiffplot}}
+\code{\link{read_datasets}} \code{\link{eafdiffplot}}
 }
 \keyword{graphs}

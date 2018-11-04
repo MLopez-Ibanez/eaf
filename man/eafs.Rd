@@ -36,15 +36,15 @@ There are several examples of data sets in \code{file.path(system.file(package="
 
 eaf.path <- system.file(package="eaf")
 
-x <- read.data.sets(file.path(eaf.path, "extdata","example1_dat"))
+x <- read_datasets(file.path(eaf.path, "extdata","example1_dat"))
 # Compute full EAF
 str(eafs(x[,1:2], x[,3]))
 
 # Compute only best, median and worst
 str(eafs(x[,1:2], x[,3], percentiles = c(0, 50, 100)))
 
-x <- read.data.sets(file.path(eaf.path,"extdata", "spherical-250-10-3d.txt"))
-y <- read.data.sets(file.path(eaf.path,"extdata", "uniform-250-10-3d.txt"))
+x <- read_datasets(file.path(eaf.path,"extdata", "spherical-250-10-3d.txt"))
+y <- read_datasets(file.path(eaf.path,"extdata", "uniform-250-10-3d.txt"))
 x <- data.frame(x, groups = "spherical")
 x <- rbind(x, data.frame(y, groups = "uniform"))
 # Compute only median separately for each group
@@ -55,7 +55,7 @@ str(z)
 #         colors = c('#BF382A', '#0C4B8E')) \%>\% add_markers()
 }
 \seealso{
-\code{\link{read.data.sets}}
+\code{\link{read_datasets}}
 }
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}

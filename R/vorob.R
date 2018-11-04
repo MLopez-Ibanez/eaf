@@ -110,7 +110,7 @@ vorobDev <- function(x, VE, reference)
 ##' @param legend.pos the position of the legend, see \code{\link{legend}}. A
 ##'   value of \code{"none"} hides the legend.
 ##' @param col.fun function that creates a vector of \code{n} colors, see
-##'   \code{\link{heat.colors}}.
+##'   \code{\link[grDevices]{heat.colors}()}.
 ##' @examples
 ##' # Now display the symmetric deviation function.
 ##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)

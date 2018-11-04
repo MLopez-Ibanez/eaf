@@ -17,7 +17,7 @@ eafdiffplot(data.left, data.right, col = c("#FFFFFF", "#808080", "#000000"),
 \item{data.left, data.right}{Data frames corresponding to the input data of
 left and right sides, respectively. Each data frame has at least three
 columns, the third one being the set of each point. See also
-\code{\link{read.data.sets}}.}
+\code{\link{read_datasets}}.}
 
 \item{col}{A character vector of three colors for the magnitude of the
 differences of 0, 0.5, and 1. Intermediate colors are computed
@@ -109,16 +109,16 @@ This function calculates the differences between the EAFs of two
   considerably the apparent size of the areas.
 }
 \examples{
-A1 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "ALG_1_dat"))
-A2 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat"))
+A1 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_1_dat"))
+A2 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat"))
 \donttest{# These take time
 eafdiffplot(A1, A2, full.eaf = TRUE)
 eafdiffplot(A1, A2, type = "area")
 eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
 }
 # A more complex example
-a1 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "wrots_l100w10_dat"))
-a2 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", "wrots_l10w100_dat"))
+a1 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "wrots_l100w10_dat"))
+a2 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "wrots_l10w100_dat"))
 DIFF <- eafdiffplot(a1, a2, col = c("white", "blue", "red"), intervals = 5,
 type = "point",
             title.left = expression("W-RoTS, " * lambda * "=" * 100 * ", " * omega * "=" * 10),
@@ -134,6 +134,6 @@ DIFF$right[,3] <- -DIFF$right[,3]
 
 }
 \seealso{
-\code{\link{read.data.sets}}, \code{\link{eafplot}}
+\code{\link{read_datasets}}, \code{\link{eafplot}}
 }
 \keyword{graphs}

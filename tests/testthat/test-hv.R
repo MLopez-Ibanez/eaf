@@ -10,7 +10,7 @@ test.hv.rda <- function(dataset, reference, maximise = FALSE) {
 }
 test.hv.file <- function(file, reference, maximise = FALSE) {
   nobj <- length(reference)
-  dataset <- read.data.sets(file)
+  dataset <- read_datasets(file)
   return(hypervolume(dataset[,1:nobj], reference = reference, maximise))
 }
 

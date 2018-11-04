@@ -5,7 +5,7 @@
 \alias{HybridGA}
 \title{Results of Hybrid GA on vanzyl and Richmond water networks}
 \format{A list with two data frames, each of them with three columns, as
- produced by \code{\link{read.data.sets}}.
+ produced by \code{\link{read_datasets}}.
  \describe{
    \item{\code{$vanzyl}}{data frame of results on vanzyl network}
    \item{\code{$richmond}}{data frame of results on Richmond

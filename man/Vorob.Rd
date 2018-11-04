@@ -36,7 +36,7 @@ symmetric deviation.}
 value of \code{"none"} hides the legend.}
 
 \item{col.fun}{function that creates a vector of \code{n} colors, see
-\code{\link{heat.colors}}.}
+\code{\link[grDevices]{heat.colors}()}.}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold},

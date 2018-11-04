@@ -4,7 +4,7 @@ context("pareto")
 test_that("pareto", {
   test_pareto_rank <- function(extdatafile, maximise = FALSE) {
     path <- file.path(system.file(package="eaf"),"extdata", extdatafile)
-    set <- read.data.sets(path)
+    set <- read_datasets(path)
     # Drop set column
     set <- set[,-ncol(set)]
     ranks <- pareto_rank(set, maximise = maximise)

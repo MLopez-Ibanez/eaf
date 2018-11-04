@@ -16,6 +16,9 @@
 * Online documentation available at: http://lopez-ibanez.eu/eaftools
                                                          (Manuel López-Ibáñez)
 
+* New 'read_datasets()' replaces deprecated 'read.data.sets()'.
+                                                         (Manuel López-Ibáñez)
+
 # eaf 1.8
 
 * Development version moved to GitHub: https://github.com/MLopez-Ibanez/eaf

@@ -462,12 +462,12 @@ xlim <- NULL
 ylim <- NULL
 
 if (do.eaf) {
-  data <- lapply (eaffiles, read.data.sets)
+  data <- lapply (eaffiles, read_datasets)
   xlim <- range(xlim, sapply(data, function(x) x[, 1]))
   ylim <- range(ylim, sapply(data, function(x) x[, 2]))
 } else {
   attsurfs <- lapply(eaffiles, function(x) {
-                     z <- read.data.sets(x)
+                     z <- read_datasets(x)
                      z <- split.data.frame(z, z$set)
                      z <- lapply(z, function(y) {y$set <- 1; return(y)})
                      return(z)})

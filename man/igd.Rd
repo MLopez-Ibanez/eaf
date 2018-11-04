@@ -55,8 +55,8 @@ See Bezerra et al. (2017) for a comparison.
 \examples{
 path.A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
 path.A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
-A1 <- read.data.sets(path.A1)[,1:2]
-A2 <- read.data.sets(path.A2)[,1:2]
+A1 <- read_datasets(path.A1)[,1:2]
+A2 <- read_datasets(path.A2)[,1:2]
 ref <- filter_dominated(rbind(A1, A2))
 igd(A1, ref)
 igd(A2, ref)

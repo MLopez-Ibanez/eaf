@@ -5,7 +5,7 @@
 \alias{SPEA2relativeVanzyl}
 \title{Results of SPEA2 with relative time-controlled triggers on Vanzyl's
 water network.}
-\format{A data frame as produced by \code{\link{read.data.sets}}.}
+\format{A data frame as produced by \code{\link{read_datasets}}.}
 \source{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
  Networks. PhD thesis, School of Engineering and the Built Environment,

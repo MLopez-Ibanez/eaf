@@ -7,8 +7,8 @@ pdf(file = "eafplot.pdf", title = "eafplot.pdf", width = 9,  height = 6)
 ## FIXME: Add main=invokation
 ## FIXME: We need smaller data!
 eaftest <- function(a, b, maximise = c(FALSE, FALSE)) {
-  A1 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", a))
-  A2 <- read.data.sets(file.path(system.file(package="eaf"), "extdata", b))
+  A1 <- read_datasets(file.path(system.file(package="eaf"), "extdata", a))
+  A2 <- read_datasets(file.path(system.file(package="eaf"), "extdata", b))
   if (!any(maximise)) {
     # FIXME: Colors are wrong
     eafplot(A1, type = "area", legend.pos = "bottomleft")

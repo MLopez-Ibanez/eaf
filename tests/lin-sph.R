@@ -1,8 +1,8 @@
 # FIXME: Move this to testthat
 # Test compute eaf3D differences.
 library(eaf)
-lin <- read.data.sets("lin.S.txt")
-sph <- read.data.sets("sph.S.txt")
+lin <- read_datasets("lin.S.txt")
+sph <- read_datasets("sph.S.txt")
 
 nobjs <- ncol(lin) - 1
 nruns.left <- max(lin[, nobjs + 1])

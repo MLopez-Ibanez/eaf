@@ -23,7 +23,7 @@ Functions:
 \code{\link{eafdiffplot}} \tab  Empirical attainment function differences\cr
 \code{\link{eafplot}} \tab  Plot the Empirical Attainment Function for two
 objectives\cr
-\code{\link{read.data.sets}}\tab  Read several data.frame sets
+\code{\link{read_datasets}}\tab  Read several data.frame sets
 }
 
 Data:
@@ -39,7 +39,7 @@ minimum idle time of pumps on Richmond water network}
 Extras are available at \code{file.path(system.file(package="eaf"))}:
 
 \tabular{ll}{
-\code{extdata}        \tab  External data sets (see \code{\link{read.data.sets}})\cr
+\code{extdata}        \tab  External data sets (see \code{\link{read_datasets}})\cr
 \code{scripts/eaf}    \tab  EAF command-line program\cr
 \code{scripts/eafplot}\tab  Perl script to generate plots of attainment surfaces\cr
 \code{scripts/eafdiff}\tab  Perl script to generate plots of EAF differences
@@ -56,8 +56,8 @@ eafplot(time+best~run|inst,groups=alg,data=gcp2x2,
 percentiles = c(0,50,100), cex = 1.4, lty = c(2,1,2),lwd = c(2,2,2),
        col = c("black","blue","grey50"))
 
-A1 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
-A2 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
+A1 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
+A2 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
 eafplot(A1,A2, percentiles=c(50))
 eafplot(list(A1=A1, A2=A2), percentiles=c(50))
 eafdiffplot(A1, A2)

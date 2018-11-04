@@ -15,7 +15,7 @@ test_that("eaf", {
     return(x)
   }
   test.eaf.file <- function(file, percentiles = NULL) {
-    dataset <- read.data.sets(file)
+    dataset <- read_datasets(file)
     x <- eaf:::compute.eaf(dataset, percentiles)
     #saveRDS(x, paste0(basename(file), "-eaf.rds"))
     return(x)

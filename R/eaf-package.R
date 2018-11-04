@@ -15,7 +15,7 @@
 #'\code{\link{eafdiffplot}} \tab  Empirical attainment function differences\cr
 #'\code{\link{eafplot}} \tab  Plot the Empirical Attainment Function for two
 #'objectives\cr
-#'\code{\link{read.data.sets}}\tab  Read several data.frame sets
+#'\code{\link{read_datasets}}\tab  Read several data.frame sets
 #'}
 #'
 #'Data:
@@ -31,7 +31,7 @@
 #' Extras are available at \code{file.path(system.file(package="eaf"))}:
 #'
 #'\tabular{ll}{
-#'\code{extdata}        \tab  External data sets (see \code{\link{read.data.sets}})\cr
+#'\code{extdata}        \tab  External data sets (see \code{\link{read_datasets}})\cr
 #'\code{scripts/eaf}    \tab  EAF command-line program\cr
 #'\code{scripts/eafplot}\tab  Perl script to generate plots of attainment surfaces\cr
 #'\code{scripts/eafdiff}\tab  Perl script to generate plots of EAF differences
@@ -89,8 +89,8 @@
 #'	percentiles = c(0,50,100), cex = 1.4, lty = c(2,1,2),lwd = c(2,2,2),
 #'        col = c("black","blue","grey50"))
 #'
-#'A1 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
-#'A2 <- read.data.sets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
+#'A1 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
+#'A2 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
 #'eafplot(A1,A2, percentiles=c(50))
 #'eafplot(list(A1=A1, A2=A2), percentiles=c(50))
 #'eafdiffplot(A1, A2)
@@ -107,7 +107,7 @@
 #'
 #'@format
 #'  A list with two data frames, each of them with three columns, as
-#'  produced by \code{\link{read.data.sets}}.
+#'  produced by \code{\link{read_datasets}}.
 #'  \describe{
 #'    \item{\code{$vanzyl}}{data frame of results on vanzyl network}
 #'    \item{\code{$richmond}}{data frame of results on Richmond
@@ -131,7 +131,7 @@
 #'The data has the only goal of providing an example of use of eafplot.
 #'
 #'@format 
-#'  A data frame as produced by \code{\link{read.data.sets}}. The second
+#'  A data frame as produced by \code{\link{read_datasets}}. The second
 #'  column measures time in seconds and corresponds to a maximisation problem.
 #'
 #' @source
@@ -155,7 +155,7 @@
 #' The data has the only goal of providing an example of use of eafplot.
 #'
 #'@format 
-#'  A data frame as produced by \code{\link{read.data.sets}}.
+#'  A data frame as produced by \code{\link{read_datasets}}.
 #'
 #' @source
 #'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
@@ -179,7 +179,7 @@
 #'The data has the only goal of providing an example of use of eafplot.
 #'
 #'@format 
-#'  A data frame as produced by \code{\link{read.data.sets}}.
+#'  A data frame as produced by \code{\link{read_datasets}}.
 #'
 #'@source
 #'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution

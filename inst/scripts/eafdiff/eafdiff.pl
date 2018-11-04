@@ -346,8 +346,8 @@ EOFR
 print R <<'EOFR';
 
 
-data.left <- read.data.sets (file.left)
-data.right <- read.data.sets (file.right)
+data.left <- read_datasets (file.left)
+data.right <- read_datasets (file.right)
 xlim <- range(data.left[,1], data.right[,1])
 ylim <- range(data.left[,2], data.right[,2])
 
