@@ -41,6 +41,8 @@ The corresponding [book chapter](#LopPaqStu09emaa) [1] explains the use of
 these visualization tools and illustrates them with examples arising from
 practice.
 
+In addition, the package provides functions for computing several quality metrics, such as hypervolume, IGD, IGD+, and epsilon.
+
 **Keywords**: empirical attainment function, summary attainment surfaces, EAF
 differences, multi-objective optimization, bi-objective optimization,
 performance measures, performance assessment, graphical analysis,
