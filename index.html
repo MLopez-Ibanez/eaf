@@ -103,10 +103,9 @@
 <li>
 <p>Install within R (automatic download, internet connection required). Invoke R, then</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">    <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"modeltools"</span>, <span class="st">"eaf"</span>))</a></code></pre></div>
-<ol>
+</li>
 <li>
-<a href="https://cran.r-project.org/package=eaf">Download the eaf package from CRAN</a> (you may also need to download and install first the <a href="https://cran.r-project.org/package=modeltools">package modeltools</a>), and invoke at the command-line:</li>
-</ol>
+<p>(Download the eaf package from CRAN)[<a href="https://cran.r-project.org/package=eaf" class="uri">https://cran.r-project.org/package=eaf</a>] (you may also need to download and install first the (package modeltools)[<a href="https://cran.r-project.org/package=modeltools" class="uri">https://cran.r-project.org/package=modeltools</a>]), and invoke at the command-line:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1">    <span class="ex">R</span> CMD INSTALL <span class="op">&lt;</span>package<span class="op">&gt;</span></a></code></pre></div>
 <p>where <code>&lt;package&gt;</code> is one of the three versions available: <code>.tar.gz</code> (Unix/BSD/GNU/Linux), <code>.tgz</code> (MacOS X), or <code>.zip</code> (Windows).</p>
 </li>
@@ -143,20 +142,20 @@
 <h2 class="hasAnchor">
 <a href="#python" class="anchor"></a>Python</h2>
 <p>Thanks to <a href="https://rpy2.github.io/doc/latest/html/index.html">rpy2</a>, you can use the <code>eaf</code> package from Python. A complete example would be:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="im">from</span> rpy2.robjects <span class="im">import</span> r <span class="im">as</span> R</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="im">from</span> rpy2.interactive <span class="im">import</span> process_revents</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">process_revents.start()</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" data-line-number="1">    <span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="im">from</span> rpy2.robjects <span class="im">import</span> r <span class="im">as</span> R</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="im">from</span> rpy2.interactive <span class="im">import</span> process_revents</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    process_revents.start()</a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">eaf <span class="op">=</span> importr(<span class="st">"eaf"</span>)</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">path <span class="op">=</span> R(<span class="st">'system.file(package="eaf")'</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"/extdata/"</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">alg1 <span class="op">=</span> eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_1_dat"</span>)</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">alg1 <span class="op">=</span> np.array(alg1).transpose()</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">eaf.eafplot(alg1[:, <span class="dv">0</span>:<span class="dv">2</span>], sets<span class="op">=</span>alg1[:,<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    eaf <span class="op">=</span> importr(<span class="st">"eaf"</span>)</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    path <span class="op">=</span> R(<span class="st">'system.file(package="eaf")'</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"/extdata/"</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">    alg1 <span class="op">=</span> eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_1_dat"</span>)</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">    alg1 <span class="op">=</span> np.array(alg1).transpose()</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">    eaf.eafplot(alg1[:, <span class="dv">0</span>:<span class="dv">2</span>], sets<span class="op">=</span>alg1[:,<span class="dv">2</span>])</a>
 <a class="sourceLine" id="cb4-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">alg2 <span class="op">=</span> np.array(eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_2_dat"</span>)).transpose()</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">eaf.eafdiffplot(alg1, alg2)</a></code></pre></div>
+<a class="sourceLine" id="cb4-13" data-line-number="13">    alg2 <span class="op">=</span> np.array(eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_2_dat"</span>)).transpose()</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">    eaf.eafdiffplot(alg1, alg2)</a></code></pre></div>
 </div>
 <div id="license" class="section level2">
 <h2 class="hasAnchor">
