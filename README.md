@@ -71,8 +71,8 @@ The first step before installing the eaf package is to [install R](https://cran.
         install.packages(c("modeltools", "eaf"))
     ```
     
- 2. (Download the eaf package from CRAN)[https://cran.r-project.org/package=eaf] (you may also need to download and install
-    first the (package modeltools)[https://cran.r-project.org/package=modeltools]), and invoke at the command-line:
+    2. [Download the eaf package from CRAN](https://cran.r-project.org/package=eaf) (you may also need to download and install
+    first the [package modeltools](https://cran.r-project.org/package=modeltools)), and invoke at the command-line:
     
     ```bash
         R CMD INSTALL <package>
@@ -119,20 +119,20 @@ Thanks to [rpy2](https://rpy2.github.io/doc/latest/html/index.html), you can
 use the `eaf` package from Python. A complete example would be:
 
 ```python
-    import numpy as np
-    from rpy2.robjects.packages import importr
-    from rpy2.robjects import r as R
-    from rpy2.interactive import process_revents
-    process_revents.start()
+import numpy as np
+from rpy2.robjects.packages import importr
+from rpy2.robjects import r as R
+from rpy2.interactive import process_revents
+process_revents.start()
 
-    eaf = importr("eaf")
-    path = R('system.file(package="eaf")')[0] + "/extdata/"
-    alg1 = eaf.read_data_sets_(path + "ALG_1_dat")
-    alg1 = np.array(alg1).transpose()
-    eaf.eafplot(alg1[:, 0:2], sets=alg1[:,2])
+eaf = importr("eaf")
+path = R('system.file(package="eaf")')[0] + "/extdata/"
+alg1 = eaf.read_data_sets_(path + "ALG_1_dat")
+alg1 = np.array(alg1).transpose()
+eaf.eafplot(alg1[:, 0:2], sets=alg1[:,2])
 
-    alg2 = np.array(eaf.read_data_sets_(path + "ALG_2_dat")).transpose()
-    eaf.eafdiffplot(alg1, alg2)
+alg2 = np.array(eaf.read_data_sets_(path + "ALG_2_dat")).transpose()
+eaf.eafdiffplot(alg1, alg2)
 ```
 
 License
