@@ -692,8 +692,6 @@ eafplot.default <-
 
   if (!is.null(legend.txt) && is.na(pmatch(legend.pos,"none"))) {
     if (type == "area") {
-      print(legend.txt)
-      print(col)
       legend(x = legend.pos, y = NULL,
              legend = legend.txt, fill = c(col, "#FFFFFF"),
              bg="white",bty="n", xjust=0, yjust=0, cex=0.9)

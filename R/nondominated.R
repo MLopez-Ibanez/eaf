@@ -14,10 +14,11 @@ check_dataset <- function(x)
 }
 
 
+#' Identify, remove and rank dominated points according to Pareto optimality
+#'
 #' Identify nondominated points with \code{is_nondominated} and remove dominated
 #' ones with \code{filter_dominated}.
 #' 
-#' @title Identify, remove and rank dominated points according to Pareto optimality
 #' @rdname nondominated
 #'
 #' @param data Either a matrix or a data frame of numerical values, where
@@ -73,7 +74,7 @@ filter_dominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
             , drop = FALSE])
 }
 
-#' \code{pareto_rank} ranks points according to Pareto-optimality, which is also called
+#' @description \code{pareto_rank} ranks points according to Pareto-optimality, which is also called
 #' nondominated sorting (Deb et al., 2002).
 #' 
 #' @rdname nondominated

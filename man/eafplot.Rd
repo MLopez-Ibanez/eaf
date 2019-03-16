@@ -10,7 +10,8 @@
 \usage{
 eafplot(x, ...)
 
-\method{eafplot}{formula}(formula, data, groups = NULL, subset = NULL, ...)
+\method{eafplot}{formula}(formula, data, groups = NULL, subset = NULL,
+  ...)
 
 \method{eafplot}{list}(x, ...)
 
@@ -18,14 +19,14 @@ eafplot(x, ...)
 
 \method{eafplot}{default}(x, sets = NULL, groups = NULL,
   percentiles = c(0, 50, 100), attsurfs = NULL, xlab = NULL,
-  ylab = NULL, xlim = NULL, ylim = NULL, log = "", type = "point",
-  col = NULL, lty = c("dashed", "solid", "solid", "solid", "dashed"),
-  lwd = 1.75, pch = NA, cex.pch = par("cex"), las = par("las"),
-  legend.pos = "topright", legend.txt = NULL, extra.points = NULL,
-  extra.legend = NULL, extra.pch = 4:25, extra.lwd = 0.5,
-  extra.lty = NA, extra.col = "black", maximise = c(FALSE, FALSE),
-  xaxis.side = "below", yaxis.side = "left", axes = TRUE,
-  sci.notation = FALSE, ...)
+  ylab = NULL, xlim = NULL, ylim = NULL, log = "",
+  type = "point", col = NULL, lty = c("dashed", "solid", "solid",
+  "solid", "dashed"), lwd = 1.75, pch = NA, cex.pch = par("cex"),
+  las = par("las"), legend.pos = "topright", legend.txt = NULL,
+  extra.points = NULL, extra.legend = NULL, extra.pch = 4:25,
+  extra.lwd = 0.5, extra.lty = NA, extra.col = "black",
+  maximise = c(FALSE, FALSE), xaxis.side = "below",
+  yaxis.side = "left", axes = TRUE, sci.notation = FALSE, ...)
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of

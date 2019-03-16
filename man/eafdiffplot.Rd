@@ -4,14 +4,15 @@
 \alias{eafdiffplot}
 \title{Empirical attainment function differences}
 \usage{
-eafdiffplot(data.left, data.right, col = c("#FFFFFF", "#808080", "#000000"),
-  intervals = 5, percentiles = c(50), full.eaf = FALSE, type = "area",
-  legend.pos = if (full.eaf) "bottomleft" else "topright",
-  title.left = deparse(substitute(data.left)),
-  title.right = deparse(substitute(data.right)), xlim = NULL, ylim = NULL,
-  cex = par("cex"), cex.lab = par("cex.lab"), cex.axis = par("cex.axis"),
-  maximise = c(FALSE, FALSE), grand.lines = TRUE, sci.notation = FALSE,
-  left.panel.last = NULL, right.panel.last = NULL, ...)
+eafdiffplot(data.left, data.right, col = c("#FFFFFF", "#808080",
+  "#000000"), intervals = 5, percentiles = c(50), full.eaf = FALSE,
+  type = "area", legend.pos = if (full.eaf) "bottomleft" else
+  "topright", title.left = deparse(substitute(data.left)),
+  title.right = deparse(substitute(data.right)), xlim = NULL,
+  ylim = NULL, cex = par("cex"), cex.lab = par("cex.lab"),
+  cex.axis = par("cex.axis"), maximise = c(FALSE, FALSE),
+  grand.lines = TRUE, sci.notation = FALSE, left.panel.last = NULL,
+  right.panel.last = NULL, ...)
 }
 \arguments{
 \item{data.left, data.right}{Data frames corresponding to the input data of

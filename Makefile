@@ -32,6 +32,7 @@ help :
 	@echo '   build     build $(PACKAGE) at $(BINDIR)		'
 	@echo '   cran      check with --as-cran			'
 	@echo '   check     check with --timings			'
+	@echo '   check TEST=x  run test called test-x.R                '
 	@echo '   pdf       build $(PACKAGE).pdf			'
 	@echo '   winbuild  send to http\://win-builder.r-project.org/	'
 	@echo '   submit    submit to CRAN (see DEVEL-README first!)    '
@@ -63,7 +64,11 @@ cran : build pkgdown
 	cd $(BINDIR) && _R_CHECK_FORCE_SUGGESTS_=false R CMD check --as-cran $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
 check: build
+ifdef TEST
+	_R_CHECK_FORCE_SUGGESTS_=false NOT_CRAN=true R --slave -e 'devtools::test(filter="$(TEST)")'
+else
 	cd $(BINDIR) && (_R_CHECK_FORCE_SUGGESTS_=false NOT_CRAN=true R CMD check --run-donttest --run-dontrun --timings $(PACKAGE)_$(PACKAGEVERSION).tar.gz; cat $(PACKAGE).Rcheck/$(PACKAGE)-Ex.timings)
+endif
 
 clean:
 	cd $(PACKAGEDIR) && ($(RM) ./$(PACKAGE)-Ex.R ./src/*.o ./src/*.so; \

@@ -10,10 +10,10 @@ vorobT(x, reference)
 
 vorobDev(x, VE, reference)
 
-symDifPlot(x, VE, threshold, nlevels = 11, ve.col = "blue", xlim = NULL,
-  ylim = NULL, legend.pos = "topright",
-  main = "Symmetric deviation function", col.fun = function(n) gray(seq(0,
-  0.9, length.out = n)^2))
+symDifPlot(x, VE, threshold, nlevels = 11, ve.col = "blue",
+  xlim = NULL, ylim = NULL, legend.pos = "topright",
+  main = "Symmetric deviation function", col.fun = function(n)
+  gray(seq(0, 0.9, length.out = n)^2))
 }
 \arguments{
 \item{x}{Either a matrix of data values, or a data frame, or a list of data

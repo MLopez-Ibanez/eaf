@@ -103,14 +103,9 @@ Maintainer:  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
  Contributors: Carlos Fonseca, Luis Paquete, Thomas \enc{Stützle}{Stuetzle}, 
  Manuel \enc{López-Ibáñez}{Lopez-Ibanez} and Marco Chiarandini.
 }
-\concept{
-multivariate
-
-optimize
-
-time-quality algorithm profile
-
-empirical attainment function
-}
+\concept{empirical attainment function}
+\concept{multivariate}
+\concept{optimize}
+\concept{time-quality algorithm profile}
 \keyword{graphs}
 \keyword{package}
