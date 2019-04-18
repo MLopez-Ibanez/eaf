@@ -124,7 +124,7 @@ belongs.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>read_datasets</span>(<span class='no'>file</span>, <span class='no'>col_names</span>)
+    <pre class="usage"><span class='fu'>read_datasets</span>(<span class='no'>file</span>, <span class='no'>col_names</span>, <span class='no'>text</span>)
 
 <span class='fu'>read.data.sets</span>(<span class='no'>file</span>, <span class='no'>col.names</span>)</pre>
     
@@ -142,6 +142,14 @@ the file name is <em>relative</em> to the current working directory,
       <th>col_names, col.names</th>
       <td><p>Vector of optional names for the variables.  The
 default is to use <samp>"V"</samp> followed by the column number.</p></td>
+    </tr>
+    <tr>
+      <th>text</th>
+      <td><p>character string: if <code>file</code> is not supplied and this is,
+  then data are read from the value of <code>text</code> via a text connection.
+  Notice that a literal string can be used to include (small) data sets
+  within R code.
+'</p></td>
     </tr>
     </table>
     
@@ -181,6 +189,11 @@ default is to use <samp>"V"</samp> followed by the column number.</p></td>
 #&gt;  $ V1 : num  1.21e+10 1.21e+10 1.21e+10 1.21e+10 1.21e+10 ...
 #&gt;  $ V2 : num  3.17e+09 3.17e+09 3.17e+09 3.17e+09 3.17e+09 ...
 #&gt;  $ set: num  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'>
+<span class='fu'>read_datasets</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='st'>"1 2\n3 4\n\n5 6\n7 8\n"</span>, <span class='kw'>col_names</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"obj1"</span>, <span class='st'>"obj2"</span>))</div><div class='output co'>#&gt;   obj1 obj2 set
+#&gt; 1    1    2   1
+#&gt; 2    3    4   1
+#&gt; 3    5    6   2
+#&gt; 4    7    8   2</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
