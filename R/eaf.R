@@ -223,6 +223,11 @@ matrix.maximise <- function(z, maximise)
 #' @param col_names,col.names Vector of optional names for the variables.  The
 #'   default is to use \samp{"V"} followed by the column number.
 #'
+#' @param text character string: if \code{file} is not supplied and this is,
+#'   then data are read from the value of \code{text} via a text connection.
+#'   Notice that a literal string can be used to include (small) data sets
+#'   within R code.
+#''
 #' @return  A data frame (\code{data.frame}) containing a representation of the
 #'  data in the file. An extra column \code{set} is added to indicate to
 #'  which set each row belongs. 
@@ -249,14 +254,21 @@ matrix.maximise <- function(z, maximise)
 #' A2 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
 #' str(A2)
 #'
+#' read_datasets(text="1 2\n3 4\n\n5 6\n7 8\n", col_names=c("obj1", "obj2"))
+#' 
 #' @keywords file
 #' @export
-read_datasets <- function(file, col_names)
+read_datasets <- function(file, col_names, text)
 {
-  if (!file.exists(file))
-    stop("error: ", file, ": No such file or directory");
-
-  file <- normalizePath(file)
+  if (missing(file) && !missing(text)) {
+    file <- tempfile()
+    writeLines(text, file)
+    on.exit(unlink(file))
+  } else {
+    if (!file.exists(file))
+      stop("error: ", file, ": No such file or directory");
+    file <- normalizePath(file)
+  }
   out <- .Call("read_data_sets", as.character(file))
   if (missing(col_names))
     col_names <- paste0("V", 1L:(ncol(out)-1))
@@ -269,7 +281,7 @@ read_datasets <- function(file, col_names)
 read.data.sets <- function(file, col.names)
 {
   .Deprecated("read_datasets")
-  return(read_datasets(file, col.names))
+  return(read_datasets(file=file, col_names=col.names))
 }
 
 ## Calculate the intermediate points in order to plot a staircase-like

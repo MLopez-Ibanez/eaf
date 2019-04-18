@@ -5,7 +5,7 @@
 \alias{read.data.sets}
 \title{Read several data.frame sets}
 \usage{
-read_datasets(file, col_names)
+read_datasets(file, col_names, text)
 
 read.data.sets(file, col.names)
 }
@@ -17,6 +17,12 @@ the file name is \emph{relative} to the current working directory,
 
 \item{col_names, col.names}{Vector of optional names for the variables.  The
 default is to use \samp{"V"} followed by the column number.}
+
+\item{text}{character string: if \code{file} is not supplied and this is,
+  then data are read from the value of \code{text} via a text connection.
+  Notice that a literal string can be used to include (small) data sets
+  within R code.
+'}
 }
 \value{
 A data frame (\code{data.frame}) containing a representation of the
@@ -50,6 +56,8 @@ A1 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
 str(A1)
 A2 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
 str(A2)
+
+read_datasets(text="1 2\\n3 4\\n\\n5 6\\n7 8\\n", col_names=c("obj1", "obj2"))
 
 }
 \seealso{

@@ -1,8 +1,8 @@
 # eaf 1.9 
 
 * Compute Vorob'ev threshold, expectation and deviation. Plots of the symmetric
-  deviation.
-                                                              (Mickael Binois)
+  deviation.                                             (Mickael Binois)
+
 * Non-integer EAF percentiles are computed correctly.
                                                          (Manuel López-Ibáñez)
 
@@ -16,7 +16,8 @@
 * Online documentation available at: http://lopez-ibanez.eu/eaftools
                                                          (Manuel López-Ibáñez)
 
-* New 'read_datasets()' replaces deprecated 'read.data.sets()'.
+* New `read_datasets()` replaces deprecated `read.data.sets()`.
+  New parameter `text` of `read_datasets()`.
                                                          (Manuel López-Ibáñez)
 
 # eaf 1.8
