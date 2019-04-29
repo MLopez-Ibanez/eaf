@@ -60,11 +60,22 @@ visualization.
 Download and installation
 -------------------------
 
-The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just [download the package source code](https://cran.r-project.org/package=eaf), uncompress it, and look for the directory `inst/scripts/eaf`. This code can be used to implement your own visualizations instead of the visualizations provided by the eaf package.
+The software is implemented as an R package, but the code for only computing
+the EAF is available as a C program, and it does not require installing R or
+any R packages. Just [download the package source
+code](https://cran.r-project.org/package=eaf), uncompress it, and look for the
+directory `src/eaf`. This code can be used to implement your own visualizations
+instead of the visualizations provided by the **eaf** package. Compiled binaries
+can be found under `system.file(package="eaf", "bin")`. Other useful
+binaries can be found there.
 
-The visualization of the EAFs require installing the eaf package. Therefore, for making use of all the features, a basic knowledge of R is recommended. However, the eaf package contains two Perl scripts that allow to generate standard plots without any knowledge about R. See `inst/scripts/eafplot/` and `inst/scripts/eafdiff/` in the package source code. The scripts use the eaf package internally to generate the plots, and, hence, the eaf package must be installed and working.
+The visualization of the EAFs requires installing the **eaf** package. Therefore,
+a basic knowledge of R is recommended to make use of all features. However, the
+`eaf` package contains two Perl scripts that allow to generate standard plots
+without any R knowledge. See `inst/scripts/eafplot/` and
+`inst/scripts/eafdiff/` in the package source code. The scripts use the **eaf** package internally to generate the plots, and, hence, the **eaf** package must be installed and working.
 
-The first step before installing the eaf package is to [install R](https://cran.r-project.org/). Once R is installed in the system, there are two methods for installing the eaf package:
+The first step before installing the **eaf** package is to [install R](https://cran.r-project.org/). Once R is installed in the system, there are two methods for installing the **eaf** package:
 
  1. Install within R (automatic download, internet connection required). Invoke
     R, then
@@ -73,7 +84,7 @@ The first step before installing the eaf package is to [install R](https://cran.
         install.packages(c("modeltools", "eaf"))
     ```
     
-    2. [Download the eaf package from CRAN](https://cran.r-project.org/package=eaf) (you may also need to download and install
+    2. [Download the **eaf** package from CRAN](https://cran.r-project.org/package=eaf) (you may also need to download and install
     first the [package modeltools](https://cran.r-project.org/package=modeltools)), and invoke at the command-line:
     
     ```bash
@@ -85,13 +96,13 @@ Search the [R documentation](https://cran.r-project.org/faqs.html) if you need m
 
 If you wish to be notified of bugfixes and new versions, please subscribe to the [low-volume emo-list](https://lists.dei.uc.pt/mailman/listinfo/emo-list), where announcements will be made.
 
-[ [Download eaf package from CRAN](https://cran.r-project.org/package=eaf) ]  [ [Documentation](http://lopez-ibanez.eu/eaftools) ]  [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
+[ [Download **eaf** package from CRAN](https://cran.r-project.org/package=eaf) ]  [ [Documentation](http://lopez-ibanez.eu/eaftools) ]  [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
 
 
 Usage
 -----
 
-Once the eaf package is installed, the following R commands will give more information:
+Once the **eaf** package is installed, the following R commands will give more information:
 ```r
     library(eaf)
     ?eaf
@@ -106,11 +117,14 @@ Apart from the main R package, the source code contains the following extras in
 the directory `inst/` (after installation, these files can be found at the
 directory printed by the R command `system.file(package="eaf")`):
 
- * `scripts/eaf` : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at http://www.tik.ee.ethz.ch/pisa/. Another version of the code that handles three dimensions is available at [Prof. Fonseca's website](http://eden.dei.uc.pt/~cmfonsec/software.html#aft).
  * `scripts/eafplot` : Perl script to plot summary attainment surfaces.
  * `scripts/eafdiff` : Perl script to plot the differences between the EAFs of two input sets.
  * `extdata/` : Examples of utilization of the above programs. These are discussed in the corresponding [book chapter](#LopPaqStu09emaa) [1].
 
+In addition, the source code contains the following under `src/`:
+ * `src/eaf` : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at http://www.tik.ee.ethz.ch/pisa/. Another version of the code that handles three dimensions is available at [Prof. Fonseca's website](http://eden.dei.uc.pt/~cmfonsec/software.html#aft).
+ * `src/mo-tools` : Several tools for working with multi-objective data.
+ 
 For more information, consult the `README` files at each subdirectory.
 
 
@@ -140,7 +154,7 @@ eaf.eafdiffplot(alg1, alg2)
 License
 --------
 
-This software is Copyright (C) 2011 Carlos M. Fonseca, Luís Paquete, Thomas
+This software is Copyright (C) 2011-2019 Carlos M. Fonseca, Luís Paquete, Thomas
 Stützle, Manuel López-Ibáñez and Marco Chiarandini.
 
 This program is free software (software libre); you can redistribute it and/or

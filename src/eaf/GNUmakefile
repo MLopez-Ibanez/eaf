@@ -44,18 +44,16 @@ BINDIR := ./
 OBJS =  eaf.o io.o eaf_main.o eaf3d.o avl.o
 HEADERS = eaf.h io_priv.h io.h cvector.h avl.h common.h gcc_attribs.h
 
-EAFEXE=eaf
+EAFEXE=eaf$(EXE)
 
+EXE_LDFLAGS =
+
+DELETE = @rm -f
+ECHO = @echo "$(1)"
 
 ifdef march
 MARCH=$(march)
 endif
-
-# Order is important !
-LINKERFLAGS =
-
-DELETE = @rm -f
-ECHO = @echo "$(1)"
 
 ## Do we have svnversion?
 ifeq ($(shell sh -c 'which svnversion 1> /dev/null 2>&1 && echo y'),y)
@@ -70,11 +68,10 @@ SVN_REV = $(shell sh -c 'cat svn_version 2> /dev/null')
 -include gcc.mk
 
 ifdef ARCH
-override CFLAGS += -DMARCH='"$(ARCH)"'
+EAF_CFLAGS += -DMARCH='"$(ARCH)"'
 endif
 
-override CFLAGS += $(OPT_CFLAGS) -DDEBUG=$(DEBUG) \
-		   -D VERSION='"$(VERSION)"'
+EAF_CFLAGS += $(OPT_CFLAGS) -DDEBUG=$(DEBUG) -DVERSION='"$(VERSION)"'
 
 .PHONY : default all clean distclean test dist
 
@@ -85,13 +82,13 @@ $(BINDIR)/$(EAFEXE) : $(OBJS)
 $(BINDIR)/$(EAFEXE) :
 	@mkdir -p $(BINDIR)
 	$(call ECHO,--> Building $@ version $(VERSION) <---)
-	$(CC) -o $@ $(OBJS) $(CFLAGS) $(LINKERFLAGS)
+	$(CC) -o $@ $(OBJS) $(EAF_CFLAGS) $(CFLAGS) $(EXE_LDFLAGS)
 
 $(OBJS) : eaf.h io.h
 io.o : io_priv.h
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(EAF_CFLAGS) $(CFLAGS) -c -o $@ $<
 
 test: DEBUG=1
 test: clean $(BINDIR)/$(EAFEXE)

@@ -6,7 +6,7 @@ EAF_SRC_FILES= avl.c eaf3d.c eaf.c io.c
 MOTOOLS_SRC_FILES = hv_contrib.c hv.c pareto.c
 SOURCES = $(EAF_SRC_FILES:%=eaf/%) $(MOTOOLS_SRC_FILES:%=mo-tools/%) init.c  Reaf.c  Repsilon.c  Rhv.c  Rnondominated.c  
 OBJECTS = $(SOURCES:.c=.o)
-EXE=
+EXE=.exe
 
 eaf = eaf/eaf$(EXE)
 igd = mo-tools/igd$(EXE)

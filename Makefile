@@ -2,7 +2,8 @@ PACKAGEVERSION=1.9
 PACKAGE=$(shell sh -c 'grep -F "Package: " DESCRIPTION | cut -f2 -d" "')
 
 # FIXME: This Makefile only works with this BINDIR!
-SCRIPTSDIR=~/work/perfassess/eaf/eaftools/
+EAFTOOLS_DIR=~/work/perfassess/eaf/eaftools/
+MOTOOLS_DIR=~/work/perfassess/
 BINDIR=$(CURDIR)/..
 RNODE=iridiacluster
 RDIR=~/
@@ -36,7 +37,7 @@ help :
 	@echo '   pdf       build $(PACKAGE).pdf			'
 	@echo '   winbuild  send to http\://win-builder.r-project.org/	'
 	@echo '   submit    submit to CRAN (see DEVEL-README first!)    '
-
+	@echo '   clean     cleanup    '
 
 install: clean scripts
 	cd $(BINDIR) && R CMD INSTALL $(INSTALL_FLAGS) $(PACKAGEDIR)
@@ -73,28 +74,33 @@ endif
 clean:
 	cd $(PACKAGEDIR) && ($(RM) ./$(PACKAGE)-Ex.R ./src/*.o ./src/*.so; \
 		find . -name '*.orig' -o -name '.Rhistory' | xargs $(RM) )
-	make -C $(PACKAGEDIR)/inst/scripts/eaf clean
+	make -C $(PACKAGEDIR)/src/eaf clean
+	make -C $(PACKAGEDIR)/src/mo-tools clean
 
 pdf:
 	$(RM) $(BINDIR)/$(PACKAGE).pdf
 	cd $(BINDIR) && R CMD Rd2pdf --no-preview --batch --output=$(PACKAGE).pdf $(PACKAGEDIR)
 
 scripts:
-	@if [ -d $(SCRIPTSDIR) ]; then \
-	cp -f ~/work/perfassess/mo-tools/*.[ch] $(PACKAGEDIR)/inst/scripts/mo-tools/ && \
-	cp -f $(SCRIPTSDIR)/eafplot/eafplot.pl $(SCRIPTSDIR)/eafplot/README \
+	@if [ -d $(EAFTOOLS_DIR) ]; then \
+	cp -f $(EAFTOOLS_DIR)/eafplot/eafplot.pl $(EAFTOOLS_DIR)/eafplot/README \
 		$(PACKAGEDIR)/inst/scripts/eafplot/ && \
 	chmod a-w $(PACKAGEDIR)/inst/scripts/eafplot/eafplot.pl $(PACKAGEDIR)/inst/scripts/eafplot/README && \
-	cp -f $(SCRIPTSDIR)/eafdiff/eafdiff.pl $(SCRIPTSDIR)/eafdiff/README \
+	cp -f $(EAFTOOLS_DIR)/eafdiff/eafdiff.pl $(EAFTOOLS_DIR)/eafdiff/README \
 		$(PACKAGEDIR)/inst/scripts/eafdiff/ && \
 	chmod a-w $(PACKAGEDIR)/inst/scripts/eafdiff/eafdiff.pl $(PACKAGEDIR)/inst/scripts/eafdiff/README && \
-	rm -f $(SCRIPTSDIR)/eaf-*-src.tar.gz && \
-	make -C $(SCRIPTSDIR)/eaf dist && \
-	cd $(PACKAGEDIR)/inst/scripts/eaf \
-	&& tar xvzf $(SCRIPTSDIR)/eaf-*-src.tar.gz --strip-components=1 \
-	&& make -C $(PACKAGEDIR)/inst/scripts/eaf clean; \
+	rm -f $(MOTOOLS_DIR)/mo-tools-*-src.tar.gz && \
+	make -C $(MOTOOLS_DIR)/mo-tools dist && \
+	cd $(PACKAGEDIR)/src/mo-tools \
+	&& tar xvzf $(MOTOOLS_DIR)/mo-tools-*-src.tar.gz --strip-components=1 \
+	&& make -C $(PACKAGEDIR)/src/mo-tools clean; \
+	rm -f $(EAFTOOLS_DIR)/eaf-*-src.tar.gz && \
+	make -C $(EAFTOOLS_DIR)/eaf dist && \
+	cd $(PACKAGEDIR)/src/eaf \
+	&& tar xvzf $(EAFTOOLS_DIR)/eaf-*-src.tar.gz --strip-components=1 \
+	&& make -C $(PACKAGEDIR)/src/eaf clean; \
 	else \
-	echo "WARNING: $(SCRIPTSDIR) not found!"; \
+	echo "WARNING: $(EAFTOOLS_DIR) not found!"; \
 	fi
 
 version :

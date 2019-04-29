@@ -18,7 +18,7 @@
 #include <assert.h>
 #define eaf_assert(X) assert(X)
 
-static void fatal_error(const char * format,...) __attribute__ ((format(printf, 1, 2))) __noreturn;
+static void fatal_error(const char * format,...) __attribute__ ((format(printf, 1, 2))) __noreturn __unused;
 
 static void fatal_error(const char *format,...)
 {
@@ -33,15 +33,16 @@ void warnprintf(const char *format,...)  __attribute__ ((format(printf, 1, 2)));
 #endif
 
 #if __GNUC__ >= 3
-#define MAX(x,y) \
-       ({ typeof (x) _x__ = (x);        \
-           typeof (y) _y__ = (y);       \
-         _x__ > _y__ ? _x__ : _y__; })
-#define MIN(x,y) \
-       ({ typeof (x) _x__ = (x);        \
-           typeof (y) _y__ = (y);       \
-         _x__ < _y__ ? _x__ : _y__; })
-#endif 
+#define MAX(x,y) __extension__                       \
+    ({ typeof (x) _x__ = (x);                        \
+        typeof (y) _y__ = (y);                       \
+        _x__ > _y__ ? _x__ : _y__; })
+#define MIN(x,y) __extension__          \
+    ({ typeof (x) _x__ = (x);           \
+        typeof (y) _y__ = (y);          \
+        _x__ < _y__ ? _x__ : _y__; })
+#endif
+
 
 #define DEBUG_DO(X)     do{ X;} while(0)
 #define DEBUG_NOT_DO(X) while(0){ X;}
