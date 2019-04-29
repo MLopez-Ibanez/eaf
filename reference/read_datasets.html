@@ -136,7 +136,7 @@ belongs.</p>
       <td><p>Filename that contains the data.  Each row of the table appears
 as one line of the file.  If it does not contain an <em>absolute</em> path,
 the file name is <em>relative</em> to the current working directory,
-<code><a href='https://www.rdocumentation.org/packages/base/topics/getwd'>getwd</a>()</code>.  Tilde-expansion is performed where supported.</p></td>
+<code><a href='https://rdrr.io/r/base/getwd.html'>getwd</a>()</code>.  Tilde-expansion is performed where supported.</p></td>
     </tr>
     <tr>
       <th>col_names, col.names</th>
@@ -162,7 +162,7 @@ default is to use <samp>"V"</samp> followed by the column number.</p></td>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>There are several examples of data sets in
-  <code><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path(system.file(package="eaf"),"extdata")</a></code>.</p>
+  <code><a href='https://rdrr.io/r/base/file.path.html'>file.path(system.file(package="eaf"),"extdata")</a></code>.</p>
 <p><code>read.data.sets</code> is a deprecated alias. It will be removed in the next
   major release.</p>
     
@@ -176,20 +176,20 @@ default is to use <samp>"V"</samp> followed by the column number.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.table</a></code>, <code><a href='eafplot.html'>eafplot</a></code>, <code><a href='eafdiffplot.html'>eafdiffplot</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></code>, <code><a href='eafplot.html'>eafplot</a></code>, <code><a href='eafdiffplot.html'>eafdiffplot</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'>read_datasets</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_1_dat"</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>A1</span>)</div><div class='output co'>#&gt; 'data.frame':	23260 obs. of  3 variables:
+    <pre class="examples"><div class='input'><span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'>read_datasets</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_1_dat"</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>A1</span>)</div><div class='output co'>#&gt; 'data.frame':	23260 obs. of  3 variables:
 #&gt;  $ V1 : num  1.23e+10 1.11e+10 1.18e+10 1.13e+10 9.80e+09 ...
 #&gt;  $ V2 : num  3.49e+09 3.69e+09 3.59e+09 3.65e+09 3.90e+09 ...
-#&gt;  $ set: num  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'><span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'>read_datasets</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_2_dat"</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>A2</span>)</div><div class='output co'>#&gt; 'data.frame':	65518 obs. of  3 variables:
+#&gt;  $ set: num  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'><span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'>read_datasets</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_2_dat"</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>A2</span>)</div><div class='output co'>#&gt; 'data.frame':	65518 obs. of  3 variables:
 #&gt;  $ V1 : num  1.21e+10 1.21e+10 1.21e+10 1.21e+10 1.21e+10 ...
 #&gt;  $ V2 : num  3.17e+09 3.17e+09 3.17e+09 3.17e+09 3.17e+09 ...
 #&gt;  $ set: num  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'>
-<span class='fu'>read_datasets</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='st'>"1 2\n3 4\n\n5 6\n7 8\n"</span>, <span class='kw'>col_names</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"obj1"</span>, <span class='st'>"obj2"</span>))</div><div class='output co'>#&gt;   obj1 obj2 set
+<span class='fu'>read_datasets</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='st'>"1 2\n3 4\n\n5 6\n7 8\n"</span>, <span class='kw'>col_names</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"obj1"</span>, <span class='st'>"obj2"</span>))</div><div class='output co'>#&gt;   obj1 obj2 set
 #&gt; 1    1    2   1
 #&gt; 2    3    4   1
 #&gt; 3    5    6   2

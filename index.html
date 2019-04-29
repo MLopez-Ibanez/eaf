@@ -97,46 +97,50 @@
 <div id="download-and-installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download-and-installation" class="anchor"></a>Download and installation</h2>
-<p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf">download the package source code</a>, uncompress it, and look for the directory <code>inst/scripts/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the eaf package.</p>
-<p>The visualization of the EAFs require installing the eaf package. Therefore, for making use of all the features, a basic knowledge of R is recommended. However, the eaf package contains two Perl scripts that allow to generate standard plots without any knowledge about R. See <code>inst/scripts/eafplot/</code> and <code>inst/scripts/eafdiff/</code> in the package source code. The scripts use the eaf package internally to generate the plots, and, hence, the eaf package must be installed and working.</p>
-<p>The first step before installing the eaf package is to <a href="https://cran.r-project.org/">install R</a>. Once R is installed in the system, there are two methods for installing the eaf package:</p>
+<p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled binaries can be found under <code><a href="https://rdrr.io/r/base/system.file.html">system.file(package="eaf", "bin")</a></code>. Other useful binaries can be found there.</p>
+<p>The visualization of the EAFs requires installing the <strong>eaf</strong> package. Therefore, a basic knowledge of R is recommended to make use of all features. However, the <code>eaf</code> package contains two Perl scripts that allow to generate standard plots without any R knowledge. See <code>inst/scripts/eafplot/</code> and <code>inst/scripts/eafdiff/</code> in the package source code. The scripts use the <strong>eaf</strong> package internally to generate the plots, and, hence, the <strong>eaf</strong> package must be installed and working.</p>
+<p>The first step before installing the <strong>eaf</strong> package is to <a href="https://cran.r-project.org/">install R</a>. Once R is installed in the system, there are two methods for installing the <strong>eaf</strong> package:</p>
 <ol>
 <li>
 <p>Install within R (automatic download, internet connection required). Invoke R, then</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">    <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"modeltools"</span>, <span class="st">"eaf"</span>))</a></code></pre></div>
-<ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">    <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"modeltools"</span>, <span class="st">"eaf"</span>))</a></code></pre></div>
+</li>
 <li>
-<a href="https://cran.r-project.org/package=eaf">Download the eaf package from CRAN</a> (you may also need to download and install first the <a href="https://cran.r-project.org/package=modeltools">package modeltools</a>), and invoke at the command-line:</li>
-</ol>
+<p><a href="https://cran.r-project.org/package=eaf">Download the <strong>eaf</strong> package from CRAN</a> (you may also need to download and install first the <a href="https://cran.r-project.org/package=modeltools">package modeltools</a>), and invoke at the command-line:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1">    <span class="ex">R</span> CMD INSTALL <span class="op">&lt;</span>package<span class="op">&gt;</span></a></code></pre></div>
 <p>where <code>&lt;package&gt;</code> is one of the three versions available: <code>.tar.gz</code> (Unix/BSD/GNU/Linux), <code>.tgz</code> (MacOS X), or <code>.zip</code> (Windows).</p>
 </li>
 </ol>
 <p>Search the <a href="https://cran.r-project.org/faqs.html">R documentation</a> if you need more help to install an R package on your system.</p>
 <p>If you wish to be notified of bugfixes and new versions, please subscribe to the <a href="https://lists.dei.uc.pt/mailman/listinfo/emo-list">low-volume emo-list</a>, where announcements will be made.</p>
-<p>[ <a href="https://cran.r-project.org/package=eaf">Download eaf package from CRAN</a> ] [ <a href="http://lopez-ibanez.eu/eaftools">Documentation</a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf">Development version (GitHub)</a> ]</p>
+<p>[ <a href="https://cran.r-project.org/package=eaf">Download <strong>eaf</strong> package from CRAN</a> ] [ <a href="http://lopez-ibanez.eu/eaftools">Documentation</a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf">Development version (GitHub)</a> ]</p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>Once the eaf package is installed, the following R commands will give more information:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(eaf)</a>
+<p>Once the <strong>eaf</strong> package is installed, the following R commands will give more information:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">    <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(eaf)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">    ?eaf</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">    ?eafplot</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">    ?eafdiffplot</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">    ?read.data.sets</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/example">example</a></span>(eafplot)</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/example">example</a></span>(eafdiffplot) <span class="co"># This one takes some time</span></a></code></pre></div>
-<p>Apart from the main R package, the source code contains the following extras in the directory <code>inst/</code> (after installation, these files can be found at the directory printed by the R command <code><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file(package="eaf")</a></code>):</p>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(eafplot)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="kw"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(eafdiffplot) <span class="co"># This one takes some time</span></a></code></pre></div>
+<p>Apart from the main R package, the source code contains the following extras in the directory <code>inst/</code> (after installation, these files can be found at the directory printed by the R command <code><a href="https://rdrr.io/r/base/system.file.html">system.file(package="eaf")</a></code>):</p>
 <ul>
-<li>
-<code>scripts/eaf</code> : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at <a href="http://www.tik.ee.ethz.ch/pisa/" class="uri">http://www.tik.ee.ethz.ch/pisa/</a>. Another version of the code that handles three dimensions is available at <a href="http://eden.dei.uc.pt/~cmfonsec/software.html#aft">Prof. Fonseca’s website</a>.</li>
 <li>
 <code>scripts/eafplot</code> : Perl script to plot summary attainment surfaces.</li>
 <li>
 <code>scripts/eafdiff</code> : Perl script to plot the differences between the EAFs of two input sets.</li>
 <li>
 <code>extdata/</code> : Examples of utilization of the above programs. These are discussed in the corresponding <a href="#LopPaqStu09emaa">book chapter</a> [1].</li>
+</ul>
+<p>In addition, the source code contains the following under <code>src/</code>:</p>
+<ul>
+<li>
+<code>src/eaf</code> : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at <a href="http://www.tik.ee.ethz.ch/pisa/" class="uri">http://www.tik.ee.ethz.ch/pisa/</a>. Another version of the code that handles three dimensions is available at <a href="http://eden.dei.uc.pt/~cmfonsec/software.html#aft">Prof. Fonseca’s website</a>.</li>
+<li>
+<code>src/mo-tools</code> : Several tools for working with multi-objective data.</li>
 </ul>
 <p>For more information, consult the <code>README</code> files at each subdirectory.</p>
 </div>
@@ -162,7 +166,7 @@
 <div id="license" class="section level2">
 <h2 class="hasAnchor">
 <a href="#license" class="anchor"></a>License</h2>
-<p>This software is Copyright (C) 2011 Carlos M. Fonseca, Luís Paquete, Thomas Stützle, Manuel López-Ibáñez and Marco Chiarandini.</p>
+<p>This software is Copyright (C) 2011-2019 Carlos M. Fonseca, Luís Paquete, Thomas Stützle, Manuel López-Ibáñez and Marco Chiarandini.</p>
 <p>This program is free software (software libre); you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> for more details.</p>
 <p><strong>IMPORTANT NOTE</strong>: Please be aware that the fact that this program is released as Free Software does not excuse you from scientific propriety, which obligates you to give appropriate credit! If you write a scientific paper describing research that made substantive use of this program, it is your obligation as a scientist to (a) mention the fashion in which this software was used in the Methods section; (b) mention the algorithm in the References section. The appropriate citation is:</p>
