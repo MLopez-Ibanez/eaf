@@ -46,7 +46,7 @@ HEADERS = eaf.h io_priv.h io.h cvector.h avl.h common.h gcc_attribs.h
 
 EAFEXE=eaf$(EXE)
 
-EXE_LDFLAGS =
+EXE_LDFLAGS = -lm
 
 DELETE = @rm -f
 ECHO = @echo "$(1)"
