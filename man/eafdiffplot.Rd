@@ -2,7 +2,7 @@
 % Please edit documentation in R/eaf.R
 \name{eafdiffplot}
 \alias{eafdiffplot}
-\title{Empirical attainment function differences}
+\title{Plot empirical attainment function differences}
 \usage{
 eafdiffplot(data.left, data.right, col = c("#FFFFFF", "#808080",
   "#000000"), intervals = 5, percentiles = c(50), full.eaf = FALSE,
@@ -88,7 +88,7 @@ This function calculates the differences between the EAFs of two
   the value of the EAF difference are plotted. This means that for areas
   where the EAF differences stays constant, the region will appear in
   white even if the value of the differences in that region is
-  large. This explain "white holes" surrounded by black
+  large. This explains "white holes" surrounded by black
   points.
 
   With \code{type = "area"}, the area where the EAF differences has a

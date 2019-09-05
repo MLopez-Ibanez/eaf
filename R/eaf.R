@@ -1,6 +1,6 @@
 ###############################################################################
 #
-#                       Copyright (c) 2011-2018
+#                       Copyright (c) 2011-2019
 #         Manuel Lopez-Ibanez <manuel.lopez-ibanez@manchester.ac.uk>
 #                Marco Chiarandini <marco@imada.sdu.dk>
 #
@@ -282,6 +282,15 @@ read.data.sets <- function(file, col.names)
 {
   .Deprecated("read_datasets")
   return(read_datasets(file=file, col_names=col.names))
+}
+
+rbind_datasets <- function(x,y)
+{
+  stopifnot(min(x[,3]) == 1)
+  stopifnot(min(y[,3]) == 1)
+  # We have to make all sets unique.
+  y[,3] <- y[,3] + max(x[,3])
+  return(rbind(x, y))
 }
 
 ## Calculate the intermediate points in order to plot a staircase-like
@@ -912,7 +921,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
   box()
 }
 
-#' Empirical attainment function differences 
+#' Plot empirical attainment function differences 
 #' 
 #' Plot the differences between the empirical attainment functions of two
 #' data sets as a two-panel plot, where the left side shows the values of
@@ -983,7 +992,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #'   the value of the EAF difference are plotted. This means that for areas
 #'   where the EAF differences stays constant, the region will appear in
 #'   white even if the value of the differences in that region is
-#'   large. This explain "white holes" surrounded by black
+#'   large. This explains "white holes" surrounded by black
 #'   points.
 #' 
 #'   With \code{type = "area"}, the area where the EAF differences has a
@@ -1058,7 +1067,7 @@ eafdiffplot <-
   # FIXME: check that it is either an integer or a character vector.
   if (length(intervals) == 1) {
     intervals <- seq.intervals.labels(
-      round(seq(0,1 , length.out = 1 + intervals),4), digits = 1)
+      round(seq(0,1 , length.out = 1 + intervals), 4), digits = 1)
   }
   if (length(col) != 3) {
     stop ("'col' must provide three colors (minimum, medium maximum)")
@@ -1082,10 +1091,7 @@ eafdiffplot <-
 
   # FIXME: We do not need this for the full EAF.
   # Merge the data
-  nruns.left <- max(data.left[,3])
-  data.combined <- data.right
-  data.combined[,3] <- data.combined[,3] + nruns.left
-  data.combined <- rbind(data.left, data.combined)
+  data.combined <- rbind_datasets(data.left, data.right)
 
   def.par <- par(no.readonly = TRUE) # save default, for resetting...
   on.exit(par(def.par))
@@ -1191,11 +1197,11 @@ eafdiffplot <-
   }
   
   plot.eafdiff.side (DIFF$right,
-                      attsurfs = attsurfs,
-                      col = col,
-                      type = type, full.eaf = full.eaf,
-                      title = title.right,
-                      xlim = xlim, ylim = ylim,
+                     attsurfs = attsurfs,
+                     col = col,
+                     type = type, full.eaf = full.eaf,
+                     title = title.right,
+                     xlim = xlim, ylim = ylim,
                      side = "right", maximise = maximise,
                      sci.notation = sci.notation, ...)
   right.panel.last
