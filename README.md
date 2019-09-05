@@ -50,7 +50,7 @@ visualization.
 
 **Relevant literature:**
 
- 1. <a name="#LopPaqStu09emaa"/>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. [Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization](http://dx.doi.org/10.1007/978-3-642-02538-9_9). In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.<br>
+ 1. <a name="LopPaqStu09emaa"/>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. [Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization](http://dx.doi.org/10.1007/978-3-642-02538-9_9). In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.<br>
     (This chapter is also available in a slightly extended form as [Technical Report TR/IRIDIA/2009-015](http://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf)).<br>
     [ [bibtex](http://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa) |
     doi: [10.1007/978-3-642-02538-9_9](http://dx.doi.org/10.1007/978-3-642-02538-9_9)
