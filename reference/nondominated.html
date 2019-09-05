@@ -8,10 +8,12 @@
 
 <title>Identify, remove and rank dominated points according to Pareto optimality — is_nondominated • eaf</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -22,8 +24,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -33,13 +36,14 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Identify, remove and rank dominated points according to Pareto optimality — is_nondominated" />
 
+<meta property="og:title" content="Identify, remove and rank dominated points according to Pareto optimality — is_nondominated" />
 <meta property="og:description" content="Identify nondominated points with is_nondominated and remove dominated
 ones with filter_dominated.
 pareto_rank ranks points according to Pareto-optimality, which is also called
 nondominated sorting (Deb et al., 2002)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -51,6 +55,7 @@ nondominated sorting (Deb et al., 2002)." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -88,7 +93,6 @@ nondominated sorting (Deb et al., 2002)." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/MLopez-Ibanez/eaf">
@@ -103,6 +107,7 @@ nondominated sorting (Deb et al., 2002)." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -114,12 +119,10 @@ nondominated sorting (Deb et al., 2002)." />
     </div>
 
     <div class="ref-description">
-    
     <p>Identify nondominated points with <code>is_nondominated</code> and remove dominated
 ones with <code>filter_dominated</code>.</p>
 <p><code>pareto_rank</code> ranks points according to Pareto-optimality, which is also called
 nondominated sorting (Deb et al., 2002).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>is_nondominated</span>(<span class='no'>data</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>keep_weakly</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
@@ -127,7 +130,7 @@ nondominated sorting (Deb et al., 2002).</p>
 <span class='fu'>filter_dominated</span>(<span class='no'>data</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>keep_weakly</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>pareto_rank</span>(<span class='no'>data</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -148,7 +151,7 @@ a vector of logical values, with one value per objective.</p></td>
 of nondominated points.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>is_nondominated</code> returns a logical vector of the same length
@@ -158,14 +161,12 @@ of nondominated points.</p></td>
 <p><code>pareto_rank</code> returns an integer vector of the same length as
   the number of rows of <code>data</code>, where each value gives the rank of each
   point.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>pareto_rank</code> is meant to be used like <code><a href='https://rdrr.io/r/base/rank.html'>rank()</a></code>, but it
   assigns ranks according to Pareto dominance. Duplicated points are kept on
   the same front. When <code>ncol(data) == 2</code>, the code uses the \(O(n
   \log n)\) algorithm by Jensen (2003).</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Deb, K., S. Agrawal, A. Pratap, and T. Meyarivan. A fast elitist non-dominated
@@ -174,7 +175,6 @@ IEEE Transactions on Evolutionary Computation, 6(2): 182-197, 2002.</p>
 <p>M. T. Jensen. Reducing the run-time complexity of multiobjective EAs: The
 NSGA-II and other algorithms. IEEE Transactions on Evolutionary Computation,
 7(5):503–515, 2003.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>path_A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_1_dat"</span>)
@@ -193,13 +193,9 @@ NSGA-II and other algorithms. IEEE Transactions on Evolutionary Computation,
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#references">References</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -207,6 +203,7 @@ NSGA-II and other algorithms. IEEE Transactions on Evolutionary Computation,
     <p>Manuel López-Ibáñez</p>
   </div>
 </div>
+
 
       <footer>
       <!--<div class="copyright">
@@ -216,11 +213,14 @@ NSGA-II and other algorithms. IEEE Transactions on Evolutionary Computation,
   <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 -->
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

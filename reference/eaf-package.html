@@ -8,10 +8,12 @@
 
 <title>Plots of the Empirical Attainment Function — eaf-package • eaf</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -22,8 +24,9 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -33,8 +36,8 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plots of the Empirical Attainment Function — eaf-package" />
 
+<meta property="og:title" content="Plots of the Empirical Attainment Function — eaf-package" />
 <meta property="og:description" content="The empirical attainment function (EAF) describes the probabilistic
  distribution of the outcomes obtained by a stochastic algorithm in the
  objective space. This package implements plots of summary
@@ -47,6 +50,7 @@
 
 
 
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -55,6 +59,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -92,7 +97,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/MLopez-Ibanez/eaf">
@@ -107,6 +111,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -118,7 +123,6 @@
     </div>
 
     <div class="ref-description">
-    
     <p>The empirical attainment function (EAF) describes the probabilistic
  distribution of the outcomes obtained by a stochastic algorithm in the
  objective space. This package implements plots of summary
@@ -127,10 +131,10 @@
  stochastic local search algorithms for biobjective optimization
  problems and help in identifying certain algorithmic behaviors in a
  graphical way.</p>
-    
     </div>
 
-        
+
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Functions:</p>
@@ -140,22 +144,27 @@
 objectives</td></tr>
 <tr><td><code><a href='read_datasets.html'>read_datasets</a></code></td><td>Read several data.frame sets</td></tr>
 </table>
-    <p>Data:</p>
+
+
+<p>Data:</p>
 <dl class='dl-horizontal'>
 <dt><code><a href='gcp2x2.html'>gcp2x2</a></code></dt><dd><p>Metaheuristics for solving the Graph Vertex Coloring Problem</p></dd>
 <dt><code><a href='HybridGA.html'>HybridGA</a></code></dt><dd><p>Results of Hybrid GA on vanzyl and Richmond
 water networks</p></dd>
 <dt><code><a href='SPEA2minstoptimeRichmond.html'>SPEA2minstoptimeRichmond</a></code></dt><dd><p>Results of SPEA2 when minimising electrical cost and maximising the
 minimum idle time of pumps on Richmond water network</p></dd>
+
 </dl>
-    <p>Extras are available at <code><a href='https://rdrr.io/r/base/file.path.html'>file.path(system.file(package="eaf"))</a></code>:</p>
+
+<p>Extras are available at <code><a href='https://rdrr.io/r/base/file.path.html'>file.path(system.file(package="eaf"))</a></code>:</p>
 <table class='table'>
 <tr><td><code>extdata</code></td><td>External data sets (see <code><a href='read_datasets.html'>read_datasets</a></code>)</td></tr>
 <tr><td><code>scripts/eaf</code></td><td>EAF command-line program</td></tr>
 <tr><td><code>scripts/eafplot</code></td><td>Perl script to generate plots of attainment surfaces</td></tr>
 <tr><td><code>scripts/eafdiff</code></td><td>Perl script to generate plots of EAF differences</td></tr>
 </table>
-    
+
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>V. Grunert da Fonseca, C. M. Fonseca, and A. O. Hall, <em>Inferential
@@ -176,15 +185,15 @@ minimum idle time of pumps on Richmond water network</p></dd>
  M. Preuss, editors, Experimental Methods for the Analysis of
  Optimization Algorithms, pages 209–222. Springer, Berlin, Germany,
  2010. doi: 10.1007/978-3-642-02538-9_9</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Useful links:</p><ul>
 <li><p><a href='http://lopez-ibanez.eu/eaftools'>http://lopez-ibanez.eu/eaftools</a></p></li>
 <li><p><a href='https://github.com/MLopez-Ibanez/eaf'>https://github.com/MLopez-Ibanez/eaf</a></p></li>
 <li><p>Report bugs at <a href='https://github.com/MLopez-Ibanez/eaf/issues'>https://github.com/MLopez-Ibanez/eaf/issues</a></p></li>
-</ul></div>
-    
+</ul>
+
+</div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gcp2x2</span>)
@@ -204,13 +213,9 @@ minimum idle time of pumps on Richmond water network</p></dd>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -222,6 +227,7 @@ minimum idle time of pumps on Richmond water network</p></dd>
   </div>
 </div>
 
+
       <footer>
       <!--<div class="copyright">
   <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luis Paquete, Thomas Stützle.</p>
@@ -230,11 +236,14 @@ minimum idle time of pumps on Richmond water network</p></dd>
   <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 -->
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
