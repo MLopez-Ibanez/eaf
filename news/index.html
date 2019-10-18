@@ -121,8 +121,10 @@
 <li><p>Non-integer EAF percentiles are computed correctly. (Manuel López-Ibáñez)</p></li>
 <li><p>Various aesthetic improvements in <code><a href="../reference/eafplot.html">eafplot()</a></code> and <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>. (Manuel López-Ibáñez)</p></li>
 <li><p>Functions for computing hypervolume, hypervolume contributions, epsilon metric, IGD+, filter dominated points, and fast normalisation of ranges. (Manuel López-Ibáñez)</p></li>
+<li><p>Command-line tools for computing the above are installed in <code><a href="https://rdrr.io/r/base/system.file.html">system.file(package="eaf", "bin/")</a></code>. (Manuel López-Ibáñez)</p></li>
 <li><p>Online documentation available at: <a href="http://lopez-ibanez.eu/eaftools" class="uri">http://lopez-ibanez.eu/eaftools</a> (Manuel López-Ibáñez)</p></li>
 <li><p>New <code><a href="../reference/read_datasets.html">read_datasets()</a></code> replaces deprecated <code><a href="../reference/read_datasets.html">read.data.sets()</a></code>. New parameter <code>text</code> of <code><a href="../reference/read_datasets.html">read_datasets()</a></code>. (Manuel López-Ibáñez)</p></li>
+<li><p>New <code><a href="../reference/eafdiff.html">eafdiff()</a></code> function for computing EAF differences. (Manuel López-Ibáñez)</p></li>
 </ul>
 </div>
     <div id="eaf-1-8" class="section level1">
@@ -175,9 +177,7 @@
 <p>Plots will look correct when printed. To get the previous behavior use <code><a href="../reference/eafdiffplot.html">eafdiffplot(, type = "point")</a></code>.</p>
 </li>
 <li><p>Attempt to deal with DOS/Unix newlines correctly.</p></li>
-<li><p>eafplot.pl: Lots of cleanup.<br>
-(–single, –output, –legend): New options.<br>
-Default to PDF.</p></li>
+<li><p>eafplot.pl: Lots of cleanup. (–single, –output, –legend): New options. Default to PDF.</p></li>
 <li><p>eafdiff.pl: Many cleanups. EAF diff with type=“area” is the default now. Parameter –cex replaced by –scale. Do not require ps2eps. Handle –obj1= better. Crop pdf before converting to png. (–noattsurfs): New option. (–output-dir,–output): New options. (–eps): New option. PDF is the default now.</p></li>
 <li><p>Force eafdiff plots to use a square plotting region.</p></li>
 <li><p><code><a href="../reference/read_datasets.html">read.data.sets()</a></code> normalizes paths, thus it works with files such as ~/file.</p></li>
