@@ -201,7 +201,8 @@ eafdiff <- function(x, y, intervals, maximise = c(FALSE, FALSE), rectangles = FA
   data <- rbind_datasets(x,y)
   data <- matrix.maximise(check.eaf.data(data), maximise = maximise)
   
-  DIFF <- if (rectangles) compute.eafdiff.rectangles(data, intervals = intervals) else compute.eafdiff.helper(data, intervals = intervals)
+  DIFF <- if (rectangles) compute.eafdiff.rectangles(data, intervals = intervals)
+          else compute.eafdiff.helper(data, intervals = intervals)
   return(DIFF)
 }
 

@@ -49,6 +49,7 @@ d <- eafdiff(A1, A2, rectangles = TRUE)
 # This is large
 str(d)
 head(d)
+# FIXME: finish this!
 # Small example
 X <- read_datasets(text='
 1 2
