@@ -92,6 +92,15 @@ static inline int skip_comment_line (FILE * instream)
 
 #ifndef R_PACKAGE
 extern char *program_invocation_short_name;
+void fatal_error(const char *format,...)
+{
+    va_list ap;
+    fprintf(stderr, "%s: fatal error: ", program_invocation_short_name);
+    va_start(ap,format);
+    vfprintf(stderr, format, ap);
+    va_end(ap);
+    exit(EXIT_FAILURE);
+}
 /* From:
 
    Edition 0.10, last updated 2001-07-06, of `The GNU C Library

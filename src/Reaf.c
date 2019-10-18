@@ -175,6 +175,46 @@ static int polygon_copy (double *dest, int start, int nrows, const double *src)
     return len - start;
 }
 
+SEXP compute_eafdiff_rectangles_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
+                                  SEXP INTERVALS);
+SEXP
+compute_eafdiff_rectangles_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
+                             SEXP INTERVALS)
+{
+    int nprotected = 0;
+
+    int k;
+    SEXP_2_INT(NOBJ, nobj);
+    SEXP_2_INT(NRUNS, nruns);
+    SEXP_2_INT(INTERVALS, intervals);
+    
+    eaf_t **eaf = compute_eaf_helper(DATA, nobj, CUMSIZES, nruns, NULL, nruns);
+    eaf_polygon_t * rects = eaf_compute_rectangles(eaf, nruns);
+    for (k = 0; k < nruns; k++)
+        eaf_delete (eaf[k]);
+    free(eaf);
+    
+    int nrow = vector_int_size(&rects->col);
+    // Two points per row + color
+    new_real_matrix (result, nrow, 2 * nobj + 1);
+    double * p_xy = vector_objective_begin(&rects->xy);
+    size_t len = 0;
+    for (k = 0; k < nrow; ++k) {
+        for (int i = 0; i < 4; i++)
+            result[len + i] = (double) *(p_xy + i);
+        len += 4;
+        p_xy += 4;
+        result[len++] = (double) vector_int_at(&rects->col, k);
+    }
+    
+    vector_int_dtor (&rects->col);
+    vector_objective_dtor (&rects->xy);
+    free(rects);
+    UNPROTECT (nprotected);
+    return Rexp(result);
+}
+
+
 SEXP compute_eafdiff_area_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
                             SEXP INTERVALS);
 SEXP 
@@ -190,7 +230,7 @@ compute_eafdiff_area_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
 
     eaf_t **eaf = compute_eaf_helper(DATA, nobj, CUMSIZES, nruns, NULL, nruns);
 
-    eaf_polygon_t *p = eaf_compute_area (eaf, nruns);
+    eaf_polygon_t *p = eaf_compute_area(eaf, nruns);
 
     for (k = 0; k < nruns; k++)
         eaf_delete (eaf[k]);

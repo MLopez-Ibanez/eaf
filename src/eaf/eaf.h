@@ -29,38 +29,30 @@
  ----------------------------------------------------------------------
 
 *************************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <float.h>
+#include <math.h>
+
+#include "common.h"
+
 #ifdef R_PACKAGE
 #include <R.h>
-#define eaf_assert(EXP)                                                       \
-    do { if (!(EXP)) { error("eaf package: error: assertion failed: '%s'",    \
-                             #EXP); }} while(0)
-
 #define EAF_MALLOC(WHAT, NMEMB, SIZE)                                          \
     do { WHAT = malloc (NMEMB * SIZE);                                         \
         if (!WHAT) {                                                           \
             error(__FILE__ ": %s = malloc (%u * %u) failed",                   \
                   #WHAT, (unsigned int) NMEMB, (unsigned int) SIZE); }         \
     } while (0)
-#define fatalprintf(X) error(X)
 #else
-#include <assert.h>
-#define eaf_assert(X) assert(X)
-
 #define EAF_MALLOC(WHAT, NMEMB, SIZE)                                          \
     do { WHAT = malloc (NMEMB * SIZE);                                         \
         if (!WHAT) { perror (__FILE__ ": " #WHAT ); exit (EXIT_FAILURE); }     \
     } while(0)
-#define fatalprintf(X) \
-    do { errprintf (X); exit (EXIT_FAILURE); } while(0)
 #endif
 
 #include "io.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <float.h>
-#include <math.h>
-#include <stdbool.h>
 
 /* If the input are always integers, adjusting this type will
    certainly improve performance.  */
@@ -138,7 +130,7 @@ attsurf (objective_t *data,    /* the objective vectors            */
           return eaf3d (data, cumsize, nruns, attlevel, nlevels);
           break;
       default:
-          fatalprintf ("this implementation only supports two or three dimensions.\n");
+          fatal_error("this implementation only supports two or three dimensions.\n");
     }
 }
 
@@ -155,11 +147,10 @@ static inline void
 attained_left_right (const bool *attained, int division, int total,
                      int *count_left, int *count_right)
 {
+    eaf_assert (division < total);
     int count_l = 0;
     int count_r = 0;
     int k;
-
-    eaf_assert (division < total);
 
     for (k = 0; k < division; k++)
         if (attained[k]) count_l++;
@@ -196,9 +187,10 @@ typedef struct {
     vector_int col;
 } eaf_polygon_t;
 
-#define eaf_compute_area eaf_compute_area_new
+#define eaf_compute_area eaf_compute_polygon
 
-eaf_polygon_t *eaf_compute_area_new (eaf_t **eaf, int nlevels);
-eaf_polygon_t *eaf_compute_area_old (eaf_t **eaf, int nlevels);
+eaf_polygon_t *eaf_compute_polygon (eaf_t **eaf, int nlevels);
+eaf_polygon_t *eaf_compute_polygon_old (eaf_t **eaf, int nlevels);
 void eaf_print_polygon (FILE* stream, eaf_t **eaf, int nlevels);
+eaf_polygon_t * eaf_compute_rectangles (eaf_t **eaf, int nlevels);
 

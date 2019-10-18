@@ -5,7 +5,7 @@
 #include <R.h>
 #define eaf_assert(EXP)                                                       \
     do { if (!(EXP)) { error("eaf package: error: assertion failed: '%s'",    \
-                             #EXP); }} while(0)
+                             #EXP);}} while(0)
 #define fatal_error(...) Rf_error(__VA_ARGS__)
 #define errprintf error
 #define warnprintf warning
@@ -17,17 +17,7 @@
 #include "gcc_attribs.h"
 #include <assert.h>
 #define eaf_assert(X) assert(X)
-
-static void fatal_error(const char * format,...) __attribute__ ((format(printf, 1, 2))) __noreturn __unused;
-
-static void fatal_error(const char *format,...)
-{
-    va_list ap;
-    va_start(ap,format);
-    vfprintf(stderr, format, ap);
-    va_end(ap);
-    exit(EXIT_FAILURE);
-}
+void fatal_error(const char * format,...) __attribute__ ((format(printf, 1, 2))) __noreturn __unused;
 void errprintf(const char * format,...) __attribute__ ((format(printf, 1, 2)));
 void warnprintf(const char *format,...)  __attribute__ ((format(printf, 1, 2)));
 #endif

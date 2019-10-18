@@ -325,13 +325,40 @@ eaf2d (const objective_t *data, const int *cumsize, int nruns,
 }
 
 
-#define PRINT_POINT(X,Y) fprintf(stderr, "%g\t%g\n", X, Y)
+#define PRINT_POINT(X,Y) fprintf(stderr, point_printf_format "\t" point_printf_format "\n", X, Y)
 #undef  PRINT_POINT
 #define PRINT_POINT(X,Y) (void)0
 
+static int
+eaf_max_size(eaf_t * const * eaf, int nlevels)
+{
+    int max_size = 0;
+    for (int a = 0; a < nlevels; a++) {
+        if (max_size < eaf[a]->size)
+            max_size = eaf[a]->size;
+    }
+    return max_size;
+}
+
+static int
+eaf_diff_color(const eaf_t * eaf, size_t k, int nruns)
+{
+    const bool *attained = eaf->attained + k * nruns;
+    int count_left, count_right;
+    attained_left_right (attained, nruns/2, nruns, &count_left, &count_right);
+    return count_left - count_right;
+}
+
+void
+init_colors(int * color, const eaf_t * eaf, size_t eaf_size, int nruns)
+{
+    for (size_t k = 0; k < eaf_size; k++) {
+        color[k] = eaf_diff_color(eaf, k, nruns);
+    }
+}
 /* Produce a polygon suitable to be plotted by the polygon function in R.  */
 eaf_polygon_t *
-eaf_compute_area_new (eaf_t **eaf, int nlevels)
+eaf_compute_polygon (eaf_t **eaf, int nlevels)
 {
 /* FIXME: Don't add anything if color_0 == 0 */
 
@@ -351,41 +378,29 @@ eaf_compute_area_new (eaf_t **eaf, int nlevels)
         push_point(objective_MIN, objective_MIN); POLY_SIZE_CHECK(); } while(0)
 
     int _poly_size_check = 0;
-    eaf_polygon_t * polygon;
-    int *color;
     int nruns = eaf[0]->nruns;
     int nobj = eaf[0]->nobj;
 
     eaf_assert(nruns % 2 == 0);
 
-    int max_size = 0;
-    for (int a = 0; a < nlevels; a++) {
-        if (max_size < eaf[a]->size)
-            max_size = eaf[a]->size;
-    }
-
+    int max_size = eaf_max_size(eaf, nlevels);
+    int *color;
     EAF_MALLOC (color, sizeof(int), max_size);
+    eaf_polygon_t * polygon;
     EAF_MALLOC(polygon, sizeof(eaf_polygon_t), 1);
     vector_objective_ctor (&polygon->xy, max_size);
     vector_int_ctor (&polygon->col, max_size);
  
     for (int b = 1; b < nlevels; b++) {
         const int a = b - 1;
-        int eaf_a_size = eaf[a]->size;
-        int eaf_b_size = eaf[b]->size;
-        int ka;
-        /* Init colors.  */
-        for (ka = 0; ka < eaf_a_size; ka++) {
-            bool *attained = eaf[a]->attained + ka * nruns;
-            int count_left, count_right;
-            attained_left_right (attained, nruns/2, nruns,
-                                 &count_left, &count_right);
-            color[ka] = count_left - count_right;
-        }
+        const int eaf_a_size = eaf[a]->size;
+        const int eaf_b_size = eaf[b]->size;
+        init_colors(color, eaf[a], eaf_a_size, nruns);
+        
         /* Find color transitions along the EAF level set.  */
         objective_t topleft_y = objective_MAX;
         int last_b = -1;
-        ka = 0;
+        int ka = 0;
         while (true) {
             const objective_t * pka = NULL;
             const objective_t * pkb = NULL;
@@ -399,6 +414,8 @@ eaf_compute_area_new (eaf_t **eaf, int nlevels)
                 last_b = kb;
                 if (pkb[1] == pka[1]) {
                     /* Ignore points that exactly overlap.  */
+                    // FIXME: This should not happen, but it does. We should remove these points.
+                    // eaf_assert(false);
                     ka++; kb++;
                 } else {
                     /* b intersects a above pka. */
@@ -532,20 +549,15 @@ eaf_compute_area_new (eaf_t **eaf, int nlevels)
    much simpler, but it produces artifacts when plotted with the
    polygon function in R.  */
 eaf_polygon_t *
-eaf_compute_area_old (eaf_t **eaf, int nlevels)
+eaf_compute_polygon_old (eaf_t **eaf, int nlevels)
 {
     int _poly_size_check = 0;
     eaf_polygon_t * polygon;
 
     int *color;
-    int max_size = 0;
+    int max_size = eaf_max_size(eaf, nlevels);
     int nruns = eaf[0]->nruns;
     int nobj = eaf[0]->nobj;
-
-    for (int a = 0; a < nlevels; a++) {
-        if (max_size < eaf[a]->size)
-            max_size = eaf[a]->size;
-    }
 
     eaf_assert(nruns % 2 == 0);
 
@@ -558,19 +570,11 @@ eaf_compute_area_old (eaf_t **eaf, int nlevels)
         const int a = b - 1;
         int eaf_a_size = eaf[a]->size;
         int eaf_b_size = eaf[a + 1]->size;
-        int ka;
-        /* Init colors.  */
-        for (ka = 0; ka < eaf_a_size; ka++) {
-            bool *attained = eaf[a]->attained + ka * nruns;
-            int count_left, count_right;
-            attained_left_right (attained, nruns/2, nruns,
-                                 &count_left, &count_right);
-            color[ka] = count_left - count_right;
-        }
+        init_colors(color, eaf[a], eaf_a_size, nruns);
         /* Find color transitions along the EAF level set.  */
         int last_b = -1;
         objective_t topleft_y = objective_MAX;
-        ka = 0;
+        int ka = 0;
         while (ka < eaf_a_size) {
             objective_t prev_pka_y = topleft_y;
             const objective_t * pka;
@@ -696,3 +700,120 @@ eaf_print_polygon (FILE *stream, eaf_t **eaf, int nlevels)
     free(p);
 }
 
+size_t
+region_push (vector_objective *regions,
+             objective_t lx, objective_t ly,
+             objective_t ux, objective_t uy)
+{
+    vector_objective_push_back(regions, lx);
+    vector_objective_push_back(regions, ly);
+    vector_objective_push_back(regions, ux);
+    vector_objective_push_back(regions, uy);
+    return vector_objective_size(regions);
+}
+
+eaf_polygon_t *
+eaf_compute_rectangles (eaf_t **eaf, int nlevels)
+{
+#define eaf_point(A,K) (eaf[(A)]->data + (K) * nobj)
+#if 0
+#define printf_points(ka,kb,pka,pkb)                                           \
+    printf("%4d: pa[%d]=(" point_printf_format ", " point_printf_format "), pb[%d] = (" point_printf_format ", " point_printf_format ")\n", __LINE__, ka, pka[0], pka[1], kb, pkb[0], pkb[1])
+#else
+#define printf_points(ka,kb,pka,pkb)                                           
+#endif    
+    int nruns = eaf[0]->nruns;
+    int nobj = eaf[0]->nobj;
+
+    eaf_assert(nruns % 2 == 0);
+
+    int max_size = eaf_max_size(eaf, nlevels);
+    int *color;
+    EAF_MALLOC (color, sizeof(int), max_size);
+    eaf_polygon_t * regions;
+    EAF_MALLOC(regions, sizeof(eaf_polygon_t), 1);
+    vector_objective_ctor (&regions->xy, max_size);
+    vector_int_ctor (&regions->col, max_size);
+        
+    for (int b = 1; b < nlevels; b++) {
+        const int a = b - 1;
+        const int eaf_a_size = eaf[a]->size;
+        const int eaf_b_size = eaf[b]->size;
+        if (eaf_a_size == 0 || eaf_b_size == 0) continue;
+
+        init_colors(color, eaf[a], eaf_a_size, nruns);
+        objective_t top = objective_MAX;
+        int ka = 0, kb = 0;
+        const objective_t * pka = eaf_point (a, ka);
+        const objective_t * pkb = eaf_point (b, kb);
+        printf_points(ka, kb, pka, pkb);
+        /* printf("attained[ka] ="); */
+        /* for (int k = 0; k < nruns; k++)  */
+        /*     printf(" %d", (eaf[a]->attained + ka * nruns)[k]  ? 1 : 0); */
+        /* printf("\n"); */
+        /* printf("attained[kb] ="); */
+        /* for (int k = 0; k < nruns; k++)  */
+        /*     printf(" %d", (eaf[b]->attained + kb * nruns)[k]  ? 1 : 0); */
+        /* printf("\n"); */
+        /* printf("attained[%d][%d,%d] = [%d, %d]\n", ka, a, b, */
+        /*        (eaf[a]->attained + ka * nruns)[a]  ? 1 : 0, */
+        /*        (eaf[a]->attained + ka * nruns)[b]  ? 1 : 0); */
+        /* printf("attained[%d][%d,%d] = [%d, %d]\n", kb, a, b, */
+        /*        (eaf[b]->attained + kb * nruns)[a]  ? 1 : 0, */
+        /*        (eaf[b]->attained + kb * nruns)[b]  ? 1 : 0); */
+               
+        eaf_assert(pka[0] <= pkb[0]);
+        /* It is possible that pka does not dominate pkb if their intersection
+           belongs to the next eaf level. */
+        if (pka[1] >= pkb[1]) goto pka_above_equal_pkb;
+                
+    pka_below_pkb:
+        eaf_assert(pka[1] < pkb[1]);
+        /* If pka[0] >= pkb[0] then no rectangle is created. */
+        if (pka[0] < pkb[0]) {
+            region_push(&regions->xy, pka[0], pkb[1], pkb[0], top);
+            vector_int_push_back(&regions->col, color[ka]);
+        } 
+        top = pkb[1];
+        kb++;
+        if (kb >= eaf_b_size) goto close_eaf;
+        pkb = eaf_point (b, kb);
+        printf_points(ka, kb, pka, pkb);
+        if (pka[1] < pkb[1]) goto pka_below_pkb;
+
+    pka_above_equal_pkb:
+        if (pka[0] < pkb[0]) {                    
+            region_push(&regions->xy, pka[0], pka[1], pkb[0], top);
+            vector_int_push_back(&regions->col, color[ka]);
+        } else {
+            // Handle repeated points
+            eaf_assert(pka[0] == pkb[0] && pka[1] == pkb[1]);
+            top = pka[1];
+            ka++, kb++;
+            if (ka >= eaf_a_size) goto next_eaf;
+            if (kb >= eaf_b_size) goto close_eaf;
+            
+            pka = eaf_point (a, ka);
+            pkb = eaf_point (b, kb);
+            printf_points(ka, kb, pka, pkb);
+            eaf_assert(pka[0] <= pkb[0]);
+            if (pka[1] >= pkb[1]) goto pka_above_equal_pkb;
+            else goto pka_below_pkb;
+        }
+        top = pka[1];
+        ka++;
+        if (ka >= eaf_a_size) goto next_eaf;
+        pka = eaf_point (a, ka);
+        printf_points(ka, kb, pka, pkb);
+        if (pka[1] >= pkb[1]) goto pka_above_equal_pkb;
+        else goto pka_below_pkb;
+
+    close_eaf:
+        region_push(&regions->xy, pka[0], pka[1], objective_MAX, top);
+        vector_int_push_back(&regions->col, color[ka]);
+    next_eaf:
+        continue;
+    }
+    return regions;
+#undef eaf_point
+}

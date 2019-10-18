@@ -122,7 +122,122 @@ compute.eafdiff.helper <- function(data, intervals)
                 as.integer(intervals)))
 }
 
-compute.eafdiff.area <- function(data, intervals)
+#' Compute empirical attainment function differences 
+#' 
+#' Calculate the differences between the empirical attainment functions of two
+#' data sets.
+#' 
+#' @param x,y Data frames corresponding to the input data of
+#'   left and right sides, respectively. Each data frame has at least three
+#'   columns, the third one being the set of each point. See also
+#'   \code{\link{read_datasets}}.
+#'
+#' @param intervals (integer)  The
+#'   absolute range of the differences [0,1] is partitioned into the number
+#'   of intervals provided.
+#' 
+#' @param maximise Whether the first and/or second objective correspond to
+#'   a maximisation problem.
+#'
+#' @param rectangles If TRUE, the output is in the form of rectangles of the same color.
+#' 
+#' @details
+#'   This function calculates the differences between the EAFs of two
+#'   data sets.
+#'
+#' @return With \code{rectangle=FALSE}, a \code{data.frame} containing points
+#'   where there is a transition in the value of the EAF differences. The last
+#'   column gives the difference in terms of sets in \code{x} minus sets in
+#'   \code{y} that attain each point (i.e., negative values are differences in
+#'   favour \code{y}).
+#' 
+#' @seealso    \code{\link{read_datasets}}, \code{\link{eafdiffplot}}
+#' 
+#' @examples
+#' A1 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_1_dat"))
+#' A2 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat"))
+#' d <- eafdiff(A1, A2)
+#' # This is large
+#' str(d)
+#' head(d)
+#'
+#' d <- eafdiff(A1, A2, rectangles = TRUE)
+#' # This is large
+#' str(d)
+#' head(d)
+
+#' # Small example
+#' X <- read_datasets(text='
+#' 1 2
+#' 2.5 1
+#'
+#' 3.5 2
+#'
+#' 2 3
+#'
+#' 4 1
+#' ')
+#' Y <- read_datasets(text='
+#' 2.5 1
+#'
+#' 3.5 2
+#'
+#' 2 3
+#'
+#' 4 1
+#' ')
+#'
+#'
+#'@export
+eafdiff <- function(x, y, intervals, maximise = c(FALSE, FALSE), rectangles = FALSE)
+{
+  maximise <- as.logical(maximise)
+  if (missing(intervals)) {
+    # Default is nsets / 2
+    intervals <- (length(unique(x[,ncol(x)])) + length(unique(y[,ncol(y)]))) / 2
+  }
+
+  data <- rbind_datasets(x,y)
+  data <- matrix.maximise(check.eaf.data(data), maximise = maximise)
+  
+  DIFF <- if (rectangles) compute.eafdiff.rectangles(data, intervals = intervals) else compute.eafdiff.helper(data, intervals = intervals)
+  return(DIFF)
+}
+
+compute.eafdiff <- function(data, intervals)
+{
+  DIFF <- compute.eafdiff.helper(data, intervals)
+  #print(DIFF)
+  # FIXME: Do this computation in C code.
+  setcol <- ncol(data)
+  eafval <- DIFF[, setcol]
+  eafdiff <- list(left  = unique(DIFF[ eafval >= 1L, , drop = FALSE]),
+                  right = unique(DIFF[ eafval <= -1L, , drop = FALSE]))
+  eafdiff$right[, setcol] <- -eafdiff$right[, setcol]
+  return(eafdiff)
+}
+
+
+# FIXME: The default intervals should be nsets / 2
+compute.eafdiff.rectangles <- function(data, intervals = 1L)
+{
+  # Last column is the set number.
+  nobjs <- ncol(data) - 1L
+  # the C code expects points within a set to be contiguous.
+  data <- data[order(data[, nobjs + 1L]), ]
+  sets <- data[ , nobjs + 1L]
+  nsets <- length(unique(sets))
+  npoints <- tabulate (sets)
+  return(.Call("compute_eafdiff_rectangles_C",
+               as.double(t(as.matrix(data[, 1L:nobjs]))),
+               nobjs,
+               as.integer(cumsum(npoints)),
+               as.integer(nsets),
+               as.integer(intervals)))
+}
+
+# FIXME: The default intervals should be nsets / 2
+compute.eafdiff.polygon <- function(data, intervals = 1L)
 {
   # Last column is the set number.
   nobjs <- ncol(data) - 1L
@@ -143,26 +258,6 @@ compute.eafdiff.area <- function(data, intervals)
                as.integer(intervals)))
 }
 
-# FIXME: The default intervals should be nsets / 2
-compute.eafdiff <- function(data, intervals = 1)
-{
-  DIFF <- compute.eafdiff.helper(data, intervals)
-  #print(DIFF)
-  # FIXME: Do this computation in C code.
-  setcol <- ncol(data)
-  eafval <- DIFF[, setcol]
-  eafdiff <- list(left = NULL, right = NULL)
-  eafdiff$left <- unique(DIFF[ eafval >= 1L, , drop = FALSE])
-  eafdiff$right <- unique(DIFF[ eafval <= -1L, , drop = FALSE])
-  eafdiff$right[, setcol] <- -eafdiff$right[, setcol]
-  return(eafdiff)
-}
-
-# FIXME: The default intervals should be nsets / 2
-compute.eafdiff.polygon <- function(data, intervals = 1L)
-{
-  return(compute.eafdiff.area (data, intervals))
-}
 
 rm.inf <- function(x, xmax)
 {
@@ -820,14 +915,14 @@ plot.eaf.full.area <- function(attsurfs, extreme, maximise, col)
 }
 
 plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
-                                col = c("#FFFFFF", "#BFBFBF","#808080","#404040","#000000"),
-                                side = stop("Argument 'side' is required"),
-                                type = "point",
-                                xlim = NULL, ylim = NULL, log = "",
-                                las = par("las"),
-                                full.eaf = FALSE,
-                                title = "",
-                                maximise = c(FALSE, FALSE),
+                               col = c("#FFFFFF", "#BFBFBF","#808080","#404040","#000000"),
+                               side = stop("Argument 'side' is required"),
+                               type = "point",
+                               xlim = NULL, ylim = NULL, log = "",
+                               las = par("las"),
+                               full.eaf = FALSE,
+                               title = "",
+                               maximise = c(FALSE, FALSE),
                                xlab = "objective 1", ylab = "objective 2",
                                sci.notation = FALSE,
                                ...)
