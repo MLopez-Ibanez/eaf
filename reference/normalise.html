@@ -131,12 +131,14 @@ given, they are used for the normalisation.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>Either a matrix or a data frame of numerical values, where
-each row gives the coordinates of a point.</p></td>
+      <td><p>(<code>matrix</code> | <code>data.frame</code>) <br /> Matrix or data frame of numerical
+values, where each row gives the coordinates of a point.</p></td>
     </tr>
     <tr>
       <th>to.range</th>
-      <td><p>Normalise values to this range.</p></td>
+      <td><p>Normalise values to this range. If the objective is
+maximised, it is normalised to <code><a href='https://rdrr.io/r/base/c.html'>c(to.range[1], to.range[0])</a></code>
+instead.</p></td>
     </tr>
     <tr>
       <th>lower, upper</th>
@@ -145,11 +147,10 @@ values of each coordinate are used.</p></td>
     </tr>
     <tr>
       <th>maximise</th>
-      <td><p>Whether the objectives must be maximised instead of
-minimised. Either a single logical value that applies to all objectives or
-a vector of logical values, with one value per objective. A true value means
-that the corresponding objective is normalised to <code><a href='https://rdrr.io/r/base/c.html'>c(to.range[1],
-to.range[0])</a></code> instead.</p></td>
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) <br /> Whether the objectives must be
+maximised instead of minimised. Either a single logical value that applies
+to all objectives or a vector of logical values, with one value per
+objective.</p></td>
     </tr>
     </table>
 

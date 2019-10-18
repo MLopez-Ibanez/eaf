@@ -148,17 +148,16 @@ default is to use <samp>"V"</samp> followed by the column number.</p></td>
     </tr>
     <tr>
       <th>text</th>
-      <td><p>character string: if <code>file</code> is not supplied and this is,
-  then data are read from the value of <code>text</code> via a text connection.
-  Notice that a literal string can be used to include (small) data sets
-  within R code.
-'</p></td>
+      <td><p>(`character()`) <br /> If <code>file</code> is not supplied and this is,
+then data are read from the value of <code>text</code> via a text connection.
+Notice that a literal string can be used to include (small) data sets
+within R code.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame (<code>data.frame</code>) containing a representation of the
+    <p>(`data.frame`) containing a representation of the
  data in the file. An extra column <code>set</code> is added to indicate to
  which set each row belongs.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>

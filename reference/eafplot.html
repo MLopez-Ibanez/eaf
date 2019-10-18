@@ -173,7 +173,7 @@ present the plot is conditional to the instances.</p></td>
     </tr>
     <tr>
       <th>subset</th>
-      <td><p>A vector indicating which rows of the data should be used. If left to default <code>NULL</code> all data in the data frame are used.</p></td>
+      <td><p>(`integer()` | `NULL`)<br /> A vector indicating which rows of the data should be used. If left to default <code>NULL</code> all data in the data frame are used.</p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -181,11 +181,11 @@ present the plot is conditional to the instances.</p></td>
     </tr>
     <tr>
       <th>sets</th>
-      <td><p>Vector indicating which set each point belongs to.</p></td>
+      <td><p>([numeric])<br /> Vector indicating which set each point belongs to.</p></td>
     </tr>
     <tr>
       <th>percentiles</th>
-      <td><p>Vector indicating which percentile should be plot. The
+      <td><p>([numeric])<br /> Vector indicating which percentile should be plot. The
 default is to plot only the median attainment curve.</p></td>
     </tr>
     <tr>
@@ -199,7 +199,7 @@ parameters, see <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plo
     </tr>
     <tr>
       <th>type</th>
-      <td><p>string giving the type of plot desired.  The following values
+      <td><p>(character(1))<br /> string giving the type of plot desired.  The following values
 are possible, <samp>points</samp> and <samp>area</samp>.</p></td>
     </tr>
     <tr>
@@ -229,8 +229,10 @@ of the points. See <code><a href='https://rdrr.io/r/graphics/points.html'>points
     </tr>
     <tr>
       <th>maximise</th>
-      <td><p>Whether the first and/or second objective correspond to a
-maximisation problem.</p></td>
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) <br /> Whether the objectives must be
+maximised instead of minimised. Either a single logical value that applies
+to all objectives or a vector of logical values, with one value per
+objective.</p></td>
     </tr>
     <tr>
       <th>xaxis.side</th>
