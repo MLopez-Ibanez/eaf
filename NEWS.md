@@ -1,4 +1,4 @@
-# eaf 1.9 
+# eaf 1.9
 
 * Compute Vorob'ev threshold, expectation and deviation. Plots of the symmetric
   deviation.                                             (Mickael Binois)
@@ -13,11 +13,17 @@
   metric, IGD+, filter dominated points, and fast normalisation of ranges.
                                                          (Manuel López-Ibáñez)
 
+* Command-line tools for computing the above are installed in `system.file(package="eaf", "bin/")`.
+                                                         (Manuel López-Ibáñez)
+
 * Online documentation available at: http://lopez-ibanez.eu/eaftools
                                                          (Manuel López-Ibáñez)
 
 * New `read_datasets()` replaces deprecated `read.data.sets()`.
   New parameter `text` of `read_datasets()`.
+                                                         (Manuel López-Ibáñez)
+
+* New `eafdiff()` function for computing EAF differences.
                                                          (Manuel López-Ibáñez)
 
 # eaf 1.8
@@ -31,7 +37,7 @@
 * Export and document function `eafs()` to compute EAFs.
 
 * `eafdiff.pl`: Handle `--colors=`, `--intervals=`.
- 
+
 * Fix crash in `eafplot()` if `sets` is a vector of strings.
 
 * Reset layout in `eafdiffplot()`.
@@ -72,15 +78,15 @@
 # eaf 1.05
 
  *  Implement `type = "area")` for `eafdiffplot()`. This is now the default.
- 
+
     The idea for the algorithm to compute the areas was provided by Carlos M. Fonseca. The implementation uses R polygons, which some PDF viewers may have trouble rendering correctly (See https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders).
-    
+
     Plots will look correct when printed. To get the previous behavior use `eafdiffplot(, type = "point")`.
-  
+
 * Attempt to deal with DOS/Unix newlines correctly.
 
-* eafplot.pl: Lots of cleanup.  
-  (--single, --output, --legend): New options.  
+* eafplot.pl: Lots of cleanup.
+  (--single, --output, --legend): New options.
   Default to PDF.
 
 * eafdiff.pl: Many cleanups.
@@ -128,6 +134,6 @@
 
 * R/calls.R (eafplot.data.frame): Fix problem with main parameter.
 
-# eaf 1.00 
+# eaf 1.00
 
 * Initial release available in CRAN.
