@@ -13,12 +13,13 @@ left and right sides, respectively. Each data frame has at least three
 columns, the third one being the set of each point. See also
 \code{\link{read_datasets}}.}
 
-\item{intervals}{(integer)  The
-absolute range of the differences [0,1] is partitioned into the number
-of intervals provided.}
+\item{intervals}{(`integer(1)`) \cr The absolute range of the differences
+\eqn{[0, 1]} is partitioned into the number of intervals provided.}
 
-\item{maximise}{Whether the first and/or second objective correspond to
-a maximisation problem.}
+\item{maximise}{(\code{logical()} | \code{logical(1)}) \cr Whether the objectives must be
+maximised instead of minimised. Either a single logical value that applies
+to all objectives or a vector of logical values, with one value per
+objective.}
 
 \item{rectangles}{If TRUE, the output is in the form of rectangles of the same color.}
 }

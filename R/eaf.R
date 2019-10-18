@@ -132,12 +132,10 @@ compute.eafdiff.helper <- function(data, intervals)
 #'   columns, the third one being the set of each point. See also
 #'   \code{\link{read_datasets}}.
 #'
-#' @param intervals (integer)  The
-#'   absolute range of the differences [0,1] is partitioned into the number
-#'   of intervals provided.
+#' @param intervals (`integer(1)`) \cr The absolute range of the differences
+#'   \eqn{[0, 1]} is partitioned into the number of intervals provided.
 #' 
-#' @param maximise Whether the first and/or second objective correspond to
-#'   a maximisation problem.
+#' @template arg_maximise
 #'
 #' @param rectangles If TRUE, the output is in the form of rectangles of the same color.
 #' 
@@ -190,7 +188,8 @@ compute.eafdiff.helper <- function(data, intervals)
 #'
 #'
 #'@export
-eafdiff <- function(x, y, intervals, maximise = c(FALSE, FALSE), rectangles = FALSE)
+eafdiff <- function(x, y, intervals, maximise = c(FALSE, FALSE),
+                    rectangles = FALSE)
 {
   maximise <- as.logical(maximise)
   if (missing(intervals)) {
@@ -320,12 +319,12 @@ matrix.maximise <- function(z, maximise)
 #' @param col_names,col.names Vector of optional names for the variables.  The
 #'   default is to use \samp{"V"} followed by the column number.
 #'
-#' @param text character string: if \code{file} is not supplied and this is,
+#' @param text (`character()`) \cr If \code{file} is not supplied and this is,
 #'   then data are read from the value of \code{text} via a text connection.
 #'   Notice that a literal string can be used to include (small) data sets
 #'   within R code.
-#''
-#' @return  A data frame (\code{data.frame}) containing a representation of the
+#'
+#' @return  (`data.frame`) containing a representation of the
 #'  data in the file. An extra column \code{set} is added to indicate to
 #'  which set each row belongs. 
 #'
@@ -504,16 +503,16 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' 
 #' @param groups This may be used to plot profiles of different algorithms on the same plot.
 #' 
-#' @param subset A vector indicating which rows of the data should be used. If left to default \code{NULL} all data in the data frame are used.
+#' @param subset (`integer()` | `NULL`)\cr A vector indicating which rows of the data should be used. If left to default \code{NULL} all data in the data frame are used.
 #'  
-#' @param sets Vector indicating which set each point belongs to.
+#' @param sets ([numeric])\cr Vector indicating which set each point belongs to.
 #' 
-#' @param percentiles Vector indicating which percentile should be plot. The
+#' @param percentiles ([numeric])\cr Vector indicating which percentile should be plot. The
 #'   default is to plot only the median attainment curve.
 #' 
 #' @param attsurfs   TODO
 #' 
-#' @param type string giving the type of plot desired.  The following values
+#' @param type (character(1))\cr string giving the type of plot desired.  The following values
 #'   are possible, \samp{points} and \samp{area}.
 #' 
 #' @param xlab,ylab,xlim,ylim,log,col,lty,lwd,pch,cex.pch,las Graphical
@@ -534,8 +533,7 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' @param extra.legend A character vector providing labels for the
 #'   groups of points.
 #' 
-#' @param maximise Whether the first and/or second objective correspond to a
-#'   maximisation problem.
+#' @template arg_maximise
 #' 
 #' @param xaxis.side On which side that xaxis is drawn. Valid values are
 #'   "below" and "above". See \code{\link{axis}}.
@@ -1058,8 +1056,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' @param xlim,ylim,cex,cex.lab,cex.axis Graphical parameters, see
 #'   \code{\link{plot.default}}.
 #' 
-#' @param maximise Whether the first and/or second objective correspond to
-#'   a maximisation problem.
+#' @template arg_maximise
 #' 
 #' @param grand.lines Whether to plot the grand-best and grand-worst
 #'   attainment surfaces.
@@ -1322,6 +1319,8 @@ seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE,
   }
   return(intervals)
 }
+
+#' @md
 
 ### Local Variables:
 ### ess-indent-level: 2

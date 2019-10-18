@@ -48,8 +48,10 @@ certain value (\samp{area}).}
 \item{xlim, ylim, cex, cex.lab, cex.axis}{Graphical parameters, see
 \code{\link{plot.default}}.}
 
-\item{maximise}{Whether the first and/or second objective correspond to
-a maximisation problem.}
+\item{maximise}{(\code{logical()} | \code{logical(1)}) \cr Whether the objectives must be
+maximised instead of minimised. Either a single logical value that applies
+to all objectives or a vector of logical values, with one value per
+objective.}
 
 \item{grand.lines}{Whether to plot the grand-best and grand-worst
 attainment surfaces.}

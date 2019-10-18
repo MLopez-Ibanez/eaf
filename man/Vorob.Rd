@@ -20,7 +20,7 @@ symDifPlot(x, VE, threshold, nlevels = 11, ve.col = "blue",
 frames of exactly three columns.  The third column gives the set (run,
 sample, ...) identifier.}
 
-\item{reference}{Reference point as a vector of numerical values.}
+\item{reference}{(\code{numeric()}) \cr Reference point as a vector of numerical values.}
 
 \item{VE, threshold}{Vorob'ev expectation and threshold, e.g., as returned
 by \code{\link[eaf]{vorobT}}.}

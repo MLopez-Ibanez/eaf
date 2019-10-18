@@ -42,13 +42,13 @@ present the plot is conditional to the instances.}
 
 \item{groups}{This may be used to plot profiles of different algorithms on the same plot.}
 
-\item{subset}{A vector indicating which rows of the data should be used. If left to default \code{NULL} all data in the data frame are used.}
+\item{subset}{(`integer()` | `NULL`)\cr A vector indicating which rows of the data should be used. If left to default \code{NULL} all data in the data frame are used.}
 
 \item{y}{Either a matrix of data values, or a data frame.}
 
-\item{sets}{Vector indicating which set each point belongs to.}
+\item{sets}{([numeric])\cr Vector indicating which set each point belongs to.}
 
-\item{percentiles}{Vector indicating which percentile should be plot. The
+\item{percentiles}{([numeric])\cr Vector indicating which percentile should be plot. The
 default is to plot only the median attainment curve.}
 
 \item{attsurfs}{TODO}
@@ -56,7 +56,7 @@ default is to plot only the median attainment curve.}
 \item{xlab, ylab, xlim, ylim, log, col, lty, lwd, pch, cex.pch, las}{Graphical
 parameters, see \code{\link{plot.default}}.}
 
-\item{type}{string giving the type of plot desired.  The following values
+\item{type}{(character(1))\cr string giving the type of plot desired.  The following values
 are possible, \samp{points} and \samp{area}.}
 
 \item{legend.pos}{the position of the legend, see \code{\link{legend}}.  A value of \code{"none"} hides the legend.}
@@ -74,8 +74,10 @@ groups of points.}
 \item{extra.pch, extra.lwd, extra.lty, extra.col}{Control the graphical aspect
 of the points. See \code{\link{points}} and \code{\link{lines}}.}
 
-\item{maximise}{Whether the first and/or second objective correspond to a
-maximisation problem.}
+\item{maximise}{(\code{logical()} | \code{logical(1)}) \cr Whether the objectives must be
+maximised instead of minimised. Either a single logical value that applies
+to all objectives or a vector of logical values, with one value per
+objective.}
 
 \item{xaxis.side}{On which side that xaxis is drawn. Valid values are
 "below" and "above". See \code{\link{axis}}.}

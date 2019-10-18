@@ -18,14 +18,13 @@ the file name is \emph{relative} to the current working directory,
 \item{col_names, col.names}{Vector of optional names for the variables.  The
 default is to use \samp{"V"} followed by the column number.}
 
-\item{text}{character string: if \code{file} is not supplied and this is,
-  then data are read from the value of \code{text} via a text connection.
-  Notice that a literal string can be used to include (small) data sets
-  within R code.
-'}
+\item{text}{(`character()`) \cr If \code{file} is not supplied and this is,
+then data are read from the value of \code{text} via a text connection.
+Notice that a literal string can be used to include (small) data sets
+within R code.}
 }
 \value{
-A data frame (\code{data.frame}) containing a representation of the
+(`data.frame`) containing a representation of the
  data in the file. An extra column \code{set} is added to indicate to
  which set each row belongs.
 }

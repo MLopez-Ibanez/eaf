@@ -3,14 +3,11 @@
 #' Computes the hypervolume metric with respect to a given reference point
 #' assuming minimization of all objectives.
 #'
-#' @param data Either a matrix or a data frame of numerical values, where
-#'   each row gives the coordinates of a point.
+#' @template arg_data
 #'
-#' @param reference Reference point as a vector of numerical values. 
+#' @template arg_refpoint
 #'
-#' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single logical value that applies to all objectives or
-#'   a vector of logical values, with one value per objective.
+#' @template arg_maximise
 #' 
 #' @return  A single numerical value.
 #'
@@ -73,16 +70,13 @@ hypervolume <- function(data, reference, maximise = FALSE)
 #' zero contribution even if not dominated, because removing one of them does
 #' not change the hypervolume dominated by the remaining set.
 #'
-#' @param data Either a matrix or a data frame of numerical values, where
-#'   each row gives the coordinates of a point.
+#' @template arg_data
 #'
-#' @param reference Reference point as a vector of numerical values. 
+#' @template arg_refpoint
 #'
-#' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single logical value that applies to all objectives or
-#'   a vector of logical values, with one value per objective.
+#' @template arg_maximise
 #' 
-#' @return  A numerical vector
+#' @return ([numeric]) A numerical vector
 #'
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 #'
@@ -143,15 +137,11 @@ hv_contributions <- function(data, reference, maximise = FALSE)
 #'
 #' Computes the epsilon metric, either additive or multiplicative.
 #'
-#' @param data Either a matrix or a data frame of numerical values, where
-#'   each row gives the coordinates of a point.
+#' @template arg_data
 #'
-#' @param reference Reference set as a matrix or data.frame of numerical
-#'   values.
+#' @template arg_refset
 #'
-#' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single logical value that applies to all objectives or
-#'   a vector of logical values, with one value per objective.
+#' @template arg_maximise
 #' 
 #' @return  A single numerical value.
 #'
@@ -256,15 +246,11 @@ epsilon_mult <- function(data, reference, maximise = FALSE)
 #'
 #' @rdname igd
 #' @export
-#' @param data Either a matrix or a data frame of numerical values, where
-#'   each row gives the coordinates of a point.
+#' @template arg_data
 #'
-#' @param reference Reference set as a matrix or data.frame of numerical
-#'   values.
+#' @template arg_refset
 #'
-#' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single logical value that applies to all objectives or
-#'   a vector of logical values, with one value per objective.
+#' @template arg_maximise
 #' 
 #' @return  A single numerical value.
 #'
@@ -403,19 +389,16 @@ igd_plus <- function(data, reference, maximise = FALSE)
 #' minimum value will correspond to 1 and the maximum to 2. If bounds are
 #' given, they are used for the normalisation.
 #'
-#' @param data Either a matrix or a data frame of numerical values, where
-#'   each row gives the coordinates of a point.
+#' @template arg_data
 #'
-#' @param to.range Normalise values to this range.
+#' @param to.range Normalise values to this range. If the objective is
+#'   maximised, it is normalised to \code{c(to.range[1], to.range[0])}
+#'   instead.
 #'
 #' @param lower,upper Bounds on the values. If NA, the maximum and minimum
 #'   values of each coordinate are used.
 #'
-#' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single logical value that applies to all objectives or
-#'   a vector of logical values, with one value per objective. A true value means
-#'   that the corresponding objective is normalised to \code{c(to.range[1],
-#'   to.range[0])} instead.
+#' @template arg_maximise
 #'
 #' @return  A numerical matrix
 #'

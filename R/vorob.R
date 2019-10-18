@@ -8,7 +8,7 @@
 ##' @param x Either a matrix of data values, or a data frame, or a list of data
 ##'   frames of exactly three columns.  The third column gives the set (run,
 ##'   sample, ...) identifier.
-##' @param reference Reference point as a vector of numerical values.
+##' @template arg_refpoint
 ##' @return \code{vorobT} returns a list with elements \code{threshold},
 ##'   \code{VE}, and \code{avg_hyp} (average hypervolume)
 ##' @rdname Vorob

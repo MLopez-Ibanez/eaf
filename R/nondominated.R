@@ -21,12 +21,9 @@ check_dataset <- function(x)
 #' 
 #' @rdname nondominated
 #'
-#' @param data Either a matrix or a data frame of numerical values, where
-#'   each row gives the coordinates of a point.
+#' @template arg_data
 #'
-#' @param maximise Whether the objectives must be maximised instead of
-#'   minimised. Either a single logical value that applies to all objectives or
-#'   a vector of logical values, with one value per objective.
+#' @template arg_maximise
 #' 
 #' @param keep_weakly If \code{FALSE}, return \code{FALSE} for any duplicates
 #'   of nondominated points.

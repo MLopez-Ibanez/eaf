@@ -13,12 +13,13 @@ filter_dominated(data, maximise = FALSE, keep_weakly = FALSE)
 pareto_rank(data, maximise = FALSE)
 }
 \arguments{
-\item{data}{Either a matrix or a data frame of numerical values, where
-each row gives the coordinates of a point.}
+\item{data}{(\code{matrix} | \code{data.frame}) \cr Matrix or data frame of numerical
+values, where each row gives the coordinates of a point.}
 
-\item{maximise}{Whether the objectives must be maximised instead of
-minimised. Either a single logical value that applies to all objectives or
-a vector of logical values, with one value per objective.}
+\item{maximise}{(\code{logical()} | \code{logical(1)}) \cr Whether the objectives must be
+maximised instead of minimised. Either a single logical value that applies
+to all objectives or a vector of logical values, with one value per
+objective.}
 
 \item{keep_weakly}{If \code{FALSE}, return \code{FALSE} for any duplicates
 of nondominated points.}

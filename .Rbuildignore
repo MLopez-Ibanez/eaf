@@ -5,6 +5,7 @@ inst/.+~
 ^v2
 .+\.diff
 ^Makefile
+^man-roxygen
 ^eaf-Ex.R
 ^cleanup
 \.RData
