@@ -180,13 +180,14 @@ a maximisation problem.</p></td>
 #&gt; [6,] 4583412456 7967368976   -1</div><div class='input'>
 <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>eafdiff</span>(<span class='no'>A1</span>, <span class='no'>A2</span>, <span class='kw'>rectangles</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='co'># This is large</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>d</span>)</div><div class='output co'>#&gt;  num [1:326676, 1:5] 4.57e+09 8.34e+09 4.58e+09 Inf -1.00 ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>d</span>)</div><div class='output co'>#&gt;            [,1]       [,2]       [,3]       [,4]       [,5]
-#&gt; [1,] 4573361504 3945869140 7153120712 6094691494         37
-#&gt; [2,] 8344801680 9234812806 5041718374         36 6228482594
-#&gt; [3,] 4582996706 3945888838         28 6092086138 6214315694
-#&gt; [4,]        Inf          3 7151231726 6089304554 6236429482
-#&gt; [5,]         -1 9232583000 5040968300 6101391534 6214364086
-#&gt; [6,] 4582996706 3945586936 7159455924 6093058302         37</div><div class='input'><span class='co'># Small example</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>d</span>)</div><div class='output co'>#&gt;  num [1:326676, 1:5] 4.57e+09 4.58e+09 4.58e+09 4.58e+09 4.58e+09 ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>d</span>)</div><div class='output co'>#&gt;            [,1]       [,2]       [,3]       [,4] [,5]
+#&gt; [1,] 4573361504 8344801680 4582996706        Inf   -1
+#&gt; [2,] 4582996706 8277735948 4632442038 8344801680   -1
+#&gt; [3,] 4582996706 8277514364 4632458126 8277735948   -1
+#&gt; [4,] 4582996706 8277462996 4632470310 8277514364   -1
+#&gt; [5,] 4582996706 8277375044 4632508156 8277462996   -1
+#&gt; [6,] 4582996706 8277237770 4632556272 8277375044   -1</div><div class='input'><span class='co'># FIXME: finish this!</span>
+<span class='co'># Small example</span>
 <span class='no'>X</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='kw'>text</span><span class='kw'>=</span><span class='st'>'
 1 2
 2.5 1
