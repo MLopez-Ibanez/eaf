@@ -166,6 +166,7 @@ compute.eafdiff.helper <- function(data, intervals)
 #' str(d)
 #' head(d)
 
+#' # FIXME: finish this!
 #' # Small example
 #' X <- read_datasets(text='
 #' 1 2

@@ -13,5 +13,9 @@
     M. T. Jensen. Reducing the run-time complexity of multiobjective EAs: The
     NSGA-II and other algorithms. IEEE Transactions on Evolutionary Computation,
     7(5):503–515, 2003.
- * Reimplement eafdiff.pl and eafplot.pl in Python
+ * Reimplement eafdiff.pl and eafplot.pl in Python/R
+ * Convert eaf->attained to a bitmask.
+ * Second order eaf-test: https://github.com/hjalves/eaftest
+ 
+ 
  
