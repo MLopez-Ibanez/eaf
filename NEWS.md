@@ -26,6 +26,11 @@
 * New `eafdiff()` function for computing EAF differences.
                                                          (Manuel López-Ibáñez)
 
+* The `data.frame` method for `eafplot` has been removed. It had unexpected
+  behavior and the default method handles `data.frame` already.
+                                                         (Manuel López-Ibáñez)
+
+
 # eaf 1.8
 
 * Development version moved to GitHub: https://github.com/MLopez-Ibanez/eaf

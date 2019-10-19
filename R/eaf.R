@@ -655,7 +655,8 @@ eafplot.default <-
     # FIXME: This is a bit of wasted effort. We should decide what is more
     # efficient, one large matrix or separate points and sets, then be
     # consistent everywhere.
-    x <- check.eaf.data(cbind(x, sets))
+    if (!is.null(sets)) x <- cbind(x, sets)
+    x <- check.eaf.data(x)
     sets <- x[, 3L]
     x <- x[,1:2]
     x <- matrix.maximise(x, maximise)
@@ -1319,8 +1320,6 @@ seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE,
   }
   return(intervals)
 }
-
-#' @md
 
 ### Local Variables:
 ### ess-indent-level: 2

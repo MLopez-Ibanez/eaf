@@ -13,9 +13,8 @@ eafplot(time + best ~ run | inst, groups = alg, data = gcp2x2, percentiles = c(0
 
 A1 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
 A2 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
-eafplot(A1, A2, percentiles = c(50))
 
-eafplot(list(A1 = A1, A2 = A2), percentiles = c(50))
+eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 
 eafplot(A1, type="area", legend.pos="bottomleft")
 

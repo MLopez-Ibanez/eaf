@@ -151,71 +151,30 @@ eafplot.formula <- function(formula, data, groups = NULL, subset = NULL, ...)
 }
 
 
-#' @describeIn eafplot List interface for lists of data.frames
+#' @describeIn eafplot List interface for lists of data.frames or matrices
 #' 
 #'@export 
-eafplot.list <- function(x,...)
+eafplot.list <- function(x, ...)
 {
   if (!is.list(x))
-    stop("'x' must be a list of data.frames with exactly three columns")
+    stop("'x' must be a list of data.frames or matrices with exactly three columns")
 
-  DT <- data.frame()
-  if (!is.null(names(x)))
-    groups <- names(x)
-  else
-    groups <- 1:length(x)
-  for (i in seq_len(length(x)) ) {
-    if (!is.data.frame(x[[i]]))
-      stop("Each element of the list must be a data.frame with exactly three columns.")
-    DT <- rbind(DT, data.frame(x[[i]], groups = groups[i]))
+  groups <- if (!is.null(names(x))) names(x) else 1:length(x)
+
+  check.elem <- function(elem) {
+    elem <- check.eaf.data(elem)
+    if (ncol(elem) != 3L)
+      stop("Each element of the list have exactly three columns. If you have grouping and conditioning variables, please consider using this format: 'eafplot(formula, data, ...)'")
+    return(elem)
   }
-  eafplot(as.matrix(DT[,c(1,2)]), as.numeric(as.factor(DT[,3])), as.factor(DT[,4]),...)
+  x <- sapply(x, check.elem)  
+  groups <- rep(groups, sapply(x, nrow))
+  x <- do.call(rbind, x)
+  
+  eafplot(as.matrix(x[,c(1,2)]),
+          sets = as.numeric(as.factor(x[, 3])),
+          groups = groups, ...)
 }
-
-#' @describeIn eafplot Data.frame interface
-#'
-#' @param y Either a matrix of data values, or a data frame.
-#' @export
-eafplot.data.frame <- function(x, y = NULL, sets = NULL, ...)
-{
-  namex <- deparse(substitute(x))
-  namey <- deparse(substitute(y))
-
-  # FIXME: Why keep x and y as data.frame to convert it here to matrix?
-  eafplot.data.frame2 <- function(x, groups, main = DNAME, ...)
-    eafplot(as.matrix(x[,c(1,2)]), as.numeric(x[,3]),
-            groups = groups, main = main, ...)
-  check.eaf.data.frame <- function(x, sets = NULL) {
-    xname <- deparse(substitute(x))
-    if (!is.null(sets))
-      x <- cbind.data.frame(x, sets)
-
-    if (!is.data.frame(x) || ncol(x) != 3L)
-      stop("'", xname, "' must be a data.frame with exactly three columns.\n",
-           "  If you have grouping and conditioning variables, please consider using this format: 'eafplot(formula, data, ...)'")
-    if (nrow(x) < 1L)
-      stop("not enough (finite) '", xname, "' observations")
-    if (!is.numeric(x[,1]) || !is.numeric(x[,2]))
-      stop("columns 1 and 2 of '", xname, "' must be numeric")
-    if (!is.numeric(x[,3]) && !is.factor(x[,3]))
-      x[,3] <- as.factor(x[,3])
-    return(x)
-  }
-  x <- check.eaf.data.frame(x, sets)
-  if (!is.null(y)) {
-    y <- check.eaf.data.frame(y, sets)
-    DNAME <- paste0(namex, " and ", namey)
-    DT <- rbind(data.frame(x, groups = namex),
-                data.frame(y, groups = namey))
-    groups <- as.factor(DT[, 4])
-  } else {
-    DNAME <- namex
-    DT <- x
-    groups <- NULL
-  }
-  eafplot.data.frame2(DT, groups = groups, ...)
-}
-
 
 ### Local Variables:
 ### ess-style: DEFAULT

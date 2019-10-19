@@ -12,29 +12,29 @@
 #' Functions:
 #'
 #'\tabular{rl}{
-#'\code{\link{eafdiffplot}} \tab  Empirical attainment function differences\cr
-#'\code{\link{eafplot}} \tab  Plot the Empirical Attainment Function for two
+#'[`eafdiffplot`] \tab  Empirical attainment function differences\cr
+#'[`eafplot`] \tab  Plot the Empirical Attainment Function for two
 #'objectives\cr
-#'\code{\link{read_datasets}}\tab  Read several data.frame sets
+#'[`read_datasets`]\tab  Read several data.frame sets
 #'}
 #'
 #'Data:
 #'
 #'\describe{
-#'\item{\code{\link{gcp2x2}}}{  Metaheuristics for solving the Graph Vertex Coloring Problem}
-#'\item{\code{\link{HybridGA}}}{  Results of Hybrid GA on vanzyl and Richmond
+#'\item{[`gcp2x2`]}{  Metaheuristics for solving the Graph Vertex Coloring Problem}
+#'\item{[`HybridGA`]}{  Results of Hybrid GA on vanzyl and Richmond
 #'water networks}
-#'\item{\code{\link{SPEA2minstoptimeRichmond}}}{ Results of SPEA2 when minimising electrical cost and maximising the
+#'\item{[`SPEA2minstoptimeRichmond`]}{ Results of SPEA2 when minimising electrical cost and maximising the
 #'minimum idle time of pumps on Richmond water network}
 #'}
 #' 
-#' Extras are available at \code{file.path(system.file(package="eaf"))}:
+#' Extras are available at `file.path(system.file(package="eaf"))`:
 #'
-#'\tabular{ll}{
-#'\code{extdata}        \tab  External data sets (see \code{\link{read_datasets}})\cr
-#'\code{scripts/eaf}    \tab  EAF command-line program\cr
-#'\code{scripts/eafplot}\tab  Perl script to generate plots of attainment surfaces\cr
-#'\code{scripts/eafdiff}\tab  Perl script to generate plots of EAF differences
+#'\tabular{rl}{
+#' `extdata`        \tab  External data sets (see [`read_datasets`]) \cr
+#' `scripts/eaf`    \tab  EAF command-line program \cr
+#' `scripts/eafplot`\tab  Perl script to generate plots of attainment surfaces\cr
+#' `scripts/eafdiff`\tab  Perl script to generate plots of EAF differences
 #'}
 #'
 #' @import graphics grDevices stats
@@ -51,23 +51,23 @@
 #'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez} and Marco Chiarandini.
 #'
 #' @references
-#'  V. Grunert da Fonseca, C. M. Fonseca, and A. O. Hall, \emph{Inferential
+#'  V. Grunert da Fonseca, C. M. Fonseca, and A. O. Hall, _Inferential
 #'  performance assessment of stochastic optimisers and the attainment
-#'  function}, in Evolutionary Multi-Criterion Optimization. First
+#'  function_, in Evolutionary Multi-Criterion Optimization. First
 #'  International Conference, EMO 2001 (E. Zitzler, K. Deb, L. Thiele,
 #'  C. A. Coello Coello, and D. Corne, eds.), vol. 1993 of Lecture Notes
 #'  in Computer Science, pp. 213-225, Berlin: Springer, 2001.
 #'
-#'  V. Grunert da Fonseca and C. M. Fonseca, \emph{The attainment-function
+#'  V. Grunert da Fonseca and C. M. Fonseca, _The attainment-function
 #'  approach to stochastic multiobjective optimizer assessment and
-#'  comparison}. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
+#'  comparison_. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
 #'  M. Preuss, editors, Experimental Methods for the Analysis of
 #'  Optimization Algorithms, pages 103-130, Springer, Berlin, Germany,
 #'  2010.
 #'  
-#'  M. \enc{López-Ibáñez}{Lopez-Ibanez}, L. Paquete, and T. \enc{Stützle}{Stuetzle}. \emph{Exploratory
+#'  M. \enc{López-Ibáñez}{Lopez-Ibanez}, L. Paquete, and T. \enc{Stützle}{Stuetzle}. _Exploratory
 #'  Analysis of Stochastic Local Search Algorithms in Biobjective
-#'  Optimization}. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
+#'  Optimization_. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
 #'  M. Preuss, editors, Experimental Methods for the Analysis of
 #'  Optimization Algorithms, pages 209–222. Springer, Berlin, Germany,
 #'  2010. doi: 10.1007/978-3-642-02538-9_9
@@ -91,7 +91,7 @@
 #'
 #'A1 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
 #'A2 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
-#'eafplot(A1,A2, percentiles=c(50))
+#'eafplot(A1, percentiles=c(50))
 #'eafplot(list(A1=A1, A2=A2), percentiles=c(50))
 #'eafdiffplot(A1, A2)
 #'## Save to a PDF file
@@ -107,11 +107,11 @@
 #'
 #'@format
 #'  A list with two data frames, each of them with three columns, as
-#'  produced by \code{\link{read_datasets}}.
+#'  produced by [`read_datasets`].
 #'  \describe{
-#'    \item{\code{$vanzyl}}{data frame of results on vanzyl network}
-#'    \item{\code{$richmond}}{data frame of results on Richmond
-#'      network. The second column is filled with \code{NA}}
+#'    \item{`$vanzyl`}{data frame of results on vanzyl network}
+#'    \item{`$richmond`}{data frame of results on Richmond
+#'      network. The second column is filled with `NA`}
 #'  }
 #' 
 #'@source Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
@@ -131,7 +131,7 @@
 #'The data has the only goal of providing an example of use of eafplot.
 #'
 #'@format 
-#'  A data frame as produced by \code{\link{read_datasets}}. The second
+#'  A data frame as produced by [`read_datasets`]. The second
 #'  column measures time in seconds and corresponds to a maximisation problem.
 #'
 #' @source
@@ -155,7 +155,7 @@
 #' The data has the only goal of providing an example of use of eafplot.
 #'
 #'@format 
-#'  A data frame as produced by \code{\link{read_datasets}}.
+#'  A data frame as produced by [`read_datasets`].
 #'
 #' @source
 #'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
@@ -179,7 +179,7 @@
 #'The data has the only goal of providing an example of use of eafplot.
 #'
 #'@format 
-#'  A data frame as produced by \code{\link{read_datasets}}.
+#'  A data frame as produced by [`read_datasets`].
 #'
 #'@source
 #'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
@@ -207,16 +207,16 @@
 #' @format 
 #'  A data frame with 3133 observations on the following 6 variables.
 #'  \describe{
-#'    \item{\code{alg}}{a factor with levels \code{SAKempeFI} and \code{TSinN1}}
-#'    \item{\code{inst}}{a factor with levels \code{DSJC500.5} and
-#'      \code{DSJC500.9}. Instances are taken from the DIMACS repository.}
-#'    \item{\code{run}}{a numeric vector indicating the run to
+#'    \item{`alg`}{a factor with levels `SAKempeFI` and `TSinN1`}
+#'    \item{`inst`}{a factor with levels `DSJC500.5` and
+#'      `DSJC500.9`. Instances are taken from the DIMACS repository.}
+#'    \item{`run`}{a numeric vector indicating the run to
 #'  which the observation belong. }
-#'    \item{\code{best}}{a numeric vector indicating the best solution in
+#'    \item{`best`}{a numeric vector indicating the best solution in
 #'  number of colors found in the corresponding run up to that time.}
-#'    \item{\code{time}}{a numeric vector indicating the time since the
+#'    \item{`time`}{a numeric vector indicating the time since the
 #'  beginning of the run for each observation. A rescaling is applied.}
-#'    \item{\code{titer}}{a numeric vector indicating iteration number
+#'    \item{`titer`}{a numeric vector indicating iteration number
 #'  corresponding to the observations.}
 #'  }
 #'
@@ -248,23 +248,23 @@
 
 #' Conditional Pareto fronts obtained from Gaussian processes simulations.
 #'
-#' The data has the only goal of providing an example of use of \code{\link[eaf]{vorobT}} 
-#' and \code{\link[eaf]{vorobDev}}. It has been obtained by fitting two Gaussian processes
+#' The data has the only goal of providing an example of use of `\link[eaf]{vorobT`} 
+#' and `\link[eaf]{vorobDev`}. It has been obtained by fitting two Gaussian processes
 #' on 20 observations of a bi-objective problem, before generating conditional simulation 
 #' of both GPs at different locations and extracting non-dominated values of coupled simulations. 
 #'
 #' @format 
 #'  A data frame with 2967 observations on the following 3 variables.
 #'  \describe{
-#'    \item{\code{f1}}{first objective values.}
-#'    \item{\code{f2}}{second objective values.}
-#'    \item{\code{set}}{indices of corresponding conditional Pareto fronts.}
+#'    \item{`f1`}{first objective values.}
+#'    \item{`f2`}{second objective values.}
+#'    \item{`set`}{indices of corresponding conditional Pareto fronts.}
 #'  }
 #'
 #'@source
 #'  
 #' M. Binois, D. Ginsbourger and O. Roustant. Quantifying Uncertainty on Pareto Fronts with
-#' Gaussian process conditional simulations, European Journal of Operational Research, 2015, 243(2), 386-394. 
+#' Gaussian process conditional simulations, _European Journal of Operational Research_, 2015, 243(2), 386-394. 
 #'
 #'@examples 
 #' data(CPFs)
@@ -273,7 +273,7 @@
 #' eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
 #'        col = gray(seq(0.8, 0.1, length.out = 6)^2), type = "area",
 #'        legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan")
-#'
+#'@md
 "CPFs"
 
 

@@ -4,7 +4,6 @@
 \alias{eafplot}
 \alias{eafplot.formula}
 \alias{eafplot.list}
-\alias{eafplot.data.frame}
 \alias{eafplot.default}
 \title{Plot the Empirical Attainment Function for two objectives generic}
 \usage{
@@ -14,8 +13,6 @@ eafplot(x, ...)
   ...)
 
 \method{eafplot}{list}(x, ...)
-
-\method{eafplot}{data.frame}(x, y = NULL, sets = NULL, ...)
 
 \method{eafplot}{default}(x, sets = NULL, groups = NULL,
   percentiles = c(0, 50, 100), attsurfs = NULL, xlab = NULL,
@@ -43,8 +40,6 @@ present the plot is conditional to the instances.}
 \item{groups}{This may be used to plot profiles of different algorithms on the same plot.}
 
 \item{subset}{(`integer()` | `NULL`)\cr A vector indicating which rows of the data should be used. If left to default \code{NULL} all data in the data frame are used.}
-
-\item{y}{Either a matrix of data values, or a data frame.}
 
 \item{sets}{([numeric])\cr Vector indicating which set each point belongs to.}
 
@@ -111,9 +106,7 @@ solution quality over time of a collection of runs of a stochastic optimizer.
 \itemize{
 \item \code{formula}: Formula interface
 
-\item \code{list}: List interface for lists of data.frames
-
-\item \code{data.frame}: Data.frame interface
+\item \code{list}: List interface for lists of data.frames or matrices
 
 \item \code{default}: Main function
 }}
