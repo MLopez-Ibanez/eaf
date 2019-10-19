@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read several data.frame sets — read_datasets • eaf</title>
+<title>Read several data sets — read_datasets • eaf</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Read several data.frame sets — read_datasets" />
-<meta property="og:description" content="Reads a text file in table format and creates a data frame from it. The file
+<meta property="og:title" content="Read several data sets — read_datasets" />
+<meta property="og:description" content="Reads a text file in table format and creates a matrix from it. The file
 may contain several sets, separated by empty lines. Lines starting by
 '#' are considered comments and treated as empty lines. The function
 adds an additional column set to indicate to which set each row
@@ -114,13 +114,13 @@ belongs." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read several data.frame sets</h1>
+    <h1>Read several data sets</h1>
     <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/eaf.R'><code>R/eaf.R</code></a></small>
     <div class="hidden name"><code>read_datasets.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Reads a text file in table format and creates a data frame from it. The file
+    <p>Reads a text file in table format and creates a matrix from it. The file
 may contain several sets, separated by empty lines. Lines starting by
 <code>'#'</code> are considered comments and treated as empty lines. The function
 adds an additional column <code>set</code> to indicate to which set each row
@@ -157,7 +157,7 @@ within R code.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>(`data.frame`) containing a representation of the
+    <p>(`matrix()`) containing a representation of the
  data in the file. An extra column <code>set</code> is added to indicate to
  which set each row belongs.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
@@ -180,19 +180,19 @@ within R code.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'>read_datasets</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_1_dat"</span>))
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>A1</span>)</div><div class='output co'>#&gt; 'data.frame':	23260 obs. of  3 variables:
-#&gt;  $ V1 : num  1.23e+10 1.11e+10 1.18e+10 1.13e+10 9.80e+09 ...
-#&gt;  $ V2 : num  3.49e+09 3.69e+09 3.59e+09 3.65e+09 3.90e+09 ...
-#&gt;  $ set: num  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'><span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'>read_datasets</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_2_dat"</span>))
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>A2</span>)</div><div class='output co'>#&gt; 'data.frame':	65518 obs. of  3 variables:
-#&gt;  $ V1 : num  1.21e+10 1.21e+10 1.21e+10 1.21e+10 1.21e+10 ...
-#&gt;  $ V2 : num  3.17e+09 3.17e+09 3.17e+09 3.17e+09 3.17e+09 ...
-#&gt;  $ set: num  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'>
-<span class='fu'>read_datasets</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='st'>"1 2\n3 4\n\n5 6\n7 8\n"</span>, <span class='kw'>col_names</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"obj1"</span>, <span class='st'>"obj2"</span>))</div><div class='output co'>#&gt;   obj1 obj2 set
-#&gt; 1    1    2   1
-#&gt; 2    3    4   1
-#&gt; 3    5    6   2
-#&gt; 4    7    8   2</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>A1</span>)</div><div class='output co'>#&gt;  num [1:23260, 1:3] 1.23e+10 1.11e+10 1.18e+10 1.13e+10 9.80e+09 ...
+#&gt;  - attr(*, "dimnames")=List of 2
+#&gt;   ..$ : NULL
+#&gt;   ..$ : chr [1:3] "V1" "V2" "set"</div><div class='input'><span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'>read_datasets</span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_2_dat"</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>A2</span>)</div><div class='output co'>#&gt;  num [1:65518, 1:3] 1.21e+10 1.21e+10 1.21e+10 1.21e+10 1.21e+10 ...
+#&gt;  - attr(*, "dimnames")=List of 2
+#&gt;   ..$ : NULL
+#&gt;   ..$ : chr [1:3] "V1" "V2" "set"</div><div class='input'>
+<span class='fu'>read_datasets</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='st'>"1 2\n3 4\n\n5 6\n7 8\n"</span>, <span class='kw'>col_names</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"obj1"</span>, <span class='st'>"obj2"</span>))</div><div class='output co'>#&gt;      obj1 obj2 set
+#&gt; [1,]    1    2   1
+#&gt; [2,]    3    4   1
+#&gt; [3,]    5    6   2
+#&gt; [4,]    7    8   2</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -38,9 +38,9 @@
   
 
 <meta property="og:title" content="Conditional Pareto fronts obtained from Gaussian processes simulations. — CPFs" />
-<meta property="og:description" content="The data has the only goal of providing an example of use of vorobT 
+<meta property="og:description" content="The data has the only goal of providing an example of use of vorobT
 and vorobDev. It has been obtained by fitting two Gaussian processes
-on 20 observations of a bi-objective problem, before generating conditional simulation 
+on 20 observations of a bi-objective problem, before generating conditional simulation
 of both GPs at different locations and extracting non-dominated values of coupled simulations." />
 <meta name="twitter:card" content="summary" />
 
@@ -119,9 +119,9 @@ of both GPs at different locations and extracting non-dominated values of couple
     </div>
 
     <div class="ref-description">
-    <p>The data has the only goal of providing an example of use of <code><a href='Vorob.html'>vorobT</a></code> 
+    <p>The data has the only goal of providing an example of use of <code><a href='Vorob.html'>vorobT</a></code>
 and <code><a href='Vorob.html'>vorobDev</a></code>. It has been obtained by fitting two Gaussian processes
-on 20 observations of a bi-objective problem, before generating conditional simulation 
+on 20 observations of a bi-objective problem, before generating conditional simulation
 of both GPs at different locations and extracting non-dominated values of coupled simulations.</p>
     </div>
 
@@ -131,10 +131,10 @@ of both GPs at different locations and extracting non-dominated values of couple
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data frame with 2967 observations on the following 3 variables.</p><dl class='dl-horizontal'>
-   <dt><code>f1</code></dt><dd><p>first objective values.</p></dd>
-   <dt><code>f2</code></dt><dd><p>second objective values.</p></dd>
-   <dt><code>set</code></dt><dd><p>indices of corresponding conditional Pareto fronts.</p></dd>
- 
+<dt><code>f1</code></dt><dd><p>first objective values.</p></dd>
+<dt><code>f2</code></dt><dd><p>second objective values.</p></dd>
+<dt><code>set</code></dt><dd><p>indices of corresponding conditional Pareto fronts.</p></dd>
+
 </dl>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
@@ -147,8 +147,7 @@ Gaussian process conditional simulations, European Journal of Operational Resear
 <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Vorob.html'>vorobT</a></span>(<span class='no'>CPFs</span>, <span class='kw'>reference</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>200</span>))
 <span class='fu'><a href='eafplot.html'>eafplot</a></span>(<span class='no'>CPFs</span>[,<span class='fl'>1</span>:<span class='fl'>2</span>], <span class='kw'>sets</span> <span class='kw'>=</span> <span class='no'>CPFs</span>[,<span class='fl'>3</span>], <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>60</span>, <span class='fl'>80</span>, <span class='fl'>100</span>),
        <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/gray.html'>gray</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0.8</span>, <span class='fl'>0.1</span>, <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fl'>6</span>)^<span class='fl'>2</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"area"</span>,
-       <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"bottomleft"</span>, <span class='kw'>extra.points</span> <span class='kw'>=</span> <span class='no'>res</span>$<span class='no'>VE</span>, <span class='kw'>extra.col</span> <span class='kw'>=</span> <span class='st'>"cyan"</span>)</div><div class='img'><img src='CPFs-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+       <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"bottomleft"</span>, <span class='kw'>extra.points</span> <span class='kw'>=</span> <span class='no'>res</span>$<span class='no'>VE</span>, <span class='kw'>extra.col</span> <span class='kw'>=</span> <span class='st'>"cyan"</span>)</div><div class='img'><img src='CPFs-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

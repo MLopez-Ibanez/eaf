@@ -149,20 +149,31 @@
 <h2 class="hasAnchor">
 <a href="#python" class="anchor"></a>Python</h2>
 <p>Thanks to <a href="https://rpy2.github.io/doc/latest/html/index.html">rpy2</a>, you can use the <code>eaf</code> package from Python. A complete example would be:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="im">from</span> rpy2.robjects <span class="im">import</span> r <span class="im">as</span> R</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="im">from</span> rpy2.interactive <span class="im">import</span> process_revents</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">process_revents.start()</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">eaf <span class="op">=</span> importr(<span class="st">"eaf"</span>)</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">path <span class="op">=</span> R(<span class="st">'system.file(package="eaf")'</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"/extdata/"</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">alg1 <span class="op">=</span> eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_1_dat"</span>)</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">alg1 <span class="op">=</span> np.array(alg1).transpose()</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">eaf.eafplot(alg1[:, <span class="dv">0</span>:<span class="dv">2</span>], sets<span class="op">=</span>alg1[:,<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">alg2 <span class="op">=</span> np.array(eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_2_dat"</span>)).transpose()</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">eaf.eafdiffplot(alg1, alg2)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="im">import</span> os</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="im">import</span> subprocess</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="im">import</span> sys</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">os.environ[<span class="st">'RPY2_CFFI_MODE'</span>] <span class="op">=</span> <span class="st">"API"</span> <span class="co"># bug in cffi 1.13.0 https://bitbucket.org/rpy2/rpy2/issues/591/runtimeerror-found-a-situation-in-which-we</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># Tested with rpy2 2.9.2-1</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="im">from</span> rpy2.robjects <span class="im">import</span> r <span class="im">as</span> R</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">numpy2ri.activate()</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="im">from</span> rpy2.interactive <span class="im">import</span> process_revents</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">process_revents.start()</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">eaf <span class="op">=</span> importr(<span class="st">"eaf"</span>)</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">path <span class="op">=</span> R(<span class="st">'system.file(package="eaf", "extdata")'</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"/"</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">alg1 <span class="op">=</span> eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_1_dat"</span>)</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">alg1 <span class="op">=</span> np.asarray(alg1)</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">alg2 <span class="op">=</span> np.asarray(eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_2_dat"</span>))</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">eaf.eafplot(alg1[:, <span class="dv">0</span>:<span class="dv">2</span>], sets<span class="op">=</span>alg1[:,<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="bu">input</span>(<span class="st">"Press ENTER to see next plot: "</span>)</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">eaf.eafdiffplot(alg1, alg2, title_left<span class="op">=</span><span class="st">"A"</span>, title_right<span class="op">=</span><span class="st">"B"</span>)</a></code></pre></div>
 </div>
 <div id="license" class="section level2">
 <h2 class="hasAnchor">

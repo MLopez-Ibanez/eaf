@@ -130,9 +130,6 @@ attainment surfaces for certain percentiles or as points.</p>
 <span class='co'># S3 method for list</span>
 <span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='co'># S3 method for data.frame</span>
-<span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
-
 <span class='co'># S3 method for default</span>
 <span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='kw'>sets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span>), <span class='kw'>attsurfs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -174,10 +171,6 @@ present the plot is conditional to the instances.</p></td>
     <tr>
       <th>subset</th>
       <td><p>(`integer()` | `NULL`)<br /> A vector indicating which rows of the data should be used. If left to default <code>NULL</code> all data in the data frame are used.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>Either a matrix of data values, or a data frame.</p></td>
     </tr>
     <tr>
       <th>sets</th>
@@ -273,8 +266,7 @@ solution quality over time of a collection of runs of a stochastic optimizer.</p
     
 <ul>
 <li><p><code>formula</code>: Formula interface</p></li>
-<li><p><code>list</code>: List interface for lists of data.frames</p></li>
-<li><p><code>data.frame</code>: Data.frame interface</p></li>
+<li><p><code>list</code>: List interface for lists of data.frames or matrices</p></li>
 <li><p><code>default</code>: Main function</p></li>
 </ul>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
