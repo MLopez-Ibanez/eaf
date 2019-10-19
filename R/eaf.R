@@ -303,9 +303,9 @@ matrix.maximise <- function(z, maximise)
   return(z)
 }
 
-#' Read several data.frame sets
+#' Read several data sets
 #'
-#' Reads a text file in table format and creates a data frame from it. The file
+#' Reads a text file in table format and creates a matrix from it. The file
 #' may contain several sets, separated by empty lines. Lines starting by
 #' \code{'#'} are considered comments and treated as empty lines. The function
 #' adds an additional column \code{set} to indicate to which set each row
@@ -324,7 +324,7 @@ matrix.maximise <- function(z, maximise)
 #'   Notice that a literal string can be used to include (small) data sets
 #'   within R code.
 #'
-#' @return  (`data.frame`) containing a representation of the
+#' @return  (`matrix()`) containing a representation of the
 #'  data in the file. An extra column \code{set} is added to indicate to
 #'  which set each row belongs. 
 #'
@@ -369,7 +369,7 @@ read_datasets <- function(file, col_names, text)
   if (missing(col_names))
     col_names <- paste0("V", 1L:(ncol(out)-1))
   colnames(out) <- c(col_names, "set")
-  return(as.data.frame(out))
+  return(out)
 }
 
 #' @rdname read_datasets

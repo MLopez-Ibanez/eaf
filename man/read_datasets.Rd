@@ -3,7 +3,7 @@
 \name{read_datasets}
 \alias{read_datasets}
 \alias{read.data.sets}
-\title{Read several data.frame sets}
+\title{Read several data sets}
 \usage{
 read_datasets(file, col_names, text)
 
@@ -24,12 +24,12 @@ Notice that a literal string can be used to include (small) data sets
 within R code.}
 }
 \value{
-(`data.frame`) containing a representation of the
+(`matrix()`) containing a representation of the
  data in the file. An extra column \code{set} is added to indicate to
  which set each row belongs.
 }
 \description{
-Reads a text file in table format and creates a data frame from it. The file
+Reads a text file in table format and creates a matrix from it. The file
 may contain several sets, separated by empty lines. Lines starting by
 \code{'#'} are considered comments and treated as empty lines. The function
 adds an additional column \code{set} to indicate to which set each row
