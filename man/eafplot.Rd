@@ -29,7 +29,7 @@ eafplot(x, ...)
 \item{x}{Either a matrix of data values, or a data frame, or a list of
 data frames of exactly three columns.}
 
-\item{...}{Other graphical parameters to \code{\link[=plot.default]{plot.default()}}.}
+\item{...}{Other graphical parameters to \code{\link{plot.default}}.}
 
 \item{formula}{A formula of the type: \code{time + cost ~ run | instance}
 will draw \code{time} on the x-axis and \code{cost} on the y-axis. If \code{instance} is
@@ -39,22 +39,22 @@ present the plot is conditional to the instances.}
 
 \item{groups}{This may be used to plot profiles of different algorithms on the same plot.}
 
-\item{subset}{(\code{integer()} | \code{NULL})\cr A vector indicating which rows of the data should be used. If left to default \code{NULL} all data in the data frame are used.}
+\item{subset}{(`integer()` | `NULL`)\cr A vector indicating which rows of the data should be used. If left to default \code{NULL} all data in the data frame are used.}
 
-\item{sets}{(\link{numeric})\cr Vector indicating which set each point belongs to.}
+\item{sets}{([numeric])\cr Vector indicating which set each point belongs to.}
 
-\item{percentiles}{(\link{numeric})\cr Vector indicating which percentile should be plot. The
+\item{percentiles}{([numeric])\cr Vector indicating which percentile should be plot. The
 default is to plot only the median attainment curve.}
 
 \item{attsurfs}{TODO}
 
 \item{xlab, ylab, xlim, ylim, log, col, lty, lwd, pch, cex.pch, las}{Graphical
-parameters, see \code{\link[=plot.default]{plot.default()}}.}
+parameters, see \code{\link{plot.default}}.}
 
 \item{type}{(character(1))\cr string giving the type of plot desired.  The following values
 are possible, \samp{points} and \samp{area}.}
 
-\item{legend.pos}{the position of the legend, see \code{\link[=legend]{legend()}}.  A value of \code{"none"} hides the legend.}
+\item{legend.pos}{the position of the legend, see \code{\link{legend}}.  A value of \code{"none"} hides the legend.}
 
 \item{legend.txt}{a character or expression vector to appear in the
 legend. If \code{NULL}, appropriate labels will be generated.}
@@ -67,7 +67,7 @@ lines if one of the columns is \code{NA}.}
 groups of points.}
 
 \item{extra.pch, extra.lwd, extra.lty, extra.col}{Control the graphical aspect
-of the points. See \code{\link[=points]{points()}} and \code{\link[=lines]{lines()}}.}
+of the points. See \code{\link{points}} and \code{\link{lines}}.}
 
 \item{maximise}{(\code{logical()} | \code{logical(1)}) \cr Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
@@ -75,10 +75,10 @@ to all objectives or a vector of logical values, with one value per
 objective.}
 
 \item{xaxis.side}{On which side that xaxis is drawn. Valid values are
-"below" and "above". See \code{\link[=axis]{axis()}}.}
+"below" and "above". See \code{\link{axis}}.}
 
 \item{yaxis.side}{On which side that yaxis is drawn. Valid values are "left"
-and "right". See \code{\link[=axis]{axis()}}.}
+and "right". See \code{\link{axis}}.}
 
 \item{axes}{A logical value indicating whether both axes should be drawn
 on the plot.}
@@ -123,9 +123,8 @@ eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2,
 	percentiles=c(0,50,100), cex = 1.4, lty = c(2,1,2), lwd = c(2,2,2),
      col = c("black","blue","grey50"))
 
-extdata_path <- system.file(package = "eaf", "extdata")
-A1 <- read_datasets(file.path(extdata_path, "ALG_1_dat"))
-A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat"))
+A1 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
+A2 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
 eafplot(A1, percentiles = 50, sci.notation = TRUE)
 eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 
@@ -163,6 +162,6 @@ eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
 }
 }
 \seealso{
-\code{\link[=read_datasets]{read_datasets()}} \code{\link[=eafdiffplot]{eafdiffplot()}}
+\code{\link{read_datasets}} \code{\link{eafdiffplot}}
 }
 \keyword{graphs}
