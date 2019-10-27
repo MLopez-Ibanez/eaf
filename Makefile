@@ -14,12 +14,11 @@ PACKAGEDIR=$(CURDIR)
 FTP_COMMANDS="user anonymous anonymous\nbinary\ncd incoming\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
 WINBUILD_FTP_COMMANDS="user anonymous anonymous\nbinary\ncd R-devel\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
 
-
 ## Do we have git?
 ifeq ($(shell sh -c 'which git 1> /dev/null 2>&1 && echo y'),y)
   ## Is this a working copy?
-  ifeq ($(shell sh -c 'LC_ALL=C  git describe --first-parent --always | sed "s/v[0-9]\.[0-9]//" | grep -q ^[0-9] && echo y'),y)
-    $(shell sh -c 'git describe --first-parent --always | sed "s/v[0-9]\.[0-9]//" > git_version')
+  ifeq ($(shell sh -c 'LC_ALL=C  git describe --first-parent --always | grep -q "[0-9a-z]\+$$" && echo y'),y)
+    $(shell sh -c 'LC_ALL=C  git describe --first-parent --always | grep -o "[0-9a-z]\+$$" > git_version')
   endif
 endif
 ## Set version information:
