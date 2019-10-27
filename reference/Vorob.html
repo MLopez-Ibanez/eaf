@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -152,7 +152,7 @@ sample, ...) identifier.</p></td>
     <tr>
       <th>VE, threshold</th>
       <td><p>Vorob'ev expectation and threshold, e.g., as returned
-by <code>vorobT</code>.</p></td>
+by <code>vorobT()</code>.</p></td>
     </tr>
     <tr>
       <th>nlevels</th>
@@ -165,24 +165,25 @@ symmetric deviation.</p></td>
     </tr>
     <tr>
       <th>xlim, ylim, main</th>
-      <td><p>Graphical parameters, see <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default</a></code>.</p></td>
+      <td><p>Graphical parameters, see
+<code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default()</a></code>.</p></td>
     </tr>
     <tr>
       <th>legend.pos</th>
-      <td><p>the position of the legend, see <code><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></code>. A
-value of <code>"none"</code> hides the legend.</p></td>
+      <td><p>the position of the legend, see
+<code><a href='https://rdrr.io/r/graphics/legend.html'>legend()</a></code>. A value of <code>"none"</code> hides the legend.</p></td>
     </tr>
     <tr>
       <th>col.fun</th>
       <td><p>function that creates a vector of <code>n</code> colors, see
-<code><a href='https://rdrr.io/r/grDevices/palettes.html'>heat.colors</a>()</code>.</p></td>
+<code><a href='https://rdrr.io/r/grDevices/palettes.html'>heat.colors()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>vorobT</code> returns a list with elements <code>threshold</code>,
-  <code>VE</code>, and <code>avg_hyp</code> (average hypervolume)</p>
+<code>VE</code>, and <code>avg_hyp</code> (average hypervolume)</p>
 <p><code>vorobDev</code> returns the Vorob'ev deviation.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -209,11 +210,9 @@ Gaussian process models, University of Bern, PhD thesis.</p>
         <span class='kw'>extra.legend</span> <span class='kw'>=</span> <span class='st'>"VE"</span>, <span class='kw'>extra.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>extra.pch</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>extra.lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>,
         <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Empirical attainment function, "</span>,<span class='no'>beta</span>,<span class='st'>"* = "</span>, <span class='no'>a</span>, <span class='st'>"%"</span>),
                           <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/formatc.html'>formatC</a></span>(<span class='no'>res</span>$<span class='no'>threshold</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"f"</span>))))</div><div class='img'><img src='Vorob-2.png' alt='' width='700' height='433' /></div><div class='input'>
-
 <span class='co'># Now print Vorob'ev deviation</span>
 <span class='no'>VD</span> <span class='kw'>&lt;-</span> <span class='fu'>vorobDev</span>(<span class='no'>CPFs</span>, <span class='no'>res</span>$<span class='no'>VE</span>, <span class='kw'>reference</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>200</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>VD</span>)</div><div class='output co'>#&gt; [1] 3017.13</div><div class='input'>
-<span class='co'># Now display the symmetric deviation function.</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>VD</span>)</div><div class='output co'>#&gt; [1] 3017.13</div><div class='input'><span class='co'># Now display the symmetric deviation function.</span>
 <span class='fu'>symDifPlot</span>(<span class='no'>CPFs</span>, <span class='no'>res</span>$<span class='no'>VE</span>, <span class='no'>res</span>$<span class='no'>threshold</span>, <span class='kw'>nlevels</span> <span class='kw'>=</span> <span class='fl'>11</span>)</div><div class='img'><img src='Vorob-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Levels are adjusted automatically if too large.</span>
 <span class='fu'>symDifPlot</span>(<span class='no'>CPFs</span>, <span class='no'>res</span>$<span class='no'>VE</span>, <span class='no'>res</span>$<span class='no'>threshold</span>, <span class='kw'>nlevels</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"none"</span>)</div><div class='img'><img src='Vorob-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Use a different palette.</span>

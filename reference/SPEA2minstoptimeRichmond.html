@@ -19,8 +19,8 @@ minimum idle time of pumps on Richmond water network. — SPEA2minstoptimeRichmo
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -127,13 +127,13 @@ minimum idle time of pumps on Richmond water network.</h1>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame as produced by <code><a href='read_datasets.html'>read_datasets</a></code>. The second
- column measures time in seconds and corresponds to a maximisation problem.</p>
+    <p>A data frame as produced by <code><a href='read_datasets.html'>read_datasets()</a></code>. The second
+column measures time in seconds and corresponds to a maximisation problem.</p>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>Manuel López-Ibáñez. Operational Optimisation of Water Distribution
- Networks. PhD thesis, School of Engineering and the Built Environment,
- Edinburgh Napier University, UK, 2009.</p>
+Networks. PhD thesis, School of Engineering and the Built Environment,
+Edinburgh Napier University, UK, 2009.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>HybridGA</span>)
@@ -141,8 +141,7 @@ minimum idle time of pumps on Richmond water network.</h1>
 <span class='no'>SPEA2minstoptimeRichmond</span>[,<span class='fl'>2</span>] <span class='kw'>&lt;-</span> <span class='no'>SPEA2minstoptimeRichmond</span>[,<span class='fl'>2</span>] / <span class='fl'>60</span>
 <span class='fu'><a href='eafplot.html'>eafplot</a></span> (<span class='no'>SPEA2minstoptimeRichmond</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='no'>C</span>[<span class='no'>E</span>]),
          <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Minimum idle time (minutes)"</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>),
-         <span class='kw'>las</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>log</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"bottomright"</span>)</div><div class='img'><img src='SPEA2minstoptimeRichmond-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+         <span class='kw'>las</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>log</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"bottomright"</span>)</div><div class='img'><img src='SPEA2minstoptimeRichmond-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

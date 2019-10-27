@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -39,13 +39,13 @@
 
 <meta property="og:title" content="Plots of the Empirical Attainment Function — eaf-package" />
 <meta property="og:description" content="The empirical attainment function (EAF) describes the probabilistic
- distribution of the outcomes obtained by a stochastic algorithm in the
- objective space. This package implements plots of summary
- attainment surfaces and differences between the first-order
- EAFs. These plots may be used for exploring the performance of
- stochastic local search algorithms for biobjective optimization
- problems and help in identifying certain algorithmic behaviors in a
- graphical way." />
+distribution of the outcomes obtained by a stochastic algorithm in the
+objective space. This package implements plots of summary
+attainment surfaces and differences between the first-order
+EAFs. These plots may be used for exploring the performance of
+stochastic local search algorithms for biobjective optimization
+problems and help in identifying certain algorithmic behaviors in a
+graphical way." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,13 +124,13 @@
 
     <div class="ref-description">
     <p>The empirical attainment function (EAF) describes the probabilistic
- distribution of the outcomes obtained by a stochastic algorithm in the
- objective space. This package implements plots of summary
- attainment surfaces and differences between the first-order
- EAFs. These plots may be used for exploring the performance of
- stochastic local search algorithms for biobjective optimization
- problems and help in identifying certain algorithmic behaviors in a
- graphical way.</p>
+distribution of the outcomes obtained by a stochastic algorithm in the
+objective space. This package implements plots of summary
+attainment surfaces and differences between the first-order
+EAFs. These plots may be used for exploring the performance of
+stochastic local search algorithms for biobjective optimization
+problems and help in identifying certain algorithmic behaviors in a
+graphical way.</p>
     </div>
 
 
@@ -139,10 +139,10 @@
 
     <p>Functions:</p>
 <table class='table'>
-<tr><td><code><a href='eafdiffplot.html'>eafdiffplot</a></code></td><td>Empirical attainment function differences</td></tr>
-<tr><td><code><a href='eafplot.html'>eafplot</a></code></td><td>Plot the Empirical Attainment Function for two
+<tr><td><code><a href='eafdiffplot.html'>eafdiffplot()</a></code></td><td>Empirical attainment function differences</td></tr>
+<tr><td><code><a href='eafplot.html'>eafplot()</a></code></td><td>Plot the Empirical Attainment Function for two
 objectives</td></tr>
-<tr><td><code><a href='read_datasets.html'>read_datasets</a></code></td><td>Read several data.frame sets</td></tr>
+<tr><td><code><a href='read_datasets.html'>read_datasets()</a></code></td><td>Read several data.frame sets</td></tr>
 </table>
 
 
@@ -156,7 +156,7 @@ minimum idle time of pumps on Richmond water network</p></dd>
 
 </dl>
 
-<p>Extras are available at <code><a href='https://rdrr.io/r/base/file.path.html'>file.path(system.file(package="eaf"))</a></code>:</p>
+<p>Extras are available at <code><a href='https://rdrr.io/r/base/system.file.html'>system.file(package="eaf")</a></code>:</p>
 <table class='table'>
 <tr><td><code>extdata</code></td><td>External data sets (see <code><a href='read_datasets.html'>read_datasets</a></code>)</td></tr>
 <tr><td><code>scripts/eaf</code></td><td>EAF command-line program</td></tr>
@@ -168,23 +168,23 @@ minimum idle time of pumps on Richmond water network</p></dd>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>V. Grunert da Fonseca, C. M. Fonseca, and A. O. Hall, <em>Inferential
- performance assessment of stochastic optimisers and the attainment
- function</em>, in Evolutionary Multi-Criterion Optimization. First
- International Conference, EMO 2001 (E. Zitzler, K. Deb, L. Thiele,
- C. A. Coello Coello, and D. Corne, eds.), vol. 1993 of Lecture Notes
- in Computer Science, pp. 213-225, Berlin: Springer, 2001.</p>
+performance assessment of stochastic optimisers and the attainment
+function</em>, in Evolutionary Multi-Criterion Optimization. First
+International Conference, EMO 2001 (E. Zitzler, K. Deb, L. Thiele,
+C. A. Coello Coello, and D. Corne, eds.), vol. 1993 of Lecture Notes
+in Computer Science, pp. 213-225, Berlin: Springer, 2001.</p>
 <p>V. Grunert da Fonseca and C. M. Fonseca, <em>The attainment-function
- approach to stochastic multiobjective optimizer assessment and
- comparison</em>. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
- M. Preuss, editors, Experimental Methods for the Analysis of
- Optimization Algorithms, pages 103-130, Springer, Berlin, Germany,
- 2010.</p> 
+approach to stochastic multiobjective optimizer assessment and
+comparison</em>. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
+M. Preuss, editors, Experimental Methods for the Analysis of
+Optimization Algorithms, pages 103-130, Springer, Berlin, Germany,
+2010.</p>
 <p>M. López-Ibáñez, L. Paquete, and T. Stützle. <em>Exploratory
- Analysis of Stochastic Local Search Algorithms in Biobjective
- Optimization</em>. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
- M. Preuss, editors, Experimental Methods for the Analysis of
- Optimization Algorithms, pages 209–222. Springer, Berlin, Germany,
- 2010. doi: 10.1007/978-3-642-02538-9_9</p>
+Analysis of Stochastic Local Search Algorithms in Biobjective
+Optimization</em>. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
+M. Preuss, editors, Experimental Methods for the Analysis of
+Optimization Algorithms, pages 209–222. Springer, Berlin, Germany,
+2010. doi: 10.1007/978-3-642-02538-9_9</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Useful links:</p><ul>
@@ -202,12 +202,11 @@ minimum idle time of pumps on Richmond water network</p></dd>
 <span class='fu'><a href='eafplot.html'>eafplot</a></span>(<span class='no'>time</span>+<span class='no'>best</span>~<span class='no'>run</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>tabucol</span>,<span class='kw'>subset</span><span class='kw'>=</span><span class='no'>tabucol</span>$<span class='no'>inst</span><span class='kw'>==</span><span class='st'>"DSJC500.5"</span>)</div><div class='img'><img src='eaf-package-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='eafplot.html'>eafplot</a></span>(<span class='no'>time</span>+<span class='no'>best</span>~<span class='no'>run</span><span class='kw'>|</span><span class='no'>inst</span>,<span class='kw'>groups</span><span class='kw'>=</span><span class='no'>alg</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>gcp2x2</span>)</div><div class='img'><img src='eaf-package-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='eafplot.html'>eafplot</a></span>(<span class='no'>time</span>+<span class='no'>best</span>~<span class='no'>run</span><span class='kw'>|</span><span class='no'>inst</span>,<span class='kw'>groups</span><span class='kw'>=</span><span class='no'>alg</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>gcp2x2</span>,
 <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>100</span>), <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>1.4</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>2</span>),<span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>2</span>),
-       <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"black"</span>,<span class='st'>"blue"</span>,<span class='st'>"grey50"</span>))</div><div class='img'><img src='eaf-package-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_1_dat"</span>))
-<span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_2_dat"</span>))
+       <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"black"</span>,<span class='st'>"blue"</span>,<span class='st'>"grey50"</span>))</div><div class='img'><img src='eaf-package-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>extdata_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span>)
+<span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_path</span>,<span class='st'>"ALG_1_dat"</span>))
+<span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_path</span>,<span class='st'>"ALG_2_dat"</span>))
 <span class='fu'><a href='eafplot.html'>eafplot</a></span>(<span class='no'>A1</span>, <span class='kw'>percentiles</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>50</span>))</div><div class='img'><img src='eaf-package-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='eafplot.html'>eafplot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>A1</span><span class='kw'>=</span><span class='no'>A1</span>, <span class='kw'>A2</span><span class='kw'>=</span><span class='no'>A2</span>), <span class='kw'>percentiles</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>50</span>))</div><div class='img'><img src='eaf-package-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='eafdiffplot.html'>eafdiffplot</a></span>(<span class='no'>A1</span>, <span class='no'>A2</span>)</div><div class='img'><img src='eaf-package-6.png' alt='' width='700' height='433' /></div><div class='input'>## Save to a PDF file
 # dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -222,8 +221,8 @@ minimum idle time of pumps on Richmond water network</p></dd>
     <h2>Author</h2>
     <p>Maintainer:  Manuel López-Ibáñez
 <a href='mailto:manuel.lopez-ibanez@manchester.ac.uk'>manuel.lopez-ibanez@manchester.ac.uk</a></p>
-<p>Contributors: Carlos Fonseca, Luis Paquete, Thomas Stützle, 
- Manuel López-Ibáñez and Marco Chiarandini.</p>
+<p>Contributors: Carlos Fonseca, Luis Paquete, Thomas Stützle,
+Manuel López-Ibáñez and Marco Chiarandini.</p>
   </div>
 </div>
 
