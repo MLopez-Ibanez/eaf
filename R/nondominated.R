@@ -16,8 +16,8 @@ check_dataset <- function(x)
 
 #' Identify, remove and rank dominated points according to Pareto optimality
 #'
-#' Identify nondominated points with \code{is_nondominated} and remove dominated
-#' ones with \code{filter_dominated}.
+#' Identify nondominated points with `is_nondominated` and remove dominated
+#' ones with `filter_dominated`.
 #' 
 #' @rdname nondominated
 #'
@@ -25,11 +25,11 @@ check_dataset <- function(x)
 #'
 #' @template arg_maximise
 #' 
-#' @param keep_weakly If \code{FALSE}, return \code{FALSE} for any duplicates
+#' @param keep_weakly If `FALSE`, return `FALSE` for any duplicates
 #'   of nondominated points.
 #' 
-#' @return \code{is_nondominated} returns a logical vector of the same length
-#'   as the number of rows of \code{data}, where \code{TRUE} means that the
+#' @return `is_nondominated` returns a logical vector of the same length
+#'   as the number of rows of `data`, where `TRUE` means that the
 #'   point is not dominated by any other point.
 #'
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
@@ -46,6 +46,7 @@ check_dataset <- function(x)
 #' points(ndset[order(ndset[,1]),], col = "red", pch = 21)
 #' 
 #' @export
+#' @md
 is_nondominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 {
   data <- check_dataset(data)
@@ -63,26 +64,27 @@ is_nondominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 
 #' @rdname nondominated
 #' @export
-#' @return \code{filter_dominated} returns a matrix or data.frame with only mutually nondominated points.
-#'
+#' @return `filter_dominated` returns a matrix or data.frame with only mutually nondominated points.
+#' @md
+#' 
 filter_dominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 {
   return(data[is_nondominated(data, maximise = maximise, keep_weakly = keep_weakly),
             , drop = FALSE])
 }
 
-#' @description \code{pareto_rank} ranks points according to Pareto-optimality, which is also called
+#' @description `pareto_rank` ranks points according to Pareto-optimality, which is also called
 #' nondominated sorting (Deb et al., 2002).
 #' 
 #' @rdname nondominated
 #' @export
-#' @return \code{pareto_rank} returns an integer vector of the same length as
-#'   the number of rows of \code{data}, where each value gives the rank of each
+#' @return `pareto_rank` returns an integer vector of the same length as
+#'   the number of rows of `data`, where each value gives the rank of each
 #'   point.
 #'
-#' @details \code{pareto_rank} is meant to be used like \code{rank()}, but it
+#' @details `pareto_rank` is meant to be used like `rank()`, but it
 #'   assigns ranks according to Pareto dominance. Duplicated points are kept on
-#'   the same front. When \code{ncol(data) == 2}, the code uses the \eqn{O(n
+#'   the same front. When `ncol(data) == 2`, the code uses the \eqn{O(n
 #'   \log n)} algorithm by Jensen (2003).
 #' 
 #' @references
@@ -100,6 +102,7 @@ filter_dominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 #' colors <- colorRampPalette(c("red","yellow","springgreen","royalblue"))(max(ranks))
 #' plot(set, col = colors[ranks], type = "p", pch = 20)
 #'
+#' @md
 pareto_rank <- function(data, maximise = FALSE)
 {
   data <- check_dataset(data)

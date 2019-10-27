@@ -46,8 +46,9 @@ This also means that the computation of the multiplicative version for
 negative values doesn't make sense.
 }
 \examples{
-path.A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
-path.A2 <- file.path(system.file(package="eaf"),"extdata","ALG_2_dat")
+extdata_path <- system.file(package="eaf","extdata")
+path.A1 <- file.path(extdata_path, "ALG_1_dat")
+path.A2 <- file.path(extdata_path, "ALG_2_dat")
 A1 <- read_datasets(path.A1)[,1:2]
 A2 <- read_datasets(path.A2)[,1:2]
 ref <- filter_dominated(rbind(A1, A2))

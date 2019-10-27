@@ -26,14 +26,14 @@ of nondominated points.}
 }
 \value{
 \code{is_nondominated} returns a logical vector of the same length
-  as the number of rows of \code{data}, where \code{TRUE} means that the
-  point is not dominated by any other point.
+as the number of rows of \code{data}, where \code{TRUE} means that the
+point is not dominated by any other point.
 
 \code{filter_dominated} returns a matrix or data.frame with only mutually nondominated points.
 
 \code{pareto_rank} returns an integer vector of the same length as
-  the number of rows of \code{data}, where each value gives the rank of each
-  point.
+the number of rows of \code{data}, where each value gives the rank of each
+point.
 }
 \description{
 Identify nondominated points with \code{is_nondominated} and remove dominated
@@ -44,8 +44,8 @@ nondominated sorting (Deb et al., 2002).
 }
 \details{
 \code{pareto_rank} is meant to be used like \code{rank()}, but it
-  assigns ranks according to Pareto dominance. Duplicated points are kept on
-  the same front. When \code{ncol(data) == 2}, the code uses the \eqn{O(n
+assigns ranks according to Pareto dominance. Duplicated points are kept on
+the same front. When \code{ncol(data) == 2}, the code uses the \eqn{O(n
   \log n)} algorithm by Jensen (2003).
 }
 \examples{

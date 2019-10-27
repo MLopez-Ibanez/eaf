@@ -17,34 +17,33 @@ belonging to different groups.}
 
 \item{percentiles}{The percentiles of the EAF of each side that will be
 plotted as attainment surfaces. \code{NA} does not plot any. See
-\code{\link{eafplot.default}}.}
+\code{\link[=eafplot.default]{eafplot.default()}}.}
 }
 \value{
 A data frame (\code{data.frame}) containing the exact representation
- of EAF. The last column gives the percentile that corresponds to each
- point. If groups is not \code{NULL}, then an additional column
- indicates to which group the point belongs.
+of EAF. The last column gives the percentile that corresponds to each
+point. If groups is not \code{NULL}, then an additional column
+indicates to which group the point belongs.
 }
 \description{
 This function computes the EAF given a set of points and a vector \code{set}
 that indicates to which set each point belongs.
 }
 \note{
-There are several examples of data sets in \code{file.path(system.file(package="eaf"),"extdata")}.
+There are several examples of data sets in \code{system.file(package="eaf","extdata")}.
 }
 \examples{
+extdata_path <- system.file(package="eaf", "extdata")
 
-eaf.path <- system.file(package="eaf")
-
-x <- read_datasets(file.path(eaf.path, "extdata","example1_dat"))
+x <- read_datasets(file.path(extdata_path, "example1_dat"))
 # Compute full EAF
 str(eafs(x[,1:2], x[,3]))
 
 # Compute only best, median and worst
 str(eafs(x[,1:2], x[,3], percentiles = c(0, 50, 100)))
 
-x <- read_datasets(file.path(eaf.path,"extdata", "spherical-250-10-3d.txt"))
-y <- read_datasets(file.path(eaf.path,"extdata", "uniform-250-10-3d.txt"))
+x <- read_datasets(file.path(extdata_path, "spherical-250-10-3d.txt"))
+y <- read_datasets(file.path(extdata_path, "uniform-250-10-3d.txt"))
 x <- data.frame(x, groups = "spherical")
 x <- rbind(x, data.frame(y, groups = "uniform"))
 # Compute only median separately for each group
@@ -55,7 +54,7 @@ str(z)
 #         colors = c('#BF382A', '#0C4B8E')) \%>\% add_markers()
 }
 \seealso{
-\code{\link{read_datasets}}
+\code{\link[=read_datasets]{read_datasets()}}
 }
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}

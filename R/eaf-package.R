@@ -12,10 +12,10 @@
 #' Functions:
 #'
 #'\tabular{rl}{
-#'[`eafdiffplot`] \tab  Empirical attainment function differences\cr
-#'[`eafplot`] \tab  Plot the Empirical Attainment Function for two
+#'[eafdiffplot()] \tab  Empirical attainment function differences\cr
+#'[eafplot()] \tab  Plot the Empirical Attainment Function for two
 #'objectives\cr
-#'[`read_datasets`]\tab  Read several data.frame sets
+#'[read_datasets()]\tab  Read several data.frame sets
 #'}
 #'
 #'Data:
@@ -28,7 +28,7 @@
 #'minimum idle time of pumps on Richmond water network}
 #'}
 #' 
-#' Extras are available at `file.path(system.file(package="eaf"))`:
+#' Extras are available at `system.file(package="eaf")`:
 #'
 #'\tabular{rl}{
 #' `extdata`        \tab  External data sets (see [`read_datasets`]) \cr
@@ -88,15 +88,15 @@
 #'eafplot(time+best~run|inst,groups=alg,data=gcp2x2,
 #'	percentiles = c(0,50,100), cex = 1.4, lty = c(2,1,2),lwd = c(2,2,2),
 #'        col = c("black","blue","grey50"))
-#'
-#'A1 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
-#'A2 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
+#'extdata_path <- system.file(package="eaf","extdata")
+#'A1 <- read_datasets(file.path(extdata_path,"ALG_1_dat"))
+#'A2 <- read_datasets(file.path(extdata_path,"ALG_2_dat"))
 #'eafplot(A1, percentiles=c(50))
 #'eafplot(list(A1=A1, A2=A2), percentiles=c(50))
 #'eafdiffplot(A1, A2)
 #'## Save to a PDF file
 #'# dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)
-#'
+#'@md
 "_PACKAGE"
 #> [1] "_PACKAGE"
 
@@ -107,22 +107,22 @@
 #'
 #'@format
 #'  A list with two data frames, each of them with three columns, as
-#'  produced by [`read_datasets`].
+#'  produced by [read_datasets()].
 #'  \describe{
 #'    \item{`$vanzyl`}{data frame of results on vanzyl network}
 #'    \item{`$richmond`}{data frame of results on Richmond
 #'      network. The second column is filled with `NA`}
 #'  }
 #' 
-#'@source Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
-#'  Networks. PhD thesis, School of Engineering and the Built Environment,
+#'@source Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. **Operational Optimisation of Water Distribution
+#'  Networks**. PhD thesis, School of Engineering and the Built Environment,
 #'  Edinburgh Napier University, UK, 2009.
 #'
 #' @examples
 #'data(HybridGA)
 #'print(HybridGA$vanzyl)
 #'print(HybridGA$richmond)
-#'
+#'@md
 "HybridGA"
 
 #'Results of SPEA2 when minimising electrical cost and maximising the
@@ -131,7 +131,7 @@
 #'The data has the only goal of providing an example of use of eafplot.
 #'
 #'@format 
-#'  A data frame as produced by [`read_datasets`]. The second
+#'  A data frame as produced by [read_datasets()]. The second
 #'  column measures time in seconds and corresponds to a maximisation problem.
 #'
 #' @source
@@ -146,7 +146,7 @@
 #' eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
 #'          ylab = "Minimum idle time (minutes)", maximise = c(FALSE, TRUE),
 #'          las = 1, log = "y", legend.pos = "bottomright")
-#'
+#'@md
 "SPEA2minstoptimeRichmond"
 
 #' Results of SPEA2 with relative time-controlled triggers on Richmond water
@@ -155,7 +155,7 @@
 #' The data has the only goal of providing an example of use of eafplot.
 #'
 #'@format 
-#'  A data frame as produced by [`read_datasets`].
+#'  A data frame as produced by [read_datasets()].
 #'
 #' @source
 #'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
@@ -170,7 +170,7 @@
 #'         xlim = c(90, 140), ylim = c(0, 25),
 #'         extra.points = HybridGA$richmond, extra.lty = "dashed",
 #'         extra.legend = "Hybrid GA")
-#'
+#'@md
 "SPEA2relativeRichmond"
 
 #'Results of SPEA2 with relative time-controlled triggers on Vanzyl's
@@ -179,7 +179,7 @@
 #'The data has the only goal of providing an example of use of eafplot.
 #'
 #'@format 
-#'  A data frame as produced by [`read_datasets`].
+#'  A data frame as produced by [read_datasets()].
 #'
 #'@source
 #'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
@@ -192,7 +192,7 @@
 #'eafplot(SPEA2relativeVanzyl, percentiles = c(25, 50, 75), 
 #'        xlab = expression(C[E]), ylab = "Total switches", xlim = c(320, 400),
 #'        extra.points = HybridGA$vanzyl, extra.legend = "Hybrid GA")
-#'
+#'@md
 "SPEA2relativeVanzyl"
 
 #' Metaheuristics for solving the Graph Vertex Coloring Problem
@@ -243,15 +243,16 @@
 #'
 #'@examples 
 #' data(gcp2x2)
-#'
+#'@md
 "gcp2x2"
 
 #' Conditional Pareto fronts obtained from Gaussian processes simulations.
 #'
-#' The data has the only goal of providing an example of use of `\link[eaf]{vorobT`} 
-#' and `\link[eaf]{vorobDev`}. It has been obtained by fitting two Gaussian processes
-#' on 20 observations of a bi-objective problem, before generating conditional simulation 
-#' of both GPs at different locations and extracting non-dominated values of coupled simulations. 
+#' The data has the only goal of providing an example of use of [vorobT()] and
+#' [vorobDev()]. It has been obtained by fitting two Gaussian processes on 20
+#' observations of a bi-objective problem, before generating conditional
+#' simulation of both GPs at different locations and extracting non-dominated
+#' values of coupled simulations.
 #'
 #' @format 
 #'  A data frame with 2967 observations on the following 3 variables.

@@ -12,16 +12,17 @@
 }}
 \source{
 M. Binois, D. Ginsbourger and O. Roustant. Quantifying Uncertainty on Pareto Fronts with
-Gaussian process conditional simulations, European Journal of Operational Research, 2015, 243(2), 386-394.
+Gaussian process conditional simulations, \emph{European Journal of Operational Research}, 2015, 243(2), 386-394.
 }
 \usage{
 CPFs
 }
 \description{
-The data has the only goal of providing an example of use of \code{\link[eaf]{vorobT}}
-and \code{\link[eaf]{vorobDev}}. It has been obtained by fitting two Gaussian processes
-on 20 observations of a bi-objective problem, before generating conditional simulation
-of both GPs at different locations and extracting non-dominated values of coupled simulations.
+The data has the only goal of providing an example of use of \code{\link[=vorobT]{vorobT()}} and
+\code{\link[=vorobDev]{vorobDev()}}. It has been obtained by fitting two Gaussian processes on 20
+observations of a bi-objective problem, before generating conditional
+simulation of both GPs at different locations and extracting non-dominated
+values of coupled simulations.
 }
 \examples{
 data(CPFs)

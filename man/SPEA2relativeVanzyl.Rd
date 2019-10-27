@@ -5,11 +5,11 @@
 \alias{SPEA2relativeVanzyl}
 \title{Results of SPEA2 with relative time-controlled triggers on Vanzyl's
 water network.}
-\format{A data frame as produced by \code{\link{read_datasets}}.}
+\format{A data frame as produced by \code{\link[=read_datasets]{read_datasets()}}.}
 \source{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
- Networks. PhD thesis, School of Engineering and the Built Environment,
- Edinburgh Napier University, UK, 2009.
+Networks. PhD thesis, School of Engineering and the Built Environment,
+Edinburgh Napier University, UK, 2009.
 }
 \usage{
 SPEA2relativeVanzyl
@@ -23,6 +23,5 @@ data(SPEA2relativeVanzyl)
 eafplot(SPEA2relativeVanzyl, percentiles = c(25, 50, 75), 
        xlab = expression(C[E]), ylab = "Total switches", xlim = c(320, 400),
        extra.points = HybridGA$vanzyl, extra.legend = "Hybrid GA")
-
 }
 \keyword{datasets}

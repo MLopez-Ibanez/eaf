@@ -8,22 +8,22 @@
 \title{Plots of the Empirical Attainment Function}
 \description{
 The empirical attainment function (EAF) describes the probabilistic
- distribution of the outcomes obtained by a stochastic algorithm in the
- objective space. This package implements plots of summary
- attainment surfaces and differences between the first-order
- EAFs. These plots may be used for exploring the performance of
- stochastic local search algorithms for biobjective optimization
- problems and help in identifying certain algorithmic behaviors in a
- graphical way.
+distribution of the outcomes obtained by a stochastic algorithm in the
+objective space. This package implements plots of summary
+attainment surfaces and differences between the first-order
+EAFs. These plots may be used for exploring the performance of
+stochastic local search algorithms for biobjective optimization
+problems and help in identifying certain algorithmic behaviors in a
+graphical way.
 }
 \details{
 Functions:
 
 \tabular{rl}{
-\code{\link{eafdiffplot}} \tab  Empirical attainment function differences\cr
-\code{\link{eafplot}} \tab  Plot the Empirical Attainment Function for two
+\code{\link[=eafdiffplot]{eafdiffplot()}} \tab  Empirical attainment function differences\cr
+\code{\link[=eafplot]{eafplot()}} \tab  Plot the Empirical Attainment Function for two
 objectives\cr
-\code{\link{read_datasets}}\tab  Read several data.frame sets
+\code{\link[=read_datasets]{read_datasets()}}\tab  Read several data.frame sets
 }
 
 Data:
@@ -36,11 +36,11 @@ water networks}
 minimum idle time of pumps on Richmond water network}
 }
 
-Extras are available at \code{file.path(system.file(package="eaf"))}:
+Extras are available at \code{system.file(package="eaf")}:
 
-\tabular{ll}{
-\code{extdata}        \tab  External data sets (see \code{\link{read_datasets}})\cr
-\code{scripts/eaf}    \tab  EAF command-line program\cr
+\tabular{rl}{
+\code{extdata}        \tab  External data sets (see \code{\link{read_datasets}}) \cr
+\code{scripts/eaf}    \tab  EAF command-line program \cr
 \code{scripts/eafplot}\tab  Perl script to generate plots of attainment surfaces\cr
 \code{scripts/eafdiff}\tab  Perl script to generate plots of EAF differences
 }
@@ -55,37 +55,36 @@ eafplot(time+best~run|inst,groups=alg,data=gcp2x2)
 eafplot(time+best~run|inst,groups=alg,data=gcp2x2,
 percentiles = c(0,50,100), cex = 1.4, lty = c(2,1,2),lwd = c(2,2,2),
        col = c("black","blue","grey50"))
-
-A1 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_1_dat"))
-A2 <- read_datasets(file.path(system.file(package="eaf"),"extdata","ALG_2_dat"))
+extdata_path <- system.file(package="eaf","extdata")
+A1 <- read_datasets(file.path(extdata_path,"ALG_1_dat"))
+A2 <- read_datasets(file.path(extdata_path,"ALG_2_dat"))
 eafplot(A1, percentiles=c(50))
 eafplot(list(A1=A1, A2=A2), percentiles=c(50))
 eafdiffplot(A1, A2)
 ## Save to a PDF file
 # dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)
-
 }
 \references{
 V. Grunert da Fonseca, C. M. Fonseca, and A. O. Hall, \emph{Inferential
- performance assessment of stochastic optimisers and the attainment
- function}, in Evolutionary Multi-Criterion Optimization. First
- International Conference, EMO 2001 (E. Zitzler, K. Deb, L. Thiele,
- C. A. Coello Coello, and D. Corne, eds.), vol. 1993 of Lecture Notes
- in Computer Science, pp. 213-225, Berlin: Springer, 2001.
+performance assessment of stochastic optimisers and the attainment
+function}, in Evolutionary Multi-Criterion Optimization. First
+International Conference, EMO 2001 (E. Zitzler, K. Deb, L. Thiele,
+C. A. Coello Coello, and D. Corne, eds.), vol. 1993 of Lecture Notes
+in Computer Science, pp. 213-225, Berlin: Springer, 2001.
 
- V. Grunert da Fonseca and C. M. Fonseca, \emph{The attainment-function
- approach to stochastic multiobjective optimizer assessment and
- comparison}. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
- M. Preuss, editors, Experimental Methods for the Analysis of
- Optimization Algorithms, pages 103-130, Springer, Berlin, Germany,
- 2010.
- 
- M. \enc{López-Ibáñez}{Lopez-Ibanez}, L. Paquete, and T. \enc{Stützle}{Stuetzle}. \emph{Exploratory
- Analysis of Stochastic Local Search Algorithms in Biobjective
- Optimization}. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
- M. Preuss, editors, Experimental Methods for the Analysis of
- Optimization Algorithms, pages 209–222. Springer, Berlin, Germany,
- 2010. doi: 10.1007/978-3-642-02538-9_9
+V. Grunert da Fonseca and C. M. Fonseca, \emph{The attainment-function
+approach to stochastic multiobjective optimizer assessment and
+comparison}. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
+M. Preuss, editors, Experimental Methods for the Analysis of
+Optimization Algorithms, pages 103-130, Springer, Berlin, Germany,
+2010.
+
+M. \enc{López-Ibáñez}{Lopez-Ibanez}, L. Paquete, and T. \enc{Stützle}{Stuetzle}. \emph{Exploratory
+Analysis of Stochastic Local Search Algorithms in Biobjective
+Optimization}. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
+M. Preuss, editors, Experimental Methods for the Analysis of
+Optimization Algorithms, pages 209–222. Springer, Berlin, Germany,
+2010. doi: 10.1007/978-3-642-02538-9_9
 }
 \seealso{
 Useful links:
@@ -100,8 +99,8 @@ Useful links:
 Maintainer:  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 \email{manuel.lopez-ibanez@manchester.ac.uk}
 
- Contributors: Carlos Fonseca, Luis Paquete, Thomas \enc{Stützle}{Stuetzle}, 
- Manuel \enc{López-Ibáñez}{Lopez-Ibanez} and Marco Chiarandini.
+Contributors: Carlos Fonseca, Luis Paquete, Thomas \enc{Stützle}{Stuetzle},
+Manuel \enc{López-Ibáñez}{Lopez-Ibanez} and Marco Chiarandini.
 }
 \concept{empirical attainment function}
 \concept{multivariate}

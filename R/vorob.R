@@ -9,8 +9,8 @@
 ##'   frames of exactly three columns.  The third column gives the set (run,
 ##'   sample, ...) identifier.
 ##' @template arg_refpoint
-##' @return \code{vorobT} returns a list with elements \code{threshold},
-##'   \code{VE}, and \code{avg_hyp} (average hypervolume)
+##' @return `vorobT` returns a list with elements `threshold`,
+##'   `VE`, and `avg_hyp` (average hypervolume)
 ##' @rdname Vorob
 ##' @author Mickael Binois
 ##' @examples
@@ -31,7 +31,7 @@
 ##'         extra.legend = "VE", extra.lty = "solid", extra.pch = NA, extra.lwd = 2,
 ##'         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "%"),
 ##'                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
-##' 
+##' @md
 ##' @export
 vorobT <- function(x, reference)
 {
@@ -60,13 +60,13 @@ vorobT <- function(x, reference)
 
 ##' @export
 ##' @rdname Vorob  
-##' @return \code{vorobDev} returns the Vorob'ev deviation.
+##' @return `vorobDev` returns the Vorob'ev deviation.
 ##' @examples
 ##' 
 ##' # Now print Vorob'ev deviation
 ##' VD <- vorobDev(CPFs, res$VE, reference = c(2, 200))
 ##' print(VD)
-##' 
+##' @md
 vorobDev <- function(x, VE, reference)
 {
   if (is.data.frame(x)) x <- as.matrix(x)
@@ -102,15 +102,16 @@ vorobDev <- function(x, VE, reference)
 ##' I. Molchanov (2005), Theory of random sets, Springer.
 ##'
 ##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
-##'   by \code{\link[eaf]{vorobT}}.
+##'   by [vorobT()].
 ##' @param nlevels number of levels in which is divided the range of the
 ##'   symmetric deviation.
 ##' @param ve.col plotting parameters for the Vorob'ev expectation.
-##' @param xlim,ylim,main Graphical parameters, see \code{\link{plot.default}}.
-##' @param legend.pos the position of the legend, see \code{\link{legend}}. A
-##'   value of \code{"none"} hides the legend.
-##' @param col.fun function that creates a vector of \code{n} colors, see
-##'   \code{\link[grDevices]{heat.colors}()}.
+##' @param xlim,ylim,main Graphical parameters, see
+##'   [`plot.default()`][graphics::plot.default()].
+##' @param legend.pos the position of the legend, see
+##'   [`legend()`][graphics::legend()]. A value of `"none"` hides the legend.
+##' @param col.fun function that creates a vector of `n` colors, see
+##'   [`heat.colors()`][grDevices::heat.colors()].
 ##' @examples
 ##' # Now display the symmetric deviation function.
 ##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
@@ -119,6 +120,7 @@ vorobDev <- function(x, VE, reference)
 ##' 
 ##' # Use a different palette.
 ##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
+##' @md
 ##' @export
 # FIXME: Implement "add=TRUE" option that just plots the lines,points or
 # surfaces and does not create the plot nor the legend (but returns the info

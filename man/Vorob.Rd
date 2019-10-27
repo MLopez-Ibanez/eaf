@@ -23,24 +23,25 @@ sample, ...) identifier.}
 \item{reference}{(\code{numeric()}) \cr Reference point as a vector of numerical values.}
 
 \item{VE, threshold}{Vorob'ev expectation and threshold, e.g., as returned
-by \code{\link[eaf]{vorobT}}.}
+by \code{\link[=vorobT]{vorobT()}}.}
 
 \item{nlevels}{number of levels in which is divided the range of the
 symmetric deviation.}
 
 \item{ve.col}{plotting parameters for the Vorob'ev expectation.}
 
-\item{xlim, ylim, main}{Graphical parameters, see \code{\link{plot.default}}.}
+\item{xlim, ylim, main}{Graphical parameters, see
+\code{\link[graphics:plot.default]{plot.default()}}.}
 
-\item{legend.pos}{the position of the legend, see \code{\link{legend}}. A
-value of \code{"none"} hides the legend.}
+\item{legend.pos}{the position of the legend, see
+\code{\link[graphics:legend]{legend()}}. A value of \code{"none"} hides the legend.}
 
 \item{col.fun}{function that creates a vector of \code{n} colors, see
-\code{\link[grDevices]{heat.colors}()}.}
+\code{\link[grDevices:heat.colors]{heat.colors()}}.}
 }
 \value{
 \code{vorobT} returns a list with elements \code{threshold},
-  \code{VE}, and \code{avg_hyp} (average hypervolume)
+\code{VE}, and \code{avg_hyp} (average hypervolume)
 
 \code{vorobDev} returns the Vorob'ev deviation.
 }
@@ -70,11 +71,9 @@ eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "\%"),
                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
 
-
 # Now print Vorob'ev deviation
 VD <- vorobDev(CPFs, res$VE, reference = c(2, 200))
 print(VD)
-
 # Now display the symmetric deviation function.
 symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
 # Levels are adjusted automatically if too large.

@@ -4,16 +4,16 @@
 \alias{eafdiff}
 \title{Compute empirical attainment function differences}
 \usage{
-eafdiff(x, y, intervals, maximise = c(FALSE, FALSE),
+eafdiff(x, y, intervals = NULL, maximise = c(FALSE, FALSE),
   rectangles = FALSE)
 }
 \arguments{
 \item{x, y}{Data frames corresponding to the input data of
 left and right sides, respectively. Each data frame has at least three
 columns, the third one being the set of each point. See also
-\code{\link{read_datasets}}.}
+\code{\link[=read_datasets]{read_datasets()}}.}
 
-\item{intervals}{(`integer(1)`) \cr The absolute range of the differences
+\item{intervals}{(\code{integer(1)}) \cr The absolute range of the differences
 \eqn{[0, 1]} is partitioned into the number of intervals provided.}
 
 \item{maximise}{(\code{logical()} | \code{logical(1)}) \cr Whether the objectives must be
@@ -25,10 +25,10 @@ objective.}
 }
 \value{
 With \code{rectangle=FALSE}, a \code{data.frame} containing points
-  where there is a transition in the value of the EAF differences. The last
-  column gives the difference in terms of sets in \code{x} minus sets in
-  \code{y} that attain each point (i.e., negative values are differences in
-  favour \code{y}).
+where there is a transition in the value of the EAF differences. The last
+column gives the difference in terms of sets in \code{x} minus sets in
+\code{y} that attain each point (i.e., negative values are differences in
+favour \code{y}).
 }
 \description{
 Calculate the differences between the empirical attainment functions of two
@@ -36,11 +36,12 @@ data sets.
 }
 \details{
 This function calculates the differences between the EAFs of two
-  data sets.
+data sets.
 }
 \examples{
-A1 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_1_dat"))
-A2 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat"))
+extdata_path <- system.file(package="eaf", "extdata")
+A1 <- read_datasets(file.path(extdata_path, "ALG_1_dat"))
+A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat"))
 d <- eafdiff(A1, A2)
 # This is large
 str(d)
@@ -75,5 +76,5 @@ Y <- read_datasets(text='
 
 }
 \seealso{
-\code{\link{read_datasets}}, \code{\link{eafdiffplot}}
+\code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafdiffplot]{eafdiffplot()}}
 }
