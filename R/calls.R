@@ -177,8 +177,5 @@ eafplot.list <- function(x, ...)
 }
 
 ### Local Variables:
-### ess-style: DEFAULT
-### indent-tabs-mode: nil
-### ess-fancy-comments: nil
 ### End:
 
