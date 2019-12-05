@@ -43,8 +43,7 @@
 
 
 
-.check.layout <-
-    function(layout, cond.max.level, skip = FALSE)
+.check.layout <- function(layout, cond.max.level, skip = FALSE)
 {
     if (all(skip)) stop("skip cannot be all TRUE")
     number.of.cond <- length(cond.max.level)
