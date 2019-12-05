@@ -44,6 +44,7 @@ hypervolume <- function(data, reference, maximise = FALSE)
   if (is.null(reference)) {
     stop("reference cannot be NULL")
   }
+  if (length(reference) == 1) reference <- rep_len(reference, nobjs)
   if (any(maximise)) {
     if (length(maximise) == 1) {
       data <- -data
@@ -58,8 +59,7 @@ hypervolume <- function(data, reference, maximise = FALSE)
                as.double(t(data)),
                as.integer(nobjs),
                as.integer(npoints),
-               as.double(reference)
-               ))
+               as.double(reference)))
 }
 
 #' Hypervolume contribution of a set of points
