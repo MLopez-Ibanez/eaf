@@ -30,6 +30,9 @@
   behavior and the default method handles `data.frame` already.
                                                          (Manuel López-Ibáñez)
 
+* Python script to compute EAF differences installed at `system.file(package="eaf", "scripts/eafdiff.py")`.
+                                                         (Manuel López-Ibáñez)
+
 
 # eaf 1.8
 
