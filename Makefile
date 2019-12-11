@@ -38,7 +38,7 @@ help :
 	@echo '   submit    submit to CRAN (see DEVEL-README first!)    '
 	@echo '   clean     cleanup    '
 
-install: clean scripts
+install: clean scripts gendoc
 	cd $(BINDIR) && R CMD INSTALL $(INSTALL_FLAGS) $(PACKAGEDIR)
 
 gendoc: $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
@@ -57,7 +57,7 @@ closeversion:
 	git tag -f -a v$(PACKAGEVERSION) -m "Version $(PACKAGEVERSION)"
 	git push --tags
 
-releasebuild:
+releasebuild: clean scripts gendoc
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
 cran : build pkgdown
