@@ -124,6 +124,9 @@ submit:
 	cd $(BINDIR) && echo $(FTP_COMMANDS) | ftp -v -e -g -i -n cran.r-project.org
 	@echo "Don't forget to send email to cran@r-project.org !"
 
+macbuild: build
+	R --slave -e 'rhub::check(platform="macos-elcapitan-release")'
+
 winbuild: build
 	@echo "Winbuild: http://win-builder.r-project.org/"
 	cd $(BINDIR) && echo $(WINBUILD_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
