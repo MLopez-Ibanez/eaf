@@ -38,8 +38,8 @@ help :
 	@echo '   submit    submit to CRAN (see DEVEL-README first!)    '
 	@echo '   clean     cleanup    '
 
-install: clean scripts gendoc
-	cd $(BINDIR) && R CMD INSTALL $(INSTALL_FLAGS) $(PACKAGEDIR)
+install: build
+	cd $(BINDIR) && R CMD INSTALL $(INSTALL_FLAGS) $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
 gendoc: $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
 $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
