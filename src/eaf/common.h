@@ -4,11 +4,11 @@
 #ifdef R_PACKAGE
 #include <R.h>
 #define eaf_assert(EXP)                                                       \
-    do { if (!(EXP)) { error("eaf package: error: assertion failed: '%s'",    \
-                             #EXP);}} while(0)
+    do { if (!(EXP)) { Rf_error("eaf package: error: assertion failed: '%s' at %s:%d",    \
+                             #EXP, __FILE__, __LINE__);}} while(0)
 #define fatal_error(...) Rf_error(__VA_ARGS__)
-#define errprintf error
-#define warnprintf warning
+#define errprintf Rf_error
+#define warnprintf Rf_warning
 #include "gcc_attribs.h"
 #else
 #include <stdarg.h>
@@ -17,6 +17,7 @@
 #include "gcc_attribs.h"
 #include <assert.h>
 #define eaf_assert(X) assert(X)
+#define Rprintf(...) printf(__VA_ARGS__)
 void fatal_error(const char * format,...) __attribute__ ((format(printf, 1, 2))) __noreturn __unused;
 void errprintf(const char * format,...) __attribute__ ((format(printf, 1, 2)));
 void warnprintf(const char *format,...)  __attribute__ ((format(printf, 1, 2)));
@@ -62,12 +63,15 @@ void warnprintf(const char *format,...)  __attribute__ ((format(printf, 1, 2)));
 #endif
 
 #ifndef R_PACKAGE
-#define DEBUG2_PRINT(...) DEBUG2 (fprintf (stderr, __VA_ARGS__))
+#define DEBUG2_PRINT(...) DEBUG2 (fprintf (stderr,  __VA_ARGS__))
 
+#else
+#define DEBUG2_PRINT(...) DEBUG2 (Rprintf ( __VA_ARGS__))
+#endif
 #define DEBUG2_FUNPRINT(...) \
     do { DEBUG2_PRINT ("%s(): ", __FUNCTION__); \
          DEBUG2_PRINT (__VA_ARGS__); } while(0)
-#endif
+
 
 /* This is deprecated. See https://www.gnu.org/software/libc/manual/html_node/Heap-Consistency-Checking.html
 #if DEBUG >= 1

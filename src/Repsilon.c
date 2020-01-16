@@ -30,8 +30,8 @@ static SEXP unary_metric_ref(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
     SEXP_2_LOGICAL_VECTOR(MAXIMISE, maximise, maximise_len);
 
     if (nobj != maximise_len)
-        error("length of maximise (%d) is different from number of objectives (%d)",
-              maximise_len, nobj);
+        Rf_error("length of maximise (%d) is different from number of objectives (%d)",
+                 maximise_len, nobj);
 
     signed char * minmax = create_minmax(nobj, maximise);
 
@@ -52,7 +52,7 @@ static SEXP unary_metric_ref(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
           value[0] = IGD_plus (nobj, minmax, data, npoint, ref, ref_size);
           break;
       default:
-          error("unknown unary metric");
+          Rf_error("unknown unary metric");
     }
     
     free (minmax);

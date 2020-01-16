@@ -8,8 +8,8 @@ compute_eaf_helper (SEXP DATA, int nobj, SEXP CUMSIZES, int nruns,
     int k;
     SEXP_2_INT_VECTOR(CUMSIZES, cumsizes, cumsizes_len);
     if (cumsizes_len < nruns)
-        error("length of cumsizes (%d) is less than nruns (%d)",
-              cumsizes_len, nruns);
+        Rf_error("length of cumsizes (%d) is less than nruns (%d)",
+                 cumsizes_len, nruns);
 
     int *level;
 
@@ -65,7 +65,7 @@ compute_eaf_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS, SEXP PERCENTILE)
     int totalpoints = eaf_totalpoints (eaf, nlevels);
 
     SEXP mat;
-    PROTECT(mat = allocMatrix(REALSXP, totalpoints, nobj + 1));
+    PROTECT(mat = Rf_allocMatrix(REALSXP, totalpoints, nobj + 1));
     double * rmat = REAL(mat);
 
     int pos = 0;
@@ -110,7 +110,7 @@ compute_eafdiff_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
     int totalpoints = eaf_totalpoints (eaf, nruns);
 
     SEXP mat;
-    PROTECT(mat = allocMatrix(REALSXP, totalpoints, nobj + 1));
+    PROTECT(mat = Rf_allocMatrix(REALSXP, totalpoints, nobj + 1));
     double *rmat = REAL(mat);
 
     int pos = 0;
@@ -331,7 +331,7 @@ read_data_sets (SEXP FILENAME)
     const int ntotal = cumsizes[nruns - 1];
 
     SEXP DATA;
-    PROTECT(DATA = allocMatrix(REALSXP, cumsizes[nruns-1], nobj + 1));
+    PROTECT(DATA = Rf_allocMatrix(REALSXP, cumsizes[nruns-1], nobj + 1));
     double *rdata = REAL(DATA);
     double_transpose (rdata, data, ntotal, nobj);
 

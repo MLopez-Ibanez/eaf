@@ -17,8 +17,8 @@ hypervolume_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP REFERENCE)
     SEXP_2_DOUBLE_VECTOR(REFERENCE, reference, reference_len);
 
     if (nobj != reference_len)
-        error("length of reference point (%d) is different from number of objectives (%d)",
-              reference_len, nobj);
+        Rf_error("length of reference point (%d) is different from number of objectives (%d)",
+                 reference_len, nobj);
 
     new_real_vector(hv, 1);
     hv[0] = fpli_hv(data, nobj, npoint, reference);
@@ -37,8 +37,8 @@ hv_contributions_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP REFERENCE)
     SEXP_2_DOUBLE_VECTOR(REFERENCE, reference, reference_len);
 
     if (nobj != reference_len)
-        error("length of reference point (%d) is different from number of objectives (%d)",
-              reference_len, nobj);
+        Rf_error("length of reference point (%d) is different from number of objectives (%d)",
+                 reference_len, nobj);
 
     new_real_vector(hv, npoint);
     hv_contributions(hv, data, nobj, npoint, reference);

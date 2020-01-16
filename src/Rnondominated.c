@@ -14,16 +14,16 @@ normalise_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
     SEXP_2_LOGICAL_VECTOR(MAXIMISE, maximise, maximise_len);
 
     if (nobj != lbound_len)
-        error("length of lbound (%d) is different from number of objectives (%d)",
-              lbound_len, nobj);
+        Rf_error("length of lbound (%d) is different from number of objectives (%d)",
+                 lbound_len, nobj);
     if (nobj != ubound_len)
-        error("length of ubound (%d) is different from number of objectives (%d)",
-              ubound_len, nobj);
+        Rf_error("length of ubound (%d) is different from number of objectives (%d)",
+                 ubound_len, nobj);
     if (nobj != maximise_len)
-        error("length of maximise (%d) is different from number of objectives (%d)",
+        Rf_error("length of maximise (%d) is different from number of objectives (%d)",
               maximise_len, nobj);
     if (range_len != 2)
-        error("length of range must be two (lower, upper)");
+        Rf_error("length of range must be two (lower, upper)");
 
     signed char * minmax = create_minmax(nobj, maximise);
     
@@ -56,8 +56,8 @@ is_nondominated_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT, SEXP MAXIMISE,
     SEXP_2_LOGICAL(KEEP_WEAKLY, keep_weakly);
     
     if (nobj != maximise_len)
-        error("length of maximise (%d) is different from number of objectives (%d)",
-              maximise_len, nobj);
+        Rf_error("length of maximise (%d) is different from number of objectives (%d)",
+                 maximise_len, nobj);
 
     signed char * minmax = create_minmax(nobj, maximise);
     bool * bool_is_nondom = nondom_init(npoint);
