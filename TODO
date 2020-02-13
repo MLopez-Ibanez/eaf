@@ -16,6 +16,13 @@
  * Reimplement eafdiff.pl and eafplot.pl in Python/R
  * Convert eaf->attained to a bitmask.
  * Second order eaf-test: https://github.com/hjalves/eaftest
+ * Interactive EAF:
  
- 
- 
+ plot(cars) # scatterplot
+while(TRUE) {
+  coord <- locator(n=2,type="p", pch=4,col='red',lwd=2)
+  print(coord)
+  if (is.null(coord)) break
+  plot(cars, xlim = range(coord$x), ylim = range(coord$y))
+  points(as.data.frame(coord), pch=4,col='blue',lwd=2)
+}
