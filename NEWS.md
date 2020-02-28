@@ -1,8 +1,21 @@
 # eaf 2.0
 
+* `eafs()` and `eafdiff()` and the plotting functions using them now consume
+  slightly less memory.
+
+* New function `whv_hype()` to estimate weighted hypervolume using Monte-Carlo
+  sampling.
+
+* New functions `total_whv_rect()` and `whv_rect()` to compute weighted
+  hypervolume with rectangular weighted regions.
+
+* New functions `largest_eafdiff()`, `choose_eafdiffplot()` and
+  `choose_eafdiff()` for converting EAF differences into weighted regions for
+  calculating the weighted hypervolume.
+      
 * New function `avg_hausdorff_dist()` for computing the averaged Hausdorff distance.
                                                           (Manuel López-Ibáñez)
-
+  
 # eaf 1.9-1
 
 * Fixes to Makefiles for non-GCC compilers and parallel build setups.

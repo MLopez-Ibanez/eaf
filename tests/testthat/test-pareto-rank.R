@@ -1,5 +1,6 @@
 library(eaf)
 context("pareto")
+source("helper-common.R")
 
 test_that("pareto", {
   test_pareto_rank <- function(extdatafile, maximise = FALSE) {

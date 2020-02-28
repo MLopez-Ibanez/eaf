@@ -123,3 +123,24 @@ double_transpose(double *dst, const double *src,
         }
     }
 }
+
+static inline SEXP
+set_colnames(SEXP matrix, const char *const * names, size_t names_len)
+{
+    int nprotected=0;
+    SEXP dimnames = Rf_getAttrib(matrix, R_DimNamesSymbol);
+    if (dimnames == R_NilValue) {
+        PROTECT(dimnames = Rf_allocVector(VECSXP, 2));
+        nprotected++;
+    }
+       
+    new_string_vector (colnames, names_len);
+    for (size_t k = 0; k < names_len; k++) {
+        string_vector_push_back (colnames, names[k]);
+    }
+    SET_VECTOR_ELT(dimnames, 1, Rexp(colnames));
+    Rf_setAttrib(matrix, R_DimNamesSymbol, dimnames);
+
+    UNPROTECT(nprotected);
+    return(matrix);
+}

@@ -46,8 +46,7 @@ epsilon_mult (int dim, const signed char *minmax,
             for (d = 0; d < dim; d++) {
                 double epsilon_temp;
                 if (points_a[a * dim + d] <= 0 || points_b[b * dim + d] <= 0) {
-                    errprintf ("cannot calculate multiplicative epsilon indicator with values <= 0\n.");
-                    exit (EXIT_FAILURE);
+                    fatal_error ("cannot calculate multiplicative epsilon indicator with values <= 0\n.");
                 }
                 if (minmax[d] < 0)
                     epsilon_temp =  points_a[a * dim + d] / points_b[b * dim + d];
@@ -57,8 +56,7 @@ epsilon_mult (int dim, const signed char *minmax,
                     epsilon_temp =  1;
                 
                 if (epsilon_temp < 0) {
-                    errprintf ("cannot calculate multiplicative epsilon indicator with different signedness\n.");
-                    exit (EXIT_FAILURE);
+                    fatal_error("cannot calculate multiplicative epsilon indicator with different signedness\n.");
                 }
                 epsilon_max = MAX (epsilon_max, epsilon_temp);
             }

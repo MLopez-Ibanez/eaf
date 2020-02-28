@@ -1,5 +1,6 @@
 library(eaf)
 context("normalise")
+source("helper-common.R")
 
 test_that("normalise", {
   #skip_on_cran()

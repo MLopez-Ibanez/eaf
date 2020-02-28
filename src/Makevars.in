@@ -1,11 +1,17 @@
 # 							-*- mode: makefile -*-
+# set by configure
+GSL_CFLAGS = @GSL_CFLAGS@
+GSL_LIBS   = @GSL_LIBS@
 # Do not put GCC specific flags here. Put them instead in CFLAGS and
 # CXXFLAGS in ~/.R/Makevars
-PKG_CPPFLAGS = -DR_PACKAGE -DDEBUG=1 -I./eaf/ -I./mo-tools/
+PKG_CPPFLAGS = $(GSL_CFLAGS) -DR_PACKAGE -DDEBUG=1 -I./eaf/ -I./mo-tools/
+PKG_LIBS = $(GSL_LIBS)
 EAF_SRC_FILES= avl.c eaf3d.c eaf.c io.c
-MOTOOLS_SRC_FILES = hv_contrib.c hv.c pareto.c
+MOTOOLS_SRC_FILES = hv_contrib.c hv.c pareto.c whv.c whv_hype.c
 SOURCES = $(EAF_SRC_FILES:%=eaf/%) $(MOTOOLS_SRC_FILES:%=mo-tools/%) init.c  Reaf.c  Repsilon.c  Rhv.c  Rnondominated.c  
 OBJECTS = $(SOURCES:.c=.o)
+
+export GSL_CFLAGS GSL_LIBS
 
 eaf = eaf/eaf$(EXEEXT)
 igd = mo-tools/igd$(EXEEXT)
@@ -16,11 +22,11 @@ ndsort = mo-tools/ndsort$(EXEEXT)
 
 .PHONY: all clean
 
-default: $(SHLIB)
+all: $(SHLIB)
 	$(MAKE) -C eaf all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
 	$(MAKE) -C mo-tools all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
 
-$(SHLIB): $(OBJECTS)
+$(SHLIB): $(OBJECTS) 
 
 mo-tools/hv.o: PKG_CPPFLAGS += -DVARIANT=4
 
@@ -29,3 +35,4 @@ clean:
 	eaf/*.o $(eaf) \
 	$(igd) $(epsilon) $(dominatedsets) $(nondominated) $(ndsort) \
 	mo-tools/*.o 
+

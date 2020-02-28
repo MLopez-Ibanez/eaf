@@ -48,7 +48,10 @@ help :
 install: build
 	cd $(BINDIR) && R CMD INSTALL $(INSTALL_FLAGS) $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
-gendoc: NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
+configure: configure.ac src/Makevars.in
+	autoreconf configure.ac
+
+gendoc: $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd configure
 
 NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
 	$(Reval) 'pkgbuild::compile_dll();devtools::document()'
@@ -83,8 +86,7 @@ else
 endif
 
 clean:
-	cd $(PACKAGEDIR) && ($(RM) ./$(PACKAGE)-Ex.R ./src/*.o ./src/*.so; \
-		find . -name '*.orig' -o -name '.Rhistory' | xargs $(RM) )
+	cd $(PACKAGEDIR) && (./cleanup; find . -name '*.orig' -o -name '.Rhistory' | xargs $(RM))
 	make -C $(PACKAGEDIR)/src/eaf clean
 	make -C $(PACKAGEDIR)/src/mo-tools clean
 

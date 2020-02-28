@@ -1,4 +1,5 @@
 library(eaf)
+source("testthat/helper-common.R")
 pdf(file = "eafplot.pdf", title = "eafplot.pdf", width = 6,  height = 6)
 data(gcp2x2)
 tabucol <- subset(gcp2x2, alg != "TSinN1")

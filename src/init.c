@@ -28,6 +28,13 @@ extern SEXP
 avg_hausdorff_dist_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
                      SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE,
                      SEXP P);
+extern SEXP
+rect_weighted_hv2d_C(SEXP DATA, SEXP NPOINT, SEXP RECTANGLES, SEXP RECTANGLES_NROW);
+
+extern SEXP
+whv_hype_C(SEXP DATA, SEXP NPOINTS, SEXP IDEAL, SEXP REFERENCE,
+           SEXP DIST, SEXP SEED, SEXP NSAMPLES);
+
 
 #define DECLARE_CALL_ENTRY(NAME, NARGS) \
     {#NAME, (DL_FUNC) &NAME, NARGS},
@@ -41,8 +48,10 @@ static const R_CallMethodDef CallEntries[] = {
     DECLARE_CALL_ENTRY(hypervolume_C,          4)
     DECLARE_CALL_ENTRY(hv_contributions_C,     4)
     DECLARE_CALL_ENTRY(normalise_C,            7)
-    DECLARE_CALL_ENTRY(is_nondominated_C,      5)
-    DECLARE_CALL_ENTRY(pareto_ranking_C,       3)
+    DECLARE_CALL_ENTRY(is_nondominated_C, 5)
+    DECLARE_CALL_ENTRY(pareto_ranking_C,  3)
+    DECLARE_CALL_ENTRY(rect_weighted_hv2d_C, 4)
+    DECLARE_CALL_ENTRY(whv_hype_C, 7)
     DECLARE_CALL_ENTRY(epsilon_add_C,          6)
     DECLARE_CALL_ENTRY(epsilon_mul_C,          6)
     DECLARE_CALL_ENTRY(igd_C,                  6)

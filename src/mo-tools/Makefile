@@ -38,22 +38,23 @@ VERSION = 1.0svn$(SVN_REV)
 # citations of papers referencing this work so I can mention them to
 # my funding agent and tenure committee.
 #-----------------------------------------------------------------------
-DEBUG ?=1
-BINDIR :=.
+DEBUG?=1
+BINDIR:=.
 
 ## Define source files
-SRCS  = igd.c epsilon.c dominatedsets.c nondominated.c io.c ndsort.c hv_contrib.c hv.c pareto.c
-HEADERS = io.h io_priv.h common.h gcc_attribs.h igd.h epsilon.h nondominated.h hv.h cmdline.h
+SRCS  = igd.c epsilon.c dominatedsets.c nondominated.c io.c ndsort.c hv_contrib.c hv.c pareto.c whv.c whv_hype.c
+HEADERS = io.h io_priv.h common.h gcc_attribs.h igd.h epsilon.h nondominated.h hv.h cmdline.h whv.h whv_hype.h
 OBJS  = $(SRCS:.c=.o)
-DIST_OTHER_FILES = Makefile README LICENSE svn_version Makefile.libhv
+DIST_OTHER_FILES = Makefile README LICENSE svn_version *.mk
 
 -include Makevars
-EXE_LDFLAGS=$(GSL_LIBS) -lm 
+# We do not need $(GSL_LIBS) yet because we don't compile whv_hype.c into any executable.
+EXE_LDFLAGS=-lm 
 
 ECHO = @echo "$(1)"
 
--include svnversion.mk
--include gcc.mk
+include svnversion.mk
+include gcc.mk
 
 EXE_CFLAGS += $(OPT_CFLAGS) $(GSL_CFLAGS) $(WARN_CFLAGS) \
 	-D_GNU_SOURCE -DDEBUG=$(DEBUG) -DVERSION=\"$(VERSION)\" -DMARCH='"$(gcc-guess-march)"'
@@ -81,7 +82,7 @@ $(dominatedsets) : dominatedsets.o io.o $(HEADERS)
 $(nondominated) : OBJS=nondominated.o io.o
 $(nondominated) : nondominated.o io.o $(HEADERS)
 
-include Makefile.libhv
+include libhv.mk
 
 $(ndsort) : OBJS=ndsort.o pareto.o io.o hv_contrib.c $(HV_OBJS)
 $(ndsort) : $(OBJS) $(HEADERS)
@@ -92,7 +93,6 @@ $(igd) $(epsilon) $(nondominated) $(dominatedsets) $(ndsort):
 	$(CC) -o $@  $(OBJS) $(EXE_CFLAGS) $(CFLAGS) $(EXE_LDFLAGS)
 
 $(OBJS) : $(HEADERS)
-
 
 clean :
 	$(call ECHO,---> Removing $(igd) <---)

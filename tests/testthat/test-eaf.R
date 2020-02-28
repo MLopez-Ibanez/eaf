@@ -1,8 +1,6 @@
 library(eaf)
 context("eaf")
-
-extdata.path <- function(file)
-  return(file.path(system.file(package = "eaf"), "extdata", file))
+source("helper-common.R")
 
 test_that("eaf", {
   #skip_on_cran()

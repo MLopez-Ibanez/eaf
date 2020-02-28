@@ -11,4 +11,17 @@ alg1 = eaf.read_data_sets_(path + "wrots_l100w10_dat")
 #alg1 = np.array(alg1).transpose()
 alg2 = eaf.read_data_sets_(path + "wrots_l10w100_dat")
 x = eaf.eafdiff(alg1, alg2)
+# numpy.asarray constructs a view.
+x = np.asarray(x)
 print(x)
+
+def select_side(rectangles, side):
+        if (side == "left"):
+                rectangles = rectangles[rectangles[:, 4] >= 1, :]
+        elif (side == "right"):
+                rectangles = rectangles[rectangles[:, 4] <= -1, :]
+                rectangles[:, 4] = -rectangles[:,4]
+        else:
+                raise("Unknown side {}\n".format(side))
+        return rectangles
+

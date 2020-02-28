@@ -39,10 +39,11 @@ VERSION = 0.1svn$(SVN_REV)
 # to my funding agent and tenure committee.
 #-----------------------------------------------------------------------
 DEBUG=0
-BINDIR := .
+BINDIR:=.
 
 OBJS =  eaf.o io.o eaf_main.o eaf3d.o avl.o
-HEADERS = eaf.h io_priv.h io.h cvector.h avl.h common.h gcc_attribs.h
+HEADERS = eaf.h io_priv.h io.h cvector.h avl.h common.h gcc_attribs.h bit_array.h
+DIST_OTHER_FILES = *.mk TODO GNUmakefile README LICENSE svn_version
 
 EAFEXE=eaf$(EXE)
 
@@ -52,7 +53,7 @@ ECHO = @echo "$(1)"
 -include svnversion.mk
 -include gcc.mk
 
-EAF_CFLAGS += $(OPT_CFLAGS) $(WARN_FLAGS) \
+EAF_CFLAGS += $(OPT_CFLAGS) $(WARN_CFLAGS) \
 	-DDEBUG=$(DEBUG) -DVERSION='"$(VERSION)"' -DMARCH='"$(gcc-guess-march)"'
 
 .PHONY : default all clean distclean test dist
@@ -70,9 +71,8 @@ io.o : io_priv.h
 %.o : %.c
 	$(CC) $(EAF_CFLAGS) $(CFLAGS) -c -o $@ $<
 
-test: DEBUG=1
 test: clean
-	$(MAKE) $(BINDIR)/$(EAFEXE)
+	$(MAKE) DEBUG=1 SANITIZERS="" $(BINDIR)/$(EAFEXE)
 	$(call ECHO,---> Testing... <--- )
 	@perl -w dotest.pl $(BINDIR)/$(EAFEXE) ./testsuite/
 
@@ -85,18 +85,15 @@ clean :
 all : clean
 	$(MAKE) default
 
-DIST_SRC_FILES =  gcc.mk TODO GNUmakefile README LICENSE svn_version \
-		  $(OBJS:.o=.c) $(HEADERS)
+DIST_SRC_FILES = $(DIST_OTHER_FILES) $(OBJS:.o=.c) $(HEADERS) 
 DIST_SRC := eaf-$(VERSION)-src
-
 dist : DEBUG=0
 dist : CDEBUG=
-dist :
+dist : all
 	@(mkdir -p ../$(DIST_SRC) \
 	&& rsync -rlpC --copy-unsafe-links --exclude=.svn $(DIST_SRC_FILES) ../$(DIST_SRC)/ \
 	&& cd .. \
 	&& tar cf - $(DIST_SRC) | gzip -f9 > $(DIST_SRC).tar.gz \
 	&& rm -rf ./$(DIST_SRC)/* && rmdir ./$(DIST_SRC)/ \
 	&& echo "$(DIST_SRC).tar.gz created." && cd $(PWD) )
-
 

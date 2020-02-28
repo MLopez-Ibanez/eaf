@@ -44,6 +44,9 @@
 #define DEBUG 0
 #endif
 
+//#define OLD_ATTAINED(X) do { X; } while(0);
+#define OLD_ATTAINED(X) while(0) { X; };
+
 static int compare_x_asc (const void *p1, const void *p2)
 {
     objective_t x1 = **(objective_t **)p1;
@@ -67,20 +70,40 @@ eaf_t * eaf_create (int nobj, int nruns, int npoints)
     eaf->nobj = nobj;
     eaf->nruns = nruns;
     eaf->size = 0;
+    eaf->nreallocs = 0;
     /* Maximum is npoints, but normally it will be smaller, so at most
        log2(2 * nruns) realloc will occur.  */
     eaf->maxsize = 256 + npoints / (2 * nruns); 
-
+    /* fprintf(stderr,"maxsize %ld = %d npoints, %d nruns\n", */
+    /*         eaf->maxsize, npoints, nruns); */
     EAF_MALLOC (eaf->data, nobj * eaf->maxsize, sizeof(objective_t));
-    EAF_MALLOC (eaf->attained, nruns * eaf->maxsize, sizeof(bool));
+    eaf->bit_attained = malloc (bit_array_bytesize(nruns) * eaf->maxsize);
+    eaf->attained = NULL;
+    OLD_ATTAINED(eaf->attained = malloc(sizeof(bool) * nruns * eaf->maxsize));
     return eaf;
 }
 
 void eaf_delete (eaf_t * eaf)
 {
     free (eaf->data);
-    free (eaf->attained);
+    OLD_ATTAINED(free (eaf->attained));
+    free (eaf->bit_attained);
     free (eaf);
+}
+void eaf_realloc(eaf_t * eaf, size_t nobj)
+{
+    const int nruns = eaf->nruns;
+    eaf->data = realloc (eaf->data,
+                         sizeof(objective_t) * nobj * eaf->maxsize);
+    eaf_assert(eaf->data);
+    OLD_ATTAINED(
+        eaf->attained = realloc (eaf->attained, 
+                                 sizeof(bool) * nruns * eaf->maxsize);
+        eaf_assert(eaf->attained);
+        );
+    eaf->bit_attained = realloc (eaf->bit_attained, 
+                                 bit_array_bytesize(nruns) * eaf->maxsize);
+    eaf_assert(eaf->bit_attained);
 }
 
 objective_t *
@@ -91,19 +114,37 @@ eaf_store_point_help (eaf_t * eaf, int nobj,
 
     if (eaf->size == eaf->maxsize) {
         eaf_assert (eaf->size < INT_MAX / 2);
-        eaf->maxsize = eaf->maxsize * 2;
-        eaf->attained = realloc (eaf->attained, 
-                                 sizeof(bool) * nruns * eaf->maxsize);
-        eaf_assert(eaf->attained);
-        eaf->data = realloc (eaf->data,
-                             sizeof(objective_t) * nobj * eaf->maxsize);
-        eaf_assert(eaf->data);
+        //size_t old_maxsize = eaf->maxsize;
+        eaf->maxsize = (size_t) (eaf->maxsize * (1.0 + 1.0 / pow(2, eaf->nreallocs / 4.0)));
+        eaf->maxsize += 100; // At least we increase it by 100 points
+        /* fprintf(stderr,"maxsize (%d): %ld -> %ld\n", eaf->nreallocs, */
+        /*         old_maxsize, eaf->maxsize); */
+        eaf->nreallocs++;
+        // FIXME: We could save memory by only storing eaf->attained per point if requested.
+        eaf_realloc(eaf, nobj);
     }
-    /* We convert from int to bool to hopefully save space. */
+    // FIXME: provide a bit_array function to do this.
     for (int k = 0; k < nruns; k++) {
-        eaf->attained[(nruns * eaf->size) + k] = (bool) save_attained[k];
+        bit_array_set(bit_array_offset(eaf->bit_attained, eaf->size, nruns), k, (bool) save_attained[k]);
+        OLD_ATTAINED(eaf->attained[nruns * eaf->size + k] = (bool) save_attained[k]);
     }
+    OLD_ATTAINED(
+    bitset_check(bit_array_offset(eaf->bit_attained, eaf->size, eaf->nruns),
+                 eaf->attained + eaf->size * eaf->nruns, eaf->nruns));
+ 
     return eaf->data + nobj * eaf->size;
+}
+
+static void
+eaf_adjust_memory (eaf_t * eaf, int nobj)
+{
+    if (eaf->size < eaf->maxsize) {
+        //fprintf(stderr,"reduce size: %ld -> %ld\n", eaf->maxsize, eaf->size);
+        eaf->maxsize = eaf->size;
+        eaf_realloc(eaf, nobj);
+    }
+    OLD_ATTAINED(
+        bit_array_check(eaf->bit_attained, eaf->attained, eaf->size, eaf->nruns));
 }
 
 static void
@@ -120,7 +161,7 @@ eaf_store_point_2d (eaf_t * eaf, objective_t x, objective_t y,
 static void
 eaf_print_line (FILE *coord_file, FILE *indic_file, FILE *diff_file, 
                 const objective_t *x, int nobj,
-                const bool *attained, int nruns)
+                const bit_array *attained, int nruns)
 {
     int count1 = 0;
     int count2 = 0;
@@ -139,13 +180,13 @@ eaf_print_line (FILE *coord_file, FILE *indic_file, FILE *diff_file,
 
     if (indic_file) {
         fprintf (indic_file, "%d", 
-                 attained[0] ? (count1++,1) : 0);
+                 bit_array_get(attained, 0) ? (count1++,1) : 0);
         for (k = 1; k < nruns/2; k++) 
             fprintf (indic_file, "\t%d", 
-                     attained[k] ? (count1++,1) : 0);
+                     bit_array_get(attained, k) ? (count1++,1) : 0);
         for (k = nruns/2; k < nruns; k++)
             fprintf (indic_file, "\t%d", 
-                     attained[k] ? (count2++,1) : 0);
+                     bit_array_get(attained, k) ? (count2++,1) : 0);
 
         fprintf (indic_file, (indic_file == diff_file) ? "\t" : "\n");
     } else if (diff_file) {
@@ -160,11 +201,19 @@ eaf_print_line (FILE *coord_file, FILE *indic_file, FILE *diff_file,
 void
 eaf_print_attsurf (eaf_t * eaf, FILE *coord_file,  FILE *indic_file, FILE *diff_file)
 {
-    int i;
-    for (i = 0; i < eaf->size; i++) {
+    OLD_ATTAINED(
+    bit_array_check(eaf->bit_attained,
+                    eaf->attained, eaf->size, eaf->nruns));
+      
+    for (size_t i = 0; i < eaf->size; i++) {
         const objective_t *p = eaf->data + i * eaf->nobj;
+        /* bit_array_fprintf(stderr, eaf->bit_attained, eaf->nruns * eaf->size); */
+        OLD_ATTAINED(bitset_check(bit_array_offset(eaf->bit_attained, i, eaf->nruns),
+                                  eaf->attained + i * eaf->nruns, eaf->nruns));
         eaf_print_line (coord_file, indic_file, diff_file,
-                        p, eaf->nobj, eaf->attained + i * eaf->nruns, eaf->nruns);
+                        p, eaf->nobj,
+                        bit_array_offset(eaf->bit_attained, i, eaf->nruns),
+                        eaf->nruns);
     }
 }
 
@@ -197,7 +246,7 @@ eaf2d (const objective_t *data, const int *cumsize, int nruns,
     
     const int ntotal = cumsize[nruns - 1]; /* total number of points in data */
     int *runtab;	
-    int *attained, nattained, *save_attained;
+    int *attained, *save_attained;
     int k, j, l;
 
     /* Access to the data is made via two arrays of pointers: ix, iy
@@ -253,13 +302,12 @@ eaf2d (const objective_t *data, const int *cumsize, int nruns,
         int level = attlevel[l];
         int x = 0;
         int y = 0;
-        int run;
-
-        nattained = 0;
+        
+        int nattained = 0;
         for (k = 0; k < nruns; k++) attained[k] = 0;
 
         /* Start at upper-left corner */
-        run = runtab[(datax[x] - data) / nobj];
+        int run = runtab[(datax[x] - data) / nobj];
         attained[run]++;
         nattained++;
 
@@ -314,6 +362,7 @@ eaf2d (const objective_t *data, const int *cumsize, int nruns,
                                 save_attained);
 
         } while (x < ntotal - 1 && y < ntotal);
+        eaf_adjust_memory(eaf[l], nobj);            
     }
     free(save_attained);
     free(attained);
@@ -332,7 +381,7 @@ eaf2d (const objective_t *data, const int *cumsize, int nruns,
 static int
 eaf_max_size(eaf_t * const * eaf, int nlevels)
 {
-    int max_size = 0;
+    size_t max_size = 0;
     for (int a = 0; a < nlevels; a++) {
         if (max_size < eaf[a]->size)
             max_size = eaf[a]->size;
@@ -343,9 +392,12 @@ eaf_max_size(eaf_t * const * eaf, int nlevels)
 static int
 eaf_diff_color(const eaf_t * eaf, size_t k, int nruns)
 {
-    const bool *attained = eaf->attained + k * nruns;
+    const bit_array *bit_attained = bit_array_offset(eaf->bit_attained, k, nruns);
+    OLD_ATTAINED(
+        const bool *attained = eaf->attained + k * nruns;
+        bitset_check(bit_attained, attained, nruns););
     int count_left, count_right;
-    attained_left_right (attained, nruns/2, nruns, &count_left, &count_right);
+    attained_left_right (bit_attained, nruns/2, nruns, &count_left, &count_right);
     return count_left - count_right;
 }
 

@@ -71,11 +71,15 @@
 # define read_objective_t_data read_int_data
 #endif
 
+#include "bit_array.h"
+
 typedef struct {
     int nobj; /* FIXME: there is no point to store this here.  */
     int nruns;
-    int size;
-    int maxsize;
+    size_t size;
+    size_t maxsize;
+    int nreallocs;
+    bit_array *bit_attained;
     bool *attained;
     objective_t *data;
 } eaf_t;
@@ -145,7 +149,7 @@ fprint_set (FILE *stream, const objective_t **data, int ntotal)
 }
 
 static inline void
-attained_left_right (const bool *attained, int division, int total,
+attained_left_right (const bit_array *attained, int division, int total,
                      int *count_left, int *count_right)
 {
     eaf_assert (division < total);
@@ -154,9 +158,9 @@ attained_left_right (const bool *attained, int division, int total,
     int k;
 
     for (k = 0; k < division; k++)
-        if (attained[k]) count_l++;
+        if (bit_array_get(attained,  k)) count_l++;
     for (k = division; k < total; k++)
-        if (attained[k]) count_r++;
+        if (bit_array_get(attained,  k)) count_r++;
 
     *count_left = count_l;
     *count_right = count_r;

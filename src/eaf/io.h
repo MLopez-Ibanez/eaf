@@ -9,8 +9,6 @@
 #include <string.h>
 #include <assert.h>
 
-
-
 static const char stdin_name[] = "<stdin>";
 
 // FIXME: Should this be %-16.15g ?
@@ -32,17 +30,17 @@ int
 read_double_data (const char *filename, double **data_p, 
                   int *nobjs_p, int **cumsizes_p, int *nsets_p);
 
+#ifndef R_PACKAGE
+
 void vector_fprintf (FILE *stream, const double * vector, int size);
 void vector_printf (const double *vector, int size);
 
 int write_sets (FILE *outfile, const double *data, int ncols, 
                 const int *cumsizes, int nruns);
-int 
-write_sets_filtered (FILE *outfile, const double *data, int ncols, 
-                     const int *cumsizes, int nruns, 
-                     const bool *write_p);
+int write_sets_filtered (FILE *outfile, const double *data, int ncols, 
+                         const int *cumsizes, int nruns, 
+                         const bool *write_p);
 
-#ifndef R_PACKAGE
 static inline const signed char *
 read_minmax (const char *str, int *nobj)
 {

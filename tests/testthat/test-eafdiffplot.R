@@ -1,5 +1,5 @@
-library(eaf)
 context("eafdiffplot")
+source("helper-common.R")
 
 test_that("eafdiffplot", {
 skip_on_cran()

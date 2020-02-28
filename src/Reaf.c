@@ -98,11 +98,11 @@ SEXP
 compute_eafdiff_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
                   SEXP INTERVALS)
 {
-    int k;
     SEXP_2_INT(NOBJ, nobj);
     SEXP_2_INT(NRUNS, nruns);
     SEXP_2_INT(INTERVALS, intervals);
-
+    int k;
+    
     eaf_t **eaf = compute_eaf_helper(DATA, nobj, CUMSIZES, nruns, NULL, nruns);
 
     int nsets1 = nruns / 2;
@@ -138,8 +138,10 @@ compute_eafdiff_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
         for (i = 0; i < npoints; i++) {
             int count_left;
             int count_right;
-            attained_left_right (eaf[k]->attained + i * eaf[k]->nruns,
-                                 nruns / 2, nruns, &count_left, &count_right);
+            /* bit_array_check(bit_array_offset(eaf[k]->bit_attained,i, eaf[k]->nruns), */
+            /*                 eaf[k]->attained + i * eaf[k]->nruns, npoints, nruns); */
+            attained_left_right (bit_array_offset(eaf[k]->bit_attained, i, eaf[k]->nruns),
+                                 nsets1, nruns, &count_left, &count_right);
             rmat[pos] = intervals * (double) ((count_left / (double) nsets1) - 
                                               (count_right / (double) nsets2));
             pos++;
@@ -181,19 +183,19 @@ SEXP
 compute_eafdiff_rectangles_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
                              SEXP INTERVALS)
 {
-    int nprotected = 0;
-
-    int k;
     SEXP_2_INT(NOBJ, nobj);
     SEXP_2_INT(NRUNS, nruns);
     SEXP_2_INT(INTERVALS, intervals);
+    int nprotected = 0;
+    int k;
     
     eaf_t **eaf = compute_eaf_helper(DATA, nobj, CUMSIZES, nruns, NULL, nruns);
     eaf_polygon_t * rects = eaf_compute_rectangles(eaf, nruns);
     for (k = 0; k < nruns; k++)
         eaf_delete (eaf[k]);
     free(eaf);
-    
+
+    const int division = nruns / 2;
     int nrow = vector_int_size(&rects->col);
     // Two points per row + color
     new_real_matrix (result, nrow, 2 * nobj + 1);
@@ -202,13 +204,20 @@ compute_eafdiff_rectangles_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
         for (int i = 0; i < 2 * nobj; i++)
             result[k + nrow * i] = (double) *(p_xy++);
     }
-    for (k = 0; k < nrow; ++k) {
-        result[k + nrow * 2 * nobj] = (double) vector_int_at(&rects->col, k);
-    }
-    
-    vector_int_dtor (&rects->col);
     vector_objective_dtor (&rects->xy);
+
+    for (k = 0; k < nrow; ++k) {
+        double color = vector_int_at(&rects->col, k);
+        // Each color is within [0, nruns / 2] or [-nruns / 2, 0]
+        result[k + nrow * 2 * nobj] = intervals * color / (double) division;
+    }
+    // FIXME: This may return duplicated rows, remove them.
+    vector_int_dtor (&rects->col);
     free(rects);
+
+    const char* const colnames[] = {"xmin", "ymin", "xmax", "ymax", "diff"};
+    set_colnames(Rexp(result), colnames, 5);
+      
     UNPROTECT (nprotected);
     return Rexp(result);
 }
@@ -248,11 +257,12 @@ compute_eafdiff_area_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
        on each side. */
     double * p_xy = vector_objective_begin(&p->xy);
     for (k = 0; k < ncol; k++) {
-        double color = vector_int_at(&p->col, k);
-        color = intervals * color / (double) division;
+        // Truncate colors to interval
+        int color = vector_int_at(&p->col, k) * intervals / (double) division;
         int len = polygon_len (p_xy, nobj);
         p_xy += len * nobj;
         DEBUG2(Rprintf ("color: %d, len = %d\n", color, len));
+        // First interval (-1, 1) is white
         if (color >= 1) {
             left_len += len;
             left_ncol++;
@@ -289,7 +299,7 @@ compute_eafdiff_area_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
         } else if (color <= 1) {
             len = polygon_copy (right, right_len, right_npoints, p_xy);
             right_len += len;
-            right_col[right_ncol++] = (-color) + 1;
+            right_col[right_ncol++] = 1 - color;
         } else {
             len = polygon_len (p_xy, nobj);
         }
@@ -315,8 +325,6 @@ compute_eafdiff_area_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
     UNPROTECT (nprotected);
     return Rexp(poly);
 }
-
-SEXP read_data_sets (SEXP FILENAME);
 
 SEXP
 read_data_sets (SEXP FILENAME)

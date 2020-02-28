@@ -1,5 +1,6 @@
 library(eaf)
 context("hypervolume")
+source("helper-common.R")
 
 test_that("hypervolume", {
 #skip_on_cran()

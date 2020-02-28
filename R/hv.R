@@ -431,3 +431,4 @@ normalise <- function(data, to.range = c(1, 2), lower = NA, upper = NA, maximise
   rownames(z) <- rownames(data)
   return(z)
 }
+
