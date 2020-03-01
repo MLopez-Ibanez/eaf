@@ -360,9 +360,8 @@ check_nondominated (const char * filename, const double *points,
             dominated_found = true;
         }
         else if (new_size > old_size) {/* This can't happen.  */
-            errprintf ("a bug happened in %s: new_size > old_size!\n",
-                       __FUNCTION__);
-            exit (EXIT_FAILURE);
+            fatal_error ("%s:%d: a bug happened: new_size > old_size!\n",
+                         __FILE__, __LINE__);
         }
     }
 

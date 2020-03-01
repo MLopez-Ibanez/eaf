@@ -416,8 +416,7 @@ int main(int argc, char *argv[])
         snprintf(buffer, 32, "f%d", k + 1);
         buffer[31] = '\0';
         p = malloc (sizeof(char) * (strlen(buffer) + 1));
-        strncpy (p, buffer, strlen(buffer) + 1);
-
+        strncpy (p, buffer, 32);
         printf ("# %s: %s\n", p, filenames[k]);
         filenames[k] = p;
     }

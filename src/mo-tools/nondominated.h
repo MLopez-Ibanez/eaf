@@ -159,8 +159,8 @@ get_nondominated_set (double **pareto_set_p,
         );
 
     if (new_size > size) {/* This can't happen.  */
-        fatal_error ("a bug happened in %s: new_size > old_size!\n",
-                     __FUNCTION__);
+        fatal_error ("%s:%d: a bug happened: new_size > old_size!\n",
+                     __FILE__, __LINE__);
     }
 
     double *pareto_set = malloc (sizeof (double) * new_size * dim);
