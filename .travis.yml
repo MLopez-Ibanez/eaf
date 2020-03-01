@@ -44,7 +44,7 @@ before_install:
 notifications:
   email: false
 
-before_deploy: Rscript -e 'devtools::install_github("r-lib/pkgdown")'
+before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 deploy:
   provider: script
   script: Rscript -e 'pkgdown::deploy_site_github(run_dont_run = TRUE)'
