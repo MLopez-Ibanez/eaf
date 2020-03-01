@@ -668,7 +668,7 @@ eafplot.default <-
       # FIXME: Is this equivalent to compute.eaf.as.list for each g?
       EAF <- eafs (x, sets, groups, percentiles)
       attsurfs <- list()
-      groups <- EAF$groups
+      groups <- factor(EAF$groups)
       for (g in levels(groups)) {
         tmp <- lapply(split.data.frame(EAF[groups == g,],
                                        as.factor(EAF[groups == g, 3])),
@@ -802,6 +802,7 @@ eafplot.default <-
     legend.txt <- sub("^100%$", "worst", legend.txt)
 
     if (!is.null(groups)) {
+      groups <- factor(groups)
       legend.txt <- as.vector(t(outer(levels(groups), legend.txt, paste)))
     }
   }
