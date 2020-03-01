@@ -1,8 +1,7 @@
-language: r
+language: R
 cache: packages
 fortran: false
 sudo: false
-dist: trusty
 
 os:
   - linux
