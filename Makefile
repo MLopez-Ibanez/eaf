@@ -12,13 +12,14 @@ REALVERSION=$(PACKAGEVERSION)$(SVN_REV)
 PACKAGEDIR=$(CURDIR)
 # This could be replaced by devtools::build_win(version = "R-devel")
 FTP_COMMANDS="user anonymous anonymous\nbinary\ncd incoming\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
-WINBUILD_FTP_COMMANDS="user anonymous anonymous\nbinary\ncd R-devel\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
+WINBUILD_DEVEL_FTP_COMMANDS="user anonymous anonymous\nbinary\ncd R-devel\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
+WINBUILD_REL_FTP_COMMANDS="user anonymous anonymous\nbinary\ncd R-release\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
 
 ## Do we have git?
 ifeq ($(shell sh -c 'which git 1> /dev/null 2>&1 && echo y'),y)
   ## Is this a working copy?
-  ifeq ($(shell sh -c 'LC_ALL=C  git describe --first-parent --always | grep -q "[0-9a-z]\+$$" && echo y'),y)
-    $(shell sh -c 'LC_ALL=C  git describe --first-parent --always | grep -o "[0-9a-z]\+$$" > git_version')
+  ifeq ($(shell sh -c 'LC_ALL=C  git describe --first-parent --always | grep -q "[0-9a-z]\+$$"  && echo y'),y)
+    $(shell sh -c 'LC_ALL=C  git describe --first-parent --always > git_version')
   endif
 endif
 ## Set version information:
@@ -41,12 +42,13 @@ help :
 install: build
 	cd $(BINDIR) && R CMD INSTALL $(INSTALL_FLAGS) $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
-gendoc: $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
-$(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
-	R --slave -e 'devtools::document()'
+gendoc: NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
+
+NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
+	R --slave -e 'pkgbuild::compile_dll();devtools::document()'
 
 pkgdown: gendoc
-	R --slave -e 'pkgdown::build_site(run_dont_run = TRUE)'
+	R --slave -e 'pkgdown::build_site(run_dont_run = TRUE, document = FALSE)'
 
 build: clean scripts gendoc
 	cd $(BINDIR) && R CMD build $(PACKAGEDIR)
@@ -61,7 +63,7 @@ releasebuild: clean scripts gendoc
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
 cran : build pkgdown
-	cd $(BINDIR) && _R_CHECK_FORCE_SUGGESTS_=false R CMD check --as-cran $(PACKAGE)_$(PACKAGEVERSION).tar.gz
+	cd $(BINDIR) && _R_CHECK_FORCE_SUGGESTS_=false _R_OPTIONS_STRINGS_AS_FACTORS_=false R CMD check --as-cran $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
 check: build
 ifdef TEST
@@ -125,10 +127,12 @@ submit:
 	@echo "Don't forget to send email to cran@r-project.org !"
 
 macbuild: build
-	R --slave -e 'rhub::check(platform="macos-elcapitan-release")'
+	R --slave -e 'rhub::check(platform="macos-elcapitan-release", env_vars = c(R_DEFAULT_SAVE_VERSION="2", R_DEFAULT_SERIALIZE_VERSION="2"))'
 
-winbuild: build
+winbuild: releasebuild
 	@echo "Winbuild: http://win-builder.r-project.org/"
-	cd $(BINDIR) && echo $(WINBUILD_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
+	cd $(BINDIR) && echo $(WINBUILD_DEVEL_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
+	cd $(BINDIR) && echo $(WINBUILD_REL_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
+	R --slave -e "rhub::check_on_windows(path='$(BINDIR)/$(PACKAGE)_$(PACKAGEVERSION).tar.gz', env_vars = c('_R_CHECK_FORCE_SUGGESTS_'='false', R_DEFAULT_SAVE_VERSION='2', R_DEFAULT_SERIALIZE_VERSION='2'))"
 
 
