@@ -13,9 +13,8 @@
 #'
 #'\tabular{rl}{
 #'[eafdiffplot()] \tab  Empirical attainment function differences\cr
-#'[eafplot()] \tab  Plot the Empirical Attainment Function for two
-#'objectives\cr
-#'[read_datasets()]\tab  Read several data.frame sets
+#'[eafplot()] \tab  Plot the Empirical Attainment Function for two objectives\cr
+#'[read_datasets()] \tab  Read several data.frame sets
 #'}
 #'
 #'Data:

@@ -21,9 +21,8 @@ Functions:
 
 \tabular{rl}{
 \code{\link[=eafdiffplot]{eafdiffplot()}} \tab  Empirical attainment function differences\cr
-\code{\link[=eafplot]{eafplot()}} \tab  Plot the Empirical Attainment Function for two
-objectives\cr
-\code{\link[=read_datasets]{read_datasets()}}\tab  Read several data.frame sets
+\code{\link[=eafplot]{eafplot()}} \tab  Plot the Empirical Attainment Function for two objectives\cr
+\code{\link[=read_datasets]{read_datasets()}} \tab  Read several data.frame sets
 }
 
 Data:
