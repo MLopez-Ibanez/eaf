@@ -54,7 +54,6 @@ build: clean scripts gendoc
 	cd $(BINDIR) && R CMD build $(PACKAGEDIR)
 
 closeversion:
-	git ci NEWS -m " * NEWS: Close version $(PACKAGEVERSION)"
 	git push origin :refs/tags/v$(PACKAGEVERSION) # Remove any existing tag
 	git tag -f -a v$(PACKAGEVERSION) -m "Version $(PACKAGEVERSION)"
 	git push --tags
