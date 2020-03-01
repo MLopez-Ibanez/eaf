@@ -12,6 +12,8 @@ TAGS
 ^config.status
 ^docs$
 ^eaf-Ex.R
+^imageScale.R
+^prettylab.R
 ^git_version
 ^man-roxygen
 ^pkgdown
