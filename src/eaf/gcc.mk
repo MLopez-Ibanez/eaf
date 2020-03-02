@@ -7,8 +7,8 @@ WARN_CFLAGS = -pedantic -Wall -Wextra
 EAF_CFLAGS += $(WARN_CFLAGS)
 
 ifeq ($(DEBUG), 0)
-  OPT_CFLAGS := -O3 -funroll-loops -ffast-math -DNDEBUG
-# Options -msse -mfpmath=sse improve performance but are not portable.
+  OPT_CFLAGS := -O3 -funroll-loops -DNDEBUG
+# Options -ffast-math -msse -mfpmath=sse improve performance but are not portable.
 # Options -fstandard-precision=fast -ftree-vectorize are not well
 # supported in some versions/architectures.
 else
