@@ -31,7 +31,7 @@ Introduction
 
 The empirical attainment function (EAF) describes the probabilistic
 distribution of the outcomes obtained by a stochastic algorithm in the
-objective space. This [R](http://www.r-project.org/) package implements plots
+objective space. This [R](https://www.R-project.org/) package implements plots
 of summary attainment surfaces and differences between the first-order
 EAFs. These plots may be used for exploring the performance of stochastic local
 search algorithms for biobjective optimization problems and help in identifying
@@ -50,10 +50,10 @@ visualization.
 
 **Relevant literature:**
 
- 1. <a name="LopPaqStu09emaa"/>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. [Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization](http://dx.doi.org/10.1007/978-3-642-02538-9_9). In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.<br>
+ 1. <a name="LopPaqStu09emaa"/>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. [Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization](https://doi.org/10.1007/978-3-642-02538-9_9). In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.<br>
     (This chapter is also available in a slightly extended form as [Technical Report TR/IRIDIA/2009-015](http://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf)).<br>
     [ [bibtex](http://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa) |
-    doi: [10.1007/978-3-642-02538-9_9](http://dx.doi.org/10.1007/978-3-642-02538-9_9)
+    doi: [10.1007/978-3-642-02538-9_9](https://doi.org/10.1007/978-3-642-02538-9_9)
     | [Presentation](http://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf) ]
 
 
