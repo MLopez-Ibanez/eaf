@@ -48,7 +48,6 @@ EAFEXE=eaf$(EXE)
 
 EXE_LDFLAGS = -lm
 
-DELETE = @rm -f
 ECHO = @echo "$(1)"
 
 ifdef march
@@ -91,18 +90,21 @@ io.o : io_priv.h
 	$(CC) $(EAF_CFLAGS) $(CFLAGS) -c -o $@ $<
 
 test: DEBUG=1
-test: clean $(BINDIR)/$(EAFEXE)
+test:
+	$(MAKE) clean
+	$(MAKE) $(BINDIR)/$(EAFEXE)
 	$(call ECHO,---> Testing... <--- )
 	@perl -w dotest.pl $(BINDIR)/$(EAFEXE) ./testsuite/
 
 clean :
 	$(call ECHO,---> Removing $(BINDIR)/$(EAFEXE) <---)
-	$(DELETE) $(BINDIR)/$(EAFEXE)
-
+	@$(RM) $(BINDIR)/$(EAFEXE)
 	$(call ECHO,---> Removing object files $(OBJS) <---)
-	$(DELETE) $(OBJS)
+	@$(RM) $(OBJS)
 
-all :  clean default
+all :
+	$(MAKE) clean
+	$(MAKE) default
 
 DIST_SRC_FILES =  gcc.mk TODO GNUmakefile README LICENSE svn_version \
 		  $(OBJS:.o=.c) $(HEADERS)

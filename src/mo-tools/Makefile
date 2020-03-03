@@ -48,9 +48,9 @@ HEADERS = io.h io_priv.h common.h gcc_attribs.h igd.h epsilon.h nondominated.h h
 OBJS  = $(SRCS:.c=.o)
 DIST_OTHER_FILES = Makefile README LICENSE svn_version Makefile.libhv
 
-EXE_LDFLAGS=-lm
+-include Makevars
+EXE_LDFLAGS=$(GSL_LIBS) -lm 
 
-DELETE = @rm -f
 ECHO = @echo "$(1)"
 
 ifdef march
@@ -87,7 +87,7 @@ ifneq ($(MARCH),none)
   OPT_CFLAGS += -march=$(ARCH)
 endif
 
-EXE_CFLAGS += $(OPT_CFLAGS) -std=gnu99 $(WARNFLAGS) \
+EXE_CFLAGS += $(OPT_CFLAGS) $(GSL_CFLAGS) -std=gnu99 $(WARN_CFLAGS) \
 	-D_GNU_SOURCE -DDEBUG=$(DEBUG) $(CDEBUG) \
 	-DMARCH='"$(gcc-guess-march)"' -DVERSION=\"$(VERSION)\"
 
@@ -129,24 +129,26 @@ $(OBJS) : $(HEADERS)
 
 clean :
 	$(call ECHO,---> Removing $(igd) <---)
-	$(DELETE) $(igd)
+	@$(RM) $(igd)
 
 	$(call ECHO,---> Removing $(epsilon) <---)
-	$(DELETE) $(epsilon)
+	@$(RM) $(epsilon)
 
 	$(call ECHO,---> Removing $(dominatedsets) <---)
-	$(DELETE) $(dominatedsets)
+	@$(RM) $(dominatedsets)
 
 	$(call ECHO,---> Removing $(nondominated) <---)
-	$(DELETE) $(nondominated)
+	@$(RM) $(nondominated)
 
 	$(call ECHO,---> Removing $(ndsort) <---)
-	$(DELETE) $(ndsort)
+	@$(RM) $(ndsort)
 
 	$(call ECHO,---> Removing object files: $(OBJS) <---)
-	$(DELETE) $(OBJS) $(HV_OBJS)
+	@$(RM) $(OBJS) $(HV_OBJS)
 
-all :  clean default
+all :
+	$(MAKE) clean
+	$(MAKE) default
 
 %.o : %.c
 	$(CC) $(CPPFLAGS) $(EXE_CFLAGS) $(CFLAGS) -c -o $@ $<

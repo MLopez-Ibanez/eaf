@@ -6,34 +6,26 @@ EAF_SRC_FILES= avl.c eaf3d.c eaf.c io.c
 MOTOOLS_SRC_FILES = hv_contrib.c hv.c pareto.c
 SOURCES = $(EAF_SRC_FILES:%=eaf/%) $(MOTOOLS_SRC_FILES:%=mo-tools/%) init.c  Reaf.c  Repsilon.c  Rhv.c  Rnondominated.c  
 OBJECTS = $(SOURCES:.c=.o)
-EXE=
 
-eaf = eaf/eaf$(EXE)
-igd = mo-tools/igd$(EXE)
-epsilon = mo-tools/epsilon$(EXE)
-dominatedsets = mo-tools/dominatedsets$(EXE)
-nondominated = mo-tools/nondominated$(EXE)
-ndsort = mo-tools/ndsort$(EXE)
+eaf = eaf/eaf$(EXEEXT)
+igd = mo-tools/igd$(EXEEXT)
+epsilon = mo-tools/epsilon$(EXEEXT)
+dominatedsets = mo-tools/dominatedsets$(EXEEXT)
+nondominated = mo-tools/nondominated$(EXEEXT)
+ndsort = mo-tools/ndsort$(EXEEXT)
 
-all: $(SHLIB) $(eaf) $(igd) $(epsilon) $(nondominated) $(dominatedsets) $(ndsort)
+.PHONY: all clean
 
-$(SHLIB): $(OBJECTS) 
+default: $(SHLIB)
+	$(MAKE) -C eaf all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" WARN_CFLAGS="" EXE=$(EXEEXT)
+	$(MAKE) -C mo-tools all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
+
+$(SHLIB): $(OBJECTS)
 
 mo-tools/hv.o: PKG_CPPFLAGS += -DVARIANT=4
-
-
-$(igd) $(epsilon) $(nondominated) $(dominatedsets) $(ndsort):
-	$(MAKE) -C mo-tools all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" WARN_CFLAGS="" DEBUG=0
-
-$(eaf):
-	$(MAKE) -C eaf all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" WARN_CFLAGS=""
 
 clean:
 	@-rm -f *.o *.so *.dll \
 	eaf/*.o $(eaf) \
 	$(igd) $(epsilon) $(dominatedsets) $(nondominated) $(ndsort) \
 	mo-tools/*.o 
-
-
-
-

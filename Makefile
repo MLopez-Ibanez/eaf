@@ -1,4 +1,4 @@
-PACKAGEVERSION=1.9
+PACKAGEVERSION=1.9-1
 PACKAGE=$(shell sh -c 'grep -F "Package: " DESCRIPTION | cut -f2 -d" "')
 
 # FIXME: This Makefile only works with this BINDIR!
@@ -50,7 +50,9 @@ NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
 pkgdown: gendoc
 	R --slave -e 'pkgdown::build_site(run_dont_run = TRUE, document = FALSE)'
 
-build: clean scripts gendoc
+build: clean version
+	@$(MAKE) scripts
+	@$(MAKE) gendoc
 	cd $(BINDIR) && R CMD build $(PACKAGEDIR)
 
 closeversion:
@@ -58,10 +60,13 @@ closeversion:
 	git tag -f -a v$(PACKAGEVERSION) -m "Version $(PACKAGEVERSION)"
 	git push --tags
 
-releasebuild: clean scripts gendoc
+releasebuild: clean version
+	@$(MAKE) scripts
+	@$(MAKE) gendoc
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
-cran : build pkgdown
+cran : build
+	$(MAKE) pkgdown
 	cd $(BINDIR) && _R_CHECK_FORCE_SUGGESTS_=false _R_OPTIONS_STRINGS_AS_FACTORS_=false R CMD check --as-cran $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
 check: build
