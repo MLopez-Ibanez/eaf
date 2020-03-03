@@ -42,6 +42,7 @@ write_sets_filtered (FILE *outfile, const double *data, int ncols,
                      const int *cumsizes, int nruns, 
                      const bool *write_p);
 
+#ifndef R_PACKAGE
 static inline const signed char *
 read_minmax (const char *str, int *nobj)
 {
@@ -88,6 +89,7 @@ read_minmax (const char *str, int *nobj)
     *nobj = len;
     return minmax;
 }
+#endif
 
 static inline const bool *
 read_bitvector (const char *str, int *nobj)
