@@ -78,12 +78,12 @@ M. Preuss, editors, Experimental Methods for the Analysis of
 Optimization Algorithms, pages 103-130, Springer, Berlin, Germany,
 2010.
 
-M. \enc{López-Ibáñez}{Lopez-Ibanez}, L. Paquete, and T. \enc{Stützle}{Stuetzle}. \emph{Exploratory
-Analysis of Stochastic Local Search Algorithms in Biobjective
-Optimization}. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
-M. Preuss, editors, Experimental Methods for the Analysis of
-Optimization Algorithms, pages 209–222. Springer, Berlin, Germany,
-2010. doi: 10.1007/978-3-642-02538-9_9
+M. \enc{López-Ibáñez}{Lopez-Ibanez}, L. Paquete, and
+T. \enc{Stützle}{Stuetzle}. \emph{Exploratory Analysis of Stochastic Local
+Search Algorithms in Biobjective Optimization}. In T. Bartz-Beielstein,
+M. Chiarandini, L. Paquete, and M. Preuss, editors, Experimental Methods
+for the Analysis of Optimization Algorithms, pages 209–222. Springer,
+Berlin, Germany, 2010. doi: 10.1007/978-3-642-02538-9_9
 }
 \seealso{
 Useful links:
@@ -99,7 +99,8 @@ Maintainer:  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 \email{manuel.lopez-ibanez@manchester.ac.uk}
 
 Contributors: Carlos Fonseca, Luis Paquete, Thomas \enc{Stützle}{Stuetzle},
-Manuel \enc{López-Ibáñez}{Lopez-Ibanez} and Marco Chiarandini.
+Manuel \enc{López-Ibáñez}{Lopez-Ibanez}, Marco Chiarandini and
+\enc{Mickaël}{Mickael} Binois.
 }
 \concept{empirical attainment function}
 \concept{multivariate}
