@@ -39,7 +39,6 @@ VERSION = 1.0svn$(SVN_REV)
 # my funding agent and tenure committee.
 #-----------------------------------------------------------------------
 DEBUG ?=1
-
 BINDIR :=.
 
 ## Define source files
@@ -53,43 +52,11 @@ EXE_LDFLAGS=$(GSL_LIBS) -lm
 
 ECHO = @echo "$(1)"
 
-ifdef march
-MARCH=$(march)
-endif
+-include svnversion.mk
+-include gcc.mk
 
-## Do we have svnversion?
-ifeq ($(shell sh -c 'which svnversion 1> /dev/null 2>&1 && echo y'),y)
-  ## Is this a working copy?
-  ifeq ($(shell sh -c 'LC_ALL=C svnversion -n . | grep -q ^[0-9] && echo y'),y)
-    $(shell sh -c 'svnversion -n . > svn_version')
-  endif
-endif
-## Set version information:
-SVN_REV = $(shell sh -c 'cat svn_version 2> /dev/null')
-
-OPT_CFLAGS = -O3
-ifneq ($(DEBUG),0)
-CDEBUG = -g3
-OPT_CFLAGS = -O0 -fsanitize=undefined -fsanitize=address
-endif
-
-WARN_CFLAGS=-Wall -Wextra
-
-gcc-guess-march = $(strip $(shell $(CC) $(CFLAGS) -march=$(MARCH) -x c -S -\#\#\# - < /dev/null 2>&1  | \
-                grep -m 1 -o -e "march=[^'\"]*" | \
-                sed 's,march=,,'))
-
-ifneq ($(MARCH),none)
-  ifndef MARCH
-    MARCH = native
-  endif
-  ARCH := $(gcc-guess-march)
-  OPT_CFLAGS += -march=$(ARCH)
-endif
-
-EXE_CFLAGS += $(OPT_CFLAGS) $(GSL_CFLAGS) -std=gnu99 $(WARN_CFLAGS) \
-	-D_GNU_SOURCE -DDEBUG=$(DEBUG) $(CDEBUG) \
-	-DMARCH='"$(gcc-guess-march)"' -DVERSION=\"$(VERSION)\"
+EXE_CFLAGS += $(OPT_CFLAGS) $(GSL_CFLAGS) $(WARN_CFLAGS) \
+	-D_GNU_SOURCE -DDEBUG=$(DEBUG) -DVERSION=\"$(VERSION)\" -DMARCH='"$(gcc-guess-march)"'
 
 igd = $(BINDIR)/igd$(EXE)
 epsilon = $(BINDIR)/epsilon$(EXE)
@@ -146,8 +113,7 @@ clean :
 	$(call ECHO,---> Removing object files: $(OBJS) <---)
 	@$(RM) $(OBJS) $(HV_OBJS)
 
-all :
-	$(MAKE) clean
+all : clean
 	$(MAKE) default
 
 %.o : %.c

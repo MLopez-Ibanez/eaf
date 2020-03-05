@@ -38,12 +38,13 @@
 #include "common.h"
 
 #ifdef R_PACKAGE
+#define R_NO_REMAP
 #include <R.h>
 #define EAF_MALLOC(WHAT, NMEMB, SIZE)                                          \
     do { WHAT = malloc (NMEMB * SIZE);                                         \
         if (!WHAT) {                                                           \
-            error(__FILE__ ": %s = malloc (%u * %u) failed",                   \
-                  #WHAT, (unsigned int) NMEMB, (unsigned int) SIZE); }         \
+            Rf_error(__FILE__ ": %s = malloc (%u * %u) failed",                \
+                     #WHAT, (unsigned int) NMEMB, (unsigned int) SIZE); }      \
     } while (0)
 #else
 #define EAF_MALLOC(WHAT, NMEMB, SIZE)                                          \

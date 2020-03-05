@@ -2,6 +2,7 @@
 # define   	LIBMISC_COMMON_H_
 
 #ifdef R_PACKAGE
+#define R_NO_REMAP
 #include <R.h>
 #define eaf_assert(EXP)                                                       \
     do { if (!(EXP)) { Rf_error("eaf package: error: assertion failed: '%s' at %s:%d",    \
@@ -24,14 +25,23 @@ void warnprintf(const char *format,...)  __attribute__ ((format(printf, 1, 2)));
 #endif
 
 #if __GNUC__ >= 3
-#define MAX(x,y) __extension__                       \
-    ({ typeof (x) _x__ = (x);                        \
-        typeof (y) _y__ = (y);                       \
-        _x__ > _y__ ? _x__ : _y__; })
-#define MIN(x,y) __extension__          \
-    ({ typeof (x) _x__ = (x);           \
-        typeof (y) _y__ = (y);          \
-        _x__ < _y__ ? _x__ : _y__; })
+#define MAX(x,y) __extension__({                        \
+            __typeof__(x) _x__ = (x);                   \
+            __typeof__(y) _y__ = (y);                   \
+            _x__ > _y__ ? _x__ : _y__; })
+#define MIN(x,y) __extension__({                        \
+            __typeof__(x) _x__ = (x);                   \
+            __typeof__(y) _y__ = (y);                   \
+            _x__ < _y__ ? _x__ : _y__; })
+#define CLAMP(x, xmin, xmax) __extension__({                                   \
+            __typeof__(x) _x__ = (x);                                          \
+            __typeof__(x) _xmin__ = (xmin);                                    \
+            __typeof__(x) _xmax__ = (xmax);                                    \
+            _x__ < _xmin__ ? _xmin__ : _x__ > _xmax__ ? _xmax__ : _x__; })
+#else
+#define MAX(x,y) ((x) > (y) ? (x) : (y))
+#define MIN(x,y) ((x) < (y) ? (x) : (y))
+#define CLAMP(x, xmin, xmax) MAX(xim, MIN(x, xmax))
 #endif
 
 
@@ -64,11 +74,11 @@ void warnprintf(const char *format,...)  __attribute__ ((format(printf, 1, 2)));
 
 #ifndef R_PACKAGE
 #define DEBUG2_PRINT(...) DEBUG2 (fprintf (stderr,  __VA_ARGS__))
-
 #else
 #define DEBUG2_PRINT(...) DEBUG2 (Rprintf ( __VA_ARGS__))
 #endif
-#define DEBUG2_FUNPRINT(...) \
+
+#define DEBUG2_FUNPRINT(...)                    \
     do { DEBUG2_PRINT ("%s(): ", __FUNCTION__); \
          DEBUG2_PRINT (__VA_ARGS__); } while(0)
 

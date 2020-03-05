@@ -17,8 +17,8 @@ ndsort = mo-tools/ndsort$(EXEEXT)
 .PHONY: all clean
 
 default: $(SHLIB)
-	$(MAKE) -C eaf all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" WARN_CFLAGS="" EXE=$(EXEEXT)
-	$(MAKE) -C mo-tools all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
+	$(MAKE) -C eaf all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
+	$(MAKE) -C mo-tools all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
 
 $(SHLIB): $(OBJECTS)
 

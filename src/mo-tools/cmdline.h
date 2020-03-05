@@ -9,6 +9,10 @@
 #define CMDLINE_AUTHORS "Manuel Lopez-Ibanez  <manuel.lopez-ibanez@manchester.ac.uk>\n"
 #endif
 
+#ifndef MARCH
+#define MARCH "unknown"
+#endif
+
 extern char *program_invocation_short_name;
 static void version(void)
 {

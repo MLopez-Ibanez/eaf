@@ -6,7 +6,7 @@ HV_HDRS    = hv.h
 HV_OBJS    = $(HV_SRCS:.c=.o)
 
 ## Augment CFLAGS for hv.[co] objects
-hv.o: CPPFLAGS += -D VARIANT=$(VARIANT)
+hv.o: CPPFLAGS += -DVARIANT=$(VARIANT)
 
 ## Dependencies:
 $(HV_OBJS): $(HV_HDRS)

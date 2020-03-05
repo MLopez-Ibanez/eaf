@@ -39,7 +39,7 @@ VERSION = 0.1svn$(SVN_REV)
 # to my funding agent and tenure committee.
 #-----------------------------------------------------------------------
 DEBUG=0
-BINDIR := ./
+BINDIR := .
 
 OBJS =  eaf.o io.o eaf_main.o eaf3d.o avl.o
 HEADERS = eaf.h io_priv.h io.h cvector.h avl.h common.h gcc_attribs.h
@@ -47,38 +47,19 @@ HEADERS = eaf.h io_priv.h io.h cvector.h avl.h common.h gcc_attribs.h
 EAFEXE=eaf$(EXE)
 
 EXE_LDFLAGS = -lm
-
 ECHO = @echo "$(1)"
 
-ifdef march
-MARCH=$(march)
-endif
-
-## Do we have svnversion?
-ifeq ($(shell sh -c 'which svnversion 1> /dev/null 2>&1 && echo y'),y)
-  ## Is this a working copy?
-  ifeq ($(shell sh -c 'LC_ALL=C svnversion -n . | grep -q ^[0-9] && echo y'),y)
-    $(shell sh -c 'svnversion -n . > svn_version')
-  endif
-endif
-## Set version information:
-SVN_REV = $(shell sh -c 'cat svn_version 2> /dev/null')
-
+-include svnversion.mk
 -include gcc.mk
 
-ifdef ARCH
-EAF_CFLAGS += -DMARCH='"$(ARCH)"'
-endif
-
-EAF_CFLAGS += $(OPT_CFLAGS) -DDEBUG=$(DEBUG) -DVERSION='"$(VERSION)"'
+EAF_CFLAGS += $(OPT_CFLAGS) $(WARN_FLAGS) \
+	-DDEBUG=$(DEBUG) -DVERSION='"$(VERSION)"' -DMARCH='"$(gcc-guess-march)"'
 
 .PHONY : default all clean distclean test dist
 
 default: $(BINDIR)/$(EAFEXE) 
 
 $(BINDIR)/$(EAFEXE) : $(OBJS)
-
-$(BINDIR)/$(EAFEXE) :
 	@mkdir -p $(BINDIR)
 	$(call ECHO,--> Building $@ version $(VERSION) <---)
 	$(CC) -o $@ $(OBJS) $(EAF_CFLAGS) $(CFLAGS) $(EXE_LDFLAGS)
@@ -90,8 +71,7 @@ io.o : io_priv.h
 	$(CC) $(EAF_CFLAGS) $(CFLAGS) -c -o $@ $<
 
 test: DEBUG=1
-test:
-	$(MAKE) clean
+test: clean
 	$(MAKE) $(BINDIR)/$(EAFEXE)
 	$(call ECHO,---> Testing... <--- )
 	@perl -w dotest.pl $(BINDIR)/$(EAFEXE) ./testsuite/
@@ -102,8 +82,7 @@ clean :
 	$(call ECHO,---> Removing object files $(OBJS) <---)
 	@$(RM) $(OBJS)
 
-all :
-	$(MAKE) clean
+all : clean
 	$(MAKE) default
 
 DIST_SRC_FILES =  gcc.mk TODO GNUmakefile README LICENSE svn_version \
