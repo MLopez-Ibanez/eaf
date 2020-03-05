@@ -5,7 +5,8 @@
 \alias{eaf-package}
 \alias{_PACKAGE}
 \alias{eaf}
-\title{Plots of the Empirical Attainment Function}
+\title{Computation and visualization of the empirical attainment function (EAF) for
+the analysis of random sets in multi-criterion optimization.}
 \description{
 The empirical attainment function (EAF) describes the probabilistic
 distribution of the outcomes obtained by a stochastic algorithm in the
@@ -16,16 +17,18 @@ stochastic local search algorithms for biobjective optimization
 problems and help in identifying certain algorithmic behaviors in a
 graphical way.
 }
-\details{
-Functions:
+\section{Functions}{
+
 
 \tabular{rl}{
 \code{\link[=eafdiffplot]{eafdiffplot()}} \tab  Empirical attainment function differences\cr
 \code{\link[=eafplot]{eafplot()}} \tab  Plot the Empirical Attainment Function for two objectives\cr
 \code{\link[=read_datasets]{read_datasets()}} \tab  Read several data.frame sets
 }
+}
 
-Data:
+\section{Data}{
+
 
 \describe{
 \item{\code{\link{gcp2x2}}}{  Metaheuristics for solving the Graph Vertex Coloring Problem}
@@ -44,6 +47,7 @@ Extras are available at \code{system.file(package="eaf")}:
 \code{scripts/eafdiff}\tab  Perl script to generate plots of EAF differences
 }
 }
+
 \examples{
 data(gcp2x2)
 tabucol<-subset(gcp2x2, alg!="TSinN1")

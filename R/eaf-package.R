@@ -1,4 +1,5 @@
-#'Plots of the Empirical Attainment Function
+#'Computation and visualization of the empirical attainment function (EAF) for
+#' the analysis of random sets in multi-criterion optimization.
 #'
 #'  The empirical attainment function (EAF) describes the probabilistic
 #'  distribution of the outcomes obtained by a stochastic algorithm in the
@@ -9,7 +10,7 @@
 #'  problems and help in identifying certain algorithmic behaviors in a
 #'  graphical way. 
 #'
-#' Functions:
+#' @section Functions:
 #'
 #'\tabular{rl}{
 #'[eafdiffplot()] \tab  Empirical attainment function differences\cr
@@ -17,7 +18,7 @@
 #'[read_datasets()] \tab  Read several data.frame sets
 #'}
 #'
-#'Data:
+#' @section Data:
 #'
 #'\describe{
 #'\item{[`gcp2x2`]}{  Metaheuristics for solving the Graph Vertex Coloring Problem}
