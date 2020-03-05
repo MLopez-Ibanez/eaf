@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
     const signed char *minmax = NULL;
     bool only_rank_flag = false;
 //    bool hypervolume_flag = false;
-    bool keep_uevs_flag = false;
+//    bool keep_uevs_flag = false;
 
     /* see the man page for getopt_long for an explanation of these fields */
     static struct option long_options[] = {
@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
             break;
 
         case 'k': // --keep-uevs
-            keep_uevs_flag = true;
+//            keep_uevs_flag = true;
             fprintf(stderr, "%s: --keep-uevs not implemented yet!\n",program_invocation_short_name);
             exit(EXIT_FAILURE);
             break;
