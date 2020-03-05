@@ -1,3 +1,7 @@
+# eaf 1.9-1
+
+* Fixes to Makefiles for non-GCC compilers and parallel build setups.
+
 # eaf 1.9
 
 * Compute Vorob'ev threshold, expectation and deviation. Plots of the symmetric
