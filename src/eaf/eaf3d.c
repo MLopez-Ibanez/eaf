@@ -737,7 +737,7 @@ static void free_removed(removed_list_t * removed_list)
     free(removed_list);
 }
 
-static void
+__unused static void
 freeoutput(avl_tree_t **output, int nset)
 {
     int i;
