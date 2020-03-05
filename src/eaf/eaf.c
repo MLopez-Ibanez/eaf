@@ -700,16 +700,25 @@ eaf_print_polygon (FILE *stream, eaf_t **eaf, int nlevels)
     free(p);
 }
 
-size_t
-region_push (vector_objective *regions,
-             objective_t lx, objective_t ly,
-             objective_t ux, objective_t uy)
+static size_t
+rectangle_add(eaf_polygon_t * regions,
+              objective_t lx, objective_t ly,
+              objective_t ux, objective_t uy,
+              int color)
 {
-    vector_objective_push_back(regions, lx);
-    vector_objective_push_back(regions, ly);
-    vector_objective_push_back(regions, ux);
-    vector_objective_push_back(regions, uy);
-    return vector_objective_size(regions);
+#if 0
+    printf("rectangle_add: (" point_printf_format ", " point_printf_format ", " point_printf_format ", " point_printf_format ")[%d]\n", lx, ly, ux, uy, color);
+#endif
+    eaf_assert(lx < ux);
+    eaf_assert(ly < uy);
+    vector_objective *rect = &regions->xy;
+    vector_objective_push_back(rect, lx);
+    vector_objective_push_back(rect, ly);
+    vector_objective_push_back(rect, ux);
+    vector_objective_push_back(rect, uy);
+
+    vector_int_push_back(&regions->col, color);
+    return vector_objective_size(rect);
 }
 
 eaf_polygon_t *
@@ -718,12 +727,13 @@ eaf_compute_rectangles (eaf_t **eaf, int nlevels)
 #define eaf_point(A,K) (eaf[(A)]->data + (K) * nobj)
 #if 0
 #define printf_points(ka,kb,pka,pkb)                                           \
-    printf("%4d: pa[%d]=(" point_printf_format ", " point_printf_format "), pb[%d] = (" point_printf_format ", " point_printf_format ")\n", __LINE__, ka, pka[0], pka[1], kb, pkb[0], pkb[1])
+    printf("%4d: pa[%d]=(" point_printf_format ", " point_printf_format "), pb[%d] = (" point_printf_format ", " point_printf_format ")\n", \
+           __LINE__, ka, pka[0], pka[1], kb, pkb[0], pkb[1])
 #else
 #define printf_points(ka,kb,pka,pkb)                                           
 #endif    
     int nruns = eaf[0]->nruns;
-    int nobj = eaf[0]->nobj;
+    const int nobj = eaf[0]->nobj;
 
     eaf_assert(nruns % 2 == 0);
 
@@ -741,76 +751,56 @@ eaf_compute_rectangles (eaf_t **eaf, int nlevels)
         const int eaf_b_size = eaf[b]->size;
         if (eaf_a_size == 0 || eaf_b_size == 0) continue;
 
+        // FIXME: Skip points with color 0?
         init_colors(color, eaf[a], eaf_a_size, nruns);
         objective_t top = objective_MAX;
         int ka = 0, kb = 0;
-        const objective_t * pka = eaf_point (a, ka);
         const objective_t * pkb = eaf_point (b, kb);
+        const objective_t * pka = eaf_point (a, ka);
         printf_points(ka, kb, pka, pkb);
-        /* printf("attained[ka] ="); */
-        /* for (int k = 0; k < nruns; k++)  */
-        /*     printf(" %d", (eaf[a]->attained + ka * nruns)[k]  ? 1 : 0); */
-        /* printf("\n"); */
-        /* printf("attained[kb] ="); */
-        /* for (int k = 0; k < nruns; k++)  */
-        /*     printf(" %d", (eaf[b]->attained + kb * nruns)[k]  ? 1 : 0); */
-        /* printf("\n"); */
-        /* printf("attained[%d][%d,%d] = [%d, %d]\n", ka, a, b, */
-        /*        (eaf[a]->attained + ka * nruns)[a]  ? 1 : 0, */
-        /*        (eaf[a]->attained + ka * nruns)[b]  ? 1 : 0); */
-        /* printf("attained[%d][%d,%d] = [%d, %d]\n", kb, a, b, */
-        /*        (eaf[b]->attained + kb * nruns)[a]  ? 1 : 0, */
-        /*        (eaf[b]->attained + kb * nruns)[b]  ? 1 : 0); */
-               
-        eaf_assert(pka[0] <= pkb[0]);
-        /* It is possible that pka does not dominate pkb if their intersection
-           belongs to the next eaf level. */
-        if (pka[1] >= pkb[1]) goto pka_above_equal_pkb;
-                
-    pka_below_pkb:
-        eaf_assert(pka[1] < pkb[1]);
-        /* If pka[0] >= pkb[0] then no rectangle is created. */
-        if (pka[0] < pkb[0]) {
-            region_push(&regions->xy, pka[0], pkb[1], pkb[0], top);
-            vector_int_push_back(&regions->col, color[ka]);
-        } 
-        top = pkb[1];
-        kb++;
-        if (kb >= eaf_b_size) goto close_eaf;
-        pkb = eaf_point (b, kb);
-        printf_points(ka, kb, pka, pkb);
-        if (pka[1] < pkb[1]) goto pka_below_pkb;
+        while (true) {
 
-    pka_above_equal_pkb:
-        if (pka[0] < pkb[0]) {                    
-            region_push(&regions->xy, pka[0], pka[1], pkb[0], top);
-            vector_int_push_back(&regions->col, color[ka]);
-        } else {
-            // Handle repeated points
-            eaf_assert(pka[0] == pkb[0] && pka[1] == pkb[1]);
+            while (pka[1] < pkb[1]) {
+                if (pka[0] < pkb[0]) // pka strictly dominates pkb
+                    rectangle_add(regions, pka[0], pkb[1], pkb[0], top, color[ka]);
+                top = pkb[1];
+                kb++;
+                if (kb >= eaf_b_size) goto close_eaf;
+                pkb = eaf_point (b, kb);
+                printf_points(ka, kb, pka, pkb);
+            }
+            // pka_above_equal_pkb:
+            if (pka[0] < pkb[0]) { // pka does not strictly dominate pkb
+                rectangle_add(regions, pka[0], pka[1], pkb[0], top, color[ka]);
+            } else {
+                // Skip repeated points
+                eaf_assert(pka[0] == pkb[0] && pka[1] == pkb[1]);
+            }
             top = pka[1];
-            ka++, kb++;
+            ka++;
             if (ka >= eaf_a_size) goto next_eaf;
-            if (kb >= eaf_b_size) goto close_eaf;
-            
             pka = eaf_point (a, ka);
-            pkb = eaf_point (b, kb);
             printf_points(ka, kb, pka, pkb);
-            eaf_assert(pka[0] <= pkb[0]);
-            if (pka[1] >= pkb[1]) goto pka_above_equal_pkb;
-            else goto pka_below_pkb;
-        }
-        top = pka[1];
-        ka++;
-        if (ka >= eaf_a_size) goto next_eaf;
-        pka = eaf_point (a, ka);
-        printf_points(ka, kb, pka, pkb);
-        if (pka[1] >= pkb[1]) goto pka_above_equal_pkb;
-        else goto pka_below_pkb;
 
+            if (pkb[1] == top) { // pkb was not above but equal to previous pka
+                // Move to next pkb
+                kb++;
+                if (kb >= eaf_b_size) goto close_eaf;
+                pkb = eaf_point (b, kb);
+                printf_points(ka, kb, pka, pkb);
+            }
+        }
     close_eaf:
-        region_push(&regions->xy, pka[0], pka[1], objective_MAX, top);
-        vector_int_push_back(&regions->col, color[ka]);
+        // b is finished, add one rectangle for each pka point.
+        while (true) {
+            eaf_assert(pka[1] < pkb[1]);
+            rectangle_add(regions, pka[0], pka[1], objective_MAX, top, color[ka]);
+            top = pka[1];
+            ka++;
+            if (ka >= eaf_a_size) break;
+            pka = eaf_point (a, ka);
+            printf_points(ka, kb, pka, pkb);
+        }
     next_eaf:
         continue;
     }
