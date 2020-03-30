@@ -1,7 +1,5 @@
 language: R
 cache: packages
-fortran: false
-sudo: false
 
 os:
   - linux
@@ -13,42 +11,31 @@ r:
   - release
 
 # Combinations that don't work in travis-ci
-matrix:
+jobs:
   exclude:
   - os: osx
     r: 3.2
-
-r_check_args: '--ignore-vignettes --no-examples'
-
-# addons:
-#   apt:
-#     packages:
-#       - libfreetype6
-
-# work around temporary travis + R 3.5 bug
-r_packages:
-  - devtools
 
 env:
   global:
     - _R_CHECK_FORCE_SUGGESTS_=false
     - NOT_CRAN=true
     - CRAN: http://cran.rstudio.com
+    - MAKEFLAGS="-j 2"
 
 r_check_args: '--run-donttest --run-dontrun --timings'
 
-  
 before_install:
   - Rscript -e 'update.packages(ask = FALSE)'
 
 notifications:
   email: false
 
-before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
+before_cache: Rscript -e 'remotes::install_github("r-lib/pkgdown")'
 deploy:
   provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github(run_dont_run = TRUE)'
   skip_cleanup: true
+  script: Rscript -e 'pkgdown::deploy_site_github(run_dont_run = TRUE)'
   on:
     condition: $TRAVIS_OS_NAME = linux && $TRAVIS_R_VERSION_STRING = release
     
