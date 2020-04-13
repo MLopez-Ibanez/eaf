@@ -64,26 +64,11 @@ eafdiffplot(A1, A2)
 # dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)
 }
 \references{
-V. Grunert da Fonseca, C. M. Fonseca, and A. O. Hall, \emph{Inferential
-performance assessment of stochastic optimisers and the attainment
-function}, in Evolutionary Multi-Criterion Optimization. First
-International Conference, EMO 2001 (E. Zitzler, K. Deb, L. Thiele,
-C. A. Coello Coello, and D. Corne, eds.), vol. 1993 of Lecture Notes
-in Computer Science, pp. 213-225, Berlin: Springer, 2001.
+\insertRef{Grunert01}{eaf}
 
-V. Grunert da Fonseca and C. M. Fonseca, \emph{The attainment-function
-approach to stochastic multiobjective optimizer assessment and
-comparison}. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and
-M. Preuss, editors, Experimental Methods for the Analysis of
-Optimization Algorithms, pages 103-130, Springer, Berlin, Germany,
-2010.
+\insertRef{GruFon2009:emaa}{eaf}
 
-M. \enc{López-Ibáñez}{Lopez-Ibanez}, L. Paquete, and
-T. \enc{Stützle}{Stuetzle}. \emph{Exploratory Analysis of Stochastic Local
-Search Algorithms in Biobjective Optimization}. In T. Bartz-Beielstein,
-M. Chiarandini, L. Paquete, and M. Preuss, editors, Experimental Methods
-for the Analysis of Optimization Algorithms, pages 209–222. Springer,
-Berlin, Germany, 2010. doi: 10.1007/978-3-642-02538-9_9
+\insertRef{LopPaqStu09emaa}{eaf}
 }
 \seealso{
 Useful links:
