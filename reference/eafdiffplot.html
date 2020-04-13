@@ -146,7 +146,7 @@ differences in the other direction.</p>
       <td><p>Data frames corresponding to the input data of
 left and right sides, respectively. Each data frame has at least three
 columns, the third one being the set of each point. See also
-<code><a href='read_datasets.html'>read_datasets</a></code>.</p></td>
+<code><a href='read_datasets.html'>read_datasets()</a></code>.</p></td>
     </tr>
     <tr>
       <th>col</th>
@@ -156,8 +156,8 @@ automatically given the value of <code>intervals</code>.</p></td>
     </tr>
     <tr>
       <th>intervals</th>
-      <td><p>An integer or a character vector. The
-absolute range of the differences [0,1] is partitioned into the number
+      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>|<code><a href='https://rdrr.io/r/base/character.html'>character()</a></code>) <br /> The
+absolute range of the differences \([0, 1]\) is partitioned into the number
 of intervals provided. If an integer is provided, then labels for each
 interval are  computed automatically. If a character vector is
 provided, its length is taken as the number of intervals.</p></td>
@@ -166,7 +166,7 @@ provided, its length is taken as the number of intervals.</p></td>
       <th>percentiles</th>
       <td><p>The percentiles of the EAF of each side that will be
 plotted as attainment surfaces. <code>NA</code> does not plot any. See
-<code><a href='eafplot.html'>eafplot.default</a></code>.</p></td>
+<code><a href='eafplot.html'>eafplot.default()</a></code>.</p></td>
     </tr>
     <tr>
       <th>full.eaf</th>
@@ -181,7 +181,8 @@ certain value (<samp>area</samp>).</p></td>
     </tr>
     <tr>
       <th>legend.pos</th>
-      <td><p>The position of the legend. See <code><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></code>.  A value of <code>"none"</code> hides the legend.</p></td>
+      <td><p>The position of the legend. See <code><a href='https://rdrr.io/r/graphics/legend.html'>legend()</a></code>.  A value of
+<code>"none"</code> hides the legend.</p></td>
     </tr>
     <tr>
       <th>title.left, title.right</th>
@@ -190,7 +191,7 @@ certain value (<samp>area</samp>).</p></td>
     <tr>
       <th>xlim, ylim, cex, cex.lab, cex.axis</th>
       <td><p>Graphical parameters, see
-<code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default</a></code>.</p></td>
+<code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default()</a></code>.</p></td>
     </tr>
     <tr>
       <th>maximise</th>
@@ -219,7 +220,7 @@ not work since it may be evaluated too early.</p></td>
     <tr>
       <th>...</th>
       <td><p>Other graphical parameters are passed down to
-<code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default</a></code>.</p></td>
+<code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -229,58 +230,59 @@ not work since it may be evaluated too early.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function calculates the differences between the EAFs of two
-  data sets, and plots on the left the differences in favour
-  of the left data set, and on the right the differences in favour of
-  the right data set. By default, it also plots the grand best and worst
-  attainment surfaces, that is, the 0% and 100%-attainment surfaces
-  over all data. This two surfaces delimit the area where differences
-  may exist. In addition, it also plots the 50%-attainment surface of
-  each data set.</p>  
+data sets, and plots on the left the differences in favour
+of the left data set, and on the right the differences in favour of
+the right data set. By default, it also plots the grand best and worst
+attainment surfaces, that is, the 0% and 100%-attainment surfaces
+over all data. This two surfaces delimit the area where differences
+may exist. In addition, it also plots the 50%-attainment surface of
+each data set.</p>
 <p>With <code>type = "point"</code>, only the points where there is a change in
-  the value of the EAF difference are plotted. This means that for areas
-  where the EAF differences stays constant, the region will appear in
-  white even if the value of the differences in that region is
-  large. This explains "white holes" surrounded by black
-  points.</p>
+the value of the EAF difference are plotted. This means that for areas
+where the EAF differences stays constant, the region will appear in
+white even if the value of the differences in that region is
+large. This explains "white holes" surrounded by black
+points.</p>
 <p>With <code>type = "area"</code>, the area where the EAF differences has a
-  certain value is plotted.  The idea for the algorithm to compute the
-  areas was provided by Carlos M. Fonseca.  The implementation uses R
-  polygons, which some PDF viewers may have trouble rendering correctly
-  (See
-  <a href='https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders'>https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders</a>). Plots (should) look correct when printed.</p>
+certain value is plotted.  The idea for the algorithm to compute the
+areas was provided by Carlos M. Fonseca.  The implementation uses R
+polygons, which some PDF viewers may have trouble rendering correctly
+(See
+<a href='https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders'>https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders</a>). Plots (should) look correct when printed.</p>
 <p>Large differences that appear when using <code>type = "points"</code> may
-  seem to dissapear when using <code>type = "area"</code>. The explanation is
-  the points size is independent of the axes range, therefore, the
-  plotted points may seem to cover a much larger area than the actual
-  number of points. On the other hand, the areas size is plotted with
-  respect to the objective space, without any extra borders. If the
-  range of an area becomes smaller than one-pixel, it won't be
-  visible. As a consequence, zooming in or out certain regions of the plots
-  does not change the apparent size of the points, whereas it affects
-  considerably the apparent size of the areas.</p>
+seem to disappear when using <code>type = "area"</code>. The explanation is
+the points size is independent of the axes range, therefore, the
+plotted points may seem to cover a much larger area than the actual
+number of points. On the other hand, the areas size is plotted with
+respect to the objective space, without any extra borders. If the
+range of an area becomes smaller than one-pixel, it won't be
+visible. As a consequence, zooming in or out certain regions of the plots
+does not change the apparent size of the points, whereas it affects
+considerably the apparent size of the areas.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='read_datasets.html'>read_datasets</a></code>, <code><a href='eafplot.html'>eafplot</a></code></p></div>
+    <div class='dont-index'><p><code><a href='read_datasets.html'>read_datasets()</a></code>, <code><a href='eafplot.html'>eafplot()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>), <span class='st'>"extdata"</span>, <span class='st'>"ALG_1_dat"</span>))
-<span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>), <span class='st'>"extdata"</span>, <span class='st'>"ALG_2_dat"</span>))
+    <pre class="examples"><div class='input'><span class='no'>extdata_dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>, <span class='st'>"extdata"</span>)
+<span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_dir</span>, <span class='st'>"ALG_1_dat"</span>))
+<span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_dir</span>, <span class='st'>"ALG_2_dat"</span>))
 <span class='co'># These take time</span>
-<span class='fu'>eafdiffplot</span>(<span class='no'>A1</span>, <span class='no'>A2</span>, <span class='kw'>full.eaf</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='eafdiffplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>eafdiffplot</span>(<span class='no'>A1</span>, <span class='no'>A2</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"area"</span>)</div><div class='img'><img src='eafdiffplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>eafdiffplot</span>(<span class='no'>A1</span>, <span class='no'>A2</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>sci.notation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='eafdiffplot-3.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'>eafdiffplot</span>(<span class='no'>A1</span>, <span class='no'>A2</span>, <span class='kw'>full.eaf</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='eafdiffplot-1.png' alt='' width='700' height='433' /></div><div class='input'>  <span class='fu'>eafdiffplot</span>(<span class='no'>A1</span>, <span class='no'>A2</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"area"</span>)</div><div class='img'><img src='eafdiffplot-2.png' alt='' width='700' height='433' /></div><div class='input'>  <span class='fu'>eafdiffplot</span>(<span class='no'>A1</span>, <span class='no'>A2</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>sci.notation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='eafdiffplot-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># A more complex example</span>
-<span class='no'>a1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>), <span class='st'>"extdata"</span>, <span class='st'>"wrots_l100w10_dat"</span>))
-<span class='no'>a2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>), <span class='st'>"extdata"</span>, <span class='st'>"wrots_l10w100_dat"</span>))
+<span class='no'>a1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_dir</span>, <span class='st'>"wrots_l100w10_dat"</span>))
+<span class='no'>a2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_dir</span>, <span class='st'>"wrots_l10w100_dat"</span>))
 <span class='no'>DIFF</span> <span class='kw'>&lt;-</span> <span class='fu'>eafdiffplot</span>(<span class='no'>a1</span>, <span class='no'>a2</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='st'>"blue"</span>, <span class='st'>"red"</span>), <span class='kw'>intervals</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"point"</span>,
-            <span class='kw'>title.left</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='st'>"W-RoTS, "</span> * <span class='no'>lambda</span> * <span class='st'>"="</span> * <span class='fl'>100</span> * <span class='st'>", "</span> * <span class='no'>omega</span> * <span class='st'>"="</span> * <span class='fl'>10</span>),
-            <span class='kw'>title.right</span><span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='st'>"W-RoTS, "</span> * <span class='no'>lambda</span> * <span class='st'>"="</span> * <span class='fl'>10</span> *
-<span class='st'>", "</span> * <span class='no'>omega</span> * <span class='st'>"="</span> * <span class='fl'>100</span>),
-            <span class='kw'>right.panel.last</span><span class='kw'>=</span>{ <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)})</div><div class='img'><img src='eafdiffplot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>DIFF</span>$<span class='no'>right</span>[,<span class='fl'>3</span>] <span class='kw'>&lt;-</span> -<span class='no'>DIFF</span>$<span class='no'>right</span>[,<span class='fl'>3</span>]
+                    <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"point"</span>,
+                    <span class='kw'>title.left</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='st'>"W-RoTS,"</span> ~ <span class='no'>lambda</span><span class='kw'>==</span><span class='fl'>100</span> * <span class='st'>","</span> ~ <span class='no'>omega</span><span class='kw'>==</span><span class='fl'>10</span>),
+                    <span class='kw'>title.right</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='st'>"W-RoTS,"</span> ~ <span class='no'>lambda</span><span class='kw'>==</span><span class='fl'>10</span> * <span class='st'>","</span> ~ <span class='no'>omega</span><span class='kw'>==</span><span class='fl'>100</span>),
+                    <span class='kw'>right.panel.last</span><span class='kw'>=</span>{
+                      <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>b</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)})</div><div class='img'><img src='eafdiffplot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>DIFF</span>$<span class='no'>right</span>[,<span class='fl'>3</span>] <span class='kw'>&lt;-</span> -<span class='no'>DIFF</span>$<span class='no'>right</span>[,<span class='fl'>3</span>]
 
-<span class='co'>## Save the values to a file.</span>
-<span class='co'># write.table(rbind(DIFF$left,DIFF$right),</span>
-<span class='co'>#             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",</span>
-<span class='co'>#             quote = FALSE, row.names = FALSE, col.names = FALSE)</span></div></pre>
+ <span class='co'>## Save the values to a file.</span>
+ <span class='co'># write.table(rbind(DIFF$left,DIFF$right),</span>
+ <span class='co'>#             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",</span>
+ <span class='co'>#             quote = FALSE, row.names = FALSE, col.names = FALSE)</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -292,7 +294,7 @@ not work since it may be evaluated too early.</p></td>
 
       <footer>
       <!--<div class="copyright">
-  <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luis Paquete, Thomas Stützle.</p>
+  <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luís Paquete, Thomas Stützle.</p>
 </div>
 <div class="pkgdown">
   <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>

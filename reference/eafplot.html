@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot the Empirical Attainment Function for two objectives generic — eafplot • eaf</title>
+<title>Plot the Empirical Attainment Function for two objectives generic — eafplot.default • eaf</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plot the Empirical Attainment Function for two objectives generic — eafplot" />
+<meta property="og:title" content="Plot the Empirical Attainment Function for two objectives generic — eafplot.default" />
 <meta property="og:description" content="Computes and plots the Empirical Attainment Function, either as
 attainment surfaces for certain percentiles or as points." />
 
@@ -115,7 +115,7 @@ attainment surfaces for certain percentiles or as points." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot the Empirical Attainment Function for two objectives generic</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/calls.R'><code>R/calls.R</code></a>, <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/eaf.R'><code>R/eaf.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/eaf.R'><code>R/eaf.R</code></a></small>
     <div class="hidden name"><code>eafplot.Rd</code></div>
     </div>
 
@@ -124,16 +124,7 @@ attainment surfaces for certain percentiles or as points." />
 attainment surfaces for certain percentiles or as points.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for formula</span>
-<span class='fu'>eafplot</span>(<span class='no'>formula</span>, <span class='no'>data</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>)
-
-<span class='co'># S3 method for list</span>
-<span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for default</span>
+    <pre class="usage"><span class='co'># S3 method for default</span>
 <span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='kw'>sets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span>), <span class='kw'>attsurfs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>log</span> <span class='kw'>=</span> <span class='st'>""</span>,
@@ -143,7 +134,16 @@ attainment surfaces for certain percentiles or as points.</p>
   <span class='kw'>extra.points</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extra.legend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extra.pch</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>25</span>,
   <span class='kw'>extra.lwd</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>extra.lty</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>extra.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>FALSE</span>), <span class='kw'>xaxis.side</span> <span class='kw'>=</span> <span class='st'>"below"</span>,
-  <span class='kw'>yaxis.side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>axes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sci.notation</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>yaxis.side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>axes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sci.notation</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+
+<span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for formula</span>
+<span class='fu'>eafplot</span>(<span class='no'>formula</span>, <span class='no'>data</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>)
+
+<span class='co'># S3 method for list</span>
+<span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,34 +154,16 @@ attainment surfaces for certain percentiles or as points.</p>
 data frames of exactly three columns.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Other graphical parameters to <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>formula</th>
-      <td><p>A formula of the type: <code>time + cost ~ run | instance</code>
-will draw <code>time</code> on the x-axis and <code>cost</code> on the y-axis. If <code>instance</code> is
-present the plot is conditional to the instances.</p></td>
-    </tr>
-    <tr>
-      <th>data</th>
-      <td><p>Dataframe containing the fields mentioned in the formula and in groups.</p></td>
+      <th>sets</th>
+      <td><p>(<a href='https://rdrr.io/r/base/numeric.html'>numeric</a>)<br /> Vector indicating which set each point belongs to.</p></td>
     </tr>
     <tr>
       <th>groups</th>
       <td><p>This may be used to plot profiles of different algorithms on the same plot.</p></td>
     </tr>
     <tr>
-      <th>subset</th>
-      <td><p>(`integer()` | `NULL`)<br /> A vector indicating which rows of the data should be used. If left to default <code>NULL</code> all data in the data frame are used.</p></td>
-    </tr>
-    <tr>
-      <th>sets</th>
-      <td><p>([numeric])<br /> Vector indicating which set each point belongs to.</p></td>
-    </tr>
-    <tr>
       <th>percentiles</th>
-      <td><p>([numeric])<br /> Vector indicating which percentile should be plot. The
+      <td><p>(<a href='https://rdrr.io/r/base/numeric.html'>numeric</a>)<br /> Vector indicating which percentile should be plot. The
 default is to plot only the median attainment curve.</p></td>
     </tr>
     <tr>
@@ -191,7 +173,7 @@ default is to plot only the median attainment curve.</p></td>
     <tr>
       <th>xlab, ylab, xlim, ylim, log, col, lty, lwd, pch, cex.pch, las</th>
       <td><p>Graphical
-parameters, see <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default</a></code>.</p></td>
+parameters, see <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default()</a></code>.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -200,7 +182,7 @@ are possible, <samp>points</samp> and <samp>area</samp>.</p></td>
     </tr>
     <tr>
       <th>legend.pos</th>
-      <td><p>the position of the legend, see <code><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></code>.  A value of <code>"none"</code> hides the legend.</p></td>
+      <td><p>the position of the legend, see <code><a href='https://rdrr.io/r/graphics/legend.html'>legend()</a></code>.  A value of <code>"none"</code> hides the legend.</p></td>
     </tr>
     <tr>
       <th>legend.txt</th>
@@ -221,7 +203,7 @@ groups of points.</p></td>
     <tr>
       <th>extra.pch, extra.lwd, extra.lty, extra.col</th>
       <td><p>Control the graphical aspect
-of the points. See <code><a href='https://rdrr.io/r/graphics/points.html'>points</a></code> and <code><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></code>.</p></td>
+of the points. See <code><a href='https://rdrr.io/r/graphics/points.html'>points()</a></code> and <code><a href='https://rdrr.io/r/graphics/lines.html'>lines()</a></code>.</p></td>
     </tr>
     <tr>
       <th>maximise</th>
@@ -233,12 +215,12 @@ objective.</p></td>
     <tr>
       <th>xaxis.side</th>
       <td><p>On which side that xaxis is drawn. Valid values are
-"below" and "above". See <code><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></code>.</p></td>
+"below" and "above". See <code><a href='https://rdrr.io/r/graphics/axis.html'>axis()</a></code>.</p></td>
     </tr>
     <tr>
       <th>yaxis.side</th>
       <td><p>On which side that yaxis is drawn. Valid values are "left"
-and "right". See <code><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></code>.</p></td>
+and "right". See <code><a href='https://rdrr.io/r/graphics/axis.html'>axis()</a></code>.</p></td>
     </tr>
     <tr>
       <th>axes</th>
@@ -248,6 +230,24 @@ on the plot.</p></td>
     <tr>
       <th>sci.notation</th>
       <td><p>Generate prettier labels</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other graphical parameters to <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>formula</th>
+      <td><p>A formula of the type: <code>time + cost ~ run | instance</code>
+will draw <code>time</code> on the x-axis and <code>cost</code> on the y-axis. If <code>instance</code> is
+present the plot is conditional to the instances.</p></td>
+    </tr>
+    <tr>
+      <th>data</th>
+      <td><p>Dataframe containing the fields mentioned in the formula and in groups.</p></td>
+    </tr>
+    <tr>
+      <th>subset</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code> | <code>NULL</code>)<br /> A vector indicating which rows of the data should be used. If left to default <code>NULL</code> all data in the data frame are used.</p></td>
     </tr>
     </table>
 
@@ -268,13 +268,13 @@ solution quality over time of a collection of runs of a stochastic optimizer.</p
 
     
 <ul>
+<li><p><code>default</code>: Main function</p></li>
 <li><p><code>formula</code>: Formula interface</p></li>
 <li><p><code>list</code>: List interface for lists of data.frames or matrices</p></li>
-<li><p><code>default</code>: Main function</p></li>
 </ul>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='read_datasets.html'>read_datasets</a></code> <code><a href='eafdiffplot.html'>eafdiffplot</a></code></p></div>
+    <div class='dont-index'><p><code><a href='read_datasets.html'>read_datasets()</a></code> <code><a href='eafdiffplot.html'>eafdiffplot()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gcp2x2</span>)
@@ -285,8 +285,9 @@ solution quality over time of a collection of runs of a stochastic optimizer.</p
 <span class='fu'>eafplot</span>(<span class='no'>time</span> + <span class='no'>best</span> ~ <span class='no'>run</span> <span class='kw'>|</span> <span class='no'>inst</span>, <span class='kw'>groups</span><span class='kw'>=</span><span class='no'>alg</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>gcp2x2</span>)</div><div class='img'><img src='eafplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>eafplot</span>(<span class='no'>time</span> + <span class='no'>best</span> ~ <span class='no'>run</span> <span class='kw'>|</span> <span class='no'>inst</span>, <span class='kw'>groups</span><span class='kw'>=</span><span class='no'>alg</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>gcp2x2</span>,
         <span class='kw'>percentiles</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>100</span>), <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>1.4</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>2</span>),
      <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"black"</span>,<span class='st'>"blue"</span>,<span class='st'>"grey50"</span>))</div><div class='img'><img src='eafplot-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eaf"</span>), <span class='st'>"extdata"</span>, <span class='st'>"ALG_1_dat"</span>))
-<span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eaf"</span>), <span class='st'>"extdata"</span>, <span class='st'>"ALG_2_dat"</span>))
+<span class='no'>extdata_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eaf"</span>, <span class='st'>"extdata"</span>)
+<span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_path</span>, <span class='st'>"ALG_1_dat"</span>))
+<span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_path</span>, <span class='st'>"ALG_2_dat"</span>))
 <span class='fu'>eafplot</span>(<span class='no'>A1</span>, <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>sci.notation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='eafplot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>eafplot</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>A1</span> <span class='kw'>=</span> <span class='no'>A1</span>, <span class='kw'>A2</span> <span class='kw'>=</span> <span class='no'>A2</span>), <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fl'>50</span>)</div><div class='img'><img src='eafplot-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## Save as a PDF file.</span>
 <span class='co'># dev.copy2pdf(file = "eaf.pdf", onefile = TRUE, width = 5, height = 4)</span>
@@ -328,7 +329,7 @@ solution quality over time of a collection of runs of a stochastic optimizer.</p
 
       <footer>
       <!--<div class="copyright">
-  <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luis Paquete, Thomas Stützle.</p>
+  <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luís Paquete, Thomas Stützle.</p>
 </div>
 <div class="pkgdown">
   <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>

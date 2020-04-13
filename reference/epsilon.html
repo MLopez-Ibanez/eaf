@@ -153,27 +153,30 @@ objective.</p></td>
     <p>A single numerical value.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Given objective vectors a and b, epsilon(a,b) is computed in the case of
-minimization as a/b for the multiplicative variant (respectively, a - b for
-the additive variant), whereas in the case of maximization it is computed as
-b/a for the multiplicative variant (respectively, b - a for the additive
-variant). This allows computing a single value for mixed optimization
-problems, where some objectives are to be maximized while others are to be
-minimized. Moreover, a lower value corresponds to a better approximation
-set, independently of the type of problem (minimization, maximization or
-mixed). However, the meaning of the value is different for each objective
-type. For example, imagine that f1 is to be minimized and f2 is to be
-maximized, and the multiplicative epsilon computed here for epsilon(A,B) =
-3. This means that A needs to be multiplied by 1/3 for all f1 values and by
-3 for all f2 values in order to weakly dominate B.</p>
-<p>This also means that the computation of the multiplicative version for
-negative values doesn't make sense.</p>
+    <p>Given objective vectors \(a\) and \(b\), \(epsilon(a,b)\) is computed
+in the case of minimization as \(a/b\) for the multiplicative variant
+(respectively, \(a - b\) for the additive variant), whereas in the case of
+maximization it is computed as \(b/a\) for the multiplicative variant
+(respectively, \(b - a\) for the additive variant). This allows computing
+a single value for problems where some objectives are to be maximized while
+others are to be minimized. Moreover, a lower value corresponds to a better
+approximation set, independently of the type of problem (minimization,
+maximization or mixed). However, the meaning of the value is different for
+each objective type. For example, imagine that \(f1\) is to be minimized
+and \(f2\) is to be maximized, and the multiplicative epsilon computed
+here for \(epsilon(A,B) = 3\). This means that \(A\) needs to be
+multiplied by 1/3 for all \(f1\) values and by 3 for all \(f2\) values
+in order to weakly dominate \(B\). This also means that the computation of
+the multiplicative version for negative values doesn't make sense.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>E. Zitzler, L. Thiele, M. Laumanns, C. M. Fonseca, and V. Grunert da
-Fonseca.  Performance Assessment of Multiobjective Optimizers: an Analysis
-and Review. IEEE Transactions on Evolutionary Computation, 7(2):117-132,
-2003.</p>
+    <p>Eckart Zitzler, Lothar Thiele, Marco Laumanns, Carlos
+M. Fonseca, Viviane
+Grunert da
+Fonseca  (2003).
+&#8220;Performance Assessment of Multiobjective Optimizers:
+                  an Analysis and Review.&#8221;
+<em>IEEE Transactions on Evolutionary Computation</em>, <b>7</b>(2), 117--132.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>extdata_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span>)
@@ -198,7 +201,7 @@ and Review. IEEE Transactions on Evolutionary Computation, 7(2):117-132,
 
       <footer>
       <!--<div class="copyright">
-  <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luis Paquete, Thomas Stützle.</p>
+  <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luís Paquete, Thomas Stützle.</p>
 </div>
 <div class="pkgdown">
   <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>

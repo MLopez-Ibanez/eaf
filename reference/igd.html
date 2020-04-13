@@ -161,7 +161,7 @@ where:
 $$d(a,r) = \sqrt{\sum_{k=1}^M (a_k - r_k)^2} $$</p>
 <p>The inverted generational distance (IGD) is calculated as \(IGD(A,R) = GD(R,A)\)
 with \(p=1\).</p>
-<p>GD was first proposed by Van Veldhuizen and Lamont (1997)in [1] with
+<p>GD was first proposed by Van Veldhuizen and Lamont (1997) with
 p=2. IGD seems to have been mentioned first by Coello Coello &amp; Reyes-Sierra
 (2004), however, some people also used the name D-metric for the same thing
 with p=1 and later papers have often used IGD/GD with p=1.</p>
@@ -170,7 +170,8 @@ Ishibuchi et all. (2015) to ensure that IGD+ is weakly Pareto compliant,
 similarly to unary epsilon. It averages over \(|R|\) within the exponent
 \(1/p\) and modifies the distance measure as:</p>
 <p>$$d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}$$</p>
-<p>See Bezerra et al. (2017) for a comparison.</p>
+<p>See Bezerra et al. (2017)
+eaf for a comparison.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>D. A. Van Veldhuizen and G. B. Lamont. Evolutionary Computation and
@@ -194,12 +195,17 @@ In A. Gaspar-Cunha, C. H. Antunes, and C. A. Coello Coello, editors,
 Evolutionary Multi-criterion Optimization, EMO 2015 Part I, volume 9018 of
 Lecture Notes in Computer Science, pages 110–125. Springer, Heidelberg,
 Germany, 2015.</p>
-<p>Leonardo C. T. Bezerra, Manuel López-Ibáñez, and Thomas Stützle. An
-empirical assessment of the properties of inverted generational distance
-indicators on multi- and many-objective optimization. In H. Trautmann,
-G. Rudolph, K. Klamroth, O. Schütze, M. M. Wiecek, Y. Jin, and C. Grimme,
-editors, Evolutionary Multi-criterion Optimization, EMO 2017, Lecture
-Notes in Computer Science, pages 31–45. Springer, 2017.</p>
+<p>Leonardo
+C.
+T. Bezerra, Manuel López-Ibáñez, Thomas Stützle (2017).
+&#8220;An Empirical Assessment of the Properties of Inverted
+                  Generational Distance Indicators on Multi- and Many-objective
+                  Optimization.&#8221;
+In Heike Trautmann, Günter Rudolph, Kathrin Klamroth, Oliver Schütze, Margaret
+M. Wiecek, Yaochu Jin, Christian Grimme (eds.), <em>Evolutionary Multi-criterion Optimization, EMO 2017</em>,  Lecture Notes in Computer Science, 31--45.
+Springer International Publishing, Cham, Switzerland.
+doi: <a href='https://doi.org/10.1007/978-3-319-54157-0_3'>10.1007/978-3-319-54157-0_3</a>
+.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>extdata_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span>)
@@ -224,7 +230,7 @@ Notes in Computer Science, pages 31–45. Springer, 2017.</p>
 
       <footer>
       <!--<div class="copyright">
-  <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luis Paquete, Thomas Stützle.</p>
+  <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luís Paquete, Thomas Stützle.</p>
 </div>
 <div class="pkgdown">
   <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
