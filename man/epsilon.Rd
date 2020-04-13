@@ -28,22 +28,21 @@ A single numerical value.
 Computes the epsilon metric, either additive or multiplicative.
 }
 \details{
-Given objective vectors a and b, epsilon(a,b) is computed in the case of
-minimization as a/b for the multiplicative variant (respectively, a - b for
-the additive variant), whereas in the case of maximization it is computed as
-b/a for the multiplicative variant (respectively, b - a for the additive
-variant). This allows computing a single value for mixed optimization
-problems, where some objectives are to be maximized while others are to be
-minimized. Moreover, a lower value corresponds to a better approximation
-set, independently of the type of problem (minimization, maximization or
-mixed). However, the meaning of the value is different for each objective
-type. For example, imagine that f1 is to be minimized and f2 is to be
-maximized, and the multiplicative epsilon computed here for epsilon(A,B) =
-3. This means that A needs to be multiplied by 1/3 for all f1 values and by
-3 for all f2 values in order to weakly dominate B.
-
-This also means that the computation of the multiplicative version for
-negative values doesn't make sense.
+Given objective vectors \eqn{a} and \eqn{b}, \eqn{epsilon(a,b)} is computed
+in the case of minimization as \eqn{a/b} for the multiplicative variant
+(respectively, \eqn{a - b} for the additive variant), whereas in the case of
+maximization it is computed as \eqn{b/a} for the multiplicative variant
+(respectively, \eqn{b - a} for the additive variant). This allows computing
+a single value for problems where some objectives are to be maximized while
+others are to be minimized. Moreover, a lower value corresponds to a better
+approximation set, independently of the type of problem (minimization,
+maximization or mixed). However, the meaning of the value is different for
+each objective type. For example, imagine that \eqn{f1} is to be minimized
+and \eqn{f2} is to be maximized, and the multiplicative epsilon computed
+here for \eqn{epsilon(A,B) = 3}. This means that \eqn{A} needs to be
+multiplied by 1/3 for all \eqn{f1} values and by 3 for all \eqn{f2} values
+in order to weakly dominate \eqn{B}. This also means that the computation of
+the multiplicative version for negative values doesn't make sense.
 }
 \examples{
 extdata_path <- system.file(package="eaf","extdata")
@@ -62,10 +61,7 @@ epsilon_mult(A2, ref)
 
 }
 \references{
-E. Zitzler, L. Thiele, M. Laumanns, C. M. Fonseca, and V. Grunert da
-Fonseca.  Performance Assessment of Multiobjective Optimizers: an Analysis
-and Review. IEEE Transactions on Evolutionary Computation, 7(2):117-132,
-2003.
+\insertRef{ZitThiLauFon2003:tec}{eaf}
 }
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}

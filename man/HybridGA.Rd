@@ -12,9 +12,7 @@ produced by \code{\link[=read_datasets]{read_datasets()}}.
 network. The second column is filled with \code{NA}}
 }}
 \source{
-Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. \strong{Operational Optimisation of Water Distribution
-Networks}. PhD thesis, School of Engineering and the Built Environment,
-Edinburgh Napier University, UK, 2009.
+\insertRef{LopezIbanezPhD}{eaf}.
 }
 \usage{
 HybridGA

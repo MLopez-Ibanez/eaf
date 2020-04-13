@@ -11,8 +11,7 @@
 \item{\code{set}}{indices of corresponding conditional Pareto fronts.}
 }}
 \source{
-M. Binois, D. Ginsbourger and O. Roustant. Quantifying Uncertainty on Pareto Fronts with
-Gaussian process conditional simulations, \emph{European Journal of Operational Research}, 2015, 243(2), 386-394.
+\insertRef{BinGinRou2015gaupar}{eaf}
 }
 \usage{
 CPFs

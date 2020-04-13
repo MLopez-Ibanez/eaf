@@ -83,9 +83,7 @@ symDifPlot(CPFs, res$VE, res$threshold, nlevels = 200, legend.pos = "none")
 symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
 }
 \references{
-M. Binois, D. Ginsbourger and O. Roustant (2015), Quantifying Uncertainty
-on Pareto Fronts with Gaussian process conditional simulations, European
-Journal of Operational Research, 243(2), 386-394.
+\insertRef{BinGinRou2015gaupar}{eaf}
 
 C. Chevalier (2013), Fast uncertainty reduction strategies relying on
 Gaussian process models, University of Bern, PhD thesis.

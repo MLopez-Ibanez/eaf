@@ -53,7 +53,8 @@
 #'  \enc{Mickaël}{Mickael} Binois.
 #'
 #' @references
-#' \insertRef{Grunert01}{eaf}
+#' 
+#'' \insertRef{Grunert01}{eaf}
 #'
 #' \insertRef{GruFon2009:emaa}{eaf}
 #'  
@@ -101,9 +102,7 @@
 #'      network. The second column is filled with `NA`}
 #'  }
 #' 
-#'@source Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. **Operational Optimisation of Water Distribution
-#'  Networks**. PhD thesis, School of Engineering and the Built Environment,
-#'  Edinburgh Napier University, UK, 2009.
+#'@source \insertRef{LopezIbanezPhD}{eaf}.
 #'
 #' @examples
 #'data(HybridGA)
@@ -121,10 +120,7 @@
 #'  A data frame as produced by [read_datasets()]. The second
 #'  column measures time in seconds and corresponds to a maximisation problem.
 #'
-#' @source
-#'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
-#'  Networks. PhD thesis, School of Engineering and the Built Environment,
-#'  Edinburgh Napier University, UK, 2009.
+#' @source \insertRef{LopezIbanezPhD}{eaf}
 #'
 #'@examples 
 #' data(HybridGA)
@@ -144,10 +140,7 @@
 #'@format 
 #'  A data frame as produced by [read_datasets()].
 #'
-#' @source
-#'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
-#'  Networks. PhD thesis, School of Engineering and the Built Environment,
-#'  Edinburgh Napier University, UK, 2009.
+#' @source \insertRef{LopezIbanezPhD}{eaf}
 #'
 #'@examples 
 #'data(HybridGA)
@@ -168,10 +161,7 @@
 #'@format 
 #'  A data frame as produced by [read_datasets()].
 #'
-#'@source
-#'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}. Operational Optimisation of Water Distribution
-#'  Networks. PhD thesis, School of Engineering and the Built Environment,
-#'  Edinburgh Napier University, UK, 2009.
+#'@source \insertRef{LopezIbanezPhD}{eaf}
 #'
 #'@examples 
 #'data(HybridGA)
@@ -214,19 +204,13 @@
 #'  time was then normalized on a scale from 0 to 1 to make it instance
 #'  independent.
 #'
-#'@source M. Chiarandini (2005). Stochastic local search methods for highly
-#'   constrained combinatorial optimisation problems. Ph.D. thesis, Computer
-#'   Science Department, Darmstadt University of Technology, Darmstadt,
-#'   Germany. page 138.
+#'@source \insertRef{ChiarandiniPhD}{eaf} (page 138)
 #'
 #'@references 
 #'  A. Hertz and D. de Werra. Using Tabu Search Techniques for Graph
 #'  Coloring. Computing, 1987, 39(4), 345-351.
 #'
-#'  D.S. Johnson, C.R. Aragon, L.A. McGeoch and C. Schevon. Optimization
-#'  by Simulated Annealing: An Experimental Evaluation; Part II, Graph
-#'  Coloring and Number Partitioning. Operations Research, 1991, 39(3),
-#'  378-406
+#'  \insertRef{JohAraMcGSch1991}{eaf}
 #'
 #'@examples 
 #' data(gcp2x2)
@@ -251,8 +235,7 @@
 #'
 #'@source
 #'  
-#' M. Binois, D. Ginsbourger and O. Roustant. Quantifying Uncertainty on Pareto Fronts with
-#' Gaussian process conditional simulations, _European Journal of Operational Research_, 2015, 243(2), 386-394. 
+#' \insertRef{BinGinRou2015gaupar}{eaf}
 #'
 #'@examples 
 #' data(CPFs)

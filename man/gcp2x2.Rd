@@ -19,10 +19,7 @@ beginning of the run for each observation. A rescaling is applied.}
 corresponding to the observations.}
 }}
 \source{
-M. Chiarandini (2005). Stochastic local search methods for highly
-constrained combinatorial optimisation problems. Ph.D. thesis, Computer
-Science Department, Darmstadt University of Technology, Darmstadt,
-Germany. page 138.
+\insertRef{ChiarandiniPhD}{eaf} (page 138)
 }
 \usage{
 gcp2x2
@@ -49,9 +46,6 @@ data(gcp2x2)
 A. Hertz and D. de Werra. Using Tabu Search Techniques for Graph
 Coloring. Computing, 1987, 39(4), 345-351.
 
-D.S. Johnson, C.R. Aragon, L.A. McGeoch and C. Schevon. Optimization
-by Simulated Annealing: An Experimental Evaluation; Part II, Graph
-Coloring and Number Partitioning. Operations Research, 1991, 39(3),
-378-406
+\insertRef{JohAraMcGSch1991}{eaf}
 }
 \keyword{datasets}

@@ -19,13 +19,9 @@
 #'
 #' @references
 #'
-#' C. M. Fonseca, L. Paquete, and M. López-Ibáñez. An improved dimension-sweep
-#' algorithm for the hypervolume indicator. In IEEE Congress on Evolutionary
-#' Computation, pages 1157-1163, Vancouver, Canada, July 2006.
+#' \insertRef{FonPaqLop06:hypervolume}{eaf}
 #'
-#' Nicola Beume, Carlos M. Fonseca, Manuel López-Ibáñez, Luís Paquete, and
-#' J. Vahrenhold. On the complexity of computing the hypervolume indicator.
-#' IEEE Transactions on Evolutionary Computation, 13(5):1075-1082, 2009.
+#' \insertRef{BeuFonLopPaqVah09:tec}{eaf}
 #'
 #' @examples
 #'
@@ -83,13 +79,9 @@ hypervolume <- function(data, reference, maximise = FALSE)
 #'
 #' @references
 #'
-#' C. M. Fonseca, L. Paquete, and M. López-Ibáñez. An improved dimension-sweep
-#' algorithm for the hypervolume indicator. In IEEE Congress on Evolutionary
-#' Computation, pages 1157-1163, Vancouver, Canada, July 2006.
+#' \insertRef{FonPaqLop06:hypervolume}{eaf}
 #'
-#' Nicola Beume, Carlos M. Fonseca, Manuel López-Ibáñez, Luís Paquete, and
-#' J. Vahrenhold. On the complexity of computing the hypervolume indicator.
-#' IEEE Transactions on Evolutionary Computation, 13(5):1075-1082, 2009.
+#' \insertRef{BeuFonLopPaqVah09:tec}{eaf}
 #'
 #' @examples
 #'
@@ -148,29 +140,25 @@ hv_contributions <- function(data, reference, maximise = FALSE)
 #'
 #' @details
 #'
-#' Given objective vectors a and b, epsilon(a,b) is computed in the case of
-#' minimization as a/b for the multiplicative variant (respectively, a - b for
-#' the additive variant), whereas in the case of maximization it is computed as
-#' b/a for the multiplicative variant (respectively, b - a for the additive
-#' variant). This allows computing a single value for mixed optimization
-#' problems, where some objectives are to be maximized while others are to be
-#' minimized. Moreover, a lower value corresponds to a better approximation
-#' set, independently of the type of problem (minimization, maximization or
-#' mixed). However, the meaning of the value is different for each objective
-#' type. For example, imagine that f1 is to be minimized and f2 is to be
-#' maximized, and the multiplicative epsilon computed here for epsilon(A,B) =
-#' 3. This means that A needs to be multiplied by 1/3 for all f1 values and by
-#' 3 for all f2 values in order to weakly dominate B.
-#'
-#' This also means that the computation of the multiplicative version for
-#' negative values doesn't make sense.
+#' Given objective vectors \eqn{a} and \eqn{b}, \eqn{epsilon(a,b)} is computed
+#' in the case of minimization as \eqn{a/b} for the multiplicative variant
+#' (respectively, \eqn{a - b} for the additive variant), whereas in the case of
+#' maximization it is computed as \eqn{b/a} for the multiplicative variant
+#' (respectively, \eqn{b - a} for the additive variant). This allows computing
+#' a single value for problems where some objectives are to be maximized while
+#' others are to be minimized. Moreover, a lower value corresponds to a better
+#' approximation set, independently of the type of problem (minimization,
+#' maximization or mixed). However, the meaning of the value is different for
+#' each objective type. For example, imagine that \eqn{f1} is to be minimized
+#' and \eqn{f2} is to be maximized, and the multiplicative epsilon computed
+#' here for \eqn{epsilon(A,B) = 3}. This means that \eqn{A} needs to be
+#' multiplied by 1/3 for all \eqn{f1} values and by 3 for all \eqn{f2} values
+#' in order to weakly dominate \eqn{B}. This also means that the computation of
+#' the multiplicative version for negative values doesn't make sense.
 #'
 #' @references
 #'
-#' E. Zitzler, L. Thiele, M. Laumanns, C. M. Fonseca, and V. Grunert da
-#' Fonseca.  Performance Assessment of Multiobjective Optimizers: an Analysis
-#' and Review. IEEE Transactions on Evolutionary Computation, 7(2):117-132,
-#' 2003.
+#' \insertRef{ZitThiLauFon2003:tec}{eaf}
 #' 
 #' @examples
 #' extdata_path <- system.file(package="eaf","extdata")
@@ -183,6 +171,7 @@ hv_contributions <- function(data, reference, maximise = FALSE)
 #' epsilon_additive(A2, ref)
 #' 
 #' @rdname epsilon
+#' @md
 #' @export
 epsilon_additive <- function(data, reference, maximise = FALSE)
   epsilon_common(data = data, reference = reference, maximise = maximise,
@@ -272,7 +261,7 @@ epsilon_common <- function(data, reference, maximise, mul)
 #'
 #' \deqn{d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}}{d^+(r,a) = sqrt(sum_{k=1}^M (max {r_k - a_k, 0 })^2)}
 #'
-#' See Bezerra et al. (2017) for a comparison.
+#' See \citet{BezLopStu2017emo}{eaf} for a comparison.
 #' 
 #' @references
 #'
@@ -302,12 +291,7 @@ epsilon_common <- function(data, reference, maximise, mul)
 #' Lecture Notes in Computer Science, pages 110–125. Springer, Heidelberg,
 #' Germany, 2015.
 #'
-#' Leonardo C. T. Bezerra, Manuel López-Ibáñez, and Thomas Stützle. An
-#' empirical assessment of the properties of inverted generational distance
-#' indicators on multi- and many-objective optimization. In H. Trautmann,
-#' G. Rudolph, K. Klamroth, O. Schütze, M. M. Wiecek, Y. Jin, and C. Grimme,
-#' editors, Evolutionary Multi-criterion Optimization, EMO 2017, Lecture
-#' Notes in Computer Science, pages 31–45. Springer, 2017.
+#' \insertAllCited{}
 #' 
 #' @examples
 #' extdata_path <- system.file(package="eaf","extdata")

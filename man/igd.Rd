@@ -51,7 +51,7 @@ similarly to unary epsilon. It averages over \eqn{|R|} within the exponent
 
 \deqn{d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}}{d^+(r,a) = sqrt(sum_{k=1}^M (max {r_k - a_k, 0 })^2)}
 
-See Bezerra et al. (2017) for a comparison.
+See \citet{BezLopStu2017emo}{eaf} for a comparison.
 }
 \examples{
 extdata_path <- system.file(package="eaf","extdata")
@@ -96,12 +96,7 @@ Evolutionary Multi-criterion Optimization, EMO 2015 Part I, volume 9018 of
 Lecture Notes in Computer Science, pages 110–125. Springer, Heidelberg,
 Germany, 2015.
 
-Leonardo C. T. Bezerra, Manuel López-Ibáñez, and Thomas Stützle. An
-empirical assessment of the properties of inverted generational distance
-indicators on multi- and many-objective optimization. In H. Trautmann,
-G. Rudolph, K. Klamroth, O. Schütze, M. M. Wiecek, Y. Jin, and C. Grimme,
-editors, Evolutionary Multi-criterion Optimization, EMO 2017, Lecture
-Notes in Computer Science, pages 31–45. Springer, 2017.
+\insertAllCited{}
 }
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}

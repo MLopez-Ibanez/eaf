@@ -39,13 +39,9 @@ hypervolume(SPEA2minstoptimeRichmond[, 1:2], reference = c(250, 0),
 
 }
 \references{
-C. M. Fonseca, L. Paquete, and M. López-Ibáñez. An improved dimension-sweep
-algorithm for the hypervolume indicator. In IEEE Congress on Evolutionary
-Computation, pages 1157-1163, Vancouver, Canada, July 2006.
+\insertRef{FonPaqLop06:hypervolume}{eaf}
 
-Nicola Beume, Carlos M. Fonseca, Manuel López-Ibáñez, Luís Paquete, and
-J. Vahrenhold. On the complexity of computing the hypervolume indicator.
-IEEE Transactions on Evolutionary Computation, 13(5):1075-1082, 2009.
+\insertRef{BeuFonLopPaqVah09:tec}{eaf}
 }
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
