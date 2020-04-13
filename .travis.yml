@@ -6,15 +6,16 @@ os:
   - osx
   
 r:
-  - 3.2
   - oldrel
   - release
 
 # Combinations that don't work in travis-ci
 jobs:
-  exclude:
-  - os: osx
-    r: 3.2
+  include:
+    - r: 3.2
+      os: linux
+      warnings_are_errors: false
+
 
 env:
   global:
