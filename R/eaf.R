@@ -81,7 +81,7 @@ compute.eaf <- function(data, percentiles = NULL)
     percentiles <- 1L:nsets * 100.0 / nsets
   }
   percentiles <- unique.default(sort.int(percentiles))
-  return(.Call("compute_eaf_C",
+  return(.Call(compute_eaf_C,
                as.double(t(as.matrix(data[, 1L:nobjs]))),
                nobjs,
                as.integer(cumsum(npoints)),
@@ -114,7 +114,7 @@ compute.eafdiff.helper <- function(data, intervals)
   ## division <- nsets %/% 2
   ## nsets1 <- division
   ## nsets2 <- nsets - division
-  return(.Call("compute_eafdiff_C",
+  return(.Call(compute_eafdiff_C,
                 as.double(t(as.matrix(data[, 1L:nobjs]))),
                 nobjs,
                 as.integer(cumsum(npoints)),
@@ -229,7 +229,7 @@ compute.eafdiff.rectangles <- function(data, intervals = 1L)
   sets <- data[ , nobjs + 1L]
   nsets <- length(unique(sets))
   npoints <- tabulate (sets)
-  return(.Call("compute_eafdiff_rectangles_C",
+  return(.Call(compute_eafdiff_rectangles_C,
                as.double(t(as.matrix(data[, 1L:nobjs]))),
                nobjs,
                as.integer(cumsum(npoints)),
@@ -251,7 +251,7 @@ compute.eafdiff.polygon <- function(data, intervals = 1L)
   ## division <- nsets %/% 2
   ## nsets1 <- division
   ## nsets2 <- nsets - division
-  return(.Call("compute_eafdiff_area_C",
+  return(.Call(compute_eafdiff_area_C,
                as.double(t(as.matrix(data[, 1L:nobjs]))),
                nobjs,
                as.integer(cumsum(npoints)),
@@ -365,7 +365,7 @@ read_datasets <- function(file, col_names, text)
       stop("error: ", file, ": No such file or directory");
     file <- normalizePath(file)
   }
-  out <- .Call("read_data_sets", as.character(file))
+  out <- .Call(read_data_sets, as.character(file))
   if (missing(col_names))
     col_names <- paste0("V", 1L:(ncol(out)-1))
   colnames(out) <- c(col_names, "set")

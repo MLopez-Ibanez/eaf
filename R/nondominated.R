@@ -54,7 +54,7 @@ is_nondominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
   npoints <- nrow(data)
   maximise <- as.logical(rep_len(maximise, nobjs))
 
-  return(.Call("is_nondominated_C",
+  return(.Call(is_nondominated_C,
                as.double(t(data)),
                as.integer(nobjs),
                as.integer(npoints),
@@ -110,7 +110,7 @@ pareto_rank <- function(data, maximise = FALSE)
   npoints <- nrow(data)
   maximise <- as.logical(rep_len(maximise, nobjs))
   data <- matrix.maximise(data, maximise)
-  return(.Call("pareto_ranking_C",
+  return(.Call(pareto_ranking_C,
                as.double(t(data)),
                as.integer(nobjs),
                as.integer(npoints)))

@@ -55,7 +55,7 @@ hypervolume <- function(data, reference, maximise = FALSE)
     data[,maximise] <- -data[,maximise]
     reference[maximise] <- -reference[maximise]
   }
-  return(.Call("hypervolume_C",
+  return(.Call(hypervolume_C,
                as.double(t(data)),
                as.integer(nobjs),
                as.integer(npoints),
@@ -125,7 +125,7 @@ hv_contributions <- function(data, reference, maximise = FALSE)
     data[,maximise] <- -data[,maximise]
     reference[maximise] <- -reference[maximise]
   }
-  return(.Call("hv_contributions_C",
+  return(.Call(hv_contributions_C,
                as.double(t(data)),
                as.integer(nobjs),
                as.integer(npoints),
@@ -344,7 +344,7 @@ igd <- function(data, reference, maximise = FALSE)
   
   maximise <- as.logical(rep_len(maximise, nobjs))
     
-  return(.Call("igd_C",
+  return(.Call(igd_C,
                as.double(t(data)),
                as.integer(nobjs),
                as.integer(npoints),
@@ -376,7 +376,7 @@ igd_plus <- function(data, reference, maximise = FALSE)
   
   maximise <- as.logical(rep_len(maximise, nobjs))
     
-  return(.Call("igd_plus_C",
+  return(.Call(igd_plus_C,
                as.double(t(data)),
                as.integer(nobjs),
                as.integer(npoints),
@@ -434,7 +434,7 @@ normalise <- function(data, to.range = c(1, 2), lower = NA, upper = NA, maximise
 
   if (length(to.range) != 2L)
     stop("to.range must be a vector of length 2")
-  return(t(.Call("normalise_C",
+  return(t(.Call(normalise_C,
                  as.double(t(data)),
                  as.integer(nobjs),
                  as.integer(npoints),
