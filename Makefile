@@ -14,12 +14,18 @@ PACKAGEDIR=$(CURDIR)
 FTP_COMMANDS="user anonymous anonymous\nbinary\ncd incoming\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
 WINBUILD_DEVEL_FTP_COMMANDS="user anonymous anonymous\nbinary\ncd R-devel\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
 WINBUILD_REL_FTP_COMMANDS="user anonymous anonymous\nbinary\ncd R-release\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
+RHUB_COMMON_ARGS= path='$(BINDIR)/$(PACKAGE)_$(PACKAGEVERSION).tar.gz', env_vars = c('_R_CHECK_FORCE_SUGGESTS_'='false', R_DEFAULT_SAVE_VERSION='2', R_DEFAULT_SERIALIZE_VERSION='2')
+Reval=R --slave -e
+
+define Rsed
+	R --slave --vanilla -e 'f <- "$(1)"; txt <- sub($(2), $(3), perl=TRUE, readLines(f)); writeLines(txt, f)'
+endef
 
 ## Do we have git?
 ifeq ($(shell sh -c 'which git 1> /dev/null 2>&1 && echo y'),y)
   ## Is this a working copy?
   ifeq ($(shell sh -c 'LC_ALL=C  git describe --first-parent --always | grep -q "[0-9a-z]\+$$"  && echo y'),y)
-    $(shell sh -c 'LC_ALL=C  git describe --first-parent --always > git_version')
+    $(shell sh -c 'LC_ALL=C  git describe --dirty --first-parent --always --exclude "*" > git_version')
   endif
 endif
 ## Set version information:
@@ -45,12 +51,12 @@ install: build
 gendoc: NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd
 
 NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
-	R --slave -e 'pkgbuild::compile_dll();devtools::document()'
+	$(Reval) 'pkgbuild::compile_dll();devtools::document()'
 
 pkgdown: gendoc
-	R --slave -e 'pkgdown::build_site(run_dont_run = TRUE, document = FALSE)'
+	$(Reval) 'pkgdown::build_site(run_dont_run = TRUE, document = FALSE)'
 
-build: clean version
+build: version
 	@$(MAKE) scripts
 	@$(MAKE) gendoc
 	cd $(BINDIR) && R CMD build $(PACKAGEDIR)
@@ -71,7 +77,7 @@ cran : build
 
 check: build
 ifdef TEST
-	_R_CHECK_FORCE_SUGGESTS_=false NOT_CRAN=true R --slave -e 'devtools::test(filter="$(TEST)")'
+	_R_CHECK_FORCE_SUGGESTS_=false NOT_CRAN=true $(Reval) 'devtools::test(filter="$(TEST)")'
 else
 	cd $(BINDIR) && (_R_CHECK_FORCE_SUGGESTS_=false NOT_CRAN=true R CMD check --run-donttest --run-dontrun --timings $(PACKAGE)_$(PACKAGEVERSION).tar.gz; cat $(PACKAGE).Rcheck/$(PACKAGE)-Ex.timings)
 endif
@@ -88,28 +94,28 @@ pdf:
 
 scripts:
 	@if [ -d $(EAFTOOLS_DIR) ]; then \
-	cp -f $(EAFTOOLS_DIR)/eafplot/eafplot.pl $(EAFTOOLS_DIR)/eafplot/README \
-		$(PACKAGEDIR)/inst/scripts/eafplot/ && \
-	chmod a-w $(PACKAGEDIR)/inst/scripts/eafplot/eafplot.pl $(PACKAGEDIR)/inst/scripts/eafplot/README && \
-	cp -f $(EAFTOOLS_DIR)/eafdiff/eafdiff.pl $(EAFTOOLS_DIR)/eafdiff/README \
-		$(PACKAGEDIR)/inst/scripts/eafdiff/ && \
-	chmod a-w $(PACKAGEDIR)/inst/scripts/eafdiff/eafdiff.pl $(PACKAGEDIR)/inst/scripts/eafdiff/README && \
-	rm -f $(MOTOOLS_DIR)/mo-tools-*-src.tar.gz && \
-	make -C $(MOTOOLS_DIR)/mo-tools dist && \
-	cd $(PACKAGEDIR)/src/mo-tools \
-	&& tar xvzf $(MOTOOLS_DIR)/mo-tools-*-src.tar.gz --strip-components=1 \
-	&& make -C $(PACKAGEDIR)/src/mo-tools clean; \
-	rm -f $(EAFTOOLS_DIR)/eaf-*-src.tar.gz && \
-	make -C $(EAFTOOLS_DIR)/eaf dist && \
-	cd $(PACKAGEDIR)/src/eaf \
-	&& tar xvzf $(EAFTOOLS_DIR)/eaf-*-src.tar.gz --strip-components=1 \
-	&& make -C $(PACKAGEDIR)/src/eaf clean; \
+	(cp -f $(EAFTOOLS_DIR)/eafplot/eafplot.pl $(EAFTOOLS_DIR)/eafplot/README \
+		$(PACKAGEDIR)/inst/scripts/eafplot/ \
+	&& chmod a-w $(PACKAGEDIR)/inst/scripts/eafplot/eafplot.pl $(PACKAGEDIR)/inst/scripts/eafplot/README \
+	&& cp -f $(EAFTOOLS_DIR)/eafdiff/eafdiff.pl $(EAFTOOLS_DIR)/eafdiff/README \
+		$(PACKAGEDIR)/inst/scripts/eafdiff/ \
+	&& chmod a-w $(PACKAGEDIR)/inst/scripts/eafdiff/eafdiff.pl $(PACKAGEDIR)/inst/scripts/eafdiff/README \
+	&& rm -f $(MOTOOLS_DIR)/mo-tools-*-src.tar.gz \
+	&& make -C $(MOTOOLS_DIR)/mo-tools dist \
+	&& cd $(PACKAGEDIR)/src/mo-tools \
+	&& tar xvzf $(MOTOOLS_DIR)/mo-tools-*-src.tar.gz --strip-components=1 )\
+	|| exit 1; \
+	(rm -f $(EAFTOOLS_DIR)/eaf-*-src.tar.gz \
+	&& make -C $(EAFTOOLS_DIR)/eaf dist \
+	&& cd $(PACKAGEDIR)/src/eaf \
+	&& tar xvzf $(EAFTOOLS_DIR)/eaf-*-src.tar.gz --strip-components=1 )\
+	|| exit 1; \
 	else \
 	echo "WARNING: $(EAFTOOLS_DIR) not found!"; \
 	fi
 
 version :
-	@sed -i 's/Version:.*$$/Version: $(PACKAGEVERSION)/' $(PACKAGEDIR)/DESCRIPTION
+	@$(call Rsed,$(PACKAGEDIR)/DESCRIPTION,"Version:.*$$","Version: $(PACKAGEVERSION)")
 
 rsync : version
 ifndef RDIR
@@ -130,13 +136,15 @@ submit:
 	cd $(BINDIR) && echo $(FTP_COMMANDS) | ftp -v -e -g -i -n cran.r-project.org
 	@echo "Don't forget to send email to cran@r-project.org !"
 
-macbuild: build
-	R --slave -e 'rhub::check(platform="macos-elcapitan-release", env_vars = c(R_DEFAULT_SAVE_VERSION="2", R_DEFAULT_SERIALIZE_VERSION="2"))'
+remotecran: releasebuild
+	$(Reval) "rhub::check_for_cran($(RHUB_COMMON_ARGS), show_status = TRUE)"
+
+macbuild: releasebuild
+	$(Reval) "rhub::check(platform='macos-elcapitan-release', $(RHUB_COMMON_ARGS))"
 
 winbuild: releasebuild
 	@echo "Winbuild: http://win-builder.r-project.org/"
 	cd $(BINDIR) && echo $(WINBUILD_DEVEL_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
 	cd $(BINDIR) && echo $(WINBUILD_REL_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
-	R --slave -e "rhub::check_on_windows(path='$(BINDIR)/$(PACKAGE)_$(PACKAGEVERSION).tar.gz', env_vars = c('_R_CHECK_FORCE_SUGGESTS_'='false', R_DEFAULT_SAVE_VERSION='2', R_DEFAULT_SERIALIZE_VERSION='2'))"
-
+	$(Reval) "rhub::check_on_windows($(RHUB_COMMON_ARGS))"
 
