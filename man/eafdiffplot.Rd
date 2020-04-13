@@ -18,21 +18,21 @@ eafdiffplot(data.left, data.right, col = c("#FFFFFF", "#808080",
 \item{data.left, data.right}{Data frames corresponding to the input data of
 left and right sides, respectively. Each data frame has at least three
 columns, the third one being the set of each point. See also
-\code{\link{read_datasets}}.}
+\code{\link[=read_datasets]{read_datasets()}}.}
 
 \item{col}{A character vector of three colors for the magnitude of the
 differences of 0, 0.5, and 1. Intermediate colors are computed
 automatically given the value of \code{intervals}.}
 
-\item{intervals}{An integer or a character vector. The
-absolute range of the differences [0,1] is partitioned into the number
+\item{intervals}{(\code{integer(1)}|\code{character()}) \cr The
+absolute range of the differences \eqn{[0, 1]} is partitioned into the number
 of intervals provided. If an integer is provided, then labels for each
 interval are  computed automatically. If a character vector is
 provided, its length is taken as the number of intervals.}
 
 \item{percentiles}{The percentiles of the EAF of each side that will be
 plotted as attainment surfaces. \code{NA} does not plot any. See
-\code{\link{eafplot.default}}.}
+\code{\link[=eafplot.default]{eafplot.default()}}.}
 
 \item{full.eaf}{Whether to plot the EAF of each side instead of the
 differences between the EAFs.}
@@ -41,12 +41,13 @@ differences between the EAFs.}
 (\samp{points}) or whether to color the areas that have at least a
 certain value (\samp{area}).}
 
-\item{legend.pos}{The position of the legend. See \code{\link{legend}}.  A value of \code{"none"} hides the legend.}
+\item{legend.pos}{The position of the legend. See \code{\link[=legend]{legend()}}.  A value of
+\code{"none"} hides the legend.}
 
 \item{title.left, title.right}{Title for left and right panels, respectively.}
 
 \item{xlim, ylim, cex, cex.lab, cex.axis}{Graphical parameters, see
-\code{\link{plot.default}}.}
+\code{\link[=plot.default]{plot.default()}}.}
 
 \item{maximise}{(\code{logical()} | \code{logical(1)}) \cr Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
@@ -65,7 +66,7 @@ evaluation: passing this argument from other \code{plot} methods may well
 not work since it may be evaluated too early.}
 
 \item{...}{Other graphical parameters are passed down to
-\code{\link{plot.default}}.}
+\code{\link[=plot.default]{plot.default()}}.}
 }
 \value{
 No return value.
@@ -78,65 +79,66 @@ differences in the other direction.
 }
 \details{
 This function calculates the differences between the EAFs of two
-  data sets, and plots on the left the differences in favour
-  of the left data set, and on the right the differences in favour of
-  the right data set. By default, it also plots the grand best and worst
-  attainment surfaces, that is, the 0\% and 100\%-attainment surfaces
-  over all data. This two surfaces delimit the area where differences
-  may exist. In addition, it also plots the 50\%-attainment surface of
-  each data set.
-  
-  With \code{type = "point"}, only the points where there is a change in
-  the value of the EAF difference are plotted. This means that for areas
-  where the EAF differences stays constant, the region will appear in
-  white even if the value of the differences in that region is
-  large. This explains "white holes" surrounded by black
-  points.
+data sets, and plots on the left the differences in favour
+of the left data set, and on the right the differences in favour of
+the right data set. By default, it also plots the grand best and worst
+attainment surfaces, that is, the 0\% and 100\%-attainment surfaces
+over all data. This two surfaces delimit the area where differences
+may exist. In addition, it also plots the 50\%-attainment surface of
+each data set.
 
-  With \code{type = "area"}, the area where the EAF differences has a
-  certain value is plotted.  The idea for the algorithm to compute the
-  areas was provided by Carlos M. Fonseca.  The implementation uses R
-  polygons, which some PDF viewers may have trouble rendering correctly
-  (See
-  \url{https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders}). Plots (should) look correct when printed.
+With \code{type = "point"}, only the points where there is a change in
+the value of the EAF difference are plotted. This means that for areas
+where the EAF differences stays constant, the region will appear in
+white even if the value of the differences in that region is
+large. This explains "white holes" surrounded by black
+points.
 
-  Large differences that appear when using \code{type = "points"} may
-  seem to dissapear when using \code{type = "area"}. The explanation is
-  the points size is independent of the axes range, therefore, the
-  plotted points may seem to cover a much larger area than the actual
-  number of points. On the other hand, the areas size is plotted with
-  respect to the objective space, without any extra borders. If the
-  range of an area becomes smaller than one-pixel, it won't be
-  visible. As a consequence, zooming in or out certain regions of the plots
-  does not change the apparent size of the points, whereas it affects
-  considerably the apparent size of the areas.
+With \code{type = "area"}, the area where the EAF differences has a
+certain value is plotted.  The idea for the algorithm to compute the
+areas was provided by Carlos M. Fonseca.  The implementation uses R
+polygons, which some PDF viewers may have trouble rendering correctly
+(See
+\url{https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders}). Plots (should) look correct when printed.
+
+Large differences that appear when using \code{type = "points"} may
+seem to disappear when using \code{type = "area"}. The explanation is
+the points size is independent of the axes range, therefore, the
+plotted points may seem to cover a much larger area than the actual
+number of points. On the other hand, the areas size is plotted with
+respect to the objective space, without any extra borders. If the
+range of an area becomes smaller than one-pixel, it won't be
+visible. As a consequence, zooming in or out certain regions of the plots
+does not change the apparent size of the points, whereas it affects
+considerably the apparent size of the areas.
 }
 \examples{
-A1 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_1_dat"))
-A2 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "ALG_2_dat"))
+extdata_dir <- system.file(package="eaf", "extdata") 
+A1 <- read_datasets(file.path(extdata_dir, "ALG_1_dat"))
+A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat"))
 \donttest{# These take time
-eafdiffplot(A1, A2, full.eaf = TRUE)
-eafdiffplot(A1, A2, type = "area")
-eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
+  eafdiffplot(A1, A2, full.eaf = TRUE)
+  eafdiffplot(A1, A2, type = "area")
+  eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
 }
 # A more complex example
-a1 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "wrots_l100w10_dat"))
-a2 <- read_datasets(file.path(system.file(package="eaf"), "extdata", "wrots_l10w100_dat"))
+a1 <- read_datasets(file.path(extdata_dir, "wrots_l100w10_dat"))
+a2 <- read_datasets(file.path(extdata_dir, "wrots_l10w100_dat"))
 DIFF <- eafdiffplot(a1, a2, col = c("white", "blue", "red"), intervals = 5,
-type = "point",
-            title.left = expression("W-RoTS, " * lambda * "=" * 100 * ", " * omega * "=" * 10),
-            title.right= expression("W-RoTS, " * lambda * "=" * 10 *
-", " * omega * "=" * 100),
-            right.panel.last={ abline(a = 0, b = 1, col = "red", lty = "dashed")})
+                    type = "point",
+                    title.left=expression("W-RoTS," ~ lambda==100 * "," ~ omega==10),
+                    title.right=expression("W-RoTS," ~ lambda==10 * "," ~ omega==100),
+                    right.panel.last={
+                      abline(a = 0, b = 1, col = "red", lty = "dashed")})
 DIFF$right[,3] <- -DIFF$right[,3]
 
-## Save the values to a file.
-# write.table(rbind(DIFF$left,DIFF$right),
-#             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",
-#             quote = FALSE, row.names = FALSE, col.names = FALSE)
-
+ ## Save the values to a file.
+ # write.table(rbind(DIFF$left,DIFF$right),
+ #             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",
+ #             quote = FALSE, row.names = FALSE, col.names = FALSE)
+ 
 }
 \seealso{
-\code{\link{read_datasets}}, \code{\link{eafplot}}
+\code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafplot]{eafplot()}}
 }
 \keyword{graphs}

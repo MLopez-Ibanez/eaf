@@ -1,4 +1,3 @@
-
 ### Copyright (C) 2001-2006  Deepayan Sarkar <Deepayan.Sarkar@R-project.org>
 ### Copyright (C) 2001-2005  Saikat DebRoy <saikat@stat.wisc.edu>
 ###

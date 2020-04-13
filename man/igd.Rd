@@ -39,7 +39,7 @@ where:
 The inverted generational distance (IGD) is calculated as \eqn{IGD(A,R) = GD(R,A)}
 with \eqn{p=1}.
 
-GD was first proposed by Van Veldhuizen and Lamont (1997)in [1] with
+GD was first proposed by Van Veldhuizen and Lamont (1997) with
 p=2. IGD seems to have been mentioned first by Coello Coello & Reyes-Sierra
 (2004), however, some people also used the name D-metric for the same thing
 with p=1 and later papers have often used IGD/GD with p=1.
