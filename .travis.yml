@@ -12,7 +12,7 @@ r:
 # Combinations that don't work in travis-ci
 jobs:
   include:
-    - r: 3.2
+    - r: 3.4
       os: linux
       dist: trusty
       warnings_are_errors: false
@@ -40,7 +40,3 @@ deploy:
   script: Rscript -e 'pkgdown::deploy_site_github(run_dont_run = TRUE)'
   on:
     condition: $TRAVIS_OS_NAME = linux && $TRAVIS_R_VERSION_STRING = release
-    
-
-  
-
