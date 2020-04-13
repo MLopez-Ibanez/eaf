@@ -54,7 +54,7 @@
 #'
 #' @references
 #' 
-#'' \insertRef{Grunert01}{eaf}
+#' \insertRef{Grunert01}{eaf}
 #'
 #' \insertRef{GruFon2009:emaa}{eaf}
 #'  

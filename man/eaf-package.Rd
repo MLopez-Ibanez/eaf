@@ -68,7 +68,7 @@ eafdiffplot(A1, A2)
 # dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)
 }
 \references{
-' \insertRef{Grunert01}{eaf}
+\insertRef{Grunert01}{eaf}
 
 \insertRef{GruFon2009:emaa}{eaf}
 

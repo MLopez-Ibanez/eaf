@@ -45,13 +45,13 @@ p=2. IGD seems to have been mentioned first by Coello Coello & Reyes-Sierra
 with p=1 and later papers have often used IGD/GD with p=1.
 
 The modified inverted generational distanced (IGD+) was proposed by
-Ishibuchi et all. (2015) to ensure that IGD+ is weakly Pareto compliant,
+Ishibuchi et al. (2015) to ensure that IGD+ is weakly Pareto compliant,
 similarly to unary epsilon. It averages over \eqn{|R|} within the exponent
 \eqn{1/p} and modifies the distance measure as:
 
 \deqn{d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}}{d^+(r,a) = sqrt(sum_{k=1}^M (max {r_k - a_k, 0 })^2)}
 
-See \citet{BezLopStu2017emo}{eaf} for a comparison.
+See \citet{BezLopStu2017emo} for a comparison.
 }
 \examples{
 extdata_path <- system.file(package="eaf","extdata")
