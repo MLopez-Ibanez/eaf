@@ -1361,6 +1361,135 @@ seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE,
   return(intervals)
 }
 
+#' Plot the Empirical Attainment Function for two objectives generic
+#' 
+#' Computes and plots the Empirical Attainment Function, either as
+#' attainment surfaces for certain percentiles or as points.
+#'
+#' This function can be used to plot random sets of points like those obtained
+#' by different runs of biobjective stochastic optimization algorithms.  An EAF
+#' curve represents the boundary separating points that are known to be
+#' attainable (that is, dominated in Pareto sense) in at least a fraction
+#' (quantile) of the runs from those that are not. The median EAF represents
+#' the curve where the fraction of attainable points is 50\%.  In single
+#' objective optimization the function can be used to plot the profile of
+#' solution quality over time of a collection of runs of a stochastic optimizer.
+#' 
+#' @param x Either a matrix of data values, or a data frame, or a list of
+#'     data frames of exactly three columns.
+#'
+#' @keywords graphs
+#' @export
+eafplot <- function(x, ...) UseMethod("eafplot")
+
+
+#' @describeIn eafplot Formula interface
+#'
+#'@param formula A formula of the type: \code{time + cost ~ run | instance}
+#'     will draw \code{time} on the x-axis and \code{cost} on the y-axis. If \code{instance} is
+#'     present the plot is conditional to the instances.
+#' 
+#'@param data Dataframe containing the fields mentioned in the formula and in groups.
+#'@export
+eafplot.formula <- function(formula, data, groups = NULL, subset = NULL, ...)
+{
+  ## formula of type time+cost~run|inst, groups=alg
+  if (missing(formula))
+    stop("formula missing")
+ 
+  if ((length(formula) != 3L) || (length(formula[[2L]]) != 3L))
+    stop("incorrect specification for 'formula'")
+
+  mf <- modeltools::ModelEnvFormula(formula = formula, data = data,
+                                    subset = subset, designMatrix = FALSE,
+                                    responseMatrix = FALSE, ...)
+
+  ### extract data from the ModelEnv object
+  points <- mf@get("response")
+  sets <- mf@get("input")
+  cond <- NULL
+  if (length(mf@formula) == 3L)
+    cond <- as.list(mf@get("blocks"))
+
+  groups <- eval(substitute(groups), data, environment(formula))
+
+  if (!is.null(groups) && !is.factor(groups))
+    stop("groups must be a factor")
+  
+  if (length(cond) == 0)
+    {
+      strip <- FALSE
+      cond <- list(gl(1, length(points)))
+    }
+
+  condlevels <- lapply(cond, levels)
+  cond.max.level <- unlist(lapply(cond, nlevels))
+
+  npackets <- prod(cond.max.level)
+
+  panel.args <- vector(mode = "list", length = npackets)
+
+  packet.sizes <- numeric(npackets)
+  if (npackets > 1)
+    {
+      dim(packet.sizes) <- sapply(condlevels, length)
+      dimnames(packet.sizes) <- lapply(condlevels, as.character)
+    }
+
+  cond.current.level <- rep(1, length(cond))
+
+  for (packet.number in seq_len(npackets)) {
+    id <- .compute.packet(cond, cond.current.level)
+    packet.sizes[packet.number] <- sum(id)
+
+    panel.args[[packet.number]] <-
+      list(points = as.matrix(points[id,]), sets = as.numeric(sets[id,]),
+           groups=groups[id])
+    ## MARCO: I do not think we need to care about subscripts... or do we?
+    #if (subscripts)
+    #   panel.args[[packet.number]]$subscripts <-
+    #                   subscr[id]
+    cond.current.level <- .cupdate(cond.current.level, cond.max.level)
+  }
+  op <- par(no.readonly = TRUE)  # save default, for resetting...
+  on.exit(par(op))
+  ## FIXME: I don't think this is doing the right thing.
+  par(mfrow = .check.layout(NULL,cond.max.level)[2:3])
+  for (i in seq_len(length(panel.args))) {
+    eafplot.default(panel.args[[i]]$points,
+                    panel.args[[i]]$sets,
+                    panel.args[[i]]$groups,
+                    ...)
+  }
+  invisible()
+}
+
+
+#' @describeIn eafplot List interface for lists of data.frames or matrices
+#' 
+#'@export 
+eafplot.list <- function(x, ...)
+{
+  if (!is.list(x))
+    stop("'x' must be a list of data.frames or matrices with exactly three columns")
+
+  groups <- if (!is.null(names(x))) names(x) else 1:length(x)
+
+  check.elem <- function(elem) {
+    elem <- check.eaf.data(elem)
+    if (ncol(elem) != 3L)
+      stop("Each element of the list have exactly three columns. If you have grouping and conditioning variables, please consider using this format: 'eafplot(formula, data, ...)'")
+    return(elem)
+  }
+  x <- sapply(x, check.elem)  
+  groups <- rep(groups, sapply(x, nrow))
+  x <- do.call(rbind, x)
+  
+  eafplot(as.matrix(x[,c(1,2)]),
+          sets = as.numeric(as.factor(x[, 3])),
+          groups = groups, ...)
+}
+
 ### Local Variables:
 ### ess-indent-level: 2
 ### ess-continued-statement-offset: 2
