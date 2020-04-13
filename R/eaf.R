@@ -310,13 +310,20 @@ range.finite <- function(x)
 
 matrix.maximise <- function(z, maximise)
 {
-  # R bug?: If z is data.frame with rownames != NULL, and
-  # maximise == (FALSE, FALSE), then -z[, which(FALSE)]
-  # gives error: Error in
-  # data.frame(value, row.names = rn, check.names = FALSE, check.rows = FALSE) : 
-  # row names supplied are of the wrong length
-  rownames(z) <- NULL
-  z[, which(maximise)] <- -z[, which(maximise)]
+  stopifnot(ncol(z) == length(maximise))
+  if (is.data.frame(z)) {
+    # R bug?: If z is data.frame with rownames != NULL, and
+    # maximise == (FALSE, FALSE), then -z[, which(FALSE)]
+    # gives error: Error in
+    # data.frame(value, row.names = rn, check.names = FALSE, check.rows = FALSE) : 
+    # row names supplied are of the wrong length
+    rownames(z) <- NULL
+    x <- which(maximise)
+    z[, x] <- -z[, x]
+  } else {
+    x <- ifelse(maximise, -1L, 1L)
+    z <- t(t(z) * x)
+  }
   return(z)
 }
 
@@ -683,7 +690,7 @@ eafplot.default <-
     if (!is.null(sets)) x <- cbind(x, sets)
     x <- check.eaf.data(x)
     sets <- x[, 3L]
-    x <- x[,1:2]
+    x <- as.matrix(x[,1:2])
     x <- matrix.maximise(x, maximise)
 
     # Transform EAF matrix into attsurfs list.
@@ -1015,7 +1022,6 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
                #print(length(col))
                ## The maximum value should also be painted.
                polycol[polycol > length(col)] <- length(col)
-               polycol[polycol > length(col)] <- length(col)
                #print(eafdiff)
                #print(col[polycol])
                polygon(eafdiff[,1], eafdiff[,2], border = NA, col = col[polycol])
@@ -1202,8 +1208,10 @@ eafdiffplot <-
 
   maximise <- as.logical(maximise)
 
-  data.left <- matrix.maximise(check.eaf.data(data.left), maximise)
-  data.right <- matrix.maximise(check.eaf.data(data.right), maximise)
+  data.left <- check.eaf.data(data.left)
+  data.left[,1:2] <- matrix.maximise(data.left[,1:2], maximise)
+  data.right <- check.eaf.data(data.right)
+  data.right[,1:2] <- matrix.maximise(data.right[,1:2], maximise)
 
   attsurfs.left <- attsurfs.right <- list()
   if (!any(is.na(percentiles))) {
@@ -1221,22 +1229,21 @@ eafdiffplot <-
   on.exit(par(def.par))
 
   if (full.eaf) {
-    DIFF <- list()
     if (type == "area") {
       lower.boundaries <- 0:(length(intervals)-1) * 100 / length(intervals)
-      DIFF$left <- compute.eaf (data.left, percentiles = lower.boundaries)
-      DIFF$right <- compute.eaf (data.right, percentiles = lower.boundaries)
+      diff_left <- compute.eaf (data.left, percentiles = lower.boundaries)
+      diff_right <- compute.eaf (data.right, percentiles = lower.boundaries)
     } else if (type == "point") {
-      DIFF$left <- compute.eaf (data.left)
-      DIFF$right <- compute.eaf (data.right)
+      diff_left <- compute.eaf (data.left)
+      diff_right <- compute.eaf (data.right)
       # Since plot.eafdiff.side uses floor to calculate the color, and
       # we want color[100] == color[99].
-      DIFF$left[DIFF$left[,3] == 100, 3] <- 99
-      DIFF$right[DIFF$right[,3] == 100, 3] <- 99
+      diff_left[diff_left[,3] == 100, 3] <- 99
+      diff_right[diff_right[,3] == 100, 3] <- 99
     }
     # Convert percentile into color index
-    DIFF$left[,3] <- DIFF$left[,3] * length(intervals) / 100
-    DIFF$right[,3] <- DIFF$right[,3] * length(intervals) / 100
+    diff_left[,3] <- diff_left[,3] * length(intervals) / 100
+    diff_right[,3] <- diff_right[,3] * length(intervals) / 100
     #remove(data.left,data.right,data.combined) # Free memory?
   } else {
     if (type == "area") {
@@ -1246,8 +1253,10 @@ eafdiffplot <-
       DIFF <- compute.eafdiff (data.combined, intervals = length(intervals))
       #remove(data.combined) # Free memory?
     }
+    diff_left <- DIFF$left
+    diff_right <- DIFF$right
   }
-
+    
   # FIXME: This can be avoided and just taken from the full EAF.
   grand.attsurf <- compute.eaf.as.list (data.combined, c(0, 100))
   grand.best <- grand.attsurf[["0"]]
@@ -1255,15 +1264,15 @@ eafdiffplot <-
 
   xlim <- get.xylim(xlim, maximise[1],
                     data = c(grand.best[,1], grand.worst[,1],
-                             range.finite(DIFF$left[,1]), range.finite(DIFF$right[,1])))
+                             range.finite(diff_left[,1]), range.finite(diff_right[,1])))
   ylim <- get.xylim(ylim, maximise[2],
                     data = c(grand.best[,2], grand.worst[,2],
-                             range.finite(DIFF$left[,2]), range.finite(DIFF$right[,2])))
+                             range.finite(diff_left[,2]), range.finite(diff_right[,2])))
 
   grand.best <- matrix.maximise(grand.best, maximise)
   grand.worst <- matrix.maximise(grand.worst, maximise)
-  DIFF$left <- matrix.maximise(DIFF$left, maximise)
-  DIFF$right <- matrix.maximise(DIFF$right, maximise)
+  diff_left[,1:2] <- matrix.maximise(diff_left[,1:2], maximise)
+  diff_right[,1:2] <- matrix.maximise(diff_right[,1:2], maximise)
   
   # FIXME: This does not generate empty space between the two plots, but the
   # plots are not squared.
@@ -1294,8 +1303,8 @@ eafdiffplot <-
   } else {
     attsurfs <- attsurfs.left
   }
-  
-  plot.eafdiff.side (DIFF$left,
+    
+  plot.eafdiff.side (diff_left,
                      attsurfs = attsurfs,
                      col = col,
                      type = type, full.eaf = full.eaf,
@@ -1319,8 +1328,7 @@ eafdiffplot <-
   } else {
     attsurfs <- attsurfs.right
   }
-  
-  plot.eafdiff.side (DIFF$right,
+  plot.eafdiff.side (diff_right,
                      attsurfs = attsurfs,
                      col = col,
                      type = type, full.eaf = full.eaf,
@@ -1329,7 +1337,7 @@ eafdiffplot <-
                      side = "right", maximise = maximise,
                      sci.notation = sci.notation, ...)
   right.panel.last
-  invisible(DIFF)
+  invisible(list(left=diff_left, right=diff_right))
 }
 
 # Create labels:
