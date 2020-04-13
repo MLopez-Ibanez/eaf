@@ -24,3 +24,5 @@ TAGS
 ^windows$
 inst/.+\.svn
 inst/.+~
+\.auctex-auto
+\.git

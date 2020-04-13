@@ -20,4 +20,5 @@ src/mo-tools/epsilon
 src/mo-tools/igd
 src/mo-tools/ndsort
 src/mo-tools/nondominated
+.auctex-auto
 
