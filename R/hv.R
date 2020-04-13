@@ -41,10 +41,9 @@ hypervolume <- function(data, reference, maximise = FALSE)
   data <- check_dataset(data)
   nobjs <- ncol(data) 
   npoints <- nrow(data)
-  if (is.null(reference)) {
-    stop("reference cannot be NULL")
-  }
+  if (is.null(reference)) stop("reference cannot be NULL")
   if (length(reference) == 1) reference <- rep_len(reference, nobjs)
+
   if (any(maximise)) {
     if (length(maximise) == 1) {
       data <- -data
@@ -112,9 +111,9 @@ hv_contributions <- function(data, reference, maximise = FALSE)
   data <- check_dataset(data)
   nobjs <- ncol(data) 
   npoints <- nrow(data)
-  if (is.null(reference)) {
-    stop("reference cannot be NULL")
-  }
+  if (is.null(reference)) stop("reference cannot be NULL")
+  if (length(reference) == 1) reference <- rep_len(reference, nobjs)
+  
   if (any(maximise)) {
     if (length(maximise) == 1) {
       data <- -data
@@ -186,28 +185,8 @@ hv_contributions <- function(data, reference, maximise = FALSE)
 #' @rdname epsilon
 #' @export
 epsilon_additive <- function(data, reference, maximise = FALSE)
-{
-  data <- check_dataset(data)
-  nobjs <- ncol(data) 
-  npoints <- nrow(data)
-  if (is.null(reference)) {
-    stop("reference cannot be NULL")
-  }
-  reference <- check_dataset(reference)
-  if (ncol(reference) != nobjs)
-    stop("data and reference must have the same number of columns")
-  reference_size <- nrow(reference)
-  
-  maximise <- as.logical(rep_len(maximise, nobjs))
-    
-  return(.Call("epsilon_add_C",
-               as.double(t(data)),
-               as.integer(nobjs),
-               as.integer(npoints),
-               as.double(t(reference)),
-               as.integer(reference_size),
-               maximise))
-}
+  epsilon_common(data = data, reference = reference, maximise = maximise,
+                 mul = FALSE)
 
 #' @rdname epsilon
 #' @export
@@ -218,29 +197,40 @@ epsilon_additive <- function(data, reference, maximise = FALSE)
 #' epsilon_mult(A2, ref)
 #' 
 epsilon_mult <- function(data, reference, maximise = FALSE)
+  epsilon_common(data = data, reference = reference, maximise = maximise,
+                 mul = TRUE)
+
+epsilon_common <- function(data, reference, maximise, mul)
 {
   data <- check_dataset(data)
   nobjs <- ncol(data) 
   npoints <- nrow(data)
-  if (is.null(reference)) {
-    stop("reference cannot be NULL")
-  }
+  if (is.null(reference)) stop("reference cannot be NULL")
+  
   reference <- check_dataset(reference)
   if (ncol(reference) != nobjs)
     stop("data and reference must have the same number of columns")
   reference_size <- nrow(reference)
   
   maximise <- as.logical(rep_len(maximise, nobjs))
-    
-  return(.Call("epsilon_mul_C",
-               as.double(t(data)),
-               as.integer(nobjs),
-               as.integer(npoints),
-               as.double(t(reference)),
-               as.integer(reference_size),
-               maximise))
-}
 
+  if (mul)
+    return(.Call(epsilon_mul_C,
+                 as.double(t(data)),
+                 as.integer(nobjs),
+                 as.integer(npoints),
+                 as.double(t(reference)),
+                 as.integer(reference_size),
+                 maximise))
+  else
+    return(.Call(epsilon_add_C,
+                 as.double(t(data)),
+                 as.integer(nobjs),
+                 as.integer(npoints),
+                 as.double(t(reference)),
+                 as.integer(reference_size),
+                 maximise))
+}
 #' Inverted Generational Distance (IGD and IGD+)
 #'
 #' Computes the inverted generational distance (IGD and IGD+)
