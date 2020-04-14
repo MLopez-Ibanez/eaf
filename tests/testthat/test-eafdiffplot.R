@@ -19,10 +19,10 @@ eaftest <- function(a, b, maximise = c(FALSE, FALSE)) {
 
 expect_true(eaftest("wrots_l10w100_dat", "wrots_l100w10_dat"))
 expect_true(eaftest("tpls", "rest"))
-expect_true(eaftest("ALG_1_dat", "ALG_2_dat"))
-expect_true(eaftest("ALG_1_dat", "ALG_2_dat", maximise = c(TRUE, FALSE)))
-expect_true(eaftest("ALG_1_dat", "ALG_2_dat", maximise = c(FALSE, TRUE)))
-expect_true(eaftest("ALG_1_dat", "ALG_2_dat", maximise = c(TRUE, TRUE)))
+expect_true(eaftest("ALG_1_dat.xz", "ALG_2_dat.xz"))
+expect_true(eaftest("ALG_1_dat.xz", "ALG_2_dat.xz", maximise = c(TRUE, FALSE)))
+expect_true(eaftest("ALG_1_dat.xz", "ALG_2_dat.xz", maximise = c(FALSE, TRUE)))
+expect_true(eaftest("ALG_1_dat.xz", "ALG_2_dat.xz", maximise = c(TRUE, TRUE)))
 
 dev.off()
 })

@@ -114,8 +114,8 @@ considerably the apparent size of the areas.
 }
 \examples{
 extdata_dir <- system.file(package="eaf", "extdata") 
-A1 <- read_datasets(file.path(extdata_dir, "ALG_1_dat"))
-A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat"))
+A1 <- read_datasets(file.path(extdata_dir, "ALG_1_dat.xz"))
+A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat.xz"))
 \donttest{# These take time
   eafdiffplot(A1, A2, full.eaf = TRUE)
   eafdiffplot(A1, A2, type = "area")

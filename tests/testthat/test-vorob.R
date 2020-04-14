@@ -1,5 +1,5 @@
-library(eaf)
 context("vorob")
+library(eaf)
 
 test_that("vorob", {
   #skip_on_cran()

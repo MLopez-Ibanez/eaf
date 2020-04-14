@@ -1,4 +1,3 @@
-library(eaf)
 source("testthat/helper-common.R")
 pdf(file = "eafplot.pdf", title = "eafplot.pdf", width = 6,  height = 6)
 data(gcp2x2)
@@ -12,8 +11,8 @@ eafplot(time + best ~ run | inst, groups = alg, data = gcp2x2, percentiles = c(0
     50, 100), include.extremes = TRUE, cex = 1.4, lty = c(2, 1, 2), lwd = c(2, 2,
     2), col = c("black", "blue", "grey50"))
 
-A1 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_1_dat"))
-A2 <- read_datasets(file.path(system.file(package = "eaf"), "extdata", "ALG_2_dat"))
+A1 <- read_extdata("ALG_1_dat.xz")
+A2 <- read_extdata("ALG_2_dat.xz")
 
 eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 

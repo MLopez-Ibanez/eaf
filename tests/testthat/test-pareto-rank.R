@@ -1,11 +1,9 @@
-library(eaf)
 context("pareto")
 source("helper-common.R")
 
 test_that("pareto", {
   test_pareto_rank <- function(extdatafile, maximise = FALSE) {
-    path <- file.path(system.file(package="eaf"),"extdata", extdatafile)
-    set <- read_datasets(path)
+    set <- read_extdata(extdatafile)
     # Drop set column
     set <- set[,-ncol(set)]
     ranks <- pareto_rank(set, maximise = maximise)
@@ -17,6 +15,6 @@ test_that("pareto", {
       set2 <- set2[!nondom, , drop = FALSE]
     }
   }
-  test_pareto_rank("ALG_2_dat")
+  test_pareto_rank("ALG_2_dat.xz")
   test_pareto_rank("spherical-250-10-3d.txt")
 })

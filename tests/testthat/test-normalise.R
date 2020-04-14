@@ -1,4 +1,3 @@
-library(eaf)
 context("normalise")
 source("helper-common.R")
 

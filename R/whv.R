@@ -45,15 +45,17 @@ whv_rect <- function(data, rectangles, reference, maximise = FALSE)
   if (is.null(reference)) stop("reference cannot be NULL")
   if (length(reference) == 1) reference <- rep_len(reference, nobjs)
   # FIXME: This is wrong for maximisation
+  stopifnot(maximise == FALSE)
   # FIXME: Do this in C code!
-  rectangles_a <- rectangles[,c(1,3)]
+  rectangles_a <- rectangles[,c(1,3), drop=FALSE]
   rectangles_a[rectangles_a > reference[1]] <- reference[1]
-  rectangles_b <- rectangles[,c(2,4)]
+  rectangles_b <- rectangles[,c(2,4), drop=FALSE]
   rectangles_b[rectangles_b > reference[2]] <- reference[2]
   rectangles[,c(1,3)] <- rectangles_a
   rectangles[,c(2,4)] <- rectangles_b
   # Remove empty rectangles maybe created above.
-  rectangles <- rectangles[ (rectangles[,1] != rectangles[,3]) & rectangles[,2] != rectangles[,4], ]
+  rectangles <- rectangles[ (rectangles[,1] != rectangles[,3]) & (rectangles[,2] != rectangles[,4]),
+                         , drop = FALSE]
   rectangles_nrows <- nrow(rectangles)
 
   if (nobjs != 2) stop("sorry: only 2 objectives supported")
@@ -64,7 +66,7 @@ whv_rect <- function(data, rectangles, reference, maximise = FALSE)
     if (length(maximise) == 1) {
       data <- -data
       reference <- -reference
-      rectangles[,1:4] <- -rectangles[,1:4]
+      rectangles[,1:4] <- -rectangles[,1:4, drop = FALSE]
       
     } else if (length(maximise) != nobjs) {
       stop("length of maximise must be either 1 or ncol(data)")

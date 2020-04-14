@@ -18,7 +18,7 @@ test_that("eaf", {
     #saveRDS(x, paste0(basename(file), "-eaf.rds"))
     return(x)
   }
-  expect_equal(test.eaf.file(extdata.path("ALG_1_dat")),
+  expect_equal(test.eaf.file(extdata.path("ALG_1_dat.xz")),
                readRDS("ALG_1_dat-eaf.rds"))
   expect_equal(test.eaf.dataset("SPEA2relativeRichmond"),
                readRDS("SPEA2relativeRichmond-eaf.rds"))

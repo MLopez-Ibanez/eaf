@@ -1,5 +1,7 @@
 # eaf 2.0
 
+* `read_datasets()` is able to read files compressed with `xz`.
+
 * `eafs()` and `eafdiff()` and the plotting functions using them now consume
   slightly less memory.
 

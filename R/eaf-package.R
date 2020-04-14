@@ -78,8 +78,8 @@
 #'	percentiles = c(0,50,100), cex = 1.4, lty = c(2,1,2),lwd = c(2,2,2),
 #'        col = c("black","blue","grey50"))
 #'extdata_path <- system.file(package="eaf","extdata")
-#'A1 <- read_datasets(file.path(extdata_path,"ALG_1_dat"))
-#'A2 <- read_datasets(file.path(extdata_path,"ALG_2_dat"))
+#'A1 <- read_datasets(file.path(extdata_path,"ALG_1_dat.xz"))
+#'A2 <- read_datasets(file.path(extdata_path,"ALG_2_dat.xz"))
 #'eafplot(A1, percentiles=c(50))
 #'eafplot(list(A1=A1, A2=A2), percentiles=c(50))
 #'eafdiffplot(A1, A2)

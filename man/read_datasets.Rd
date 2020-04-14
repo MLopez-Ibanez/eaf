@@ -10,10 +10,11 @@ read_datasets(file, col_names, text)
 read.data.sets(file, col.names)
 }
 \arguments{
-\item{file}{Filename that contains the data.  Each row of the table appears
-as one line of the file.  If it does not contain an \emph{absolute} path,
-the file name is \emph{relative} to the current working directory,
-\code{\link[base]{getwd}()}.  Tilde-expansion is performed where supported.}
+\item{file}{(\code{character()}) \cr Filename that contains the data.  Each row
+of the table appears as one line of the file.  If it does not contain an
+\emph{absolute} path, the file name is \emph{relative} to the current
+working directory, \code{\link[base]{getwd}()}.  Tilde-expansion is
+performed where supported.  Files compressed with \code{xz} are supported.}
 
 \item{col_names, col.names}{Vector of optional names for the variables.  The
 default is to use \samp{"V"} followed by the column number.}
@@ -52,9 +53,9 @@ to fix newline characters.
 
 \examples{
 extdata_path <- system.file(package="eaf","extdata")
-A1 <- read_datasets(file.path(extdata_path,"ALG_1_dat"))
+A1 <- read_datasets(file.path(extdata_path,"ALG_1_dat.xz"))
 str(A1)
-A2 <- read_datasets(file.path(extdata_path,"ALG_2_dat"))
+A2 <- read_datasets(file.path(extdata_path,"ALG_2_dat.xz"))
 str(A2)
 
 read_datasets(text="1 2\\n3 4\\n\\n5 6\\n7 8\\n", col_names=c("obj1", "obj2"))

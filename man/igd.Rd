@@ -66,8 +66,8 @@ See \citet{BezLopStu2017emo} for a comparison.
 }
 \examples{
 extdata_path <- system.file(package="eaf","extdata")
-path.A1 <- file.path(extdata_path, "ALG_1_dat")
-path.A2 <- file.path(extdata_path, "ALG_2_dat")
+path.A1 <- file.path(extdata_path, "ALG_1_dat.xz")
+path.A2 <- file.path(extdata_path, "ALG_2_dat.xz")
 A1 <- read_datasets(path.A1)[,1:2]
 A2 <- read_datasets(path.A2)[,1:2]
 ref <- filter_dominated(rbind(A1, A2))

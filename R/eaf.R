@@ -329,10 +329,11 @@ matrix.maximise <- function(z, maximise)
 #' adds an additional column `set` to indicate to which set each row
 #' belongs.
 #'
-#' @param file Filename that contains the data.  Each row of the table appears
-#'   as one line of the file.  If it does not contain an \emph{absolute} path,
-#'   the file name is \emph{relative} to the current working directory,
-#'   \code{\link[base]{getwd}()}.  Tilde-expansion is performed where supported.
+#' @param file (`character()`) \cr Filename that contains the data.  Each row
+#'   of the table appears as one line of the file.  If it does not contain an
+#'   \emph{absolute} path, the file name is \emph{relative} to the current
+#'   working directory, \code{\link[base]{getwd}()}.  Tilde-expansion is
+#'   performed where supported.  Files compressed with `xz` are supported.
 #'
 #' @param col_names,col.names Vector of optional names for the variables.  The
 #'   default is to use \samp{"V"} followed by the column number.
@@ -364,9 +365,9 @@ matrix.maximise <- function(z, maximise)
 #'
 #'@examples
 #' extdata_path <- system.file(package="eaf","extdata")
-#' A1 <- read_datasets(file.path(extdata_path,"ALG_1_dat"))
+#' A1 <- read_datasets(file.path(extdata_path,"ALG_1_dat.xz"))
 #' str(A1)
-#' A2 <- read_datasets(file.path(extdata_path,"ALG_2_dat"))
+#' A2 <- read_datasets(file.path(extdata_path,"ALG_2_dat.xz"))
 #' str(A2)
 #'
 #' read_datasets(text="1 2\n3 4\n\n5 6\n7 8\n", col_names=c("obj1", "obj2"))
@@ -384,6 +385,13 @@ read_datasets <- function(file, col_names, text)
     if (!file.exists(file))
       stop("error: ", file, ": No such file or directory");
     file <- normalizePath(file)
+    if (grepl("\\.xz$", file)) {
+      unc_file <- tempfile()
+      writeLines(readLines(zz <- xzfile(file, "r")), unc_file)
+      close(zz)
+      file <- unc_file
+      on.exit(unlink(file))
+    }
   }
   out <- .Call(read_data_sets, as.character(file))
   if (missing(col_names))
@@ -589,8 +597,8 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #'      col = c("black","blue","grey50"))
 #'
 #' extdata_path <- system.file(package = "eaf", "extdata")
-#' A1 <- read_datasets(file.path(extdata_path, "ALG_1_dat"))
-#' A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat"))
+#' A1 <- read_datasets(file.path(extdata_path, "ALG_1_dat.xz"))
+#' A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat.xz"))
 #' eafplot(A1, percentiles = 50, sci.notation = TRUE)
 #' eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 #' 
@@ -1147,8 +1155,8 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' 
 #' @examples
 #' extdata_dir <- system.file(package="eaf", "extdata") 
-#' A1 <- read_datasets(file.path(extdata_dir, "ALG_1_dat"))
-#' A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat"))
+#' A1 <- read_datasets(file.path(extdata_dir, "ALG_1_dat.xz"))
+#' A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat.xz"))
 #' \donttest{# These take time
 #'   eafdiffplot(A1, A2, full.eaf = TRUE)
 #'   eafdiffplot(A1, A2, type = "area")

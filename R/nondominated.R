@@ -35,7 +35,7 @@ check_dataset <- function(x)
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 #'
 #' @examples
-#' path_A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
+#' path_A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat.xz")
 #' set <- read_datasets(path_A1)[,1:2]
 #'
 #' is_nondom <- is_nondominated(set)
