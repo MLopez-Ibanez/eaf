@@ -154,41 +154,33 @@ compute.eafdiff.helper <- function(data, intervals)
 #' @seealso    [read_datasets()], [eafdiffplot()]
 #' 
 #' @examples
-#' extdata_path <- system.file(package="eaf", "extdata")
-#' A1 <- read_datasets(file.path(extdata_path, "ALG_1_dat"))
-#' A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat"))
+#'
+#' A1 <- read_datasets(text='
+#'  3 2
+#'  2 3
+#'  
+#'  2.5 1
+#'  1 2
+#'  
+#'  1 2
+#' ')
+#' A2 <- read_datasets(text='
+#'  4 2.5
+#'  3 3
+#'  2.5 3.5
+#'  
+#'  3 3
+#'  2.5 3.5
+#'  
+#'  2 1
+#' ')
 #' d <- eafdiff(A1, A2)
-#' # This is large
 #' str(d)
-#' head(d)
+#' print(d)
 #'
 #' d <- eafdiff(A1, A2, rectangles = TRUE)
-#' # This is large
 #' str(d)
-#' head(d)
-
-#' # FIXME: finish this!
-#' # Small example
-#' X <- read_datasets(text='
-#' 1 2
-#' 2.5 1
-#'
-#' 3.5 2
-#'
-#' 2 3
-#'
-#' 4 1
-#' ')
-#' Y <- read_datasets(text='
-#' 2.5 1
-#'
-#' 3.5 2
-#'
-#' 2 3
-#'
-#' 4 1
-#' ')
-#'
+#' print(d)
 #'
 #'@export
 #'@md
