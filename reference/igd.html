@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Inverted Generational Distance (IGD and IGD+) — igd • eaf</title>
+<title>Inverted Generational Distance (IGD and IGD+) and Averaged Hausdorff Distance — igd • eaf</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Inverted Generational Distance (IGD and IGD+) — igd" />
-<meta property="og:description" content="Computes the inverted generational distance (IGD and IGD+)" />
+<meta property="og:title" content="Inverted Generational Distance (IGD and IGD+) and Averaged Hausdorff Distance — igd" />
+<meta property="og:description" content="Functions to compute the inverted generational distance (IGD and IGD+) and
+the averaged Hausdorff distance between nondominated sets of points." />
 
 
 
@@ -113,18 +114,21 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Inverted Generational Distance (IGD and IGD+)</h1>
+    <h1>Inverted Generational Distance (IGD and IGD+) and Averaged Hausdorff Distance</h1>
     <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/hv.R'><code>R/hv.R</code></a></small>
     <div class="hidden name"><code>igd.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Computes the inverted generational distance (IGD and IGD+)</p>
+    <p>Functions to compute the inverted generational distance (IGD and IGD+) and
+the averaged Hausdorff distance between nondominated sets of points.</p>
     </div>
 
     <pre class="usage"><span class='fu'>igd</span>(<span class='no'>data</span>, <span class='no'>reference</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='fu'>igd_plus</span>(<span class='no'>data</span>, <span class='no'>reference</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>igd_plus</span>(<span class='no'>data</span>, <span class='no'>reference</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>avg_hausdorff_dist</span>(<span class='no'>data</span>, <span class='no'>reference</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,11 +150,15 @@ maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></td>
     </tr>
+    <tr>
+      <th>p</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>) Hausdorff distance parameter (default: <code>1L</code>).</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A single numerical value.</p>
+    <p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>) A single numerical value.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The generational distance (GD) of a set \(A\) is defined as the distance
@@ -161,41 +169,34 @@ where:
 $$d(a,r) = \sqrt{\sum_{k=1}^M (a_k - r_k)^2} $$</p>
 <p>The inverted generational distance (IGD) is calculated as \(IGD(A,R) = GD(R,A)\)
 with \(p=1\).</p>
-<p>GD was first proposed by Van Veldhuizen and Lamont (1997) with
-p=2. IGD seems to have been mentioned first by Coello Coello &amp; Reyes-Sierra
-(2004), however, some people also used the name D-metric for the same thing
-with p=1 and later papers have often used IGD/GD with p=1.</p>
+<p>GD was first proposed by Van Veldhuizen and Lamont (1998)
+ with \(p=2\). IGD seems to
+have been mentioned first by Coello Coello and Reyes-Sierra (2004)
+, however, some people
+also used the name D-metric for the same concept with \(p=1\) and later
+papers have often used IGD/GD with \(p=1\).</p>
 <p>The modified inverted generational distanced (IGD+) was proposed by
-Ishibuchi et al. (2015) to ensure that IGD+ is weakly Pareto compliant,
+ Ishibuchi et al. (2015)
+ to ensure that IGD+ is weakly Pareto compliant,
 similarly to unary epsilon. It averages over \(|R|\) within the exponent
 \(1/p\) and modifies the distance measure as:</p>
 <p>$$d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}$$</p>
+<p>The average Hausdorff distance (\(\Delta_p\)) was proposed by Schütze et al. (2012)
+ and
+it is calculated as:</p>
+<p>$$\Delta_p(A,R) = \max\{ IGD_p(A,R), IGD_p(R,A) \}$$</p>
 <p>See Bezerra et al. (2017)
  for a comparison.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>D. A. Van Veldhuizen and G. B. Lamont. Evolutionary Computation and
-Convergence to a Pareto Front. In J. R. Koza, editor, Late Breaking Papers
-at the Genetic Programming 1998 Conference, pages 221–228, Stanford
-University, California, July 1998. Stanford University Bookstore.  Keywords:
-generational distance.</p>
-<p>Coello Coello, C.A., Reyes-Sierra, M.: A study of the parallelization of a
-coevolutionary multi-objective evolutionary algorithm.  In: Monroy, R., et
-al. (eds.) Proceedings of MICAI, LNAI, vol. 2972, pp. 688–697. Springer,
-Heidelberg, Germany (2004).</p>
-<p>Q. Zhang and H. Li. MOEA/D: A Multiobjective Evolutionary Algorithm Based
-on Decomposition. IEEE Transactions on Evolutionary Computation,
-11(6):712–731, 2007. doi:10.1109/TEVC.2007.892759.</p>
-<p>Schutze, O., Esquivel, X., Lara, A., Coello Coello, C.A.: Using the
-averaged Hausdorff distance as a performance measure in evolutionary
-multiobjective optimization. IEEE Trans. Evol. Comput. 16(4), 504–522 (2012)</p>
-<p>H. Ishibuchi, H. Masuda, Y. Tanigaki, and Y. Nojima.  Modified Distance
-Calculation in Generational Distance and Inverted Generational Distance.
-In A. Gaspar-Cunha, C. H. Antunes, and C. A. Coello Coello, editors,
-Evolutionary Multi-criterion Optimization, EMO 2015 Part I, volume 9018 of
-Lecture Notes in Computer Science, pages 110–125. Springer, Heidelberg,
-Germany, 2015.</p>
-<p>Leonardo
+    <p>Hisao  Ishibuchi, Hiroyuki Masuda, Yuki Tanigaki, Yusuke Nojima (2015).
+&#8220;Modified Distance Calculation in Generational Distance and
+                  Inverted Generational Distance.&#8221;
+In António Gaspar-Cunha, Carlos
+Henggeler Antunes, Carlos
+A.
+Coello Coello (eds.), <em>Evolutionary Multi-criterion Optimization, EMO 2015 Part I</em>, volume 9018 of <em>Lecture Notes in Computer Science</em>, 110--125.
+Springer, Heidelberg, Germany.<br /><br /> Leonardo
 C.
 T. Bezerra, Manuel López-Ibáñez, Thomas Stützle (2017).
 &#8220;An Empirical Assessment of the Properties of Inverted
@@ -205,7 +206,25 @@ In Heike Trautmann, Günter Rudolph, Kathrin Klamroth, Oliver Schütze, Margaret
 M. Wiecek, Yaochu Jin, Christian Grimme (eds.), <em>Evolutionary Multi-criterion Optimization, EMO 2017</em>,  Lecture Notes in Computer Science, 31--45.
 Springer International Publishing, Cham, Switzerland.
 doi: <a href='https://doi.org/10.1007/978-3-319-54157-0_3'>10.1007/978-3-319-54157-0_3</a>
-.</p>
+.<br /><br /> Carlos
+A. Coello Coello, Margarita Reyes-Sierra (2004).
+&#8220;A Study of the Parallelization of a Coevolutionary
+                  Multi-objective Evolutionary Algorithm.&#8221;
+In Raúl Monroy, Gustavo Arroyo-Figueroa, Luis
+Enrique Sucar, Humberto Sossa (eds.), <em>Proceedings of MICAI</em>, volume 2972 of <em>Lecture Notes in Artificial Intelligence</em>, 688--697.
+Springer, Heidelberg, Germany.<br /><br /> Oliver Schütze, X. Esquivel, A. Lara, Carlos
+A.
+Coello Coello (2012).
+&#8220;Using the Averaged Hausdorff Distance as a Performance
+                  Measure in Evolutionary Multiobjective Optimization.&#8221;
+<em>IEEE Transactions on Evolutionary Computation</em>, <b>16</b>(4), 504-522.<br /><br /> David
+A. Van Veldhuizen, Gary
+B. Lamont (1998).
+&#8220;Evolutionary Computation and Convergence to a
+                  Pareto Front.&#8221;
+In John
+R. Koza (ed.), <em>Late Breaking Papers at the Genetic Programming 1998
+                  Conference</em>, 221--228.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>extdata_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span>)
@@ -214,11 +233,10 @@ doi: <a href='https://doi.org/10.1007/978-3-319-54157-0_3'>10.1007/978-3-319-541
 <span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='no'>path.A1</span>)[,<span class='fl'>1</span>:<span class='fl'>2</span>]
 <span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='no'>path.A2</span>)[,<span class='fl'>1</span>:<span class='fl'>2</span>]
 <span class='no'>ref</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nondominated.html'>filter_dominated</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>A1</span>, <span class='no'>A2</span>))
-<span class='fu'>igd</span>(<span class='no'>A1</span>, <span class='no'>ref</span>)</div><div class='output co'>#&gt; [1] 91888189</div><div class='input'><span class='fu'>igd</span>(<span class='no'>A2</span>, <span class='no'>ref</span>)</div><div class='output co'>#&gt; [1] 11351992</div><div class='input'>
-<span class='co'># IGD+ (Pareto compliant)</span>
-<span class='no'>ref</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nondominated.html'>filter_dominated</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>A1</span>, <span class='no'>A2</span>))
+<span class='fu'>igd</span>(<span class='no'>A1</span>, <span class='no'>ref</span>)</div><div class='output co'>#&gt; [1] 91888189</div><div class='input'><span class='fu'>igd</span>(<span class='no'>A2</span>, <span class='no'>ref</span>)</div><div class='output co'>#&gt; [1] 11351992</div><div class='input'><span class='co'># IGD+ (Pareto compliant)</span>
 <span class='fu'>igd_plus</span>(<span class='no'>A1</span>, <span class='no'>ref</span>)</div><div class='output co'>#&gt; [1] 82695357</div><div class='input'><span class='fu'>igd_plus</span>(<span class='no'>A2</span>, <span class='no'>ref</span>)</div><div class='output co'>#&gt; [1] 10698269</div><div class='input'>
-</div></pre>
+<span class='co'># Average Haussdorff distance</span>
+<span class='fu'>avg_hausdorff_dist</span>(<span class='no'>A1</span>, <span class='no'>ref</span>)</div><div class='output co'>#&gt; [1] 268547627</div><div class='input'><span class='fu'>avg_hausdorff_dist</span>(<span class='no'>A2</span>, <span class='no'>ref</span>)</div><div class='output co'>#&gt; [1] 352613092</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
