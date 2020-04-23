@@ -3,6 +3,7 @@
 S3method(eafplot,default)
 S3method(eafplot,formula)
 S3method(eafplot,list)
+export(avg_hausdorff_dist)
 export(eafdiff)
 export(eafdiffplot)
 export(eafplot)

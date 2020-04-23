@@ -220,9 +220,10 @@ epsilon_common <- function(data, reference, maximise, mul)
                  as.integer(reference_size),
                  maximise))
 }
-#' Inverted Generational Distance (IGD and IGD+)
+#' Inverted Generational Distance (IGD and IGD+) and Averaged Hausdorff Distance
 #'
-#' Computes the inverted generational distance (IGD and IGD+)
+#' Functions to compute the inverted generational distance (IGD and IGD+) and
+#' the averaged Hausdorff distance between nondominated sets of points.
 #'
 #' @rdname igd
 #' @export
@@ -232,7 +233,7 @@ epsilon_common <- function(data, reference, maximise, mul)
 #'
 #' @template arg_maximise
 #' 
-#' @return  A single numerical value.
+#' @return  (`numeric(1)`) A single numerical value.
 #'
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 #'
@@ -249,47 +250,26 @@ epsilon_common <- function(data, reference, maximise, mul)
 #' The inverted generational distance (IGD) is calculated as \eqn{IGD(A,R) = GD(R,A)}
 #' with \eqn{p=1}.
 #'
-#' GD was first proposed by Van Veldhuizen and Lamont (1997) with
-#' p=2. IGD seems to have been mentioned first by Coello Coello & Reyes-Sierra
-#' (2004), however, some people also used the name D-metric for the same thing
-#' with p=1 and later papers have often used IGD/GD with p=1.
+#' GD was first proposed by \citet{VelLam1998gp} with \eqn{p=2}. IGD seems to
+#' have been mentioned first by \citet{CoeSie2004igd}, however, some people
+#' also used the name D-metric for the same concept with \eqn{p=1} and later
+#' papers have often used IGD/GD with \eqn{p=1}.
 #'
 #' The modified inverted generational distanced (IGD+) was proposed by
-#' Ishibuchi et al. (2015) to ensure that IGD+ is weakly Pareto compliant,
+#' \citet{IshMasTanNoj2015igd} to ensure that IGD+ is weakly Pareto compliant,
 #' similarly to unary epsilon. It averages over \eqn{|R|} within the exponent
 #' \eqn{1/p} and modifies the distance measure as:
 #'
 #' \deqn{d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}}{d^+(r,a) = sqrt(sum_{k=1}^M (max {r_k - a_k, 0 })^2)}
 #'
+#' The average Hausdorff distance (\eqn{\Delta_p}) was proposed by \citet{SchEsqLarCoe2012tec} and
+#' it is calculated as:
+#'
+#' \deqn{\Delta_p(A,R) = \max\{ IGD_p(A,R), IGD_p(R,A) \}}
+#'
 #' See \citet{BezLopStu2017emo} for a comparison.
 #' 
 #' @references
-#'
-#' D. A. Van Veldhuizen and G. B. Lamont. Evolutionary Computation and
-#' Convergence to a Pareto Front. In J. R. Koza, editor, Late Breaking Papers
-#' at the Genetic Programming 1998 Conference, pages 221–228, Stanford
-#' University, California, July 1998. Stanford University Bookstore.  Keywords:
-#' generational distance.
-#'
-#' Coello Coello, C.A., Reyes-Sierra, M.: A study of the parallelization of a
-#' coevolutionary multi-objective evolutionary algorithm.  In: Monroy, R., et
-#' al. (eds.) Proceedings of MICAI, LNAI, vol. 2972, pp. 688–697. Springer,
-#' Heidelberg, Germany (2004).
-#'
-#' Q. Zhang and H. Li. MOEA/D: A Multiobjective Evolutionary Algorithm Based
-#' on Decomposition. IEEE Transactions on Evolutionary Computation,
-#' 11(6):712–731, 2007. doi:10.1109/TEVC.2007.892759.
-#'
-#' Schutze, O., Esquivel, X., Lara, A., Coello Coello, C.A.: Using the
-#' averaged Hausdorff distance as a performance measure in evolutionary
-#' multiobjective optimization. IEEE Trans. Evol. Comput. 16(4), 504–522 (2012)
-#'
-#' H. Ishibuchi, H. Masuda, Y. Tanigaki, and Y. Nojima.  Modified Distance
-#' Calculation in Generational Distance and Inverted Generational Distance.
-#' In A. Gaspar-Cunha, C. H. Antunes, and C. A. Coello Coello, editors,
-#' Evolutionary Multi-criterion Optimization, EMO 2015 Part I, volume 9018 of
-#' Lecture Notes in Computer Science, pages 110–125. Springer, Heidelberg,
-#' Germany, 2015.
 #'
 #' \insertAllCited{}
 #' 
@@ -302,7 +282,7 @@ epsilon_common <- function(data, reference, maximise, mul)
 #' ref <- filter_dominated(rbind(A1, A2))
 #' igd(A1, ref)
 #' igd(A2, ref)
-#' 
+#' @md
 igd <- function(data, reference, maximise = FALSE)
 {
   data <- check_dataset(data)
@@ -331,7 +311,6 @@ igd <- function(data, reference, maximise = FALSE)
 #' @export
 #' @examples
 #' # IGD+ (Pareto compliant)
-#' ref <- filter_dominated(rbind(A1, A2))
 #' igd_plus(A1, ref)
 #' igd_plus(A2, ref)
 #' 
@@ -357,6 +336,39 @@ igd_plus <- function(data, reference, maximise = FALSE)
                as.double(t(reference)),
                as.integer(reference_size),
                maximise))
+}
+
+#' @rdname igd
+#' @param p (`integer(1)`) Hausdorff distance parameter (default: `1L`).
+#' @export
+#' @examples
+#' # Average Haussdorff distance
+#' avg_hausdorff_dist(A1, ref)
+#' avg_hausdorff_dist(A2, ref)
+#' @md
+avg_hausdorff_dist <- function(data, reference, maximise = FALSE, p = 1L)
+{
+  data <- check_dataset(data)
+  nobjs <- ncol(data) 
+  npoints <- nrow(data)
+  if (is.null(reference)) {
+    stop("reference cannot be NULL")
+  }
+  reference <- check_dataset(reference)
+  if (ncol(reference) != nobjs)
+    stop("data and reference must have the same number of columns")
+  reference_size <- nrow(reference)
+  
+  maximise <- as.logical(rep_len(maximise, nobjs))
+    
+  return(.Call(avg_hausdorff_dist_C,
+               as.double(t(data)),
+               as.integer(nobjs),
+               as.integer(npoints),
+               as.double(t(reference)),
+               as.integer(reference_size),
+               maximise,
+               as.integer(p)))
 }
 
 #' Normalise points

@@ -1,3 +1,8 @@
+# eaf 2.0
+
+* New function `avg_hausdorff_dist` for computing the averaged Hausdorff distance.
+                                                          (Manuel López-Ibáñez)
+
 # eaf 1.9-1
 
 * Fixes to Makefiles for non-GCC compilers and parallel build setups.

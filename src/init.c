@@ -24,25 +24,30 @@ extern SEXP igd_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
                   SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE);
 extern SEXP igd_plus_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
                        SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE);
+extern SEXP
+avg_hausdorff_dist_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
+                     SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE,
+                     SEXP P);
 
 #define DECLARE_CALL_ENTRY(NAME, NARGS) \
     {#NAME, (DL_FUNC) &NAME, NARGS},
 
 static const R_CallMethodDef CallEntries[] = {
-    {"compute_eaf_C",          (DL_FUNC) &compute_eaf_C,          5},
-    {"compute_eafdiff_area_C", (DL_FUNC) &compute_eafdiff_area_C, 5},
+    DECLARE_CALL_ENTRY(compute_eaf_C,          5)
+    DECLARE_CALL_ENTRY(compute_eafdiff_area_C, 5)
     DECLARE_CALL_ENTRY(compute_eafdiff_rectangles_C, 5)
-    {"compute_eafdiff_C",      (DL_FUNC) &compute_eafdiff_C,      5},
-    {"read_data_sets",         (DL_FUNC) &read_data_sets,         1},
-    {"hypervolume_C",          (DL_FUNC) &hypervolume_C,          4},
-    {"hv_contributions_C",     (DL_FUNC) &hv_contributions_C,     4},
-    {"normalise_C",            (DL_FUNC) &normalise_C,            7},
-    DECLARE_CALL_ENTRY(is_nondominated_C, 5)
-    DECLARE_CALL_ENTRY(pareto_ranking_C,  3)
-    {"epsilon_add_C",          (DL_FUNC) &epsilon_add_C,          6},
-    {"epsilon_mul_C",          (DL_FUNC) &epsilon_mul_C,          6},
-    {"igd_C",                  (DL_FUNC) &igd_C,                  6},
-    {"igd_plus_C",             (DL_FUNC) &igd_plus_C,             6},
+    DECLARE_CALL_ENTRY(compute_eafdiff_C,      5)
+    DECLARE_CALL_ENTRY(read_data_sets,         1)
+    DECLARE_CALL_ENTRY(hypervolume_C,          4)
+    DECLARE_CALL_ENTRY(hv_contributions_C,     4)
+    DECLARE_CALL_ENTRY(normalise_C,            7)
+    DECLARE_CALL_ENTRY(is_nondominated_C,      5)
+    DECLARE_CALL_ENTRY(pareto_ranking_C,       3)
+    DECLARE_CALL_ENTRY(epsilon_add_C,          6)
+    DECLARE_CALL_ENTRY(epsilon_mul_C,          6)
+    DECLARE_CALL_ENTRY(igd_C,                  6)
+    DECLARE_CALL_ENTRY(igd_plus_C,             6)
+    DECLARE_CALL_ENTRY(avg_hausdorff_dist_C,   7)
     {NULL, NULL, 0}
 };
 

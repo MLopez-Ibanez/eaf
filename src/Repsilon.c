@@ -15,12 +15,14 @@ enum unary_metric_t {
     EPSILON_ADD,
     EPSILON_MUL,
     INV_GD,
-    INV_GDPLUS
+    INV_GDPLUS,
+    AVG_HAUSDORFF
 }; 
 
-static SEXP unary_metric_ref(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
-                             SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE,
-                             enum unary_metric_t metric)
+static SEXP
+unary_metric_ref(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
+                 SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE,
+                 enum unary_metric_t metric, SEXP EXTRA)
 {
     int nprotected = 0;
     SEXP_2_INT(NOBJ, nobj);
@@ -51,6 +53,11 @@ static SEXP unary_metric_ref(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
       case INV_GDPLUS:
           value[0] = IGD_plus (nobj, minmax, data, npoint, ref, ref_size);
           break;
+      case AVG_HAUSDORFF: {
+          SEXP_2_INT(EXTRA, p);
+          value[0] = avg_Hausdorff_dist (nobj, minmax, data, npoint, ref, ref_size, p);
+          break;
+      }
       default:
           Rf_error("unknown unary metric");
     }
@@ -66,7 +73,7 @@ epsilon_mul_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
 {
     return(unary_metric_ref(DATA, NOBJ, NPOINT,
                             REFERENCE, REFERENCE_SIZE, MAXIMISE,
-                            EPSILON_MUL));
+                            EPSILON_MUL, R_NilValue));
 }
 
 SEXP
@@ -75,7 +82,7 @@ epsilon_add_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
 {
     return(unary_metric_ref(DATA, NOBJ, NPOINT,
                             REFERENCE, REFERENCE_SIZE, MAXIMISE,
-                            EPSILON_ADD));
+                            EPSILON_ADD, R_NilValue));
 }
 
 SEXP
@@ -84,7 +91,7 @@ igd_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
 {
     return(unary_metric_ref(DATA, NOBJ, NPOINT,
                             REFERENCE, REFERENCE_SIZE, MAXIMISE,
-                            INV_GD));
+                            INV_GD, R_NilValue));
 }
 
 SEXP
@@ -93,5 +100,15 @@ igd_plus_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
 {
     return(unary_metric_ref(DATA, NOBJ, NPOINT,
                             REFERENCE, REFERENCE_SIZE, MAXIMISE,
-                            INV_GDPLUS));
+                            INV_GDPLUS, R_NilValue));
+}
+
+SEXP
+avg_hausdorff_dist_C(SEXP DATA, SEXP NOBJ, SEXP NPOINT,
+                     SEXP REFERENCE, SEXP REFERENCE_SIZE, SEXP MAXIMISE,
+                     SEXP P)
+{
+    return(unary_metric_ref(DATA, NOBJ, NPOINT,
+                            REFERENCE, REFERENCE_SIZE, MAXIMISE,
+                            AVG_HAUSDORFF, P));
 }
