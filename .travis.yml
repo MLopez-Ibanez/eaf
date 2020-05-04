@@ -1,4 +1,4 @@
-language: R
+language: r
 cache: packages
 
 os:
@@ -26,9 +26,6 @@ env:
     - MAKEFLAGS="-j 2"
 
 r_check_args: '--run-donttest --run-dontrun --timings'
-
-before_install:
-  - Rscript -e 'update.packages(ask = FALSE)'
 
 notifications:
   email: false
