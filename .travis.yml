@@ -34,6 +34,10 @@ notifications:
   email: false
 
 before_cache: Rscript -e 'remotes::install_github("r-lib/pkgdown")'
+
+after_success:
+  - Rscript -e 'covr::codecov()'
+  
 deploy:
   provider: script
   skip_cleanup: true
