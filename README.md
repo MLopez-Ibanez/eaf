@@ -84,7 +84,7 @@ The first step before installing the **eaf** package is to [install R](https://c
     R, then
     
     ```r
-        install.packages(c("modeltools", "eaf"))
+        install.packages("eaf")
     ```
     
  2. [Download the **eaf** package from CRAN](https://cran.r-project.org/package=eaf) (you may also need to download and install
