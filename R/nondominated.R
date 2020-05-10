@@ -73,29 +73,23 @@ filter_dominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
             , drop = FALSE])
 }
 
-#' @description `pareto_rank` ranks points according to Pareto-optimality, which is also called
-#' nondominated sorting (Deb et al., 2002).
+#' @description `pareto_rank()` ranks points according to Pareto-optimality, which is also called
+#' nondominated sorting \citep{Deb02nsga2}.
 #' 
 #' @rdname nondominated
 #' @export
-#' @return `pareto_rank` returns an integer vector of the same length as
+#' @return `pareto_rank()` returns an integer vector of the same length as
 #'   the number of rows of `data`, where each value gives the rank of each
 #'   point.
 #'
-#' @details `pareto_rank` is meant to be used like `rank()`, but it
+#' @details `pareto_rank()` is meant to be used like `rank()`, but it
 #'   assigns ranks according to Pareto dominance. Duplicated points are kept on
 #'   the same front. When `ncol(data) == 2`, the code uses the \eqn{O(n
-#'   \log n)} algorithm by Jensen (2003).
+#'   \log n)} algorithm by \citet{Jen03}.
 #' 
 #' @references
 #'
-#' Deb, K., S. Agrawal, A. Pratap, and T. Meyarivan. A fast elitist non-dominated
-#' sorting genetic algorithm for multi-objective optimization: NSGA-II.
-#' IEEE Transactions on Evolutionary Computation, 6(2): 182-197, 2002.
-#' 
-#' M. T. Jensen. Reducing the run-time complexity of multiobjective EAs: The
-#' NSGA-II and other algorithms. IEEE Transactions on Evolutionary Computation,
-#' 7(5):503–515, 2003.
+#' \insertAllCited{}
 #' 
 #' @examples
 #' ranks <- pareto_rank(set)

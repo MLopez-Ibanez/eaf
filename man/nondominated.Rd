@@ -31,7 +31,7 @@ point is not dominated by any other point.
 
 \code{filter_dominated} returns a matrix or data.frame with only mutually nondominated points.
 
-\code{pareto_rank} returns an integer vector of the same length as
+\code{pareto_rank()} returns an integer vector of the same length as
 the number of rows of \code{data}, where each value gives the rank of each
 point.
 }
@@ -39,14 +39,14 @@ point.
 Identify nondominated points with \code{is_nondominated} and remove dominated
 ones with \code{filter_dominated}.
 
-\code{pareto_rank} ranks points according to Pareto-optimality, which is also called
-nondominated sorting (Deb et al., 2002).
+\code{pareto_rank()} ranks points according to Pareto-optimality, which is also called
+nondominated sorting \citep{Deb02nsga2}.
 }
 \details{
-\code{pareto_rank} is meant to be used like \code{rank()}, but it
+\code{pareto_rank()} is meant to be used like \code{rank()}, but it
 assigns ranks according to Pareto dominance. Duplicated points are kept on
 the same front. When \code{ncol(data) == 2}, the code uses the \eqn{O(n
-  \log n)} algorithm by Jensen (2003).
+  \log n)} algorithm by \citet{Jen03}.
 }
 \examples{
 path_A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat")
@@ -65,13 +65,7 @@ plot(set, col = colors[ranks], type = "p", pch = 20)
 
 }
 \references{
-Deb, K., S. Agrawal, A. Pratap, and T. Meyarivan. A fast elitist non-dominated
-sorting genetic algorithm for multi-objective optimization: NSGA-II.
-IEEE Transactions on Evolutionary Computation, 6(2): 182-197, 2002.
-
-M. T. Jensen. Reducing the run-time complexity of multiobjective EAs: The
-NSGA-II and other algorithms. IEEE Transactions on Evolutionary Computation,
-7(5):503–515, 2003.
+\insertAllCited{}
 }
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}

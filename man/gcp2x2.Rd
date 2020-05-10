@@ -26,7 +26,7 @@ gcp2x2
 }
 \description{
 Two metaheuristic algorithms, TabuCol (Hertz et al., 1987) and
-simulated annealing (Johnson et al., 1991), to find a good
+simulated annealing \citep{JohAraMcGSch1991}, to find a good
 approximation of the chromatic number of two random graphs. The data
 here has the only goal of providing an example of use of eafplot for
 comparing algorithm performance with respect to both time and quality
@@ -46,6 +46,6 @@ data(gcp2x2)
 A. Hertz and D. de Werra. Using Tabu Search Techniques for Graph
 Coloring. Computing, 1987, 39(4), 345-351.
 
-\insertRef{JohAraMcGSch1991}{eaf}
+\insertAllCited{}
 }
 \keyword{datasets}

@@ -1,4 +1,4 @@
-#'Computation and visualization of the empirical attainment function (EAF) for
+#' Computation and visualization of the empirical attainment function (EAF) for
 #' the analysis of random sets in multi-criterion optimization.
 #'
 #'  The empirical attainment function (EAF) describes the probabilistic
@@ -175,7 +175,7 @@
 #' Metaheuristics for solving the Graph Vertex Coloring Problem
 #'
 #'  Two metaheuristic algorithms, TabuCol (Hertz et al., 1987) and
-#'  simulated annealing (Johnson et al., 1991), to find a good
+#'  simulated annealing \citep{JohAraMcGSch1991}, to find a good
 #'  approximation of the chromatic number of two random graphs. The data
 #'  here has the only goal of providing an example of use of eafplot for
 #'  comparing algorithm performance with respect to both time and quality
@@ -210,7 +210,7 @@
 #'  A. Hertz and D. de Werra. Using Tabu Search Techniques for Graph
 #'  Coloring. Computing, 1987, 39(4), 345-351.
 #'
-#'  \insertRef{JohAraMcGSch1991}{eaf}
+#' \insertAllCited{}
 #'
 #'@examples 
 #' data(gcp2x2)
