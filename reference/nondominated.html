@@ -44,8 +44,9 @@
 <meta property="og:title" content="Identify, remove and rank dominated points according to Pareto optimality — is_nondominated" />
 <meta property="og:description" content="Identify nondominated points with is_nondominated and remove dominated
 ones with filter_dominated.
-pareto_rank ranks points according to Pareto-optimality, which is also called
-nondominated sorting (Deb et al., 2002)." />
+pareto_rank() ranks points according to Pareto-optimality, which is also called
+nondominated sorting (Deb et al. 2002)
+." />
 
 
 
@@ -124,8 +125,9 @@ nondominated sorting (Deb et al., 2002)." />
     <div class="ref-description">
     <p>Identify nondominated points with <code>is_nondominated</code> and remove dominated
 ones with <code>filter_dominated</code>.</p>
-<p><code>pareto_rank</code> ranks points according to Pareto-optimality, which is also called
-nondominated sorting (Deb et al., 2002).</p>
+<p><code>pareto_rank()</code> ranks points according to Pareto-optimality, which is also called
+nondominated sorting (Deb et al. 2002)
+.</p>
     </div>
 
     <pre class="usage"><span class='fu'>is_nondominated</span>(<span class='no'>data</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>keep_weakly</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
@@ -162,23 +164,28 @@ of nondominated points.</p></td>
 as the number of rows of <code>data</code>, where <code>TRUE</code> means that the
 point is not dominated by any other point.</p>
 <p><code>filter_dominated</code> returns a matrix or data.frame with only mutually nondominated points.</p>
-<p><code>pareto_rank</code> returns an integer vector of the same length as
+<p><code>pareto_rank()</code> returns an integer vector of the same length as
 the number of rows of <code>data</code>, where each value gives the rank of each
 point.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>pareto_rank</code> is meant to be used like <code><a href='https://rdrr.io/r/base/rank.html'>rank()</a></code>, but it
+    <p><code>pareto_rank()</code> is meant to be used like <code><a href='https://rdrr.io/r/base/rank.html'>rank()</a></code>, but it
 assigns ranks according to Pareto dominance. Duplicated points are kept on
 the same front. When <code>ncol(data) == 2</code>, the code uses the \(O(n
-  \log n)\) algorithm by Jensen (2003).</p>
+  \log n)\) algorithm by Jensen (2003)
+.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Deb, K., S. Agrawal, A. Pratap, and T. Meyarivan. A fast elitist non-dominated
-sorting genetic algorithm for multi-objective optimization: NSGA-II.
-IEEE Transactions on Evolutionary Computation, 6(2): 182-197, 2002.</p>
-<p>M. T. Jensen. Reducing the run-time complexity of multiobjective EAs: The
-NSGA-II and other algorithms. IEEE Transactions on Evolutionary Computation,
-7(5):503–515, 2003.</p>
+    <p>Kalyanmoy Deb, A. Pratap, S. Agarwal, T. Meyarivan (2002).
+&#8220;A fast and elitist multi-objective genetic
+                  algorithm: NSGA-II.&#8221;
+<em>IEEE Transactions on Evolutionary Computation</em>, <b>6</b>(2), 182--197.
+doi: <a href='https://doi.org/10.1109/4235.996017'>10.1109/4235.996017</a>
+.<br /><br /> M.
+T. Jensen (2003).
+&#8220;Reducing the run-time complexity of multiobjective
+                  EAs: The NSGA-II and other algorithms.&#8221;
+<em>IEEE Transactions on Evolutionary Computation</em>, <b>7</b>(5), 503--515.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>path_A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span><span class='kw'>=</span><span class='st'>"eaf"</span>),<span class='st'>"extdata"</span>,<span class='st'>"ALG_1_dat"</span>)
