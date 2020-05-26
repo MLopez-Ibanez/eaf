@@ -15,5 +15,8 @@ test_that("normalise", {
                my.2d.matrix(0, 0.5, 1, 1, 0.5, 0))
 
   expect_equal(normalise(my.2d.matrix(1,1,2,2)), my.2d.matrix(1,1,1,1))
- 
+
+  df <- as.data.frame(x)
+  expect_equal(normalise(df),
+               as.matrix(data.frame(V1=c(1,1.5,2), V2=c(1,1.5,2)))) 
 })

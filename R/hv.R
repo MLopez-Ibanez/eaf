@@ -420,10 +420,14 @@ normalise <- function(data, to.range = c(1, 2), lower = NA, upper = NA, maximise
 
   if (length(to.range) != 2L)
     stop("to.range must be a vector of length 2")
-  return(t(.Call(normalise_C,
+  
+  z <- t(.Call(normalise_C,
                  as.double(t(data)),
                  as.integer(nobjs),
                  as.integer(npoints),
                  as.double(to.range),
-                 lower, upper, maximise)))
+                 lower, upper, maximise))
+  colnames(z) <- colnames(data)
+  rownames(z) <- rownames(data)
+  return(z)
 }
