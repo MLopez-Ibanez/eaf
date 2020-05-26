@@ -309,9 +309,11 @@ matrix.maximise <- function(z, maximise)
     # gives error: Error in
     # data.frame(value, row.names = rn, check.names = FALSE, check.rows = FALSE) : 
     # row names supplied are of the wrong length
+    row_names <- rownames(z)
     rownames(z) <- NULL
     x <- which(maximise)
     z[, x] <- -z[, x]
+    rownames(z) <- row_names
   } else {
     x <- ifelse(maximise, -1L, 1L)
     z <- t(t(z) * x)
