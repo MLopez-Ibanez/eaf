@@ -54,7 +54,7 @@ NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
 	$(Reval) 'pkgbuild::compile_dll();devtools::document()'
 
 pkgdown: gendoc
-	$(Reval) 'pkgdown::build_site(run_dont_run = TRUE, document = FALSE)'
+	$(Reval) 'pkgdown::build_site(run_dont_run = TRUE)'
 
 build: version
 	@$(MAKE) scripts
@@ -140,7 +140,7 @@ remotecran: releasebuild
 	$(Reval) "rhub::check_for_cran($(RHUB_COMMON_ARGS), show_status = TRUE)"
 
 macbuild: releasebuild
-	$(Reval) "rhub::check(platform='macos-elcapitan-release', $(RHUB_COMMON_ARGS))"
+	$(Reval) "rhub::check(platform='macos-highsierra-release-cran', $(RHUB_COMMON_ARGS))"
 
 winbuild: releasebuild
 	@echo "Winbuild: http://win-builder.r-project.org/"
