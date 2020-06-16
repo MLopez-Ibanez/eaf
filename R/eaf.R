@@ -1355,7 +1355,7 @@ seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE,
   return(intervals)
 }
 
-#' Plot the Empirical Attainment Function for two objectives generic
+#' Plot the Empirical Attainment Function for two objectives
 #' 
 #' Computes and plots the Empirical Attainment Function, either as
 #' attainment surfaces for certain percentiles or as points.
