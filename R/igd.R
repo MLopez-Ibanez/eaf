@@ -33,6 +33,11 @@
 #' also used the name D-metric for the same concept with \eqn{p=1} and later
 #' papers have often used IGD/GD with \eqn{p=1}.
 #'
+#' IGDX is the application of IGD to decision vectors instead of objective
+#' vectors to measure closeness and diversity in decision
+#' space \citep{ZhoZhaJin2009igdx}. One can use the functions here directly,
+#' just passing the decision vectors as `data`.
+#'
 #' The modified inverted generational distanced (IGD+) was proposed by
 #' \citet{IshMasTanNoj2015igd} to ensure that IGD+ is weakly Pareto compliant,
 #' similarly to unary epsilon. It averages over \eqn{|R|} within the exponent
@@ -60,6 +65,8 @@
 #' ref <- filter_dominated(rbind(A1, A2))
 #' igd(A1, ref)
 #' igd(A2, ref)
+#' 
+#' @aliases IGDX
 #' @md
 igd <- function(data, reference, maximise = FALSE)
 {

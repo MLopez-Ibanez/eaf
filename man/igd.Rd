@@ -2,6 +2,7 @@
 % Please edit documentation in R/igd.R
 \name{igd}
 \alias{igd}
+\alias{IGDX}
 \alias{igd_plus}
 \alias{avg_hausdorff_dist}
 \title{Inverted Generational Distance (IGD and IGD+) and Averaged Hausdorff Distance}
@@ -50,6 +51,11 @@ have been mentioned first by \citet{CoeSie2004igd}, however, some people
 also used the name D-metric for the same concept with \eqn{p=1} and later
 papers have often used IGD/GD with \eqn{p=1}.
 
+IGDX is the application of IGD to decision vectors instead of objective
+vectors to measure closeness and diversity in decision
+space \citep{ZhoZhaJin2009igdx}. One can use the functions here directly,
+just passing the decision vectors as \code{data}.
+
 The modified inverted generational distanced (IGD+) was proposed by
 \citet{IshMasTanNoj2015igd} to ensure that IGD+ is weakly Pareto compliant,
 similarly to unary epsilon. It averages over \eqn{|R|} within the exponent
@@ -73,6 +79,7 @@ A2 <- read_datasets(path.A2)[,1:2]
 ref <- filter_dominated(rbind(A1, A2))
 igd(A1, ref)
 igd(A2, ref)
+
 # IGD+ (Pareto compliant)
 igd_plus(A1, ref)
 igd_plus(A2, ref)
