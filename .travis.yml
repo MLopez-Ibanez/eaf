@@ -18,15 +18,15 @@ jobs:
       dist: trusty
       warnings_are_errors: false
 
-r_binary_packages:
-  - modeltools
-  - Rdpack
-  - withr
-  - testthat
-  - rlang
-  - openssl
-  - xml2
-  - fansi
+# r_binary_packages:
+#   - modeltools
+#   - Rdpack
+#   - withr
+#   - testthat
+#   - rlang
+#   - openssl
+#   - xml2
+#   - fansi
 
 addons:    
   apt:
