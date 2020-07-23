@@ -585,7 +585,7 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' \dontrun{ # These take time
 #' eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2)
 #' eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2,
-#' 	percentiles=c(0,50,100), cex = 1.4, lty = c(2,1,2), lwd = c(2,2,2),
+#' 	percentiles=c(0,50,100), cex.axis = 1.2, lty = c(2,1,2), lwd = c(2,2,2),
 #'      col = c("black","blue","grey50"))
 #'
 #' extdata_path <- system.file(package = "eaf", "extdata")
@@ -640,6 +640,7 @@ eafplot.default <-
             lty = c("dashed", "solid", "solid", "solid", "dashed"),
             lwd = 1.75,
             pch = NA,
+            # FIXME: this allows partial matching if cex is passed, so passing cex has not effect. 
             cex.pch = par("cex"),
             las = par("las"),
             legend.pos = "topright",
@@ -731,7 +732,11 @@ eafplot.default <-
   ##     parameters 'xaxp' and 'yaxp' are set when the user coordinate
   ##     system is set up, and is not consulted when axes are drawn.
   ##     'len' _is unimplemented_ in R.
-  op <- par(cex = 1.0, cex.lab = 1.1, cex.axis = 1.0, lab = c(10,5,7))
+  args <- list(...)
+  args <- args[names(args) %in% c("cex", "cex.lab", "cex.axis", "lab")]
+  par_default <- list(cex = 1.0, cex.lab = 1.1, cex.axis = 1.0, lab = c(10,5,7))
+  par_default <- modifyList(par_default, args)
+  op <- par(par_default)
   on.exit(par(op))
   
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
