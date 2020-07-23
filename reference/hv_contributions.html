@@ -130,7 +130,7 @@ zero contribution even if not dominated, because removing one of them does
 not change the hypervolume dominated by the remaining set.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hv_contributions</span>(<span class='no'>data</span>, <span class='no'>reference</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>hv_contributions</span>(<span class='kw'>data</span>, <span class='kw'>reference</span>, maximise = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,14 +177,17 @@ doi: <a href='https://doi.org/10.1109/TEVC.2009.2015575'>10.1109/TEVC.2009.20155
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='hypervolume.html'>hypervolume</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Manuel López-Ibáñez</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SPEA2minstoptimeRichmond</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SPEA2minstoptimeRichmond</span>)
 <span class='co'># The second objective must be maximized</span>
 <span class='co'># We calculate the hypervolume contribution of each point of the union of all sets.</span>
-<span class='fu'>hv_contributions</span>(<span class='no'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span>:<span class='fl'>2</span>], <span class='kw'>reference</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>250</span>, <span class='fl'>0</span>),
-            <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt;   [1]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
+<span class='fu'>hv_contributions</span>(<span class='kw'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], reference = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>250</span>, <span class='fl'>0</span>),
+            maximise = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt;   [1]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
 #&gt;   [8]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
 #&gt;  [15]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
 #&gt;  [22]     0.000     4.380     0.000     0.000     0.000     0.000     0.000
@@ -211,11 +214,10 @@ doi: <a href='https://doi.org/10.1109/TEVC.2009.2015575'>10.1109/TEVC.2009.20155
 <span class='co'># Duplicated points show zero contribution above, even if not</span>
 <span class='co'># dominated. However, filter_dominated removes all duplicates except</span>
 <span class='co'># one. Hence, there are more points below with nonzero contribution.</span>
-<span class='fu'>hv_contributions</span>(<span class='fu'><a href='nondominated.html'>filter_dominated</a></span>(<span class='no'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span>:<span class='fl'>2</span>], <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>)),
-                 <span class='kw'>reference</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>250</span>, <span class='fl'>0</span>), <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt;  [1]      8.197  89283.920   7959.940   1945.800   8147.132     26.255
+<span class='fu'>hv_contributions</span>(<span class='fu'><a href='is_nondominated.html'>filter_dominated</a></span>(<span class='kw'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], maximise = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>)),
+                 reference = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>250</span>, <span class='fl'>0</span>), maximise = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt;  [1]      8.197  89283.920   7959.940   1945.800   8147.132     26.255
 #&gt;  [7] 255278.978   3698.640   2242.660      5.971   3069.000    779.240
-#&gt; [13]  41994.755   2294.064     73.054 193143.324</div><div class='input'>
-</div></pre>
+#&gt; [13]  41994.755   2294.064     73.054 193143.324</div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

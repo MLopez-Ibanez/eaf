@@ -125,7 +125,7 @@ network.</h1>
     <p>The data has the only goal of providing an example of use of eafplot.</p>
     </div>
 
-    <pre class="usage"><span class='no'>SPEA2relativeRichmond</span></pre>
+    <pre class="usage"><span class='kw'>SPEA2relativeRichmond</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -140,13 +140,13 @@ Ph.D. thesis, School of Engineering and the Built Environment, Edinburgh Napier 
 <a href='http://researchrepository.napier.ac.uk/id/eprint/3044'>http://researchrepository.napier.ac.uk/id/eprint/3044</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>HybridGA</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SPEA2relativeRichmond</span>)
-<span class='fu'><a href='eafplot.html'>eafplot</a></span> (<span class='no'>SPEA2relativeRichmond</span>, <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>),
-        <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='no'>C</span>[<span class='no'>E</span>]), <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Total switches"</span>,
-        <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>140</span>), <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>),
-        <span class='kw'>extra.points</span> <span class='kw'>=</span> <span class='no'>HybridGA</span>$<span class='no'>richmond</span>, <span class='kw'>extra.lty</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-        <span class='kw'>extra.legend</span> <span class='kw'>=</span> <span class='st'>"Hybrid GA"</span>)</div><div class='img'><img src='SPEA2relativeRichmond-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>HybridGA</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SPEA2relativeRichmond</span>)
+<span class='fu'><a href='eafplot.default.html'>eafplot</a></span> (<span class='kw'>SPEA2relativeRichmond</span>, percentiles = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>),
+        xlab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>C</span>[<span class='kw'>E</span>]), ylab = <span class='st'>"Total switches"</span>,
+        xlim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>140</span>), ylim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>),
+        extra.points = <span class='kw'>HybridGA</span><span class='op'>$</span><span class='kw'>richmond</span>, extra.lty = <span class='st'>"dashed"</span>,
+        extra.legend = <span class='st'>"Hybrid GA"</span>)</div><div class='img'><img src='SPEA2relativeRichmond-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

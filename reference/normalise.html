@@ -116,7 +116,7 @@ given, they are used for the normalisation." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Normalise points</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/hv.R'><code>R/hv.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/normalise.R'><code>R/normalise.R</code></a></small>
     <div class="hidden name"><code>normalise.Rd</code></div>
     </div>
 
@@ -126,8 +126,8 @@ minimum value will correspond to 1 and the maximum to 2. If bounds are
 given, they are used for the normalisation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>normalise</span>(<span class='no'>data</span>, <span class='kw'>to.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), <span class='kw'>lower</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>upper</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>normalise</span>(<span class='kw'>data</span>, to.range = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>), lower = <span class='fl'>NA</span>, upper = <span class='fl'>NA</span>,
+  maximise = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,33 +160,35 @@ objective.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A numerical matrix</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Manuel López-Ibáñez</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SPEA2minstoptimeRichmond</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SPEA2minstoptimeRichmond</span>)
 <span class='co'># The second objective must be maximized</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span>:<span class='fl'>2</span>])</div><div class='output co'>#&gt;        V1    V2
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='kw'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>])</div><div class='output co'>#&gt;        V1    V2
 #&gt; 1 105.832   357
 #&gt; 2 108.187   911
 #&gt; 3 108.519  3960
 #&gt; 4 108.641  7560
 #&gt; 5 108.896 16532
 #&gt; 6 112.556 19957</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>normalise</span>(<span class='no'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span>:<span class='fl'>2</span>], <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>)))</div><div class='output co'>#&gt;            V1       V2
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>normalise</span>(<span class='kw'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], maximise = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>)))</div><div class='output co'>#&gt;            V1       V2
 #&gt; [1,] 1.044174 2.000000
 #&gt; [2,] 1.059891 1.993561
 #&gt; [3,] 1.062107 1.958126
 #&gt; [4,] 1.062921 1.916286
 #&gt; [5,] 1.064623 1.812013
 #&gt; [6,] 1.089049 1.772207</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>normalise</span>(<span class='no'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span>:<span class='fl'>2</span>], <span class='kw'>to.range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>1</span>), <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>)))</div><div class='output co'>#&gt;              V1        V2
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>normalise</span>(<span class='kw'>SPEA2minstoptimeRichmond</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], to.range = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>1</span>), maximise = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>)))</div><div class='output co'>#&gt;              V1        V2
 #&gt; [1,] 0.04417408 1.0000000
 #&gt; [2,] 0.05989095 0.9935614
 #&gt; [3,] 0.06210666 0.9581256
 #&gt; [4,] 0.06292087 0.9162860
 #&gt; [5,] 0.06462270 0.8120126
-#&gt; [6,] 0.08904891 0.7722069</div><div class='input'>
-</div></pre>
+#&gt; [6,] 0.08904891 0.7722069</div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

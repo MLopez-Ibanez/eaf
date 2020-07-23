@@ -105,7 +105,9 @@
 <ol>
 <li>
 <p>Install within R (automatic download, internet connection required). Invoke R, then</p>
-<div class="sourceCode" id="cb1"><pre class="r">    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"eaf"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"eaf"</span>)
+</pre></div>
 </li>
 <li>
 <p><a href="https://cran.r-project.org/package=eaf">Download the <strong>eaf</strong> package from CRAN</a> (you may also need to download and install first the <a href="https://cran.r-project.org/package=modeltools">package modeltools</a>), and invoke at the command-line:</p>
@@ -121,13 +123,15 @@
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>Once the <strong>eaf</strong> package is installed, the following R commands will give more information:</p>
-<div class="sourceCode" id="cb3"><pre class="r">    <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">eaf</span>)
-    ?<span class="no">eaf</span>
-    ?<span class="no">eafplot</span>
-    ?<span class="no">eafdiffplot</span>
-    ?<span class="no">read.data.sets</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="no">eafplot</span>)
-    <span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="no">eafdiffplot</span>) <span class="co"># This one takes some time</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+    <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://lopez-ibanez.eu/eaftools">eaf</a></span>)
+    <span class="op">?</span><span class="kw">eaf</span>
+    <span class="op">?</span><span class="kw">eafplot</span>
+    <span class="op">?</span><span class="kw">eafdiffplot</span>
+    <span class="op">?</span><span class="kw">read.data.sets</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="kw">eafplot</span>)
+    <span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="kw">eafdiffplot</span>) <span class="co"># This one takes some time</span>
+</pre></div>
 <p>Apart from the main R package, the source code contains the following extras in the directory <code>inst/</code> (after installation, these files can be found at the directory printed by the R command <code><a href="https://rdrr.io/r/base/system.file.html">system.file(package="eaf")</a></code>):</p>
 <ul>
 <li>

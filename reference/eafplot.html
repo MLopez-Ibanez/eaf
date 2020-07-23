@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot the Empirical Attainment Function for two objectives generic — eafplot.default • eaf</title>
+<title>Plot the Empirical Attainment Function for two objectives — eafplot.default • eaf</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plot the Empirical Attainment Function for two objectives generic — eafplot.default" />
+<meta property="og:title" content="Plot the Empirical Attainment Function for two objectives — eafplot.default" />
 <meta property="og:description" content="Computes and plots the Empirical Attainment Function, either as
 attainment surfaces for certain percentiles or as points." />
 
@@ -114,7 +114,7 @@ attainment surfaces for certain percentiles or as points." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot the Empirical Attainment Function for two objectives generic</h1>
+    <h1>Plot the Empirical Attainment Function for two objectives</h1>
     <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/eaf.R'><code>R/eaf.R</code></a></small>
     <div class="hidden name"><code>eafplot.Rd</code></div>
     </div>
@@ -125,25 +125,25 @@ attainment surfaces for certain percentiles or as points.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for default</span>
-<span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='kw'>sets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span>), <span class='kw'>attsurfs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>log</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dashed"</span>, <span class='st'>"solid"</span>, <span class='st'>"solid"</span>,
-  <span class='st'>"solid"</span>, <span class='st'>"dashed"</span>), <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>1.75</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>cex.pch</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"cex"</span>),
-  <span class='kw'>las</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"las"</span>), <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"topright"</span>, <span class='kw'>legend.txt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>extra.points</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extra.legend</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extra.pch</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>25</span>,
-  <span class='kw'>extra.lwd</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>extra.lty</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>extra.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>FALSE</span>), <span class='kw'>xaxis.side</span> <span class='kw'>=</span> <span class='st'>"below"</span>,
-  <span class='kw'>yaxis.side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>axes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sci.notation</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+<span class='fu'>eafplot</span>(<span class='kw'>x</span>, sets = <span class='kw'>NULL</span>, groups = <span class='kw'>NULL</span>,
+  percentiles = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span>), attsurfs = <span class='kw'>NULL</span>, xlab = <span class='kw'>NULL</span>,
+  ylab = <span class='kw'>NULL</span>, xlim = <span class='kw'>NULL</span>, ylim = <span class='kw'>NULL</span>, log = <span class='st'>""</span>,
+  type = <span class='st'>"point"</span>, col = <span class='kw'>NULL</span>, lty = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"dashed"</span>, <span class='st'>"solid"</span>, <span class='st'>"solid"</span>,
+  <span class='st'>"solid"</span>, <span class='st'>"dashed"</span>), lwd = <span class='fl'>1.75</span>, pch = <span class='fl'>NA</span>, cex.pch = <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"cex"</span>),
+  las = <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"las"</span>), legend.pos = <span class='st'>"topright"</span>, legend.txt = <span class='kw'>NULL</span>,
+  extra.points = <span class='kw'>NULL</span>, extra.legend = <span class='kw'>NULL</span>, extra.pch = <span class='fl'>4</span><span class='op'>:</span><span class='fl'>25</span>,
+  extra.lwd = <span class='fl'>0.5</span>, extra.lty = <span class='fl'>NA</span>, extra.col = <span class='st'>"black"</span>,
+  maximise = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>FALSE</span>), xaxis.side = <span class='st'>"below"</span>,
+  yaxis.side = <span class='st'>"left"</span>, axes = <span class='fl'>TRUE</span>, sci.notation = <span class='fl'>FALSE</span>, <span class='kw'>...</span>)
 
-<span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>eafplot</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
 
 <span class='co'># S3 method for formula</span>
-<span class='fu'>eafplot</span>(<span class='no'>formula</span>, <span class='no'>data</span>, <span class='kw'>groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>)
+<span class='fu'>eafplot</span>(<span class='kw'>formula</span>, <span class='kw'>data</span>, groups = <span class='kw'>NULL</span>, subset = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>)
 
 <span class='co'># S3 method for list</span>
-<span class='fu'>eafplot</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>eafplot</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -277,46 +277,46 @@ solution quality over time of a collection of runs of a stochastic optimizer.</p
     <div class='dont-index'><p><code><a href='read_datasets.html'>read_datasets()</a></code> <code><a href='eafdiffplot.html'>eafdiffplot()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gcp2x2</span>)
-<span class='no'>tabucol</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='no'>gcp2x2</span>, <span class='no'>alg</span> <span class='kw'>!=</span> <span class='st'>"TSinN1"</span>)
-<span class='no'>tabucol</span>$<span class='no'>alg</span> <span class='kw'>&lt;-</span> <span class='no'>tabucol</span>$<span class='no'>alg</span>[<span class='kw'>drop</span><span class='kw'>=</span><span class='fl'>TRUE</span>]
-<span class='fu'>eafplot</span>(<span class='no'>time</span> + <span class='no'>best</span> ~ <span class='no'>run</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>tabucol</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>tabucol</span>$<span class='no'>inst</span><span class='kw'>==</span><span class='st'>"DSJC500.5"</span>)</div><div class='img'><img src='eafplot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>gcp2x2</span>)
+<span class='kw'>tabucol</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='kw'>gcp2x2</span>, <span class='kw'>alg</span> != <span class='st'>"TSinN1"</span>)
+<span class='kw'>tabucol</span><span class='op'>$</span><span class='kw'>alg</span> <span class='op'>&lt;-</span> <span class='kw'>tabucol</span><span class='op'>$</span><span class='kw'>alg</span>[drop=<span class='fl'>TRUE</span>]
+<span class='fu'>eafplot</span>(<span class='kw'>time</span> <span class='op'>+</span> <span class='kw'>best</span> <span class='op'>~</span> <span class='kw'>run</span>, data = <span class='kw'>tabucol</span>, subset = <span class='kw'>tabucol</span><span class='op'>$</span><span class='kw'>inst</span><span class='op'>==</span><span class='st'>"DSJC500.5"</span>)</div><div class='img'><img src='eafplot-1.png' alt='' width='700' height='433' /></div><div class='input'>
  <span class='co'># These take time</span>
-<span class='fu'>eafplot</span>(<span class='no'>time</span> + <span class='no'>best</span> ~ <span class='no'>run</span> <span class='kw'>|</span> <span class='no'>inst</span>, <span class='kw'>groups</span><span class='kw'>=</span><span class='no'>alg</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>gcp2x2</span>)</div><div class='img'><img src='eafplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>eafplot</span>(<span class='no'>time</span> + <span class='no'>best</span> ~ <span class='no'>run</span> <span class='kw'>|</span> <span class='no'>inst</span>, <span class='kw'>groups</span><span class='kw'>=</span><span class='no'>alg</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>gcp2x2</span>,
-        <span class='kw'>percentiles</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>100</span>), <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>1.4</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>2</span>),
-     <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"black"</span>,<span class='st'>"blue"</span>,<span class='st'>"grey50"</span>))</div><div class='img'><img src='eafplot-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>extdata_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eaf"</span>, <span class='st'>"extdata"</span>)
-<span class='no'>A1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_path</span>, <span class='st'>"ALG_1_dat"</span>))
-<span class='no'>A2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>extdata_path</span>, <span class='st'>"ALG_2_dat"</span>))
-<span class='fu'>eafplot</span>(<span class='no'>A1</span>, <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>sci.notation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='eafplot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>eafplot</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>A1</span> <span class='kw'>=</span> <span class='no'>A1</span>, <span class='kw'>A2</span> <span class='kw'>=</span> <span class='no'>A2</span>), <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fl'>50</span>)</div><div class='img'><img src='eafplot-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>eafplot</span>(<span class='kw'>time</span> <span class='op'>+</span> <span class='kw'>best</span> <span class='op'>~</span> <span class='kw'>run</span> <span class='op'>|</span> <span class='kw'>inst</span>, groups=<span class='kw'>alg</span>, data=<span class='kw'>gcp2x2</span>)</div><div class='img'><img src='eafplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>eafplot</span>(<span class='kw'>time</span> <span class='op'>+</span> <span class='kw'>best</span> <span class='op'>~</span> <span class='kw'>run</span> <span class='op'>|</span> <span class='kw'>inst</span>, groups=<span class='kw'>alg</span>, data=<span class='kw'>gcp2x2</span>,
+	percentiles=c(0,50,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>0<span class='fl'>0</span>)<span class='fl'>50</span>c<span class='fl'>100</span>axis = 1.2, lt<span class='fl'>1.2</span> c(2,1,2<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>,<span class='fl'>2</span>l<span class='fl'>1</span>d<span class='fl'>2</span>= c(2,2,2<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>,<span class='fl'>2</span><span class='fl'>2</span><span class='fl'>2</span>
+     col = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"black"</span>,<span class='st'>"blue"</span>,<span class='st'>"grey50"</span>))</div><div class='img'><img src='eafplot-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>extdata_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(package = <span class='st'>"eaf"</span>, <span class='st'>"extdata"</span>)
+<span class='kw'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='kw'>extdata_path</span>, <span class='st'>"ALG_1_dat.xz"</span>))
+<span class='kw'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='kw'>extdata_path</span>, <span class='st'>"ALG_2_dat.xz"</span>))
+<span class='fu'>eafplot</span>(<span class='kw'>A1</span>, percentiles = <span class='fl'>50</span>, sci.notation = <span class='fl'>TRUE</span>)</div><div class='img'><img src='eafplot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>eafplot</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(A1 = <span class='kw'>A1</span>, A2 = <span class='kw'>A2</span>), percentiles = <span class='fl'>50</span>)</div><div class='img'><img src='eafplot-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## Save as a PDF file.</span>
 <span class='co'># dev.copy2pdf(file = "eaf.pdf", onefile = TRUE, width = 5, height = 4)</span>
 
 
 <span class='co'>## Using extra.points</span>
 <span class='co'># \dontrun{</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>HybridGA</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SPEA2relativeVanzyl</span>)
-<span class='fu'>eafplot</span>(<span class='no'>SPEA2relativeVanzyl</span>, <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>),
-        <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='no'>C</span>[<span class='no'>E</span>]), <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Total switches"</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>320</span>, <span class='fl'>400</span>),
-        <span class='kw'>extra.points</span> <span class='kw'>=</span> <span class='no'>HybridGA</span>$<span class='no'>vanzyl</span>, <span class='kw'>extra.legend</span> <span class='kw'>=</span> <span class='st'>"Hybrid GA"</span>)</div><div class='img'><img src='eafplot-6.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SPEA2relativeRichmond</span>)
-<span class='fu'>eafplot</span> (<span class='no'>SPEA2relativeRichmond</span>, <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>),
-         <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='no'>C</span>[<span class='no'>E</span>]), <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Total switches"</span>,
-         <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>140</span>), <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>),
-         <span class='kw'>extra.points</span> <span class='kw'>=</span> <span class='no'>HybridGA</span>$<span class='no'>richmond</span>, <span class='kw'>extra.lty</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-         <span class='kw'>extra.legend</span> <span class='kw'>=</span> <span class='st'>"Hybrid GA"</span>)</div><div class='img'><img src='eafplot-7.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>eafplot</span> (<span class='no'>SPEA2relativeRichmond</span>, <span class='kw'>percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>),
-         <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='no'>C</span>[<span class='no'>E</span>]), <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Total switches"</span>,
-         <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>140</span>), <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"area"</span>,
-         <span class='kw'>extra.points</span> <span class='kw'>=</span> <span class='no'>HybridGA</span>$<span class='no'>richmond</span>, <span class='kw'>extra.lty</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>,
-         <span class='kw'>extra.legend</span> <span class='kw'>=</span> <span class='st'>"Hybrid GA"</span>, <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"bottomright"</span>)</div><div class='img'><img src='eafplot-8.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>SPEA2minstoptimeRichmond</span>)
-<span class='no'>SPEA2minstoptimeRichmond</span>[,<span class='fl'>2</span>] <span class='kw'>&lt;-</span> <span class='no'>SPEA2minstoptimeRichmond</span>[,<span class='fl'>2</span>] / <span class='fl'>60</span>
-<span class='fu'>eafplot</span> (<span class='no'>SPEA2minstoptimeRichmond</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='no'>C</span>[<span class='no'>E</span>]),
-         <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Minimum idle time (minutes)"</span>, <span class='kw'>maximise</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>),
-         <span class='kw'>las</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>log</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"SPEA2 (Richmond)"</span>,
-         <span class='kw'>legend.pos</span> <span class='kw'>=</span> <span class='st'>"bottomright"</span>)</div><div class='img'><img src='eafplot-9.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>HybridGA</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SPEA2relativeVanzyl</span>)
+<span class='fu'>eafplot</span>(<span class='kw'>SPEA2relativeVanzyl</span>, percentiles = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>), 
+        xlab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>C</span>[<span class='kw'>E</span>]), ylab = <span class='st'>"Total switches"</span>, xlim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>320</span>, <span class='fl'>400</span>),
+        extra.points = <span class='kw'>HybridGA</span><span class='op'>$</span><span class='kw'>vanzyl</span>, extra.legend = <span class='st'>"Hybrid GA"</span>)</div><div class='img'><img src='eafplot-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SPEA2relativeRichmond</span>)
+<span class='fu'>eafplot</span> (<span class='kw'>SPEA2relativeRichmond</span>, percentiles = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>),
+         xlab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>C</span>[<span class='kw'>E</span>]), ylab = <span class='st'>"Total switches"</span>,
+         xlim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>140</span>), ylim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>),
+         extra.points = <span class='kw'>HybridGA</span><span class='op'>$</span><span class='kw'>richmond</span>, extra.lty = <span class='st'>"dashed"</span>,
+         extra.legend = <span class='st'>"Hybrid GA"</span>)</div><div class='img'><img src='eafplot-7.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>eafplot</span> (<span class='kw'>SPEA2relativeRichmond</span>, percentiles = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>),
+         xlab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>C</span>[<span class='kw'>E</span>]), ylab = <span class='st'>"Total switches"</span>,
+         xlim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>140</span>), ylim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>25</span>), type = <span class='st'>"area"</span>,
+         extra.points = <span class='kw'>HybridGA</span><span class='op'>$</span><span class='kw'>richmond</span>, extra.lty = <span class='st'>"dashed"</span>,
+         extra.legend = <span class='st'>"Hybrid GA"</span>, legend.pos = <span class='st'>"bottomright"</span>)</div><div class='img'><img src='eafplot-8.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SPEA2minstoptimeRichmond</span>)
+<span class='kw'>SPEA2minstoptimeRichmond</span>[,<span class='fl'>2</span>] <span class='op'>&lt;-</span> <span class='kw'>SPEA2minstoptimeRichmond</span>[,<span class='fl'>2</span>] <span class='op'>/</span> <span class='fl'>60</span>
+<span class='fu'>eafplot</span> (<span class='kw'>SPEA2minstoptimeRichmond</span>, xlab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>C</span>[<span class='kw'>E</span>]),
+         ylab = <span class='st'>"Minimum idle time (minutes)"</span>, maximise = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>),
+         las = <span class='fl'>1</span>, log = <span class='st'>"y"</span>, main = <span class='st'>"SPEA2 (Richmond)"</span>,
+         legend.pos = <span class='st'>"bottomright"</span>)</div><div class='img'><img src='eafplot-9.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
