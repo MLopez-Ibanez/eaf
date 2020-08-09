@@ -3,7 +3,7 @@
 \name{choose_eafdiffplot}
 \alias{choose_eafdiffplot}
 \alias{choose_eafdiff}
-\title{Plot empirical attainment function differences}
+\title{Interactively choose according to empirical attainment function differences}
 \usage{
 choose_eafdiffplot(data.left, data.right, intervals = 5,
   maximise = c(FALSE, FALSE),
@@ -42,23 +42,17 @@ positive differences, otherwise return those with negative differences but
 differences are converted to positive.}
 }
 \value{
-No return value.
+\code{matrix} where the first 4 columns give the coordinates of two
+corners of each rectangle and the last column. In both cases, the last
+column gives the positive differences in favor of the chosen side.
 }
 \description{
-Plot the differences between the empirical attainment functions of two
-data sets as a two-panel plot, where the left side shows the values of
-the left EAF minus the right EAF and the right side shows the
-differences in the other direction.
-}
-\details{
-This function calculates the differences between the EAFs of two
-data sets, and plots on the left the differences in favour
-of the left data set, and on the right the differences in favour of
-the right data set. By default, it also plots the grand best and worst
-attainment surfaces, that is, the 0\% and 100\%-attainment surfaces
-over all data. This two surfaces delimit the area where differences
-may exist. In addition, it also plots the 50\%-attainment surface of
-each data set.
+The function \code{choose_eafdiffplot()} creates the same plot as \code{eafdiffplot()}
+but waits for the user to click in one of the sides. Then it returns the
+rectangles the give the differences in favour of the chosen side. These
+rectangles may be used for interactive decision-making as shown in
+\citet{DiaLop2020ejor}. The function \code{choose_eafdiff} may be used in a
+non-interactive context.
 }
 \examples{
 
@@ -80,6 +74,9 @@ whv_A2 <- sapply(split.data.frame(A2[, 1:2], A2[, 3]),
                  whv_rect, rectangles=rectangles, reference=reference)
 boxplot(list(A1=whv_A1, A2=whv_A2), main = "Weighted hypervolume")
 }
+}
+\references{
+\insertAllCited{}
 }
 \seealso{
 \code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafdiffplot]{eafdiffplot()}}

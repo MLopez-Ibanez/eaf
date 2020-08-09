@@ -1,9 +1,11 @@
-#' Plot empirical attainment function differences 
+#' Interactively choose according to empirical attainment function differences 
 #' 
-#' Plot the differences between the empirical attainment functions of two
-#' data sets as a two-panel plot, where the left side shows the values of
-#' the left EAF minus the right EAF and the right side shows the
-#' differences in the other direction.
+#' The function `choose_eafdiffplot()` creates the same plot as `eafdiffplot()`
+#' but waits for the user to click in one of the sides. Then it returns the
+#' rectangles the give the differences in favour of the chosen side. These
+#' rectangles may be used for interactive decision-making as shown in
+#' \citet{DiaLop2020ejor}. The function `choose_eafdiff` may be used in a
+#' non-interactive context.
 #' 
 #' @param data.left,data.right Data frames corresponding to the input data of
 #'   left and right sides, respectively. Each data frame has at least three
@@ -23,17 +25,10 @@
 #' @param ... Other graphical parameters are passed down to
 #'   [eafdiffplot()].
 #' 
-#' @details
-#'   This function calculates the differences between the EAFs of two
-#'   data sets, and plots on the left the differences in favour
-#'   of the left data set, and on the right the differences in favour of
-#'   the right data set. By default, it also plots the grand best and worst
-#'   attainment surfaces, that is, the 0\% and 100\%-attainment surfaces
-#'   over all data. This two surfaces delimit the area where differences
-#'   may exist. In addition, it also plots the 50\%-attainment surface of
-#'   each data set.
 #' 
-#' @return No return value.
+#' @return `matrix` where the first 4 columns give the coordinates of two
+#'   corners of each rectangle and the last column. In both cases, the last
+#'   column gives the positive differences in favor of the chosen side.
 #' 
 #' @seealso    [read_datasets()], [eafdiffplot()]
 #' 
@@ -58,7 +53,10 @@
 #' boxplot(list(A1=whv_A1, A2=whv_A2), main = "Weighted hypervolume")
 #' }
 #'@keywords graphs
-#'@export
+#'
+#'@references
+#' \insertAllCited{}
+#' @export
 #'@md
 choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
                                maximise = c(FALSE, FALSE),
@@ -88,16 +86,15 @@ choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
 #' Identify largest EAF differences
 #' 
 #' Given a list of datasets, return the indexes of the pair with the largest
-#' EAF differences according to the method proposed by \citet{DiaLop2020dm}
+#' EAF differences according to the method proposed by \citet{DiaLop2020ejor}.
 #' 
 #'
 #' @param data (`list(1)`) A list of matrices with at least 3 columns
 #'
 #' @template arg_maximise
 #'
-#' @param intervals (`integer(1)`) \cr The
-#'   absolute range of the differences \eqn{[0, 1]} is partitioned into the number
-#'   of intervals provided.
+#' @param intervals (`integer(1)`) \cr The absolute range of the differences
+#'   \eqn{[0, 1]} is partitioned into the number of intervals provided.
 #'
 #' @template arg_refpoint
 #'

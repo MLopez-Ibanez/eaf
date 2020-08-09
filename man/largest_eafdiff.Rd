@@ -15,9 +15,8 @@ maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.}
 
-\item{intervals}{(\code{integer(1)}) \cr The
-absolute range of the differences \eqn{[0, 1]} is partitioned into the number
-of intervals provided.}
+\item{intervals}{(\code{integer(1)}) \cr The absolute range of the differences
+\eqn{[0, 1]} is partitioned into the number of intervals provided.}
 
 \item{reference}{(\code{numeric()}) \cr Reference point as a vector of numerical values.}
 
@@ -28,7 +27,7 @@ of intervals provided.}
 }
 \description{
 Given a list of datasets, return the indexes of the pair with the largest
-EAF differences according to the method proposed by \citet{DiaLop2020dm}
+EAF differences according to the method proposed by \citet{DiaLop2020ejor}.
 }
 \examples{
 # FIXME: This example is too large, we need a smaller one.
