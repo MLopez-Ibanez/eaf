@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute total weighted hypervolume given a set of rectangles — whv_rect • eaf</title>
+<title>Compute (total) weighted hypervolume given a set of rectangles — whv_rect • eaf</title>
 
 
 <!-- jquery -->
@@ -41,10 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Compute total weighted hypervolume given a set of rectangles — whv_rect" />
-<meta property="og:description" content="The details of the computation are given by Diaz and López-Ibáñez (2020)
-.
-TODO" />
+<meta property="og:title" content="Compute (total) weighted hypervolume given a set of rectangles — whv_rect" />
+<meta property="og:description" content="The function whv_rect() calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function total_whv_rect() calculates the total weighted hypervolume as hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect().`The details of the computation are given by Diaz and López-Ibáñez (2020)
+." />
 
 
 
@@ -115,15 +114,14 @@ TODO" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute total weighted hypervolume given a set of rectangles</h1>
+    <h1>Compute (total) weighted hypervolume given a set of rectangles</h1>
     <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/whv.R'><code>R/whv.R</code></a></small>
     <div class="hidden name"><code>whv_rect.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The details of the computation are given by Diaz and López-Ibáñez (2020)
-.
-TODO</p>
+    <p>The function <code>whv_rect()</code> calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function <code>total_whv_rect()</code> calculates the total weighted hypervolume as <code>hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect()</code>.`The details of the computation are given by Diaz and López-Ibáñez (2020)
+.</p>
     </div>
 
     <pre class="usage"><span class='fu'>whv_rect</span>(<span class='kw'>data</span>, <span class='kw'>rectangles</span>, <span class='kw'>reference</span>, maximise = <span class='fl'>FALSE</span>)
@@ -163,8 +161,8 @@ objective.</p></td>
     <tr>
       <th>scalefactor</th>
       <td><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>) real value within \((0,1]\) that scales
-the overall weight of the differences (psi \(\psi\) in the original
-paper).</p></td>
+the overall weight of the differences. This is parameter psi (\(\psi\)) in Diaz and López-Ibáñez (2020)
+.</p></td>
     </tr>
     </table>
 

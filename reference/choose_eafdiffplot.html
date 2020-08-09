@@ -47,7 +47,7 @@ but waits for the user to click in one of the sides. Then it returns the
 rectangles the give the differences in favour of the chosen side. These
 rectangles may be used for interactive decision-making as shown in
 Diaz and López-Ibáñez (2020)
-. The function choose_eafdiff may be used in a
+. The function choose_eafdiff() may be used in a
 non-interactive context." />
 
 
@@ -130,7 +130,7 @@ but waits for the user to click in one of the sides. Then it returns the
 rectangles the give the differences in favour of the chosen side. These
 rectangles may be used for interactive decision-making as shown in
 Diaz and López-Ibáñez (2020)
-. The function <code>choose_eafdiff</code> may be used in a
+. The function <code>choose_eafdiff()</code> may be used in a
 non-interactive context.</p>
     </div>
 
@@ -182,7 +182,7 @@ objective.</p></td>
     </tr>
     <tr>
       <th>left</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) With `left=TRUE' return the rectangles with
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) With <code>left=TRUE</code> return the rectangles with
 positive differences, otherwise return those with negative differences but
 differences are converted to positive.</p></td>
     </tr>
@@ -204,7 +204,7 @@ doi: <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>10.1016/j.ejor.2020.07
 .</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='read_datasets.html'>read_datasets()</a></code>, <code><a href='eafdiffplot.html'>eafdiffplot()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='read_datasets.html'>read_datasets()</a></code>, <code><a href='eafdiffplot.html'>eafdiffplot()</a></code>, <code><a href='whv_rect.html'>whv_rect()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -220,11 +220,16 @@ doi: <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>10.1016/j.ejor.2020.07
 }
 <span class='kw'>reference</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='kw'>A1</span>[, <span class='fl'>1</span>], <span class='kw'>A2</span>[, <span class='fl'>1</span>]), <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='kw'>A1</span>[, <span class='fl'>2</span>], <span class='kw'>A2</span>[, <span class='fl'>2</span>]))
 <span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span>(<span class='kw'>A1</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], <span class='kw'>A1</span>[,<span class='fl'>3</span>])
+<span class='kw'>hv_A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span>(<span class='kw'>A1</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], <span class='kw'>A1</span>[, <span class='fl'>3</span>]),
+                 <span class='kw'>hypervolume</span>, reference=<span class='kw'>reference</span>)
+<span class='kw'>hv_A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span>(<span class='kw'>A2</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], <span class='kw'>A2</span>[, <span class='fl'>3</span>]),
+                 <span class='kw'>hypervolume</span>, reference=<span class='kw'>reference</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(A1=<span class='kw'>hv_A1</span>, A2=<span class='kw'>hv_A2</span>), main = <span class='st'>"Hypervolume"</span>)</div><div class='img'><img src='choose_eafdiffplot-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='kw'>whv_A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span>(<span class='kw'>A1</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], <span class='kw'>A1</span>[, <span class='fl'>3</span>]),
                  <span class='kw'>whv_rect</span>, rectangles=<span class='kw'>rectangles</span>, reference=<span class='kw'>reference</span>)
 <span class='kw'>whv_A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span>(<span class='kw'>A2</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], <span class='kw'>A2</span>[, <span class='fl'>3</span>]),
                  <span class='kw'>whv_rect</span>, rectangles=<span class='kw'>rectangles</span>, reference=<span class='kw'>reference</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(A1=<span class='kw'>whv_A1</span>, A2=<span class='kw'>whv_A2</span>), main = <span class='st'>"Weighted hypervolume"</span>)</div><div class='img'><img src='choose_eafdiffplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(A1=<span class='kw'>whv_A1</span>, A2=<span class='kw'>whv_A2</span>), main = <span class='st'>"Weighted hypervolume"</span>)</div><div class='img'><img src='choose_eafdiffplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
