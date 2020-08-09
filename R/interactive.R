@@ -4,7 +4,7 @@
 #' but waits for the user to click in one of the sides. Then it returns the
 #' rectangles the give the differences in favour of the chosen side. These
 #' rectangles may be used for interactive decision-making as shown in
-#' \citet{DiaLop2020ejor}. The function `choose_eafdiff` may be used in a
+#' \citet{DiaLop2020ejor}. The function `choose_eafdiff()` may be used in a
 #' non-interactive context.
 #' 
 #' @param data.left,data.right Data frames corresponding to the input data of
@@ -30,7 +30,7 @@
 #'   corners of each rectangle and the last column. In both cases, the last
 #'   column gives the positive differences in favor of the chosen side.
 #' 
-#' @seealso    [read_datasets()], [eafdiffplot()]
+#' @seealso    [read_datasets()], [eafdiffplot()], [whv_rect()]
 #' 
 #' @examples
 #'
@@ -46,6 +46,12 @@
 #' }
 #' reference <- c(max(A1[, 1], A2[, 1]), max(A1[, 2], A2[, 2]))
 #' x <- split.data.frame(A1[,1:2], A1[,3])
+#' hv_A1 <- sapply(split.data.frame(A1[, 1:2], A1[, 3]),
+#'                  hypervolume, reference=reference)
+#' hv_A2 <- sapply(split.data.frame(A2[, 1:2], A2[, 3]),
+#'                  hypervolume, reference=reference)
+#' boxplot(list(A1=hv_A1, A2=hv_A2), main = "Hypervolume")
+#'
 #' whv_A1 <- sapply(split.data.frame(A1[, 1:2], A1[, 3]),
 #'                  whv_rect, rectangles=rectangles, reference=reference)
 #' whv_A2 <- sapply(split.data.frame(A2[, 1:2], A2[, 3]),
@@ -166,7 +172,7 @@ largest_eafdiff <- function(data, maximise = FALSE, intervals = 5, reference,
 #' @param x (`matrix()`) Matrix of rectangles representing EAF differences
 #'   (returned by [eafdiff()] with `rectangles=TRUE`).
 #' 
-#' @param left (`logical(1)`) With `left=TRUE' return the rectangles with
+#' @param left (`logical(1)`) With `left=TRUE` return the rectangles with
 #'   positive differences, otherwise return those with negative differences but
 #'   differences are converted to positive.
 #' 

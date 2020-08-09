@@ -1,8 +1,7 @@
-#' Compute total weighted hypervolume given a set of rectangles
+#' Compute (total) weighted hypervolume given a set of rectangles
 #' 
-#' The details of the computation are given by \citet{DiaLop2020ejor}.
-#' TODO
-#'
+#' The function `whv_rect()` calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function `total_whv_rect()` calculates the total weighted hypervolume as `hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect()`.`The details of the computation are given by \citet{DiaLop2020ejor}.
+#' 
 #' @template arg_data
 #'
 #' @param rectangles (`matrix()`) weighted rectangles that will bias the
@@ -87,8 +86,7 @@ whv_rect <- function(data, rectangles, reference, maximise = FALSE)
 #' @template arg_ideal
 #' 
 #' @param scalefactor (`numeric(1)`) real value within \eqn{(0,1]} that scales
-#'   the overall weight of the differences (psi \eqn{\psi} in the original
-#'   paper).
+#'   the overall weight of the differences. This is parameter psi (\eqn{\psi}) in \citet{DiaLop2020ejor}.
 #'
 #' @examples
 #' total_whv_rect (matrix(2, ncol=2), rectangles, reference = 6, ideal = c(1,1))

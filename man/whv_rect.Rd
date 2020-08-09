@@ -3,7 +3,7 @@
 \name{whv_rect}
 \alias{whv_rect}
 \alias{total_whv_rect}
-\title{Compute total weighted hypervolume given a set of rectangles}
+\title{Compute (total) weighted hypervolume given a set of rectangles}
 \usage{
 whv_rect(data, rectangles, reference, maximise = FALSE)
 
@@ -28,15 +28,13 @@ objective.}
 \item{ideal}{(\code{numeric()}) \cr Ideal point as a vector of numerical values.}
 
 \item{scalefactor}{(\code{numeric(1)}) real value within \eqn{(0,1]} that scales
-the overall weight of the differences (psi \eqn{\psi} in the original
-paper).}
+the overall weight of the differences. This is parameter psi (\eqn{\psi}) in \citet{DiaLop2020ejor}.}
 }
 \value{
 A single numerical value.
 }
 \description{
-The details of the computation are given by \citet{DiaLop2020ejor}.
-TODO
+The function \code{whv_rect()} calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function \code{total_whv_rect()} calculates the total weighted hypervolume as \code{hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect()}.`The details of the computation are given by \citet{DiaLop2020ejor}.
 }
 \details{
 TODO

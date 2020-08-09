@@ -37,7 +37,7 @@ objective.}
 \item{x}{(\code{matrix()}) Matrix of rectangles representing EAF differences
 (returned by \code{\link[=eafdiff]{eafdiff()}} with \code{rectangles=TRUE}).}
 
-\item{left}{(\code{logical(1)}) With `left=TRUE' return the rectangles with
+\item{left}{(\code{logical(1)}) With \code{left=TRUE} return the rectangles with
 positive differences, otherwise return those with negative differences but
 differences are converted to positive.}
 }
@@ -51,7 +51,7 @@ The function \code{choose_eafdiffplot()} creates the same plot as \code{eafdiffp
 but waits for the user to click in one of the sides. Then it returns the
 rectangles the give the differences in favour of the chosen side. These
 rectangles may be used for interactive decision-making as shown in
-\citet{DiaLop2020ejor}. The function \code{choose_eafdiff} may be used in a
+\citet{DiaLop2020ejor}. The function \code{choose_eafdiff()} may be used in a
 non-interactive context.
 }
 \examples{
@@ -68,6 +68,12 @@ if (interactive()) {
 }
 reference <- c(max(A1[, 1], A2[, 1]), max(A1[, 2], A2[, 2]))
 x <- split.data.frame(A1[,1:2], A1[,3])
+hv_A1 <- sapply(split.data.frame(A1[, 1:2], A1[, 3]),
+                 hypervolume, reference=reference)
+hv_A2 <- sapply(split.data.frame(A2[, 1:2], A2[, 3]),
+                 hypervolume, reference=reference)
+boxplot(list(A1=hv_A1, A2=hv_A2), main = "Hypervolume")
+
 whv_A1 <- sapply(split.data.frame(A1[, 1:2], A1[, 3]),
                  whv_rect, rectangles=rectangles, reference=reference)
 whv_A2 <- sapply(split.data.frame(A2[, 1:2], A2[, 3]),
@@ -79,6 +85,6 @@ boxplot(list(A1=whv_A1, A2=whv_A2), main = "Weighted hypervolume")
 \insertAllCited{}
 }
 \seealso{
-\code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafdiffplot]{eafdiffplot()}}
+\code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafdiffplot]{eafdiffplot()}}, \code{\link[=whv_rect]{whv_rect()}}
 }
 \keyword{graphs}
