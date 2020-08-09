@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot empirical attainment function differences — choose_eafdiffplot • eaf</title>
+<title>Interactively choose according to empirical attainment function differences — choose_eafdiffplot • eaf</title>
 
 
 <!-- jquery -->
@@ -41,11 +41,14 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plot empirical attainment function differences — choose_eafdiffplot" />
-<meta property="og:description" content="Plot the differences between the empirical attainment functions of two
-data sets as a two-panel plot, where the left side shows the values of
-the left EAF minus the right EAF and the right side shows the
-differences in the other direction." />
+<meta property="og:title" content="Interactively choose according to empirical attainment function differences — choose_eafdiffplot" />
+<meta property="og:description" content="The function choose_eafdiffplot() creates the same plot as eafdiffplot()
+but waits for the user to click in one of the sides. Then it returns the
+rectangles the give the differences in favour of the chosen side. These
+rectangles may be used for interactive decision-making as shown in
+Diaz_JEandLopez-Ibanez (2020)
+. The function choose_eafdiff may be used in a
+non-interactive context." />
 
 
 
@@ -116,16 +119,19 @@ differences in the other direction." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot empirical attainment function differences</h1>
+    <h1>Interactively choose according to empirical attainment function differences</h1>
     <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/interactive.R'><code>R/interactive.R</code></a></small>
     <div class="hidden name"><code>choose_eafdiffplot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot the differences between the empirical attainment functions of two
-data sets as a two-panel plot, where the left side shows the values of
-the left EAF minus the right EAF and the right side shows the
-differences in the other direction.</p>
+    <p>The function <code>choose_eafdiffplot()</code> creates the same plot as <code><a href='eafdiffplot.html'>eafdiffplot()</a></code>
+but waits for the user to click in one of the sides. Then it returns the
+rectangles the give the differences in favour of the chosen side. These
+rectangles may be used for interactive decision-making as shown in
+Diaz_JEandLopez-Ibanez (2020)
+. The function <code>choose_eafdiff</code> may be used in a
+non-interactive context.</p>
     </div>
 
     <pre class="usage"><span class='fu'>choose_eafdiffplot</span>(<span class='kw'>data.left</span>, <span class='kw'>data.right</span>, intervals = <span class='fl'>5</span>,
@@ -184,17 +190,17 @@ differences are converted to positive.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>No return value.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p><code>matrix</code> where the first 4 columns give the coordinates of two
+corners of each rectangle and the last column. In both cases, the last
+column gives the positive differences in favor of the chosen side.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>This function calculates the differences between the EAFs of two
-data sets, and plots on the left the differences in favour
-of the left data set, and on the right the differences in favour of
-the right data set. By default, it also plots the grand best and worst
-attainment surfaces, that is, the 0% and 100%-attainment surfaces
-over all data. This two surfaces delimit the area where differences
-may exist. In addition, it also plots the 50%-attainment surface of
-each data set.</p>
+    <p>Diaz_JEandLopez-Ibanez (2020).
+&#8220;Incorporating Decision-Maker's Preferences into the Automatic
+                  Configuration of Bi-Objective Optimisation Algorithms.&#8221;
+<em>ejor</em>.
+doi: <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>10.1016/j.ejor.2020.07.059</a>
+.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='read_datasets.html'>read_datasets()</a></code>, <code><a href='eafdiffplot.html'>eafdiffplot()</a></code></p></div>

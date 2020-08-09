@@ -43,7 +43,8 @@
 
 <meta property="og:title" content="Identify largest EAF differences — largest_eafdiff" />
 <meta property="og:description" content="Given a list of datasets, return the indexes of the pair with the largest
-EAF differences according to the method proposed by Diaz and López-Ibáñez (2020)" />
+EAF differences according to the method proposed by Diaz_JEandLopez-Ibanez (2020)
+." />
 
 
 
@@ -121,7 +122,8 @@ EAF differences according to the method proposed by Diaz and López-Ibáñez (20
 
     <div class="ref-description">
     <p>Given a list of datasets, return the indexes of the pair with the largest
-EAF differences according to the method proposed by Diaz and López-Ibáñez (2020)</p>
+EAF differences according to the method proposed by Diaz_JEandLopez-Ibanez (2020)
+.</p>
     </div>
 
     <pre class="usage"><span class='fu'>largest_eafdiff</span>(<span class='kw'>data</span>, maximise = <span class='fl'>FALSE</span>, intervals = <span class='fl'>5</span>, <span class='kw'>reference</span>,
@@ -143,9 +145,8 @@ objective.</p></td>
     </tr>
     <tr>
       <th>intervals</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>) <br /> The
-absolute range of the differences \([0, 1]\) is partitioned into the number
-of intervals provided.</p></td>
+      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>) <br /> The absolute range of the differences
+\([0, 1]\) is partitioned into the number of intervals provided.</p></td>
     </tr>
     <tr>
       <th>reference</th>
@@ -162,10 +163,12 @@ of intervals provided.</p></td>
     <p>(<code><a href='https://rdrr.io/r/base/list.html'>list()</a></code>) A list with two components <code>best_pair</code> and <code>best_value</code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Juan
-Esteban Diaz, Manuel López-Ibáñez (2020).
-&#8220;Incorporating Decision-Maker's Preferences into the Automatic Configuration of Bi-Objective Optimisation Algorithms.&#8221;
-<em>Under review</em>.</p>
+    <p>Diaz_JEandLopez-Ibanez (2020).
+&#8220;Incorporating Decision-Maker's Preferences into the Automatic
+                  Configuration of Bi-Objective Optimisation Algorithms.&#8221;
+<em>ejor</em>.
+doi: <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>10.1016/j.ejor.2020.07.059</a>
+.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># FIXME: This example is too large, we need a smaller one.</span>
