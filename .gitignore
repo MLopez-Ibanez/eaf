@@ -3,8 +3,10 @@
 .RData
 .Rhistory
 .Rproj.user
+.auctex-auto
 .httr-oauth
 R/TAGS
+autom4te.cache
 config.status
 docs
 git_version
@@ -20,5 +22,3 @@ src/mo-tools/epsilon
 src/mo-tools/igd
 src/mo-tools/ndsort
 src/mo-tools/nondominated
-.auctex-auto
-

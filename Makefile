@@ -48,6 +48,9 @@ help :
 install: build
 	cd $(BINDIR) && R CMD INSTALL $(INSTALL_FLAGS) $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
+setup:
+	Rscript -e 'if(!require(devtools)) install.packages("devtools"); devtools::install_deps(upgrade="never")'
+
 configure: configure.ac src/Makevars.in
 	autoreconf configure.ac
 
