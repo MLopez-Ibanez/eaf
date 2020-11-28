@@ -15,7 +15,6 @@ jobs:
   include:
     - r: 3.4
       os: linux
-      dist: trusty
       warnings_are_errors: false
 
 # r_binary_packages:
