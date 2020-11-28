@@ -32,6 +32,9 @@ addons:
   apt:
     packages:
       - libgsl-dev
+      - libharfbuzz-dev
+      - libfribidi-dev
+
   homebrew:
     packages:
       - gsl
