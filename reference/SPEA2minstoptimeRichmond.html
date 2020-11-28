@@ -83,12 +83,6 @@ minimum idle time of pumps on Richmond water network. — SPEA2minstoptimeRichmo
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -125,7 +119,7 @@ minimum idle time of pumps on Richmond water network.</h1>
     <p>The data has the only goal of providing an example of use of eafplot.</p>
     </div>
 
-    <pre class="usage"><span class='kw'>SPEA2minstoptimeRichmond</span></pre>
+    <pre class="usage"><span class='va'>SPEA2minstoptimeRichmond</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -135,18 +129,18 @@ column measures time in seconds and corresponds to a maximisation problem.</p>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>Manuel López-Ibáñez (2009).
-<em>Operational Optimisation of Water Distribution
-                  Networks</em>.
+<em>Operational Optimisation of Water Distribution Networks</em>.
 Ph.D. thesis, School of Engineering and the Built Environment, Edinburgh Napier University, UK.
 <a href='http://researchrepository.napier.ac.uk/id/eprint/3044'>http://researchrepository.napier.ac.uk/id/eprint/3044</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>HybridGA</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>SPEA2minstoptimeRichmond</span>)
-<span class='kw'>SPEA2minstoptimeRichmond</span>[,<span class='fl'>2</span>] <span class='op'>&lt;-</span> <span class='kw'>SPEA2minstoptimeRichmond</span>[,<span class='fl'>2</span>] <span class='op'>/</span> <span class='fl'>60</span>
-<span class='fu'><a href='eafplot.default.html'>eafplot</a></span> (<span class='kw'>SPEA2minstoptimeRichmond</span>, xlab = <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span>(<span class='kw'>C</span>[<span class='kw'>E</span>]),
-         ylab = <span class='st'>"Minimum idle time (minutes)"</span>, maximise = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>),
-         las = <span class='fl'>1</span>, log = <span class='st'>"y"</span>, legend.pos = <span class='st'>"bottomright"</span>)</div><div class='img'><img src='SPEA2minstoptimeRichmond-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>HybridGA</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>)</span>
+<span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span> <span class='op'>/</span> <span class='fl'>60</span>
+<span class='fu'><a href='eafplot.default.html'>eafplot</a></span> <span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span>, xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>[</span><span class='va'>E</span><span class='op'>]</span><span class='op'>)</span>,
+         ylab <span class='op'>=</span> <span class='st'>"Minimum idle time (minutes)"</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span>,
+         las <span class='op'>=</span> <span class='fl'>1</span>, log <span class='op'>=</span> <span class='st'>"y"</span>, legend.pos <span class='op'>=</span> <span class='st'>"bottomright"</span><span class='op'>)</span>
+</div><div class='img'><img src='SPEA2minstoptimeRichmond-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -84,12 +84,6 @@ weight distribution describing user preferences may be specified." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -128,8 +122,8 @@ data following the procedure described by Auger et al. (2009)
 weight distribution describing user preferences may be specified.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>whv_hype</span>(<span class='kw'>data</span>, <span class='kw'>reference</span>, <span class='kw'>ideal</span>, maximise = <span class='fl'>FALSE</span>, dist = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type =
-  <span class='st'>"uniform"</span>), nsamples = <span class='fl'>100000L</span>)</pre>
+    <pre class="usage"><span class='fu'>whv_hype</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>reference</span>, <span class='va'>ideal</span>, maximise <span class='op'>=</span> <span class='cn'>FALSE</span>, dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type <span class='op'>=</span>
+  <span class='st'>"uniform"</span><span class='op'>)</span>, nsamples <span class='op'>=</span> <span class='fl'>100000L</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,10 +172,8 @@ objective.</p></td>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Anne Auger, Johannes Bader, Dimo Brockhoff, Eckart Zitzler (2009).
-&#8220;Articulating User Preferences in Many-Objective
-                  Problems by Sampling the Weighted Hypervolume.&#8221;
-In Franz Rothlauf (ed.), <em>Proceedings of the Genetic and Evolutionary
-                  Computation Conference, GECCO 2009</em>, 555--562.
+&#8220;Articulating User Preferences in Many-Objective Problems by Sampling the Weighted Hypervolume.&#8221;
+In Franz Rothlauf (ed.), <em>Proceedings of the Genetic and Evolutionary Computation Conference, GECCO 2009</em>, 555--562.
 ACM Press, New York, NY.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -189,16 +181,23 @@ ACM Press, New York, NY.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>whv_hype</span> (<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>2</span>, ncol=<span class='fl'>2</span>), reference = <span class='fl'>4</span>, ideal = <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] 3.99231</div><div class='input'>
-<span class='fu'>whv_hype</span> (<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>1</span>), ncol=<span class='fl'>2</span>), reference = <span class='fl'>4</span>, ideal = <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] 2.99268</div><div class='input'>
-<span class='fu'>whv_hype</span> (<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>2</span>, ncol=<span class='fl'>2</span>), reference = <span class='fl'>4</span>, ideal = <span class='fl'>1</span>,
-          dist = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type=<span class='st'>"exponential"</span>, mu=<span class='fl'>0.2</span>))</div><div class='output co'>#&gt; [1] 1.12887</div><div class='input'>
-<span class='fu'>whv_hype</span> (<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>1</span>), ncol=<span class='fl'>2</span>), reference = <span class='fl'>4</span>, ideal = <span class='fl'>1</span>,
-          dist = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type=<span class='st'>"exponential"</span>, mu=<span class='fl'>0.2</span>))</div><div class='output co'>#&gt; [1] 1.6632</div><div class='input'>
-<span class='fu'>whv_hype</span> (<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>2</span>, ncol=<span class='fl'>2</span>), reference = <span class='fl'>4</span>, ideal = <span class='fl'>1</span>,
-          dist = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type=<span class='st'>"point"</span>, mu=<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>)))</div><div class='output co'>#&gt; [1] 0.8289</div><div class='input'>
-<span class='fu'>whv_hype</span> (<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>1</span>), ncol=<span class='fl'>2</span>), reference = <span class='fl'>4</span>, ideal = <span class='fl'>1</span>,
-          dist = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(type=<span class='st'>"point"</span>, mu=<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>)))</div><div class='output co'>#&gt; [1] 0.03429</div><div class='input'></div></pre>
+<span class='fu'>whv_hype</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>2</span>, ncol<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>, reference <span class='op'>=</span> <span class='fl'>4</span>, ideal <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 3.99231</div><div class='input'>
+<span class='fu'>whv_hype</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>1</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>, reference <span class='op'>=</span> <span class='fl'>4</span>, ideal <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 2.99268</div><div class='input'>
+<span class='fu'>whv_hype</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>2</span>, ncol<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>, reference <span class='op'>=</span> <span class='fl'>4</span>, ideal <span class='op'>=</span> <span class='fl'>1</span>,
+          dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type<span class='op'>=</span><span class='st'>"exponential"</span>, mu<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 1.12887</div><div class='input'>
+<span class='fu'>whv_hype</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>1</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>, reference <span class='op'>=</span> <span class='fl'>4</span>, ideal <span class='op'>=</span> <span class='fl'>1</span>,
+          dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type<span class='op'>=</span><span class='st'>"exponential"</span>, mu<span class='op'>=</span><span class='fl'>0.2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 1.6632</div><div class='input'>
+<span class='fu'>whv_hype</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>2</span>, ncol<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>, reference <span class='op'>=</span> <span class='fl'>4</span>, ideal <span class='op'>=</span> <span class='fl'>1</span>,
+          dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type<span class='op'>=</span><span class='st'>"point"</span>, mu<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.8289</div><div class='input'>
+<span class='fu'>whv_hype</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>1</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>, reference <span class='op'>=</span> <span class='fl'>4</span>, ideal <span class='op'>=</span> <span class='fl'>1</span>,
+          dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type<span class='op'>=</span><span class='st'>"point"</span>, mu<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.03429</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

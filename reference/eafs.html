@@ -82,12 +82,6 @@ that indicates to which set each point belongs." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -124,7 +118,7 @@ that indicates to which set each point belongs." />
 that indicates to which set each point belongs.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>eafs</span>(<span class='kw'>points</span>, <span class='kw'>sets</span>, groups = <span class='kw'>NULL</span>, percentiles = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>eafs</span><span class='op'>(</span><span class='va'>points</span>, <span class='va'>sets</span>, groups <span class='op'>=</span> <span class='cn'>NULL</span>, percentiles <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,27 +162,31 @@ indicates to which group the point belongs.</p>
     <p>Manuel López-Ibáñez</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>extdata_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(package=<span class='st'>"eaf"</span>, <span class='st'>"extdata"</span>)
+    <pre class="examples"><div class='input'><span class='va'>extdata_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span>, <span class='st'>"extdata"</span><span class='op'>)</span>
 
-<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='kw'>extdata_path</span>, <span class='st'>"example1_dat"</span>))
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"example1_dat"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Compute full EAF</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fu'>eafs</span>(<span class='kw'>x</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], <span class='kw'>x</span>[,<span class='fl'>3</span>]))</div><div class='output co'>#&gt;  num [1:215, 1:3] 5128176 5134240 5142568 5144532 5155408 ...</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='fu'>eafs</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>x</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  num [1:215, 1:3] 5128176 5134240 5142568 5144532 5155408 ...</div><div class='input'>
 <span class='co'># Compute only best, median and worst</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fu'>eafs</span>(<span class='kw'>x</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>], <span class='kw'>x</span>[,<span class='fl'>3</span>], percentiles = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span>)))</div><div class='output co'>#&gt;  num [1:50, 1:3] 5128176 5134240 5142568 5144532 5155408 ...</div><div class='input'>
-<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='kw'>extdata_path</span>, <span class='st'>"spherical-250-10-3d.txt"</span>))
-<span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='kw'>extdata_path</span>, <span class='st'>"uniform-250-10-3d.txt"</span>))
-<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span>, groups = <span class='st'>"spherical"</span>)
-<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='kw'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>y</span>, groups = <span class='st'>"uniform"</span>))
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='fu'>eafs</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>x</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span>, percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  num [1:50, 1:3] 5128176 5134240 5142568 5144532 5155408 ...</div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"spherical-250-10-3d.txt"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"uniform-250-10-3d.txt"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>x</span>, groups <span class='op'>=</span> <span class='st'>"spherical"</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>y</span>, groups <span class='op'>=</span> <span class='st'>"uniform"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Compute only median separately for each group</span>
-<span class='kw'>z</span> <span class='op'>&lt;-</span> <span class='fu'>eafs</span>(<span class='kw'>x</span>[,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], sets = <span class='kw'>x</span>[,<span class='fl'>4</span>], groups = <span class='kw'>x</span>[,<span class='fl'>5</span>], percentiles = <span class='fl'>50</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='kw'>z</span>)</div><div class='output co'>#&gt; 'data.frame':	12650 obs. of  5 variables:
+<span class='va'>z</span> <span class='op'>&lt;-</span> <span class='fu'>eafs</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, sets <span class='op'>=</span> <span class='va'>x</span><span class='op'>[</span>,<span class='fl'>4</span><span class='op'>]</span>, groups <span class='op'>=</span> <span class='va'>x</span><span class='op'>[</span>,<span class='fl'>5</span><span class='op'>]</span>, percentiles <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 'data.frame':	12650 obs. of  5 variables:
 #&gt;  $ X1    : num  0.865 0.787 0.682 0.739 0.865 ...
 #&gt;  $ X2    : num  0.966 0.966 0.997 0.966 0.926 ...
 #&gt;  $ X3    : num  0.00264 0.00421 0.00483 0.00449 0.00421 ...
 #&gt;  $ X4    : num  50 50 50 50 50 50 50 50 50 50 ...
 #&gt;  $ groups: chr  "spherical" "spherical" "spherical" "spherical" ...</div><div class='input'><span class='co'># library(plotly)</span>
 <span class='co'># plot_ly(z, x = ~X1, y = ~X2, z = ~X3, color = ~groups,</span>
-<span class='co'>#         colors = c('#BF382A', '#0C4B8E')) %&gt;% add_markers()</span></div></pre>
+<span class='co'>#         colors = c('#BF382A', '#0C4B8E')) %&gt;% add_markers()</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
