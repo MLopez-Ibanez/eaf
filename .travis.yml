@@ -48,14 +48,14 @@ r_check_args: '--run-donttest --run-dontrun --timings'
 notifications:
   email: false
 
-before_cache: Rscript -e 'remotes::install_github("r-lib/pkgdown")'
+#before_cache: Rscript -e 'remotes::install_github("r-lib/pkgdown")'
 
 after_success:
-  - Rscript -e 'covr::codecov(type="all", quiet = FALSE)'
+  - test $TRAVIS_OS_NAME = "linux" && test $TRAVIS_R_VERSION_STRING = "release" && Rscript -e 'covr::codecov(type="all", quiet = FALSE)'
   
 deploy:
   provider: script
   skip_cleanup: true
-  script: Rscript -e 'pkgdown::deploy_site_github(run_dont_run = TRUE)'
+  script: Rscript -e 'remotes::install_github("r-lib/pkgdown");pkgdown::deploy_site_github(run_dont_run = TRUE)'
   on:
     condition: $TRAVIS_OS_NAME = linux && $TRAVIS_R_VERSION_STRING = release
