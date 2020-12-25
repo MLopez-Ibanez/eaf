@@ -91,7 +91,7 @@ attainment surfaces for certain percentiles or as points." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/MLopez-Ibanez/eaf/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -119,22 +119,44 @@ attainment surfaces for certain percentiles or as points.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for default</span>
-<span class='fu'>eafplot</span><span class='op'>(</span><span class='va'>x</span>, sets <span class='op'>=</span> <span class='cn'>NULL</span>, groups <span class='op'>=</span> <span class='cn'>NULL</span>,
-  percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span><span class='op'>)</span>, attsurfs <span class='op'>=</span> <span class='cn'>NULL</span>, xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
-  ylab <span class='op'>=</span> <span class='cn'>NULL</span>, xlim <span class='op'>=</span> <span class='cn'>NULL</span>, ylim <span class='op'>=</span> <span class='cn'>NULL</span>, log <span class='op'>=</span> <span class='st'>""</span>,
-  type <span class='op'>=</span> <span class='st'>"point"</span>, col <span class='op'>=</span> <span class='cn'>NULL</span>, lty <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dashed"</span>, <span class='st'>"solid"</span>, <span class='st'>"solid"</span>,
-  <span class='st'>"solid"</span>, <span class='st'>"dashed"</span><span class='op'>)</span>, lwd <span class='op'>=</span> <span class='fl'>1.75</span>, pch <span class='op'>=</span> <span class='cn'>NA</span>, cex.pch <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"cex"</span><span class='op'>)</span>,
-  las <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"las"</span><span class='op'>)</span>, legend.pos <span class='op'>=</span> <span class='st'>"topright"</span>, legend.txt <span class='op'>=</span> <span class='cn'>NULL</span>,
-  extra.points <span class='op'>=</span> <span class='cn'>NULL</span>, extra.legend <span class='op'>=</span> <span class='cn'>NULL</span>, extra.pch <span class='op'>=</span> <span class='fl'>4</span><span class='op'>:</span><span class='fl'>25</span>,
-  extra.lwd <span class='op'>=</span> <span class='fl'>0.5</span>, extra.lty <span class='op'>=</span> <span class='cn'>NA</span>, extra.col <span class='op'>=</span> <span class='st'>"black"</span>,
-  maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>FALSE</span><span class='op'>)</span>, xaxis.side <span class='op'>=</span> <span class='st'>"below"</span>,
-  yaxis.side <span class='op'>=</span> <span class='st'>"left"</span>, axes <span class='op'>=</span> <span class='cn'>TRUE</span>, sci.notation <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>eafplot</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  sets <span class='op'>=</span> <span class='cn'>NULL</span>,
+  groups <span class='op'>=</span> <span class='cn'>NULL</span>,
+  percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span><span class='op'>)</span>,
+  attsurfs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  log <span class='op'>=</span> <span class='st'>""</span>,
+  type <span class='op'>=</span> <span class='st'>"point"</span>,
+  col <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lty <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dashed"</span>, <span class='st'>"solid"</span>, <span class='st'>"solid"</span>, <span class='st'>"solid"</span>, <span class='st'>"dashed"</span><span class='op'>)</span>,
+  lwd <span class='op'>=</span> <span class='fl'>1.75</span>,
+  pch <span class='op'>=</span> <span class='cn'>NA</span>,
+  cex.pch <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"cex"</span><span class='op'>)</span>,
+  las <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"las"</span><span class='op'>)</span>,
+  legend.pos <span class='op'>=</span> <span class='st'>"topright"</span>,
+  legend.txt <span class='op'>=</span> <span class='cn'>NULL</span>,
+  extra.points <span class='op'>=</span> <span class='cn'>NULL</span>,
+  extra.legend <span class='op'>=</span> <span class='cn'>NULL</span>,
+  extra.pch <span class='op'>=</span> <span class='fl'>4</span><span class='op'>:</span><span class='fl'>25</span>,
+  extra.lwd <span class='op'>=</span> <span class='fl'>0.5</span>,
+  extra.lty <span class='op'>=</span> <span class='cn'>NA</span>,
+  extra.col <span class='op'>=</span> <span class='st'>"black"</span>,
+  maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>FALSE</span><span class='op'>)</span>,
+  xaxis.side <span class='op'>=</span> <span class='st'>"below"</span>,
+  yaxis.side <span class='op'>=</span> <span class='st'>"left"</span>,
+  axes <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  sci.notation <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
 <span class='fu'>eafplot</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for formula</span>
-<span class='fu'>eafplot</span><span class='op'>(</span><span class='va'>formula</span>, <span class='va'>data</span>, groups <span class='op'>=</span> <span class='cn'>NULL</span>, subset <span class='op'>=</span> <span class='cn'>NULL</span>,
-  <span class='va'>...</span><span class='op'>)</span>
+<span class='fu'>eafplot</span><span class='op'>(</span><span class='va'>formula</span>, <span class='va'>data</span>, groups <span class='op'>=</span> <span class='cn'>NULL</span>, subset <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for list</span>
 <span class='fu'>eafplot</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
