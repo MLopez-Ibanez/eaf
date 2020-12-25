@@ -1,6 +1,6 @@
 #' Compute (total) weighted hypervolume given a set of rectangles
 #' 
-#' The function `whv_rect()` calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function `total_whv_rect()` calculates the total weighted hypervolume as `hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect()`.`The details of the computation are given by \citet{DiaLop2020ejor}.
+#' The function `whv_rect()` calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function `total_whv_rect()` calculates the total weighted hypervolume as `hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect()`. The details of the computation are given by \citet{DiaLop2020ejor}.
 #' 
 #' @template arg_data
 #'

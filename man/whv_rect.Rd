@@ -40,7 +40,7 @@ the overall weight of the differences. This is parameter psi (\eqn{\psi}) in \ci
 A single numerical value.
 }
 \description{
-The function \code{whv_rect()} calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function \code{total_whv_rect()} calculates the total weighted hypervolume as \code{hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect()}.`The details of the computation are given by \citet{DiaLop2020ejor}.
+The function \code{whv_rect()} calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function \code{total_whv_rect()} calculates the total weighted hypervolume as \code{hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect()}. The details of the computation are given by \citet{DiaLop2020ejor}.
 }
 \details{
 TODO
