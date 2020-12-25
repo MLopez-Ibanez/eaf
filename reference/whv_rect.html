@@ -42,7 +42,7 @@
   
 
 <meta property="og:title" content="Compute (total) weighted hypervolume given a set of rectangles — whv_rect" />
-<meta property="og:description" content="The function whv_rect() calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function total_whv_rect() calculates the total weighted hypervolume as hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect().`The details of the computation are given by Diaz and López-Ibáñez (2020)
+<meta property="og:description" content="The function whv_rect() calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function total_whv_rect() calculates the total weighted hypervolume as hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect(). The details of the computation are given by Diaz and López-Ibáñez (2021)
 ." />
 
 
@@ -114,7 +114,7 @@
     </div>
 
     <div class="ref-description">
-    <p>The function <code>whv_rect()</code> calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function <code>total_whv_rect()</code> calculates the total weighted hypervolume as <code>hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect()</code>.`The details of the computation are given by Diaz and López-Ibáñez (2020)
+    <p>The function <code>whv_rect()</code> calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function <code>total_whv_rect()</code> calculates the total weighted hypervolume as <code>hypervolume() + scalefactor * abs(prod(reference - ideal)) * whv_rect()</code>. The details of the computation are given by Diaz and López-Ibáñez (2021)
 .</p>
     </div>
 
@@ -161,7 +161,7 @@ objective.</p></td>
     <tr>
       <th>scalefactor</th>
       <td><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>) real value within \((0,1]\) that scales
-the overall weight of the differences. This is parameter psi (\(\psi\)) in Diaz and López-Ibáñez (2020)
+the overall weight of the differences. This is parameter psi (\(\psi\)) in Diaz and López-Ibáñez (2021)
 .</p></td>
     </tr>
     </table>
@@ -175,9 +175,9 @@ the overall weight of the differences. This is parameter psi (\(\psi\)) in Diaz 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Juan
-Esteban Diaz, Manuel López-Ibáñez (2020).
+Esteban Diaz, Manuel López-Ibáñez (2021).
 &#8220;Incorporating Decision-Maker's Preferences into the Automatic Configuration of Bi-Objective Optimisation Algorithms.&#8221;
-<em>European Journal of Operational Research</em>.
+<em>European Journal of Operational Research</em>, <b>289</b>(3), 1209--1222.
 doi: <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>10.1016/j.ejor.2020.07.059</a>
 , <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>https://doi.org/10.1016/j.ejor.2020.07.059</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
