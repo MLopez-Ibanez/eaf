@@ -5,7 +5,9 @@
 \alias{SPEA2relativeRichmond}
 \title{Results of SPEA2 with relative time-controlled triggers on Richmond water
 network.}
-\format{A data frame as produced by \code{\link[=read_datasets]{read_datasets()}}.}
+\format{
+A data frame as produced by \code{\link[=read_datasets]{read_datasets()}}.
+}
 \source{
 \insertRef{LopezIbanezPhD}{eaf}
 }

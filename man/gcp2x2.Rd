@@ -4,7 +4,8 @@
 \name{gcp2x2}
 \alias{gcp2x2}
 \title{Metaheuristics for solving the Graph Vertex Coloring Problem}
-\format{A data frame with 3133 observations on the following 6 variables.
+\format{
+A data frame with 3133 observations on the following 6 variables.
 \describe{
 \item{\code{alg}}{a factor with levels \code{SAKempeFI} and \code{TSinN1}}
 \item{\code{inst}}{a factor with levels \code{DSJC500.5} and
@@ -17,7 +18,8 @@ number of colors found in the corresponding run up to that time.}
 beginning of the run for each observation. A rescaling is applied.}
 \item{\code{titer}}{a numeric vector indicating iteration number
 corresponding to the observations.}
-}}
+}
+}
 \source{
 \insertRef{ChiarandiniPhD}{eaf} (page 138)
 }

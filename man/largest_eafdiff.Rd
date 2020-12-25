@@ -4,8 +4,7 @@
 \alias{largest_eafdiff}
 \title{Identify largest EAF differences}
 \usage{
-largest_eafdiff(data, maximise = FALSE, intervals = 5, reference,
-  ideal = NULL)
+largest_eafdiff(data, maximise = FALSE, intervals = 5, reference, ideal = NULL)
 }
 \arguments{
 \item{data}{(\code{list(1)}) A list of matrices with at least 3 columns}

@@ -4,12 +4,14 @@
 \name{CPFs}
 \alias{CPFs}
 \title{Conditional Pareto fronts obtained from Gaussian processes simulations.}
-\format{A data frame with 2967 observations on the following 3 variables.
+\format{
+A data frame with 2967 observations on the following 3 variables.
 \describe{
 \item{\code{f1}}{first objective values.}
 \item{\code{f2}}{second objective values.}
 \item{\code{set}}{indices of corresponding conditional Pareto fronts.}
-}}
+}
+}
 \source{
 \insertRef{BinGinRou2015gaupar}{eaf}
 }

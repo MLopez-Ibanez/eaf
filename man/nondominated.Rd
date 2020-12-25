@@ -53,7 +53,7 @@ path_A1 <- file.path(system.file(package="eaf"),"extdata","ALG_1_dat.xz")
 set <- read_datasets(path_A1)[,1:2]
 
 is_nondom <- is_nondominated(set)
-cat("There are ", sum(is_nondom), " nondominated points\\n")
+cat("There are ", sum(is_nondom), " nondominated points\n")
 
 plot(set, col = "blue", type = "p", pch = 20)
 ndset <- filter_dominated(set)

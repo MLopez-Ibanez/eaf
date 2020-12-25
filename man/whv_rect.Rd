@@ -7,8 +7,14 @@
 \usage{
 whv_rect(data, rectangles, reference, maximise = FALSE)
 
-total_whv_rect(data, rectangles, reference, maximise = FALSE,
-  ideal = NULL, scalefactor = 0.1)
+total_whv_rect(
+  data,
+  rectangles,
+  reference,
+  maximise = FALSE,
+  ideal = NULL,
+  scalefactor = 0.1
+)
 }
 \arguments{
 \item{data}{(\code{matrix} | \code{data.frame}) \cr Matrix or data frame of numerical

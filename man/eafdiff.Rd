@@ -4,8 +4,7 @@
 \alias{eafdiff}
 \title{Compute empirical attainment function differences}
 \usage{
-eafdiff(x, y, intervals = NULL, maximise = c(FALSE, FALSE),
-  rectangles = FALSE)
+eafdiff(x, y, intervals = NULL, maximise = c(FALSE, FALSE), rectangles = FALSE)
 }
 \arguments{
 \item{x, y}{Data frames corresponding to the input data of

@@ -4,8 +4,14 @@
 \alias{whv_hype}
 \title{Approximation of the (weighted) hypervolume by Monte-Carlo sampling}
 \usage{
-whv_hype(data, reference, ideal, maximise = FALSE, dist = list(type =
-  "uniform"), nsamples = 100000L)
+whv_hype(
+  data,
+  reference,
+  ideal,
+  maximise = FALSE,
+  dist = list(type = "uniform"),
+  nsamples = 100000L
+)
 }
 \arguments{
 \item{data}{(\code{matrix} | \code{data.frame}) \cr Matrix or data frame of numerical

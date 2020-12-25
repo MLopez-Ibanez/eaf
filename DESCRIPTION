@@ -20,6 +20,6 @@ URL: http://lopez-ibanez.eu/eaftools, https://github.com/MLopez-Ibanez/eaf
 LazyLoad: true
 LazyData: true
 Encoding: UTF-8
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 SystemRequirements: GNU make, Gnu Scientific Library
 RdMacros: Rdpack

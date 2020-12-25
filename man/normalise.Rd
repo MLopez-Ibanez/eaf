@@ -4,8 +4,7 @@
 \alias{normalise}
 \title{Normalise points}
 \usage{
-normalise(data, to.range = c(1, 2), lower = NA, upper = NA,
-  maximise = FALSE)
+normalise(data, to.range = c(1, 2), lower = NA, upper = NA, maximise = FALSE)
 }
 \arguments{
 \item{data}{(\code{matrix} | \code{data.frame}) \cr Matrix or data frame of numerical

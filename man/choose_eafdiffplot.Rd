@@ -5,10 +5,15 @@
 \alias{choose_eafdiff}
 \title{Interactively choose according to empirical attainment function differences}
 \usage{
-choose_eafdiffplot(data.left, data.right, intervals = 5,
+choose_eafdiffplot(
+  data.left,
+  data.right,
+  intervals = 5,
   maximise = c(FALSE, FALSE),
   title.left = deparse(substitute(data.left)),
-  title.right = deparse(substitute(data.right)), ...)
+  title.right = deparse(substitute(data.right)),
+  ...
+)
 
 choose_eafdiff(x, left = stop("'left' must be either TRUE or FALSE"))
 }

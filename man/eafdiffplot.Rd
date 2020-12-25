@@ -4,15 +4,29 @@
 \alias{eafdiffplot}
 \title{Plot empirical attainment function differences}
 \usage{
-eafdiffplot(data.left, data.right, col = c("#FFFFFF", "#808080",
-  "#000000"), intervals = 5, percentiles = c(50), full.eaf = FALSE,
-  type = "area", legend.pos = if (full.eaf) "bottomleft" else
-  "topright", title.left = deparse(substitute(data.left)),
-  title.right = deparse(substitute(data.right)), xlim = NULL,
-  ylim = NULL, cex = par("cex"), cex.lab = par("cex.lab"),
-  cex.axis = par("cex.axis"), maximise = c(FALSE, FALSE),
-  grand.lines = TRUE, sci.notation = FALSE, left.panel.last = NULL,
-  right.panel.last = NULL, ...)
+eafdiffplot(
+  data.left,
+  data.right,
+  col = c("#FFFFFF", "#808080", "#000000"),
+  intervals = 5,
+  percentiles = c(50),
+  full.eaf = FALSE,
+  type = "area",
+  legend.pos = if (full.eaf) "bottomleft" else "topright",
+  title.left = deparse(substitute(data.left)),
+  title.right = deparse(substitute(data.right)),
+  xlim = NULL,
+  ylim = NULL,
+  cex = par("cex"),
+  cex.lab = par("cex.lab"),
+  cex.axis = par("cex.axis"),
+  maximise = c(FALSE, FALSE),
+  grand.lines = TRUE,
+  sci.notation = FALSE,
+  left.panel.last = NULL,
+  right.panel.last = NULL,
+  ...
+)
 }
 \arguments{
 \item{data.left, data.right}{Data frames corresponding to the input data of
@@ -82,9 +96,9 @@ This function calculates the differences between the EAFs of two
 data sets, and plots on the left the differences in favour
 of the left data set, and on the right the differences in favour of
 the right data set. By default, it also plots the grand best and worst
-attainment surfaces, that is, the 0\% and 100\%-attainment surfaces
+attainment surfaces, that is, the 0\\% and 100\\%-attainment surfaces
 over all data. This two surfaces delimit the area where differences
-may exist. In addition, it also plots the 50\%-attainment surface of
+may exist. In addition, it also plots the 50\\%-attainment surface of
 each data set.
 
 With \code{type = "point"}, only the points where there is a change in
