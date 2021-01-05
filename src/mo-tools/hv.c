@@ -513,48 +513,18 @@ avl_rebalance(avl_tree_t *avltree, avl_node_t *avlnode) {
 /*------------------------------------------------------------------------------
  end of functions from AVL-tree library.
 *******************************************************************************/
-
-#if !defined(VARIANT) || VARIANT < 1 || VARIANT > 4
-#error VARIANT must be either 1, 2, 3 or 4, e.g., 'make VARIANT=4'
-#endif
-
-#if __GNUC__ >= 3
-# define __hv_unused    __attribute__ ((unused))
-#else
-# define __hv_unused    /* no 'unused' attribute available */
-#endif
-
-#if VARIANT < 3
-# define __variant3_only __hv_unused
-#else
-# define __variant3_only
-#endif
-
-#if VARIANT < 2
-# define __variant2_only __hv_unused
-#else
-# define __variant2_only
-#endif
-
 typedef struct dlnode {
     const double *x;                    /* The data vector              */
     struct dlnode **next;         /* Next-node vector             */
     struct dlnode **prev;         /* Previous-node vector         */
     struct avl_node_t * tnode;
     int ignore;
-#if VARIANT >= 2
     double *area;                 /* Area */
-#endif
-#if VARIANT >= 3
     double *vol;                  /* Volume */
-#endif
 } dlnode_t;
 
-#if VARIANT < 4
-# define STOP_DIMENSION 1 /* default: stop on dimension 2 */
-#else
 # define STOP_DIMENSION 2 /* default: stop on dimension 3 */
-#endif
+
 
 static int compare_node(const void *p1, const void* p2)
 {
@@ -592,12 +562,8 @@ setup_cdllist(const double *data, int d, int n)
     head->prev = malloc( d * (n+1) * sizeof(dlnode_t*));
     head->tnode = malloc ((n+1) * sizeof(avl_node_t));
 
-#if VARIANT >= 2
     head->area = malloc(d * (n+1) * sizeof(double));
-#endif
-#if VARIANT >= 3
     head->vol = malloc(d * (n+1) * sizeof(double));
-#endif
 
     for (i = 1; i <= n; i++) {
         head[i].x = head[i-1].x + d;/* this will be fixed a few lines below... */
@@ -605,12 +571,8 @@ setup_cdllist(const double *data, int d, int n)
         head[i].next = head[i-1].next + d;
         head[i].prev = head[i-1].prev + d;
         head[i].tnode = head[i-1].tnode + 1;
-#if VARIANT >= 2
         head[i].area = head[i-1].area + d;
-#endif
-#if VARIANT >= 3
         head[i].vol = head[i-1].vol + d;
-#endif
     }
     head->x = NULL; /* head contains no data */
 
@@ -638,10 +600,8 @@ setup_cdllist(const double *data, int d, int n)
         (head[i].tnode)->item = head[i].x;
     }
     
-#if VARIANT >= 2
     for (i = 0; i < d; i++)
         head->area[i] = 0;
-#endif
 
     return head;
 }
@@ -651,40 +611,32 @@ static void free_cdllist(dlnode_t * head)
     free(head->tnode); /* Frees _all_ nodes. */
     free(head->next);
     free(head->prev);
-#if VARIANT >= 2
     free(head->area);
-#endif
-#if VARIANT >= 3
     free(head->vol);
-#endif
     free(head);
 }
 
-static void delete (dlnode_t *nodep, int dim, double * bound __variant3_only)
+static void delete (dlnode_t *nodep, int dim, double * bound)
 {
     int i;
 
-    for (i = 0; i < dim; i++) {
+    for (i = STOP_DIMENSION; i < dim; i++) {
         nodep->prev[i]->next[i] = nodep->next[i];
         nodep->next[i]->prev[i] = nodep->prev[i];
-#if VARIANT >= 3
         if (bound[i] > nodep->x[i])
             bound[i] = nodep->x[i];
-#endif
   }
 }
 
-static void reinsert (dlnode_t *nodep, int dim, double * bound __variant3_only)
+static void reinsert (dlnode_t *nodep, int dim, double * bound)
 {
     int i;
 
-    for (i = 0; i < dim; i++) {
+    for (i = STOP_DIMENSION; i < dim; i++) {
         nodep->prev[i]->next[i] = nodep;
         nodep->next[i]->prev[i] = nodep;
-#if VARIANT >= 3
         if (bound[i] > nodep->x[i])
             bound[i] = nodep->x[i];
-#endif
     }
 }
 
@@ -699,24 +651,17 @@ hv_recursive(avl_tree_t *tree, dlnode_t *list,
         dlnode_t *p0 = list;
         dlnode_t *p1 = list->prev[dim];
         double hyperv = 0;
-#if VARIANT == 1
-        double hypera;
-#endif
-#if VARIANT >= 2
         dlnode_t *pp;
         for (pp = p1; pp->x; pp = pp->prev[dim]) {
             if (pp->ignore < dim)
                 pp->ignore = 0;
         }
-#endif
         while (c > 1
-#if VARIANT >= 3
                /* We delete all points x[dim] > bound[dim]. In case of
                   repeated coordinates, we also delete all points
                   x[dim] == bound[dim] except one. */
                && (p1->x[dim] > bound[dim] 
                    || p1->prev[dim]->x[dim] >= bound[dim])
-#endif
             ) {
             p0 = p1;
             delete(p0, dim, bound);
@@ -724,9 +669,6 @@ hv_recursive(avl_tree_t *tree, dlnode_t *list,
             c--;
         }
 
-#if VARIANT == 1
-        hypera = hv_recursive(tree, list, dim-1, c, ref, bound);
-#elif VARIANT >= 3
         if (c > 1) {
             hyperv = p1->prev[dim]->vol[dim] + p1->prev[dim]->area[dim]
                 * (p1->x[dim] - p1->prev[dim]->x[dim]);
@@ -738,8 +680,6 @@ hv_recursive(avl_tree_t *tree, dlnode_t *list,
                 p1->area[i] = p1->area[i-1] * (ref[i-1] - p1->x[i-1]);
             p1->vol[dim] = 0;
         }
-#endif
-#if VARIANT >= 2
         if (p1->ignore >= dim) {
             p1->area[dim] = p1->prev[dim]->area[dim];
         } else {
@@ -747,28 +687,15 @@ hv_recursive(avl_tree_t *tree, dlnode_t *list,
             if (p1->area[dim] <= p1->prev[dim]->area[dim])
                 p1->ignore = dim;
         }
-#endif
 
         while (p0->x != NULL) {
-
-#if VARIANT == 1
-            hyperv += hypera * (p0->x[dim] - p1->x[dim]);
-#elif VARIANT >= 2
             hyperv += p1->area[dim] * (p0->x[dim] - p1->x[dim]);
-#endif
-#if VARIANT >= 3
             bound[dim] = p0->x[dim];
-#endif
             reinsert(p0, dim, bound);
             c++;
             p1 = p0;
             p0 = p0->next[dim];
-#if VARIANT >= 3
             p1->vol[dim] = hyperv;
-#endif
-#if VARIANT == 1
-            hypera = hv_recursive(tree, list, dim-1, c, ref, NULL);
-#elif VARIANT >= 2
             if (p1->ignore >= dim) {
                 p1->area[dim] = p1->prev[dim]->area[dim];
             } else {
@@ -776,13 +703,8 @@ hv_recursive(avl_tree_t *tree, dlnode_t *list,
                 if (p1->area[dim] <= p1->prev[dim]->area[dim])
                     p1->ignore = dim;
             }
-#endif
         }
-#if VARIANT == 1
-        hyperv += hypera * (ref[dim] - p1->x[dim]);
-#elif VARIANT >= 2
         hyperv += p1->area[dim] * (ref[dim] - p1->x[dim]);
-#endif
         return hyperv;
     }
 
@@ -790,18 +712,15 @@ hv_recursive(avl_tree_t *tree, dlnode_t *list,
        special case of dimension 3
        --------------------------- */
     else if (dim == 2) {
-        double hyperv;
-        double hypera;
-        double height;
         dlnode_t *pp = list->next[2];
 
-        hypera = (ref[0] - pp->x[0]) * (ref[1] - pp->x[1]);
+        double hypera = (ref[0] - pp->x[0]) * (ref[1] - pp->x[1]);
 
-        height = (c == 1) 
+        double height = (c == 1) 
             ? ref[2] - pp->x[2]
             : pp->next[2]->x[2] - pp->x[2];
 
-        hyperv = hypera * height;
+        double hyperv = hypera * height;
 
         if (pp->next[2]->x == NULL)
             return hyperv;
@@ -813,11 +732,9 @@ hv_recursive(avl_tree_t *tree, dlnode_t *list,
             height = (pp == list->prev[2])
                 ? ref[2] - pp->x[2]
                 : pp->next[2]->x[2] - pp->x[2];
-#if VARIANT >= 2
             if (pp->ignore >= 2)
                 hyperv += hypera * height;
             else {
-#endif
                 const double * prv_ip, * nxt_ip;
                 avl_node_t *tnode;
 
@@ -871,10 +788,7 @@ hv_recursive(avl_tree_t *tree, dlnode_t *list,
 
                 if (height > 0)
                     hyperv += hypera * height;
-
-#if VARIANT >= 2
             }
-#endif
             pp = pp->next[2];
         } while (pp->x != NULL);
 
@@ -970,11 +884,8 @@ double fpli_hv(const double *data, int d, int n, const double *ref)
         for (int i = 0; i < d; i++)
             hyperv *= ref[i] - p->x[i];
     } else {
-        double * bound = NULL;
-#if VARIANT >= 3
-        bound = malloc (d * sizeof(double));
+        double *bound = malloc (d * sizeof(double));
         for (int i = 0; i < d; i++) bound[i] = -DBL_MAX;
-#endif
 	hyperv = hv_recursive(tree, list, d-1, n, ref, bound);
         free (bound); 
     }
