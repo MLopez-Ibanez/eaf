@@ -3,7 +3,7 @@ README file for developers
 
 RELEASE Process:
 
-1. git pull
+1. git pull --rebase # to get the latest version
 
 2. "make check" passes
 
@@ -11,13 +11,11 @@ RELEASE Process:
 
 4. make releasebuild # Inspect the output for strange files!
 
-5. "make winbuild" passes. Wait for email and check logs!
+5. "make winbuild" and "make macbuild" passes. Wait for email and check logs!
 
-6. Update NEWS (add version number on top)
+6. make closeversion
 
-7. make closeversion
-
-8. Use http://cran.r-project.org/submit.html to submit
+7. Use http://cran.r-project.org/submit.html to submit
    Read http://cran.r-project.org/web/packages/policies.html
 
 * IF the package requires further changes:
@@ -28,11 +26,11 @@ RELEASE Process:
 
 * IF the package is released in CRAN:
 
-  9. Bump the version number in Makefile.
+  8. Bump the version number in Makefile and NEWS.md.
 
-  10.  make build # To update DESCRIPTION and other files with the new version."
+  9. make build # To update DESCRIPTION and other files with the new version."
 
-  11.  git ci -a  -m "Bump development version to $NEW_VERSION
+  10.  git ci -a  -m "Bump development version to $NEW_VERSION
 
 
 
