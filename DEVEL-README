@@ -11,7 +11,7 @@ RELEASE Process:
 
 4. make releasebuild # Inspect the output for strange files!
 
-5. "make winbuild" and "make macbuild" passes. Wait for email and check logs!
+5. "make winbuild" "make macbuild", "make remotecran" passes. Wait for email and check logs!
 
 6. make closeversion
 
