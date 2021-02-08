@@ -22,8 +22,8 @@ Status](https://travis-ci.org/MLopez-Ibanez/eaf.svg?branch=master)](https://trav
 **Contributors:**
     [Manuel López-Ibáñez](http://lopez-ibanez.eu),
     [Marco Chiarandini](http://www.imada.sdu.dk/~marco),
-    [Carlos M. Fonseca](http://eden.dei.uc.pt/~cmfonsec/),
-    [Luís Paquete](http://eden.dei.uc.pt/~paquete/),
+    [Carlos M. Fonseca](https://eden.dei.uc.pt/~cmfonsec/),
+    [Luís Paquete](https://eden.dei.uc.pt/~paquete/),
     [Thomas Stützle](http://iridia.ulb.ac.be/~stuetzle/),
     and Mickaël Binois.
     
@@ -125,7 +125,7 @@ directory printed by the R command `system.file(package="eaf")`):
  * `extdata/` : Examples of utilization of the above programs. These are discussed in the corresponding [book chapter](#LopPaqStu09emaa) [1].
 
 In addition, the source code contains the following under `src/`:
- * `src/eaf` : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at http://www.tik.ee.ethz.ch/pisa/. Another version of the code that handles three dimensions is available at [Prof. Fonseca's website](http://eden.dei.uc.pt/~cmfonsec/software.html).
+ * `src/eaf` : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at http://www.tik.ee.ethz.ch/pisa/. Another version of the code that handles three dimensions is available at [Prof. Fonseca's website](https://eden.dei.uc.pt/~cmfonsec/software.html).
  * `src/mo-tools` : Several tools for working with multi-objective data.
  
 For more information, consult the `README` files at each subdirectory.
