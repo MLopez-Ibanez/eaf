@@ -79,14 +79,13 @@ static void usage(void)
 "dominate the Pareto sets of the other files.                             \n\n"
 
 "Options:\n"
-" -h, --help          give  this summary and exit.                          \n"
-"     --version       print version number and exit.                        \n"
+OPTION_HELP_STR
+OPTION_VERSION_STR
 " -v, --verbose       print some information (time, number of points, etc.) \n"
-" -q, --quiet         print as little as possible                           \n"
+OPTION_QUIET_STR
 " -p, --percentages   print results also as percentages.                    \n"
 "     --no-check      do not check nondominance of sets (faster but unsafe).\n"
-" -o, --obj [+|-]...  specify whether each objective should be              \n"
-"                     minimised (-) or maximised (+)                        \n"
+OPTION_OBJ_STR
 "\n");
 }
 

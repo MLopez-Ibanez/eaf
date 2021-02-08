@@ -95,9 +95,10 @@ static void usage(void)
 "Calculates the inverted generational distance (IGD) measure for the Pareto sets given as input\n\n"
 
 "Options:\n"
-" -h, --help           give  this summary and exit.                          \n"
-"     --version        print version number and exit.                        \n"
+OPTION_HELP_STR
+OPTION_VERSION_STR
 " -v, --verbose        print some information (time, number of points, etc.) \n"
+OPTION_QUIET_STR
 "   , --gd             %s report classical GD\n"
 "   , --igd            %s report classical IGD\n"
 "   , --gd-p           %s report GD_p (p=1 by default)\n"
@@ -107,10 +108,8 @@ static void usage(void)
 " -a, --all            compute everything\n"
 " -p,                  exponent that averages the distances\n"
 " -n, --norm           norm for computing distances (default: Euclidean, n=2)\n"
-" -q, --quiet          print as little as possible                           \n"
 " -r, --reference FILE file that contains the reference set                  \n"
-" -o, --obj [+|-]...   specify whether each objective should be              \n"
-"                      minimised (-) or maximised (+) (default all minimised)\n"
+OPTION_OBJ_STR
 " -s, --suffix=STRING Create an output file for each input file by appending\n"
 "                     this suffix. This is ignored when reading from stdin. \n"
 "                     If missing, output is sent to stdout.                 \n"

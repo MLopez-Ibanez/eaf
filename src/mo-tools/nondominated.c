@@ -80,13 +80,12 @@ usage(void)
 "given as input. \n\n"
 
 "Options:\n"
-" -h, --help          print this summary and exit;                          \n"
-"     --version       print version number and exit;                        \n"
+OPTION_HELP_STR
+OPTION_VERSION_STR
 " -v, --verbose       print some extra information;                         \n"
-" -q, --quiet         print the minimum information;                        \n"
+OPTION_QUIET_STR
 "     --no-check      do not check nondominance of sets (faster but unsafe);\n"
-" -o, --obj=[+|-]...  specify whether each objective should be minimised (-)\n"
-"                     or maximised (+). By default all are minimised;       \n"
+OPTION_OBJ_STR
 " -u, --upper-bound POINT defines an upper bound to check, e.g. \"10 5 30\";\n"
 " -l, --lower-bound POINT defines a lower bound to check;\n"
 " -U, --union         consider each file as a whole approximation set,      \n"

@@ -13,6 +13,16 @@
 #define MARCH "unknown"
 #endif
 
+#define OPTION_HELP_STR \
+    " -h, --help          print this summary and exit;                          \n"
+#define OPTION_VERSION_STR \
+    "     --version       print version number and exit;                        \n"
+#define OPTION_OBJ_STR \
+    " -o, --obj=[+|-]...  specify whether each objective should be minimised (-)\n" \
+    "                     or maximised (+). By default all are minimised;       \n"
+#define OPTION_QUIET_STR \
+    " -q, --quiet          print as little as possible                           \n"
+
 extern char *program_invocation_short_name;
 static void version(void)
 {

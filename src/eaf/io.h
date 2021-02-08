@@ -57,7 +57,7 @@ read_minmax (const char *str, int *nobj)
 
     int len = strlen (str);
     bool all_ignored = true;
-    minmax = malloc (sizeof(signed char) * len);
+    minmax = malloc (sizeof(signed char) * MAX(len, *nobj));
     for (i = 0; i < len; i++) {
         switch (str[i])
         {
@@ -83,7 +83,12 @@ read_minmax (const char *str, int *nobj)
         warnprintf ("all objectives ignored because of --obj=%s\n", str);
         exit (EXIT_SUCCESS);
     }
-
+    // FIXME: How to adjust minmax dynamically according to the number of objectives?
+    if (len < *nobj) { // Cycle
+        for (i = 0; i < (*nobj - len); i++) {
+            minmax[len + i] = minmax[i];
+        }
+    }
     *nobj = len;
     return minmax;
 }
