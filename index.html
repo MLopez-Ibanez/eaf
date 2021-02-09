@@ -75,7 +75,7 @@
 <p><a href="https://cran.r-project.org/package=eaf"><img src="https://www.r-pkg.org/badges/version-last-release/eaf" alt="CRAN Status"></a> <a href="https://CRAN.R-project.org/package=eaf"><img src="https://cranlogs.r-pkg.org/badges/grand-total/eaf" alt="CRAN Downloads"></a> <a href="https://travis-ci.org/MLopez-Ibanez/eaf"><img src="https://travis-ci.org/MLopez-Ibanez/eaf.svg?branch=master" alt="Travis Build Status"></a> <a href="https://codecov.io/gh/MLopez-Ibanez/eaf?branch=master"><img src="https://codecov.io/gh/MLopez-Ibanez/eaf/branch/master/graph/badge.svg" alt="Codecov test coverage"></a> <!-- badges: end --></p>
 <p>[ <a href="http://lopez-ibanez.eu/eaftools"><strong>Homepage</strong></a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf"><strong>GitHub</strong></a> ]</p>
 <p><strong>Maintainer:</strong> <a href="http://lopez-ibanez.eu">Manuel López-Ibáñez</a></p>
-<p><strong>Contributors:</strong> <a href="http://lopez-ibanez.eu">Manuel López-Ibáñez</a>, <a href="http://www.imada.sdu.dk/~marco">Marco Chiarandini</a>, <a href="http://eden.dei.uc.pt/~cmfonsec/">Carlos M. Fonseca</a>, <a href="http://eden.dei.uc.pt/~paquete/">Luís Paquete</a>, <a href="http://iridia.ulb.ac.be/~stuetzle/">Thomas Stützle</a>, and Mickaël Binois.</p>
+<p><strong>Contributors:</strong> <a href="http://lopez-ibanez.eu">Manuel López-Ibáñez</a>, <a href="http://www.imada.sdu.dk/~marco">Marco Chiarandini</a>, <a href="https://eden.dei.uc.pt/~cmfonsec/">Carlos M. Fonseca</a>, <a href="https://eden.dei.uc.pt/~paquete/">Luís Paquete</a>, <a href="http://iridia.ulb.ac.be/~stuetzle/">Thomas Stützle</a>, and Mickaël Binois.</p>
 <hr>
 </div>
 <div id="introduction" class="section level1">
@@ -86,7 +86,7 @@
 <p>In addition, the package provides functions for computing several quality metrics, such as hypervolume, IGD, IGD+, and epsilon.</p>
 <p><strong>Keywords</strong>: empirical attainment function, summary attainment surfaces, EAF differences, multi-objective optimization, bi-objective optimization, performance measures, performance assessment, graphical analysis, visualization.</p>
 <p><strong>Relevant literature:</strong></p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>
 <a name="LopPaqStu09emaa"></a>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. <a href="https://doi.org/10.1007/978-3-642-02538-9_9">Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization</a>. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, pages 209–222. Springer, Berlin, Germany, 2010.<br> (This chapter is also available in a slightly extended form as <a href="http://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf">Technical Report TR/IRIDIA/2009-015</a>).<br> [ <a href="http://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa">bibtex</a> | doi: <a href="https://doi.org/10.1007/978-3-642-02538-9_9">10.1007/978-3-642-02538-9_9</a> | <a href="http://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf">Presentation</a> ]</li>
 </ol>
@@ -96,7 +96,7 @@
 <p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled binaries can be found under <code><a href="https://rdrr.io/r/base/system.file.html">system.file(package="eaf", "bin")</a></code>. Other useful binaries can be found there.</p>
 <p>The visualization of the EAFs requires installing the <strong>eaf</strong> package. Therefore, a basic knowledge of R is recommended to make use of all features. However, the <code>eaf</code> package contains two Perl scripts that allow to generate standard plots without any R knowledge. See <code>inst/scripts/eafplot/</code> and <code>inst/scripts/eafdiff/</code> in the package source code. The scripts use the <strong>eaf</strong> package internally to generate the plots, and, hence, the <strong>eaf</strong> package must be installed and working.</p>
 <p>The first step before installing the <strong>eaf</strong> package is to <a href="https://cran.r-project.org/">install R</a>. Once R is installed in the system, there are two methods for installing the <strong>eaf</strong> package:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>
 <p>Install within R (automatic download, internet connection required). Invoke R, then</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -133,13 +133,7 @@
 <li>
 <code>extdata/</code> : Examples of utilization of the above programs. These are discussed in the corresponding <a href="#LopPaqStu09emaa">book chapter</a> [1].</li>
 </ul>
-<p>In addition, the source code contains the following under <code>src/</code>:</p>
-<ul>
-<li>
-<code>src/eaf</code> : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at <a href="http://www.tik.ee.ethz.ch/pisa/" class="uri">http://www.tik.ee.ethz.ch/pisa/</a>. Another version of the code that handles three dimensions is available at <a href="http://eden.dei.uc.pt/~cmfonsec/software.html">Prof. Fonseca’s website</a>.</li>
-<li>
-<code>src/mo-tools</code> : Several tools for working with multi-objective data.</li>
-</ul>
+<p>In addition, the source code contains the following under <code>src/</code>: * <code>src/eaf</code> : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at http://www.tik.ee.ethz.ch/pisa/. Another version of the code that handles three dimensions is available at <a href="https://eden.dei.uc.pt/~cmfonsec/software.html">Prof. Fonseca’s website</a>. * <code>src/mo-tools</code> : Several tools for working with multi-objective data.</p>
 <p>For more information, consult the <code>README</code> files at each subdirectory.</p>
 </div>
 <div id="python" class="section level2">
