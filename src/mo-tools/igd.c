@@ -74,7 +74,6 @@ char *program_invocation_short_name = "igd";
 
 static bool verbose_flag = false;
 static unsigned int exponent_p = 1;
-static unsigned int norm = 2;
 static bool gd = false;
 static bool igd = false;
 static bool gdp = false;
@@ -107,7 +106,6 @@ OPTION_QUIET_STR
 "   , --hausdorff      %s report avg Hausdorff distance = max (GD_p, IGD_p)\n"
 " -a, --all            compute everything\n"
 " -p,                  exponent that averages the distances\n"
-" -n, --norm           norm for computing distances (default: Euclidean, n=2)\n"
 " -r, --reference FILE file that contains the reference set                  \n"
 OPTION_OBJ_STR
 " -s, --suffix=STRING Create an output file for each input file by appending\n"
@@ -158,7 +156,7 @@ do_file (const char *filename, double *reference, int reference_size,
     const char * sep = "";
     if (verbose_flag) {
         printf("# file: %s\n", filename);
-        printf("# metrics (norm = %d): ", norm);
+        printf("# metrics (Euclidean distance) ");
         if (gd) {
             printf("GD");
             sep = "\t";
@@ -269,7 +267,6 @@ int main(int argc, char *argv[])
         {"igd-plus",   no_argument,       NULL, IGD_plus_opt},
         {"hausdorff",   no_argument,       NULL, hausdorff_opt},
         {"all",   no_argument,       NULL, 'a'},
-        {"norm",   required_argument,       NULL, 'n'},
         {"exponent-p", required_argument,       NULL, 'p'},
         
         {"help",       no_argument,       NULL, 'h'},
@@ -291,10 +288,6 @@ int main(int argc, char *argv[])
           case 'p':
               // FIXME: Use strtol
               exponent_p = atoi(optarg);
-              break;
-          case 'n':
-              // FIXME: Use strtol
-              norm = atoi(optarg);
               break;
               
           case 'a': // --all

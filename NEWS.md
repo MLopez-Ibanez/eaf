@@ -1,3 +1,8 @@
+# eaf 2.1
+
+* Improve documentation of `igd()`.
+
+
 # eaf 2.0
 
 * `read_datasets()` is able to read files compressed with `xz`.
@@ -16,11 +21,12 @@
   calculating the weighted hypervolume.
       
 * New function `avg_hausdorff_dist()` for computing the averaged Hausdorff distance.
-                                                          (Manuel López-Ibáñez)
-  
+   
+
 # eaf 1.9-1
 
 * Fixes to Makefiles for non-GCC compilers and parallel build setups.
+
 
 # eaf 1.9
 
@@ -28,34 +34,25 @@
   deviation.                                             (Mickael Binois)
 
 * Non-integer EAF percentiles are computed correctly.
-                                                         (Manuel López-Ibáñez)
 
 * Various aesthetic improvements in `eafplot()` and `eafdiffplot()`.
-                                                         (Manuel López-Ibáñez)
 
 * Functions for computing hypervolume, hypervolume contributions, epsilon
   metric, IGD+, filter dominated points, and fast normalisation of ranges.
-                                                         (Manuel López-Ibáñez)
 
 * Command-line tools for computing the above are installed in `system.file(package="eaf", "bin/")`.
-                                                         (Manuel López-Ibáñez)
 
 * Online documentation available at: http://lopez-ibanez.eu/eaftools
-                                                         (Manuel López-Ibáñez)
 
 * New `read_datasets()` replaces deprecated `read.data.sets()`.
   New parameter `text` of `read_datasets()`.
-                                                         (Manuel López-Ibáñez)
 
 * New `eafdiff()` function for computing EAF differences.
-                                                         (Manuel López-Ibáñez)
 
 * The `data.frame` method for `eafplot` has been removed. It had unexpected
   behavior and the default method handles `data.frame` already.
-                                                         (Manuel López-Ibáñez)
 
 * Python script to compute EAF differences installed at `system.file(package="eaf", "scripts/eafdiff.py")`.
-                                                         (Manuel López-Ibáñez)
 
 
 # eaf 1.8

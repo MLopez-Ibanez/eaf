@@ -10,6 +10,8 @@
 #' 
 #' @return  A single numerical value.
 #'
+#' @name epsilon
+#'
 #' @author Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 #'
 #' @details
@@ -23,10 +25,10 @@
 #' others are to be minimized. Moreover, a lower value corresponds to a better
 #' approximation set, independently of the type of problem (minimization,
 #' maximization or mixed). However, the meaning of the value is different for
-#' each objective type. For example, imagine that \eqn{f1} is to be minimized
-#' and \eqn{f2} is to be maximized, and the multiplicative epsilon computed
+#' each objective type. For example, imagine that \eqn{f_1} is to be minimized
+#' and \eqn{f_2} is to be maximized, and the multiplicative epsilon computed
 #' here for \eqn{epsilon(A,B) = 3}. This means that \eqn{A} needs to be
-#' multiplied by 1/3 for all \eqn{f1} values and by 3 for all \eqn{f2} values
+#' multiplied by 1/3 for all \eqn{f_1} values and by 3 for all \eqn{f_2} values
 #' in order to weakly dominate \eqn{B}. This also means that the computation of
 #' the multiplicative version for negative values doesn't make sense.
 #'
@@ -34,6 +36,12 @@
 #'
 #' \insertRef{ZitThiLauFon2003:tec}{eaf}
 #' 
+#' @md
+NULL
+#> NULL
+
+#' @rdname epsilon
+#' @export
 #' @examples
 #' extdata_path <- system.file(package="eaf","extdata")
 #' path.A1 <- file.path(extdata_path, "ALG_1_dat.xz")
@@ -43,10 +51,6 @@
 #' ref <- filter_dominated(rbind(A1, A2))
 #' epsilon_additive(A1, ref)
 #' epsilon_additive(A2, ref)
-#' 
-#' @rdname epsilon
-#' @md
-#' @export
 epsilon_additive <- function(data, reference, maximise = FALSE)
   epsilon_common(data = data, reference = reference, maximise = maximise,
                  mul = FALSE)

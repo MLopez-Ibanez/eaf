@@ -6,11 +6,11 @@
  GD was first proposed in [1] with p=2. IGD seems to have been mentioned first
  in [2], however, some people also used the name D-metric for the same thing
  with p=1 and later papers have often used IGD/GD with p=1.  GD_p and IGD_p
- were proposed in [4] and they change how the numerator (psize) is
- computed. This has a significant effect for GD and less so for IGD given a
- constant reference set. IGD+ was proposed in [5] and changes how to compute
- the distances. In general, norm=2 (Euclidean distance), but other norms are
- possible [4]. See [6] for a comparison.
+ were proposed in [4] and they change how the numerator is computed. This has a
+ significant effect for GD and less so for IGD given a constant reference
+ set. IGD+ was proposed in [5] and changes how to compute the distances. In
+ general, norm=2 (Euclidean distance), but other norms are possible [4]. See
+ [6] for a comparison.
 
  [1] D. A. Van Veldhuizen and G. B. Lamont. Evolutionary Computation and
      Convergence to a Pareto Front. In J. R. Koza, editor, Late Breaking Papers
@@ -57,25 +57,14 @@
 #include "common.h"
 #include "io.h"
 
-
-static inline double
-norm_distance (double a, double r, unsigned int p)
-{
-    return powl (fabs(r - a), p);
-}
-
-static inline double
-plus_distance (double a, double r, unsigned int p)
-{
-    return powl (MAX(r - a, 0.0), p);
-}
-
 static inline double 
 gd_common (int dim, const signed char *minmax,
            const double *points_a, int size_a,
            const double *points_r, int size_r,
-           bool plus, bool psize, unsigned int p, unsigned int norm)
+           bool plus, bool psize, unsigned int p)
 {
+    if (size_a == 0) return INFINITY; 
+    
     int a, r, d;
     double gd = 0;
     for (a = 0; a < size_a; a++) {
@@ -86,20 +75,26 @@ gd_common (int dim, const signed char *minmax,
                 if (minmax[d] == 0) continue;
                 double a_d = points_a[a * dim + d];
                 double r_d = points_r[r * dim + d];
-                if (!plus)
-                    dist += norm_distance (a_d, r_d, norm);
-                else if (minmax[d] < 0)
-                    dist += plus_distance (a_d, r_d, norm);
-                else /*(minmax[d] < 0)*/
-                    dist += plus_distance (r_d, a_d, norm);
+                double diff = (!plus)
+                    ? (r_d - a_d)
+                    : MAX((minmax[d] < 0) ? (r_d - a_d) : (a_d - r_d), 0.0);
+                // TODO: Implement taxicab and infinity norms
+                dist += diff * diff;
             }
+            // We should calculate here the sqrt() of the Euclidean, however
+            // that would not change which one is the minimum, so we compute it
+            // outside the loop, which is faster.
             if (dist < min_dist) min_dist = dist;
         }
-        min_dist = powl (min_dist, 1.0 / norm);
-        gd += powl (min_dist, p);
+        // Here we calculate the actual Euclidean distance.
+        min_dist = sqrtl(min_dist);
+        
+        gd += (p == 1) ? min_dist : powl (min_dist, p);
     }
-    
-    if (psize)
+
+    if (p == 1)
+        return gd / (double) size_a;
+    else if (psize)
         return powl (gd / (double) size_a, 1.0 / p);
     else 
         return powl (gd, 1.0 / p) / (double) size_a;
@@ -114,7 +109,7 @@ GD (int dim, const signed char *minmax,
                       points_a, size_a,
                       points_r, size_r,
                       /*plus=*/false, /*psize=*/false,
-                      /*p=*/1, /*norm=*/2);
+                      /*p=*/1);
 }
 
 static inline double
@@ -126,7 +121,7 @@ IGD (int dim, const signed char *minmax,
                       points_r, size_r,
                       points_a, size_a,
                       /*plus=*/false, /*psize=*/false,
-                      /*p=*/1, /*norm=*/2);
+                      /*p=*/1);
 }
 
 static inline double
@@ -138,7 +133,7 @@ GD_p (int dim, const signed char *minmax,
                       points_a, size_a,
                       points_r, size_r,
                       /*plus=*/false, /*psize=*/true,
-                      p, /*norm=*/2);
+                      p);
 }
 
 static inline double
@@ -150,7 +145,7 @@ IGD_p (int dim, const signed char *minmax,
                       points_r, size_r,
                       points_a, size_a,
                       /*plus=*/false, /*psize=*/true,
-                      p, /*norm=*/2);
+                      p);
 }
 
 static inline double
@@ -162,7 +157,7 @@ IGD_plus (int dim, const signed char *minmax,
                       points_r, size_r,
                       points_a, size_a,
                       /*plus=*/true, /*psize=*/true,
-                      /*p=*/1, /*norm=*/2);
+                      /*p=*/1);
 
 }
 
@@ -175,13 +170,13 @@ avg_Hausdorff_dist (int dim, const signed char *minmax,
                              points_a, size_a,
                              points_r, size_r,
                              /*plus=*/false, /*psize=*/true,
-                             p, /*norm=*/2);
+                             p);
 
     double igd_p = gd_common (dim, minmax,
                               points_r, size_r,
                               points_a, size_a,
                               /*plus=*/false, /*psize=*/true,
-                              p, /*norm=*/2);
+                              p);
     return MAX (gd_p, igd_p);
 }
 /* TODO: Implement p=INFINITY See [4] */
