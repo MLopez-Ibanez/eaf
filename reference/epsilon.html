@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Epsilon metric — epsilon_additive • eaf</title>
+<title>Epsilon metric — epsilon • eaf</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Epsilon metric — epsilon_additive" />
+<meta property="og:title" content="Epsilon metric — epsilon" />
 <meta property="og:description" content="Computes the epsilon metric, either additive or multiplicative." />
 
 
@@ -76,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.1</span>
       </span>
     </div>
 
@@ -158,10 +158,10 @@ a single value for problems where some objectives are to be maximized while
 others are to be minimized. Moreover, a lower value corresponds to a better
 approximation set, independently of the type of problem (minimization,
 maximization or mixed). However, the meaning of the value is different for
-each objective type. For example, imagine that \(f1\) is to be minimized
-and \(f2\) is to be maximized, and the multiplicative epsilon computed
+each objective type. For example, imagine that \(f_1\) is to be minimized
+and \(f_2\) is to be maximized, and the multiplicative epsilon computed
 here for \(epsilon(A,B) = 3\). This means that \(A\) needs to be
-multiplied by 1/3 for all \(f1\) values and by 3 for all \(f2\) values
+multiplied by 1/3 for all \(f_1\) values and by 3 for all \(f_2\) values
 in order to weakly dominate \(B\). This also means that the computation of
 the multiplicative version for negative values doesn't make sense.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -183,8 +183,7 @@ M Fonseca, Viviane Grunert da Fonseca (2003).
 <span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='is_nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'>epsilon_additive</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 199090640</div><div class='input'><span class='fu'>epsilon_additive</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 132492066</div><div class='input'>
-<span class='co'># Multiplicative version of epsilon metric</span>
+</div><div class='output co'>#&gt; [1] 132492066</div><div class='input'><span class='co'># Multiplicative version of epsilon metric</span>
 <span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='is_nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'>epsilon_mult</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 1.054015</div><div class='input'><span class='fu'>epsilon_mult</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span>

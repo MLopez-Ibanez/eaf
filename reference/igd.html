@@ -77,7 +77,7 @@ the averaged Hausdorff distance between nondominated sets of points." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.1</span>
       </span>
     </div>
 
@@ -160,34 +160,57 @@ objective.</p></td>
     <p>The generational distance (GD) of a set \(A\) is defined as the distance
 between each point \(a \in A\) and the closest point \(r\) in a
 reference set \(R\), averaged over the size of \(A\). Formally,</p>
-<p>$$GD(A,R) = \frac{1}{|A|}\left(\sum_{a\in A}\min_{r\in R} d(a,r)^p\right)^{\frac{1}{p}} $$
-where:
+<p>$$GD_p(A,R) = \left(\frac{1}{|A|}\sum_{a\in A}\min_{r\in R} d(a,r)^p\right)^{\frac{1}{p}} $$
+where the distance in our implementation is the Euclidean distance:
 $$d(a,r) = \sqrt{\sum_{k=1}^M (a_k - r_k)^2} $$</p>
-<p>The inverted generational distance (IGD) is calculated as \(IGD(A,R) = GD(R,A)\)
-with \(p=1\).</p>
-<p>GD was first proposed by Van Veldhuizen and Lamont (1998)
- with \(p=2\). IGD seems to
-have been mentioned first by Coello Coello and Reyes-Sierra (2004)
-, however, some people
-also used the name D-metric for the same concept with \(p=1\) and later
-papers have often used IGD/GD with \(p=1\).</p>
-<p>IGDX is the application of IGD to decision vectors instead of objective
-vectors to measure closeness and diversity in decision
-space (Zhou et al. 2009)
-. One can use the functions here directly,
-just passing the decision vectors as <code>data</code>.</p>
+<p>The inverted generational distance (IGD) is calculated as \(IGD_p(A,R) = GD_p(R,A)\).</p>
 <p>The modified inverted generational distanced (IGD+) was proposed by
 Ishibuchi et al. (2015)
  to ensure that IGD+ is weakly Pareto compliant,
-similarly to unary epsilon. It averages over \(|R|\) within the exponent
-\(1/p\) and modifies the distance measure as:</p>
+similarly to <code><a href='epsilon.html'>epsilon_additive()</a></code> or <code><a href='epsilon.html'>epsilon_mult()</a></code>. It modifies the
+distance measure as:</p>
 <p>$$d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}$$</p>
-<p>The average Hausdorff distance (\(\Delta_p\)) was proposed by Schütze et al. (2012)
- and
-it is calculated as:</p>
+<p>The average Hausdorff distance (\(\Delta_p\)) was proposed by
+Schütze et al. (2012)
+ and it is calculated as:</p>
 <p>$$\Delta_p(A,R) = \max\{ IGD_p(A,R), IGD_p(R,A) \}$$</p>
-<p>See Bezerra et al. (2017)
- for a comparison.</p>
+<p>IGDX (Zhou et al. 2009)
+ is the application of IGD to decision vectors
+instead of objective vectors to measure closeness and diversity in decision
+space. One can use the functions <code>igd()</code> or <code>igd_plus()</code> (recommended)
+directly, just passing the decision vectors as <code>data</code>.</p>
+<p>There are different formulations of the GD and IGD metrics in the literature
+that differ on the value of \(p\), on the distance metric used and on
+whether the term \(|A|^{-1}\) is inside (as above) or outside the exponent
+\(1/p\).  GD was first proposed by Van Veldhuizen and Lamont (1998)
+ with \(p=2\) and
+the term \(|A|^{-1}\) outside the exponent. IGD seems to have been
+mentioned first by Coello Coello and Reyes-Sierra (2004)
+, however, some people also used the
+name D-metric for the same concept with \(p=1\) and later papers have
+often used IGD/GD with \(p=1\). Schütze et al. (2012)
+ proposed to
+place the term \(|A|^{-1}\) inside the exponent, as in the formulation
+shown above.  This has a significant effect for GD and less so for IGD given
+a constant reference set. IGD+ also follows this formulation.  We refer to
+Ishibuchi et al. (2015)
+ and Bezerra et al. (2017)
+ for a more detailed
+historical perspective and a comparison of the various variants.</p>
+<p>Following Ishibuchi et al. (2015)
+, we always use \(p=1\) in our
+implementation of IGD and IGD+ because (1) it is the setting most used in
+recent works; (2) it makes irrelevant whether the term \(|A|^{-1}\) is
+inside or outside the exponent \(1/p\); and (3) the meaning of IGD becomes
+the average Euclidean distance from each reference point to its nearest
+objective vector). It is also slightly faster to compute.</p>
+<p>GD should never be used directly to compare the quality of approximations to
+a Pareto front, as it often contradicts Pareto optimality. We
+recommend IGD+ instead of IGD, since the latter contradicts Pareto
+optimality in some cases (see examples below), but we implement IGD here
+because it is still popular due to historical reasons. We are not aware of
+any proof of whether \(\Delta_p(A,R)\) contradicts or not Pareto
+optimality, thus it must be used with care.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Leonardo
@@ -227,7 +250,25 @@ doi: <a href='https://doi.org/10.1109/TEVC.2009.2021467'>10.1109/TEVC.2009.20214
     <p>Manuel López-Ibáñez</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>extdata_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='co'># Example 4 from Ishibuchi et al. (2015)</span>
+<span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>,<span class='fl'>0</span>,<span class='fl'>6</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>6</span>,<span class='fl'>0</span>,<span class='fl'>10</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span>, byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>3</span>,<span class='fl'>2</span>,<span class='fl'>4</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span>, byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>4</span>,<span class='fl'>2</span>,<span class='fl'>8</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span>, byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>ref</span>, xlab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>, ylab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>,
+     panel.first<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/graphics/grid.html'>grid</a></span><span class='op'>(</span>nx<span class='op'>=</span><span class='cn'>NULL</span><span class='op'>)</span>, pch<span class='op'>=</span><span class='fl'>23</span>, bg<span class='op'>=</span><span class='st'>"gray"</span>, cex<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>A</span>, pch<span class='op'>=</span><span class='fl'>1</span>, cex<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>B</span>, pch<span class='op'>=</span><span class='fl'>19</span>, cex<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='st'>"topright"</span>, legend<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Reference"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span><span class='op'>)</span>, pch<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>23</span>,<span class='fl'>1</span>,<span class='fl'>19</span><span class='op'>)</span>,
+       pt.bg<span class='op'>=</span><span class='st'>"gray"</span>, bg<span class='op'>=</span><span class='st'>"white"</span>, bty <span class='op'>=</span> <span class='st'>"n"</span>, pt.cex<span class='op'>=</span><span class='fl'>1.5</span>, cex<span class='op'>=</span><span class='fl'>1.2</span><span class='op'>)</span>
+</div><div class='img'><img src='igd-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A is better than B in terms of Pareto optimality,\n however, IGD(A)="</span>,
+    <span class='fu'>igd</span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>ref</span><span class='op'>)</span>, <span class='st'>"&gt; IGD(B)="</span>, <span class='fu'>igd</span><span class='op'>(</span><span class='va'>B</span>, <span class='va'>ref</span><span class='op'>)</span>,
+    <span class='st'>", which contradicts it.\nBy contrast, IGD+(A)="</span>,
+    <span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>ref</span><span class='op'>)</span>, <span class='st'>"&lt; IGD+(B)="</span>, <span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>B</span>, <span class='va'>ref</span><span class='op'>)</span>, <span class='st'>", which is correct.\n"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; A is better than B in terms of Pareto optimality,
+#&gt;  however, IGD(A)= 3.707092 &gt; IGD(B)= 2.591483 , which contradicts it.
+#&gt; By contrast, IGD+(A)= 1.482843 &lt; IGD+(B)= 2.260113 , which is correct.</div><div class='input'>
+<span class='co'># A less trivial example.</span>
+<span class='va'>extdata_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span><span class='op'>)</span>
 <span class='va'>path.A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"ALG_1_dat.xz"</span><span class='op'>)</span>
 <span class='va'>path.A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"ALG_2_dat.xz"</span><span class='op'>)</span>
 <span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='va'>path.A1</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
