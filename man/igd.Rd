@@ -47,7 +47,7 @@ The inverted generational distance (IGD) is calculated as \eqn{IGD_p(A,R) = GD_p
 
 The modified inverted generational distanced (IGD+) was proposed by
 \citet{IshMasTanNoj2015igd} to ensure that IGD+ is weakly Pareto compliant,
-similarly to \code{\link{epsilon_additive()}} or \code{\link[=epsilon_mult]{epsilon_mult()}}. It modifies the
+similarly to \code{\link[=epsilon_additive]{epsilon_additive()}} or \code{\link[=epsilon_mult]{epsilon_mult()}}. It modifies the
 distance measure as:
 
 \deqn{d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}}{d^+(r,a) = sqrt(sum_{k=1}^M (max {r_k - a_k, 0 })^2)}
@@ -103,7 +103,8 @@ points(B, pch=19, cex=1.5)
 legend("topright", legend=c("Reference", "A", "B"), pch=c(23,1,19),
        pt.bg="gray", bg="white", bty = "n", pt.cex=1.5, cex=1.2)
 cat("A is better than B in terms of Pareto optimality,\n however, IGD(A)=",
-    igd(A, ref), "> IGD(B)=", igd(B, ref), ".\nBy contrast, IGD+(A)=",
+    igd(A, ref), "> IGD(B)=", igd(B, ref),
+    ", which contradicts it.\nBy contrast, IGD+(A)=",
     igd_plus(A, ref), "< IGD+(B)=", igd_plus(B, ref), ", which is correct.\n")
 
 # A less trivial example.

@@ -29,7 +29,7 @@
 #'
 #' The modified inverted generational distanced (IGD+) was proposed by
 #' \citet{IshMasTanNoj2015igd} to ensure that IGD+ is weakly Pareto compliant,
-#' similarly to \code{\link{epsilon_additive()}} or [eaf::epsilon_mult()]. It modifies the
+#' similarly to [epsilon_additive()] or [epsilon_mult()]. It modifies the
 #' distance measure as:
 #'
 #' \deqn{d^+(r,a) = \sqrt{\sum_{k=1}^M (\max\{r_k - a_k, 0\})^2}}{d^+(r,a) = sqrt(sum_{k=1}^M (max {r_k - a_k, 0 })^2)}
