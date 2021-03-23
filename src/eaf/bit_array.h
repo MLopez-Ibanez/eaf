@@ -85,9 +85,8 @@ bitset_check(const bit_array *b __unused, const bool * ref __unused, size_t n)
 {
     for(size_t i = 0; i < n; i++) {
         if (bit_array_get(b, i) != ref[i]) {
-            printf("bit_array_check_failed at %ld: %d != %d : %ld!\n", 
-                   i, bit_array_get(b, i),
-                   ref[i], n);
+            printf("bit_array_check_failed at %lu: %d != %d : %lu!\n", 
+                   (unsigned long) i, bit_array_get(b, i), ref[i], (unsigned long) n);
             assert(false);
             abort();
         }

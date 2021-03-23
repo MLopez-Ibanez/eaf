@@ -30,13 +30,13 @@ rect_weighted_hv2d(double *data, size_t n, double * rectangles,
                    size_t rectangles_nrow)
 {
 #define print_point(k, p, r, rect)                                             \
-    DEBUG2_PRINT("%d: p[%ld] = (%16.15g, %16.15g)"                                 \
-                 "\trectangle[%ld] = (%16.15g, %16.15g, %16.15g, %16.15g)\n",  \
-                 __LINE__, k, p[0], p[1], r, rect[0], rect[1], rect[2], rect[3])
+    DEBUG2_PRINT("%d: p[%lu] = (%16.15g, %16.15g)"                                 \
+                 "\trectangle[%lu] = (%16.15g, %16.15g, %16.15g, %16.15g)\n",  \
+                 __LINE__, (unsigned long) k, p[0], p[1], (unsigned long) r, rect[0], rect[1], rect[2], rect[3])
 
 #define print_rect(r, rect)                                                    \
-    DEBUG2_PRINT("%d: rectangle[%ld] = (%16.15g, %16.15g, %16.15g, %16.15g, %16.15g)\n", \
-                 __LINE__, r, rect[0], rect[1], rect[2], rect[3], rect[4])
+    DEBUG2_PRINT("%d: rectangle[%lu] = (%16.15g, %16.15g, %16.15g, %16.15g, %16.15g)\n", \
+                 __LINE__, (unsigned long) r, rect[0], rect[1], rect[2], rect[3], rect[4])
 
 // rectangles: Two points per row + color
 // FIXME: Should we really allow color == 0

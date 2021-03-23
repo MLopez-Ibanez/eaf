@@ -2,8 +2,8 @@
 # Do not put GCC specific flags here. Put them instead in CFLAGS and
 # CXXFLAGS in ~/.R/Makevars
 # This is from https://github.com/eddelbuettel/rcppgsl/blob/master/tools/winlibs.R
-GSL_CFLAGS := -I$(abspath ../windows/gsl-2.4/include)
-GSL_LIBS   := -L$(abspath ../windows/gsl-2.4/lib${R_ARCH}) -lgsl -lgslcblas
+GSL_CFLAGS := -I"$(CURDIR)/../windows/gsl-2.4/include"
+GSL_LIBS   := -L"$(CURDIR)/../windows/gsl-2.4/lib${R_ARCH}" -lgsl -lgslcblas
 PKG_CPPFLAGS = $(GSL_CFLAGS) -DR_PACKAGE -DDEBUG=1 -I./eaf/ -I./mo-tools/
 PKG_LIBS = $(GSL_LIBS)
 EAF_SRC_FILES= avl.c eaf3d.c eaf.c io.c
