@@ -18,7 +18,11 @@ jobs:
     - r: 3.4
       os: linux
       warnings_are_errors: false
-  
+
+    - r: oldrel
+      os: osx
+      fortran: false
+      
 
 # r_binary_packages:
 #   - modeltools
