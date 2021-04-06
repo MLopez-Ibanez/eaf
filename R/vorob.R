@@ -78,11 +78,11 @@ vorobDev <- function(x, VE, reference)
   # Hypervolume of the symmetric difference between A and B:
   # 2 * H(AUB) - H(A) - H(B)
   H2 <- hypervolume(VE, reference = reference)
-  x.split <- split.data.frame(x[,1:nobjs], x[,setcol])
+  x.split <- split.data.frame(x[,1:nobjs, drop=FALSE], x[,setcol])
   H1 <- mean(sapply(x.split, hypervolume, reference = reference))
 
   hv.union.VE <- function(y)
-    return(hypervolume(rbind(y[, 1:nobjs], VE), reference = reference))
+    return(hypervolume(rbind(y[, 1:nobjs, drop=FALSE], VE), reference = reference))
   
   VD <- 2 * sum(sapply(x.split, hv.union.VE))
   nruns <- length(x.split)

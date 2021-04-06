@@ -2,6 +2,7 @@
 
 * Improve documentation of `igd()`.
 
+* Fix errors with single-point attainment surfaces.
 
 # eaf 2.0
 

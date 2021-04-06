@@ -72,7 +72,7 @@ compute.eaf <- function(data, percentiles = NULL)
   setcol <- ncol(data)
   nobjs <- setcol - 1L
   # The C code expects points within a set to be contiguous.
-  data <- data[order(data[, setcol]), , drop = FALSE]
+  data <- data[order(data[, setcol]), , drop=FALSE]
   sets <- data[, setcol]
   nsets <- length(unique(sets))
   npoints <- tabulate(sets)
@@ -94,10 +94,12 @@ compute.eaf.as.list <- function(data, percentiles = NULL)
   eaf <- compute.eaf (data, percentiles = percentiles)
   setcol <- ncol(eaf)
   nobjs <- setcol - 1L
-  return(split.data.frame(eaf[,1:nobjs],
-                          factor(eaf[, setcol],
-                                 levels = unique.default(eaf[, setcol]),
-                                 labels = unique.default(eaf[, setcol]))))
+  eaf_sets <- eaf[, setcol]
+  uniq_eaf_sets <- unique.default(eaf[, setcol])
+  return(split.data.frame(eaf[,1:nobjs, drop=FALSE],
+                          factor(eaf_sets,
+                                 levels = uniq_eaf_sets,
+                                 labels = uniq_eaf_sets)))
 }
 
 compute.eafdiff.helper <- function(data, intervals)
@@ -200,7 +202,7 @@ eafdiff <- function(x, y, intervals = NULL, maximise = c(FALSE, FALSE),
   data <- rbind_datasets(x, y)
   data <- check.eaf.data(data)
   # FIXME: Is it faster to subset or to multiply the third column by 1?
-  data[,1:2] <- matrix.maximise(data[,1:2], maximise = maximise)
+  data[,1:2] <- matrix.maximise(data[,1:2, drop=FALSE], maximise = maximise)
   
   DIFF <- if (rectangles) compute.eafdiff.rectangles(data, intervals = intervals)
           else compute.eafdiff.helper(data, intervals = intervals)
@@ -219,8 +221,8 @@ compute.eafdiff <- function(data, intervals)
   # FIXME: Do this computation in C code.
   setcol <- ncol(data)
   eafval <- DIFF[, setcol]
-  eafdiff <- list(left  = unique(DIFF[ eafval >= 1L, , drop = FALSE]),
-                  right = unique(DIFF[ eafval <= -1L, , drop = FALSE]))
+  eafdiff <- list(left  = unique(DIFF[ eafval >= 1L, , drop=FALSE]),
+                  right = unique(DIFF[ eafval <= -1L, , drop=FALSE]))
   eafdiff$right[, setcol] <- -eafdiff$right[, setcol]
   return(eafdiff)
 }
@@ -449,7 +451,7 @@ points.steps <- function(x)
 #'
 #' @param percentiles The percentiles of the EAF of each side that will be
 #'   plotted as attainment surfaces. `NA` does not plot any. See
-#'   [eafplot.default()].
+#'   [eafplot()].
 #'
 #' @return  A data frame (`data.frame`) containing the exact representation
 #'  of EAF. The last column gives the percentile that corresponds to each
@@ -530,6 +532,27 @@ get.extremes <- function(xlim, ylim, maximise, log)
   if ("y" %in% log) extreme2 <- exp(extreme2)
   return(c(extreme1, extreme2))
 }
+
+#' Plot the Empirical Attainment Function for two objectives
+#' 
+#' Computes and plots the Empirical Attainment Function, either as
+#' attainment surfaces for certain percentiles or as points.
+#'
+#' This function can be used to plot random sets of points like those obtained
+#' by different runs of biobjective stochastic optimization algorithms.  An EAF
+#' curve represents the boundary separating points that are known to be
+#' attainable (that is, dominated in Pareto sense) in at least a fraction
+#' (quantile) of the runs from those that are not. The median EAF represents
+#' the curve where the fraction of attainable points is 50\%.  In single
+#' objective optimization the function can be used to plot the profile of
+#' solution quality over time of a collection of runs of a stochastic optimizer.
+#' 
+#' @param x Either a matrix of data values, or a data frame, or a list of
+#'     data frames of exactly three columns.
+#'
+#' @keywords graphs
+#' @export
+eafplot <- function(x, ...) UseMethod("eafplot")
 
 #' @describeIn eafplot Main function
 #' 
@@ -685,7 +708,7 @@ eafplot.default <-
      
   if (!is.null (attsurfs)) {
     # Don't we need to apply maximise?
-    attsurfs <- lapply(attsurfs, function(x) { as.matrix(x[, 1:2, drop = FALSE]) })
+    attsurfs <- lapply(attsurfs, function(x) { as.matrix(x[, 1:2, drop=FALSE]) })
   } else {
     # FIXME: This is a bit of wasted effort. We should decide what is more
     # efficient, one large matrix or separate points and sets, then be
@@ -693,7 +716,7 @@ eafplot.default <-
     if (!is.null(sets)) x <- cbind(x, sets)
     x <- check.eaf.data(x)
     sets <- x[, 3L]
-    x <- as.matrix(x[,1:2])
+    x <- as.matrix(x[,1:2, drop=FALSE])
     x <- matrix.maximise(x, maximise)
 
     # Transform EAF matrix into attsurfs list.
@@ -1080,7 +1103,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' 
 #' @param percentiles The percentiles of the EAF of each side that will be
 #'   plotted as attainment surfaces. `NA` does not plot any. See
-#'   [eafplot.default()].
+#'   [eafplot()].
 #' 
 #' @param full.eaf Whether to plot the EAF of each side instead of the
 #'   differences between the EAFs.
@@ -1214,11 +1237,16 @@ eafdiffplot <-
   title.right <- title.right
 
   maximise <- as.logical(maximise)
+  if (length(maximise) == 1) {
+    maximise <- rep_len(maximise, 2)
+  } else if (length(maximise) != 2) {
+    stop("length of maximise must be either 1 or 2")
+  }
 
   data.left <- check.eaf.data(data.left)
-  data.left[,1:2] <- matrix.maximise(data.left[,1:2], maximise)
+  data.left[,1:2] <- matrix.maximise(data.left[,1:2, drop=FALSE], maximise)
   data.right <- check.eaf.data(data.right)
-  data.right[,1:2] <- matrix.maximise(data.right[,1:2], maximise)
+  data.right[,1:2] <- matrix.maximise(data.right[,1:2, drop=FALSE], maximise)
 
   attsurfs.left <- attsurfs.right <- list()
   if (!any(is.na(percentiles))) {
@@ -1278,8 +1306,8 @@ eafdiffplot <-
 
   grand.best <- matrix.maximise(grand.best, maximise)
   grand.worst <- matrix.maximise(grand.worst, maximise)
-  diff_left[,1:2] <- matrix.maximise(diff_left[,1:2], maximise)
-  diff_right[,1:2] <- matrix.maximise(diff_right[,1:2], maximise)
+  diff_left[,1:2] <- matrix.maximise(diff_left[,1:2, drop=FALSE], maximise)
+  diff_right[,1:2] <- matrix.maximise(diff_right[,1:2, drop=FALSE], maximise)
   
   # FIXME: This does not generate empty space between the two plots, but the
   # plots are not squared.
@@ -1368,26 +1396,6 @@ seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE,
   return(intervals)
 }
 
-#' Plot the Empirical Attainment Function for two objectives
-#' 
-#' Computes and plots the Empirical Attainment Function, either as
-#' attainment surfaces for certain percentiles or as points.
-#'
-#' This function can be used to plot random sets of points like those obtained
-#' by different runs of biobjective stochastic optimization algorithms.  An EAF
-#' curve represents the boundary separating points that are known to be
-#' attainable (that is, dominated in Pareto sense) in at least a fraction
-#' (quantile) of the runs from those that are not. The median EAF represents
-#' the curve where the fraction of attainable points is 50\%.  In single
-#' objective optimization the function can be used to plot the profile of
-#' solution quality over time of a collection of runs of a stochastic optimizer.
-#' 
-#' @param x Either a matrix of data values, or a data frame, or a list of
-#'     data frames of exactly three columns.
-#'
-#' @keywords graphs
-#' @export
-eafplot <- function(x, ...) UseMethod("eafplot")
 
 
 #' @describeIn eafplot Formula interface

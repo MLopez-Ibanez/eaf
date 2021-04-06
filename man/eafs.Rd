@@ -17,7 +17,7 @@ belonging to different groups.}
 
 \item{percentiles}{The percentiles of the EAF of each side that will be
 plotted as attainment surfaces. \code{NA} does not plot any. See
-\code{\link[=eafplot.default]{eafplot.default()}}.}
+\code{\link[=eafplot]{eafplot()}}.}
 }
 \value{
 A data frame (\code{data.frame}) containing the exact representation

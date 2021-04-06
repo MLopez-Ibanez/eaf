@@ -46,7 +46,7 @@ provided, its length is taken as the number of intervals.}
 
 \item{percentiles}{The percentiles of the EAF of each side that will be
 plotted as attainment surfaces. \code{NA} does not plot any. See
-\code{\link[=eafplot.default]{eafplot.default()}}.}
+\code{\link[=eafplot]{eafplot()}}.}
 
 \item{full.eaf}{Whether to plot the EAF of each side instead of the
 differences between the EAFs.}
