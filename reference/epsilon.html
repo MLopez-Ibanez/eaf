@@ -60,6 +60,9 @@
 
 
 
+<!-- dependencies from examples -->
+
+
   
 
   
@@ -208,11 +211,11 @@ M Fonseca, Viviane Grunert da Fonseca (2003).
 <span class='va'>path.A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"ALG_2_dat.xz"</span><span class='op'>)</span>
 <span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='va'>path.A1</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
 <span class='va'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='va'>path.A2</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
-<span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='is_nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'>epsilon_additive</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 199090640</div><div class='input'><span class='fu'>epsilon_additive</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 132492066</div><div class='input'><span class='co'># Multiplicative version of epsilon metric</span>
-<span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='is_nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'>epsilon_mult</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 1.054015</div><div class='input'><span class='fu'>epsilon_mult</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 1.023755</div><div class='input'>

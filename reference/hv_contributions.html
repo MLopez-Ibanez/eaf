@@ -64,6 +64,9 @@ not change the hypervolume dominated by the remaining set." />
 
 
 
+<!-- dependencies from examples -->
+
+
   
 
   
@@ -214,7 +217,7 @@ doi: <a href='https://doi.org/10.1109/TEVC.2009.2015575'>10.1109/TEVC.2009.20155
 <span class='co'># Duplicated points show zero contribution above, even if not</span>
 <span class='co'># dominated. However, filter_dominated removes all duplicates except</span>
 <span class='co'># one. Hence, there are more points below with nonzero contribution.</span>
-<span class='fu'>hv_contributions</span><span class='op'>(</span><span class='fu'><a href='is_nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,
+<span class='fu'>hv_contributions</span><span class='op'>(</span><span class='fu'><a href='nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,
                  reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>250</span>, <span class='fl'>0</span><span class='op'>)</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  [1]      8.197  89283.920   7959.940   1945.800   8147.132     26.255
 #&gt;  [7] 255278.978   3698.640   2242.660      5.971   3069.000    779.240

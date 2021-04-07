@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot the Empirical Attainment Function for two objectives — eafplot.default • eaf</title>
+<title>Plot the Empirical Attainment Function for two objectives — eafplot • eaf</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plot the Empirical Attainment Function for two objectives — eafplot.default" />
+<meta property="og:title" content="Plot the Empirical Attainment Function for two objectives — eafplot" />
 <meta property="og:description" content="Computes and plots the Empirical Attainment Function, either as
 attainment surfaces for certain percentiles or as points." />
 
@@ -59,6 +59,9 @@ attainment surfaces for certain percentiles or as points." />
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+
+
+<!-- dependencies from examples -->
 
 
   
@@ -126,7 +129,9 @@ attainment surfaces for certain percentiles or as points." />
 attainment surfaces for certain percentiles or as points.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for default</span>
+    <pre class="usage"><span class='fu'>eafplot</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
 <span class='fu'>eafplot</span><span class='op'>(</span>
   <span class='va'>x</span>,
   sets <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -161,8 +166,6 @@ attainment surfaces for certain percentiles or as points.</p>
   <span class='va'>...</span>
 <span class='op'>)</span>
 
-<span class='fu'>eafplot</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
-
 <span class='co'># S3 method for formula</span>
 <span class='fu'>eafplot</span><span class='op'>(</span><span class='va'>formula</span>, <span class='va'>data</span>, groups <span class='op'>=</span> <span class='cn'>NULL</span>, subset <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 
@@ -176,6 +179,10 @@ attainment surfaces for certain percentiles or as points.</p>
       <th>x</th>
       <td><p>Either a matrix of data values, or a data frame, or a list of
 data frames of exactly three columns.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other graphical parameters to <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default()</a></code>.</p></td>
     </tr>
     <tr>
       <th>sets</th>
@@ -254,10 +261,6 @@ on the plot.</p></td>
     <tr>
       <th>sci.notation</th>
       <td><p>Generate prettier labels</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other graphical parameters to <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot.default()</a></code>.</p></td>
     </tr>
     <tr>
       <th>formula</th>

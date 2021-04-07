@@ -59,6 +59,7 @@
 
 
 
+
   
 
   
@@ -123,7 +124,8 @@
 <a href="#eaf-2-1" class="anchor"></a>eaf 2.1<small> Unreleased </small>
 </h1>
 <ul>
-<li>Improve documentation of <code><a href="../reference/igd.html">igd()</a></code>.</li>
+<li><p>Improve documentation of <code><a href="../reference/igd.html">igd()</a></code>.</p></li>
+<li><p>Fix errors with single-point attainment surfaces.</p></li>
 </ul>
 </div>
     <div id="eaf-2-0" class="section level1">
@@ -154,7 +156,7 @@
 <ul>
 <li><p>Compute Vorob’ev threshold, expectation and deviation. Plots of the symmetric deviation. (Mickael Binois)</p></li>
 <li><p>Non-integer EAF percentiles are computed correctly.</p></li>
-<li><p>Various aesthetic improvements in <code><a href="../reference/eafplot.default.html">eafplot()</a></code> and <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>.</p></li>
+<li><p>Various aesthetic improvements in <code><a href="../reference/eafplot.html">eafplot()</a></code> and <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>.</p></li>
 <li><p>Functions for computing hypervolume, hypervolume contributions, epsilon metric, IGD+, filter dominated points, and fast normalisation of ranges.</p></li>
 <li><p>Command-line tools for computing the above are installed in <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file(package="eaf", "bin/")</a></code>.</p></li>
 <li><p>Online documentation available at: http://lopez-ibanez.eu/eaftools</p></li>
@@ -174,7 +176,7 @@
 <li><p>New parameters <code>left.panel.last</code> and <code>right.panel.last</code> of <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>.</p></li>
 <li><p>Export and document function <code><a href="../reference/eafs.html">eafs()</a></code> to compute EAFs.</p></li>
 <li><p><code>eafdiff.pl</code>: Handle <code>--colors=</code>, <code>--intervals=</code>.</p></li>
-<li><p>Fix crash in <code><a href="../reference/eafplot.default.html">eafplot()</a></code> if <code>sets</code> is a vector of strings.</p></li>
+<li><p>Fix crash in <code><a href="../reference/eafplot.html">eafplot()</a></code> if <code>sets</code> is a vector of strings.</p></li>
 <li><p>Reset layout in <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>.</p></li>
 <li><p>Compute eaf for 3D.</p></li>
 <li><p>Added testthat testing framework.</p></li>
@@ -200,7 +202,7 @@
 <li><p>Reduce memory consumption (up to four times less memory).</p></li>
 <li><p><code>eafdiff.pl</code>: Mention option –legendpos=none to hide the legend.</p></li>
 <li><p>eafplot.pl: Add options –maximise and –xmaximise and –colors=. Fix bug with –area.</p></li>
-<li><p><code><a href="../reference/eafplot.default.html">eafplot.default()</a></code> now requires two colors when <code>type=="area"</code> and a palette is interpolated between these two colors for all the different levels plotted (Thanks to Alexandre Quemy for the suggestion).</p></li>
+<li><p><code><a href="../reference/eafplot.html">eafplot.default()</a></code> now requires two colors when <code>type=="area"</code> and a palette is interpolated between these two colors for all the different levels plotted (Thanks to Alexandre Quemy for the suggestion).</p></li>
 </ul>
 </div>
     <div id="eaf-1-05" class="section level1">

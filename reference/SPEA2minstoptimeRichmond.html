@@ -62,6 +62,9 @@ minimum idle time of pumps on Richmond water network. — SPEA2minstoptimeRichmo
 
 
 
+<!-- dependencies from examples -->
+
+
   
 
   
@@ -145,7 +148,7 @@ Ph.D. thesis, School of Engineering and the Built Environment, Edinburgh Napier 
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>HybridGA</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>)</span>
 <span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span> <span class='op'>/</span> <span class='fl'>60</span>
-<span class='fu'><a href='eafplot.default.html'>eafplot</a></span> <span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span>, xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>[</span><span class='va'>E</span><span class='op'>]</span><span class='op'>)</span>,
+<span class='fu'><a href='eafplot.html'>eafplot</a></span> <span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span>, xlab <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>C</span><span class='op'>[</span><span class='va'>E</span><span class='op'>]</span><span class='op'>)</span>,
          ylab <span class='op'>=</span> <span class='st'>"Minimum idle time (minutes)"</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span>,
          las <span class='op'>=</span> <span class='fl'>1</span>, log <span class='op'>=</span> <span class='st'>"y"</span>, legend.pos <span class='op'>=</span> <span class='st'>"bottomright"</span><span class='op'>)</span>
 </div><div class='img'><img src='SPEA2minstoptimeRichmond-1.png' alt='' width='700' height='433' /></div></pre>
