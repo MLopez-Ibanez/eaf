@@ -61,7 +61,8 @@ NULL
 #'      panel.first=grid(nx=NULL), pch=4, cex=1.5, xlim = c(0,10), ylim=c(0,8))
 #' points(A2, pch=0, cex=1.5)
 #' points(A3, pch=1, cex=1.5)
-#' 
+#' legend("bottomleft", legend=c("A1", "A2", "A3"), pch=c(4,0,1),
+#'        pt.bg="gray", bg="white", bty = "n", pt.cex=1.5, cex=1.2)
 #' epsilon_mult(A1, A3) # A1 epsilon-dominates A3 => e = 9/10 < 1 
 #' epsilon_mult(A1, A2) # A1 weakly dominates A2 => e = 1
 #' epsilon_mult(A2, A1) # A2 is epsilon-dominated by A1 => e = 2 > 1
