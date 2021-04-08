@@ -4,6 +4,9 @@
 
 * Fix errors with single-point attainment surfaces.
 
+* Fix bug in `eafplot.list()`.
+
+
 # eaf 2.0
 
 * `read_datasets()` is able to read files compressed with `xz`.

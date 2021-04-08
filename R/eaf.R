@@ -1496,7 +1496,7 @@ eafplot.list <- function(x, ...)
       stop("Each element of the list have exactly three columns. If you have grouping and conditioning variables, please consider using this format: 'eafplot(formula, data, ...)'")
     return(elem)
   }
-  x <- sapply(x, check.elem)  
+  x <- lapply(x, check.elem)
   groups <- rep(groups, sapply(x, nrow))
   x <- do.call(rbind, x)
   
