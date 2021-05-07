@@ -332,6 +332,7 @@ check_nondominated (const char * filename, const double *points,
     bool first_time = true;
     bool dominated_found = false;
     int n, cumsize;
+    int filename_len = MAX(strlen(filename), strlen("filename"));
     for (n = 0, cumsize = 0; n < nruns; cumsize = cumsizes[n], n++) {
         int old_size = cumsizes[n] - cumsize;
         int new_size 
@@ -341,18 +342,19 @@ check_nondominated (const char * filename, const double *points,
 
         if (verbose_flag >= 2) {
             if (first_time) {
-                fprintf (stderr, "# filename\tset\tsize\tnondom\tdom\n");
+                fprintf (stderr, "# %*s\tset\tsize\tnondom\tdom\n",
+                         filename_len - 2, "filename");
                 first_time = false;
             }
-            fprintf (stderr, "%s\t%d\t%d\t%d\t%d\n",
-                     filename, n+1, old_size, new_size, old_size - new_size);
+            fprintf (stderr, "%-*s\t%d\t%d\t%d\t%d\n",
+                     filename_len, filename, n+1, old_size, new_size, old_size - new_size);
         } else if (verbose_flag && new_size < old_size) {
             if (first_time) {
-                fprintf (stderr, "filename\tset\tdom\n");
+                fprintf (stderr, "%-*s\tset\tdom\n", filename_len, "filename");
                 first_time = false;
             }
-            fprintf (stderr, "%s\t%d\t%d dominated\n",
-                     filename, n+1, old_size - new_size);
+            fprintf (stderr, "%-*s\t%d\t%d dominated\n",
+                     filename_len, filename, n+1, old_size - new_size);
         }
 
         if (new_size < old_size) {
