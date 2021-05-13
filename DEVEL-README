@@ -50,7 +50,20 @@ Dear CRAN maintainers,
 
 I would like to submit version $VERSION of the $PACKAGE package to CRAN.
 
-The NEWS section corresponding to this version is:
+The package installs some optional command-line tools. For some reason these
+executables are larger in Windows than in other OS.
+
+On macos, I get:
+
+    File ‘eaf/libs/eaf.so’:
+     Found ‘___stderrp’, possibly from ‘stderr’ (C)
+     Objects: ‘eaf/io.o’, ‘mo-tools/hv.o’
+     Found ‘___stdoutp’, possibly from ‘stdout’ (C)
+     Object: ‘eaf/io.o’
+
+However, the code is the same for all OSs and there are no references to stderr
+or stdout in my code when compiling as an R package.  I suspect these are
+implicitly introduced by Clang in a non-standard manner.
 
 Thanks in advance,
 
