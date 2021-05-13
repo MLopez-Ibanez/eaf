@@ -1,4 +1,4 @@
-PACKAGEVERSION=2.2
+PACKAGEVERSION=$(shell sh -c 'grep -F "Version: " DESCRIPTION | cut -f2 -d" "')
 PACKAGE=$(shell sh -c 'grep -F "Package: " DESCRIPTION | cut -f2 -d" "')
 
 # FIXME: This Makefile only works with this BINDIR!
@@ -32,7 +32,7 @@ endif
 SVN_REV = $(shell sh -c 'cat git_version 2> /dev/null')
 REVNUM = $(shell sh -c 'cat git_version 2> /dev/null')
 
-.PHONY: build check clean install pdf rsync scripts submit version cran winbuild help gendoc pkgdown
+.PHONY: build check clean install pdf rsync scripts submit cran winbuild help gendoc pkgdown
 
 help :
 	@echo 'This makefile has the following targets                  '
@@ -62,7 +62,7 @@ NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
 pkgdown: gendoc
 	$(Reval) 'pkgdown::build_site(run_dont_run = TRUE)'
 
-build: version
+build:
 	@$(MAKE) scripts
 	@$(MAKE) gendoc
 	cd $(BINDIR) && R CMD build $(PACKAGEDIR)
@@ -72,7 +72,7 @@ closeversion:
 	git tag -f -a v$(PACKAGEVERSION) -m "Version $(PACKAGEVERSION)"
 	git push --tags
 
-releasebuild: clean version
+releasebuild: clean
 	@$(MAKE) scripts
 	@$(MAKE) gendoc
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
@@ -119,10 +119,7 @@ scripts:
 	echo "WARNING: $(EAFTOOLS_DIR) not found!"; \
 	fi
 
-version :
-	@$(call Rsed,$(PACKAGEDIR)/DESCRIPTION,"Version:.*$$","Version: $(PACKAGEVERSION)")
-
-rsync : version
+rsync :
 ifndef RDIR
 	@echo "ERROR: You must specify a remote dir (e.g., RDIR=~/)"
 endif

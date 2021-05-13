@@ -33,9 +33,9 @@ RELEASE Process:
 
 * IF the package is released in CRAN:
 
-  8. Bump the version number in Makefile and NEWS.md.
+  8. Bump the version number in DESCRIPTION and NEWS.md
 
-  9. make build # To update DESCRIPTION and other files with the new version."
+  9. make build # To update other files with the new version."
 
   10.  git ci -a  -m "Bump development version to $NEW_VERSION
 
