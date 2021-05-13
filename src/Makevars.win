@@ -2,8 +2,10 @@
 # Do not put GCC specific flags here. Put them instead in CFLAGS and
 # CXXFLAGS in ~/.R/Makevars
 # This is from https://github.com/eddelbuettel/rcppgsl/blob/master/tools/winlibs.R
-GSL_CFLAGS := -I"$(CURDIR)/../windows/gsl-2.4/include"
-GSL_LIBS   := -L"$(CURDIR)/../windows/gsl-2.4/lib${R_ARCH}" -lgsl -lgslcblas
+RSCRIPT := "${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe"
+GSL_ROOT :=$(shell $(RSCRIPT) -e 'cat(file.path(getwd(), "../windows/gsl-2.4/"))')
+GSL_CFLAGS = -I"$(GSL_ROOT)/include"
+GSL_LIBS   = -L"$(GSL_ROOT)/lib${R_ARCH}" -lgsl -lgslcblas
 PKG_CPPFLAGS = $(GSL_CFLAGS) -DR_PACKAGE -DDEBUG=1 -I./eaf/ -I./mo-tools/
 PKG_LIBS = $(GSL_LIBS)
 EAF_SRC_FILES= avl.c eaf3d.c eaf.c io.c
@@ -41,4 +43,4 @@ clean:
 $(OBJECTS): winlibs
 
 winlibs:
-	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R"
+	$(RSCRIPT) "../tools/winlibs.R"

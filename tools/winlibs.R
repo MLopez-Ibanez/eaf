@@ -4,4 +4,6 @@ if(!file.exists("../windows/gsl-2.4/include/gsl/gsl_blas.h")){
   dir.create("../windows", showWarnings = FALSE)
   unzip("lib.zip", exdir = "../windows")
   unlink("lib.zip")
+  stopifnot(file.exists("../windows/gsl-2.4/include/gsl/gsl_errno.h"))
+  cat("Downloaded to '", file.path(getwd(), "../windows"), "'\n")
 }
