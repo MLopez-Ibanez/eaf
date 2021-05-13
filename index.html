@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.2</span>
       </span>
     </div>
 
@@ -72,7 +72,7 @@
    between two bi-objective optimizers" style="border:0; align:right; float:right;"><img src="reference/figures/eafdiff-color.png" width="480" height="240" alt="EAF differences between two variants of W-RoTS (color)" title="EAF differences between two variants of W-RoTS (color)" style="border:0; align:right; float:right; clear:right"></p>
 <div id="eaf-empirical-attainment-function-eaf-tools" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#eaf-empirical-attainment-function-eaf-tools" class="anchor"></a><strong>eaf</strong>: Empirical Attainment Function (EAF) Tools</h1></div>
+<a href="#eaf-empirical-attainment-function-eaf-tools" class="anchor" aria-hidden="true"></a><strong>eaf</strong>: Empirical Attainment Function (EAF) Tools</h1></div>
 <!-- badges: start -->
 
 <p>[ <a href="http://lopez-ibanez.eu/eaftools" class="external-link"><strong>Homepage</strong></a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf" class="external-link"><strong>GitHub</strong></a> ]</p>
@@ -82,7 +82,7 @@
 </div>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
+<a href="#introduction" class="anchor" aria-hidden="true"></a>Introduction</h1>
 <p>The empirical attainment function (EAF) describes the probabilistic distribution of the outcomes obtained by a stochastic algorithm in the objective space. This <a href="https://www.R-project.org/" class="external-link">R</a> package implements plots of summary attainment surfaces and differences between the first-order EAFs. These plots may be used for exploring the performance of stochastic local search algorithms for biobjective optimization problems and help in identifying certain algorithmic behaviors in a graphical way.</p>
 <p>The corresponding <a href="#LopPaqStu09emaa">book chapter</a> [1] explains the use of these visualization tools and illustrates them with examples arising from practice.</p>
 <p>In addition, the package provides functions for computing several quality metrics, such as hypervolume, IGD, IGD+, and epsilon.</p>
@@ -94,8 +94,8 @@
 </ol>
 <div id="download-and-installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#download-and-installation" class="anchor"></a>Download and installation</h2>
-<p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf" class="external-link">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled binaries can be found under <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file(package="eaf", "bin")</a></code>. Other useful binaries can be found there.</p>
+<a href="#download-and-installation" class="anchor" aria-hidden="true"></a>Download and installation</h2>
+<p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf" class="external-link">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled binaries can be found under <code>system.file(package="eaf", "bin")</code>. Other useful binaries can be found there.</p>
 <p>The visualization of the EAFs requires installing the <strong>eaf</strong> package. Therefore, a basic knowledge of R is recommended to make use of all features. However, the <code>eaf</code> package contains two Perl scripts that allow to generate standard plots without any R knowledge. See <code>inst/scripts/eafplot/</code> and <code>inst/scripts/eafdiff/</code> in the package source code. The scripts use the <strong>eaf</strong> package internally to generate the plots, and, hence, the <strong>eaf</strong> package must be installed and working.</p>
 <p>The first step before installing the <strong>eaf</strong> package is to <a href="https://cran.r-project.org/" class="external-link">install R</a>. Once R is installed in the system, there are two methods for installing the <strong>eaf</strong> package:</p>
 <ol style="list-style-type: decimal">
@@ -116,7 +116,7 @@
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<a href="#usage" class="anchor" aria-hidden="true"></a>Usage</h2>
 <p>Once the <strong>eaf</strong> package is installed, the following R commands will give more information:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R">    <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://lopez-ibanez.eu/eaftools" class="external-link">eaf</a></span><span class="op">)</span>
@@ -126,7 +126,7 @@
     <span class="op">?</span><span class="va">read.data.sets</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="va">eafplot</span><span class="op">)</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="va">eafdiffplot</span><span class="op">)</span> <span class="co"># This one takes some time</span></code></pre></div>
-<p>Apart from the main R package, the source code contains the following extras in the directory <code>inst/</code> (after installation, these files can be found at the directory printed by the R command <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file(package="eaf")</a></code>):</p>
+<p>Apart from the main R package, the source code contains the following extras in the directory <code>inst/</code> (after installation, these files can be found at the directory printed by the R command <code>system.file(package="eaf")</code>):</p>
 <ul>
 <li>
 <code>scripts/eafplot</code> : Perl script to plot summary attainment surfaces.</li>
@@ -135,12 +135,12 @@
 <li>
 <code>extdata/</code> : Examples of utilization of the above programs. These are discussed in the corresponding <a href="#LopPaqStu09emaa">book chapter</a> [1].</li>
 </ul>
-<p>In addition, the source code contains the following under <code>src/</code>: * <code>src/eaf</code> : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at http://www.tik.ee.ethz.ch/pisa/. Another version of the code that handles three dimensions is available at <a href="https://eden.dei.uc.pt/~cmfonsec/software.html" class="external-link">Prof. Fonseca’s website</a>. * <code>src/mo-tools</code> : Several tools for working with multi-objective data.</p>
+<p>In addition, the source code contains the following under <code>src/</code>: * <code>src/eaf</code> : This C program computes the empirical attainment function in 2 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at <a href="http://www.tik.ee.ethz.ch/pisa/" class="external-link uri">http://www.tik.ee.ethz.ch/pisa/</a>. Another version of the code that handles three dimensions is available at <a href="https://eden.dei.uc.pt/~cmfonsec/software.html" class="external-link">Prof. Fonseca’s website</a>. * <code>src/mo-tools</code> : Several tools for working with multi-objective data.</p>
 <p>For more information, consult the <code>README</code> files at each subdirectory.</p>
 </div>
 <div id="python" class="section level2">
 <h2 class="hasAnchor">
-<a href="#python" class="anchor"></a>Python</h2>
+<a href="#python" class="anchor" aria-hidden="true"></a>Python</h2>
 <p>Thanks to <a href="https://rpy2.github.io/doc/latest/html/index.html" class="external-link">rpy2</a>, you can use the <code>eaf</code> package from Python. A complete example would be:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="im">import</span> os</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">## Uncomment this if you suffer from this bug in cffi 1.13.0</span></a>
@@ -170,7 +170,7 @@
 </div>
 <div id="license" class="section level2">
 <h2 class="hasAnchor">
-<a href="#license" class="anchor"></a>License</h2>
+<a href="#license" class="anchor" aria-hidden="true"></a>License</h2>
 <p>This software is Copyright (C) 2011-2021 Carlos M. Fonseca, Luís Paquete, Thomas Stützle, Manuel López-Ibáñez and Marco Chiarandini.</p>
 <p>This program is free software (software libre); you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a href="http://www.gnu.org/licenses/gpl.html" class="external-link">GNU General Public License</a> for more details.</p>

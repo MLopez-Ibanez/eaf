@@ -86,7 +86,7 @@ assuming minimization of all objectives." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.2</span>
       </span>
     </div>
 
@@ -145,7 +145,7 @@ values, where each row gives the coordinates of a point.</p></td>
     </tr>
     <tr>
       <th>maximise</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) <br /> Whether the objectives must be
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code>logical(1)</code>) <br /> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></td>
@@ -180,14 +180,15 @@ doi: <a href='https://doi.org/10.1109/TEVC.2009.2015575'>10.1109/TEVC.2009.20155
     <p>Manuel López-Ibáñez</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>)</span>
-<span class='co'># The second objective must be maximized</span>
-<span class='co'># We calculate the hypervolume of the union of all sets.</span>
-<span class='fu'>hypervolume</span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>250</span>, <span class='fl'>0</span><span class='op'>)</span>,
-            maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 7911376</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># The second objective must be maximized</span></span>
+<span class='r-in'><span class='co'># We calculate the hypervolume of the union of all sets.</span></span>
+<span class='r-in'><span class='fu'>hypervolume</span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>250</span>, <span class='fl'>0</span><span class='op'>)</span>,</span>
+<span class='r-in'>            maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 7911376</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -87,7 +87,7 @@ EAF differences according to the method proposed by Diaz and López-Ibáñez (20
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.2</span>
       </span>
     </div>
 
@@ -138,18 +138,18 @@ EAF differences according to the method proposed by Diaz and López-Ibáñez (20
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/list.html'>list(1)</a></code>) A list of matrices with at least 3 columns</p></td>
+      <td><p>(<code>list(1)</code>) A list of matrices with at least 3 columns</p></td>
     </tr>
     <tr>
       <th>maximise</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) <br /> Whether the objectives must be
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code>logical(1)</code>) <br /> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></td>
     </tr>
     <tr>
       <th>intervals</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>) <br /> The absolute range of the differences
+      <td><p>(<code>integer(1)</code>) <br /> The absolute range of the differences
 \([0, 1]\) is partitioned into the number of intervals provided.</p></td>
     </tr>
     <tr>
@@ -175,18 +175,19 @@ doi: <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>10.1016/j.ejor.2020.07
 , <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>https://doi.org/10.1016/j.ejor.2020.07.059</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># FIXME: This example is too large, we need a smaller one.</span>
-<span class='va'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"wrots_l100w10_dat"</span>,<span class='st'>"wrots_l10w100_dat"</span><span class='op'>)</span>
-<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>files</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-               <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span><span class='op'>)</span>,
-                             <span class='st'>"extdata"</span>, <span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>nadir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind</span>, <span class='va'>data</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='fl'>2</span>, <span class='va'>max</span><span class='op'>)</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>largest_eafdiff</span><span class='op'>(</span><span class='va'>data</span>, reference <span class='op'>=</span> <span class='va'>nadir</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; List of 2
-#&gt;  $ pair : int [1:2] 1 2
-#&gt;  $ value: num 6.6e+09</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># FIXME: This example is too large, we need a smaller one.</span></span>
+<span class='r-in'><span class='va'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"wrots_l100w10_dat"</span>,<span class='st'>"wrots_l10w100_dat"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>files</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-in'>               <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span><span class='op'>)</span>,</span>
+<span class='r-in'>                             <span class='st'>"extdata"</span>, <span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>nadir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind</span>, <span class='va'>data</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='fl'>2</span>, <span class='va'>max</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>largest_eafdiff</span><span class='op'>(</span><span class='va'>data</span>, reference <span class='op'>=</span> <span class='va'>nadir</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ pair : int [1:2] 1 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ value: num 6.6e+09</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

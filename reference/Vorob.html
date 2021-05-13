@@ -89,7 +89,7 @@ realization of the (random) attained set." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.2</span>
       </span>
     </div>
 
@@ -135,11 +135,11 @@ belong to the symmetric difference between the Vorob'ev expectation and a
 realization of the (random) attained set.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='Vorob.html'>vorobT</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>reference</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>vorobT</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>reference</span><span class='op'>)</span>
 
-<span class='fu'><a href='Vorob.html'>vorobDev</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>VE</span>, <span class='va'>reference</span><span class='op'>)</span>
+<span class='fu'>vorobDev</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>VE</span>, <span class='va'>reference</span><span class='op'>)</span>
 
-<span class='fu'><a href='Vorob.html'>symDifPlot</a></span><span class='op'>(</span>
+<span class='fu'>symDifPlot</span><span class='op'>(</span>
   <span class='va'>x</span>,
   <span class='va'>VE</span>,
   <span class='va'>threshold</span>,
@@ -168,7 +168,7 @@ sample, ...) identifier.</p></td>
     <tr>
       <th>VE, threshold</th>
       <td><p>Vorob'ev expectation and threshold, e.g., as returned
-by <code><a href='Vorob.html'>vorobT()</a></code>.</p></td>
+by <code>vorobT()</code>.</p></td>
     </tr>
     <tr>
       <th>nlevels</th>
@@ -216,35 +216,42 @@ Gaussian process models, University of Bern, PhD thesis.</p>
     <p>Mickael Binois</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>)</span>
-<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Vorob.html'>vorobT</a></span><span class='op'>(</span><span class='va'>CPFs</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 44.14062</div><div class='input'>
-<span class='co'>## Display Vorob'ev expectation and attainment function</span>
-<span class='co'># First style</span>
-<span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, sets <span class='op'>=</span> <span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span>, percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>, <span class='fl'>100</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span><span class='op'>)</span>,
-        main <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Empirical attainment function, "</span>,<span class='va'>beta</span>,<span class='st'>"* = "</span>, <span class='va'>a</span>, <span class='st'>"%"</span><span class='op'>)</span>,
-                          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/formatc.html'>formatC</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, digits <span class='op'>=</span> <span class='fl'>2</span>, format <span class='op'>=</span> <span class='st'>"f"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='Vorob-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Second style</span>
-<span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, sets <span class='op'>=</span> <span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span>, percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>60</span>, <span class='fl'>80</span>, <span class='fl'>100</span><span class='op'>)</span>,
-        col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/gray.html'>gray</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0.8</span>, <span class='fl'>0.1</span>, length.out <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>0.5</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"area"</span>, 
-        legend.pos <span class='op'>=</span> <span class='st'>"bottomleft"</span>, extra.points <span class='op'>=</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, extra.col <span class='op'>=</span> <span class='st'>"cyan"</span>,
-        extra.legend <span class='op'>=</span> <span class='st'>"VE"</span>, extra.lty <span class='op'>=</span> <span class='st'>"solid"</span>, extra.pch <span class='op'>=</span> <span class='cn'>NA</span>, extra.lwd <span class='op'>=</span> <span class='fl'>2</span>,
-        main <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Empirical attainment function, "</span>,<span class='va'>beta</span>,<span class='st'>"* = "</span>, <span class='va'>a</span>, <span class='st'>"%"</span><span class='op'>)</span>,
-                          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/formatc.html'>formatC</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, digits <span class='op'>=</span> <span class='fl'>2</span>, format <span class='op'>=</span> <span class='st'>"f"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='Vorob-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Now print Vorob'ev deviation</span>
-<span class='va'>VD</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Vorob.html'>vorobDev</a></span><span class='op'>(</span><span class='va'>CPFs</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>VD</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 3017.13</div><div class='input'><span class='co'># Now display the symmetric deviation function.</span>
-<span class='fu'><a href='Vorob.html'>symDifPlot</a></span><span class='op'>(</span><span class='va'>CPFs</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, nlevels <span class='op'>=</span> <span class='fl'>11</span><span class='op'>)</span>
-</div><div class='img'><img src='Vorob-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Levels are adjusted automatically if too large.</span>
-<span class='fu'><a href='Vorob.html'>symDifPlot</a></span><span class='op'>(</span><span class='va'>CPFs</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, nlevels <span class='op'>=</span> <span class='fl'>200</span>, legend.pos <span class='op'>=</span> <span class='st'>"none"</span><span class='op'>)</span>
-</div><div class='img'><img src='Vorob-4.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Use a different palette.</span>
-<span class='fu'><a href='Vorob.html'>symDifPlot</a></span><span class='op'>(</span><span class='va'>CPFs</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, nlevels <span class='op'>=</span> <span class='fl'>11</span>, col.fun <span class='op'>=</span> <span class='va'>heat.colors</span><span class='op'>)</span>
-</div><div class='img'><img src='Vorob-5.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>vorobT</span><span class='op'>(</span><span class='va'>CPFs</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 44.14062</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Display Vorob'ev expectation and attainment function</span></span>
+<span class='r-in'><span class='co'># First style</span></span>
+<span class='r-in'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, sets <span class='op'>=</span> <span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span>, percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>25</span>, <span class='fl'>50</span>, <span class='fl'>75</span>, <span class='fl'>100</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span><span class='op'>)</span>,</span>
+<span class='r-in'>        main <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Empirical attainment function, "</span>,<span class='va'>beta</span>,<span class='st'>"* = "</span>, <span class='va'>a</span>, <span class='st'>"%"</span><span class='op'>)</span>,</span>
+<span class='r-in'>                          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/formatc.html'>formatC</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, digits <span class='op'>=</span> <span class='fl'>2</span>, format <span class='op'>=</span> <span class='st'>"f"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-plt'><img src='Vorob-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Second style</span></span>
+<span class='r-in'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, sets <span class='op'>=</span> <span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span>, percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>60</span>, <span class='fl'>80</span>, <span class='fl'>100</span><span class='op'>)</span>,</span>
+<span class='r-in'>        col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/gray.html'>gray</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0.8</span>, <span class='fl'>0.1</span>, length.out <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>0.5</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"area"</span>, </span>
+<span class='r-in'>        legend.pos <span class='op'>=</span> <span class='st'>"bottomleft"</span>, extra.points <span class='op'>=</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, extra.col <span class='op'>=</span> <span class='st'>"cyan"</span>,</span>
+<span class='r-in'>        extra.legend <span class='op'>=</span> <span class='st'>"VE"</span>, extra.lty <span class='op'>=</span> <span class='st'>"solid"</span>, extra.pch <span class='op'>=</span> <span class='cn'>NA</span>, extra.lwd <span class='op'>=</span> <span class='fl'>2</span>,</span>
+<span class='r-in'>        main <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Empirical attainment function, "</span>,<span class='va'>beta</span>,<span class='st'>"* = "</span>, <span class='va'>a</span>, <span class='st'>"%"</span><span class='op'>)</span>,</span>
+<span class='r-in'>                          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/formatc.html'>formatC</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, digits <span class='op'>=</span> <span class='fl'>2</span>, format <span class='op'>=</span> <span class='st'>"f"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-plt'><img src='Vorob-2.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Now print Vorob'ev deviation</span></span>
+<span class='r-in'><span class='va'>VD</span> <span class='op'>&lt;-</span> <span class='fu'>vorobDev</span><span class='op'>(</span><span class='va'>CPFs</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>VD</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 3017.13</span>
+<span class='r-in'><span class='co'># Now display the symmetric deviation function.</span></span>
+<span class='r-in'><span class='fu'>symDifPlot</span><span class='op'>(</span><span class='va'>CPFs</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, nlevels <span class='op'>=</span> <span class='fl'>11</span><span class='op'>)</span></span>
+<span class='r-plt'><img src='Vorob-3.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># Levels are adjusted automatically if too large.</span></span>
+<span class='r-in'><span class='fu'>symDifPlot</span><span class='op'>(</span><span class='va'>CPFs</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, nlevels <span class='op'>=</span> <span class='fl'>200</span>, legend.pos <span class='op'>=</span> <span class='st'>"none"</span><span class='op'>)</span></span>
+<span class='r-plt'><img src='Vorob-4.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Use a different palette.</span></span>
+<span class='r-in'><span class='fu'>symDifPlot</span><span class='op'>(</span><span class='va'>CPFs</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, <span class='va'>res</span><span class='op'>$</span><span class='va'>threshold</span>, nlevels <span class='op'>=</span> <span class='fl'>11</span>, col.fun <span class='op'>=</span> <span class='va'>heat.colors</span><span class='op'>)</span></span>
+<span class='r-plt'><img src='Vorob-5.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

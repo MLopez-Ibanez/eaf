@@ -89,7 +89,7 @@ not change the hypervolume dominated by the remaining set." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.2</span>
       </span>
     </div>
 
@@ -151,7 +151,7 @@ values, where each row gives the coordinates of a point.</p></td>
     </tr>
     <tr>
       <th>maximise</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) <br /> Whether the objectives must be
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code>logical(1)</code>) <br /> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></td>
@@ -184,45 +184,47 @@ doi: <a href='https://doi.org/10.1109/TEVC.2009.2015575'>10.1109/TEVC.2009.20155
     <p>Manuel López-Ibáñez</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>)</span>
-<span class='co'># The second objective must be maximized</span>
-<span class='co'># We calculate the hypervolume contribution of each point of the union of all sets.</span>
-<span class='fu'>hv_contributions</span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>250</span>, <span class='fl'>0</span><span class='op'>)</span>,
-            maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   [1]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;   [8]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;  [15]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;  [22]     0.000     4.380     0.000     0.000     0.000     0.000     0.000
-#&gt;  [29]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;  [36]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;  [43]     0.000     0.000     0.000     0.000     0.000     0.000  6397.052
-#&gt;  [50]  1945.800  3386.197     0.000     0.000     0.000     0.000     0.000
-#&gt;  [57]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;  [64]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;  [71]    26.255     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;  [78]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;  [85]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt;  [92]     0.000    15.840     0.000     0.000     0.066     0.000     0.000
-#&gt;  [99]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt; [106]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt; [113]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt; [120]     0.000  3069.000   779.240     0.000     0.000     0.000     0.000
-#&gt; [127]     0.000     0.000     0.000     0.000     0.000 12428.431     0.000
-#&gt; [134]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt; [141]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt; [148]     0.000     0.000     0.000     0.000     0.000     0.000     0.000
-#&gt; [155]     0.000     0.000     0.000     0.000     0.000  2294.064     0.000
-#&gt; [162]     0.000     0.000     0.000     0.000     0.000</div><div class='input'>
-<span class='co'># Duplicated points show zero contribution above, even if not</span>
-<span class='co'># dominated. However, filter_dominated removes all duplicates except</span>
-<span class='co'># one. Hence, there are more points below with nonzero contribution.</span>
-<span class='fu'>hv_contributions</span><span class='op'>(</span><span class='fu'><a href='nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,
-                 reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>250</span>, <span class='fl'>0</span><span class='op'>)</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1]      8.197  89283.920   7959.940   1945.800   8147.132     26.255
-#&gt;  [7] 255278.978   3698.640   2242.660      5.971   3069.000    779.240
-#&gt; [13]  41994.755   2294.064     73.054 193143.324</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>)</span></span>
+<span class='r-in'><span class='co'># The second objective must be maximized</span></span>
+<span class='r-in'><span class='co'># We calculate the hypervolume contribution of each point of the union of all sets.</span></span>
+<span class='r-in'><span class='fu'>hv_contributions</span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>250</span>, <span class='fl'>0</span><span class='op'>)</span>,</span>
+<span class='r-in'>            maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [1]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   [8]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [15]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [22]     0.000     4.380     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [29]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [36]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [43]     0.000     0.000     0.000     0.000     0.000     0.000  6397.052</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [50]  1945.800  3386.197     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [57]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [64]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [71]    26.255     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [78]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [85]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [92]     0.000    15.840     0.000     0.000     0.066     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [99]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [106]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [113]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [120]     0.000  3069.000   779.240     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [127]     0.000     0.000     0.000     0.000     0.000 12428.431     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [134]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [141]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [148]     0.000     0.000     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [155]     0.000     0.000     0.000     0.000     0.000  2294.064     0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [162]     0.000     0.000     0.000     0.000     0.000</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Duplicated points show zero contribution above, even if not</span></span>
+<span class='r-in'><span class='co'># dominated. However, filter_dominated removes all duplicates except</span></span>
+<span class='r-in'><span class='co'># one. Hence, there are more points below with nonzero contribution.</span></span>
+<span class='r-in'><span class='fu'>hv_contributions</span><span class='op'>(</span><span class='fu'><a href='nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span class='r-in'>                 reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>250</span>, <span class='fl'>0</span><span class='op'>)</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1]      8.197  89283.920   7959.940   1945.800   8147.132     26.255</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [7] 255278.978   3698.640   2242.660      5.971   3069.000    779.240</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13]  41994.755   2294.064     73.054 193143.324</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

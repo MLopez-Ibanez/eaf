@@ -86,7 +86,7 @@ the averaged Hausdorff distance between nondominated sets of points." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.2</span>
       </span>
     </div>
 
@@ -150,20 +150,20 @@ data.frame of numerical values.</p></td>
     </tr>
     <tr>
       <th>maximise</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) <br /> Whether the objectives must be
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code>logical(1)</code>) <br /> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></td>
     </tr>
     <tr>
       <th>p</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>) Hausdorff distance parameter (default: <code>1L</code>).</p></td>
+      <td><p>(<code>integer(1)</code>) Hausdorff distance parameter (default: <code>1L</code>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>) A single numerical value.</p>
+    <p>(<code>numeric(1)</code>) A single numerical value.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The generational distance (GD) of a set \(A\) is defined as the distance
@@ -259,41 +259,49 @@ doi: <a href='https://doi.org/10.1109/TEVC.2009.2021467'>10.1109/TEVC.2009.20214
     <p>Manuel López-Ibáñez</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example 4 from Ishibuchi et al. (2015)</span>
-<span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>,<span class='fl'>0</span>,<span class='fl'>6</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>6</span>,<span class='fl'>0</span>,<span class='fl'>10</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span>, byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>3</span>,<span class='fl'>2</span>,<span class='fl'>4</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span>, byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>4</span>,<span class='fl'>2</span>,<span class='fl'>8</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span>, byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>ref</span>, xlab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>, ylab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>,
-     panel.first<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/graphics/grid.html'>grid</a></span><span class='op'>(</span>nx<span class='op'>=</span><span class='cn'>NULL</span><span class='op'>)</span>, pch<span class='op'>=</span><span class='fl'>23</span>, bg<span class='op'>=</span><span class='st'>"gray"</span>, cex<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>A</span>, pch<span class='op'>=</span><span class='fl'>1</span>, cex<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>B</span>, pch<span class='op'>=</span><span class='fl'>19</span>, cex<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='st'>"topright"</span>, legend<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Reference"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span><span class='op'>)</span>, pch<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>23</span>,<span class='fl'>1</span>,<span class='fl'>19</span><span class='op'>)</span>,
-       pt.bg<span class='op'>=</span><span class='st'>"gray"</span>, bg<span class='op'>=</span><span class='st'>"white"</span>, bty <span class='op'>=</span> <span class='st'>"n"</span>, pt.cex<span class='op'>=</span><span class='fl'>1.5</span>, cex<span class='op'>=</span><span class='fl'>1.2</span><span class='op'>)</span>
-</div><div class='img'><img src='igd-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A is better than B in terms of Pareto optimality,\n however, IGD(A)="</span>,
-    <span class='fu'>igd</span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>ref</span><span class='op'>)</span>, <span class='st'>"&gt; IGD(B)="</span>, <span class='fu'>igd</span><span class='op'>(</span><span class='va'>B</span>, <span class='va'>ref</span><span class='op'>)</span>,
-    <span class='st'>", which contradicts it.\nBy contrast, IGD+(A)="</span>,
-    <span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>ref</span><span class='op'>)</span>, <span class='st'>"&lt; IGD+(B)="</span>, <span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>B</span>, <span class='va'>ref</span><span class='op'>)</span>, <span class='st'>", which is correct.\n"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; A is better than B in terms of Pareto optimality,
-#&gt;  however, IGD(A)= 3.707092 &gt; IGD(B)= 2.591483 , which contradicts it.
-#&gt; By contrast, IGD+(A)= 1.482843 &lt; IGD+(B)= 2.260113 , which is correct.</div><div class='input'>
-<span class='co'># A less trivial example.</span>
-<span class='va'>extdata_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span><span class='op'>)</span>
-<span class='va'>path.A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"ALG_1_dat.xz"</span><span class='op'>)</span>
-<span class='va'>path.A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"ALG_2_dat.xz"</span><span class='op'>)</span>
-<span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='va'>path.A1</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
-<span class='va'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='va'>path.A2</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
-<span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>igd</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 91888189</div><div class='input'><span class='fu'>igd</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 11351992</div><div class='input'>
-<span class='co'># IGD+ (Pareto compliant)</span>
-<span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 82695357</div><div class='input'><span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 10698269</div><div class='input'>
-<span class='co'># Average Haussdorff distance</span>
-<span class='fu'>avg_hausdorff_dist</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 268547627</div><div class='input'><span class='fu'>avg_hausdorff_dist</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 352613092</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Example 4 from Ishibuchi et al. (2015)</span></span>
+<span class='r-in'><span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>,<span class='fl'>0</span>,<span class='fl'>6</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>6</span>,<span class='fl'>0</span>,<span class='fl'>10</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span>, byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>3</span>,<span class='fl'>2</span>,<span class='fl'>4</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span>, byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>4</span>,<span class='fl'>2</span>,<span class='fl'>8</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>2</span>, byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>ref</span>, xlab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>, ylab<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>,</span>
+<span class='r-in'>     panel.first<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/graphics/grid.html'>grid</a></span><span class='op'>(</span>nx<span class='op'>=</span><span class='cn'>NULL</span><span class='op'>)</span>, pch<span class='op'>=</span><span class='fl'>23</span>, bg<span class='op'>=</span><span class='st'>"gray"</span>, cex<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>A</span>, pch<span class='op'>=</span><span class='fl'>1</span>, cex<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>B</span>, pch<span class='op'>=</span><span class='fl'>19</span>, cex<span class='op'>=</span><span class='fl'>1.5</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='st'>"topright"</span>, legend<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Reference"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span><span class='op'>)</span>, pch<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>23</span>,<span class='fl'>1</span>,<span class='fl'>19</span><span class='op'>)</span>,</span>
+<span class='r-in'>       pt.bg<span class='op'>=</span><span class='st'>"gray"</span>, bg<span class='op'>=</span><span class='st'>"white"</span>, bty <span class='op'>=</span> <span class='st'>"n"</span>, pt.cex<span class='op'>=</span><span class='fl'>1.5</span>, cex<span class='op'>=</span><span class='fl'>1.2</span><span class='op'>)</span></span>
+<span class='r-plt'><img src='igd-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A is better than B in terms of Pareto optimality,\n however, IGD(A)="</span>,</span>
+<span class='r-in'>    <span class='fu'>igd</span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>ref</span><span class='op'>)</span>, <span class='st'>"&gt; IGD(B)="</span>, <span class='fu'>igd</span><span class='op'>(</span><span class='va'>B</span>, <span class='va'>ref</span><span class='op'>)</span>,</span>
+<span class='r-in'>    <span class='st'>", which contradicts it.\nBy contrast, IGD+(A)="</span>,</span>
+<span class='r-in'>    <span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>ref</span><span class='op'>)</span>, <span class='st'>"&lt; IGD+(B)="</span>, <span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>B</span>, <span class='va'>ref</span><span class='op'>)</span>, <span class='st'>", which is correct.\n"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> A is better than B in terms of Pareto optimality,</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  however, IGD(A)= 3.707092 &gt; IGD(B)= 2.591483 , which contradicts it.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> By contrast, IGD+(A)= 1.482843 &lt; IGD+(B)= 2.260113 , which is correct.</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># A less trivial example.</span></span>
+<span class='r-in'><span class='va'>extdata_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>path.A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"ALG_1_dat.xz"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>path.A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"ALG_2_dat.xz"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='va'>path.A1</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span class='r-in'><span class='va'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='va'>path.A2</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span class='r-in'><span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'><a href='nondominated.html'>filter_dominated</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>igd</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 91888189</span>
+<span class='r-in'><span class='fu'>igd</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 11351992</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># IGD+ (Pareto compliant)</span></span>
+<span class='r-in'><span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 82695357</span>
+<span class='r-in'><span class='fu'>igd_plus</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 10698269</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Average Haussdorff distance</span></span>
+<span class='r-in'><span class='fu'>avg_hausdorff_dist</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>ref</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 268547627</span>
+<span class='r-in'><span class='fu'>avg_hausdorff_dist</span><span class='op'>(</span><span class='va'>A2</span>, <span class='va'>ref</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 352613092</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

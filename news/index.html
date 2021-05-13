@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.2</span>
       </span>
     </div>
 
@@ -121,58 +121,44 @@
 
     <div id="eaf-2-1" class="section level1">
 <h1 class="page-header" data-toc-text="2.1">
-<a href="#eaf-2-1" class="anchor"></a>eaf 2.1<small> Unreleased </small>
-</h1>
-<ul>
-<li><p>Improve documentation of <code><a href="../reference/igd.html">igd()</a></code>.</p></li>
+<a href="#eaf-2-1" class="anchor" aria-hidden="true"></a>eaf 2.1<small> 2021-05-07 </small></h1>
+<ul><li><p>Improve documentation of <code><a href="../reference/igd.html">igd()</a></code>.</p></li>
 <li><p>Fix errors with single-point attainment surfaces.</p></li>
 <li><p>Fix bug in <code><a href="../reference/eafplot.html">eafplot.list()</a></code>.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="eaf-2-0" class="section level1">
 <h1 class="page-header" data-toc-text="2.0">
-<a href="#eaf-2-0" class="anchor"></a>eaf 2.0<small> 2021-02-08 </small>
-</h1>
-<ul>
-<li><p><code><a href="../reference/read_datasets.html">read_datasets()</a></code> is able to read files compressed with <code>xz</code>.</p></li>
+<a href="#eaf-2-0" class="anchor" aria-hidden="true"></a>eaf 2.0<small> 2021-02-08 </small></h1>
+<ul><li><p><code><a href="../reference/read_datasets.html">read_datasets()</a></code> is able to read files compressed with <code>xz</code>.</p></li>
 <li><p><code><a href="../reference/eafs.html">eafs()</a></code> and <code><a href="../reference/eafdiff.html">eafdiff()</a></code> and the plotting functions using them now consume slightly less memory.</p></li>
 <li><p>New function <code><a href="../reference/whv_hype.html">whv_hype()</a></code> to estimate weighted hypervolume using Monte-Carlo sampling.</p></li>
 <li><p>New functions <code><a href="../reference/whv_rect.html">total_whv_rect()</a></code> and <code><a href="../reference/whv_rect.html">whv_rect()</a></code> to compute weighted hypervolume with rectangular weighted regions.</p></li>
 <li><p>New functions <code><a href="../reference/largest_eafdiff.html">largest_eafdiff()</a></code>, <code><a href="../reference/choose_eafdiffplot.html">choose_eafdiffplot()</a></code> and <code><a href="../reference/choose_eafdiffplot.html">choose_eafdiff()</a></code> for converting EAF differences into weighted regions for calculating the weighted hypervolume.</p></li>
 <li><p>New function <code><a href="../reference/igd.html">avg_hausdorff_dist()</a></code> for computing the averaged Hausdorff distance.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="eaf-1-9-1" class="section level1">
 <h1 class="page-header" data-toc-text="1.9-1">
-<a href="#eaf-1-9-1" class="anchor"></a>eaf 1.9-1<small> 2020-03-05 </small>
-</h1>
-<ul>
-<li>Fixes to Makefiles for non-GCC compilers and parallel build setups.</li>
-</ul>
-</div>
+<a href="#eaf-1-9-1" class="anchor" aria-hidden="true"></a>eaf 1.9-1<small> 2020-03-05 </small></h1>
+<ul><li>Fixes to Makefiles for non-GCC compilers and parallel build setups.</li>
+</ul></div>
     <div id="eaf-1-9" class="section level1">
 <h1 class="page-header" data-toc-text="1.9">
-<a href="#eaf-1-9" class="anchor"></a>eaf 1.9<small> 2020-03-03 </small>
-</h1>
-<ul>
-<li><p>Compute Vorob’ev threshold, expectation and deviation. Plots of the symmetric deviation. (Mickael Binois)</p></li>
+<a href="#eaf-1-9" class="anchor" aria-hidden="true"></a>eaf 1.9<small> 2020-03-03 </small></h1>
+<ul><li><p>Compute Vorob’ev threshold, expectation and deviation. Plots of the symmetric deviation. (Mickael Binois)</p></li>
 <li><p>Non-integer EAF percentiles are computed correctly.</p></li>
 <li><p>Various aesthetic improvements in <code><a href="../reference/eafplot.html">eafplot()</a></code> and <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>.</p></li>
 <li><p>Functions for computing hypervolume, hypervolume contributions, epsilon metric, IGD+, filter dominated points, and fast normalisation of ranges.</p></li>
-<li><p>Command-line tools for computing the above are installed in <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file(package="eaf", "bin/")</a></code>.</p></li>
-<li><p>Online documentation available at: http://lopez-ibanez.eu/eaftools</p></li>
+<li><p>Command-line tools for computing the above are installed in <code>system.file(package="eaf", "bin/")</code>.</p></li>
+<li><p>Online documentation available at: <a href="http://lopez-ibanez.eu/eaftools" class="external-link uri">http://lopez-ibanez.eu/eaftools</a></p></li>
 <li><p>New <code><a href="../reference/read_datasets.html">read_datasets()</a></code> replaces deprecated <code><a href="../reference/read_datasets.html">read.data.sets()</a></code>. New parameter <code>text</code> of <code><a href="../reference/read_datasets.html">read_datasets()</a></code>.</p></li>
 <li><p>New <code><a href="../reference/eafdiff.html">eafdiff()</a></code> function for computing EAF differences.</p></li>
 <li><p>The <code>data.frame</code> method for <code>eafplot</code> has been removed. It had unexpected behavior and the default method handles <code>data.frame</code> already.</p></li>
-<li><p>Python script to compute EAF differences installed at <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file(package="eaf", "scripts/eafdiff.py")</a></code>.</p></li>
-</ul>
-</div>
+<li><p>Python script to compute EAF differences installed at <code>system.file(package="eaf", "scripts/eafdiff.py")</code>.</p></li>
+</ul></div>
     <div id="eaf-1-8" class="section level1">
 <h1 class="page-header" data-toc-text="1.8">
-<a href="#eaf-1-8" class="anchor"></a>eaf 1.8<small> 2018-03-22 </small>
-</h1>
-<ul>
-<li><p>Development version moved to GitHub: https://github.com/MLopez-Ibanez/eaf</p></li>
+<a href="#eaf-1-8" class="anchor" aria-hidden="true"></a>eaf 1.8<small> 2018-03-22 </small></h1>
+<ul><li><p>Development version moved to GitHub: <a href="https://github.com/MLopez-Ibanez/eaf" class="external-link uri">https://github.com/MLopez-Ibanez/eaf</a></p></li>
 <li><p>Remove leading zeros from version number.</p></li>
 <li><p>New parameters <code>left.panel.last</code> and <code>right.panel.last</code> of <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>.</p></li>
 <li><p>Export and document function <code><a href="../reference/eafs.html">eafs()</a></code> to compute EAFs.</p></li>
@@ -183,38 +169,29 @@
 <li><p>Added testthat testing framework.</p></li>
 <li><p>The documentation is now generated with Roxygen2.</p></li>
 <li><p>Entry points to C code are now properly registered.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="eaf-1-07" class="section level1">
 <h1 class="page-header" data-toc-text="1.07">
-<a href="#eaf-1-07" class="anchor"></a>eaf 1.07<small> 2015-01-07 </small>
-</h1>
-<ul>
-<li>Silence CRAN warning for GNU extensions in Makefiles in <code>inst/scripts/eaf/Makefile</code>.</li>
-</ul>
-</div>
+<a href="#eaf-1-07" class="anchor" aria-hidden="true"></a>eaf 1.07<small> 2015-01-07 </small></h1>
+<ul><li>Silence CRAN warning for GNU extensions in Makefiles in <code>inst/scripts/eaf/Makefile</code>.</li>
+</ul></div>
     <div id="eaf-1-06" class="section level1">
 <h1 class="page-header" data-toc-text="1.06">
-<a href="#eaf-1-06" class="anchor"></a>eaf 1.06<small> 2014-10-01 </small>
-</h1>
-<ul>
-<li><p>Fix bug when automatically generating a legend in eafplot with the formula interface (Thanks to Bernd Bischl for reporting this)</p></li>
+<a href="#eaf-1-06" class="anchor" aria-hidden="true"></a>eaf 1.06<small> 2014-10-01 </small></h1>
+<ul><li><p>Fix bug when automatically generating a legend in eafplot with the formula interface (Thanks to Bernd Bischl for reporting this)</p></li>
 <li><p>Improve handling of various newline character formats.</p></li>
 <li><p>Reduce memory consumption (up to four times less memory).</p></li>
 <li><p><code>eafdiff.pl</code>: Mention option –legendpos=none to hide the legend.</p></li>
 <li><p>eafplot.pl: Add options –maximise and –xmaximise and –colors=. Fix bug with –area.</p></li>
 <li><p><code><a href="../reference/eafplot.html">eafplot.default()</a></code> now requires two colors when <code>type=="area"</code> and a palette is interpolated between these two colors for all the different levels plotted (Thanks to Alexandre Quemy for the suggestion).</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="eaf-1-05" class="section level1">
 <h1 class="page-header" data-toc-text="1.05">
-<a href="#eaf-1-05" class="anchor"></a>eaf 1.05<small> 2013-02-20 </small>
-</h1>
-<ul>
-<li>
+<a href="#eaf-1-05" class="anchor" aria-hidden="true"></a>eaf 1.05<small> 2013-02-20 </small></h1>
+<ul><li>
 <p>Implement <code>type = "area")</code> for <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>. This is now the default.</p>
-<p>The idea for the algorithm to compute the areas was provided by Carlos M. Fonseca. The implementation uses R polygons, which some PDF viewers may have trouble rendering correctly (See https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders).</p>
-<p>Plots will look correct when printed. To get the previous behavior use <code><a href="../reference/eafdiffplot.html">eafdiffplot(, type = "point")</a></code>.</p>
+<p>The idea for the algorithm to compute the areas was provided by Carlos M. Fonseca. The implementation uses R polygons, which some PDF viewers may have trouble rendering correctly (See <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders" class="external-link uri">https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders</a>).</p>
+<p>Plots will look correct when printed. To get the previous behavior use <code>eafdiffplot(, type = "point")</code>.</p>
 </li>
 <li><p>Attempt to deal with DOS/Unix newlines correctly.</p></li>
 <li><p>eafplot.pl: Lots of cleanup. (–single, –output, –legend): New options. Default to PDF.</p></li>
@@ -230,33 +207,23 @@
 <li><p>Add ‘axes’ parameter to eafplot.</p></li>
 <li><p>To avoid confusion, the arguments ‘xaxis.side’ and ‘yaxis.side’ of eafplot can only take values c(“below”, “above”) and c(“left”, “right”), respectively.</p></li>
 <li><p>Add missing Makefile in inst/scripts/eaf/.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="eaf-1-04" class="section level1">
 <h1 class="page-header" data-toc-text="1.04">
-<a href="#eaf-1-04" class="anchor"></a>eaf 1.04<small> 2012-01-10 </small>
-</h1>
-<ul>
-<li>Fix issues with only one point in the EAF.</li>
-</ul>
-</div>
+<a href="#eaf-1-04" class="anchor" aria-hidden="true"></a>eaf 1.04<small> 2012-01-10 </small></h1>
+<ul><li>Fix issues with only one point in the EAF.</li>
+</ul></div>
     <div id="eaf-1-03" class="section level1">
 <h1 class="page-header" data-toc-text="1.03">
-<a href="#eaf-1-03" class="anchor"></a>eaf 1.03<small> 2011-12-04 </small>
-</h1>
-<ul>
-<li><p>Handle maximise argument in eafdiffplot and –maximise command-line option in eafdiff.pl</p></li>
+<a href="#eaf-1-03" class="anchor" aria-hidden="true"></a>eaf 1.03<small> 2011-12-04 </small></h1>
+<ul><li><p>Handle maximise argument in eafdiffplot and –maximise command-line option in eafdiff.pl</p></li>
 <li><p>R/calls.R (eafplot.data.frame): Fix problem with main parameter.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="eaf-1-00" class="section level1">
 <h1 class="page-header" data-toc-text="1.00">
-<a href="#eaf-1-00" class="anchor"></a>eaf 1.00<small> Unreleased </small>
-</h1>
-<ul>
-<li>Initial release available in CRAN.</li>
-</ul>
-</div>
+<a href="#eaf-1-00" class="anchor" aria-hidden="true"></a>eaf 1.00<small> Unreleased </small></h1>
+<ul><li>Initial release available in CRAN.</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
