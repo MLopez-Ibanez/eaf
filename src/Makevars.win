@@ -3,14 +3,14 @@
 # CXXFLAGS in ~/.R/Makevars
 # This is from https://github.com/eddelbuettel/rcppgsl/blob/master/tools/winlibs.R
 RSCRIPT := "${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe"
-GSL_ROOT :=$(shell $(RSCRIPT) -e 'cat(file.path(getwd(), "../windows/gsl-2.4/"))')
+GSL_ROOT :=$(shell $(RSCRIPT) -e 'cat(file.path(getwd(), "../windows/gsl-2.7/"))')
 GSL_CFLAGS = -I"$(GSL_ROOT)/include"
-GSL_LIBS   = -L"$(GSL_ROOT)/lib${R_ARCH}" -lgsl -lgslcblas
+GSL_LIBS   = -L"$(GSL_ROOT)/lib${R_ARCH}${CRT}" -lgsl -lgslcblas
 PKG_CPPFLAGS = $(GSL_CFLAGS) -DR_PACKAGE -DDEBUG=1 -I./eaf/ -I./mo-tools/
 PKG_LIBS = $(GSL_LIBS)
 EAF_SRC_FILES= avl.c eaf3d.c eaf.c io.c
 MOTOOLS_SRC_FILES = hv_contrib.c hv.c pareto.c whv.c whv_hype.c
-SOURCES = $(EAF_SRC_FILES:%=eaf/%) $(MOTOOLS_SRC_FILES:%=mo-tools/%) init.c  Reaf.c  Repsilon.c  Rhv.c  Rnondominated.c  
+SOURCES = $(EAF_SRC_FILES:%=eaf/%) $(MOTOOLS_SRC_FILES:%=mo-tools/%) init.c  Reaf.c  Repsilon.c  Rhv.c  Rnondominated.c
 OBJECTS = $(SOURCES:.c=.o)
 
 EXEEXT=.exe
@@ -30,7 +30,7 @@ all: $(SHLIB)
 	$(MAKE) -C eaf all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
 	$(MAKE) -C mo-tools all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
 
-$(SHLIB): $(OBJECTS) 
+$(SHLIB): $(OBJECTS)
 
 mo-tools/hv.o: PKG_CPPFLAGS += -DVARIANT=4
 
@@ -38,7 +38,7 @@ clean:
 	@-rm -f *.o *.so *.dll \
 	eaf/*.o $(eaf) \
 	$(igd) $(epsilon) $(dominatedsets) $(nondominated) $(ndsort) \
-	mo-tools/*.o 
+	mo-tools/*.o
 
 $(OBJECTS): winlibs
 
