@@ -1,9 +1,9 @@
-# Download GSL 2.4 Rtools build
-if(!file.exists("../windows/gsl-2.4/include/gsl/gsl_blas.h")){
-  download.file("https://github.com/rwinlib/gsl/archive/v2.4.zip", "lib.zip", quiet = TRUE)
+# Download GSL 2.7 Rtools build
+if(!file.exists("../windows/gsl-2.7/include/gsl/gsl_blas.h")){
+  download.file("https://github.com/rwinlib/gsl/archive/v2.7.zip", "lib.zip", quiet = TRUE)
   dir.create("../windows", showWarnings = FALSE)
   unzip("lib.zip", exdir = "../windows")
   unlink("lib.zip")
-  stopifnot(file.exists("../windows/gsl-2.4/include/gsl/gsl_errno.h"))
+  stopifnot(file.exists("../windows/gsl-2.7/include/gsl/gsl_errno.h"))
   cat("Downloaded to '", file.path(getwd(), "../windows"), "'\n")
 }
