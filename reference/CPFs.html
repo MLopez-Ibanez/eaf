@@ -51,8 +51,6 @@ values of coupled simulations." />
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -64,18 +62,9 @@ values of coupled simulations." />
 
 
 
-<!-- dependencies from examples -->
-
-
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -96,6 +85,12 @@ values of coupled simulations." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -128,8 +123,8 @@ values of coupled simulations." />
     </div>
 
     <div class="ref-description">
-    <p>The data has the only goal of providing an example of use of <code><a href='Vorob.html'>vorobT()</a></code> and
-<code><a href='Vorob.html'>vorobDev()</a></code>. It has been obtained by fitting two Gaussian processes on 20
+    <p>The data has the only goal of providing an example of use of <code><a href='vorobT.html'>vorobT()</a></code> and
+<code><a href='vorobT.html'>vorobDev()</a></code>. It has been obtained by fitting two Gaussian processes on 20
 observations of a bi-objective problem, before generating conditional
 simulation of both GPs at different locations and extracting non-dominated
 values of coupled simulations.</p>
@@ -153,17 +148,16 @@ values of coupled simulations.</p>
 &#8220;Quantifying uncertainty on Pareto fronts with Gaussian process conditional simulations.&#8221;
 <em>European Journal of Operational Research</em>, <b>243</b>(2), 386--394.
 doi: <a href='https://doi.org/10.1016/j.ejor.2014.07.032'>10.1016/j.ejor.2014.07.032</a>
-, <a href='https://doi.org/10.1016/j.ejor.2014.07.032'>https://doi.org/10.1016/j.ejor.2014.07.032</a>.</p>
+.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>)</span></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Vorob.html'>vorobT</a></span><span class='op'>(</span><span class='va'>CPFs</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, sets <span class='op'>=</span> <span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span>, percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>60</span>, <span class='fl'>80</span>, <span class='fl'>100</span><span class='op'>)</span>,</span>
-<span class='r-in'>       col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/gray.html'>gray</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0.8</span>, <span class='fl'>0.1</span>, length.out <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"area"</span>,</span>
-<span class='r-in'>       legend.pos <span class='op'>=</span> <span class='st'>"bottomleft"</span>, extra.points <span class='op'>=</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, extra.col <span class='op'>=</span> <span class='st'>"cyan"</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='CPFs-1.png' alt='' width='700' height='433' /></span>
-</pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>)</span>
+
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='vorobT.html'>vorobT</a></span><span class='op'>(</span><span class='va'>CPFs</span>, reference <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, sets <span class='op'>=</span> <span class='va'>CPFs</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span>, percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>60</span>, <span class='fl'>80</span>, <span class='fl'>100</span><span class='op'>)</span>,
+       col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/gray.html'>gray</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0.8</span>, <span class='fl'>0.1</span>, length.out <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"area"</span>,
+       legend.pos <span class='op'>=</span> <span class='st'>"bottomleft"</span>, extra.points <span class='op'>=</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>VE</span>, extra.col <span class='op'>=</span> <span class='st'>"cyan"</span><span class='op'>)</span>
+</div><div class='img'><img src='CPFs-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -187,8 +181,6 @@ doi: <a href='https://doi.org/10.1016/j.ejor.2014.07.032'>10.1016/j.ejor.2014.07
 
   
 
-
-  
 
   </body>
 </html>

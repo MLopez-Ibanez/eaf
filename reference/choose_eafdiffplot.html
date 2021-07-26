@@ -46,11 +46,9 @@
 but waits for the user to click in one of the sides. Then it returns the
 rectangles the give the differences in favour of the chosen side. These
 rectangles may be used for interactive decision-making as shown in
-Diaz and López-Ibáñez (2021)
+Diaz and López-Ibá{ñ}ez (2021)
 . The function choose_eafdiff() may be used in a
 non-interactive context." />
-
-
 
 
 
@@ -66,18 +64,9 @@ non-interactive context." />
 
 
 
-<!-- dependencies from examples -->
-
-
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -98,6 +87,12 @@ non-interactive context." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -134,7 +129,7 @@ non-interactive context." />
 but waits for the user to click in one of the sides. Then it returns the
 rectangles the give the differences in favour of the chosen side. These
 rectangles may be used for interactive decision-making as shown in
-Diaz and López-Ibáñez (2021)
+Diaz and López-Ibá{ñ}ez (2021)
 . The function <code>choose_eafdiff()</code> may be used in a
 non-interactive context.</p>
     </div>
@@ -163,7 +158,7 @@ columns, the third one being the set of each point. See also
     </tr>
     <tr>
       <th>intervals</th>
-      <td><p>(<code>integer(1)</code>|<code><a href='https://rdrr.io/r/base/character.html'>character()</a></code>) <br /> The absolute range of the
+      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>|<code><a href='https://rdrr.io/r/base/character.html'>character()</a></code>) <br /> The absolute range of the
 differences \([0, 1]\) is partitioned into the number of intervals
 provided. If an integer is provided, then labels for each interval are
 computed automatically. If a character vector is provided, its length is
@@ -171,7 +166,7 @@ taken as the number of intervals.</p></td>
     </tr>
     <tr>
       <th>maximise</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code>logical(1)</code>) <br /> Whether the objectives must be
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) <br /> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></td>
@@ -192,7 +187,7 @@ objective.</p></td>
     </tr>
     <tr>
       <th>left</th>
-      <td><p>(<code>logical(1)</code>) With <code>left=TRUE</code> return the rectangles with
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) With <code>left=TRUE</code> return the rectangles with
 positive differences, otherwise return those with negative differences but
 differences are converted to positive.</p></td>
     </tr>
@@ -210,40 +205,38 @@ Esteban Diaz, Manuel López-Ibáñez (2021).
 &#8220;Incorporating Decision-Maker's Preferences into the Automatic Configuration of Bi-Objective Optimisation Algorithms.&#8221;
 <em>European Journal of Operational Research</em>, <b>289</b>(3), 1209--1222.
 doi: <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>10.1016/j.ejor.2020.07.059</a>
-, <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>https://doi.org/10.1016/j.ejor.2020.07.059</a>.</p>
+.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='read_datasets.html'>read_datasets()</a></code>, <code><a href='eafdiffplot.html'>eafdiffplot()</a></code>, <code><a href='whv_rect.html'>whv_rect()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'></span>
-<span class='r-in'><span class='co'># \donttest{</span></span>
-<span class='r-in'><span class='va'>extdata_dir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span>, <span class='st'>"extdata"</span><span class='op'>)</span> </span>
-<span class='r-in'><span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_dir</span>, <span class='st'>"wrots_l100w10_dat"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_dir</span>, <span class='st'>"wrots_l10w100_dat"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'>  <span class='va'>rectangles</span> <span class='op'>&lt;-</span> <span class='fu'>choose_eafdiffplot</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span>, intervals <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span> <span class='co'># Choose A1</span></span>
-<span class='r-in'>  <span class='va'>rectangles</span> <span class='op'>&lt;-</span> <span class='fu'><a href='eafdiff.html'>eafdiff</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span>, intervals <span class='op'>=</span> <span class='fl'>5</span>, rectangles <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span class='r-in'>  <span class='va'>rectangles</span> <span class='op'>&lt;-</span> <span class='fu'>choose_eafdiff</span><span class='op'>(</span><span class='va'>rectangles</span>, left <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
-<span class='r-in'><span class='va'>reference</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span>, <span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A1</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>hv_A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>,</span>
-<span class='r-in'>                 <span class='va'>hypervolume</span>, reference<span class='op'>=</span><span class='va'>reference</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>hv_A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>,</span>
-<span class='r-in'>                 <span class='va'>hypervolume</span>, reference<span class='op'>=</span><span class='va'>reference</span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>A1<span class='op'>=</span><span class='va'>hv_A1</span>, A2<span class='op'>=</span><span class='va'>hv_A2</span><span class='op'>)</span>, main <span class='op'>=</span> <span class='st'>"Hypervolume"</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='choose_eafdiffplot-1.png' alt='' width='700' height='433' /></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='va'>whv_A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>,</span>
-<span class='r-in'>                 <span class='va'>whv_rect</span>, rectangles<span class='op'>=</span><span class='va'>rectangles</span>, reference<span class='op'>=</span><span class='va'>reference</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>whv_A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>,</span>
-<span class='r-in'>                 <span class='va'>whv_rect</span>, rectangles<span class='op'>=</span><span class='va'>rectangles</span>, reference<span class='op'>=</span><span class='va'>reference</span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>A1<span class='op'>=</span><span class='va'>whv_A1</span>, A2<span class='op'>=</span><span class='va'>whv_A2</span><span class='op'>)</span>, main <span class='op'>=</span> <span class='st'>"Weighted hypervolume"</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='choose_eafdiffplot-2.png' alt='' width='700' height='433' /></span>
-<span class='r-in'><span class='co'># }</span></span>
-</pre>
+    <pre class="examples"><div class='input'>
+<span class='co'># \donttest{</span>
+<span class='va'>extdata_dir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span>, <span class='st'>"extdata"</span><span class='op'>)</span> 
+<span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_dir</span>, <span class='st'>"wrots_l100w10_dat"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_dir</span>, <span class='st'>"wrots_l10w100_dat"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>rectangles</span> <span class='op'>&lt;-</span> <span class='fu'>choose_eafdiffplot</span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span>, intervals <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+<span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span> <span class='co'># Choose A1</span>
+  <span class='va'>rectangles</span> <span class='op'>&lt;-</span> <span class='fu'><a href='eafdiff.html'>eafdiff</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span>, intervals <span class='op'>=</span> <span class='fl'>5</span>, rectangles <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+  <span class='va'>rectangles</span> <span class='op'>&lt;-</span> <span class='fu'>choose_eafdiff</span><span class='op'>(</span><span class='va'>rectangles</span>, left <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>reference</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span>, <span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A1</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>hv_A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>,
+                 <span class='va'>hypervolume</span>, reference<span class='op'>=</span><span class='va'>reference</span><span class='op'>)</span>
+<span class='va'>hv_A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>,
+                 <span class='va'>hypervolume</span>, reference<span class='op'>=</span><span class='va'>reference</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>A1<span class='op'>=</span><span class='va'>hv_A1</span>, A2<span class='op'>=</span><span class='va'>hv_A2</span><span class='op'>)</span>, main <span class='op'>=</span> <span class='st'>"Hypervolume"</span><span class='op'>)</span>
+</div><div class='img'><img src='choose_eafdiffplot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>whv_A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A1</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>,
+                 <span class='va'>whv_rect</span>, rectangles<span class='op'>=</span><span class='va'>rectangles</span>, reference<span class='op'>=</span><span class='va'>reference</span><span class='op'>)</span>
+<span class='va'>whv_A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/split.html'>split.data.frame</a></span><span class='op'>(</span><span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, <span class='va'>A2</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>,
+                 <span class='va'>whv_rect</span>, rectangles<span class='op'>=</span><span class='va'>rectangles</span>, reference<span class='op'>=</span><span class='va'>reference</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>A1<span class='op'>=</span><span class='va'>whv_A1</span>, A2<span class='op'>=</span><span class='va'>whv_A2</span><span class='op'>)</span>, main <span class='op'>=</span> <span class='st'>"Weighted hypervolume"</span><span class='op'>)</span>
+</div><div class='img'><img src='choose_eafdiffplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -267,8 +260,6 @@ doi: <a href='https://doi.org/10.1016/j.ejor.2020.07.059'>10.1016/j.ejor.2020.07
 
   
 
-
-  
 
   </body>
 </html>

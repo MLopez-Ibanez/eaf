@@ -49,8 +49,6 @@ given, they are used for the normalisation." />
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -62,18 +60,9 @@ given, they are used for the normalisation." />
 
 
 
-<!-- dependencies from examples -->
-
-
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -94,6 +83,12 @@ given, they are used for the normalisation." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -126,7 +121,7 @@ given, they are used for the normalisation." />
     </div>
 
     <div class="ref-description">
-    <p>Normalise points per coordinate to a range, e.g., <code>c(1,2)</code>, where the
+    <p>Normalise points per coordinate to a range, e.g., <code><a href='https://rdrr.io/r/base/c.html'>c(1,2)</a></code>, where the
 minimum value will correspond to 1 and the maximum to 2. If bounds are
 given, they are used for the normalisation.</p>
     </div>
@@ -144,7 +139,7 @@ values, where each row gives the coordinates of a point.</p></td>
     <tr>
       <th>to.range</th>
       <td><p>Normalise values to this range. If the objective is
-maximised, it is normalised to <code>c(to.range[1], to.range[0])</code>
+maximised, it is normalised to <code><a href='https://rdrr.io/r/base/c.html'>c(to.range[1], to.range[0])</a></code>
 instead.</p></td>
     </tr>
     <tr>
@@ -154,7 +149,7 @@ values of each coordinate are used.</p></td>
     </tr>
     <tr>
       <th>maximise</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code>logical(1)</code>) <br /> Whether the objectives must be
+      <td><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical()</a></code> | <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>) <br /> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></td>
@@ -169,37 +164,34 @@ objective.</p></td>
     <p>Manuel López-Ibáñez</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>)</span></span>
-<span class='r-in'><span class='co'># The second objective must be maximized</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>        V1    V2</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 105.832   357</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 2 108.187   911</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 3 108.519  3960</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 4 108.641  7560</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 5 108.896 16532</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 6 112.556 19957</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>normalise</span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>            V1       V2</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1,] 1.044174 2.000000</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [2,] 1.059891 1.993561</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [3,] 1.062107 1.958126</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [4,] 1.062921 1.916286</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [5,] 1.064623 1.812013</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [6,] 1.089049 1.772207</span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>normalise</span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, to.range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>              V1        V2</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1,] 0.04417408 1.0000000</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [2,] 0.05989095 0.9935614</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [3,] 0.06210666 0.9581256</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [4,] 0.06292087 0.9162860</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [5,] 0.06462270 0.8120126</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [6,] 0.08904891 0.7722069</span>
-<span class='r-in'></span>
-</pre>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>)</span>
+<span class='co'># The second objective must be maximized</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        V1    V2
+#&gt; 1 105.832   357
+#&gt; 2 108.187   911
+#&gt; 3 108.519  3960
+#&gt; 4 108.641  7560
+#&gt; 5 108.896 16532
+#&gt; 6 112.556 19957</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>normalise</span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;            V1       V2
+#&gt; [1,] 1.044174 2.000000
+#&gt; [2,] 1.059891 1.993561
+#&gt; [3,] 1.062107 1.958126
+#&gt; [4,] 1.062921 1.916286
+#&gt; [5,] 1.064623 1.812013
+#&gt; [6,] 1.089049 1.772207</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>normalise</span><span class='op'>(</span><span class='va'>SPEA2minstoptimeRichmond</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>, to.range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>, maximise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>FALSE</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;              V1        V2
+#&gt; [1,] 0.04417408 1.0000000
+#&gt; [2,] 0.05989095 0.9935614
+#&gt; [3,] 0.06210666 0.9581256
+#&gt; [4,] 0.06292087 0.9162860
+#&gt; [5,] 0.06462270 0.8120126
+#&gt; [6,] 0.08904891 0.7722069</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -223,8 +215,6 @@ objective.</p></td>
 
   
 
-
-  
 
   </body>
 </html>

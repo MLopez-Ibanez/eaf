@@ -56,8 +56,6 @@ graphical way." />
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -69,18 +67,9 @@ graphical way." />
 
 
 
-<!-- dependencies from examples -->
-
-
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -101,6 +90,12 @@ graphical way." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -172,7 +167,7 @@ minimum idle time of pumps on Richmond water network</p></dd>
 
 </dl>
 
-<p>Extras are available at <code>system.file(package="eaf")</code>:</p>
+<p>Extras are available at <code><a href='https://rdrr.io/r/base/system.file.html'>system.file(package="eaf")</a></code>:</p>
 <table class='table'>
 <tr><td><code>extdata</code></td><td>External data sets (see <code><a href='read_datasets.html'>read_datasets</a></code>)</td></tr>
 <tr><td><code>scripts/eaf</code></td><td>EAF command-line program</td></tr>
@@ -184,25 +179,25 @@ minimum idle time of pumps on Richmond water network</p></dd>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Viviane Grunert da Fonseca, Carlos
-M Fonseca, Andreia
-O Hall (2001).
+M. Fonseca, Andreia
+O. Hall (2001).
 &#8220;Inferential Performance Assessment of Stochastic Optimisers and the Attainment Function.&#8221;
 In Eckart Zitzler, Kalyanmoy Deb, Lothar Thiele, Carlos
-A Coello Coello, David Corne (eds.), <em>Evolutionary Multi-criterion Optimization, EMO 2001</em>, volume 1993 of <em>Lecture Notes in Computer Science</em>, 213--225.
+A. Coello Coello, David Corne (eds.), <em>Evolutionary Multi-criterion Optimization, EMO 2001</em>, volume 1993 of <em>Lecture Notes in Computer Science</em>, 213--225.
 Springer, Heidelberg, Germany.
 doi: <a href='https://doi.org/10.1007/3-540-44719-9_15'>10.1007/3-540-44719-9_15</a>
-, Fonseca et al., 2001, <a href='https://doi.org/10.1007/3-540-44719-9_15'>https://doi.org/10.1007/3-540-44719-9_15</a>.</p>
+.</p>
 <p>Viviane Grunert da Fonseca, Carlos
-M Fonseca (2010).
+M. Fonseca (2010).
 &#8220;The Attainment-Function Approach to Stochastic Multiobjective Optimizer Assessment and Comparison.&#8221;
-In Thomas Bartz-Beielstein, Marco Chiarandini, Luís Paquete, Mike Preuss (eds.), <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, 103--130.
+In Thomas Bartz-Beielstein, Marco Chiarandini, Lu\'is Paquete, Mike Preuss (eds.), <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, 103--130.
 Springer, Berlin, Germany.</p>
-<p>Manuel López-Ibáñez, Luís Paquete, Thomas Stützle (2010).
+<p>Manuel López-Ibáñez, Lu\'is Paquete, Thomas Stützle (2010).
 &#8220;Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization.&#8221;
-In Thomas Bartz-Beielstein, Marco Chiarandini, Luís Paquete, Mike Preuss (eds.), <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, 209--222.
+In Thomas Bartz-Beielstein, Marco Chiarandini, Lu\'is Paquete, Mike Preuss (eds.), <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, 209--222.
 Springer, Berlin, Germany.
 doi: <a href='https://doi.org/10.1007/978-3-642-02538-9_9'>10.1007/978-3-642-02538-9_9</a>
-, <a href='https://doi.org/10.1007/978-3-642-02538-9_9'>https://doi.org/10.1007/978-3-642-02538-9_9</a>.</p>
+.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Useful links:</p><ul>
@@ -221,30 +216,24 @@ Manuel López-Ibáñez, Marco Chiarandini and
 Mickaël Binois.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>gcp2x2</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>tabucol</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>gcp2x2</span>, <span class='va'>alg</span><span class='op'>!=</span><span class='st'>"TSinN1"</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>tabucol</span><span class='op'>$</span><span class='va'>alg</span><span class='op'>&lt;-</span><span class='va'>tabucol</span><span class='op'>$</span><span class='va'>alg</span><span class='op'>[</span>drop<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>]</span></span>
-<span class='r-in'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>time</span><span class='op'>+</span><span class='va'>best</span><span class='op'>~</span><span class='va'>run</span>,data<span class='op'>=</span><span class='va'>tabucol</span>,subset<span class='op'>=</span><span class='va'>tabucol</span><span class='op'>$</span><span class='va'>inst</span><span class='op'>==</span><span class='st'>"DSJC500.5"</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='eaf-package-1.png' alt='' width='700' height='433' /></span>
-<span class='r-in'></span>
-<span class='r-in'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>time</span><span class='op'>+</span><span class='va'>best</span><span class='op'>~</span><span class='va'>run</span><span class='op'>|</span><span class='va'>inst</span>,groups<span class='op'>=</span><span class='va'>alg</span>,data<span class='op'>=</span><span class='va'>gcp2x2</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='eaf-package-2.png' alt='' width='700' height='433' /></span>
-<span class='r-in'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>time</span><span class='op'>+</span><span class='va'>best</span><span class='op'>~</span><span class='va'>run</span><span class='op'>|</span><span class='va'>inst</span>,groups<span class='op'>=</span><span class='va'>alg</span>,data<span class='op'>=</span><span class='va'>gcp2x2</span>,</span>
-<span class='r-in'>percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>100</span><span class='op'>)</span>, cex <span class='op'>=</span> <span class='fl'>1.4</span>, lty <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>,lwd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>2</span><span class='op'>)</span>,</span>
-<span class='r-in'>       col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"black"</span>,<span class='st'>"blue"</span>,<span class='st'>"grey50"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='eaf-package-3.png' alt='' width='700' height='433' /></span>
-<span class='r-in'><span class='va'>extdata_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>,<span class='st'>"ALG_1_dat.xz"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>,<span class='st'>"ALG_2_dat.xz"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>A1</span>, percentiles<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='eaf-package-4.png' alt='' width='700' height='433' /></span>
-<span class='r-in'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>A1<span class='op'>=</span><span class='va'>A1</span>, A2<span class='op'>=</span><span class='va'>A2</span><span class='op'>)</span>, percentiles<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='eaf-package-5.png' alt='' width='700' height='433' /></span>
-<span class='r-in'><span class='fu'><a href='eafdiffplot.html'>eafdiffplot</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='eaf-package-6.png' alt='' width='700' height='433' /></span>
-<span class='r-in'><span class='co'>## Save to a PDF file</span></span>
-<span class='r-in'><span class='co'># dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)</span></span>
-</pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>gcp2x2</span><span class='op'>)</span>
+<span class='va'>tabucol</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>gcp2x2</span>, <span class='va'>alg</span><span class='op'>!=</span><span class='st'>"TSinN1"</span><span class='op'>)</span>
+<span class='va'>tabucol</span><span class='op'>$</span><span class='va'>alg</span><span class='op'>&lt;-</span><span class='va'>tabucol</span><span class='op'>$</span><span class='va'>alg</span><span class='op'>[</span>drop<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>]</span>
+<span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>time</span><span class='op'>+</span><span class='va'>best</span><span class='op'>~</span><span class='va'>run</span>,data<span class='op'>=</span><span class='va'>tabucol</span>,subset<span class='op'>=</span><span class='va'>tabucol</span><span class='op'>$</span><span class='va'>inst</span><span class='op'>==</span><span class='st'>"DSJC500.5"</span><span class='op'>)</span>
+</div><div class='img'><img src='eaf-package-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>time</span><span class='op'>+</span><span class='va'>best</span><span class='op'>~</span><span class='va'>run</span><span class='op'>|</span><span class='va'>inst</span>,groups<span class='op'>=</span><span class='va'>alg</span>,data<span class='op'>=</span><span class='va'>gcp2x2</span><span class='op'>)</span>
+</div><div class='img'><img src='eaf-package-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>time</span><span class='op'>+</span><span class='va'>best</span><span class='op'>~</span><span class='va'>run</span><span class='op'>|</span><span class='va'>inst</span>,groups<span class='op'>=</span><span class='va'>alg</span>,data<span class='op'>=</span><span class='va'>gcp2x2</span>,
+percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>50</span>,<span class='fl'>100</span><span class='op'>)</span>, cex <span class='op'>=</span> <span class='fl'>1.4</span>, lty <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>,lwd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>2</span><span class='op'>)</span>,
+       col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"black"</span>,<span class='st'>"blue"</span>,<span class='st'>"grey50"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='eaf-package-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>extdata_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"eaf"</span>,<span class='st'>"extdata"</span><span class='op'>)</span>
+<span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>,<span class='st'>"ALG_1_dat.xz"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>,<span class='st'>"ALG_2_dat.xz"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='va'>A1</span>, percentiles<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='eaf-package-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='eafplot.html'>eafplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>A1<span class='op'>=</span><span class='va'>A1</span>, A2<span class='op'>=</span><span class='va'>A2</span><span class='op'>)</span>, percentiles<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='eaf-package-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='eafdiffplot.html'>eafdiffplot</a></span><span class='op'>(</span><span class='va'>A1</span>, <span class='va'>A2</span><span class='op'>)</span>
+</div><div class='img'><img src='eaf-package-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>## Save to a PDF file</span>
+<span class='co'># dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -268,8 +257,6 @@ Mickaël Binois.</p>
 
   
 
-
-  
 
   </body>
 </html>
