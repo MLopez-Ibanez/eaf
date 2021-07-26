@@ -70,8 +70,7 @@ jobs:
       - name: Install macos dependencies
         if: runner.os == 'macOS'
         run: |
-          brew install gsl
-          brew install automake autoconf
+          brew install gsl gawk automake
       
       - name: Install dependencies
         run: |
