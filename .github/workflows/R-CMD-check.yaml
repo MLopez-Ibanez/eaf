@@ -2,9 +2,13 @@
 # https://community.rstudio.com/new-topic?category=Package%20development&tags=github-actions
 on:
   push:
-    branches: [ main master ]
+    branches:
+      - main
+      - master
   pull_request:
-    branches: [ main  master ]
+    branches:
+      - main
+      - master
 
 name: R-CMD-check
 
@@ -83,7 +87,7 @@ jobs:
           NOT_CRAN: true
         run: |
           options(crayon.enabled = TRUE)
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--run-donttest","--timings"), error_on = "warning", check_dir = "check")
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--run-donttest", "--run-dontrun", "--timings"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
       - name: Install pkgdown
@@ -101,7 +105,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE, run_dont_run = TRUE)'
         shell: bash {0}
       
       - name: Test coverage
