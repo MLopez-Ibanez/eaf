@@ -55,22 +55,26 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
-      - name: Install system dependencies
+      - name: Install Linux dependencies
         if: runner.os == 'Linux'
         run: |
           while read -r cmd
           do
             eval sudo $cmd
           done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
+          sudo apt-get install -y libgsl-dev
 
+      - name: Install macos dependencies
+        if: runner.os == 'macOS'
+        run: brew install gsl
+      
       - name: Install dependencies
         run: |
           remotes::install_deps()
           remotes::install_cran("devtools")
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
-
-          
+                
       - name: Check (CRAN)
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
