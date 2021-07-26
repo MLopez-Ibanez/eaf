@@ -11,7 +11,7 @@
 
 <!-- badges: start -->
 [![CRAN Status](https://www.r-pkg.org/badges/version-last-release/eaf)](https://cran.r-project.org/package=eaf) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/eaf)](https://CRAN.R-project.org/package=eaf) [![R build
-status](https://github.com/MLopez-Ibanez/irace/workflows/R-CMD-check/badge.svg)](https://github.com/MLopez-Ibanez/irace/actions)
+status](https://github.com/MLopez-Ibanez/eaf/workflows/R-CMD-check/badge.svg)](https://github.com/MLopez-Ibanez/eaf/actions)
 [![Codecov test coverage](https://codecov.io/gh/MLopez-Ibanez/eaf/branch/master/graph/badge.svg)](https://codecov.io/gh/MLopez-Ibanez/eaf?branch=master)
 <!-- badges: end -->
 
