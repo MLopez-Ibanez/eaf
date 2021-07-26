@@ -69,7 +69,10 @@ jobs:
 
       - name: Install macos dependencies
         if: runner.os == 'macOS'
-        run: brew install gsl
+        run: |
+          brew install gsl
+          brew install autoconf
+          
       
       - name: Install dependencies
         run: |
