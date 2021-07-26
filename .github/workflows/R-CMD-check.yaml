@@ -71,8 +71,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           brew install gsl
-          brew install autoconf
-          
+          brew install automake autoconf
       
       - name: Install dependencies
         run: |
