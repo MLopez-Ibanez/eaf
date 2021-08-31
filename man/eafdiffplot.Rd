@@ -36,7 +36,9 @@ columns, the third one being the set of each point. See also
 
 \item{col}{A character vector of three colors for the magnitude of the
 differences of 0, 0.5, and 1. Intermediate colors are computed
-automatically given the value of \code{intervals}.}
+automatically given the value of \code{intervals}. Alternatively, a function
+such as \code{\link[viridis:reexports]{viridis::viridis()}} that generates a colormap given an integer
+argument.}
 
 \item{intervals}{(\code{integer(1)}|\code{character()}) \cr The
 absolute range of the differences \eqn{[0, 1]} is partitioned into the number
@@ -127,11 +129,16 @@ does not change the apparent size of the points, whereas it affects
 considerably the apparent size of the areas.
 }
 \examples{
+## NOTE: The plots in the website look squashed because of how pkgdown
+## generates them. They should look fine when you generate them yourself.
 extdata_dir <- system.file(package="eaf", "extdata") 
 A1 <- read_datasets(file.path(extdata_dir, "ALG_1_dat.xz"))
 A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat.xz"))
 \donttest{# These take time
   eafdiffplot(A1, A2, full.eaf = TRUE)
+  #library(viridis)
+  #viridis_r <- function(n) viridis(n, direction=-1)
+  #eafdiffplot(A1, A2, type = "area", col = viridis_r)
   eafdiffplot(A1, A2, type = "area")
   eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
 }
@@ -150,7 +157,7 @@ DIFF$right[,3] <- -DIFF$right[,3]
  # write.table(rbind(DIFF$left,DIFF$right),
  #             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",
  #             quote = FALSE, row.names = FALSE, col.names = FALSE)
- 
+
 }
 \seealso{
 \code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafplot]{eafplot()}}

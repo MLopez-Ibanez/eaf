@@ -1,3 +1,8 @@
+# eaf 2.2
+
+* `col` argument of `eafdiffplot()` may be a colormap function.
+
+
 # eaf 2.1
 
 * Improve documentation of `igd()`.

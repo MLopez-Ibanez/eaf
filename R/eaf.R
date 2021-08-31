@@ -608,7 +608,7 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #' @seealso   [read_datasets()] [eafdiffplot()]
 #'
 #'@examples
-#'data(gcp2x2)
+#' data(gcp2x2)
 #' tabucol <- subset(gcp2x2, alg != "TSinN1")
 #' tabucol$alg <- tabucol$alg[drop=TRUE]
 #' eafplot(time + best ~ run, data = tabucol, subset = tabucol$inst=="DSJC500.5")
@@ -1054,7 +1054,9 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
                polycol[polycol > length(col)] <- length(col)
                #print(eafdiff)
                #print(col[polycol])
-               polygon(eafdiff[,1], eafdiff[,2], border = NA, col = col[polycol])
+               # FIXME: This reduces the number of artifacts but increases the memory consumption of embedFonts(filename) until it crashes.
+               #polygon(eafdiff[,1], eafdiff[,2], border = col[polycol], lwd=0.1, col = col[polycol])
+               polygon(eafdiff[,1], eafdiff[,2], border = FALSE, col = col[polycol])
              }
            } else {
              ## The maximum value should also be painted.
@@ -1093,7 +1095,9 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' 
 #' @param col A character vector of three colors for the magnitude of the
 #'   differences of 0, 0.5, and 1. Intermediate colors are computed
-#'   automatically given the value of `intervals`.
+#'   automatically given the value of `intervals`. Alternatively, a function
+#'   such as [viridis::viridis()] that generates a colormap given an integer
+#'   argument.
 #' 
 #' @param intervals (`integer(1)`|`character()`) \cr The
 #'   absolute range of the differences \eqn{[0, 1]} is partitioned into the number
@@ -1177,11 +1181,16 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' @seealso    [read_datasets()], [eafplot()]
 #' 
 #' @examples
+#' ## NOTE: The plots in the website look squashed because of how pkgdown
+#' ## generates them. They should look fine when you generate them yourself.
 #' extdata_dir <- system.file(package="eaf", "extdata") 
 #' A1 <- read_datasets(file.path(extdata_dir, "ALG_1_dat.xz"))
 #' A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat.xz"))
 #' \donttest{# These take time
 #'   eafdiffplot(A1, A2, full.eaf = TRUE)
+#'   #library(viridis)
+#'   #viridis_r <- function(n) viridis(n, direction=-1)
+#'   #eafdiffplot(A1, A2, type = "area", col = viridis_r)
 #'   eafdiffplot(A1, A2, type = "area")
 #'   eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
 #' }
@@ -1200,7 +1209,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #'  # write.table(rbind(DIFF$left,DIFF$right),
 #'  #             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",
 #'  #             quote = FALSE, row.names = FALSE, col.names = FALSE)
-#'  
+#'
 #'@keywords graphs
 #'@export
 #'@md
@@ -1229,10 +1238,16 @@ eafdiffplot <-
     intervals <- seq.intervals.labels(
       round(seq(0,1 , length.out = 1 + intervals), 4), digits = 1)
   }
-  if (length(col) != 3) {
-    stop ("'col' must provide three colors (minimum, medium maximum)")
+  if (is.function(col)) { # It is a color-map, like viridis()
+    col <- col(length(intervals))
+    # The lowest color should always be white.
+    col[1] <- "#FFFFFF"
+  } else {
+    if (length(col) != 3) {
+      stop ("'col' is either three colors (minimum, medium maximum) or a function that produces a colormap")
+    }
+    col <- colorRampPalette(col)(length(intervals))
   }
-  col <- colorRampPalette(col)(length(intervals))
   title.left <- title.left
   title.right <- title.right
 
