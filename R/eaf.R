@@ -613,10 +613,10 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #' tabucol$alg <- tabucol$alg[drop=TRUE]
 #' eafplot(time + best ~ run, data = tabucol, subset = tabucol$inst=="DSJC500.5")
 #' 
-#' \dontrun{ # These take time
+#' \dontrun{# These take time
 #' eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2)
 #' eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2,
-#' 	percentiles=c(0,50,100), cex.axis = 1.2, lty = c(2,1,2), lwd = c(2,2,2),
+#' 	percentiles=c(0,50,100), cex.axis = 0.8, lty = c(2,1,2), lwd = c(2,2,2),
 #'      col = c("black","blue","grey50"))
 #'
 #' extdata_path <- system.file(package = "eaf", "extdata")
@@ -1481,10 +1481,11 @@ eafplot.formula <- function(formula, data, groups = NULL, subset = NULL, ...)
     #                   subscr[id]
     cond.current.level <- .cupdate(cond.current.level, cond.max.level)
   }
-  op <- par(no.readonly = TRUE)  # save default, for resetting...
-  on.exit(par(op))
+  # save default, for resetting...
   ## FIXME: I don't think this is doing the right thing.
-  par(mfrow = .check.layout(NULL,cond.max.level)[2:3])
+  op <- par(mfrow = .check.layout(NULL,cond.max.level)[2:3],
+            mar = c(4,4,1,1)+0.1)
+  on.exit(par(op))
   for (i in seq_len(length(panel.args))) {
     eafplot.default(panel.args[[i]]$points,
                     panel.args[[i]]$sets,
