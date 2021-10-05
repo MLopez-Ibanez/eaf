@@ -24,7 +24,7 @@ status](https://github.com/MLopez-Ibanez/eaf/workflows/R-CMD-check/badge.svg)](h
     [Marco Chiarandini](http://www.imada.sdu.dk/~marco),
     [Carlos M. Fonseca](https://eden.dei.uc.pt/~cmfonsec/),
     [Luís Paquete](https://eden.dei.uc.pt/~paquete/),
-    [Thomas Stützle](http://iridia.ulb.ac.be/~stuetzle/),
+    [Thomas Stützle](https://iridia.ulb.ac.be/~stuetzle/),
     and Mickaël Binois.
     
 ---------------------------------------
@@ -54,7 +54,7 @@ visualization.
 **Relevant literature:**
 
  1. <a name="LopPaqStu09emaa"/>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. [Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization](https://doi.org/10.1007/978-3-642-02538-9_9). In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.<br>
-    (This chapter is also available in a slightly extended form as [Technical Report TR/IRIDIA/2009-015](http://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf)).<br>
+    (This chapter is also available in a slightly extended form as [Technical Report TR/IRIDIA/2009-015](https://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf)).<br>
     [ [bibtex](http://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa) |
     doi: [10.1007/978-3-642-02538-9_9](https://doi.org/10.1007/978-3-642-02538-9_9)
     | [Presentation](http://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf) ]
