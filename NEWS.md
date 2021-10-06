@@ -1,3 +1,6 @@
+# eaf 2.3
+
+
 # eaf 2.2
 
 * `col` argument of `eafdiffplot()` may be a colormap function.
