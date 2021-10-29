@@ -1,5 +1,6 @@
 # eaf 2.3
 
+* `eafplot()` now returns the attainment surfaces computed invisibly.
 
 # eaf 2.2
 

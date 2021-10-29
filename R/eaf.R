@@ -603,7 +603,7 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #'
 #' @param ... Other graphical parameters to [plot.default()].
 #' 
-#' @return No value is returned.
+#' @return Return (invisibly) the attainment surfaces computed.
 #' 
 #' @seealso   [read_datasets()] [eafdiffplot()]
 #'
@@ -623,7 +623,9 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #' A1 <- read_datasets(file.path(extdata_path, "ALG_1_dat.xz"))
 #' A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat.xz"))
 #' eafplot(A1, percentiles = 50, sci.notation = TRUE)
-#' eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
+#' # The attainment surfaces are returned invisibly.
+#' attsurfs <- eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
+#' str(attsurfs)
 #' 
 #' ## Save as a PDF file.
 #' # dev.copy2pdf(file = "eaf.pdf", onefile = TRUE, width = 5, height = 4)
@@ -883,7 +885,7 @@ eafplot.default <-
   }
 
   box()
-  invisible()
+  invisible(attsurfs)
 }
 
 prettySciNotation <- function(x, digits = 1L)
