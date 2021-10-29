@@ -275,7 +275,7 @@ present the plot is conditional to the instances.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>No value is returned.</p>
+    <p>Return (invisibly) the attainment surfaces computed.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function can be used to plot random sets of points like those obtained
@@ -314,8 +314,18 @@ solution quality over time of a collection of runs of a stochastic optimizer.</p
 <span class='va'>A1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"ALG_1_dat.xz"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>A2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_datasets.html'>read_datasets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>extdata_path</span>, <span class='st'>"ALG_2_dat.xz"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'>eafplot</span><span class='op'>(</span><span class='va'>A1</span>, percentiles <span class='op'>=</span> <span class='fl'>50</span>, sci.notation <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='img'><img src='eafplot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>eafplot</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>A1 <span class='op'>=</span> <span class='va'>A1</span>, A2 <span class='op'>=</span> <span class='va'>A2</span><span class='op'>)</span>, percentiles <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
-</div><div class='img'><img src='eafplot-5.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='eafplot-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># The attainment surfaces are returned invisibly.</span>
+<span class='va'>attsurfs</span> <span class='op'>&lt;-</span> <span class='fu'>eafplot</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>A1 <span class='op'>=</span> <span class='va'>A1</span>, A2 <span class='op'>=</span> <span class='va'>A2</span><span class='op'>)</span>, percentiles <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
+</div><div class='img'><img src='eafplot-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>attsurfs</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; List of 2
+#&gt;  $ 50: num [1:1183, 1:2] 4.95e+09 4.95e+09 4.95e+09 4.95e+09 4.96e+09 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : chr [1:1183] "1" "2" "3" "4" ...
+#&gt;   .. ..$ : chr [1:2] "X1" "X2"
+#&gt;  $ 50: num [1:1422, 1:2] 5.16e+09 5.17e+09 5.18e+09 5.21e+09 5.21e+09 ...
+#&gt;   ..- attr(*, "dimnames")=List of 2
+#&gt;   .. ..$ : chr [1:1422] "1184" "1185" "1186" "1187" ...
+#&gt;   .. ..$ : chr [1:2] "X1" "X2"</div><div class='input'>
 <span class='co'>## Save as a PDF file.</span>
 <span class='co'># dev.copy2pdf(file = "eaf.pdf", onefile = TRUE, width = 5, height = 4)</span>
 
