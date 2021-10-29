@@ -101,31 +101,6 @@ jobs:
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--run-donttest", "--run-dontrun", "--timings"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
-      - name: Install pkgdown
-        if: success() && runner.os == 'Linux' && matrix.config.r == 'release'
-        run: |
-          remotes::install_cran("pkgdown")
-        shell: Rscript {0}
-
-      - name: Install package
-        if: success() && runner.os == 'Linux' && matrix.config.r == 'release'
-        run: R CMD INSTALL check/*.tar.gz
-
-      - name: Deploy package
-        if: success() && runner.os == 'Linux' && matrix.config.r == 'release' && github.event_name == 'push'
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE, run_dont_run = TRUE)'
-        shell: bash {0}
-      
-      - name: Test coverage
-        if: success() && runner.os == 'Linux' && matrix.config.r == 'release'
-        run: |
-          remotes::install_cran('covr')
-          covr::codecov(type="all", quiet=FALSE)
-        shell: Rscript {0}
-
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@main
@@ -135,3 +110,87 @@ jobs:
 
 
           
+  coverage:
+    needs: R-CMD-check
+    name: Coverage ${{ matrix.config.os }} (${{ matrix.config.r }})
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+    env:
+      RSPM: ${{ matrix.config.rspm }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: ${{ matrix.config.r }}
+          
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: |
+            devtools
+            covr
+          needs: |
+            coverage
+
+      - name: Test coverage
+        if: success()
+        run: |
+          covr::codecov(type="all", quiet=FALSE)
+        shell: Rscript {0}
+
+      - name: Upload check results
+        if: failure()
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+          path: check
+    
+
+  pkgdown:
+    needs: R-CMD-check
+    if: contains('
+        refs/heads/master
+        refs/heads/main
+      ', github.ref) && github.event_name == 'push'
+    name: pkgdown ${{ matrix.config.os }} (${{ matrix.config.r }})
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+    env:
+      RSPM: ${{ matrix.config.rspm }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: ${{ matrix.config.r }}
+
+      - uses: r-lib/actions/setup-pandoc@v1
+
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: |
+            pkgdown
+            devtools
+          needs: |
+            website
+
+      - name: Deploy package
+        if: success() && runner.os == 'Linux' && matrix.config.r == 'release' && github.event_name == 'push'
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE, run_dont_run = TRUE)'
+        shell: bash {0}
+
