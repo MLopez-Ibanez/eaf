@@ -102,7 +102,9 @@ jobs:
         shell: Rscript {0}
 
       - uses: r-lib/actions/run-rchk@master
+        if: runner.os == 'Linux'
         with:
+          apt: libgsl-dev libcurl4-openssl-dev
           package: eaf
 
       - name: Upload check results
