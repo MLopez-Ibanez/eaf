@@ -174,12 +174,12 @@
 <li><p>Non-integer EAF percentiles are computed correctly.</p></li>
 <li><p>Various aesthetic improvements in <code><a href="../reference/eafplot.html">eafplot()</a></code> and <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>.</p></li>
 <li><p>Functions for computing hypervolume, hypervolume contributions, epsilon metric, IGD+, filter dominated points, and fast normalisation of ranges.</p></li>
-<li><p>Command-line tools for computing the above are installed in <code><a href="https://rdrr.io/r/base/system.file.html">system.file(package="eaf", "bin/")</a></code>.</p></li>
+<li><p>Command-line tools for computing the above are installed in <code>system.file(package="eaf", "bin/")</code>.</p></li>
 <li><p>Online documentation available at: <a href="http://lopez-ibanez.eu/eaftools" class="uri">http://lopez-ibanez.eu/eaftools</a></p></li>
 <li><p>New <code><a href="../reference/read_datasets.html">read_datasets()</a></code> replaces deprecated <code><a href="../reference/read_datasets.html">read.data.sets()</a></code>. New parameter <code>text</code> of <code><a href="../reference/read_datasets.html">read_datasets()</a></code>.</p></li>
 <li><p>New <code><a href="../reference/eafdiff.html">eafdiff()</a></code> function for computing EAF differences.</p></li>
 <li><p>The <code>data.frame</code> method for <code>eafplot</code> has been removed. It had unexpected behavior and the default method handles <code>data.frame</code> already.</p></li>
-<li><p>Python script to compute EAF differences installed at <code><a href="https://rdrr.io/r/base/system.file.html">system.file(package="eaf", "scripts/eafdiff.py")</a></code>.</p></li>
+<li><p>Python script to compute EAF differences installed at <code>system.file(package="eaf", "scripts/eafdiff.py")</code>.</p></li>
 </ul>
 </div>
     <div id="eaf-18" class="section level1">
@@ -229,7 +229,7 @@
 <li>
 <p>Implement <code>type = "area")</code> for <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>. This is now the default.</p>
 <p>The idea for the algorithm to compute the areas was provided by Carlos M. Fonseca. The implementation uses R polygons, which some PDF viewers may have trouble rendering correctly (See <a href="https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders" class="uri">https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders</a>).</p>
-<p>Plots will look correct when printed. To get the previous behavior use <code><a href="../reference/eafdiffplot.html">eafdiffplot(, type = "point")</a></code>.</p>
+<p>Plots will look correct when printed. To get the previous behavior use <code>eafdiffplot(, type = "point")</code>.</p>
 </li>
 <li><p>Attempt to deal with DOS/Unix newlines correctly.</p></li>
 <li><p>eafplot.pl: Lots of cleanup. (–single, –output, –legend): New options. Default to PDF.</p></li>

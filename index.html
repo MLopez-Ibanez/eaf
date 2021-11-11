@@ -99,7 +99,7 @@
 <div id="download-and-installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download-and-installation" class="anchor"></a>Download and installation</h2>
-<p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled binaries can be found under <code><a href="https://rdrr.io/r/base/system.file.html">system.file(package="eaf", "bin")</a></code>. Other useful binaries can be found there.</p>
+<p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled binaries can be found under <code>system.file(package="eaf", "bin")</code>. Other useful binaries can be found there.</p>
 <p>The visualization of the EAFs requires installing the <strong>eaf</strong> package. Therefore, a basic knowledge of R is recommended to make use of all features. However, the <code>eaf</code> package contains two Perl scripts that allow to generate standard plots without any R knowledge. See <code>inst/scripts/eafplot/</code> and <code>inst/scripts/eafdiff/</code> in the package source code. The scripts use the <strong>eaf</strong> package internally to generate the plots, and, hence, the <strong>eaf</strong> package must be installed and working.</p>
 <p>The first step before installing the <strong>eaf</strong> package is to <a href="https://cran.r-project.org/">install R</a>. Once R is installed in the system, there are two methods for installing the <strong>eaf</strong> package:</p>
 <ol>
@@ -130,7 +130,7 @@
     <span class="op">?</span><span class="va">read.data.sets</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">eafplot</span><span class="op">)</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">eafdiffplot</span><span class="op">)</span> <span class="co"># This one takes some time</span></code></pre></div>
-<p>Apart from the main R package, the source code contains the following extras in the directory <code>inst/</code> (after installation, these files can be found at the directory printed by the R command <code><a href="https://rdrr.io/r/base/system.file.html">system.file(package="eaf")</a></code>):</p>
+<p>Apart from the main R package, the source code contains the following extras in the directory <code>inst/</code> (after installation, these files can be found at the directory printed by the R command <code>system.file(package="eaf")</code>):</p>
 <ul>
 <li>
 <code>scripts/eafplot</code> : Perl script to plot summary attainment surfaces.</li>
