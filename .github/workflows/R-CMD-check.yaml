@@ -37,6 +37,7 @@ jobs:
     env:
       RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
       - name: Disable autocrlf
         run: git config --global core.autocrlf false
@@ -101,12 +102,17 @@ jobs:
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--run-donttest", "--run-dontrun", "--timings"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
-      - uses: r-lib/actions/run-rchk@master
+      - uses: r-lib/actions/run-rchk@v1
         if: runner.os == 'Linux' && matrix.config.r == 'release' 
         with:
           apt: libgsl-dev libcurl4-openssl-dev
           package: eaf
 
+      - name: Install package
+        run: |
+          remotes::install_local(".")
+        shell: Rscript {0}
+        
       - name: Upload check results
         if: failure()
         uses: actions/upload-artifact@main
@@ -114,7 +120,7 @@ jobs:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
 
-          
+
   coverage:
     needs: R-CMD-check
     name: Coverage ${{ matrix.config.os }} (${{ matrix.config.r }})
