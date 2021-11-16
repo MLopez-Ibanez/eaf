@@ -1189,12 +1189,14 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' A1 <- read_datasets(file.path(extdata_dir, "ALG_1_dat.xz"))
 #' A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat.xz"))
 #' \donttest{# These take time
-#'   eafdiffplot(A1, A2, full.eaf = TRUE)
-#'   #library(viridis)
-#'   #viridis_r <- function(n) viridis(n, direction=-1)
-#'   #eafdiffplot(A1, A2, type = "area", col = viridis_r)
+#' eafdiffplot(A1, A2, full.eaf = TRUE)
+#' if (requireNamespace("viridis", quietly=TRUE)) {
+#'   viridis_r <- function(n) viridis(n, direction=-1)
+#'   eafdiffplot(A1, A2, type = "area", col = viridis_r)
+#' } else {
 #'   eafdiffplot(A1, A2, type = "area")
-#'   eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
+#' }
+#' eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
 #' }
 #' # A more complex example
 #' a1 <- read_datasets(file.path(extdata_dir, "wrots_l100w10_dat"))
@@ -1207,10 +1209,10 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #'                       abline(a = 0, b = 1, col = "red", lty = "dashed")})
 #' DIFF$right[,3] <- -DIFF$right[,3]
 #' 
-#'  ## Save the values to a file.
-#'  # write.table(rbind(DIFF$left,DIFF$right),
-#'  #             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",
-#'  #             quote = FALSE, row.names = FALSE, col.names = FALSE)
+#' ## Save the values to a file.
+#' # write.table(rbind(DIFF$left,DIFF$right),
+#' #             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",
+#' #             quote = FALSE, row.names = FALSE, col.names = FALSE)
 #'
 #'@keywords graphs
 #'@export
