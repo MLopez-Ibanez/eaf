@@ -1191,7 +1191,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' \donttest{# These take time
 #' eafdiffplot(A1, A2, full.eaf = TRUE)
 #' if (requireNamespace("viridis", quietly=TRUE)) {
-#'   viridis_r <- function(n) viridis(n, direction=-1)
+#'   viridis_r <- function(n) viridis::viridis(n, direction=-1)
 #'   eafdiffplot(A1, A2, type = "area", col = viridis_r)
 #' } else {
 #'   eafdiffplot(A1, A2, type = "area")
