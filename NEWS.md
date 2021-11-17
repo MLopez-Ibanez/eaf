@@ -2,6 +2,9 @@
 
 * `eafplot()` now returns the attainment surfaces computed invisibly.
 
+* New function `pdf_crop()`.
+
+
 # eaf 2.2
 
 * `col` argument of `eafdiffplot()` may be a colormap function.
