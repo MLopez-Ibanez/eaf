@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove whitespace margins using https://ctan.org/pkg/pdfcrop — pdf_crop • eaf</title>
+<title>Remove whitespace margins from a PDF file — pdf_crop • eaf</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Remove whitespace margins using https://ctan.org/pkg/pdfcrop — pdf_crop" />
+<meta property="og:title" content="Remove whitespace margins from a PDF file — pdf_crop" />
 <meta property="og:description" content="Remove whitespace margins using https://ctan.org/pkg/pdfcrop" />
 
 
@@ -113,13 +113,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove whitespace margins using https://ctan.org/pkg/pdfcrop</h1>
+    <h1>Remove whitespace margins from a PDF file</h1>
     <small class="dont-index">Source: <a href='https://github.com/MLopez-Ibanez/eaf/blob/master/R/pdf_crop.R'><code>R/pdf_crop.R</code></a></small>
     <div class="hidden name"><code>pdf_crop.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Remove whitespace margins using https://ctan.org/pkg/pdfcrop</p>
+    <p>Remove whitespace margins using <a href='https://ctan.org/pkg/pdfcrop'>https://ctan.org/pkg/pdfcrop</a></p>
     </div>
 
     <pre class="usage"><span class='fu'>pdf_crop</span><span class='op'>(</span><span class='va'>filename</span>, mustWork <span class='op'>=</span> <span class='cn'>FALSE</span>, pdfcrop <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.which.html'>Sys.which</a></span><span class='op'>(</span><span class='st'>"pdfcrop"</span><span class='op'>)</span><span class='op'>)</span></pre>
@@ -155,8 +155,8 @@
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> agg_png </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>       2 </span>
-<span class='r-in'><span class='fu'>pdf_crop</span><span class='op'>(</span><span class='st'>"eaf.pdf"</span>, mustWork<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in pdf_crop("eaf.pdf", mustWork = TRUE):</span> pdfcrop not found!</span>
+<span class='r-in'><span class='fu'>pdf_crop</span><span class='op'>(</span><span class='st'>"eaf.pdf"</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>pdfcrop not found, not cropping</span>
 <span class='r-in'><span class='co'># }</span></span>
 </pre>
   </div>
