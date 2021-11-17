@@ -2,7 +2,7 @@
 % Please edit documentation in R/pdf_crop.R
 \name{pdf_crop}
 \alias{pdf_crop}
-\title{Remove whitespace margins using https://ctan.org/pkg/pdfcrop}
+\title{Remove whitespace margins from a PDF file}
 \usage{
 pdf_crop(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"))
 }
@@ -17,7 +17,7 @@ pdf_crop(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"))
 Nothing
 }
 \description{
-Remove whitespace margins using https://ctan.org/pkg/pdfcrop
+Remove whitespace margins using \url{https://ctan.org/pkg/pdfcrop}
 }
 \examples{
 \dontrun{
@@ -27,6 +27,6 @@ A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat.xz"))
 pdf(file = "eaf.pdf", onefile = TRUE, width = 5, height = 4)
 eafplot(list(A1 = A1, A2 = A2), percentiles = 50, sci.notation=TRUE)
 dev.off()
-pdf_crop("eaf.pdf", mustWork=TRUE)
+pdf_crop("eaf.pdf")
 }
 }
