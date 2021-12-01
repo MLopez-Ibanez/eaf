@@ -20,6 +20,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,18 +34,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Github version">2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">2.3</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -53,7 +49,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/MLopez-Ibanez/eaf/">
+  <a href="https://github.com/MLopez-Ibanez/eaf/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -74,62 +70,63 @@
 <p><img src="reference/figures/ALG_1_dat-ALG_2_dat.png" width="455" height="242" alt="EAF
    differences between two bi-objective optimizers" title="EAF differences
    between two bi-objective optimizers" style="border:0; align:right; float:right;"><img src="reference/figures/eafdiff-color.png" width="480" height="240" alt="EAF differences between two variants of W-RoTS (color)" title="EAF differences between two variants of W-RoTS (color)" style="border:0; align:right; float:right; clear:right"></p>
-<div id="eaf-empirical-attainment-function-eaf-tools" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#eaf-empirical-attainment-function-eaf-tools" class="anchor"></a><strong>eaf</strong>: Empirical Attainment Function (EAF) Tools</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="eaf-empirical-attainment-function-eaf-tools">
+<strong>eaf</strong>: Empirical Attainment Function (EAF) Tools<a class="anchor" aria-label="anchor" href="#eaf-empirical-attainment-function-eaf-tools"></a>
+</h1></div>
 <!-- badges: start -->
-<p><a href="https://cran.r-project.org/package=eaf"><img src="https://www.r-pkg.org/badges/version-last-release/eaf" alt="CRAN Status"></a> <a href="https://CRAN.R-project.org/package=eaf"><img src="https://cranlogs.r-pkg.org/badges/grand-total/eaf" alt="CRAN Downloads"></a> <a href="https://github.com/MLopez-Ibanez/eaf/actions"><img src="https://github.com/MLopez-Ibanez/eaf/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://codecov.io/gh/MLopez-Ibanez/eaf?branch=master"><img src="https://codecov.io/gh/MLopez-Ibanez/eaf/branch/master/graph/badge.svg" alt="Codecov test coverage"></a> <!-- badges: end --></p>
-<p>[ <a href="http://lopez-ibanez.eu/eaftools"><strong>Homepage</strong></a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf"><strong>GitHub</strong></a> ]</p>
-<p><strong>Maintainer:</strong> <a href="http://lopez-ibanez.eu">Manuel López-Ibáñez</a></p>
-<p><strong>Contributors:</strong> <a href="http://lopez-ibanez.eu">Manuel López-Ibáñez</a>, <a href="http://www.imada.sdu.dk/~marco">Marco Chiarandini</a>, <a href="https://eden.dei.uc.pt/~cmfonsec/">Carlos M. Fonseca</a>, <a href="https://eden.dei.uc.pt/~paquete/">Luís Paquete</a>, <a href="https://iridia.ulb.ac.be/~stuetzle/">Thomas Stützle</a>, and Mickaël Binois.</p>
+
+<p>[ <a href="http://lopez-ibanez.eu/eaftools" class="external-link"><strong>Homepage</strong></a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf" class="external-link"><strong>GitHub</strong></a> ]</p>
+<p><strong>Maintainer:</strong> <a href="http://lopez-ibanez.eu" class="external-link">Manuel López-Ibáñez</a></p>
+<p><strong>Contributors:</strong> <a href="http://lopez-ibanez.eu" class="external-link">Manuel López-Ibáñez</a>, <a href="http://www.imada.sdu.dk/~marco" class="external-link">Marco Chiarandini</a>, <a href="https://eden.dei.uc.pt/~cmfonsec/" class="external-link">Carlos M. Fonseca</a>, <a href="https://eden.dei.uc.pt/~paquete/" class="external-link">Luís Paquete</a>, <a href="https://iridia.ulb.ac.be/~stuetzle/" class="external-link">Thomas Stützle</a>, and Mickaël Binois.</p>
 <hr>
 </div>
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>The empirical attainment function (EAF) describes the probabilistic distribution of the outcomes obtained by a stochastic algorithm in the objective space. This <a href="https://www.R-project.org/">R</a> package implements plots of summary attainment surfaces and differences between the first-order EAFs. These plots may be used for exploring the performance of stochastic local search algorithms for biobjective optimization problems and help in identifying certain algorithmic behaviors in a graphical way.</p>
+<div class="section level1">
+<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h1>
+<p>The empirical attainment function (EAF) describes the probabilistic distribution of the outcomes obtained by a stochastic algorithm in the objective space. This <a href="https://www.R-project.org/" class="external-link">R</a> package implements plots of summary attainment surfaces and differences between the first-order EAFs. These plots may be used for exploring the performance of stochastic local search algorithms for biobjective optimization problems and help in identifying certain algorithmic behaviors in a graphical way.</p>
 <p>The corresponding <a href="#LopPaqStu09emaa">book chapter</a> [1] explains the use of these visualization tools and illustrates them with examples arising from practice.</p>
 <p>In addition, the package provides functions for computing several quality metrics, such as hypervolume, IGD, IGD+, and epsilon.</p>
 <p><strong>Keywords</strong>: empirical attainment function, summary attainment surfaces, EAF differences, multi-objective optimization, bi-objective optimization, performance measures, performance assessment, graphical analysis, visualization.</p>
 <p><strong>Relevant literature:</strong></p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>
-<a name="LopPaqStu09emaa"></a>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. <a href="https://doi.org/10.1007/978-3-642-02538-9_9">Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization</a>. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, pages 209–222. Springer, Berlin, Germany, 2010.<br> (This chapter is also available in a slightly extended form as <a href="https://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf">Technical Report TR/IRIDIA/2009-015</a>).<br> [ <a href="http://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa">bibtex</a> | doi: <a href="https://doi.org/10.1007/978-3-642-02538-9_9">10.1007/978-3-642-02538-9_9</a> | <a href="http://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf">Presentation</a> ]</li>
+<a name="LopPaqStu09emaa"></a>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. <a href="https://doi.org/10.1007/978-3-642-02538-9_9" class="external-link">Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization</a>. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, pages 209–222. Springer, Berlin, Germany, 2010.<br> (This chapter is also available in a slightly extended form as <a href="https://iridia.ulb.ac.be/IridiaTrSeries/IridiaTr2009-015r001.pdf" class="external-link">Technical Report TR/IRIDIA/2009-015</a>).<br> [ <a href="http://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa" class="external-link">bibtex</a> | doi: <a href="https://doi.org/10.1007/978-3-642-02538-9_9" class="external-link">10.1007/978-3-642-02538-9_9</a> | <a href="http://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf" class="external-link">Presentation</a> ]</li>
 </ol>
-<div id="download-and-installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#download-and-installation" class="anchor"></a>Download and installation</h2>
-<p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled binaries can be found under <code>system.file(package="eaf", "bin")</code>. Other useful binaries can be found there.</p>
+<div class="section level2">
+<h2 id="download-and-installation">Download and installation<a class="anchor" aria-label="anchor" href="#download-and-installation"></a>
+</h2>
+<p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf" class="external-link">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled binaries can be found under <code>system.file(package="eaf", "bin")</code>. Other useful binaries can be found there.</p>
 <p>The visualization of the EAFs requires installing the <strong>eaf</strong> package. Therefore, a basic knowledge of R is recommended to make use of all features. However, the <code>eaf</code> package contains two Perl scripts that allow to generate standard plots without any R knowledge. See <code>inst/scripts/eafplot/</code> and <code>inst/scripts/eafdiff/</code> in the package source code. The scripts use the <strong>eaf</strong> package internally to generate the plots, and, hence, the <strong>eaf</strong> package must be installed and working.</p>
-<p>The first step before installing the <strong>eaf</strong> package is to <a href="https://cran.r-project.org/">install R</a>. Once R is installed in the system, there are two methods for installing the <strong>eaf</strong> package:</p>
-<ol>
+<p>The first step before installing the <strong>eaf</strong> package is to <a href="https://cran.r-project.org/" class="external-link">install R</a>. Once R is installed in the system, there are two methods for installing the <strong>eaf</strong> package:</p>
+<ol style="list-style-type: decimal">
 <li>
 <p>Install within R (automatic download, internet connection required). Invoke R, then</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R">    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"eaf"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R">    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"eaf"</span><span class="op">)</span></code></pre></div>
 </li>
 <li>
-<p><a href="https://cran.r-project.org/package=eaf">Download the <strong>eaf</strong> package from CRAN</a> (you may also need to download and install first the <a href="https://cran.r-project.org/package=modeltools">package modeltools</a>), and invoke at the command-line:</p>
+<p><a href="https://cran.r-project.org/package=eaf" class="external-link">Download the <strong>eaf</strong> package from CRAN</a> (you may also need to download and install first the <a href="https://cran.r-project.org/package=modeltools" class="external-link">package modeltools</a>), and invoke at the command-line:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="ex">R</span> CMD INSTALL <span class="op">&lt;</span>package<span class="op">&gt;</span></span></code></pre></div>
 <p>where <code>&lt;package&gt;</code> is one of the three versions available: <code>.tar.gz</code> (Unix/BSD/GNU/Linux), <code>.tgz</code> (MacOS X), or <code>.zip</code> (Windows).</p>
 </li>
 </ol>
-<p>Search the <a href="https://cran.r-project.org/faqs.html">R documentation</a> if you need more help to install an R package on your system.</p>
-<p>If you wish to be notified of bugfixes and new versions, please subscribe to the <a href="https://lists.dei.uc.pt/mailman/listinfo/emo-list">low-volume emo-list</a>, where announcements will be made.</p>
-<p>[ <a href="https://cran.r-project.org/package=eaf">Download <strong>eaf</strong> package from CRAN</a> ] [ <a href="http://lopez-ibanez.eu/eaftools">Documentation</a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf">Development version (GitHub)</a> ]</p>
+<p>Search the <a href="https://cran.r-project.org/faqs.html" class="external-link">R documentation</a> if you need more help to install an R package on your system.</p>
+<p>If you wish to be notified of bugfixes and new versions, please subscribe to the <a href="https://lists.dei.uc.pt/mailman/listinfo/emo-list" class="external-link">low-volume emo-list</a>, where announcements will be made.</p>
+<p>[ <a href="https://cran.r-project.org/package=eaf" class="external-link">Download <strong>eaf</strong> package from CRAN</a> ] [ <a href="http://lopez-ibanez.eu/eaftools" class="external-link">Documentation</a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf" class="external-link">Development version (GitHub)</a> ]</p>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>Once the <strong>eaf</strong> package is installed, the following R commands will give more information:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R">    <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://lopez-ibanez.eu/eaftools">eaf</a></span><span class="op">)</span>
+<code class="sourceCode R">    <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://lopez-ibanez.eu/eaftools" class="external-link">eaf</a></span><span class="op">)</span>
     <span class="op">?</span><span class="va">eaf</span>
     <span class="op">?</span><span class="va">eafplot</span>
     <span class="op">?</span><span class="va">eafdiffplot</span>
     <span class="op">?</span><span class="va">read.data.sets</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">eafplot</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">eafdiffplot</span><span class="op">)</span> <span class="co"># This one takes some time</span></code></pre></div>
+    <span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="va">eafplot</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="va">eafdiffplot</span><span class="op">)</span> <span class="co"># This one takes some time</span></code></pre></div>
 <p>Apart from the main R package, the source code contains the following extras in the directory <code>inst/</code> (after installation, these files can be found at the directory printed by the R command <code>system.file(package="eaf")</code>):</p>
 <ul>
 <li>
@@ -139,19 +136,13 @@
 <li>
 <code>extdata/</code> : Examples of utilization of the above programs. These are discussed in the corresponding <a href="#LopPaqStu09emaa">book chapter</a> [1].</li>
 </ul>
-<p>In addition, the source code contains the following under <code>src/</code>:</p>
-<ul>
-<li>
-<code>src/eaf</code> : This C program computes the empirical attainment function in 2 or 3 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at <a href="http://www.tik.ee.ethz.ch/pisa/" class="uri">http://www.tik.ee.ethz.ch/pisa/</a>. A more recent version is available at <a href="https://eden.dei.uc.pt/~cmfonsec/software.html">Prof. Fonseca’s website</a>.</li>
-<li>
-<code>src/mo-tools</code> : Several tools for working with multi-objective data.</li>
-</ul>
+<p>In addition, the source code contains the following under <code>src/</code>: * <code>src/eaf</code> : This C program computes the empirical attainment function in 2 or 3 dimensions. It is NOT required by the other programs, but it is provided as a useful command-line utility. This version is based on the original code written by Carlos M. Fonseca available at <a href="http://www.tik.ee.ethz.ch/pisa/" class="external-link uri">http://www.tik.ee.ethz.ch/pisa/</a>. A more recent version is available at <a href="https://eden.dei.uc.pt/~cmfonsec/software.html" class="external-link">Prof. Fonseca’s website</a>. * <code>src/mo-tools</code> : Several tools for working with multi-objective data.</p>
 <p>For more information, consult the <code>README</code> files at each subdirectory.</p>
 </div>
-<div id="python" class="section level2">
-<h2 class="hasAnchor">
-<a href="#python" class="anchor"></a>Python</h2>
-<p>Thanks to <a href="https://rpy2.github.io/doc/latest/html/index.html">rpy2</a>, you can use the <code>eaf</code> package from Python. A complete example would be:</p>
+<div class="section level2">
+<h2 id="python">Python<a class="anchor" aria-label="anchor" href="#python"></a>
+</h2>
+<p>Thanks to <a href="https://rpy2.github.io/doc/latest/html/index.html" class="external-link">rpy2</a>, you can use the <code>eaf</code> package from Python. A complete example would be:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> os</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">## Uncomment this if you suffer from this bug in cffi 1.13.0</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co">## https://bitbucket.org/rpy2/rpy2/issues/591/runtimeerror-found-a-situation-in-which-we</span></span>
@@ -178,12 +169,12 @@
 <span id="cb4-24"><a href="#cb4-24"></a></span>
 <span id="cb4-25"><a href="#cb4-25"></a>eaf.eafdiffplot(alg1, alg2, title_left<span class="op">=</span><span class="st">"A"</span>, title_right<span class="op">=</span><span class="st">"B"</span>)</span></code></pre></div>
 </div>
-<div id="license" class="section level2">
-<h2 class="hasAnchor">
-<a href="#license" class="anchor"></a>License</h2>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
 <p>This software is Copyright (C) 2011-2021 Carlos M. Fonseca, Luís Paquete, Thomas Stützle, Manuel López-Ibáñez and Marco Chiarandini.</p>
 <p>This program is free software (software libre); you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
-<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> for more details.</p>
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a href="http://www.gnu.org/licenses/gpl.html" class="external-link">GNU General Public License</a> for more details.</p>
 <p><strong>IMPORTANT NOTE</strong>: Please be aware that the fact that this program is released as Free Software does not excuse you from scientific propriety, which obligates you to give appropriate credit! If you write a scientific paper describing research that made substantive use of this program, it is your obligation as a scientist to (a) mention the fashion in which this software was used in the Methods section; (b) mention the algorithm in the References section. The appropriate citation is:</p>
 <ul>
 <li>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. <strong>Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization.</strong> In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, pages 209–222. Springer, Berlin, Germany, 2010. doi: 10.1007/978-3-642-02538-9_9</li>
@@ -196,37 +187,48 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=eaf">https://​cloud.r-project.org/​package=eaf</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/MLopez-Ibanez/eaf/">https://​github.com/​MLopez-Ibanez/​eaf/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/MLopez-Ibanez/eaf/issues">https://​github.com/​MLopez-Ibanez/​eaf/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=eaf" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/MLopez-Ibanez/eaf/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/MLopez-Ibanez/eaf/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL (&gt;= 2)</li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing eaf</a></li>
+<li><a href="authors.html#citation">Citing eaf</a></li>
 </ul>
 </div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Manuel López-Ibáñez <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9974-1295" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Manuel López-Ibáñez <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9974-1295" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Marco Chiarandini <br><small class="roles"> Author </small>  </li>
 <li>Carlos Fonseca <br><small class="roles"> Author </small>  </li>
 <li>Luís Paquete <br><small class="roles"> Author </small>  </li>
 <li>Thomas Stützle <br><small class="roles"> Author </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=eaf" class="external-link"><img src="https://www.r-pkg.org/badges/version-last-release/eaf" alt="CRAN Status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=eaf" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/eaf" alt="CRAN Downloads"></a></li>
+<li><a href="https://github.com/MLopez-Ibanez/eaf/actions" class="external-link"><img src="https://github.com/MLopez-Ibanez/eaf/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/gh/MLopez-Ibanez/eaf?branch=master" class="external-link"><img src="https://codecov.io/gh/MLopez-Ibanez/eaf/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 
@@ -234,17 +236,23 @@
 </div>
 
 
-      <footer><!--<div class="copyright">
-  <p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luís Paquete, Thomas Stützle.</p>
+      <footer><div class="copyright">
+  <p></p>
+<p>Developed by Manuel López-Ibáñez, Marco Chiarandini, Carlos Fonseca, Luís Paquete, Thomas Stützle.</p>
 </div>
+
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
 </div>
---></footer>
+
+      </footer>
 </div>
 
   
 
+
+  
 
   </body>
 </html>
