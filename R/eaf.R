@@ -543,7 +543,7 @@ get.extremes <- function(xlim, ylim, maximise, log)
 #' curve represents the boundary separating points that are known to be
 #' attainable (that is, dominated in Pareto sense) in at least a fraction
 #' (quantile) of the runs from those that are not. The median EAF represents
-#' the curve where the fraction of attainable points is 50\%.  In single
+#' the curve where the fraction of attainable points is 50%.  In single
 #' objective optimization the function can be used to plot the profile of
 #' solution quality over time of a collection of runs of a stochastic optimizer.
 #' 
@@ -1147,9 +1147,9 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #'   data sets, and plots on the left the differences in favour
 #'   of the left data set, and on the right the differences in favour of
 #'   the right data set. By default, it also plots the grand best and worst
-#'   attainment surfaces, that is, the 0\% and 100\%-attainment surfaces
-#'   over all data. This two surfaces delimit the area where differences
-#'   may exist. In addition, it also plots the 50\%-attainment surface of
+#'   attainment surfaces, that is, the 0%- and 100%-attainment surfaces
+#'   over all data. These two surfaces delimit the area where differences
+#'   may exist. In addition, it also plots the 50%-attainment surface of
 #'   each data set.
 #'   
 #'   With `type = "point"`, only the points where there is a change in

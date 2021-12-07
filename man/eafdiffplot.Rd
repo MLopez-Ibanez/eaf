@@ -98,9 +98,9 @@ This function calculates the differences between the EAFs of two
 data sets, and plots on the left the differences in favour
 of the left data set, and on the right the differences in favour of
 the right data set. By default, it also plots the grand best and worst
-attainment surfaces, that is, the 0\\% and 100\\%-attainment surfaces
-over all data. This two surfaces delimit the area where differences
-may exist. In addition, it also plots the 50\\%-attainment surface of
+attainment surfaces, that is, the 0\%- and 100\%-attainment surfaces
+over all data. These two surfaces delimit the area where differences
+may exist. In addition, it also plots the 50\%-attainment surface of
 each data set.
 
 With \code{type = "point"}, only the points where there is a change in
