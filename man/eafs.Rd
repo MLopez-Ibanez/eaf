@@ -15,9 +15,8 @@ each row gives the coordinates of a point.}
 \item{groups}{Indicates that the EAF must be computed separately for data
 belonging to different groups.}
 
-\item{percentiles}{The percentiles of the EAF of each side that will be
-plotted as attainment surfaces. \code{NA} does not plot any. See
-\code{\link[=eafplot]{eafplot()}}.}
+\item{percentiles}{(\code{numeric()}) Vector indicating which percentiles are computed.
+\code{NULL} computes all.}
 }
 \value{
 A data frame (\code{data.frame}) containing the exact representation

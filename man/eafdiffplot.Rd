@@ -117,7 +117,7 @@ polygons, which some PDF viewers may have trouble rendering correctly
 (See
 \url{https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders}). Plots (should) look correct when printed.
 
-Large differences that appear when using \code{type = "points"} may
+Large differences that appear when using \code{type = "point"} may
 seem to disappear when using \code{type = "area"}. The explanation is
 the points size is independent of the axes range, therefore, the
 plotted points may seem to cover a much larger area than the actual

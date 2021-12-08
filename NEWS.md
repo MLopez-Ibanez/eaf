@@ -2,7 +2,7 @@
 
 * `eafplot()` now returns the attainment surfaces computed invisibly.
 
-* New function `pdf_crop()`.
+* New functions `pdf_crop()`, `write_datasets()`, `attsurf2df()`.
 
 
 # eaf 2.2

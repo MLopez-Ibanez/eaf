@@ -57,7 +57,7 @@ data frames of exactly three columns.}
 
 \item{groups}{This may be used to plot profiles of different algorithms on the same plot.}
 
-\item{percentiles}{(\link{numeric})\cr Vector indicating which percentile should be plot. The
+\item{percentiles}{(\code{numeric()}) Vector indicating which percentile should be plot. The
 default is to plot only the median attainment curve.}
 
 \item{attsurfs}{TODO}
@@ -65,7 +65,7 @@ default is to plot only the median attainment curve.}
 \item{xlab, ylab, xlim, ylim, log, col, lty, lwd, pch, cex.pch, las}{Graphical
 parameters, see \code{\link[=plot.default]{plot.default()}}.}
 
-\item{type}{(character(1))\cr string giving the type of plot desired.  The following values
+\item{type}{(\code{character(1)})\cr string giving the type of plot desired.  The following values
 are possible, \samp{points} and \samp{area}.}
 
 \item{legend.pos}{the position of the legend, see \code{\link[=legend]{legend()}}.  A value of \code{"none"} hides the legend.}

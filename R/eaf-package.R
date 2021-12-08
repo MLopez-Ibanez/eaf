@@ -39,7 +39,7 @@
 #'
 #' @import graphics grDevices stats
 #' @importFrom Rdpack reprompt
-#' @importFrom utils modifyList
+#' @importFrom utils modifyList write.table tail
 #'
 #' @useDynLib eaf, .registration = TRUE
 #'
