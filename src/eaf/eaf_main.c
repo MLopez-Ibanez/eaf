@@ -75,6 +75,7 @@ static void usage(void)
 " -d[FILE], --diff[=FILE] write difference between half of runs to FILE.    \n"
 "                     If FILE is '-', print to stdout.                      \n"
 "                     If FILE is missing use the same file as for output.   \n"
+"        , --polygons Write EAF as R polygons.                             \n"
 "\n\n"        );
 }
 
@@ -208,6 +209,7 @@ int main(int argc, char *argv[])
     bool best_flag   = false;
     bool median_flag = false;
     bool worst_flag  = false;
+    bool polygon_flag  = false;
     const char *coord_filename = NULL;
     const char *indic_filename = NULL;
     const char *diff_filename  = NULL;
@@ -215,12 +217,10 @@ int main(int argc, char *argv[])
     FILE *indic_file = NULL;
     FILE *diff_file = NULL;
 
-    int k;
-
     int option;
     int longopt_index;
     /* see the man page for getopt_long for an explanation of these fields */
-    static const char short_options[] = "hVvqbmwl:p:o:i::d::";
+    static const char short_options[] = "hVvqbmwl:p:o:i::d::P";
     static struct option long_options[] = {
         {"help",       no_argument,       NULL, 'h'},
         {"version",    no_argument,       NULL, 'V'},
@@ -237,6 +237,7 @@ int main(int argc, char *argv[])
         {"diff",       optional_argument, NULL, 'd'},
         {"percentile", required_argument, NULL, 'p'},
         {"level",      required_argument, NULL, 'l'},
+        {"polygons",   no_argument,       NULL, 'P'},
         {NULL, 0, NULL, 0} /* marks end of list */
     };
 #define MAX_LEVELS 50
@@ -306,7 +307,11 @@ int main(int argc, char *argv[])
         case 'w':
             worst_flag = true;
             break;
-
+            
+        case 'P':
+            polygon_flag = true;
+            break;
+            
         case 'q': // --quiet
             verbose_flag = false;
             break;
@@ -336,7 +341,7 @@ int main(int argc, char *argv[])
 
     objective_t *data = NULL;
     int* cumsizes = NULL;
-    int nobj = 0, nruns = 0;
+    int nobj = 0, nruns = 0, k;
     if (optind < argc) {
         for (k = optind; k < argc; k++) {
             if (strcmp (argv[k],"-")) 
@@ -448,18 +453,20 @@ int main(int argc, char *argv[])
     }   
 
     eaf_t **eaf = attsurf (data, nobj, cumsizes, nruns, level, nlevels);
-    eaf_print (eaf, nlevels, 
-               coord_file, indic_file, diff_file);
 
-    fclose (coord_file);
-    if (indic_file && indic_file != coord_file)
-        fclose (indic_file);
-    if (diff_file && diff_file != coord_file && diff_file != indic_file)
-        fclose (diff_file);
-
-    /* FIXME: This needs a command-line interface.  */
-    /* eaf_print_polygon (stdout, eaf, nlevels); */
-
+    if (polygon_flag) {
+        eaf_print_polygon (coord_file, eaf, nlevels);
+        fclose (coord_file);
+    } else {
+        eaf_print (eaf, nlevels, 
+                   coord_file, indic_file, diff_file);
+        fclose (coord_file);
+        if (indic_file && indic_file != coord_file)
+            fclose (indic_file);
+        if (diff_file && diff_file != coord_file && diff_file != indic_file)
+            fclose (diff_file);
+    }
+    
     free(level);
     free(data);
     free(cumsizes);

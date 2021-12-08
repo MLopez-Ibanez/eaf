@@ -39,7 +39,8 @@ VERSION = 0.1svn$(SVN_REV)
 # to my funding agent and tenure committee.
 #-----------------------------------------------------------------------
 DEBUG=0
-BINDIR:=.
+mkfile_path:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+BINDIR:=$(mkfile_path)
 
 OBJS =  eaf.o io.o eaf_main.o eaf3d.o avl.o
 HEADERS = eaf.h io_priv.h io.h cvector.h avl.h common.h gcc_attribs.h bit_array.h
@@ -56,7 +57,7 @@ ECHO = @echo "$(1)"
 EAF_CFLAGS += $(OPT_CFLAGS) $(WARN_CFLAGS) \
 	-DDEBUG=$(DEBUG) -DVERSION='"$(VERSION)"' -DMARCH='"$(gcc-guess-march)"'
 
-.PHONY : default all clean distclean test dist
+.PHONY : default all clean distclean check test dist
 
 default: $(BINDIR)/$(EAFEXE) 
 
@@ -71,10 +72,15 @@ io.o : io_priv.h
 %.o : %.c
 	$(CC) $(EAF_CFLAGS) $(CFLAGS) -c -o $@ $<
 
-test: clean
+TESTSUITE:="$(PWD)/testsuite"
+check test: clean
 	$(MAKE) DEBUG=1 SANITIZERS="" $(BINDIR)/$(EAFEXE)
 	$(call ECHO,---> Testing... <--- )
-	@perl -w dotest.pl $(BINDIR)/$(EAFEXE) ./testsuite/
+	@if test -d $(TESTSUITE); then  		    	         \
+	    cd $(TESTSUITE) && ./regtest.pl $(BINDIR)/$(EAFEXE) && cd $(PWD); \
+	else                                                    	 \
+	    echo "Error: Testsuite not found in $(TESTSUITE)" && exit 1; \
+	fi
 
 clean :
 	$(call ECHO,---> Removing $(BINDIR)/$(EAFEXE) <---)
