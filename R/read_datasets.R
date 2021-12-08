@@ -44,8 +44,6 @@
 #' extdata_path <- system.file(package="eaf","extdata")
 #' A1 <- read_datasets(file.path(extdata_path,"ALG_1_dat.xz"))
 #' str(A1)
-#' A2 <- read_datasets(file.path(extdata_path,"ALG_2_dat.xz"))
-#' str(A2)
 #'
 #' read_datasets(text="1 2\n3 4\n\n5 6\n7 8\n", col_names=c("obj1", "obj2"))
 #' 

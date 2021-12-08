@@ -22,8 +22,8 @@ Remove whitespace margins using \url{https://ctan.org/pkg/pdfcrop}
 \examples{
 \dontrun{
 extdata_path <- system.file(package = "eaf", "extdata")
-A1 <- read_datasets(file.path(extdata_path, "ALG_1_dat.xz"))
-A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat.xz"))
+A1 <- read_datasets(file.path(extdata_path, "wrots_l100w10_dat"))
+A2 <- read_datasets(file.path(extdata_path, "wrots_l10w100_dat"))
 pdf(file = "eaf.pdf", onefile = TRUE, width = 5, height = 4)
 eafplot(list(A1 = A1, A2 = A2), percentiles = 50, sci.notation=TRUE)
 dev.off()
