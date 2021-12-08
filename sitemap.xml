@@ -31,6 +31,9 @@
     <loc>/reference/Vorob.html</loc>
   </url>
   <url>
+    <loc>/reference/attsurf2df.html</loc>
+  </url>
+  <url>
     <loc>/reference/choose_eafdiffplot.html</loc>
   </url>
   <url>
@@ -86,5 +89,8 @@
   </url>
   <url>
     <loc>/reference/whv_rect.html</loc>
+  </url>
+  <url>
+    <loc>/reference/write_datasets.html</loc>
   </url>
 </urlset>
