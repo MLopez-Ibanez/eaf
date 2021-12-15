@@ -65,6 +65,9 @@ However, the code is the same for all OSs and there are no references to stderr
 or stdout in my code when compiling as an R package.  I suspect these are
 implicitly introduced by Clang in a non-standard manner.
 
+GNU make is a SystemRequirements because of the Makefiles used to build the various pieces of code under src/. Removing the dependency on GNU make does not seem feasible at this point.
+
+
 Thanks in advance,
 
     Manuel López-Ibáñez.
