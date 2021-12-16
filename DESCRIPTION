@@ -18,7 +18,7 @@ Suggests: testthat,
           viridis
 License: GPL (>= 2)
 BugReports: https://github.com/MLopez-Ibanez/eaf/issues
-URL: http://lopez-ibanez.eu/eaftools, https://github.com/MLopez-Ibanez/eaf
+URL: https://mlopez-ibanez.github.io/eaf/, https://github.com/MLopez-Ibanez/eaf
 LazyLoad: true
 LazyData: true
 Encoding: UTF-8
