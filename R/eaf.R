@@ -932,7 +932,6 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 
   # We do not paint with the same color as the background since this
   # will override the grid lines.
-  
   col[col %in% c("white", "#FFFFFF")] <- "transparent"
 
   extreme <- get.extremes(xlim, ylim, maximise, log)
@@ -1171,8 +1170,6 @@ eafdiffplot <-
     }
     col <- colorRampPalette(col)(length(intervals))
   }
-  # The lowest color should always be transparent (no difference)
-  col[1] <- "transparent"
   title.left <- title.left
   title.right <- title.right
 
@@ -1288,11 +1285,11 @@ eafdiffplot <-
                      side = "left", maximise = maximise,
                      sci.notation = sci.notation, ...)
 
-  if (is.na(pmatch(legend.pos,"none"))) {
+  if (is.na(pmatch(legend.pos,"none"))){ 
     #nchar(legend.pos) > 0 && !(legend.pos %in% c("no", "none"))) {
     legend(x = legend.pos, y = NULL,
            rev(intervals), rev(col),
-           bg = "white", bty = "n", xjust=0, yjust=0, cex=0.9)
+           bg = "white", bty = "n", xjust=0, yjust=0, cex=0.85)
   }
   left.panel.last
   
