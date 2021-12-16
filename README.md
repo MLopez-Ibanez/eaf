@@ -12,15 +12,15 @@
 <!-- badges: start -->
 [![CRAN Status](https://www.r-pkg.org/badges/version-last-release/eaf)](https://cran.r-project.org/package=eaf) [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/eaf)](https://CRAN.R-project.org/package=eaf) [![R build
 status](https://github.com/MLopez-Ibanez/eaf/workflows/R-CMD-check/badge.svg)](https://github.com/MLopez-Ibanez/eaf/actions)
-[![Codecov test coverage](https://codecov.io/gh/MLopez-Ibanez/eaf/branch/master/graph/badge.svg)](https://codecov.io/gh/MLopez-Ibanez/eaf?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/MLopez-Ibanez/eaf/branch/master/graph/badge.svg)](https://app.codecov.io/gh/MLopez-Ibanez/eaf?branch=master)
 <!-- badges: end -->
 
-[ [**Homepage**](http://lopez-ibanez.eu/eaftools) ]  [ [**GitHub**](https://github.com/MLopez-Ibanez/eaf) ]
+[ [**Homepage**](https://lopez-ibanez.eu/eaftools) ]  [ [**GitHub**](https://github.com/MLopez-Ibanez/eaf) ]
 
-**Maintainer:** [Manuel López-Ibáñez](http://lopez-ibanez.eu)
+**Maintainer:** [Manuel López-Ibáñez](https://lopez-ibanez.eu)
 
 **Contributors:**
-    [Manuel López-Ibáñez](http://lopez-ibanez.eu),
+    [Manuel López-Ibáñez](https://lopez-ibanez.eu),
     [Marco Chiarandini](http://www.imada.sdu.dk/~marco),
     [Carlos M. Fonseca](https://eden.dei.uc.pt/~cmfonsec/),
     [Luís Paquete](https://eden.dei.uc.pt/~paquete/),
@@ -55,9 +55,9 @@ visualization.
 
  1. <a name="LopPaqStu09emaa"/>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. [Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization](https://doi.org/10.1007/978-3-642-02538-9_9). In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, *Experimental Methods for the Analysis of Optimization Algorithms*, pages 209–222. Springer, Berlin, Germany, 2010.<br>
     (This chapter is also available in a slightly extended form as Technical Report TR/IRIDIA/2009-015).<br>
-    [ [bibtex](http://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa) |
+    [ [bibtex](https://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa) |
     doi: [10.1007/978-3-642-02538-9_9](https://doi.org/10.1007/978-3-642-02538-9_9)
-    | [Presentation](http://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf) ]
+    | [Presentation](https://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf) ]
 
 
 Download and installation
@@ -99,7 +99,7 @@ Search the [R documentation](https://cran.r-project.org/faqs.html) if you need m
 
 If you wish to be notified of bugfixes and new versions, please subscribe to the [low-volume emo-list](https://lists.dei.uc.pt/mailman/listinfo/emo-list), where announcements will be made.
 
-[ [Download **eaf** package from CRAN](https://cran.r-project.org/package=eaf) ]  [ [Documentation](http://lopez-ibanez.eu/eaftools) ]  [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
+[ [Download **eaf** package from CRAN](https://cran.r-project.org/package=eaf) ]  [ [Documentation](https://lopez-ibanez.eu/eaftools) ]  [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
 
 
 Usage
