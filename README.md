@@ -15,7 +15,7 @@ status](https://github.com/MLopez-Ibanez/eaf/workflows/R-CMD-check/badge.svg)](h
 [![Codecov test coverage](https://codecov.io/gh/MLopez-Ibanez/eaf/branch/master/graph/badge.svg)](https://app.codecov.io/gh/MLopez-Ibanez/eaf?branch=master)
 <!-- badges: end -->
 
-[ [**Homepage**](https://lopez-ibanez.eu/eaftools) ]  [ [**GitHub**](https://github.com/MLopez-Ibanez/eaf) ]
+[ [**Homepage**](https://mlopez-ibanez.github.io/eaf/) ]  [ [**GitHub**](https://github.com/MLopez-Ibanez/eaf) ]
 
 **Maintainer:** [Manuel López-Ibáñez](https://lopez-ibanez.eu)
 
@@ -99,7 +99,7 @@ Search the [R documentation](https://cran.r-project.org/faqs.html) if you need m
 
 If you wish to be notified of bugfixes and new versions, please subscribe to the [low-volume emo-list](https://lists.dei.uc.pt/mailman/listinfo/emo-list), where announcements will be made.
 
-[ [Download **eaf** package from CRAN](https://cran.r-project.org/package=eaf) ]  [ [Documentation](https://lopez-ibanez.eu/eaftools) ]  [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
+[ [Download **eaf** package from CRAN](https://cran.r-project.org/package=eaf) ]  [ [Documentation](https://mlopez-ibanez.github.io/eaf/) ]  [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
 
 
 Usage

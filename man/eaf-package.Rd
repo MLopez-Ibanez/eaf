@@ -77,7 +77,7 @@ eafdiffplot(A1, A2)
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://lopez-ibanez.eu/eaftools}
+  \item \url{https://mlopez-ibanez.github.io/eaf/}
   \item \url{https://github.com/MLopez-Ibanez/eaf}
   \item Report bugs at \url{https://github.com/MLopez-Ibanez/eaf/issues}
 }
