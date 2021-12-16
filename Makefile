@@ -10,10 +10,7 @@ RDIR=~/
 INSTALL_FLAGS="--with-keep.source"
 REALVERSION=$(PACKAGEVERSION)$(SVN_REV)
 PACKAGEDIR=$(CURDIR)
-# This could be replaced by devtools::build_win(version = "R-devel")
 FTP_COMMANDS="user anonymous anonymous\nbinary\ncd incoming\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
-WINBUILD_DEVEL_FTP_COMMANDS="user anonymous anonymous\nbinary\ncd R-devel\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
-WINBUILD_REL_FTP_COMMANDS="user anonymous anonymous\nbinary\ncd R-release\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
 RHUB_COMMON_ARGS= path='$(BINDIR)/$(PACKAGE)_$(PACKAGEVERSION).tar.gz', env_vars = c('_R_CHECK_FORCE_SUGGESTS_'='false', R_DEFAULT_SAVE_VERSION='2', R_DEFAULT_SERIALIZE_VERSION='2')
 Reval=R --slave -e
 
@@ -146,7 +143,6 @@ macbuild: releasebuild
 
 winbuild: releasebuild
 	@echo "Winbuild: http://win-builder.r-project.org/"
-	cd $(BINDIR) && echo $(WINBUILD_DEVEL_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
-	cd $(BINDIR) && echo $(WINBUILD_REL_FTP_COMMANDS) | ftp -v -p -e -g -i -n win-builder.r-project.org
+	cd $(BINDIR) && $(Reval) "devtools::check_win_devel('$(PACKAGEDIR)', quiet = TRUE)" && $(Reval) "devtools::check_win_release('$(PACKAGEDIR)', quiet = TRUE)" # This builds the package 2 more times, which is a waste. How to tell it to use the .tar.gz?
 	$(Reval) "rhub::check_on_windows($(RHUB_COMMON_ARGS))"
 
