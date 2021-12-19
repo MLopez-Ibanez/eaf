@@ -15,7 +15,7 @@ Depends: R (>= 3.2)
 Imports: modeltools, graphics, grDevices, stats, Rdpack
 Suggests: testthat,
           withr,
-          viridis
+          viridisLite
 License: GPL (>= 2)
 BugReports: https://github.com/MLopez-Ibanez/eaf/issues
 URL: https://mlopez-ibanez.github.io/eaf/, https://github.com/MLopez-Ibanez/eaf

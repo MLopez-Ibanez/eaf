@@ -37,7 +37,7 @@ columns, the third one being the set of each point. See also
 \item{col}{A character vector of three colors for the magnitude of the
 differences of 0, 0.5, and 1. Intermediate colors are computed
 automatically given the value of \code{intervals}. Alternatively, a function
-such as \code{\link[viridis:reexports]{viridis::viridis()}} that generates a colormap given an integer
+such as \code{\link[viridisLite:viridis]{viridisLite::viridis()}} that generates a colormap given an integer
 argument.}
 
 \item{intervals}{(\code{integer(1)}|\code{character()}) \cr The
@@ -136,8 +136,8 @@ A1 <- read_datasets(file.path(extdata_dir, "ALG_1_dat.xz"))
 A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat.xz"))
 \donttest{# These take time
 eafdiffplot(A1, A2, full.eaf = TRUE)
-if (requireNamespace("viridis", quietly=TRUE)) {
-  viridis_r <- function(n) viridis::viridis(n, direction=-1)
+if (requireNamespace("viridisLite", quietly=TRUE)) {
+  viridis_r <- function(n) viridisLite::viridis(n, direction=-1)
   eafdiffplot(A1, A2, type = "area", col = viridis_r)
 } else {
   eafdiffplot(A1, A2, type = "area")

@@ -1018,7 +1018,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' @param col A character vector of three colors for the magnitude of the
 #'   differences of 0, 0.5, and 1. Intermediate colors are computed
 #'   automatically given the value of `intervals`. Alternatively, a function
-#'   such as [viridis::viridis()] that generates a colormap given an integer
+#'   such as [viridisLite::viridis()] that generates a colormap given an integer
 #'   argument.
 #' 
 #' @param intervals (`integer(1)`|`character()`) \cr The
@@ -1078,7 +1078,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #'   white even if the value of the differences in that region is
 #'   large. This explains "white holes" surrounded by black
 #'   points.
-#' 
+#'   
 #'   With `type = "area"`, the area where the EAF differences has a
 #'   certain value is plotted.  The idea for the algorithm to compute the
 #'   areas was provided by Carlos M. Fonseca.  The implementation uses R
@@ -1110,8 +1110,8 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' A2 <- read_datasets(file.path(extdata_dir, "ALG_2_dat.xz"))
 #' \donttest{# These take time
 #' eafdiffplot(A1, A2, full.eaf = TRUE)
-#' if (requireNamespace("viridis", quietly=TRUE)) {
-#'   viridis_r <- function(n) viridis::viridis(n, direction=-1)
+#' if (requireNamespace("viridisLite", quietly=TRUE)) {
+#'   viridis_r <- function(n) viridisLite::viridis(n, direction=-1)
 #'   eafdiffplot(A1, A2, type = "area", col = viridis_r)
 #' } else {
 #'   eafdiffplot(A1, A2, type = "area")
