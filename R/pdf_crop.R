@@ -30,7 +30,8 @@ pdf_crop <- function(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"))
         warning("pdfcrop not found, not cropping")
       }
   } else {
-    try(system2(pdfcrop, c("--pdfversion 1.5", filename, filename)))
+    system2(pdfcrop, c("--pdfversion 1.5", filename, filename),
+            timeout = 60, stdout = FALSE, stderr = FALSE)
   }
 }
 
