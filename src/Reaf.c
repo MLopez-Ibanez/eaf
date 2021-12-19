@@ -153,7 +153,7 @@ compute_eafdiff_C(SEXP DATA, SEXP NOBJ, SEXP CUMSIZES, SEXP NRUNS,
     return mat;
 }
 
-static int polygon_len  (const double *src, int nobj)
+static int polygon_len(const double *src, int nobj)
 {
     const double *src_orig = src;
     while (*src != objective_MIN)
@@ -162,7 +162,7 @@ static int polygon_len  (const double *src, int nobj)
     return (src - src_orig) / nobj;
 }
 
-static int polygon_copy (double *dest, int start, int nrows, const double *src)
+static int polygon_copy(double *dest, int start, int nrows, const double *src)
 {
     int len = start;
     while (*src != objective_MIN) {

@@ -40,15 +40,15 @@
 #ifdef R_PACKAGE
 #define R_NO_REMAP
 #include <R.h>
-#define EAF_MALLOC(WHAT, NMEMB, SIZE)                                          \
-    do { WHAT = malloc (NMEMB * SIZE);                                         \
+#define EAF_MALLOC(WHAT, NMEMB, TYPE)                                          \
+    do { WHAT = malloc (NMEMB * sizeof(TYPE));                                 \
         if (!WHAT) {                                                           \
             Rf_error(__FILE__ ": %s = malloc (%u * %u) failed",                \
-                     #WHAT, (unsigned int) NMEMB, (unsigned int) SIZE); }      \
+                     #WHAT, (unsigned int) NMEMB, (unsigned int) sizeof(TYPE)); } \
     } while (0)
 #else
-#define EAF_MALLOC(WHAT, NMEMB, SIZE)                                          \
-    do { WHAT = malloc (NMEMB * SIZE);                                         \
+#define EAF_MALLOC(WHAT, NMEMB, TYPE)                                          \
+    do { WHAT = malloc (NMEMB * sizeof(TYPE));                                 \
         if (!WHAT) { perror (__FILE__ ": " #WHAT ); exit (EXIT_FAILURE); }     \
     } while(0)
 #endif
@@ -140,15 +140,6 @@ attsurf (objective_t *data,    /* the objective vectors            */
 }
 
 static inline void
-fprint_set (FILE *stream, const objective_t **data, int ntotal)
-{
-    int k;
-    for (k = 0; k < ntotal; k++)
-        fprintf (stream, "%6d: % .16g % .16g\n", k,
-                 (double)data[k][0], (double)data[k][1]);
-}
-
-static inline void
 attained_left_right (const bit_array *attained, int division, int total,
                      int *count_left, int *count_right)
 {
@@ -168,7 +159,6 @@ attained_left_right (const bit_array *attained, int division, int total,
 
 static inline int percentile2level (double p, int n)
 {
-    // FIXME: Should we do something smarter here? Like sqrt(DBL_EPSILON)
     const double tolerance = sqrt(DBL_EPSILON);
     double x = (n * p) / 100.0;
     int level = (x - floor(x) <= tolerance)

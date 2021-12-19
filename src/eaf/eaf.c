@@ -67,10 +67,24 @@ static int compare_y_desc (const void *p1, const void *p2)
     return (y1 > y2) ? -1 : ((y1 < y2) ? 1 : 0);
 }
 
+static inline void
+point2d_printf(FILE *stream, const objective_t x, const objective_t y)
+{
+    fprintf(stream, point_printf_format "\t" point_printf_format, x, y);
+}
+
+static inline void
+point_printf(FILE *stream, const objective_t *p, int nobj)
+{
+    point2d_printf(stream, p[0], p[1]);
+    for (int k = 2; k < nobj; k++)
+        fprintf (stream, "\t" point_printf_format, p[k]);
+}
+
 eaf_t * eaf_create (int nobj, int nruns, int npoints)
 {
     eaf_t *eaf;
-    EAF_MALLOC (eaf, 1, sizeof(eaf_t));
+    EAF_MALLOC (eaf, 1, eaf_t);
     eaf->nobj = nobj;
     eaf->nruns = nruns;
     eaf->size = 0;
@@ -80,7 +94,7 @@ eaf_t * eaf_create (int nobj, int nruns, int npoints)
     eaf->maxsize = 256 + npoints / (2 * nruns); 
     /* fprintf(stderr,"maxsize %ld = %d npoints, %d nruns\n", */
     /*         eaf->maxsize, npoints, nruns); */
-    EAF_MALLOC (eaf->data, nobj * eaf->maxsize, sizeof(objective_t));
+    EAF_MALLOC (eaf->data, nobj * eaf->maxsize, objective_t);
     eaf->bit_attained = malloc (bit_array_bytesize(nruns) * eaf->maxsize);
     eaf->attained = NULL;
     OLD_ATTAINED(eaf->attained = malloc(sizeof(bool) * nruns * eaf->maxsize));
@@ -172,11 +186,7 @@ eaf_print_line (FILE *coord_file, FILE *indic_file, FILE *diff_file,
     int k;
 
     if (coord_file) {
-        fprintf (coord_file, point_printf_format "\t" point_printf_format,
-                 (double)x[0], (double)x[1]);
-        for (k = 2; k < nobj; k++)
-            fprintf (coord_file, "\t" point_printf_format, (double)x[k]);
-
+        point_printf(coord_file, x, nobj);
         fprintf (coord_file, 
                  (coord_file == indic_file) || (coord_file == diff_file)
                  ? "\t" : "\n");
@@ -219,6 +229,14 @@ eaf_print_attsurf (eaf_t * eaf, FILE *coord_file,  FILE *indic_file, FILE *diff_
                         bit_array_offset(eaf->bit_attained, i, eaf->nruns),
                         eaf->nruns);
     }
+}
+
+static inline void
+fprint_set2d (FILE *stream, const objective_t * const *data, int ntotal)
+{
+    for (int k = 0; k < ntotal; k++)
+        fprintf (stream, "%6d: " point_printf_format " " point_printf_format "\n", k,
+                 data[k][0], data[k][1]);
 }
 
 /* 
@@ -264,7 +282,7 @@ eaf2d (const objective_t *data, const int *cumsize, int nruns,
 
 #if DEBUG > 1
     fprintf (stderr, "Original data:\n");
-    fprint_set (stderr, datax, ntotal);
+    fprint_set2d (stderr, datax, ntotal);
 #endif
 
     qsort (datax, ntotal, sizeof(*datax), &compare_x_asc);
@@ -272,9 +290,9 @@ eaf2d (const objective_t *data, const int *cumsize, int nruns,
 
 #if DEBUG > 1
     fprintf (stderr, "Sorted data (x):\n");
-    fprint_set (stderr, datax, ntotal);
+    fprint_set2d (stderr, datax, ntotal);
     fprintf (stderr, "Sorted data (y):\n");
-    fprint_set (stderr, datay, ntotal);
+    fprint_set2d (stderr, datay, ntotal);
 #endif
 
     /* Setup a lookup table to go from a point to the approximation
@@ -379,9 +397,12 @@ eaf2d (const objective_t *data, const int *cumsize, int nruns,
 
 
 #if DEBUG_POLYGONS > 0
-#define PRINT_POINT(X,Y) fprintf(stdout, "PRINT_POINT:" point_printf_format "\t" point_printf_format "\n", X, Y)
+#define PRINT_POINT(X,Y,C) do { \
+    fprintf(stdout, "PRINT_POINT:"); point2d_printf(stdout, X, Y);             \
+    if (C != INT_MIN) fprintf(stdout, "\t%d", C);                              \
+    fprintf(stdout, "\n"); } while(0)
 #else 
-#define PRINT_POINT(X,Y) (void)0
+#define PRINT_POINT(X,Y,C) (void)0
 #endif
 
 static int
@@ -407,12 +428,133 @@ eaf_diff_color(const eaf_t * eaf, size_t k, int nruns)
     return count_left - count_right;
 }
 
-void
+static void
 init_colors(int * color, const eaf_t * eaf, size_t eaf_size, int nruns)
 {
     for (size_t k = 0; k < eaf_size; k++) {
         color[k] = eaf_diff_color(eaf, k, nruns);
     }
+}
+
+static const objective_t *
+next_polygon(const objective_t *src, int nobj, const objective_t * end)
+{
+    while (src < end && *src != objective_MIN)
+        src += nobj;
+    src += nobj;
+    return src;
+}
+
+static void
+min_max_in_objective(const objective_t *v,
+                     int nobj, int k,
+                     objective_t *min_ref, objective_t *max_ref)
+{
+    eaf_assert(k < nobj);
+    eaf_assert(v[k] != objective_MIN); // Empty polygon?
+
+    objective_t min = v[k];
+    objective_t max = v[k];
+    v += nobj;
+    while (v[k] != objective_MIN) {
+        if (min > v[k]) min = v[k];
+        if (max < v[k]) max = v[k];
+        v += nobj;
+    }
+    *min_ref = min;
+    *max_ref = max;
+}
+
+static bool
+polygon_dominates_point(const objective_t *p, const objective_t *x, int nobj)
+{
+    eaf_assert(x[0] != objective_MIN);
+    while (p[0] != objective_MIN) {
+        if (p[0] < x[0] && p[1] < x[1]) {
+            /* point2d_printf(stdout, p[0], p[1]); */
+            /* printf(" dominates "); */
+            /* point2d_printf(stdout, x[0], x[1]); */
+            /* printf("\n"); */
+            return true;
+        }
+        p += nobj;
+    }
+    return false;
+}
+
+static bool
+polygon_dominates_any_point(const objective_t *a, const objective_t *b, int nobj)
+{
+    while (b[0] != objective_MIN) {
+        if (polygon_dominates_point(a, b, nobj)) return true;
+        b += nobj;
+    }
+    return false;
+}
+
+static bool
+polygons_intersect(const objective_t *a, const objective_t *b, int nobj)
+{
+    for (int k = 0; k < nobj; k++) {
+        objective_t min_a, max_a, min_b, max_b;
+        min_max_in_objective(a, nobj, k, &min_a, &max_a);
+        min_max_in_objective(b, nobj, k, &min_b, &max_b);
+        // If we can draw a line completely separating them in one axis, then
+        // they don't intersect.
+        if (max_a <= min_b || max_b <= min_a) return false;
+    }
+    // Two orthogonal polygons intersect if there is a corner of A that is
+    // dominated by a corner of B and there is a corner of B that is dominated
+    // by a corner of A
+    return polygon_dominates_any_point(a, b, nobj) && polygon_dominates_any_point(b, a, nobj);
+}
+
+
+static inline void
+polygon_print(const objective_t *p, int nobj)
+{
+    while (p[0] != objective_MIN) {
+        point_printf(stderr, p, nobj);
+        fprintf(stderr, "\n");
+        p += nobj;
+    }
+    point_printf(stderr, p, nobj);
+    fprintf(stderr, "\n");
+}
+
+static void
+eaf_check_polygons(eaf_polygon_t *p, int nobj)
+{
+    // This only works for 2 objectives.
+    assert(nobj == 2);
+        
+    // Check #1: Polygons don't intersect
+    // Last point of last polygon
+    const objective_t * end = vector_objective_end(&p->xy);
+    const objective_t * pi = vector_objective_begin(&p->xy);
+    
+    while(pi < end) {
+        const objective_t * pj = next_polygon(pi, nobj, end);
+        const objective_t * next = pj;
+        while(pj < end) {
+            if (polygons_intersect(pi, pj, nobj)) {
+#if DEBUG_POLYGONS > 0
+                fprintf(stderr, "ERROR: Polygons intersect!\n");
+                polygon_print(pi, nobj);
+                polygon_print(pj, nobj);
+#endif
+                eaf_assert(false);
+            }
+            pj = next_polygon(pj, nobj, end);
+        }
+        pi = next;
+    }
+    // Check #2: Every point in the EAF is a corner of a polygon and it has the
+    // same color as the polygon.
+
+    //TODO
+
+    
 }
 
 /* Produce a polygon suitable to be plotted by the polygon function in R.  */
@@ -425,16 +567,21 @@ eaf_compute_polygon (eaf_t **eaf, int nlevels)
     do { _poly_size_check--; eaf_assert(_poly_size_check >= 4);                \
         eaf_assert(_poly_size_check % 2 == 0); _poly_size_check = 0; } while(0)
 #define eaf_point(A,K) (eaf[(A)]->data + (K) * nobj)
-#define push_point(X, Y)                                                       \
+#define push_point_color(X, Y, C)                                              \
         do {  vector_objective_push_back (&polygon->xy, (X));                  \
             vector_objective_push_back (&polygon->xy, (Y));                    \
-            _poly_size_check++; PRINT_POINT(X,Y);                              \
+            _poly_size_check++; PRINT_POINT(X,Y, C);                           \
     } while(0)
-    
+
+#define push_point(X, Y) push_point_color(X,Y, INT_MIN)
+
 #define polygon_close(COLOR)                                                   \
         do {                                                                   \
             vector_int_push_back (&polygon->col, COLOR);                       \
-            push_point(objective_MIN, objective_MIN); POLY_SIZE_CHECK(); } while(0)
+            push_point_color(objective_MIN, objective_MIN, COLOR);             \
+            POLY_SIZE_CHECK();                                                 \
+        } while(0)
+        // eaf_check_polygons(polygon, nobj);
 
     int _poly_size_check = 0;
     int nruns = eaf[0]->nruns;
@@ -444,9 +591,9 @@ eaf_compute_polygon (eaf_t **eaf, int nlevels)
 
     int max_size = eaf_max_size(eaf, nlevels);
     int *color;
-    EAF_MALLOC (color, sizeof(int), max_size);
+    EAF_MALLOC (color, max_size, int);
     eaf_polygon_t * polygon;
-    EAF_MALLOC(polygon, sizeof(eaf_polygon_t), 1);
+    EAF_MALLOC(polygon, 1, eaf_polygon_t);
     vector_objective_ctor (&polygon->xy, max_size);
     vector_int_ctor (&polygon->col, max_size);
  
@@ -615,6 +762,9 @@ eaf_compute_polygon (eaf_t **eaf, int nlevels)
         }
     }
     free (color);
+#if DEBUG >= 0
+    eaf_check_polygons(polygon, nobj); // This is slow with lots of polygons
+#endif
     return polygon;
 }
 
@@ -634,8 +784,8 @@ eaf_compute_polygon_old (eaf_t **eaf, int nlevels)
 
     eaf_assert(nruns % 2 == 0);
 
-    EAF_MALLOC (color, sizeof(int), max_size);
-    EAF_MALLOC(polygon, sizeof(eaf_polygon_t), 1);
+    EAF_MALLOC (color, max_size, int);
+    EAF_MALLOC(polygon, 1, eaf_polygon_t);
     vector_objective_ctor (&polygon->xy, max_size);
     vector_int_ctor (&polygon->col, max_size);
  
@@ -758,9 +908,9 @@ eaf_print_polygon (FILE *stream, eaf_t **eaf, int nlevels)
     eaf_polygon_t *p = eaf_compute_area (eaf, nlevels);
     
     for(size_t i = 0; i < vector_objective_size(&p->xy); i += 2) {
-        fprintf(stream, point_printf_format "\t" point_printf_format "\n", 
-                vector_objective_at(&p->xy, i),
-                vector_objective_at(&p->xy, i + 1));
+        point2d_printf(stream, vector_objective_at(&p->xy, i),
+                       vector_objective_at(&p->xy, i + 1));
+        fprintf(stream, "\n");
     }
 
     fprintf (stream, "# col =");
@@ -812,9 +962,9 @@ eaf_compute_rectangles (eaf_t **eaf, int nlevels)
 
     int max_size = eaf_max_size(eaf, nlevels);
     int *color;
-    EAF_MALLOC (color, sizeof(int), max_size);
+    EAF_MALLOC (color, max_size, int);
     eaf_polygon_t * regions;
-    EAF_MALLOC(regions, sizeof(eaf_polygon_t), 1);
+    EAF_MALLOC(regions, 1, eaf_polygon_t);
     vector_objective_ctor (&regions->xy, max_size);
     vector_int_ctor (&regions->col, max_size);
         
