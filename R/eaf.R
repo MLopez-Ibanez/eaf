@@ -978,7 +978,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
                #print(col[polycol])
                # FIXME: This reduces the number of artifacts but increases the memory consumption of embedFonts(filename) until it crashes.
                #polygon(eafdiff[,1], eafdiff[,2], border = col[polycol], lwd=0.1, col = col[polycol])
-               polygon(eafdiff[,1], eafdiff[,2], border = FALSE, col = col[polycol])
+               polygon(eafdiff[,1], eafdiff[,2], border = col[polycol], col = col[polycol])
              }
            } else {
              ## The maximum value should also be painted.
