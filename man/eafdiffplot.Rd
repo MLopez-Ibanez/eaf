@@ -142,7 +142,7 @@ if (requireNamespace("viridisLite", quietly=TRUE)) {
 } else {
   eafdiffplot(A1, A2, type = "area")
 }
-eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
+eafdiffplot(A1, A2, type = "point", sci.notation = TRUE, cex.axis=0.6)
 }
 # A more complex example
 a1 <- read_datasets(file.path(extdata_dir, "wrots_l100w10_dat"))

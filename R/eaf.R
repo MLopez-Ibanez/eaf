@@ -538,7 +538,7 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #' extdata_path <- system.file(package = "eaf", "extdata")
 #' A1 <- read_datasets(file.path(extdata_path, "ALG_1_dat.xz"))
 #' A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat.xz"))
-#' eafplot(A1, percentiles = 50, sci.notation = TRUE)
+#' eafplot(A1, percentiles = 50, sci.notation = TRUE, cex.axis=0.6)
 #' # The attainment surfaces are returned invisibly.
 #' attsurfs <- eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 #' str(attsurfs)
@@ -1078,7 +1078,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #'   white even if the value of the differences in that region is
 #'   large. This explains "white holes" surrounded by black
 #'   points.
-#'   
+#'
 #'   With `type = "area"`, the area where the EAF differences has a
 #'   certain value is plotted.  The idea for the algorithm to compute the
 #'   areas was provided by Carlos M. Fonseca.  The implementation uses R
@@ -1116,7 +1116,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' } else {
 #'   eafdiffplot(A1, A2, type = "area")
 #' }
-#' eafdiffplot(A1, A2, type = "point", sci.notation = TRUE)
+#' eafdiffplot(A1, A2, type = "point", sci.notation = TRUE, cex.axis=0.6)
 #' }
 #' # A more complex example
 #' a1 <- read_datasets(file.path(extdata_dir, "wrots_l100w10_dat"))

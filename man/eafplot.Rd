@@ -148,7 +148,7 @@ eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2,
 extdata_path <- system.file(package = "eaf", "extdata")
 A1 <- read_datasets(file.path(extdata_path, "ALG_1_dat.xz"))
 A2 <- read_datasets(file.path(extdata_path, "ALG_2_dat.xz"))
-eafplot(A1, percentiles = 50, sci.notation = TRUE)
+eafplot(A1, percentiles = 50, sci.notation = TRUE, cex.axis=0.6)
 # The attainment surfaces are returned invisibly.
 attsurfs <- eafplot(list(A1 = A1, A2 = A2), percentiles = 50)
 str(attsurfs)
