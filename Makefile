@@ -29,7 +29,7 @@ endif
 SVN_REV = $(shell sh -c 'cat git_version 2> /dev/null')
 REVNUM = $(shell sh -c 'cat git_version 2> /dev/null')
 
-.PHONY: build check clean install pdf rsync scripts submit cran winbuild help gendoc pkgdown
+.PHONY: build check clean install pdf rsync scripts submit cran winbuild help gendoc pkgdown figures
 
 help :
 	@echo 'This makefile has the following targets                  '
@@ -59,6 +59,9 @@ NAMESPACE $(PACKAGEDIR)/man/$(PACKAGE)-package.Rd: $(PACKAGEDIR)/R/*.R
 pkgdown: gendoc
 	$(Reval) 'pkgdown::build_site(run_dont_run = TRUE)'
 
+figures:
+	Rscript tools/create-figures.R	
+
 build:
 	@$(MAKE) scripts
 	@$(MAKE) gendoc
@@ -72,12 +75,13 @@ closeversion:
 releasebuild: clean
 	@$(MAKE) scripts
 	@$(MAKE) gendoc
+	@$(MAKE) figures
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
 cran : build
 	cd $(BINDIR) && _R_CHECK_FORCE_SUGGESTS_=false _R_OPTIONS_STRINGS_AS_FACTORS_=false R CMD check --as-cran $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
-check: build
+check: build figures
 ifdef TEST
 	_R_CHECK_FORCE_SUGGESTS_=false NOT_CRAN=true $(Reval) 'devtools::test(filter="$(TEST)")'
 else
