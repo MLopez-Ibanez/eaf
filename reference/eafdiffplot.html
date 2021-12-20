@@ -95,7 +95,7 @@ columns, the third one being the set of each point. See also
 <dd><p>A character vector of three colors for the magnitude of the
 differences of 0, 0.5, and 1. Intermediate colors are computed
 automatically given the value of <code>intervals</code>. Alternatively, a function
-such as <code><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis::viridis()</a></code> that generates a colormap given an integer
+such as <code><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridisLite::viridis()</a></code> that generates a colormap given an integer
 argument.</p></dd>
 <dt>intervals</dt>
 <dd><p>(<code>integer(1)</code>|<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>) <br> The
@@ -194,14 +194,14 @@ considerably the apparent size of the areas.</p>
 <span class="r-in"><span class="co"># These take time</span></span>
 <span class="r-in"><span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, full.eaf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="eafdiffplot-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"viridis"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">viridis_r</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="va">n</span>, direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"viridisLite"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in">  <span class="va">viridis_r</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="va">n</span>, direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in">  <span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"area"</span>, col <span class="op">=</span> <span class="va">viridis_r</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"area"</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-plt img"><img src="eafdiffplot-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"point"</span>, sci.notation <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"point"</span>, sci.notation <span class="op">=</span> <span class="cn">TRUE</span>, cex.axis<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="eafdiffplot-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># A more complex example</span></span>
