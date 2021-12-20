@@ -4,7 +4,8 @@ GSL_CFLAGS = @GSL_CFLAGS@
 GSL_LIBS   = @GSL_LIBS@
 # Do not put GCC specific flags here. Put them instead in CFLAGS and
 # CXXFLAGS in ~/.R/Makevars
-PKG_CPPFLAGS = $(GSL_CFLAGS) -DR_PACKAGE -DDEBUG=1 -I./eaf/ -I./mo-tools/
+DEBUG=0
+PKG_CPPFLAGS = $(GSL_CFLAGS) -DR_PACKAGE -DDEBUG=$(DEBUG) -I./eaf/ -I./mo-tools/
 PKG_LIBS = $(GSL_LIBS)
 EAF_SRC_FILES= avl.c eaf3d.c eaf.c io.c
 MOTOOLS_SRC_FILES = hv_contrib.c hv.c pareto.c whv.c whv_hype.c
@@ -23,8 +24,8 @@ ndsort = mo-tools/ndsort$(EXEEXT)
 .PHONY: all clean
 
 all: $(SHLIB)
-	$(MAKE) -C eaf all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
-	$(MAKE) -C mo-tools all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=0 EXE=$(EXEEXT)
+	$(MAKE) -C eaf all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=$(DEBUG) EXE=$(EXEEXT)
+	$(MAKE) -C mo-tools all march=none CC="$(CC)" CFLAGS="$(CFLAGS)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=$(DEBUG) EXE=$(EXEEXT)
 
 $(SHLIB): $(OBJECTS) 
 
