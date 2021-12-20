@@ -73,9 +73,18 @@ io.o : io_priv.h
 	$(CC) $(EAF_CFLAGS) $(CFLAGS) -c -o $@ $<
 
 TESTSUITE:="$(PWD)/testsuite"
-check test: clean
+check: clean
 	$(MAKE) DEBUG=1 SANITIZERS="" $(BINDIR)/$(EAFEXE)
-	$(call ECHO,---> Testing... <--- )
+	$(call ECHO,---> Checking for errors (DEBUG=1)... <--- )
+	@if test -d $(TESTSUITE); then  		    	         \
+	    cd $(TESTSUITE) && ./regtest.pl $(BINDIR)/$(EAFEXE) && cd $(PWD); \
+	else                                                    	 \
+	    echo "Error: Testsuite not found in $(TESTSUITE)" && exit 1; \
+	fi
+
+test: clean
+	$(MAKE) DEBUG=0 SANITIZERS="" $(BINDIR)/$(EAFEXE)
+	$(call ECHO,---> Testing for speed (DEBUG=0)... <--- )
 	@if test -d $(TESTSUITE); then  		    	         \
 	    cd $(TESTSUITE) && ./regtest.pl $(BINDIR)/$(EAFEXE) && cd $(PWD); \
 	else                                                    	 \

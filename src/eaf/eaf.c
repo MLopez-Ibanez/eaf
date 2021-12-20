@@ -522,7 +522,7 @@ polygon_print(const objective_t *p, int nobj)
     fprintf(stderr, "\n");
 }
 
-static void
+__unused static void 
 eaf_check_polygons(eaf_polygon_t *p, int nobj)
 {
     // This only works for 2 objectives.
@@ -575,14 +575,18 @@ eaf_compute_polygon (eaf_t **eaf, int nlevels)
 
 #define push_point(X, Y) push_point_color(X,Y, INT_MIN)
 
-#define polygon_close(COLOR)                                                   \
-        do {                                                                   \
-            vector_int_push_back (&polygon->col, COLOR);                       \
-            push_point_color(objective_MIN, objective_MIN, COLOR);             \
-            POLY_SIZE_CHECK();                                                 \
-        } while(0)
-        // eaf_check_polygons(polygon, nobj);
+#if DEBUG_POLYGONS > 0
+#define EXPENSIVE_CHECK_POLYGONS() eaf_check_polygons(polygon, nobj)
+#else
+#define EXPENSIVE_CHECK_POLYGONS() (void)0
+#endif
 
+#define polygon_close(COLOR) do {                                              \
+                vector_int_push_back (&polygon->col, COLOR);                   \
+                push_point_color(objective_MIN, objective_MIN, COLOR);         \
+                POLY_SIZE_CHECK(); EXPENSIVE_CHECK_POLYGONS();                 \
+            } while(0)
+    
     int _poly_size_check = 0;
     int nruns = eaf[0]->nruns;
     int nobj = eaf[0]->nobj;
@@ -762,7 +766,7 @@ eaf_compute_polygon (eaf_t **eaf, int nlevels)
         }
     }
     free (color);
-#if DEBUG >= 0
+#if DEBUG >= 1
     eaf_check_polygons(polygon, nobj); // This is slow with lots of polygons
 #endif
     return polygon;
