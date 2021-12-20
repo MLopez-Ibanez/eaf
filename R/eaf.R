@@ -77,9 +77,10 @@ compute.eaf <- function(data, percentiles = NULL)
   nsets <- length(unique(sets))
   npoints <- tabulate(sets)
   if (is.null(percentiles)) {
-    # FIXME: We should probably compute this in the C code.
+    # FIXME: We should compute this in the C code.
     percentiles <- 1L:nsets * 100.0 / nsets
   }
+  # FIXME: We should handle only integral levels inside the C code. 
   percentiles <- unique.default(sort.int(percentiles))
   return(.Call(compute_eaf_C,
                as.double(t(as.matrix(data[, 1L:nobjs]))),
@@ -218,7 +219,7 @@ compute.eafdiff <- function(data, intervals)
 {
   DIFF <- compute.eafdiff.helper(data, intervals)
   #print(DIFF)
-  # FIXME: Do this computation in C code.
+  # FIXME: Do this computation in C code. See compute_eafdiff_area_C
   setcol <- ncol(data)
   eafval <- DIFF[, setcol]
   eafdiff <- list(left  = unique(DIFF[ eafval >= 1L, , drop=FALSE]),
@@ -921,9 +922,13 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 
   # Colors are correct for !full.eaf && type == "area"
   if (full.eaf || type == "point") {
+    # FIXME: This is wrong, we should color (0.0, 1] with col[1], then (1, 2]
+    # with col[1], etc, so that we never color the value 0.0 but we always
+    # color the maximum value color without having to force it.
+    
     # Why flooring and not ceiling? If a point has value 2.05, it should
     # be painted with color 2 rather than 3.
-    # +1 because col[1] is white.
+    # +1 because col[1] is white ([0,1)).
     eafdiff[,3] <- floor(eafdiff[,3]) + 1
     if (length(unique(eafdiff[,3])) > length(col)) {
       stop ("Too few colors: length(unique(eafdiff[,3])) > length(col)")
@@ -967,6 +972,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
                #print(unique(polycol))
                #print(length(col))
                ## The maximum value should also be painted.
+               # FIXME: How can this happen???
                polycol[polycol > length(col)] <- length(col)
                ### For debugging:
                ## poly_id <- head(1 + cumsum(is.na(eafdiff[,1])),n=-1)
@@ -1116,12 +1122,12 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' } else {
 #'   eafdiffplot(A1, A2, type = "area")
 #' }
+#' A1 <- read_datasets(file.path(extdata_dir, "wrots_l100w10_dat"))
+#' A2 <- read_datasets(file.path(extdata_dir, "wrots_l10w100_dat"))
 #' eafdiffplot(A1, A2, type = "point", sci.notation = TRUE, cex.axis=0.6)
 #' }
 #' # A more complex example
-#' a1 <- read_datasets(file.path(extdata_dir, "wrots_l100w10_dat"))
-#' a2 <- read_datasets(file.path(extdata_dir, "wrots_l10w100_dat"))
-#' DIFF <- eafdiffplot(a1, a2, col = c("white", "blue", "red"), intervals = 5,
+#' DIFF <- eafdiffplot(A1, A2, col = c("white", "blue", "red"), intervals = 5,
 #'                     type = "point",
 #'                     title.left=expression("W-RoTS," ~ lambda==100 * "," ~ omega==10),
 #'                     title.right=expression("W-RoTS," ~ lambda==10 * "," ~ omega==100),
@@ -1170,6 +1176,8 @@ eafdiffplot <-
     }
     col <- colorRampPalette(col)(length(intervals))
   }
+  # FIXME: The lowest color must be white (it should be the background).
+  col[1] <- "white"
   title.left <- title.left
   title.right <- title.right
 
@@ -1473,8 +1481,8 @@ eafplot.list <- function(x, ...)
   groups <- rep(groups, sapply(x, nrow))
   x <- do.call(rbind, x)
   
-  eafplot(as.matrix(x[,c(1,2)]),
-          sets = as.numeric(as.factor(x[, 3])),
+  eafplot(as.matrix(x[,c(1L,2L)]),
+          sets = as.numeric(as.factor(x[, 3L])),
           groups = groups, ...)
 }
 
