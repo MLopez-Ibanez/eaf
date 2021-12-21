@@ -51,7 +51,8 @@ Dear CRAN maintainers,
 I would like to submit version $VERSION of the $PACKAGE package to CRAN.
 
 The package installs some optional command-line tools. For some reason these
-executables are larger in Windows than in other OS.
+executables are larger in Windows than in other OSs. They are built from the
+same source code.
 
 On macos, I get:
 
@@ -66,7 +67,6 @@ or stdout in my code when compiling as an R package.  I suspect these are
 implicitly introduced by Clang in a non-standard manner.
 
 GNU make is a SystemRequirements because of the Makefiles used to build the various pieces of code under src/. Removing the dependency on GNU make does not seem feasible at this point.
-
 
 Thanks in advance,
 
