@@ -68,3 +68,4 @@ total_whv_rect (matrix(c(1, 2), ncol=2), rectangles, reference = 6, ideal = c(1,
 \seealso{
 \code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafdiff]{eafdiff()}}, \code{\link[=choose_eafdiff]{choose_eafdiff()}}, \code{\link[=whv_hype]{whv_hype()}}
 }
+\concept{metrics}

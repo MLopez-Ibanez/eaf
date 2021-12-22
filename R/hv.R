@@ -32,6 +32,7 @@
 #'             maximise = c(FALSE, TRUE))
 #'
 #' @export
+#' @concept metrics
 hypervolume <- function(data, reference, maximise = FALSE)
 {
   data <- check_dataset(data)
@@ -98,6 +99,7 @@ hypervolume <- function(data, reference, maximise = FALSE)
 #'                  reference = c(250, 0), maximise = c(FALSE, TRUE))
 #' 
 #' @export
+#' @concept metrics
 hv_contributions <- function(data, reference, maximise = FALSE)
 {
   data <- check_dataset(data)

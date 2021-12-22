@@ -72,3 +72,4 @@ print(d)
 \seealso{
 \code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafdiffplot]{eafdiffplot()}}
 }
+\concept{eaf}

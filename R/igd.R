@@ -5,6 +5,8 @@
 #'
 #' @rdname igd
 #' @export
+#' @concept metrics
+#' 
 #' @template arg_data
 #'
 #' @template arg_refset
@@ -132,6 +134,7 @@ igd <- function(data, reference, maximise = FALSE)
 
 #' @rdname igd
 #' @export
+#' @concept metrics
 #' @examples
 #' # IGD+ (Pareto compliant)
 #' igd_plus(A1, ref)
@@ -164,6 +167,7 @@ igd_plus <- function(data, reference, maximise = FALSE)
 #' @rdname igd
 #' @param p (`integer(1)`) Hausdorff distance parameter (default: `1L`).
 #' @export
+#' @concept metrics
 #' @examples
 #' # Average Haussdorff distance
 #' avg_hausdorff_dist(A1, ref)

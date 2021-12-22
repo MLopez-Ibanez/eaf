@@ -51,6 +51,7 @@ NULL
 
 #' @rdname epsilon
 #' @export
+#' @concept metrics
 #' @examples
 #' # Fig 6 from Zitzler et al. (2003).
 #' A1 <- matrix(c(9,2,8,4,7,5,5,6,4,7), ncol=2, byrow=TRUE)
@@ -82,6 +83,7 @@ epsilon_additive <- function(data, reference, maximise = FALSE)
 
 #' @rdname epsilon
 #' @export
+#' @concept metrics
 #' @examples
 #' # Multiplicative version of epsilon metric
 #' ref <- filter_dominated(rbind(A1, A2))

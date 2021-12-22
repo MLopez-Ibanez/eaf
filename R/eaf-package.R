@@ -61,7 +61,7 @@
 #'  
 #' \insertRef{LopPaqStu09emaa}{eaf}
 #'  
-#'@keywords package graphs
+#'@keywords package optimize
 #'@concept multivariate
 #'@concept optimize
 #'@concept time-quality algorithm profile
@@ -111,6 +111,7 @@
 #'print(HybridGA$vanzyl)
 #'print(HybridGA$richmond)
 #'@md
+#' @keywords datasets
 "HybridGA"
 
 #'Results of SPEA2 when minimising electrical cost and maximising the
@@ -132,6 +133,7 @@
 #'          ylab = "Minimum idle time (minutes)", maximise = c(FALSE, TRUE),
 #'          las = 1, log = "y", legend.pos = "bottomright")
 #'@md
+#' @keywords datasets
 "SPEA2minstoptimeRichmond"
 
 #' Results of SPEA2 with relative time-controlled triggers on Richmond water
@@ -153,6 +155,7 @@
 #'         extra.points = HybridGA$richmond, extra.lty = "dashed",
 #'         extra.legend = "Hybrid GA")
 #'@md
+#' @keywords datasets
 "SPEA2relativeRichmond"
 
 #'Results of SPEA2 with relative time-controlled triggers on Vanzyl's
@@ -172,6 +175,7 @@
 #'        xlab = expression(C[E]), ylab = "Total switches", xlim = c(320, 400),
 #'        extra.points = HybridGA$vanzyl, extra.legend = "Hybrid GA")
 #'@md
+#' @keywords datasets
 "SPEA2relativeVanzyl"
 
 #' Metaheuristics for solving the Graph Vertex Coloring Problem
@@ -217,6 +221,7 @@
 #'@examples 
 #' data(gcp2x2)
 #'@md
+#' @keywords datasets
 "gcp2x2"
 
 #' Conditional Pareto fronts obtained from Gaussian processes simulations.
@@ -247,6 +252,7 @@
 #'        col = gray(seq(0.8, 0.1, length.out = 6)^2), type = "area",
 #'        legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan")
 #'@md
+#'@keywords datasets
 "CPFs"
 
 

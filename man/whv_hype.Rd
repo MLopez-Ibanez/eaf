@@ -70,3 +70,4 @@ whv_hype (matrix(c(3,1), ncol=2), reference = 4, ideal = 1,
 \seealso{
 \code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafdiff]{eafdiff()}}, \code{\link[=whv_rect]{whv_rect()}}
 }
+\concept{metrics}

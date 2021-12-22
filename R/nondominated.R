@@ -46,6 +46,7 @@ check_dataset <- function(x)
 #' points(ndset[order(ndset[,1]),], col = "red", pch = 21)
 #' 
 #' @export
+#' @concept dominance
 #' @md
 is_nondominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 {
@@ -64,6 +65,7 @@ is_nondominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 
 #' @rdname nondominated
 #' @export
+#' @concept dominance
 #' @return `filter_dominated` returns a matrix or data.frame with only mutually nondominated points.
 #' @md
 #' 
@@ -77,6 +79,7 @@ filter_dominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 #' nondominated sorting \citep{Deb02nsga2}.
 #' 
 #' @rdname nondominated
+#' @concept dominance
 #' @export
 #' @return `pareto_rank()` returns an integer vector of the same length as
 #'   the number of rows of `data`, where each value gives the rank of each

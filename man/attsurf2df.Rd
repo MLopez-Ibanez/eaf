@@ -27,3 +27,4 @@ attsurfs <- attsurf2df(attsurfs)
 text(attsurfs[,1:2], labels = attsurfs[,3], adj = c(1.5,1.5))
 
 }
+\concept{eaf}

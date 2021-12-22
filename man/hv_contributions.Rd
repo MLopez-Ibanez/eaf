@@ -53,3 +53,4 @@ hv_contributions(filter_dominated(SPEA2minstoptimeRichmond[, 1:2], maximise = c(
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 }
+\concept{metrics}

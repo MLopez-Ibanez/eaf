@@ -131,3 +131,4 @@ avg_hausdorff_dist(A2, ref)
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 }
+\concept{metrics}

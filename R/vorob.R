@@ -33,6 +33,7 @@
 ##'                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
 ##' @md
 ##' @export
+##' @concept eaf
 vorobT <- function(x, reference)
 {
   x <- check.eaf.data(x)
@@ -59,6 +60,7 @@ vorobT <- function(x, reference)
 } 
 
 ##' @export
+##' @concept eaf
 ##' @rdname Vorob  
 ##' @return `vorobDev` returns the Vorob'ev deviation.
 ##' @examples
@@ -119,7 +121,9 @@ vorobDev <- function(x, VE, reference)
 ##' # Use a different palette.
 ##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
 ##' @md
+##' @concept eaf
 ##' @export
+##'
 # FIXME: Implement "add=TRUE" option that just plots the lines,points or
 # surfaces and does not create the plot nor the legend (but returns the info
 # needed to create a legend), so that one can use the function to add stuff to

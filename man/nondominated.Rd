@@ -70,3 +70,4 @@ plot(set, col = colors[ranks], type = "p", pch = 20)
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 }
+\concept{dominance}

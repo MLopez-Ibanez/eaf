@@ -36,6 +36,7 @@
 #'
 #'@export
 #'@md
+#'@concept metrics
 whv_rect <- function(data, rectangles, reference, maximise = FALSE)
 {
   data <- check_dataset(data)
@@ -97,6 +98,7 @@ whv_rect <- function(data, rectangles, reference, maximise = FALSE)
 #'
 #' @export
 #'@md
+#' @concept metrics
 total_whv_rect <- function(data, rectangles, reference, maximise = FALSE, ideal = NULL, scalefactor = 0.1)
 {
   nobjs <- ncol(data) 
@@ -172,6 +174,7 @@ total_whv_rect <- function(data, rectangles, reference, maximise = FALSE, ideal 
 #'
 #'@export
 #'@md
+#' @concept metrics
 whv_hype <- function(data, reference, ideal, maximise = FALSE,
                      dist = list(type = "uniform"), nsamples = 1e5L)
 {

@@ -58,11 +58,11 @@
 #'                  whv_rect, rectangles=rectangles, reference=reference)
 #' boxplot(list(A1=whv_A1, A2=whv_A2), main = "Weighted hypervolume")
 #' }
-#'@keywords graphs
 #'
 #'@references
 #' \insertAllCited{}
 #' @export
+#' @concept eafviz
 #'@md
 choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
                                maximise = c(FALSE, FALSE),
@@ -122,6 +122,7 @@ choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
 #' \insertAllCited{}
 #' 
 #'@export
+#'@concept eaf
 #'@md
 largest_eafdiff <- function(data, maximise = FALSE, intervals = 5, reference,
                             ideal = NULL)
@@ -178,6 +179,7 @@ largest_eafdiff <- function(data, maximise = FALSE, intervals = 5, reference,
 #' 
 #' @rdname choose_eafdiffplot
 #'@export
+#'@concept eaf
 #'@md
 choose_eafdiff <- function(x, left = stop("'left' must be either TRUE or FALSE"))
 {

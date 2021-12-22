@@ -46,3 +46,4 @@ hypervolume(SPEA2minstoptimeRichmond[, 1:2], reference = c(250, 0),
 \author{
 Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 }
+\concept{metrics}

@@ -96,5 +96,5 @@ Manuel \enc{López-Ibáñez}{Lopez-Ibanez}, Marco Chiarandini and
 \concept{multivariate}
 \concept{optimize}
 \concept{time-quality algorithm profile}
-\keyword{graphs}
+\keyword{optimize}
 \keyword{package}

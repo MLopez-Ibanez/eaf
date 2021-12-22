@@ -85,6 +85,7 @@ whv_A2 <- sapply(split.data.frame(A2[, 1:2], A2[, 3]),
                  whv_rect, rectangles=rectangles, reference=reference)
 boxplot(list(A1=whv_A1, A2=whv_A2), main = "Weighted hypervolume")
 }
+
 }
 \references{
 \insertAllCited{}
@@ -92,4 +93,5 @@ boxplot(list(A1=whv_A1, A2=whv_A2), main = "Weighted hypervolume")
 \seealso{
 \code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafdiffplot]{eafdiffplot()}}, \code{\link[=whv_rect]{whv_rect()}}
 }
-\keyword{graphs}
+\concept{eaf}
+\concept{eafviz}
