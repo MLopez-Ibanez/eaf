@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eaf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">2.4</span>
       </span>
     </div>
 
@@ -47,7 +47,120 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="all-functions">All functions <a href="#all-functions" class="anchor" aria-hidden="true"></a></h2>
+          <h2 id="main">Main <a href="#main" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="eaf-package.html">eaf-package</a></code> </p>
+        </td>
+        <td><p>Computation and visualization of the empirical attainment function (EAF) for
+the analysis of random sets in multi-criterion optimization.</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="computing-the-empirical-attainment-function">Computing the Empirical Attainment Function <a href="#computing-the-empirical-attainment-function" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="Vorob.html">vorobT()</a></code> <code><a href="Vorob.html">vorobDev()</a></code> <code><a href="Vorob.html">symDifPlot()</a></code> </p>
+        </td>
+        <td><p>Vorob'ev computations</p></td>
+      </tr><tr><td>
+          <p><code><a href="attsurf2df.html">attsurf2df()</a></code> </p>
+        </td>
+        <td><p>Convert a list of attainment surfaces to a data.frame</p></td>
+      </tr><tr><td>
+          <p><code><a href="choose_eafdiffplot.html">choose_eafdiffplot()</a></code> <code><a href="choose_eafdiffplot.html">choose_eafdiff()</a></code> </p>
+        </td>
+        <td><p>Interactively choose according to empirical attainment function differences</p></td>
+      </tr><tr><td>
+          <p><code><a href="eafdiff.html">eafdiff()</a></code> </p>
+        </td>
+        <td><p>Compute empirical attainment function differences</p></td>
+      </tr><tr><td>
+          <p><code><a href="eafs.html">eafs()</a></code> </p>
+        </td>
+        <td><p>Exact computation of the EAF</p></td>
+      </tr><tr><td>
+          <p><code><a href="largest_eafdiff.html">largest_eafdiff()</a></code> </p>
+        </td>
+        <td><p>Identify largest EAF differences</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="visualizing-the-empirical-attainment-function">Visualizing the Empirical Attainment Function <a href="#visualizing-the-empirical-attainment-function" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="choose_eafdiffplot.html">choose_eafdiffplot()</a></code> <code><a href="choose_eafdiffplot.html">choose_eafdiff()</a></code> </p>
+        </td>
+        <td><p>Interactively choose according to empirical attainment function differences</p></td>
+      </tr><tr><td>
+          <p><code><a href="eafdiffplot.html">eafdiffplot()</a></code> </p>
+        </td>
+        <td><p>Plot empirical attainment function differences</p></td>
+      </tr><tr><td>
+          <p><code><a href="eafplot.html">eafplot()</a></code> </p>
+        </td>
+        <td><p>Plot the Empirical Attainment Function for two objectives</p></td>
+      </tr><tr><td>
+          <p><code><a href="Vorob.html">vorobT()</a></code> <code><a href="Vorob.html">vorobDev()</a></code> <code><a href="Vorob.html">symDifPlot()</a></code> </p>
+        </td>
+        <td><p>Vorob'ev computations</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="pareto-dominance">Pareto dominance <a href="#pareto-dominance" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="nondominated.html">is_nondominated()</a></code> <code><a href="nondominated.html">filter_dominated()</a></code> <code><a href="nondominated.html">pareto_rank()</a></code> </p>
+        </td>
+        <td><p>Identify, remove and rank dominated points according to Pareto optimality</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="multi-objective-performance-assessment-metrics">Multi-objective performance assessment metrics <a href="#multi-objective-performance-assessment-metrics" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="epsilon.html">epsilon_additive()</a></code> <code><a href="epsilon.html">epsilon_mult()</a></code> </p>
+        </td>
+        <td><p>Epsilon metric</p></td>
+      </tr><tr><td>
+          <p><code><a href="hv_contributions.html">hv_contributions()</a></code> </p>
+        </td>
+        <td><p>Hypervolume contribution of a set of points</p></td>
+      </tr><tr><td>
+          <p><code><a href="hypervolume.html">hypervolume()</a></code> </p>
+        </td>
+        <td><p>Hypervolume metric</p></td>
+      </tr><tr><td>
+          <p><code><a href="igd.html">igd()</a></code> <code><a href="igd.html">igd_plus()</a></code> <code><a href="igd.html">avg_hausdorff_dist()</a></code> </p>
+        </td>
+        <td><p>Inverted Generational Distance (IGD and IGD+) and Averaged Hausdorff Distance</p></td>
+      </tr><tr><td>
+          <p><code><a href="whv_hype.html">whv_hype()</a></code> </p>
+        </td>
+        <td><p>Approximation of the (weighted) hypervolume by Monte-Carlo sampling</p></td>
+      </tr><tr><td>
+          <p><code><a href="whv_rect.html">whv_rect()</a></code> <code><a href="whv_rect.html">total_whv_rect()</a></code> </p>
+        </td>
+        <td><p>Compute (total) weighted hypervolume given a set of rectangles</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="other-useful-functions">Other useful functions <a href="#other-useful-functions" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="read_datasets.html">read_datasets()</a></code> <code><a href="read_datasets.html">read.data.sets()</a></code> </p>
+        </td>
+        <td><p>Read several data sets</p></td>
+      </tr><tr><td>
+          <p><code><a href="write_datasets.html">write_datasets()</a></code> </p>
+        </td>
+        <td><p>Write data sets</p></td>
+      </tr><tr><td>
+          <p><code><a href="normalise.html">normalise()</a></code> </p>
+        </td>
+        <td><p>Normalise points</p></td>
+      </tr><tr><td>
+          <p><code><a href="pdf_crop.html">pdf_crop()</a></code> </p>
+        </td>
+        <td><p>Remove whitespace margins from a PDF file</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="datasets">Datasets <a href="#datasets" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p>
         </th>
       </tr></tbody><tbody><tr><td>
@@ -74,90 +187,9 @@ network.</p></td>
         <td><p>Results of SPEA2 with relative time-controlled triggers on Vanzyl's
 water network.</p></td>
       </tr><tr><td>
-          <p><code><a href="Vorob.html">vorobT()</a></code> <code><a href="Vorob.html">vorobDev()</a></code> <code><a href="Vorob.html">symDifPlot()</a></code> </p>
-        </td>
-        <td><p>Vorob'ev computations</p></td>
-      </tr><tr><td>
-          <p><code><a href="attsurf2df.html">attsurf2df()</a></code> </p>
-        </td>
-        <td><p>Convert a list of attainment surfaces to a data.frame</p></td>
-      </tr><tr><td>
-          <p><code><a href="choose_eafdiffplot.html">choose_eafdiffplot()</a></code> <code><a href="choose_eafdiffplot.html">choose_eafdiff()</a></code> </p>
-        </td>
-        <td><p>Interactively choose according to empirical attainment function differences</p></td>
-      </tr><tr><td>
-          <p><code><a href="eaf-package.html">eaf-package</a></code> </p>
-        </td>
-        <td><p>Computation and visualization of the empirical attainment function (EAF) for
-the analysis of random sets in multi-criterion optimization.</p></td>
-      </tr><tr><td>
-          <p><code><a href="eafdiff.html">eafdiff()</a></code> </p>
-        </td>
-        <td><p>Compute empirical attainment function differences</p></td>
-      </tr><tr><td>
-          <p><code><a href="eafdiffplot.html">eafdiffplot()</a></code> </p>
-        </td>
-        <td><p>Plot empirical attainment function differences</p></td>
-      </tr><tr><td>
-          <p><code><a href="eafplot.html">eafplot()</a></code> </p>
-        </td>
-        <td><p>Plot the Empirical Attainment Function for two objectives</p></td>
-      </tr><tr><td>
-          <p><code><a href="eafs.html">eafs()</a></code> </p>
-        </td>
-        <td><p>Exact computation of the EAF</p></td>
-      </tr><tr><td>
-          <p><code><a href="epsilon.html">epsilon_additive()</a></code> <code><a href="epsilon.html">epsilon_mult()</a></code> </p>
-        </td>
-        <td><p>Epsilon metric</p></td>
-      </tr><tr><td>
           <p><code><a href="gcp2x2.html">gcp2x2</a></code> </p>
         </td>
         <td><p>Metaheuristics for solving the Graph Vertex Coloring Problem</p></td>
-      </tr><tr><td>
-          <p><code><a href="hv_contributions.html">hv_contributions()</a></code> </p>
-        </td>
-        <td><p>Hypervolume contribution of a set of points</p></td>
-      </tr><tr><td>
-          <p><code><a href="hypervolume.html">hypervolume()</a></code> </p>
-        </td>
-        <td><p>Hypervolume metric</p></td>
-      </tr><tr><td>
-          <p><code><a href="igd.html">igd()</a></code> <code><a href="igd.html">igd_plus()</a></code> <code><a href="igd.html">avg_hausdorff_dist()</a></code> </p>
-        </td>
-        <td><p>Inverted Generational Distance (IGD and IGD+) and Averaged Hausdorff Distance</p></td>
-      </tr><tr><td>
-          <p><code><a href="largest_eafdiff.html">largest_eafdiff()</a></code> </p>
-        </td>
-        <td><p>Identify largest EAF differences</p></td>
-      </tr><tr><td>
-          <p><code><a href="nondominated.html">is_nondominated()</a></code> <code><a href="nondominated.html">filter_dominated()</a></code> <code><a href="nondominated.html">pareto_rank()</a></code> </p>
-        </td>
-        <td><p>Identify, remove and rank dominated points according to Pareto optimality</p></td>
-      </tr><tr><td>
-          <p><code><a href="normalise.html">normalise()</a></code> </p>
-        </td>
-        <td><p>Normalise points</p></td>
-      </tr><tr><td>
-          <p><code><a href="pdf_crop.html">pdf_crop()</a></code> </p>
-        </td>
-        <td><p>Remove whitespace margins from a PDF file</p></td>
-      </tr><tr><td>
-          <p><code><a href="read_datasets.html">read_datasets()</a></code> <code><a href="read_datasets.html">read.data.sets()</a></code> </p>
-        </td>
-        <td><p>Read several data sets</p></td>
-      </tr><tr><td>
-          <p><code><a href="whv_hype.html">whv_hype()</a></code> </p>
-        </td>
-        <td><p>Approximation of the (weighted) hypervolume by Monte-Carlo sampling</p></td>
-      </tr><tr><td>
-          <p><code><a href="whv_rect.html">whv_rect()</a></code> <code><a href="whv_rect.html">total_whv_rect()</a></code> </p>
-        </td>
-        <td><p>Compute (total) weighted hypervolume given a set of rectangles</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_datasets.html">write_datasets()</a></code> </p>
-        </td>
-        <td><p>Write data sets</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
