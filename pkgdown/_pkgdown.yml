@@ -7,3 +7,27 @@ development:
   destination: devel
   version_label: default
   version_tooltip: "Github version"
+
+reference:
+  - title: Main
+    contents: eaf-package
+  - title: Computing the Empirical Attainment Function
+    contents:
+      - has_concept("eaf")
+  - title: Visualizing the Empirical Attainment Function
+    contents:
+      - has_concept("eafviz")
+      - symDifPlot
+  - title: Pareto dominance
+    contents: has_concept("dominance")
+  - title: Multi-objective performance assessment metrics
+    contents: has_concept("metrics")
+  - title: Other useful functions
+    contents:
+      - read_datasets
+      - write_datasets
+      - normalise
+      - pdf_crop
+  - title: Datasets
+    contents: has_keyword("datasets")
+  
