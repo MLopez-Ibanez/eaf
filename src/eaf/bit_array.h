@@ -2,10 +2,10 @@
    https://github.com/noporpoise/BitArray
 */
 #include <inttypes.h>
-
 #include <stdbool.h>
 #include <stdlib.h> // malloc, calloc
 #include <string.h> // memcpy
+#include "common.h" // fatal_error
 
 typedef uint64_t bit_array, bit_array_word_t;
 typedef uint8_t word_offset_t; // Offset within a 64 bit word
@@ -85,10 +85,8 @@ bitset_check(const bit_array *b __unused, const bool * ref __unused, size_t n)
 {
     for(size_t i = 0; i < n; i++) {
         if (bit_array_get(b, i) != ref[i]) {
-            printf("bit_array_check_failed at %lu: %d != %d : %lu!\n", 
-                   (unsigned long) i, bit_array_get(b, i), ref[i], (unsigned long) n);
-            assert(false);
-            abort();
+            fatal_error("bit_array_check_failed at %lu: %d != %d : %lu!\n", 
+                        (unsigned long) i, bit_array_get(b, i), ref[i], (unsigned long) n);
         }
     }
 }

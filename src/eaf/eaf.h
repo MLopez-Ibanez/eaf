@@ -51,7 +51,7 @@
     do { WHAT = malloc (NMEMB * sizeof(TYPE));                                 \
         if (!WHAT) { perror (__FILE__ ": " #WHAT ); exit (EXIT_FAILURE); }     \
     } while(0)
-#endif
+#endif // R_PACKAGE
 
 #include "io.h"
 

@@ -39,7 +39,6 @@
 
 *****************************************************************************/
 
-#include <stdarg.h>
 #include <stdio.h>
 #include "io.h"
 #include "common.h"
@@ -92,6 +91,7 @@ static inline int skip_comment_line (FILE * instream)
 
 #ifndef R_PACKAGE
 extern char *program_invocation_short_name;
+#include <stdarg.h>
 void fatal_error(const char *format,...)
 {
     va_list ap;
@@ -182,5 +182,5 @@ write_sets_filtered (FILE *outfile, const double *data, int ncols,
     }
     return 0;
 }
-#endif
+#endif // R_PACKAGE
 

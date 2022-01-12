@@ -3,12 +3,6 @@
 
 #include "common.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include <string.h>
-#include <assert.h>
-
 static const char stdin_name[] = "<stdin>";
 
 // FIXME: Should this be %-16.15g ?
@@ -31,6 +25,11 @@ read_double_data (const char *filename, double **data_p,
                   int *nobjs_p, int **cumsizes_p, int *nsets_p);
 
 #ifndef R_PACKAGE
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
 
 void vector_fprintf (FILE *stream, const double * vector, int size);
 void vector_printf (const double *vector, int size);
@@ -92,7 +91,6 @@ read_minmax (const char *str, int *nobj)
     *nobj = len;
     return minmax;
 }
-#endif
 
 static inline const bool *
 read_bitvector (const char *str, int *nobj)
@@ -126,4 +124,5 @@ read_bitvector (const char *str, int *nobj)
     return vec;
 }
 
-#endif
+#endif // R_PACKAGE
+#endif // EAF_INPUT_OUTPUT_H

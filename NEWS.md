@@ -116,10 +116,10 @@
 
 * Reduce memory consumption (up to four times less memory).
 
-* `eafdiff.pl`: Mention option --legendpos=none to hide the legend.
+* `eafdiff.pl`: Mention option `--legendpos=none` to hide the legend.
 
-* eafplot.pl: Add options --maximise and --xmaximise and --colors=.
-  Fix bug with --area.
+* eafplot.pl: Add options `--maximise` and `--xmaximise` and `--colors=`.
+  Fix bug with `--area`.
 
 * `eafplot.default()` now requires two colors when `type=="area"` and a
   palette is interpolated between these two colors for all the
@@ -128,7 +128,7 @@
 
 # eaf 1.05
 
- *  Implement `type = "area")` for `eafdiffplot()`. This is now the default.
+ *  Implement `type = "area"` for `eafdiffplot()`. This is now the default.
 
     The idea for the algorithm to compute the areas was provided by Carlos M. Fonseca. The implementation uses R polygons, which some PDF viewers may have trouble rendering correctly (See https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-are-there-unwanted-borders).
 
@@ -136,43 +136,43 @@
 
 * Attempt to deal with DOS/Unix newlines correctly.
 
-* eafplot.pl: Lots of cleanup.
-  (--single, --output, --legend): New options.
+* eafplot.pl: Cleanups.
+  (`--single, --output, --legend`): New options.
   Default to PDF.
 
 * eafdiff.pl: Many cleanups.
-  EAF diff with type="area" is the default now.
-  Parameter --cex replaced by --scale.
+  EAF diff with `type="area"` is the default now.
+  Parameter `--cex` replaced by `--scale`.
   Do not require ps2eps.
-  Handle --obj1= better. Crop pdf before converting to png.
-  (--noattsurfs): New option.
-  (--output-dir,--output): New options.
-  (--eps): New option. PDF is the default now.
+  Handle `--obj1=` better. Crop pdf before converting to png.
+  (`--noattsurfs`): New option.
+  (`--output-dir,--output`): New options.
+  (`--eps`): New option. PDF is the default now.
 
 * Force eafdiff plots to use a square plotting region.
 
 * `read.data.sets()` normalizes paths, thus it works with files such as ~/file.
 
-* Function eafdiffplot() handles percentiles=NA and grand.lines
+* Function `eafdiffplot()` handles `percentiles=NA` and grand.lines
   parameter.
 
-* Fix bug with ranges and maximise=TRUE in eafdiffplot().
+* Fix bug with ranges and `maximise=TRUE` in `eafdiffplot()`.
 
 * Fix points.steps to work correctly for all values of maximise.
 
-* Fix bug in  eafdiffplot(..., maximise=c(TRUE,FALSE), full.eaf = TRUE)
+* Fix bug in  `eafdiffplot(..., maximise=c(TRUE,FALSE), full.eaf = TRUE)`
 
-* Fix "log" parameter in eafplot and eafdiffplot.
+* Fix `"log"` parameter in eafplot and eafdiffplot.
 
-* Avoid that eafplot.formula modifies global options.
+* Avoid that `eafplot.formula` modifies global options.
 
-* Add 'axes' parameter to eafplot.
+* Add `'axes'` parameter to eafplot.
 
-* To avoid confusion, the arguments 'xaxis.side' and 'yaxis.side' of
-  eafplot can only take values c("below", "above") and c("left",
-  "right"), respectively.
+* To avoid confusion, the arguments `'xaxis.side'` and `'yaxis.side'` of
+  eafplot can only take values `c("below", "above")` and `c("left",
+  "right")`, respectively.
 
-* Add missing Makefile in inst/scripts/eaf/.
+* Add missing Makefile in `inst/scripts/eaf/`.
 
 # eaf 1.04
 
@@ -180,8 +180,8 @@
 
 # eaf 1.03
 
-* Handle maximise argument in eafdiffplot and --maximise command-line
-  option in eafdiff.pl
+* Handle maximise argument in eafdiffplot and `--maximise` command-line
+  option in `eafdiff.pl`
 
 * R/calls.R (eafplot.data.frame): Fix problem with main parameter.
 
