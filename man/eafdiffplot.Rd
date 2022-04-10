@@ -88,7 +88,7 @@ not work since it may be evaluated too early.}
 Returns a representation of the EAF differences (invisibly).
 }
 \description{
-Plot the differences between the empirical attainment functions of two
+Plot the differences between the empirical attainment functions (EAFs) of two
 data sets as a two-panel plot, where the left side shows the values of
 the left EAF minus the right EAF and the right side shows the
 differences in the other direction.
@@ -162,6 +162,6 @@ DIFF$right[,3] <- -DIFF$right[,3]
 
 }
 \seealso{
-\code{\link[=read_datasets]{read_datasets()}}, \code{\link[=eafplot]{eafplot()}}
+\code{\link[=read_datasets]{read_datasets()}} \code{\link[=eafplot]{eafplot()}} \code{\link[=pdf_crop]{pdf_crop()}}
 }
 \concept{eafviz}

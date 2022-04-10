@@ -187,6 +187,6 @@ eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
 }
 }
 \seealso{
-\code{\link[=read_datasets]{read_datasets()}} \code{\link[=eafdiffplot]{eafdiffplot()}}
+\code{\link[=read_datasets]{read_datasets()}} \code{\link[=eafdiffplot]{eafdiffplot()}} \code{\link[=pdf_crop]{pdf_crop()}}
 }
 \concept{eafviz}

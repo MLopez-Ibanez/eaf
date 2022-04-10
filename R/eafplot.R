@@ -70,7 +70,7 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #' 
 #' @return Return (invisibly) the attainment surfaces computed.
 #' 
-#' @seealso   [read_datasets()] [eafdiffplot()]
+#' @seealso   [read_datasets()] [eafdiffplot()] [pdf_crop()]
 #'
 #'@examples
 #' data(gcp2x2)
@@ -553,7 +553,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 
 #' Plot empirical attainment function differences 
 #' 
-#' Plot the differences between the empirical attainment functions of two
+#' Plot the differences between the empirical attainment functions (EAFs) of two
 #' data sets as a two-panel plot, where the left side shows the values of
 #' the left EAF minus the right EAF and the right side shows the
 #' differences in the other direction.
@@ -648,7 +648,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' 
 #' @return Returns a representation of the EAF differences (invisibly).
 #' 
-#' @seealso    [read_datasets()], [eafplot()]
+#' @seealso    [read_datasets()] [eafplot()] [pdf_crop()]
 #' 
 #' @examples
 #' ## NOTE: The plots in the website look squashed because of how pkgdown

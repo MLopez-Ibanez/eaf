@@ -2,9 +2,14 @@
 % Please edit documentation in R/pdf_crop.R
 \name{pdf_crop}
 \alias{pdf_crop}
-\title{Remove whitespace margins from a PDF file}
+\title{Remove whitespace margins from a PDF file (and maybe embed fonts)}
 \usage{
-pdf_crop(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"))
+pdf_crop(
+  filename,
+  mustWork = FALSE,
+  pdfcrop = Sys.which("pdfcrop"),
+  embed_fonts = FALSE
+)
 }
 \arguments{
 \item{filename}{Filename of a PDF file to crop. The file will be overwritten.}
@@ -12,12 +17,18 @@ pdf_crop(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"))
 \item{mustWork}{If \code{TRUE}, then give an error if the file cannot be cropped.}
 
 \item{pdfcrop}{Path to the \code{pdfcrop} utility.}
+
+\item{embed_fonts}{(\code{logical(1)}) If \code{TRUE}, use \code{\link[grDevices:embedFonts]{grDevices::embedFonts()}} to embed fonts.}
 }
 \value{
 Nothing
 }
 \description{
-Remove whitespace margins using \url{https://ctan.org/pkg/pdfcrop}
+Remove whitespace margins using \url{https://ctan.org/pkg/pdfcrop} and
+optionally embed fonts using \code{\link[grDevices:embedFonts]{grDevices::embedFonts()}}. You may also wish to
+consider \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}}
+(\url{https://cran.r-project.org/package=extrafont}). As an alternative, saving
+the PDF with \code{\link[grDevices:cairo]{grDevices::cairo_pdf()}} should already embed the fonts.
 }
 \examples{
 \dontrun{
@@ -29,4 +40,7 @@ eafplot(list(A1 = A1, A2 = A2), percentiles = 50, sci.notation=TRUE)
 dev.off()
 pdf_crop("eaf.pdf")
 }
+}
+\seealso{
+\code{\link[grDevices:embedFonts]{grDevices::embedFonts()}} \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}} \code{\link[grDevices:cairo]{grDevices::cairo_pdf()}}
 }

@@ -1,5 +1,6 @@
 # eaf 2.4
 
+* `pdf_crop()` can optionally embed fonts.
 
 # eaf 2.3
 

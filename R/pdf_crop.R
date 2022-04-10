@@ -1,11 +1,18 @@
-#' Remove whitespace margins from a PDF file
+#' Remove whitespace margins from a PDF file (and maybe embed fonts)
 #'
-#' Remove whitespace margins using <https://ctan.org/pkg/pdfcrop>
+#' Remove whitespace margins using <https://ctan.org/pkg/pdfcrop> and
+#' optionally embed fonts using [grDevices::embedFonts()]. You may also wish to
+#' consider [extrafont::embed_fonts()]
+#' (<https://cran.r-project.org/package=extrafont>). As an alternative, saving
+#' the PDF with [grDevices::cairo_pdf()] should already embed the fonts.
 #' 
 #' @param filename Filename of a PDF file to crop. The file will be overwritten.
 #' @param mustWork If `TRUE`, then give an error if the file cannot be cropped.
 #' @param pdfcrop Path to the `pdfcrop` utility.
+#' @param embed_fonts (`logical(1)`) If `TRUE`, use [grDevices::embedFonts()] to embed fonts.
 #' @return Nothing
+#'
+#' @seealso [grDevices::embedFonts()] [extrafont::embed_fonts()] [grDevices::cairo_pdf()]
 #' 
 #' @examples
 #' \dontrun{
@@ -19,7 +26,8 @@
 #' }
 #' @export
 #' @md
-pdf_crop <- function(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"))
+pdf_crop <- function(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"),
+                     embed_fonts = FALSE)
 {
   if (!file.exists(filename)) {
       stop("PDF file", shQuote(filename), "not found")
@@ -32,6 +40,7 @@ pdf_crop <- function(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"))
   } else {
     system2(pdfcrop, c("--pdfversion 1.5", filename, filename),
             timeout = 60, stdout = FALSE, stderr = FALSE)
+    if (embed_fonts) try(embedFonts(filename))
   }
 }
 
