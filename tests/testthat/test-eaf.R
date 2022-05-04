@@ -26,3 +26,8 @@ test_that("eaf", {
   for(i in seq_len(399))
     expect_equal(anyDuplicated(eafs(cbind(0:i, 0:i), 0:i)[,1]), 0L)
 })
+
+test_that("eafs_sets_numeric", {
+  expect_error(eafs(matrix(1:10, ncol=2), sets=letters[1:5]),
+               "sets")
+})

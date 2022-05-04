@@ -407,8 +407,13 @@ points.steps <- function(x)
 #'@md
 eafs <- function (points, sets, groups = NULL, percentiles = NULL)
 {
+  if (!is.numeric(sets)) {
+    if (is.factor(sets)) sets <- as.numeric(levels(sets))[sets]
+    else sets <- suppressWarnings(as.numeric(sets))
+  }
+  if (anyNA(sets)) stop("'sets' must have only non-NA numerical values")
+  
   points <- cbind(points, sets)
-
   if (is.null(groups)) {
     attsurfs <- compute.eaf (points, percentiles)
   } else {
