@@ -104,3 +104,7 @@
     id
 }
 
+has_file_extension <- function(filename, extension)
+{
+  grepl(paste0('[.]', extension, '$'), filename, ignore.case = TRUE)
+}

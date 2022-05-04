@@ -25,10 +25,20 @@ Nothing
 }
 \description{
 Remove whitespace margins using \url{https://ctan.org/pkg/pdfcrop} and
-optionally embed fonts using \code{\link[grDevices:embedFonts]{grDevices::embedFonts()}}. You may also wish to
-consider \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}}
-(\url{https://cran.r-project.org/package=extrafont}). As an alternative, saving
-the PDF with \code{\link[grDevices:cairo]{grDevices::cairo_pdf()}} should already embed the fonts.
+optionally embed fonts using \code{\link[grDevices:embedFonts]{grDevices::embedFonts()}}. You may install
+\code{pdfcrop} using TinyTeX (\url{https://cran.r-project.org/package=tinytex}) with
+\code{tinytex::tlmgr_install('pdfcrop')}.
+}
+\details{
+You may also wish to consider \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}}
+(\url{https://cran.r-project.org/package=extrafont}).\preformatted{library(extrafont)
+# If you need to specify the path to Ghostscript (probably not needed in Linux)
+Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.56.1/bin/gswin64c.exe")
+embed_fonts("original.pdf", outfile = "new.pdf")
+}
+
+As an alternative, saving the PDF with \code{\link[grDevices:cairo]{grDevices::cairo_pdf()}} should
+already embed the fonts.
 }
 \examples{
 \dontrun{

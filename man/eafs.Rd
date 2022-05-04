@@ -43,8 +43,8 @@ str(eafs(x[,1:2], x[,3], percentiles = c(0, 50, 100)))
 
 x <- read_datasets(file.path(extdata_path, "spherical-250-10-3d.txt"))
 y <- read_datasets(file.path(extdata_path, "uniform-250-10-3d.txt"))
-x <- data.frame(x, groups = "spherical")
-x <- rbind(x, data.frame(y, groups = "uniform"))
+x <- rbind(data.frame(x, groups = "spherical"),
+           data.frame(y, groups = "uniform"))
 # Compute only median separately for each group
 z <- eafs(x[,1:3], sets = x[,4], groups = x[,5], percentiles = 50)
 str(z)

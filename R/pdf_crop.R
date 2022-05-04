@@ -1,10 +1,22 @@
 #' Remove whitespace margins from a PDF file (and maybe embed fonts)
 #'
 #' Remove whitespace margins using <https://ctan.org/pkg/pdfcrop> and
-#' optionally embed fonts using [grDevices::embedFonts()]. You may also wish to
-#' consider [extrafont::embed_fonts()]
-#' (<https://cran.r-project.org/package=extrafont>). As an alternative, saving
-#' the PDF with [grDevices::cairo_pdf()] should already embed the fonts.
+#' optionally embed fonts using [grDevices::embedFonts()]. You may install
+#' `pdfcrop` using TinyTeX (<https://cran.r-project.org/package=tinytex>) with
+#' `tinytex::tlmgr_install('pdfcrop')`.
+#'
+#' You may also wish to consider [extrafont::embed_fonts()]
+#' (<https://cran.r-project.org/package=extrafont>).
+#'
+#' ```
+#' library(extrafont)
+#' # If you need to specify the path to Ghostscript (probably not needed in Linux)
+#' Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.56.1/bin/gswin64c.exe")
+#' embed_fonts("original.pdf", outfile = "new.pdf")
+#' ```
+#'
+#' As an alternative, saving the PDF with [grDevices::cairo_pdf()] should
+#' already embed the fonts.
 #' 
 #' @param filename Filename of a PDF file to crop. The file will be overwritten.
 #' @param mustWork If `TRUE`, then give an error if the file cannot be cropped.
@@ -30,7 +42,9 @@ pdf_crop <- function(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"),
                      embed_fonts = FALSE)
 {
   if (!file.exists(filename)) {
-      stop("PDF file", shQuote(filename), "not found")
+    stop("PDF file", shQuote(filename), "not found")
+  } else if(!has_file_extension(filename, "pdf")){
+    stop(shQuote(filename), "is not a PDF file")
   } else if (is.null(pdfcrop) || pdfcrop == "") {
       if (mustWork) {
         stop("pdfcrop not found!")
@@ -38,9 +52,8 @@ pdf_crop <- function(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"),
         warning("pdfcrop not found, not cropping")
       }
   } else {
-    system2(pdfcrop, c("--pdfversion 1.5", filename, filename),
+    system2(pdfcrop, c("--pdfversion 1.5", shQuote(filename), shQuote(filename)),
             timeout = 60, stdout = FALSE, stderr = FALSE)
-    if (embed_fonts) try(embedFonts(filename))
+    if (embed_fonts) embedFonts(filename)
   }
 }
-
