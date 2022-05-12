@@ -114,26 +114,26 @@ ACM Press, New York, NY.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
 <span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.99348</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.00014</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.96919</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.00006</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span>
 <span class="r-in">          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"exponential"</span>, mu<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.1313</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.11951</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span>
 <span class="r-in">          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"exponential"</span>, mu<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.64574</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.66554</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span>
 <span class="r-in">          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"point"</span>, mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.82629</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.81738</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span>
 <span class="r-in">          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"point"</span>, mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03573</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03555</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
