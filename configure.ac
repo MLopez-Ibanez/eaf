@@ -14,8 +14,8 @@ AC_INIT([eaf],m4_esyscmd_s(awk -e '/^Version:/ {print $2}' DESCRIPTION))
 AC_PROG_CC
 
 PKG_CONFIG_NAME="gsl-config"
-PKG_DEB_NAME="opengsl-dev"
-PKG_RPM_NAME="opengsl-dev"
+PKG_DEB_NAME="libgsl-dev"
+PKG_RPM_NAME="libgsl-dev"
 PKG_BREW_NAME="gsl"
 ## Use gsl-config to find arguments for compiler and linker flags
 ##
@@ -31,9 +31,9 @@ else
     AC_MSG_ERROR([
   --------------------------- [EAF PACKAGE] --------------------------------
   Configuration failed because $PKG_CONFIG_NAME was not found. Try installing:
-   sudo apt-get install $PKG_DEB_NAME (Debian, Ubuntu, etc)
-   sudo yum install $PKG_RPM_NAME (Fedora, CentOS, RHEL)
-   brew install $PKG_BREW_NAME (Mac OSX)
+  * Debian, Ubuntu, etc: sudo apt-get install $PKG_DEB_NAME
+  * Fedora, CentOS, RHEL: sudo yum install $PKG_RPM_NAME
+  * Mac OSX: brew install $PKG_BREW_NAME
   If $PKG_CONFIG_NAME is already installed, check that 'pkg-config' is in your
   PATH and PKG_CONFIG_PATH contains a $PKG_CONFIG_NAME.pc file. If pkg-config
   is unavailable you can set INCLUDE_DIR and LIB_DIR manually via:
