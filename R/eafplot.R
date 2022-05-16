@@ -124,9 +124,8 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #'          las = 1, log = "y", main = "SPEA2 (Richmond)",
 #'          legend.pos = "bottomright")
 #' }
-#' @export
 #' @concept eafviz
-#'@md
+#' @export
 eafplot.default <-
   function (x, sets = NULL, groups = NULL,
             percentiles = c(0,50,100),
@@ -682,9 +681,8 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' #             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",
 #' #             quote = FALSE, row.names = FALSE, col.names = FALSE)
 #'
-#'@export
 #' @concept eafviz
-#'@md
+#'@export
 eafdiffplot <-
   function(data.left, data.right,
            col = c("#FFFFFF", "#808080","#000000"),

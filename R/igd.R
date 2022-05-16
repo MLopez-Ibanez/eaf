@@ -107,7 +107,6 @@
 #' igd(A2, ref)
 #' 
 #' @aliases IGDX
-#' @md
 igd <- function(data, reference, maximise = FALSE)
 {
   data <- check_dataset(data)
@@ -166,13 +165,12 @@ igd_plus <- function(data, reference, maximise = FALSE)
 
 #' @rdname igd
 #' @param p (`integer(1)`) Hausdorff distance parameter (default: `1L`).
-#' @export
 #' @concept metrics
 #' @examples
 #' # Average Haussdorff distance
 #' avg_hausdorff_dist(A1, ref)
 #' avg_hausdorff_dist(A2, ref)
-#' @md
+#' @export
 avg_hausdorff_dist <- function(data, reference, maximise = FALSE, p = 1L)
 {
   data <- check_dataset(data)

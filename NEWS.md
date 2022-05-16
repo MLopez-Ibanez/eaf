@@ -1,5 +1,8 @@
 # eaf 2.4
 
+* If the installation cannot find the Gnu Scientific Library, it gives hints on
+  how to install it on various operating systems.
+
 * `pdf_crop()` can optionally embed fonts.
 
 # eaf 2.3

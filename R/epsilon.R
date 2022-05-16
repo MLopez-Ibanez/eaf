@@ -45,7 +45,6 @@
 #'
 #' \insertRef{ZitThiLauFon2003:tec}{eaf}
 #' 
-#' @md
 NULL
 #> NULL
 

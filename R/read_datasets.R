@@ -48,7 +48,6 @@
 #' read_datasets(text="1 2\n3 4\n\n5 6\n7 8\n", col_names=c("obj1", "obj2"))
 #' 
 #' @keywords file
-#' @md
 #' @export
 read_datasets <- function(file, col_names, text)
 {
@@ -99,7 +98,6 @@ read.data.sets <- function(file, col.names)
 #' write_datasets(x)
 #' 
 #' @keywords file
-#' @md
 #' @export
 write_datasets <- function(x, file = "")
 {

@@ -47,7 +47,6 @@ check_dataset <- function(x)
 #' 
 #' @export
 #' @concept dominance
-#' @md
 is_nondominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 {
   data <- check_dataset(data)
@@ -64,23 +63,20 @@ is_nondominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 }
 
 #' @rdname nondominated
-#' @export
 #' @concept dominance
 #' @return `filter_dominated` returns a matrix or data.frame with only mutually nondominated points.
-#' @md
-#' 
+#' @export
 filter_dominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 {
   return(data[is_nondominated(data, maximise = maximise, keep_weakly = keep_weakly),
             , drop = FALSE])
 }
 
-#' @description `pareto_rank()` ranks points according to Pareto-optimality, which is also called
-#' nondominated sorting \citep{Deb02nsga2}.
+#' @description `pareto_rank()` ranks points according to Pareto-optimality,
+#'   which is also called nondominated sorting \citep{Deb02nsga2}.
 #' 
 #' @rdname nondominated
 #' @concept dominance
-#' @export
 #' @return `pareto_rank()` returns an integer vector of the same length as
 #'   the number of rows of `data`, where each value gives the rank of each
 #'   point.
@@ -98,8 +94,7 @@ filter_dominated <- function(data, maximise = FALSE, keep_weakly = FALSE)
 #' ranks <- pareto_rank(set)
 #' colors <- colorRampPalette(c("red","yellow","springgreen","royalblue"))(max(ranks))
 #' plot(set, col = colors[ranks], type = "p", pch = 20)
-#'
-#' @md
+#' @export
 pareto_rank <- function(data, maximise = FALSE)
 {
   data <- check_dataset(data)

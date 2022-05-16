@@ -61,9 +61,8 @@
 #'
 #'@references
 #' \insertAllCited{}
-#' @export
 #' @concept eafviz
-#'@md
+#' @export
 choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
                                maximise = c(FALSE, FALSE),
                                title.left = deparse(substitute(data.left)),
@@ -106,7 +105,7 @@ choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
 #'
 #' @template arg_ideal
 #'
-#' @return  (`list()`) A list with two components `best_pair` and `best_value`.
+#' @return  (`list()`) A list with two components `pair` and `value`.
 #' 
 #'@examples
 #' # FIXME: This example is too large, we need a smaller one.
@@ -121,17 +120,15 @@ choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
 #'@references
 #' \insertAllCited{}
 #' 
-#'@export
 #'@concept eaf
-#'@md
+#'@export
 largest_eafdiff <- function(data, maximise = FALSE, intervals = 5, reference,
                             ideal = NULL)
 {
   nobjs <- 2
   maximise <- as.logical(rep_len(maximise, nobjs))
-  if (nobjs != 2) {
-    stop("sorry: only 2 objectives supported")
-  }
+  if (nobjs != 2) stop("Only 2 objectives currently supported")
+ 
   n <- length(data)
   stopifnot(n > 1)
   best_pair <- NULL
@@ -166,7 +163,7 @@ largest_eafdiff <- function(data, maximise = FALSE, intervals = 5, reference,
       }
     }
   }
-  return(list(pair=best_pair, value = best_value))
+  list(pair=best_pair, value = best_value)
 }
 
 
@@ -178,9 +175,8 @@ largest_eafdiff <- function(data, maximise = FALSE, intervals = 5, reference,
 #'   differences are converted to positive.
 #' 
 #' @rdname choose_eafdiffplot
-#'@export
 #'@concept eaf
-#'@md
+#'@export
 choose_eafdiff <- function(x, left = stop("'left' must be either TRUE or FALSE"))
 {
   if (left) return (x[ x[, ncol(x)] > 0L, , drop = FALSE])

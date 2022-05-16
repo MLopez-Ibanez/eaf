@@ -1,39 +1,38 @@
-##' Compute Vorob'ev threshold, expectation and deviation. Also, displaying the
-##' symmetric deviation function is possible.  The symmetric deviation
-##' function is the probability for a given target in the objective space to
-##' belong to the symmetric difference between the Vorob'ev expectation and a
-##' realization of the (random) attained set.
-##' 
-##' @title Vorob'ev computations
-##' @param x Either a matrix of data values, or a data frame, or a list of data
-##'   frames of exactly three columns.  The third column gives the set (run,
-##'   sample, ...) identifier.
-##' @template arg_refpoint
-##' @return `vorobT` returns a list with elements `threshold`,
-##'   `VE`, and `avg_hyp` (average hypervolume)
-##' @rdname Vorob
-##' @author Mickael Binois
-##' @examples
-##' data(CPFs)
-##' res <- vorobT(CPFs, reference = c(2, 200))
-##' print(res$threshold)
-##' 
-##' ## Display Vorob'ev expectation and attainment function
-##' # First style
-##' eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 25, 50, 75, 100, res$threshold),
-##'         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "%"),
-##'                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
-##' 
-##' # Second style
-##' eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
-##'         col = gray(seq(0.8, 0.1, length.out = 6)^0.5), type = "area", 
-##'         legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan",
-##'         extra.legend = "VE", extra.lty = "solid", extra.pch = NA, extra.lwd = 2,
-##'         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "%"),
-##'                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
-##' @md
-##' @export
-##' @concept eaf
+#' Compute Vorob'ev threshold, expectation and deviation. Also, displaying the
+#' symmetric deviation function is possible.  The symmetric deviation
+#' function is the probability for a given target in the objective space to
+#' belong to the symmetric difference between the Vorob'ev expectation and a
+#' realization of the (random) attained set.
+#' 
+#' @title Vorob'ev computations
+#' @param x Either a matrix of data values, or a data frame, or a list of data
+#'   frames of exactly three columns.  The third column gives the set (run,
+#'   sample, ...) identifier.
+#' @template arg_refpoint
+#' @return `vorobT` returns a list with elements `threshold`,
+#'   `VE`, and `avg_hyp` (average hypervolume)
+#' @rdname Vorob
+#' @author Mickael Binois
+#' @examples
+#' data(CPFs)
+#' res <- vorobT(CPFs, reference = c(2, 200))
+#' print(res$threshold)
+#' 
+#' ## Display Vorob'ev expectation and attainment function
+#' # First style
+#' eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 25, 50, 75, 100, res$threshold),
+#'         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "%"),
+#'                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
+#' 
+#' # Second style
+#' eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
+#'         col = gray(seq(0.8, 0.1, length.out = 6)^0.5), type = "area", 
+#'         legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan",
+#'         extra.legend = "VE", extra.lty = "solid", extra.pch = NA, extra.lwd = 2,
+#'         main = substitute(paste("Empirical attainment function, ",beta,"* = ", a, "%"),
+#'                           list(a = formatC(res$threshold, digits = 2, format = "f"))))
+#' @concept eaf
+#' @export
 vorobT <- function(x, reference)
 {
   x <- check.eaf.data(x)
@@ -59,16 +58,15 @@ vorobT <- function(x, reference)
   return(list(threshold = c, VE = eaf_res, avg_hyp = avg_hyp))
 } 
 
-##' @export
-##' @concept eaf
-##' @rdname Vorob  
-##' @return `vorobDev` returns the Vorob'ev deviation.
-##' @examples
-##' 
-##' # Now print Vorob'ev deviation
-##' VD <- vorobDev(CPFs, res$VE, reference = c(2, 200))
-##' print(VD)
-##' @md
+#' @concept eaf
+#' @rdname Vorob  
+#' @return `vorobDev` returns the Vorob'ev deviation.
+#' @examples
+#' 
+#' # Now print Vorob'ev deviation
+#' VD <- vorobDev(CPFs, res$VE, reference = c(2, 200))
+#' print(VD)
+#' @export
 vorobDev <- function(x, VE, reference)
 {
   if (is.data.frame(x)) x <- as.matrix(x)
@@ -91,39 +89,37 @@ vorobDev <- function(x, VE, reference)
   return((VD / nruns) - H1 - H2)
 }
 
-##' @rdname Vorob
-##' @references
-##' 
-##' \insertRef{BinGinRou2015gaupar}{eaf}
-##'
-##' C. Chevalier (2013), Fast uncertainty reduction strategies relying on
-##' Gaussian process models, University of Bern, PhD thesis.
-##'
-##' I. Molchanov (2005), Theory of random sets, Springer.
-##'
-##' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
-##'   by [vorobT()].
-##' @param nlevels number of levels in which is divided the range of the
-##'   symmetric deviation.
-##' @param ve.col plotting parameters for the Vorob'ev expectation.
-##' @param xlim,ylim,main Graphical parameters, see
-##'   [`plot.default()`][graphics::plot.default()].
-##' @param legend.pos the position of the legend, see
-##'   [`legend()`][graphics::legend()]. A value of `"none"` hides the legend.
-##' @param col.fun function that creates a vector of `n` colors, see
-##'   [`heat.colors()`][grDevices::heat.colors()].
-##' @examples
-##' # Now display the symmetric deviation function.
-##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
-##' # Levels are adjusted automatically if too large.
-##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 200, legend.pos = "none")
-##' 
-##' # Use a different palette.
-##' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
-##' @md
-##' @concept eaf
-##' @export
-##'
+#' @rdname Vorob
+#' @references
+#' 
+#' \insertRef{BinGinRou2015gaupar}{eaf}
+#'
+#' C. Chevalier (2013), Fast uncertainty reduction strategies relying on
+#' Gaussian process models, University of Bern, PhD thesis.
+#'
+#' I. Molchanov (2005), Theory of random sets, Springer.
+#'
+#' @param VE,threshold Vorob'ev expectation and threshold, e.g., as returned
+#'   by [vorobT()].
+#' @param nlevels number of levels in which is divided the range of the
+#'   symmetric deviation.
+#' @param ve.col plotting parameters for the Vorob'ev expectation.
+#' @param xlim,ylim,main Graphical parameters, see
+#'   [`plot.default()`][graphics::plot.default()].
+#' @param legend.pos the position of the legend, see
+#'   [`legend()`][graphics::legend()]. A value of `"none"` hides the legend.
+#' @param col.fun function that creates a vector of `n` colors, see
+#'   [`heat.colors()`][grDevices::heat.colors()].
+#' @examples
+#' # Now display the symmetric deviation function.
+#' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11)
+#' # Levels are adjusted automatically if too large.
+#' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 200, legend.pos = "none")
+#' 
+#' # Use a different palette.
+#' symDifPlot(CPFs, res$VE, res$threshold, nlevels = 11, col.fun = heat.colors)
+#' @concept eaf
+#' @export
 # FIXME: Implement "add=TRUE" option that just plots the lines,points or
 # surfaces and does not create the plot nor the legend (but returns the info
 # needed to create a legend), so that one can use the function to add stuff to

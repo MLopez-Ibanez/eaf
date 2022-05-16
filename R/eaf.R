@@ -185,9 +185,8 @@ compute.eafdiff.helper <- function(data, intervals)
 #' str(d)
 #' print(d)
 #'
-#'@export
 #'@concept eaf
-#'@md
+#'@export
 eafdiff <- function(x, y, intervals = NULL, maximise = c(FALSE, FALSE),
                     rectangles = FALSE)
 {
@@ -402,9 +401,8 @@ points.steps <- function(x)
 #' # library(plotly)
 #' # plot_ly(z, x = ~X1, y = ~X2, z = ~X3, color = ~groups,
 #' #         colors = c('#BF382A', '#0C4B8E')) %>% add_markers()
-#'@export
 #'@concept eaf
-#'@md
+#'@export
 eafs <- function (points, sets, groups = NULL, percentiles = NULL)
 {
   if (!is.numeric(sets)) {
@@ -483,9 +481,8 @@ add.extremes <- function(x, extremes, maximise)
 #' attsurfs <- attsurf2df(attsurfs)
 #' text(attsurfs[,1:2], labels = attsurfs[,3], adj = c(1.5,1.5))
 #' 
-#' @md
-#' @export
 #' @concept eaf
+#' @export
 attsurf2df <- function(x)
 {
   if (!is.list(x) || is.data.frame(x))

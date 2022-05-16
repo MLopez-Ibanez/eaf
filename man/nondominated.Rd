@@ -39,8 +39,8 @@ point.
 Identify nondominated points with \code{is_nondominated} and remove dominated
 ones with \code{filter_dominated}.
 
-\code{pareto_rank()} ranks points according to Pareto-optimality, which is also called
-nondominated sorting \citep{Deb02nsga2}.
+\code{pareto_rank()} ranks points according to Pareto-optimality,
+which is also called nondominated sorting \citep{Deb02nsga2}.
 }
 \details{
 \code{pareto_rank()} is meant to be used like \code{rank()}, but it
@@ -62,7 +62,6 @@ points(ndset[order(ndset[,1]),], col = "red", pch = 21)
 ranks <- pareto_rank(set)
 colors <- colorRampPalette(c("red","yellow","springgreen","royalblue"))(max(ranks))
 plot(set, col = colors[ranks], type = "p", pch = 20)
-
 }
 \references{
 \insertAllCited{}

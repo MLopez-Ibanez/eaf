@@ -18,7 +18,7 @@ to all objectives or a vector of logical values, with one value per
 objective.}
 }
 \value{
-([numeric]) A numerical vector
+(\link{numeric}) A numerical vector
 }
 \description{
 Computes the hypervolume contribution of each point given a set of points

@@ -22,7 +22,7 @@ objective.}
 \item{ideal}{(\code{numeric()}) \cr Ideal point as a vector of numerical values.}
 }
 \value{
-(\code{list()}) A list with two components \code{best_pair} and \code{best_value}.
+(\code{list()}) A list with two components \code{pair} and \code{value}.
 }
 \description{
 Given a list of datasets, return the indexes of the pair with the largest

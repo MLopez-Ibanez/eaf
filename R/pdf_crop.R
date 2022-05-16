@@ -37,7 +37,6 @@
 #' pdf_crop("eaf.pdf")
 #' }
 #' @export
-#' @md
 pdf_crop <- function(filename, mustWork = FALSE, pdfcrop = Sys.which("pdfcrop"),
                      embed_fonts = FALSE)
 {

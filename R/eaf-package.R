@@ -86,7 +86,6 @@
 #' eafdiffplot(A1, A2)
 #' ## Save to a PDF file
 #' # dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)
-#'@md
 "_PACKAGE"
 #> [1] "_PACKAGE"
 
@@ -110,7 +109,6 @@
 #'data(HybridGA)
 #'print(HybridGA$vanzyl)
 #'print(HybridGA$richmond)
-#'@md
 #' @keywords datasets
 "HybridGA"
 
@@ -132,7 +130,6 @@
 #' eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
 #'          ylab = "Minimum idle time (minutes)", maximise = c(FALSE, TRUE),
 #'          las = 1, log = "y", legend.pos = "bottomright")
-#'@md
 #' @keywords datasets
 "SPEA2minstoptimeRichmond"
 
@@ -154,7 +151,6 @@
 #'         xlim = c(90, 140), ylim = c(0, 25),
 #'         extra.points = HybridGA$richmond, extra.lty = "dashed",
 #'         extra.legend = "Hybrid GA")
-#'@md
 #' @keywords datasets
 "SPEA2relativeRichmond"
 
@@ -174,7 +170,6 @@
 #'eafplot(SPEA2relativeVanzyl, percentiles = c(25, 50, 75), 
 #'        xlab = expression(C[E]), ylab = "Total switches", xlim = c(320, 400),
 #'        extra.points = HybridGA$vanzyl, extra.legend = "Hybrid GA")
-#'@md
 #' @keywords datasets
 "SPEA2relativeVanzyl"
 
@@ -220,7 +215,6 @@
 #'
 #'@examples 
 #' data(gcp2x2)
-#'@md
 #' @keywords datasets
 "gcp2x2"
 
@@ -251,7 +245,6 @@
 #' eafplot(CPFs[,1:2], sets = CPFs[,3], percentiles = c(0, 20, 40, 60, 80, 100),
 #'        col = gray(seq(0.8, 0.1, length.out = 6)^2), type = "area",
 #'        legend.pos = "bottomleft", extra.points = res$VE, extra.col = "cyan")
-#'@md
 #'@keywords datasets
 "CPFs"
 

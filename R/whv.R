@@ -34,9 +34,8 @@
 #' @references
 #' \insertAllCited{}
 #'
-#'@export
-#'@md
 #'@concept metrics
+#'@export
 whv_rect <- function(data, rectangles, reference, maximise = FALSE)
 {
   data <- check_dataset(data)
@@ -96,9 +95,8 @@ whv_rect <- function(data, rectangles, reference, maximise = FALSE)
 #'
 #'@rdname whv_rect
 #'
-#' @export
-#'@md
 #' @concept metrics
+#' @export
 total_whv_rect <- function(data, rectangles, reference, maximise = FALSE, ideal = NULL, scalefactor = 0.1)
 {
   nobjs <- ncol(data) 
@@ -172,9 +170,8 @@ total_whv_rect <- function(data, rectangles, reference, maximise = FALSE, ideal 
 #' whv_hype (matrix(c(3,1), ncol=2), reference = 4, ideal = 1,
 #'           dist = list(type="point", mu=c(1,1)))
 #'
-#'@export
-#'@md
 #' @concept metrics
+#'@export
 whv_hype <- function(data, reference, ideal, maximise = FALSE,
                      dist = list(type = "uniform"), nsamples = 1e5L)
 {
