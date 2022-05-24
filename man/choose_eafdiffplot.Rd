@@ -52,12 +52,11 @@ corners of each rectangle and the last column. In both cases, the last
 column gives the positive differences in favor of the chosen side.
 }
 \description{
-The function \code{choose_eafdiffplot()} creates the same plot as \code{eafdiffplot()}
-but waits for the user to click in one of the sides. Then it returns the
-rectangles the give the differences in favour of the chosen side. These
-rectangles may be used for interactive decision-making as shown in
-\citet{DiaLop2020ejor}. The function \code{choose_eafdiff()} may be used in a
-non-interactive context.
+Creates the same plot as \code{\link[=eafdiffplot]{eafdiffplot()}} but waits for the user to click in
+one of the sides. Then it returns the rectangles the give the differences in
+favour of the chosen side. These rectangles may be used for interactive
+decision-making as shown in \citet{DiaLop2020ejor}. The function
+\code{\link[=choose_eafdiff]{choose_eafdiff()}} may be used in a non-interactive context.
 }
 \examples{
 

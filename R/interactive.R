@@ -1,11 +1,10 @@
 #' Interactively choose according to empirical attainment function differences 
 #' 
-#' The function `choose_eafdiffplot()` creates the same plot as `eafdiffplot()`
-#' but waits for the user to click in one of the sides. Then it returns the
-#' rectangles the give the differences in favour of the chosen side. These
-#' rectangles may be used for interactive decision-making as shown in
-#' \citet{DiaLop2020ejor}. The function `choose_eafdiff()` may be used in a
-#' non-interactive context.
+#' Creates the same plot as [eafdiffplot()] but waits for the user to click in
+#' one of the sides. Then it returns the rectangles the give the differences in
+#' favour of the chosen side. These rectangles may be used for interactive
+#' decision-making as shown in \citet{DiaLop2020ejor}. The function
+#' [choose_eafdiff()] may be used in a non-interactive context.
 #' 
 #' @param data.left,data.right Data frames corresponding to the input data of
 #'   left and right sides, respectively. Each data frame has at least three
@@ -183,6 +182,6 @@ choose_eafdiff <- function(x, left = stop("'left' must be either TRUE or FALSE")
   x <- x[ x[, ncol(x)] < 0L, , drop = FALSE]
   # We always return positive colors.
   x[, ncol(x)] <- abs(x[, ncol(x)])
-  return(x)
+  x
 }
 
