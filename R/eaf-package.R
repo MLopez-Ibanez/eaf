@@ -37,7 +37,8 @@
 #' `scripts/eafdiff`\tab  Perl script to generate plots of EAF differences
 #'}
 #'
-#' @import graphics grDevices stats
+#' @import graphics
+#' @importFrom grDevices pdf colorRampPalette embedFonts gray
 #' @importFrom Rdpack reprompt
 #' @importFrom utils modifyList write.table tail
 #'

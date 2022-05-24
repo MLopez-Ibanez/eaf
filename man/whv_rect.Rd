@@ -31,7 +31,7 @@ maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.}
 
-\item{ideal}{(\code{numeric()}) \cr Ideal point as a vector of numerical values.}
+\item{ideal}{(\code{numeric()}) \cr Ideal point as a vector of numerical values. If \code{NULL}, it is calculated as minimum (resp. maximum if maximising that objective) of each objective in \code{data}.}
 
 \item{scalefactor}{(\code{numeric(1)}) real value within \eqn{(0,1]} that scales
 the overall weight of the differences. This is parameter psi (\eqn{\psi}) in \citet{DiaLop2020ejor}.}
@@ -40,7 +40,7 @@ the overall weight of the differences. This is parameter psi (\eqn{\psi}) in \ci
 A single numerical value.
 }
 \description{
-The function \code{\link[=whv_rect]{whv_rect()}} calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function \code{\link[=total_whv_rect]{total_whv_rect()}} calculates the total weighted hypervolume as \code{\link[=hypervolume]{hypervolume()}}\code{ + scalefactor * abs(prod(reference - ideal)) * whv_rect()}. The details of the computation are given by \citet{DiaLop2020ejor}.
+Calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function \code{\link[=total_whv_rect]{total_whv_rect()}} calculates the total weighted hypervolume as \code{\link[=hypervolume]{hypervolume()}}\code{ + scalefactor * abs(prod(reference - ideal)) * whv_rect()}. The details of the computation are given by \citet{DiaLop2020ejor}.
 }
 \details{
 TODO

@@ -103,8 +103,8 @@ choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
 #'
 #' @template arg_refpoint
 #'
-#' @template arg_ideal
-#'
+#' @template arg_ideal_null
+#' 
 #' @return  (`list()`) A list with two components `pair` and `value`.
 #' 
 #'@examples
@@ -134,11 +134,11 @@ largest_eafdiff <- function(data, maximise = FALSE, intervals = 5, reference,
   best_pair <- NULL
   best_value <- 0
   if (is.null(ideal)) {
-    # or do.call(rbind,), but that consumes lots of memory
-    minmax <- apply(sapply(data, function(x) apply(x[,1:2], 2, range)), 2, range)
-    lower <- minmax[1,]
-    upper <- minmax[2,]
-    ideal <- ifelse(maximise, upper, lower)
+    # This should be equivalent to
+    # cbind(c(range(data[[1]][,1]),range(data[[2]][,1])),
+    #       c(range(data[[1]][,2]),range(data[[2]][,2])))
+    data_agg <- t(do.call(cbind, lapply(data, function(x) matrixStats::colRanges(x[,1:nobjs]))))
+    ideal <- get_ideal(data_agg, maximise = maximise)
   }
   # Convert to a 1-row matrix
   if (is.null(dim(ideal))) dim(ideal) <- c(1,nobjs)

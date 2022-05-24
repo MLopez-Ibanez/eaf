@@ -19,7 +19,7 @@ objective.}
 
 \item{reference}{(\code{numeric()}) \cr Reference point as a vector of numerical values.}
 
-\item{ideal}{(\code{numeric()}) \cr Ideal point as a vector of numerical values.}
+\item{ideal}{(\code{numeric()}) \cr Ideal point as a vector of numerical values. If \code{NULL}, it is calculated as minimum (resp. maximum if maximising that objective) of each objective in \code{data}.}
 }
 \value{
 (\code{list()}) A list with two components \code{pair} and \code{value}.

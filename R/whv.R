@@ -1,6 +1,6 @@
 #' Compute (total) weighted hypervolume given a set of rectangles
 #' 
-#' The function [whv_rect()] calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function [total_whv_rect()] calculates the total weighted hypervolume as [hypervolume()]` + scalefactor * abs(prod(reference - ideal)) * whv_rect()`. The details of the computation are given by \citet{DiaLop2020ejor}.
+#' Calculates the hypervolume weighted by a set of rectangles (with zero weight outside the rectangles). The function [total_whv_rect()] calculates the total weighted hypervolume as [hypervolume()]` + scalefactor * abs(prod(reference - ideal)) * whv_rect()`. The details of the computation are given by \citet{DiaLop2020ejor}.
 #' 
 #' @template arg_data
 #'
@@ -83,7 +83,7 @@ whv_rect <- function(data, rectangles, reference, maximise = FALSE)
 }
 
 
-#' @template arg_ideal
+#' @template arg_ideal_null
 #' 
 #' @param scalefactor (`numeric(1)`) real value within \eqn{(0,1]} that scales
 #'   the overall weight of the differences. This is parameter psi (\eqn{\psi}) in \citet{DiaLop2020ejor}.
@@ -99,27 +99,34 @@ whv_rect <- function(data, rectangles, reference, maximise = FALSE)
 #' @export
 total_whv_rect <- function(data, rectangles, reference, maximise = FALSE, ideal = NULL, scalefactor = 0.1)
 {
+  data <- as.matrix(data)
   nobjs <- ncol(data) 
   maximise <- as.logical(rep_len(maximise, nobjs))
-  if (nobjs != 2) stop("sorry: only 2 objectives supported")
-  if (ncol(rectangles) != 5) stop("rectangles: invalid number of columns")
+  if (nobjs != 2L) stop("sorry: only 2 objectives supported")
+  if (ncol(rectangles) != 5L) stop("invalid number of columns in rectangles (should be 5)")
   if (scalefactor <= 0 || scalefactor > 1) stop("scalefactor must be within (0,1]")
 
   hv <- hypervolume(data, reference, maximise = maximise)
   whv <- whv_rect(data, rectangles, reference, maximise = maximise)
   if (is.null(ideal)) {
     # FIXME: Should we include the range of the rectangles here?
-    minmax <- apply(data, 2, range)
-    lower <- minmax[1,]
-    upper <- minmax[2,]
-    ideal <- ifelse(maximise, upper, lower)
+    ideal <- get_ideal(data, maximise = maximise)
   }
   if (length(ideal) != nobjs) {
-    stop("ideal should have same length as nobjs")
+    stop("'ideal' should have same length as ncol(data)")
   }
   beta <- scalefactor * abs(prod(reference - ideal))
   #cat("beta: ", beta, "\n")
-  return (hv + beta * whv)
+  hv + beta * whv
+}
+
+get_ideal <- function(x, maximise)
+{
+  # FIXME: Is there a better way to do this?
+  minmax <- matrixStats::colRanges(x)
+  lower <- minmax[,1L]
+  upper <- minmax[,2L]
+  ifelse(maximise, upper, lower)
 }
 
 #' Approximation of the (weighted) hypervolume by Monte-Carlo sampling

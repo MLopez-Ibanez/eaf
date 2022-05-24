@@ -38,11 +38,11 @@ normalise <- function(data, to.range = c(1, 2), lower = NA, upper = NA, maximise
   lower <- as.double(rep_len(lower, nobjs))
   upper <- as.double(rep_len(upper, nobjs))
   # Handle NA
-  minmax <- apply(data, 2, range)
   no.lower <- is.na(lower)
   no.upper <- is.na(upper)
-  lower[no.lower] <- minmax[1, no.lower]
-  upper[no.upper] <- minmax[2, no.upper]
+  minmax <- matrixStats::colRanges(data)
+  lower[no.lower] <- minmax[no.lower, 1L]
+  upper[no.upper] <- minmax[no.upper, 2L]
   maximise <- as.logical(rep_len(maximise, nobjs))
 
   if (length(to.range) != 2L)
