@@ -334,7 +334,7 @@ rbind_datasets <- function(x,y)
   stopifnot(min(y[,3]) == 1)
   # We have to make all sets unique.
   y[,3] <- y[,3] + max(x[,3])
-  return(rbind(x, y))
+  rbind(x, y)
 }
 
 ## Calculate the intermediate points in order to plot a staircase-like
@@ -349,7 +349,7 @@ points.steps <- function(x)
   idx <- c(as.vector(outer(c(0L, n), 1L:(n - 1L), "+")), n)
   stopifnot(length(idx) == nrow(x))
   stopifnot(!anyDuplicated(idx))
-  return(x[idx, ])
+  x[idx, ]
 }
 
 
@@ -422,7 +422,7 @@ eafs <- function (points, sets, groups = NULL, percentiles = NULL)
       attsurfs <- rbind(attsurfs, data.frame(tmp, groups = g))
     }
   }
-  return (attsurfs)
+  attsurfs
 }
 
 
@@ -433,7 +433,7 @@ get.xylim <- function(lim, maximise, data)
   if (!is.null(lim) && maximise) lim <- -lim 
   if (is.null(lim)) lim <- range(data)
   if (maximise) lim <- range(-lim)
-  return(lim)
+  lim
 }
   
 get.extremes <- function(xlim, ylim, maximise, log)
@@ -452,14 +452,14 @@ get.extremes <- function(xlim, ylim, maximise, log)
   
   if ("x" %in% log) extreme1 <- exp(extreme1)
   if ("y" %in% log) extreme2 <- exp(extreme2)
-  return(c(extreme1, extreme2))
+  c(extreme1, extreme2)
 }
 
 add.extremes <- function(x, extremes, maximise)
 {
   best1 <- if (maximise[1]) max else min
   best2 <- if (maximise[2]) max else min
-  return(rbind(c(best1(x[,1]), extremes[2]), x, c(extremes[1], best2(x[,2]))))
+  rbind(c(best1(x[,1]), extremes[2]), x, c(extremes[1], best2(x[,2])))
 }
 
 #' Convert a list of attainment surfaces to a data.frame
@@ -493,8 +493,7 @@ attsurf2df <- function(x)
   x <- do.call("rbind", x)
   # Remove duplicated points (keep only the higher values)
   uniq <- !duplicated(x, fromLast = TRUE)
-  x <- cbind(x[uniq, , drop = FALSE], percentiles = percentiles[uniq])
-  return(x)
+  cbind(x[uniq, , drop = FALSE], percentiles = percentiles[uniq])
 }
 
 
