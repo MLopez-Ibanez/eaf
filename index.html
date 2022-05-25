@@ -113,10 +113,18 @@
 <p>[ <a href="https://cran.r-project.org/package=eaf" class="external-link">Download <strong>eaf</strong> package from CRAN</a> ] [ <a href="https://mlopez-ibanez.github.io/eaf/" class="external-link">Documentation</a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf" class="external-link">Development version (GitHub)</a> ]</p>
 </div>
 <div class="section level2">
+<h2 id="github-development-version">GitHub (Development version)<a class="anchor" aria-label="anchor" href="#github-development-version"></a>
+</h2>
+<p>If you wish to try the development version, you can install it by executing the following commands within the R console:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R">    <span class="va">R</span><span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+    <span class="va">R</span><span class="op">&gt;</span> <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"MLopez-Ibanez/eaf"</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>Once the <strong>eaf</strong> package is installed, the following R commands will give more information:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R">    <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mlopez-ibanez.github.io/eaf/" class="external-link">eaf</a></span><span class="op">)</span>
     <span class="op">?</span><span class="va">eaf</span>
     <span class="op">?</span><span class="va">eafplot</span>
@@ -140,31 +148,31 @@
 <h2 id="python">Python<a class="anchor" aria-label="anchor" href="#python"></a>
 </h2>
 <p>Thanks to <a href="https://rpy2.github.io/doc/latest/html/index.html" class="external-link">rpy2</a>, you can use the <code>eaf</code> package from Python. A complete example would be:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> os</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">## Uncomment this if you suffer from this bug in cffi 1.13.0</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">## https://bitbucket.org/rpy2/rpy2/issues/591/runtimeerror-found-a-situation-in-which-we</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#os.environ['RPY2_CFFI_MODE'] = "API"</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co"># Tested with rpy2 2.9.2-1 and 3.2.6</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> r <span class="im">as</span> R</span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
-<span id="cb4-11"><a href="#cb4-11"></a>numpy2ri.activate()</span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="im">from</span> rpy2.interactive <span class="im">import</span> process_revents</span>
-<span id="cb4-13"><a href="#cb4-13"></a>process_revents.start()</span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a>eaf <span class="op">=</span> importr(<span class="st">"eaf"</span>)</span>
-<span id="cb4-16"><a href="#cb4-16"></a>path <span class="op">=</span> R(<span class="st">'system.file(package="eaf", "extdata")'</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"/"</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>alg1 <span class="op">=</span> eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_1_dat.xz"</span>)</span>
-<span id="cb4-18"><a href="#cb4-18"></a>alg1 <span class="op">=</span> np.asarray(alg1)</span>
-<span id="cb4-19"><a href="#cb4-19"></a>alg2 <span class="op">=</span> np.asarray(eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_2_dat.xz"</span>))</span>
-<span id="cb4-20"><a href="#cb4-20"></a></span>
-<span id="cb4-21"><a href="#cb4-21"></a>eaf.eafplot(alg1[:, <span class="dv">0</span>:<span class="dv">2</span>], sets<span class="op">=</span>alg1[:,<span class="dv">2</span>])</span>
-<span id="cb4-22"><a href="#cb4-22"></a></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="bu">input</span>(<span class="st">"Press ENTER to see next plot: "</span>)</span>
-<span id="cb4-24"><a href="#cb4-24"></a></span>
-<span id="cb4-25"><a href="#cb4-25"></a>eaf.eafdiffplot(alg1, alg2, title_left<span class="op">=</span><span class="st">"A"</span>, title_right<span class="op">=</span><span class="st">"B"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> os</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">## Uncomment this if you suffer from this bug in cffi 1.13.0</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">## https://bitbucket.org/rpy2/rpy2/issues/591/runtimeerror-found-a-situation-in-which-we</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#os.environ['RPY2_CFFI_MODE'] = "API"</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># Tested with rpy2 2.9.2-1 and 3.2.6</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> r <span class="im">as</span> R</span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
+<span id="cb5-11"><a href="#cb5-11"></a>numpy2ri.activate()</span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="im">from</span> rpy2.interactive <span class="im">import</span> process_revents</span>
+<span id="cb5-13"><a href="#cb5-13"></a>process_revents.start()</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a>eaf <span class="op">=</span> importr(<span class="st">"eaf"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16"></a>path <span class="op">=</span> R(<span class="st">'system.file(package="eaf", "extdata")'</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"/"</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>alg1 <span class="op">=</span> eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_1_dat.xz"</span>)</span>
+<span id="cb5-18"><a href="#cb5-18"></a>alg1 <span class="op">=</span> np.asarray(alg1)</span>
+<span id="cb5-19"><a href="#cb5-19"></a>alg2 <span class="op">=</span> np.asarray(eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_2_dat.xz"</span>))</span>
+<span id="cb5-20"><a href="#cb5-20"></a></span>
+<span id="cb5-21"><a href="#cb5-21"></a>eaf.eafplot(alg1[:, <span class="dv">0</span>:<span class="dv">2</span>], sets<span class="op">=</span>alg1[:,<span class="dv">2</span>])</span>
+<span id="cb5-22"><a href="#cb5-22"></a></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="bu">input</span>(<span class="st">"Press ENTER to see next plot: "</span>)</span>
+<span id="cb5-24"><a href="#cb5-24"></a></span>
+<span id="cb5-25"><a href="#cb5-25"></a>eaf.eafdiffplot(alg1, alg2, title_left<span class="op">=</span><span class="st">"A"</span>, title_right<span class="op">=</span><span class="st">"B"</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
