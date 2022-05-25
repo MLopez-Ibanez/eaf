@@ -102,6 +102,17 @@ If you wish to be notified of bugfixes and new versions, please subscribe to the
 [ [Download **eaf** package from CRAN](https://cran.r-project.org/package=eaf) ]  [ [Documentation](https://mlopez-ibanez.github.io/eaf/) ]  [ [Development version (GitHub)](https://github.com/MLopez-Ibanez/eaf) ]
 
 
+GitHub (Development version)
+----------------------------
+
+If you wish to try the development version, you can install it by executing the
+following commands within the R console:
+
+```R
+    R> install.packages("devtools")
+    R> devtools::install_github("MLopez-Ibanez/eaf")
+```
+
 Usage
 -----
 
