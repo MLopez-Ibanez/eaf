@@ -3,6 +3,10 @@
 #include <string.h> /* for strerror() */
 #include <errno.h> /* for errno  */
 
+#define QUOTE(name) #name
+#define STR(macro) QUOTE(macro)
+#define objective_t_str STR(objective_t) 
+
 #define PAGE_SIZE 4096           /* allocate one page at a time      */
 #define DATA_INC (PAGE_SIZE/sizeof(objective_t))
 
@@ -91,8 +95,8 @@ read_objective_t_data (const char *filename, objective_t **data_p,
                                    filename, line, column);
                     } else {
                         errprintf ("%s: line %d column %d: "
-                                   "could not convert string `%s' to double", 
-                                   filename, line, column, buffer);
+                                   "could not convert string `%s' to %s (format: %s)", 
+                                   filename, line, column, buffer, objective_t_str, objective_t_scanf_format);
                     }
                     errorcode = ERROR_CONVERSION;
                     goto read_data_finish;
@@ -168,5 +172,5 @@ read_data_finish:
 
 #undef PAGE_SIZE
 #undef DATA_INC
-                
-                
+#undef QUOTE
+#undef STR

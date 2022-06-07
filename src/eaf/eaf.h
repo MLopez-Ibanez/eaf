@@ -57,11 +57,12 @@
 
 /* If the input are always integers, adjusting this type will
    certainly improve performance.  */
+#ifndef objective_t
 #define objective_t double
+#endif
 #if objective_t == double
 # define objective_MAX INFINITY
 # define objective_MIN -INFINITY
-
 # define objective_t_scanf_format "%lf"
 # define read_objective_t_data read_double_data
 #else
