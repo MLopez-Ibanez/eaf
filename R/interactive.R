@@ -77,14 +77,9 @@ choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
                   rectangles = TRUE)
 
   coord <- grid::grid.locator("npc")
-  
-  if (coord$x[[1]] < 0.5) {
-    cat("LEFT!\n")
-    return (choose_eafdiff(DIFF, left=TRUE))
-  } else {
-    cat("RIGHT!\n")
-    return (choose_eafdiff(DIFF, left=FALSE))
-  }
+  left <- coord$x[[1]] < 0.5
+  if (left) cat("LEFT!\n") else cat("RIGHT!\n")
+  choose_eafdiff(DIFF, left=left)
 }
 
 #' Identify largest EAF differences
