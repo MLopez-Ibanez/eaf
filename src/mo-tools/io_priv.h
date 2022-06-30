@@ -89,9 +89,9 @@ read_objective_t_data (const char *filename, objective_t **data_p,
                 objective_t number;
                 if (fscanf (instream, objective_t_scanf_format, &number) != 1) {
                     char buffer[64];
-                    if (fscanf (instream, "%60[^ \t\r\n]", buffer) == EOF) {
+                    if (fscanf (instream, "%60[^ \t\r\n]", buffer) != 1) {
                         errprintf ("%s: line %d column %d: "
-                                   "read error or EOF", 
+                                   "read error or unexpected end of file",
                                    filename, line, column);
                     } else {
                         errprintf ("%s: line %d column %d: "
