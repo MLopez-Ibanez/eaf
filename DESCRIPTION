@@ -18,7 +18,8 @@ Imports:
         grDevices,
         matrixStats,
         Rdpack
-Suggests: testthat,
+Suggests: extrafont,
+          testthat,
           withr,
           viridisLite
 License: GPL (>= 2)
