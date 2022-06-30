@@ -57,7 +57,7 @@ given, they are used for the normalisation.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">normalise</span><span class="op">(</span><span class="va">data</span>, to.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, lower <span class="op">=</span> <span class="cn">NA</span>, upper <span class="op">=</span> <span class="cn">NA</span>, maximise <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">normalise</span><span class="op">(</span><span class="va">data</span>, to.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, lower <span class="op">=</span> <span class="cn">NA</span>, upper <span class="op">=</span> <span class="cn">NA</span>, maximise <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,22 +65,31 @@ given, they are used for the normalisation.</p>
     <dl><dt>data</dt>
 <dd><p>(<code>matrix</code> | <code>data.frame</code>) <br> Matrix or data frame of numerical
 values, where each row gives the coordinates of a point.</p></dd>
+
+
 <dt>to.range</dt>
 <dd><p>Normalise values to this range. If the objective is
 maximised, it is normalised to <code>c(to.range[1], to.range[0])</code>
 instead.</p></dd>
+
+
 <dt>lower, upper</dt>
 <dd><p>Bounds on the values. If NA, the maximum and minimum
 values of each coordinate are used.</p></dd>
+
+
 <dt>maximise</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical()</a></code> | <code>logical(1)</code>) <br> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numerical matrix</p>
+    
+
+<p>A numerical matrix</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -89,10 +98,10 @@ objective.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># The second objective must be maximized</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># The second objective must be maximized</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        V1    V2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 105.832   357</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 108.187   911</span>
@@ -100,8 +109,8 @@ objective.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 108.641  7560</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5 108.896 16532</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6 112.556 19957</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">normalise</span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, maximise <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">normalise</span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, maximise <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            V1       V2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.044174 2.000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.059891 1.993561</span>
@@ -109,8 +118,8 @@ objective.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 1.062921 1.916286</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 1.064623 1.812013</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 1.089049 1.772207</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">normalise</span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, to.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, maximise <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">normalise</span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, to.range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, maximise <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              V1        V2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.04417408 1.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.05989095 0.9935614</span>
@@ -118,7 +127,7 @@ objective.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.06292087 0.9162860</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.06462270 0.8120126</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.08904891 0.7722069</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -133,7 +142,7 @@ objective.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -55,7 +55,7 @@ assuming minimization of all objectives.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hypervolume</span><span class="op">(</span><span class="va">data</span>, <span class="va">reference</span>, maximise <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hypervolume</span><span class="op">(</span><span class="va">data</span>, <span class="va">reference</span>, maximise <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,17 +63,24 @@ assuming minimization of all objectives.</p>
     <dl><dt>data</dt>
 <dd><p>(<code>matrix</code> | <code>data.frame</code>) <br> Matrix or data frame of numerical
 values, where each row gives the coordinates of a point.</p></dd>
+
+
 <dt>reference</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric()</a></code>) <br> Reference point as a vector of numerical values.</p></dd>
+
+
 <dt>maximise</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical()</a></code> | <code>logical(1)</code>) <br> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A single numerical value.</p>
+    
+
+<p>A single numerical value.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -104,14 +111,14 @@ M. Fonseca, Manuel López-Ibáñez, Luís Paquete, Jan Vahrenhold (2009).
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># The second objective must be maximized</span></span>
-<span class="r-in"><span class="co"># We calculate the hypervolume of the union of all sets.</span></span>
-<span class="r-in"><span class="fu">hypervolume</span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, reference <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">250</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span class="r-in">            maximise <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># The second objective must be maximized</span></span></span>
+<span class="r-in"><span><span class="co"># We calculate the hypervolume of the union of all sets.</span></span></span>
+<span class="r-in"><span><span class="fu">hypervolume</span><span class="op">(</span><span class="va">SPEA2minstoptimeRichmond</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, reference <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">250</span>, <span class="fl">0</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            maximise <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7911376</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -126,7 +133,7 @@ M. Fonseca, Manuel López-Ibáñez, Luís Paquete, Jan Vahrenhold (2009).
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -59,14 +59,14 @@ weight distribution describing user preferences may be specified.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">whv_hype</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">reference</span>,
-  <span class="va">ideal</span>,
-  maximise <span class="op">=</span> <span class="cn">FALSE</span>,
-  dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"uniform"</span><span class="op">)</span>,
-  nsamples <span class="op">=</span> <span class="fl">100000L</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">whv_hype</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">reference</span>,</span>
+<span>  <span class="va">ideal</span>,</span>
+<span>  maximise <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"uniform"</span><span class="op">)</span>,</span>
+<span>  nsamples <span class="op">=</span> <span class="fl">100000L</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -74,23 +74,36 @@ weight distribution describing user preferences may be specified.</p>
     <dl><dt>data</dt>
 <dd><p>(<code>matrix</code> | <code>data.frame</code>) <br> Matrix or data frame of numerical
 values, where each row gives the coordinates of a point.</p></dd>
+
+
 <dt>reference</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric()</a></code>) <br> Reference point as a vector of numerical values.</p></dd>
+
+
 <dt>ideal</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric()</a></code>) <br> Ideal point as a vector of numerical values.</p></dd>
+
+
 <dt>maximise</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical()</a></code> | <code>logical(1)</code>) <br> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></dd>
+
+
 <dt>dist</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code>) weight distribution. See Details.</p></dd>
+
+
 <dt>nsamples</dt>
 <dd><p>(<code>integer(1)</code>) number of samples for Monte-Carlo sampling.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A single numerical value.</p>
+    
+
+<p>A single numerical value.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -112,29 +125,29 @@ ACM Press, New York, NY.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.01031</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.99664</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"exponential"</span>, mu<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.12356</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"exponential"</span>, mu<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.65951</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"point"</span>, mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.81333</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"point"</span>, mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.00401</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.00618</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"exponential"</span>, mu<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.13814</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"exponential"</span>, mu<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.66122</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"point"</span>, mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.82665</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">whv_hype</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, reference <span class="op">=</span> <span class="fl">4</span>, ideal <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>          dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"point"</span>, mu<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03465</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -149,7 +162,7 @@ ACM Press, New York, NY.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

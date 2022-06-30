@@ -59,29 +59,29 @@ differences in the other direction.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">eafdiffplot</span><span class="op">(</span>
-  <span class="va">data.left</span>,
-  <span class="va">data.right</span>,
-  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#FFFFFF"</span>, <span class="st">"#808080"</span>, <span class="st">"#000000"</span><span class="op">)</span>,
-  intervals <span class="op">=</span> <span class="fl">5</span>,
-  percentiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>,
-  full.eaf <span class="op">=</span> <span class="cn">FALSE</span>,
-  type <span class="op">=</span> <span class="st">"area"</span>,
-  legend.pos <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="va">full.eaf</span><span class="op">)</span> <span class="st">"bottomleft"</span> <span class="kw">else</span> <span class="st">"topright"</span>,
-  title.left <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data.left</span><span class="op">)</span><span class="op">)</span>,
-  title.right <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data.right</span><span class="op">)</span><span class="op">)</span>,
-  xlim <span class="op">=</span> <span class="cn">NULL</span>,
-  ylim <span class="op">=</span> <span class="cn">NULL</span>,
-  cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>,
-  cex.lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex.lab"</span><span class="op">)</span>,
-  cex.axis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex.axis"</span><span class="op">)</span>,
-  maximise <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
-  grand.lines <span class="op">=</span> <span class="cn">TRUE</span>,
-  sci.notation <span class="op">=</span> <span class="cn">FALSE</span>,
-  left.panel.last <span class="op">=</span> <span class="cn">NULL</span>,
-  right.panel.last <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">eafdiffplot</span><span class="op">(</span></span>
+<span>  <span class="va">data.left</span>,</span>
+<span>  <span class="va">data.right</span>,</span>
+<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#FFFFFF"</span>, <span class="st">"#808080"</span>, <span class="st">"#000000"</span><span class="op">)</span>,</span>
+<span>  intervals <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  percentiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>,</span>
+<span>  full.eaf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"area"</span>,</span>
+<span>  legend.pos <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="va">full.eaf</span><span class="op">)</span> <span class="st">"bottomleft"</span> <span class="kw">else</span> <span class="st">"topright"</span>,</span>
+<span>  title.left <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data.left</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  title.right <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">data.right</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>,</span>
+<span>  cex.lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex.lab"</span><span class="op">)</span>,</span>
+<span>  cex.axis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex.axis"</span><span class="op">)</span>,</span>
+<span>  maximise <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>  grand.lines <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sci.notation <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  left.panel.last <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  right.panel.last <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -91,60 +91,89 @@ differences in the other direction.</p>
 left and right sides, respectively. Each data frame has at least three
 columns, the third one being the set of each point. See also
 <code><a href="read_datasets.html">read_datasets()</a></code>.</p></dd>
+
+
 <dt>col</dt>
 <dd><p>A character vector of three colors for the magnitude of the
 differences of 0, 0.5, and 1. Intermediate colors are computed
 automatically given the value of <code>intervals</code>. Alternatively, a function
 such as <code><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridisLite::viridis()</a></code> that generates a colormap given an integer
 argument.</p></dd>
+
+
 <dt>intervals</dt>
 <dd><p>(<code>integer(1)</code>|<code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code>) <br> The
 absolute range of the differences \([0, 1]\) is partitioned into the number
 of intervals provided. If an integer is provided, then labels for each
 interval are  computed automatically. If a character vector is
 provided, its length is taken as the number of intervals.</p></dd>
+
+
 <dt>percentiles</dt>
 <dd><p>The percentiles of the EAF of each side that will be
 plotted as attainment surfaces. <code>NA</code> does not plot any. See
 <code><a href="eafplot.html">eafplot()</a></code>.</p></dd>
+
+
 <dt>full.eaf</dt>
 <dd><p>Whether to plot the EAF of each side instead of the
 differences between the EAFs.</p></dd>
+
+
 <dt>type</dt>
 <dd><p>Whether the EAF differences are plotted as points
 (<samp>points</samp>) or whether to color the areas that have at least a
 certain value (<samp>area</samp>).</p></dd>
+
+
 <dt>legend.pos</dt>
 <dd><p>The position of the legend. See <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend()</a></code>.  A value of
 <code>"none"</code> hides the legend.</p></dd>
+
+
 <dt>title.left, title.right</dt>
 <dd><p>Title for left and right panels, respectively.</p></dd>
+
+
 <dt>xlim, ylim, cex, cex.lab, cex.axis</dt>
 <dd><p>Graphical parameters, see
 <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default()</a></code>.</p></dd>
+
+
 <dt>maximise</dt>
 <dd><p>(<code><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical()</a></code> | <code>logical(1)</code>) <br> Whether the objectives must be
 maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.</p></dd>
+
+
 <dt>grand.lines</dt>
 <dd><p>Whether to plot the grand-best and grand-worst
 attainment surfaces.</p></dd>
+
+
 <dt>sci.notation</dt>
 <dd><p>Generate prettier labels</p></dd>
+
+
 <dt>left.panel.last, right.panel.last</dt>
 <dd><p>An expression to be evaluated after
 plotting has taken place on each panel (left or right). This can be useful
 for adding points or text to either panel.  Note that this works by lazy
 evaluation: passing this argument from other <code>plot</code> methods may well
 not work since it may be evaluated too early.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other graphical parameters are passed down to
 <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default()</a></code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a representation of the EAF differences (invisibly).</p>
+    
+
+<p>Returns a representation of the EAF differences (invisibly).</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -186,41 +215,41 @@ considerably the apparent size of the areas.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## NOTE: The plots in the website look squashed because of how pkgdown</span></span>
-<span class="r-in"><span class="co">## generates them. They should look fine when you generate them yourself.</span></span>
-<span class="r-in"><span class="va">extdata_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"eaf"</span>, <span class="st">"extdata"</span><span class="op">)</span> </span>
-<span class="r-in"><span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_datasets.html">read_datasets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">extdata_dir</span>, <span class="st">"ALG_1_dat.xz"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">A2</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_datasets.html">read_datasets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">extdata_dir</span>, <span class="st">"ALG_2_dat.xz"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># These take time</span></span>
-<span class="r-in"><span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, full.eaf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## NOTE: The plots in the website look squashed because of how pkgdown</span></span></span>
+<span class="r-in"><span><span class="co">## generates them. They should look fine when you generate them yourself.</span></span></span>
+<span class="r-in"><span><span class="va">extdata_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"eaf"</span>, <span class="st">"extdata"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span><span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_datasets.html">read_datasets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">extdata_dir</span>, <span class="st">"ALG_1_dat.xz"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">A2</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_datasets.html">read_datasets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">extdata_dir</span>, <span class="st">"ALG_2_dat.xz"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># These take time</span></span></span>
+<span class="r-in"><span><span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, full.eaf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="eafdiffplot-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"viridisLite"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">viridis_r</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="va">n</span>, direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"area"</span>, col <span class="op">=</span> <span class="va">viridis_r</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"area"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"viridisLite"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">viridis_r</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="va">n</span>, direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"area"</span>, col <span class="op">=</span> <span class="va">viridis_r</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"area"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-plt img"><img src="eafdiffplot-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_datasets.html">read_datasets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">extdata_dir</span>, <span class="st">"wrots_l100w10_dat"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">A2</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_datasets.html">read_datasets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">extdata_dir</span>, <span class="st">"wrots_l10w100_dat"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"point"</span>, sci.notation <span class="op">=</span> <span class="cn">TRUE</span>, cex.axis<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_datasets.html">read_datasets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">extdata_dir</span>, <span class="st">"wrots_l100w10_dat"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">A2</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_datasets.html">read_datasets</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">extdata_dir</span>, <span class="st">"wrots_l10w100_dat"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, type <span class="op">=</span> <span class="st">"point"</span>, sci.notation <span class="op">=</span> <span class="cn">TRUE</span>, cex.axis<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="eafdiffplot-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># A more complex example</span></span>
-<span class="r-in"><span class="va">DIFF</span> <span class="op">&lt;-</span> <span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span><span class="op">)</span>, intervals <span class="op">=</span> <span class="fl">5</span>,</span>
-<span class="r-in">                    type <span class="op">=</span> <span class="st">"point"</span>,</span>
-<span class="r-in">                    title.left<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">"W-RoTS,"</span> <span class="op">~</span> <span class="va">lambda</span><span class="op">==</span><span class="fl">100</span> <span class="op">*</span> <span class="st">","</span> <span class="op">~</span> <span class="va">omega</span><span class="op">==</span><span class="fl">10</span><span class="op">)</span>,</span>
-<span class="r-in">                    title.right<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">"W-RoTS,"</span> <span class="op">~</span> <span class="va">lambda</span><span class="op">==</span><span class="fl">10</span> <span class="op">*</span> <span class="st">","</span> <span class="op">~</span> <span class="va">omega</span><span class="op">==</span><span class="fl">100</span><span class="op">)</span>,</span>
-<span class="r-in">                    right.panel.last<span class="op">=</span><span class="op">{</span></span>
-<span class="r-in">                      <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">0</span>, b <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="st">"red"</span>, lty <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># A more complex example</span></span></span>
+<span class="r-in"><span><span class="va">DIFF</span> <span class="op">&lt;-</span> <span class="fu">eafdiffplot</span><span class="op">(</span><span class="va">A1</span>, <span class="va">A2</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span><span class="op">)</span>, intervals <span class="op">=</span> <span class="fl">5</span>,</span></span>
+<span class="r-in"><span>                    type <span class="op">=</span> <span class="st">"point"</span>,</span></span>
+<span class="r-in"><span>                    title.left<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">"W-RoTS,"</span> <span class="op">~</span> <span class="va">lambda</span><span class="op">==</span><span class="fl">100</span> <span class="op">*</span> <span class="st">","</span> <span class="op">~</span> <span class="va">omega</span><span class="op">==</span><span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    title.right<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">"W-RoTS,"</span> <span class="op">~</span> <span class="va">lambda</span><span class="op">==</span><span class="fl">10</span> <span class="op">*</span> <span class="st">","</span> <span class="op">~</span> <span class="va">omega</span><span class="op">==</span><span class="fl">100</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    right.panel.last<span class="op">=</span><span class="op">{</span></span></span>
+<span class="r-in"><span>                      <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">0</span>, b <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="st">"red"</span>, lty <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="eafdiffplot-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="va">DIFF</span><span class="op">$</span><span class="va">right</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="va">DIFF</span><span class="op">$</span><span class="va">right</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Save the values to a file.</span></span>
-<span class="r-in"><span class="co"># write.table(rbind(DIFF$left,DIFF$right),</span></span>
-<span class="r-in"><span class="co">#             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",</span></span>
-<span class="r-in"><span class="co">#             quote = FALSE, row.names = FALSE, col.names = FALSE)</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span><span class="va">DIFF</span><span class="op">$</span><span class="va">right</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="va">DIFF</span><span class="op">$</span><span class="va">right</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Save the values to a file.</span></span></span>
+<span class="r-in"><span><span class="co"># write.table(rbind(DIFF$left,DIFF$right),</span></span></span>
+<span class="r-in"><span><span class="co">#             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",</span></span></span>
+<span class="r-in"><span><span class="co">#             quote = FALSE, row.names = FALSE, col.names = FALSE)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -235,7 +264,7 @@ considerably the apparent size of the areas.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
