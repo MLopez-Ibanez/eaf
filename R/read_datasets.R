@@ -79,7 +79,7 @@ read_datasets <- function(file, col_names, text)
 read.data.sets <- function(file, col.names)
 {
   .Deprecated("read_datasets")
-  return(read_datasets(file=file, col_names=col.names))
+  read_datasets(file=file, col_names=col.names)
 }
 
 #' Write data sets
