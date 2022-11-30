@@ -155,10 +155,8 @@ jobs:
           
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          extra-packages: |
-            covr
-          needs: |
-            coverage
+          extra-packages: covr
+          needs: coverage
 
       - name: Test coverage
         if: success()
@@ -195,11 +193,8 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          extra-packages: |
-            pkgdown
-            devtools
-          needs: |
-            website
+          extra-packages: pkgdown devtools
+          needs: website
 
       - name: Deploy package
         if: success() && runner.os == 'Linux' && matrix.config.r == 'release' && github.event_name == 'push'
