@@ -354,9 +354,9 @@ points.steps <- function(x)
 
 
 
-#' Exact computation of the EAF
+#' Exact computation of the EAF in 2D or 3D
 #'
-#' This function computes the EAF given a set of points and a vector `set`
+#' This function computes the EAF given a set of 2D or 3D points and a vector `set`
 #' that indicates to which set each point belongs.
 #'
 #' @param points Either a matrix or a data frame of numerical values, where
@@ -377,7 +377,7 @@ points.steps <- function(x)
 #'
 #' @author  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
 #'
-#'@note There are several examples of data sets in `system.file(package="eaf","extdata")`.
+#'@note There are several examples of data sets in `system.file(package="eaf","extdata")`. The current implementation only supports two and three dimensional points.
 #'
 #'@seealso [read_datasets()]
 #'

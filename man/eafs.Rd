@@ -2,7 +2,7 @@
 % Please edit documentation in R/eaf.R
 \name{eafs}
 \alias{eafs}
-\title{Exact computation of the EAF}
+\title{Exact computation of the EAF in 2D or 3D}
 \usage{
 eafs(points, sets, groups = NULL, percentiles = NULL)
 }
@@ -25,11 +25,11 @@ point. If groups is not \code{NULL}, then an additional column
 indicates to which group the point belongs.
 }
 \description{
-This function computes the EAF given a set of points and a vector \code{set}
+This function computes the EAF given a set of 2D or 3D points and a vector \code{set}
 that indicates to which set each point belongs.
 }
 \note{
-There are several examples of data sets in \code{system.file(package="eaf","extdata")}.
+There are several examples of data sets in \code{system.file(package="eaf","extdata")}. The current implementation only supports two and three dimensional points.
 }
 \examples{
 extdata_path <- system.file(package="eaf", "extdata")
