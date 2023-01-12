@@ -33,8 +33,6 @@ all: $(SHLIB)
 
 $(SHLIB): $(OBJECTS)
 
-mo-tools/hv.o: PKG_CPPFLAGS += -DVARIANT=4
-
 clean:
 	@-rm -f *.o *.so *.dll \
 	eaf/*.o $(eaf) \

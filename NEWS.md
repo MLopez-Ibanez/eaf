@@ -6,6 +6,8 @@
  * `pdf_crop()` can optionally embed fonts.
 
  * Fix calculation of `ideal` in `largest_eafdiff()`.
+ 
+ * Fix `configure` script to use the same compiler and flags as R.
 
 # eaf 2.3
 

@@ -2,7 +2,7 @@
 WARN_CFLAGS = -pedantic -Wall -Wextra
 SANITIZERS= -fsanitize=undefined -fsanitize=address
 ifeq ($(DEBUG), 0)
-  OPT_CFLAGS ?= -O3 -DNDEBUG
+  OPT_CFLAGS ?= -O3 -flto -DNDEBUG
 # Options -funroll-loops -ffast-math -msse -mfpmath=sse improve performance but are not portable.
 # Options -fstandard-precision=fast -ftree-vectorize are not well
 # supported in some versions/architectures.
