@@ -75,6 +75,7 @@
 <strong>eaf</strong>: Empirical Attainment Function (EAF) Tools<a class="anchor" aria-label="anchor" href="#eaf-empirical-attainment-function-eaf-tools"></a>
 </h1></div>
 <!-- badges: start -->
+
 <p>[ <a href="https://mlopez-ibanez.github.io/eaf/" class="external-link"><strong>Homepage</strong></a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf" class="external-link"><strong>GitHub</strong></a> ]</p>
 <p><strong>Maintainer:</strong> <a href="https://lopez-ibanez.eu" class="external-link">Manuel López-Ibáñez</a></p>
 <p><strong>Contributors:</strong> <a href="https://lopez-ibanez.eu" class="external-link">Manuel López-Ibáñez</a>, <a href="http://www.imada.sdu.dk/~marco" class="external-link">Marco Chiarandini</a>, <a href="https://eden.dei.uc.pt/~cmfonsec/" class="external-link">Carlos M. Fonseca</a>, <a href="https://eden.dei.uc.pt/~paquete/" class="external-link">Luís Paquete</a>, Thomas Stützle, and Mickaël Binois.</p>
@@ -88,8 +89,10 @@
 <p>In addition, the package provides functions for computing several quality metrics, such as hypervolume, IGD, IGD+, and epsilon.</p>
 <p><strong>Keywords</strong>: empirical attainment function, summary attainment surfaces, EAF differences, multi-objective optimization, bi-objective optimization, performance measures, performance assessment, graphical analysis, visualization.</p>
 <p><strong>Relevant literature:</strong></p>
-<ol style="list-style-type: decimal"><li>
-<a name="LopPaqStu09emaa"></a>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. <a href="https://doi.org/10.1007/978-3-642-02538-9_9" class="external-link">Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization</a>. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, pages 209–222. Springer, Berlin, Germany, 2010.<br> (This chapter is also available in a slightly extended form as Technical Report TR/IRIDIA/2009-015).<br> [ <a href="https://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa" class="external-link">bibtex</a> | doi: <a href="https://doi.org/10.1007/978-3-642-02538-9_9" class="external-link">10.1007/978-3-642-02538-9_9</a> | <a href="https://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf" class="external-link">Presentation</a> ]</li></ol>
+<ol style="list-style-type: decimal">
+<li>
+<a name="LopPaqStu09emaa"></a>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. <a href="https://doi.org/10.1007/978-3-642-02538-9_9" class="external-link">Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization</a>. In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, pages 209–222. Springer, Berlin, Germany, 2010.<br> (This chapter is also available in a slightly extended form as Technical Report TR/IRIDIA/2009-015).<br> [ <a href="https://lopez-ibanez.eu/LopezIbanez_bib.html#LopPaqStu09emaa" class="external-link">bibtex</a> | doi: <a href="https://doi.org/10.1007/978-3-642-02538-9_9" class="external-link">10.1007/978-3-642-02538-9_9</a> | <a href="https://lopez-ibanez.eu/doc/gecco2010moworkshop.pdf" class="external-link">Presentation</a> ]</li>
+</ol>
 <div class="section level2">
 <h2 id="download-and-installation">Download and installation<a class="anchor" aria-label="anchor" href="#download-and-installation"></a>
 </h2>
@@ -104,7 +107,7 @@
 </li>
 <li>
 <p><a href="https://cran.r-project.org/package=eaf" class="external-link">Download the <strong>eaf</strong> package from CRAN</a> (you may also need to download and install first the <a href="https://cran.r-project.org/package=modeltools" class="external-link">package modeltools</a>), and invoke at the command-line:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a>    <span class="ex">R</span> CMD INSTALL <span class="op">&lt;</span>package<span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">R</span> CMD INSTALL <span class="op">&lt;</span>package<span class="op">&gt;</span></span></code></pre></div>
 <p>where <code>&lt;package&gt;</code> is one of the three versions available: <code>.tar.gz</code> (Unix/BSD/GNU/Linux), <code>.tgz</code> (MacOS X), or <code>.zip</code> (Windows).</p>
 </li>
 </ol>
@@ -118,7 +121,7 @@
 <p>If you wish to try the development version, you can install it by executing the following commands within the R console:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>    <span class="va">R</span><span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span>    <span class="va">R</span><span class="op">&gt;</span> <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"MLopez-Ibanez/eaf"</span><span class="op">)</span></span></code></pre></div>
+<span>    <span class="va">R</span><span class="op">&gt;</span> <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"MLopez-Ibanez/eaf"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -148,31 +151,31 @@
 <h2 id="python">Python<a class="anchor" aria-label="anchor" href="#python"></a>
 </h2>
 <p>Thanks to <a href="https://rpy2.github.io/doc/latest/html/index.html" class="external-link">rpy2</a>, you can use the <code>eaf</code> package from Python. A complete example would be:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> os</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co">## Uncomment this if you suffer from this bug in cffi 1.13.0</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">## https://bitbucket.org/rpy2/rpy2/issues/591/runtimeerror-found-a-situation-in-which-we</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#os.environ['RPY2_CFFI_MODE'] = "API"</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># Tested with rpy2 2.9.2-1 and 3.2.6</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> r <span class="im">as</span> R</span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
-<span id="cb5-11"><a href="#cb5-11"></a>numpy2ri.activate()</span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="im">from</span> rpy2.interactive <span class="im">import</span> process_revents</span>
-<span id="cb5-13"><a href="#cb5-13"></a>process_revents.start()</span>
-<span id="cb5-14"><a href="#cb5-14"></a></span>
-<span id="cb5-15"><a href="#cb5-15"></a>eaf <span class="op">=</span> importr(<span class="st">"eaf"</span>)</span>
-<span id="cb5-16"><a href="#cb5-16"></a>path <span class="op">=</span> R(<span class="st">'system.file(package="eaf", "extdata")'</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"/"</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a>alg1 <span class="op">=</span> eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_1_dat.xz"</span>)</span>
-<span id="cb5-18"><a href="#cb5-18"></a>alg1 <span class="op">=</span> np.asarray(alg1)</span>
-<span id="cb5-19"><a href="#cb5-19"></a>alg2 <span class="op">=</span> np.asarray(eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_2_dat.xz"</span>))</span>
-<span id="cb5-20"><a href="#cb5-20"></a></span>
-<span id="cb5-21"><a href="#cb5-21"></a>eaf.eafplot(alg1[:, <span class="dv">0</span>:<span class="dv">2</span>], sets<span class="op">=</span>alg1[:,<span class="dv">2</span>])</span>
-<span id="cb5-22"><a href="#cb5-22"></a></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="bu">input</span>(<span class="st">"Press ENTER to see next plot: "</span>)</span>
-<span id="cb5-24"><a href="#cb5-24"></a></span>
-<span id="cb5-25"><a href="#cb5-25"></a>eaf.eafdiffplot(alg1, alg2, title_left<span class="op">=</span><span class="st">"A"</span>, title_right<span class="op">=</span><span class="st">"B"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Uncomment this if you suffer from this bug in cffi 1.13.0</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">## https://bitbucket.org/rpy2/rpy2/issues/591/runtimeerror-found-a-situation-in-which-we</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#os.environ['RPY2_CFFI_MODE'] = "API"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Tested with rpy2 2.9.2-1 and 3.2.6</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> r <span class="im">as</span> R</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects <span class="im">import</span> numpy2ri</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>numpy2ri.activate()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.interactive <span class="im">import</span> process_revents</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>process_revents.start()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>eaf <span class="op">=</span> importr(<span class="st">"eaf"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> R(<span class="st">'system.file(package="eaf", "extdata")'</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">"/"</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>alg1 <span class="op">=</span> eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_1_dat.xz"</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>alg1 <span class="op">=</span> np.asarray(alg1)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>alg2 <span class="op">=</span> np.asarray(eaf.read_data_sets_(path <span class="op">+</span> <span class="st">"ALG_2_dat.xz"</span>))</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>eaf.eafplot(alg1[:, <span class="dv">0</span>:<span class="dv">2</span>], sets<span class="op">=</span>alg1[:,<span class="dv">2</span>])</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Press ENTER to see next plot: "</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>eaf.eafdiffplot(alg1, alg2, title_left<span class="op">=</span><span class="st">"A"</span>, title_right<span class="op">=</span><span class="st">"B"</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -181,7 +184,9 @@
 <p>This program is free software (software libre); you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a href="http://www.gnu.org/licenses/gpl.html" class="external-link">GNU General Public License</a> for more details.</p>
 <p><strong>IMPORTANT NOTE</strong>: Please be aware that the fact that this program is released as Free Software does not excuse you from scientific propriety, which obligates you to give appropriate credit! If you write a scientific paper describing research that made substantive use of this program, it is your obligation as a scientist to (a) mention the fashion in which this software was used in the Methods section; (b) mention the algorithm in the References section. The appropriate citation is:</p>
-<ul><li>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. <strong>Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization.</strong> In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, pages 209–222. Springer, Berlin, Germany, 2010. doi: 10.1007/978-3-642-02538-9_9</li></ul>
+<ul>
+<li>Manuel López-Ibáñez, Luís Paquete, and Thomas Stützle. <strong>Exploratory Analysis of Stochastic Local Search Algorithms in Biobjective Optimization.</strong> In T. Bartz-Beielstein, M. Chiarandini, L. Paquete, and M. Preuss, editors, <em>Experimental Methods for the Analysis of Optimization Algorithms</em>, pages 209–222. Springer, Berlin, Germany, 2010. doi: 10.1007/978-3-642-02538-9_9</li>
+</ul>
 <p>Moreover, as a personal note, I would appreciate it if you would email <code>manuel.lopez-ibanez@manchester.ac.uk</code> with citations of papers referencing this work so I can mention them to my funding agent and tenure committee.</p>
 </div>
 </div>
