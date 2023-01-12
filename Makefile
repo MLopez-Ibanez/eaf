@@ -10,7 +10,6 @@ RDIR=~/
 INSTALL_FLAGS="--with-keep.source"
 REALVERSION=$(PACKAGEVERSION)$(SVN_REV)
 PACKAGEDIR=$(CURDIR)
-FTP_COMMANDS="user anonymous anonymous\nbinary\ncd incoming\nput $(PACKAGE)_$(PACKAGEVERSION).tar.gz\nquit\n"
 RHUB_COMMON_ARGS= path='$(BINDIR)/$(PACKAGE)_$(PACKAGEVERSION).tar.gz', env_vars = c('_R_CHECK_FORCE_SUGGESTS_'='false', R_DEFAULT_SAVE_VERSION='2', R_DEFAULT_SERIALIZE_VERSION='2')
 Reval=R --slave -e
 
@@ -78,6 +77,11 @@ releasebuild: clean
 	@$(MAKE) figures
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
+releasecheck: cran
+	$(Reval) 'urlchecker::url_check()'
+	$(MAKE) winbuild
+	$(MAKE) macbuild
+
 cran : build
 	cd $(BINDIR) && _R_CHECK_FORCE_SUGGESTS_=false _R_OPTIONS_STRINGS_AS_FACTORS_=false R CMD check --as-cran $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
@@ -134,10 +138,8 @@ else
 	@exit 1
 endif
 
-submit: 
-	@echo "Read http://cran.r-project.org/web/packages/policies.html"
-	cd $(BINDIR) && echo $(FTP_COMMANDS) | ftp -v -e -g -i -n cran.r-project.org
-	@echo "Don't forget to send email to cran@r-project.org !"
+submit:
+	$(Reval) 'devtools::release(check=FALSE)'
 
 remotecran: releasebuild
 	$(Reval) "rhub::check_for_cran($(RHUB_COMMON_ARGS), show_status = TRUE)"
@@ -146,7 +148,10 @@ macbuild: releasebuild
 	$(Reval) "rhub::check(platform='macos-highsierra-release-cran', $(RHUB_COMMON_ARGS))"
 
 winbuild: releasebuild
-	@echo "Winbuild: http://win-builder.r-project.org/"
-	cd $(BINDIR) && $(Reval) "devtools::check_win_devel('$(PACKAGEDIR)', quiet = TRUE)" && $(Reval) "devtools::check_win_release('$(PACKAGEDIR)', quiet = TRUE)" # This builds the package 2 more times, which is a waste. How to tell it to use the .tar.gz?
+	$(Reval) "devtools::check_win_release()"
+	$(Reval) "devtools::check_win_devel()"
 	$(Reval) "rhub::check_on_windows($(RHUB_COMMON_ARGS))"
+
+covr: build
+	$(Reval) "Sys.setenv(NOT_CRAN='true');covr::report(covr::package_coverage(type='all'))"
 
