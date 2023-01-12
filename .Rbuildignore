@@ -29,3 +29,4 @@ inst/.+\.svn
 inst/.+~
 cran-comments.md
 eafparcoords.R
+^CRAN-RELEASE$

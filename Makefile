@@ -139,7 +139,8 @@ else
 endif
 
 submit:
-	$(Reval) 'devtools::release(check=FALSE)'
+	@echo 'Run devtools::submit() in R'
+
 
 remotecran: releasebuild
 	$(Reval) "rhub::check_for_cran($(RHUB_COMMON_ARGS), show_status = TRUE)"
