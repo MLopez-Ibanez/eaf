@@ -1,7 +1,5 @@
 ## Process this file with autoconf to produce a configure script.
 ##
-## Configure.ac for RcppGSL
-##
 ## Copyright (C) 2010         Romain Francois and Dirk Eddelbuettel
 ## Copyright (C) 2014 - 2019  Dirk Eddelbuettel
 ##
@@ -19,7 +17,8 @@ AC_INIT([eaf],m4_esyscmd_s(awk -e '/^Version:/ {print $2}' DESCRIPTION))
 # CC=`"${R_HOME}/bin/R" CMD config CC`
 # CFLAGS=`"${R_HOME}/bin/R" CMD config CFLAGS`
 # CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
-#
+# CXX=$(${R_HOME}/bin/R CMD config CXX)
+# CXXFLAGS=$("${R_HOME}/bin/R" CMD config CXXFLAGS)
 # # Checks for common programs using default macros
 # AC_PROG_CC
 
