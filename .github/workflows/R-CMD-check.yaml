@@ -115,7 +115,7 @@ jobs:
 
       - name: Install package
         run: |
-          remotes::install_local(".")
+          remotes::install_local(".", force = TRUE, upgrade = "never", build_manual = TRUE, build_vignettes = TRUE)
         shell: Rscript {0}
         
       - name: Upload check results
