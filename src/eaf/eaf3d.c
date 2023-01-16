@@ -58,10 +58,12 @@ typedef struct removed_list {
 
 static removed_list_t * removed_list;
 
-static inline bool avl_tree_is_empty (const avl_tree_t *avltree)
+/*
+static bool avl_tree_is_empty (const avl_tree_t *avltree)
 {
     return avltree->top == NULL;
 }
+*/
 
 static inline objective_t *node_point(const avl_node_t *node)
 {

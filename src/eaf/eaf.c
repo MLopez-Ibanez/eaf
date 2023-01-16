@@ -67,13 +67,13 @@ static int compare_y_desc (const void *p1, const void *p2)
     return (y1 > y2) ? -1 : ((y1 < y2) ? 1 : 0);
 }
 
-static inline void
+static void
 point2d_printf(FILE *stream, const objective_t x, const objective_t y)
 {
     fprintf(stream, point_printf_format "\t" point_printf_format, x, y);
 }
 
-static inline void
+static void
 point_printf(FILE *stream, const objective_t *p, int nobj)
 {
     point2d_printf(stream, p[0], p[1]);
@@ -231,7 +231,7 @@ eaf_print_attsurf (eaf_t * eaf, FILE *coord_file,  FILE *indic_file, FILE *diff_
     }
 }
 
-static inline void
+__unused static void
 fprint_set2d (FILE *stream, const objective_t * const *data, int ntotal)
 {
     for (int k = 0; k < ntotal; k++)
@@ -510,7 +510,7 @@ polygons_intersect(const objective_t *a, const objective_t *b, int nobj)
 }
 
 
-static inline void
+__unused static void
 polygon_print(const objective_t *p, int nobj)
 {
     while (p[0] != objective_MIN) {

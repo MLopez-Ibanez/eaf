@@ -141,11 +141,13 @@ vector_fprintf (FILE *stream, const double * vector, int size)
         fprintf (stream, point_printf_sep "" point_printf_format, vector[k]);
 }
 
+#ifndef R_PACKAGE
 void
 vector_printf (const double *vector, int size)
 {
     vector_fprintf (stdout, vector, size);
 }
+#endif
 
 int 
 write_sets (FILE *outfile, const double *data, int ncols,
