@@ -44,16 +44,6 @@
 #'
 #' @useDynLib eaf, .registration = TRUE
 #'
-#' @aliases eaf
-#' 
-#' @author
-#' Maintainer:  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
-#' \email{manuel.lopez-ibanez@manchester.ac.uk}
-#'
-#'  Contributors: Carlos Fonseca, Luis Paquete, Thomas \enc{Stützle}{Stuetzle},
-#'  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}, Marco Chiarandini and
-#'  \enc{Mickaël}{Mickael} Binois.
-#'
 #' @references
 #' 
 #' \insertRef{Grunert01}{eaf}
@@ -84,11 +74,11 @@
 #' eafdiffplot(A1, A2)
 #' ## Save to a PDF file
 #' # dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)
-#'@keywords package optimize internal
-#'@concept multivariate
-#'@concept optimize
-#'@concept time-quality algorithm profile
-#'@concept empirical attainment function
+#' @keywords internal
+#' @concept multivariate
+#' @concept optimize
+#' @concept time-quality algorithm profile
+#' @concept empirical attainment function
 "_PACKAGE"
 
 

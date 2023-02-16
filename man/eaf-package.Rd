@@ -2,9 +2,8 @@
 % Please edit documentation in R/eaf-package.R
 \docType{package}
 \name{eaf-package}
-\alias{eaf-package}
-\alias{_PACKAGE}
 \alias{eaf}
+\alias{eaf-package}
 \title{Computation and visualization of the empirical attainment function (EAF) for
 the analysis of random sets in multi-criterion optimization.}
 \description{
@@ -87,17 +86,24 @@ Useful links:
 
 }
 \author{
-Maintainer:  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
-\email{manuel.lopez-ibanez@manchester.ac.uk}
+\strong{Maintainer}: Manuel López-Ibáñez \email{manuel.lopez-ibanez@manchester.ac.uk} (\href{https://orcid.org/0000-0001-9974-1295}{ORCID})
 
-Contributors: Carlos Fonseca, Luis Paquete, Thomas \enc{Stützle}{Stuetzle},
-Manuel \enc{López-Ibáñez}{Lopez-Ibanez}, Marco Chiarandini and
-\enc{Mickaël}{Mickael} Binois.
+Authors:
+\itemize{
+  \item Marco Chiarandini
+  \item Carlos Fonseca
+  \item Luís Paquete
+  \item Thomas Stützle
+}
+
+Other contributors:
+\itemize{
+  \item Mickaël Binois [contributor]
+}
+
 }
 \concept{empirical attainment function}
 \concept{multivariate}
 \concept{optimize}
 \concept{time-quality algorithm profile}
 \keyword{internal}
-\keyword{optimize}
-\keyword{package}
