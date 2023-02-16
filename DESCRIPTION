@@ -28,7 +28,7 @@ URL: https://mlopez-ibanez.github.io/eaf/, https://github.com/MLopez-Ibanez/eaf
 LazyLoad: true
 LazyData: true
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 SystemRequirements: GNU make, Gnu Scientific Library
 RdMacros: Rdpack

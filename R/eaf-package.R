@@ -61,12 +61,9 @@
 #' \insertRef{GruFon2009:emaa}{eaf}
 #'  
 #' \insertRef{LopPaqStu09emaa}{eaf}
+#'
+#' \insertRef{FonGueLopPaq2011emo}{eaf}
 #'  
-#'@keywords package optimize
-#'@concept multivariate
-#'@concept optimize
-#'@concept time-quality algorithm profile
-#'@concept empirical attainment function
 #'
 #'@examples
 #' data(gcp2x2)
@@ -87,8 +84,12 @@
 #' eafdiffplot(A1, A2)
 #' ## Save to a PDF file
 #' # dev.copy2pdf(file="eaf.pdf", onefile=TRUE, width=5, height=4)
+#'@keywords package optimize internal
+#'@concept multivariate
+#'@concept optimize
+#'@concept time-quality algorithm profile
+#'@concept empirical attainment function
 "_PACKAGE"
-#> [1] "_PACKAGE"
 
 
 #' Results of Hybrid GA on vanzyl and Richmond water networks

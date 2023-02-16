@@ -379,6 +379,12 @@ points.steps <- function(x)
 #'
 #'@note There are several examples of data sets in `system.file(package="eaf","extdata")`. The current implementation only supports two and three dimensional points.
 #'
+#' @references
+#' 
+#' \insertRef{Grunert01}{eaf}
+#'
+#' \insertRef{FonGueLopPaq2011emo}{eaf}
+#'  
 #'@seealso [read_datasets()]
 #'
 #'@examples

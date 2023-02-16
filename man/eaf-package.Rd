@@ -74,6 +74,8 @@ eafdiffplot(A1, A2)
 \insertRef{GruFon2009:emaa}{eaf}
 
 \insertRef{LopPaqStu09emaa}{eaf}
+
+\insertRef{FonGueLopPaq2011emo}{eaf}
 }
 \seealso{
 Useful links:
@@ -96,5 +98,6 @@ Manuel \enc{López-Ibáñez}{Lopez-Ibanez}, Marco Chiarandini and
 \concept{multivariate}
 \concept{optimize}
 \concept{time-quality algorithm profile}
+\keyword{internal}
 \keyword{optimize}
 \keyword{package}

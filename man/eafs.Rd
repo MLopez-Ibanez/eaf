@@ -52,6 +52,11 @@ str(z)
 # plot_ly(z, x = ~X1, y = ~X2, z = ~X3, color = ~groups,
 #         colors = c('#BF382A', '#0C4B8E')) \%>\% add_markers()
 }
+\references{
+\insertRef{Grunert01}{eaf}
+
+\insertRef{FonGueLopPaq2011emo}{eaf}
+}
 \seealso{
 \code{\link[=read_datasets]{read_datasets()}}
 }
