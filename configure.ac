@@ -6,7 +6,9 @@
 ## Licensed under GNU GPL 2 or later
 
 # The version set here will propagate to other files from here
-AC_INIT([eaf],m4_esyscmd_s(awk -e '/^Version:/ {print $2}' DESCRIPTION))
+AC_INIT([eaf],[2.5])
+# This doesn't work in MacOS
+#AC_INIT([eaf],m4_esyscmd_s(awk -e '/^Version:/ {print $2}' DESCRIPTION))
 
 ## Do we need this?
 # : ${R_HOME=`R RHOME`}

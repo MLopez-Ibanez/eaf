@@ -1718,6 +1718,8 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
+# This doesn't work in MacOS
+#AC_INIT([eaf],m4_esyscmd_s(awk -e '/^Version:/ {print $2}' DESCRIPTION))
 
 ## Do we need this?
 # : ${R_HOME=`R RHOME`}
