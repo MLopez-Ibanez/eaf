@@ -1,6 +1,7 @@
 # eaf 2.5
 
-
+ * Silence some warnings with GCC 12.
+ 
 # eaf 2.4
 
  * If the installation cannot find the Gnu Scientific Library, it gives hints on
