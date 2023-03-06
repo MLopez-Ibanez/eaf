@@ -8,6 +8,13 @@
 
 #include <stdbool.h>
 
+#ifdef __GNUC__
+# if __GNUC__ >= 12
+/* GCC 12 -Wuse-after-free is very noisy. */
+#pragma GCC diagnostic ignored "-Wuse-after-free"
+# endif
+#endif
+
 #define vector_define(VECTOR_TYPE, BASE_TYPE)                                  \
 struct VECTOR_TYPE;                                                            \
 typedef struct VECTOR_TYPE VECTOR_TYPE;                                        \
