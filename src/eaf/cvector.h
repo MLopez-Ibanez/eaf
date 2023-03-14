@@ -7,13 +7,7 @@
 #endif
 
 #include <stdbool.h>
-
-#ifdef __GNUC__
-# if __GNUC__ >= 12
-/* GCC 12 -Wuse-after-free is very noisy. */
-#pragma GCC diagnostic ignored "-Wuse-after-free"
-# endif
-#endif
+#include <limits.h> // SIZE_MAX
 
 #define vector_define(VECTOR_TYPE, BASE_TYPE)                                  \
 struct VECTOR_TYPE;                                                            \
@@ -113,7 +107,9 @@ void VECTOR_TYPE##_reserve(VECTOR_TYPE * v, size_t n)                         \
     size_t old_capacity = VECTOR_TYPE##_capacity(v);			      \
     size_t old_size = VECTOR_TYPE##_size(v);                                  \
     if (n > old_capacity) {                                                   \
+        cvector_assert (SIZE_MAX / n < sizeof(BASE_TYPE));                    \
         v->_begin = realloc(v->_begin, sizeof(BASE_TYPE) * n);                \
+        cvector_assert(v->_begin != NULL);                                    \
         v->_end = v->_begin + old_size;                                       \
         v->_capacity = v->_begin + n;                                         \
     }									      \
