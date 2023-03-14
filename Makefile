@@ -139,7 +139,7 @@ else
 endif
 
 submit:
-	@echo 'Run devtools::submit() in R'
+	@echo 'Edit cran-comments.md and run devtools::submit_cran() in R'
 
 
 remotecran: releasebuild
