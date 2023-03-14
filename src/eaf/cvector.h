@@ -107,7 +107,7 @@ void VECTOR_TYPE##_reserve(VECTOR_TYPE * v, size_t n)                         \
     size_t old_capacity = VECTOR_TYPE##_capacity(v);			      \
     size_t old_size = VECTOR_TYPE##_size(v);                                  \
     if (n > old_capacity) {                                                   \
-        cvector_assert (SIZE_MAX / n < sizeof(BASE_TYPE));                    \
+        cvector_assert(SIZE_MAX / sizeof(BASE_TYPE) >= n);                    \
         v->_begin = realloc(v->_begin, sizeof(BASE_TYPE) * n);                \
         cvector_assert(v->_begin != NULL);                                    \
         v->_end = v->_begin + old_size;                                       \
