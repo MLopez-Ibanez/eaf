@@ -2,11 +2,7 @@ Dear CRAN maintainers,
 
 I would like to submit a new version of the 'eaf' package to CRAN.
 
-This fixes a problem reported by Prof Brian Ripley: Configure shows
-
-    checking for gcc... gcc
-
-even on platforms using clang as the compiler. 
+This fixes a -Wuse-after-free warning reported by Prof Brian Ripley.
 
 Regarding this NOTE:
 
