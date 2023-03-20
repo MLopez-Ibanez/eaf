@@ -31,11 +31,13 @@ optionally embed fonts using \code{\link[grDevices:embedFonts]{grDevices::embedF
 }
 \details{
 You may also wish to consider \code{\link[extrafont:embed_fonts]{extrafont::embed_fonts()}}
-(\url{https://cran.r-project.org/package=extrafont}).\preformatted{library(extrafont)
+(\url{https://cran.r-project.org/package=extrafont}).
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{library(extrafont)
 # If you need to specify the path to Ghostscript (probably not needed in Linux)
 Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.56.1/bin/gswin64c.exe")
 embed_fonts("original.pdf", outfile = "new.pdf")
-}
+}\if{html}{\out{</div>}}
 
 As an alternative, saving the PDF with \code{\link[grDevices:cairo]{grDevices::cairo_pdf()}} should
 already embed the fonts.

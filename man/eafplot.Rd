@@ -126,13 +126,13 @@ solution quality over time of a collection of runs of a stochastic optimizer.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Main function
+\item \code{eafplot(default)}: Main function
 
-\item \code{formula}: Formula interface
+\item \code{eafplot(formula)}: Formula interface
 
-\item \code{list}: List interface for lists of data.frames or matrices
+\item \code{eafplot(list)}: List interface for lists of data.frames or matrices
+
 }}
-
 \examples{
 data(gcp2x2)
 tabucol <- subset(gcp2x2, alg != "TSinN1")
