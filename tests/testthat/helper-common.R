@@ -37,6 +37,8 @@ expect_snapshot_plot <- function(name, code) {
   #skip_if_not_installed("ggplot2", "2.0.0")
   # Or maybe the output is different on some operation systems
   #skip_on_os("windows")
+  skip_on_ci() # Skip for now until we implement this: https://github.com/tidyverse/ggplot2/blob/main/tests/testthat/helper-vdiffr.R
+  
   # You'll need to carefully think about and experiment with these skips
   name <- paste0(name, ".png")
   # Announce the file before touching `code`. This way, if `code`
