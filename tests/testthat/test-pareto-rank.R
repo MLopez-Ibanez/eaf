@@ -1,4 +1,3 @@
-context("pareto")
 source("helper-common.R")
 
 test_that("pareto", {

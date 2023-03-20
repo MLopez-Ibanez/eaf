@@ -1,4 +1,3 @@
-context("eafplot")
 source("helper-common.R")
 
 test_that("eafplot", {
@@ -31,28 +30,6 @@ eaftest <- function(a, b, maximise = c(FALSE, FALSE)) {
   }
   return(TRUE)
 }
-eaftest2 <- function()
-{
-  data(HybridGA)
-  data(SPEA2relativeVanzyl)
-  eafplot(SPEA2relativeVanzyl, percentiles = c(25, 50, 75), 
-          xlab = expression(C[E]), ylab = "Total switches", xlim = c(320, 400),
-          extra.points = HybridGA$vanzyl, extra.legend = "Hybrid GA")
-  
-  data(SPEA2relativeRichmond)
-  eafplot (SPEA2relativeRichmond, percentiles = c(25, 50, 75),
-           xlab = expression(C[E]), ylab = "Total switches",
-           xlim = c(90, 140), ylim = c(0, 25),
-           extra.points = HybridGA$richmond, extra.lty = "dashed",
-           extra.legend = "Hybrid GA")
- 
-  data(SPEA2minstoptimeRichmond)
-  SPEA2minstoptimeRichmond[,2] <- SPEA2minstoptimeRichmond[,2] / 60
-  eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
-           ylab = "Minimum idle time (minutes)",
-           las = 1, log = "y", maximise = c(FALSE, TRUE), main = "SPEA2 (Richmond)")
-  return(TRUE)
-}
 
 expect_true(eaftest("wrots_l10w100_dat", "wrots_l100w10_dat"))
 expect_true(eaftest("tpls", "rest"))
@@ -60,6 +37,55 @@ expect_true(eaftest("ALG_1_dat.xz", "ALG_2_dat.xz"))
 expect_true(eaftest("ALG_1_dat.xz", "ALG_2_dat.xz", maximise = c(TRUE, FALSE)))
 expect_true(eaftest("ALG_1_dat.xz", "ALG_2_dat.xz", maximise = c(FALSE, TRUE)))
 expect_true(eaftest("ALG_1_dat.xz", "ALG_2_dat.xz", maximise = c(TRUE, TRUE)))
-expect_true(eaftest2())
 dev.off()
+})
+
+data(HybridGA)
+ 
+test_that("eafplot SPEA2relativeVanzyl", {
+  skip_on_cran()
+  data(SPEA2relativeVanzyl)
+  expect_snapshot_plot("SPEA2relativeVanzyl", {
+    eafplot(SPEA2relativeVanzyl, percentiles = c(25, 50, 75), 
+            xlab = expression(C[E]), ylab = "Total switches", xlim = c(320, 400),
+            extra.points = HybridGA$vanzyl, extra.legend = "Hybrid GA")
+  })
+
+  expect_snapshot_plot("SPEA2relativeVanzyl-extra_points", {
+    eafplot(SPEA2relativeVanzyl, percentiles = c(25, 50, 75), xlab = expression(C[E]),
+            ylab = "Total switches", xlim = c(320, 400), extra.points = HybridGA$vanzyl,
+            extra.legend = "Hybrid GA")
+  })
+})
+
+test_that("eafplot SPEA2relativeRichmond", {
+  skip_on_cran()
+  data(SPEA2relativeRichmond)
+  expect_snapshot_plot("SPEA2relativeRichmond", {
+    eafplot (SPEA2relativeRichmond, percentiles = c(25, 50, 75),
+             xlab = expression(C[E]), ylab = "Total switches",
+             xlim = c(90, 140), ylim = c(0, 25),
+             extra.points = HybridGA$richmond, extra.lty = "dashed",
+             extra.legend = "Hybrid GA")
+  })
+  expect_snapshot_plot("SPEA2relativeRichmond-extra_points", {
+    eafplot(SPEA2relativeRichmond, percentiles = c(25, 50, 75), xlab = expression(C[E]),
+            ylab = "Total switches", xlim = c(90, 140), ylim = c(0, 25), extra.points = HybridGA$richmond,
+            extra.lty = "dashed", extra.legend = "Hybrid GA")
+  })
+})
+
+test_that("eafplot SPEA2minstoptimeRichmond", {
+  skip_on_cran()
+  data(SPEA2minstoptimeRichmond)
+  SPEA2minstoptimeRichmond[,2] <- SPEA2minstoptimeRichmond[,2] / 60
+  expect_snapshot_plot("SPEA2minstoptimeRichmond", {
+    eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
+             ylab = "Minimum idle time (minutes)",
+             las = 1, log = "y", maximise = c(FALSE, TRUE), main = "SPEA2 (Richmond)")
+  })
+  expect_snapshot_plot("SPEA2minstoptimeRichmond-extra_points", {
+    eafplot(SPEA2minstoptimeRichmond, xlab = expression(C[E]), ylab = "Minimum idle time (minutes)",
+            las = 1, log = "y", maximise = c(FALSE, TRUE), main = "SPEA2 (Richmond)")
+  })
 })

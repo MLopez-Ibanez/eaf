@@ -1,4 +1,3 @@
-context("whv hype")
 source("helper-common.R")
 
 withr::with_output_sink("test-whv_hype.Rout", {

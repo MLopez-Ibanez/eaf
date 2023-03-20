@@ -1,6 +1,3 @@
-context("vorob")
-library(eaf)
-
 test_that("vorob", {
   #skip_on_cran()
   test_data <- expand.grid(seq(0, 1, length.out = 51),

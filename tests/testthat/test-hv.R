@@ -1,5 +1,3 @@
-library(eaf)
-context("hypervolume")
 source("helper-common.R")
 
 test_that("hypervolume", {

@@ -1,5 +1,3 @@
-library(eaf)
-context("eaf")
 source("helper-common.R")
 
 test_that("eaf", {

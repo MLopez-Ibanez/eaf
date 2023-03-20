@@ -1,4 +1,3 @@
-context("eafdiffplot")
 source("helper-common.R")
 
 test_that("eafdiffplot", {
