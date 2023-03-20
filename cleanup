@@ -1,5 +1,5 @@
 #!/bin/sh
-rm -f  config.* confdefs.h \
+rm -f  config.* confdefs.h tests/testthat/*.pdf \
        src/*.o src/*.so src/Makevars src/config.h src/symbols.rds \
        inst/doc/*.blg inst/doc/*.bbl *-Ex.R
 
