@@ -59,8 +59,8 @@ jobs:
       - name: Install latex
         uses: r-lib/actions/setup-tinytex@v2
         env:
-          # install full prebuilt version
-          TINYTEX_INSTALLER: TinyTeX
+          # https://github.com/rstudio/tinytex-releases#releases
+          TINYTEX_INSTALLER: TinyTeX-0
 
       - name: Install latex packages
         run: |
