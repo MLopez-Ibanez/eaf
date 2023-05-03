@@ -2,7 +2,7 @@
 % Please edit documentation in R/whv.R
 \name{whv_hype}
 \alias{whv_hype}
-\title{Approximation of the (weighted) hypervolume by Monte-Carlo sampling}
+\title{Approximation of the (weighted) hypervolume by Monte-Carlo sampling (2D only)}
 \usage{
 whv_hype(
   data,
@@ -39,8 +39,11 @@ data following the procedure described by \citet{AugBadBroZit2009gecco}. A
 weight distribution describing user preferences may be specified.
 }
 \details{
+The current implementation only supports 2 objectives.
+
 A weight distribution  \citep{AugBadBroZit2009gecco} can be provided via the \code{dist} argument. The ones currently supported are:
 \itemize{
+\item \code{type="uniform"} corresponds to the default hypervolume (unweighted).
 \item \code{type="point"} describes a goal in the objective space, where \code{mu} gives the coordinates of the goal. The resulting weight distribution is a multivariate normal distribution centred at the goal.
 \item \code{type="exponential"} describes an exponential distribution with rate parameter \code{1/mu}, i.e., \eqn{\lambda = \frac{1}{\mu}}.
 }

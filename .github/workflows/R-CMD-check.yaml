@@ -104,8 +104,8 @@ jobs:
         shell: bash
 
       # It doesn't work: https://github.com/r-lib/actions/issues/685
-      # - uses: r-lib/actions/run-rchk@v2
-      #   if: runner.os == 'Linux' && matrix.config.r == 'release' 
+      - uses: r-lib/actions/run-rchk@v2
+        if: runner.os == 'Linux' && matrix.config.r == 'release' 
 
       - uses: r-lib/actions/run-rchk@v1
         if: runner.os == 'Linux' && matrix.config.r == 'release' 

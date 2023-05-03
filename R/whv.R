@@ -129,7 +129,7 @@ get_ideal <- function(x, maximise)
   ifelse(maximise, upper, lower)
 }
 
-#' Approximation of the (weighted) hypervolume by Monte-Carlo sampling
+#' Approximation of the (weighted) hypervolume by Monte-Carlo sampling (2D only)
 #' 
 #' Return an estimation of the hypervolume of the space dominated by the input
 #' data following the procedure described by \citet{AugBadBroZit2009gecco}. A
@@ -148,7 +148,10 @@ get_ideal <- function(x, maximise)
 #' @param dist (`list()`) weight distribution. See Details.
 #'
 #' @details
+#' The current implementation only supports 2 objectives.
+#' 
 #' A weight distribution  \citep{AugBadBroZit2009gecco} can be provided via the `dist` argument. The ones currently supported are:
+#'  * `type="uniform"` corresponds to the default hypervolume (unweighted).
 #'  * `type="point"` describes a goal in the objective space, where `mu` gives the coordinates of the goal. The resulting weight distribution is a multivariate normal distribution centred at the goal. 
 #' * `type="exponential"` describes an exponential distribution with rate parameter `1/mu`, i.e., \eqn{\lambda = \frac{1}{\mu}}.
 #'
