@@ -63,15 +63,6 @@ jobs:
           tinytex::tlmgr_install("pdfcrop")
         shell: Rscript {0}
 
-      - name: Install Linux dependencies
-        if: runner.os == 'Linux'
-        run: |
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
-          sudo apt-get install -y libgsl-dev libcurl4-openssl-dev
-
       - name: Install macos dependencies
         if: runner.os == 'macOS'
         run: brew install gsl gawk automake
@@ -130,6 +121,11 @@ jobs:
       - uses: r-lib/actions/run-rchk@v2
         with:
           setup-only: true
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+          r-version: ${{ matrix.config.r }}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
