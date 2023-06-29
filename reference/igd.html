@@ -141,12 +141,13 @@ inside or outside the exponent \(1/p\); and (3) the meaning of IGD becomes
 the average Euclidean distance from each reference point to its nearest
 objective vector). It is also slightly faster to compute.</p>
 <p>GD should never be used directly to compare the quality of approximations to
-a Pareto front, as it often contradicts Pareto optimality. We
-recommend IGD+ instead of IGD, since the latter contradicts Pareto
-optimality in some cases (see examples below), but we implement IGD here
-because it is still popular due to historical reasons. We are not aware of
-any proof of whether \(\Delta_p(A,R)\) contradicts or not Pareto
-optimality, thus it must be used with care.</p>
+a Pareto front, as it often contradicts Pareto optimality (it is not weakly
+Pareto-compliant). We recommend IGD+ instead of IGD, since the latter
+contradicts Pareto optimality in some cases (see examples below) whereas
+IGD+ is weakly Pareto-compliant, but we implement IGD here because it is
+still popular due to historical reasons.</p>
+<p>The average Hausdorff distance (\(\Delta_p(A,R)\)) is also not weakly
+Pareto-compliant, as shown in the examples below.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -202,10 +203,11 @@ R. Koza (ed.), <em>Late Breaking Papers at the Genetic Programming 1998 Conferen
 <span class="r-plt img"><img src="igd-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"A is better than B in terms of Pareto optimality,\n however, IGD(A)="</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">igd</span><span class="op">(</span><span class="va">A</span>, <span class="va">ref</span><span class="op">)</span>, <span class="st">"&gt; IGD(B)="</span>, <span class="fu">igd</span><span class="op">(</span><span class="va">B</span>, <span class="va">ref</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="st">", which contradicts it.\nBy contrast, IGD+(A)="</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"and AvgHausdorff(A)="</span>, <span class="fu">avg_hausdorff_dist</span><span class="op">(</span><span class="va">A</span>, <span class="va">ref</span><span class="op">)</span>, <span class="st">"&gt; AvgHausdorff(A)="</span>, <span class="fu">avg_hausdorff_dist</span><span class="op">(</span><span class="va">B</span>, <span class="va">ref</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="st">", which both contradict Pareto optimality.\nBy contrast, IGD+(A)="</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">igd_plus</span><span class="op">(</span><span class="va">A</span>, <span class="va">ref</span><span class="op">)</span>, <span class="st">"&lt; IGD+(B)="</span>, <span class="fu">igd_plus</span><span class="op">(</span><span class="va">B</span>, <span class="va">ref</span><span class="op">)</span>, <span class="st">", which is correct.\n"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A is better than B in terms of Pareto optimality,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  however, IGD(A)= 3.707092 &gt; IGD(B)= 2.591483 , which contradicts it.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  however, IGD(A)= 3.707092 &gt; IGD(B)= 2.591483 and AvgHausdorff(A)= 3.707092 &gt; AvgHausdorff(A)= 2.591483 , which both contradict Pareto optimality.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> By contrast, IGD+(A)= 1.482843 &lt; IGD+(B)= 2.260113 , which is correct.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># A less trivial example.</span></span></span>
