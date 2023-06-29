@@ -69,12 +69,14 @@
 #' objective vector). It is also slightly faster to compute.
 #'
 #' GD should never be used directly to compare the quality of approximations to
-#' a Pareto front, as it often contradicts Pareto optimality. We 
-#' recommend IGD+ instead of IGD, since the latter contradicts Pareto
-#' optimality in some cases (see examples below), but we implement IGD here
-#' because it is still popular due to historical reasons. We are not aware of
-#' any proof of whether \eqn{\Delta_p(A,R)} contradicts or not Pareto
-#' optimality, thus it must be used with care.
+#' a Pareto front, as it often contradicts Pareto optimality (it is not weakly
+#' Pareto-compliant). We recommend IGD+ instead of IGD, since the latter
+#' contradicts Pareto optimality in some cases (see examples below) whereas
+#' IGD+ is weakly Pareto-compliant, but we implement IGD here because it is
+#' still popular due to historical reasons.
+#'
+#' The average Hausdorff distance (\eqn{\Delta_p(A,R)}) is also not weakly
+#' Pareto-compliant, as shown in the examples below.
 #' 
 #' @references
 #'
@@ -93,7 +95,8 @@
 #'        pt.bg="gray", bg="white", bty = "n", pt.cex=1.5, cex=1.2)
 #' cat("A is better than B in terms of Pareto optimality,\n however, IGD(A)=",
 #'     igd(A, ref), "> IGD(B)=", igd(B, ref),
-#'     ", which contradicts it.\nBy contrast, IGD+(A)=",
+#'     "and AvgHausdorff(A)=", avg_hausdorff_dist(A, ref), "> AvgHausdorff(A)=", avg_hausdorff_dist(B, ref),
+#'     ", which both contradict Pareto optimality.\nBy contrast, IGD+(A)=",
 #'     igd_plus(A, ref), "< IGD+(B)=", igd_plus(B, ref), ", which is correct.\n")
 #'
 #' # A less trivial example.
