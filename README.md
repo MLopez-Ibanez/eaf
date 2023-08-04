@@ -160,14 +160,30 @@ import os
 
 # Tested with rpy2 2.9.2-1 and 3.2.6
 import numpy as np
-from rpy2.robjects.packages import importr
+from rpy2.robjects.packages import importr, isinstalled, PackageNotInstalledError
 from rpy2.robjects import r as R
 from rpy2.robjects import numpy2ri
+from rpy2.robjects.vectors import StrVector
 numpy2ri.activate()
 from rpy2.interactive import process_revents
 process_revents.start()
 
-eaf = importr("eaf")
+def install_rpackages(packages):
+    if not isinstance(packages, list):
+        packages = [ packages ]
+    utils = importr('utils') # import R's utility package
+    # Selectively install what needs to be installed.
+    names_to_install = [x for x in packages if not isinstalled(x)]
+    if len(names_to_install) > 0:
+        print(f"Installing packages: {names_to_install}")
+        utils.install_packages(StrVector(names_to_install), repos = "https://cloud.r-project.org", verbose=True)
+
+try:
+    eaf = importr("eaf")
+except PackageNotInstalledError as e:
+    install_rpackages("eaf")
+    eaf = importr("eaf") # Retry after install
+
 path = R('system.file(package="eaf", "extdata")')[0] + "/"
 alg1 = eaf.read_data_sets_(path + "ALG_1_dat.xz")
 alg1 = np.asarray(alg1)
