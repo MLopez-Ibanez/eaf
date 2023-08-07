@@ -96,8 +96,7 @@
 <div class="section level2">
 <h2 id="download-and-installation">Download and installation<a class="anchor" aria-label="anchor" href="#download-and-installation"></a>
 </h2>
-<p>The software is implemented as an R package, but the code for only computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf" class="external-link">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. This code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled binaries can be found under <code>system.file(package="eaf", "bin")</code>. Other useful binaries can be found there.</p>
-<p>The visualization of the EAFs requires installing the <strong>eaf</strong> package. Therefore, a basic knowledge of R is recommended to make use of all features. However, the <code>eaf</code> package contains two Perl scripts that allow to generate standard plots without any R knowledge. See <code>inst/scripts/eafplot/</code> and <code>inst/scripts/eafdiff/</code> in the package source code. The scripts use the <strong>eaf</strong> package internally to generate the plots, and, hence, the <strong>eaf</strong> package must be installed and working.</p>
+<p>The <strong>eaf</strong> package is implemented in R. Therefore, a basic knowledge of R is recommended to make use of all features.</p>
 <p>The first step before installing the <strong>eaf</strong> package is to <a href="https://cran.r-project.org/" class="external-link">install R</a>. Once R is installed in the system, there are two methods for installing the <strong>eaf</strong> package:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -112,6 +111,8 @@
 </li>
 </ol>
 <p>Search the <a href="https://cran.r-project.org/faqs.html" class="external-link">R documentation</a> if you need more help to install an R package on your system.</p>
+<p>The code for computing the EAF is available as a C program, and it does not require installing R or any R packages. Just <a href="https://cran.r-project.org/package=eaf" class="external-link">download the package source code</a>, uncompress it, and look for the directory <code>src/eaf</code>. The C code can be used to implement your own visualizations instead of the visualizations provided by the <strong>eaf</strong> package. Compiled executables for computing the EAF can be found under <code>system.file(package="eaf", "bin")</code>. Other useful executable programs can be found there.</p>
+<p>The <code>eaf</code> package also contains two Perl scripts that may allow you to generate standard plots without any R knowledge. See <code>inst/scripts/eafplot/</code> and <code>inst/scripts/eafdiff/</code> in the package source code. The scripts use the <strong>eaf</strong> package internally to generate the plots, and, hence, the <strong>eaf</strong> package must be installed and working.</p>
 <p>If you wish to be notified of bugfixes and new versions, please subscribe to the <a href="https://lists.dei.uc.pt/mailman/listinfo/emo-list" class="external-link">low-volume emo-list</a>, where announcements will be made.</p>
 <p>[ <a href="https://cran.r-project.org/package=eaf" class="external-link">Download <strong>eaf</strong> package from CRAN</a> ] [ <a href="https://mlopez-ibanez.github.io/eaf/" class="external-link">Documentation</a> ] [ <a href="https://github.com/MLopez-Ibanez/eaf" class="external-link">Development version (GitHub)</a> ]</p>
 </div>
