@@ -4,14 +4,14 @@
 \alias{normalise}
 \title{Normalise points}
 \usage{
-normalise(data, to.range = c(1, 2), lower = NA, upper = NA, maximise = FALSE)
+normalise(data, to_range = c(1, 2), lower = NA, upper = NA, maximise = FALSE)
 }
 \arguments{
 \item{data}{(\code{matrix} | \code{data.frame}) \cr Matrix or data frame of numerical
 values, where each row gives the coordinates of a point.}
 
-\item{to.range}{Normalise values to this range. If the objective is
-maximised, it is normalised to \code{c(to.range[1], to.range[0])}
+\item{to_range}{Normalise values to this range. If the objective is
+maximised, it is normalised to \code{c(to_range[1], to_range[0])}
 instead.}
 
 \item{lower, upper}{Bounds on the values. If NA, the maximum and minimum
@@ -38,7 +38,7 @@ head(SPEA2minstoptimeRichmond[, 1:2])
 
 head(normalise(SPEA2minstoptimeRichmond[, 1:2], maximise = c(FALSE, TRUE)))
 
-head(normalise(SPEA2minstoptimeRichmond[, 1:2], to.range = c(0,1), maximise = c(FALSE, TRUE)))
+head(normalise(SPEA2minstoptimeRichmond[, 1:2], to_range = c(0,1), maximise = c(FALSE, TRUE)))
 
 }
 \author{
