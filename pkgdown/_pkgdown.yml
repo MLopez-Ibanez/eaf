@@ -1,13 +1,22 @@
 template:
-  params:
-    bootswatch: cosmo
+  bootstrap: 5
+  bootswatch: cosmo
 
 development:
   mode: unreleased
   destination: devel
-  version_label: default
+  version_label: light
   version_tooltip: "Github version"
 
+navbar:
+  bg: dark
+  structure:
+    right: [search, cran, github]
+  components:
+    cran:
+      icon: fab fa-r-project
+      href: https://cloud.r-project.org/package=eaf
+      
 reference:
   - title: Main
     contents: eaf-package
