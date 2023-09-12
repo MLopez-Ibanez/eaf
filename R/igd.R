@@ -95,7 +95,8 @@
 #'        pt.bg="gray", bg="white", bty = "n", pt.cex=1.5, cex=1.2)
 #' cat("A is better than B in terms of Pareto optimality,\n however, IGD(A)=",
 #'     igd(A, ref), "> IGD(B)=", igd(B, ref),
-#'     "and AvgHausdorff(A)=", avg_hausdorff_dist(A, ref), "> AvgHausdorff(A)=", avg_hausdorff_dist(B, ref),
+#'     "and AvgHausdorff(A)=", avg_hausdorff_dist(A, ref),
+#'     "> AvgHausdorff(A)=", avg_hausdorff_dist(B, ref),
 #'     ", which both contradict Pareto optimality.\nBy contrast, IGD+(A)=",
 #'     igd_plus(A, ref), "< IGD+(B)=", igd_plus(B, ref), ", which is correct.\n")
 #'
