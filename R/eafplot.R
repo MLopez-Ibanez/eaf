@@ -78,7 +78,7 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #' tabucol$alg <- tabucol$alg[drop=TRUE]
 #' eafplot(time + best ~ run, data = tabucol, subset = tabucol$inst=="DSJC500.5")
 #' 
-#' \dontrun{# These take time
+#' \donttest{# These take time
 #' eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2)
 #' eafplot(time + best ~ run | inst, groups=alg, data=gcp2x2,
 #' 	percentiles=c(0,50,100), cex.axis = 0.8, lty = c(2,1,2), lwd = c(2,2,2),
@@ -97,7 +97,7 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #' }
 #' 
 #' ## Using extra.points
-#' \dontrun{
+#' \donttest{
 #' data(HybridGA)
 #' data(SPEA2relativeVanzyl)
 #' eafplot(SPEA2relativeVanzyl, percentiles = c(25, 50, 75), 

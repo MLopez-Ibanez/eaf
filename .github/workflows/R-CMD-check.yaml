@@ -167,7 +167,7 @@ jobs:
         env:
           NOT_CRAN: false
         run: |
-          covr::codecov(type="all", quiet=FALSE)
+          covr::codecov(type="all", quiet=FALSE, commentDonttest = FALSE, commentDontrun = FALSE)
         shell: Rscript {0}
 
   pkgdown:
