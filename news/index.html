@@ -125,11 +125,11 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.06" id="eaf-106">eaf 1.06<a class="anchor" aria-label="anchor" href="#eaf-106"></a></h2><p class="text-muted">CRAN release: 2014-10-01</p>
-<ul><li><p>Fix bug when automatically generating a legend in eafplot with the formula interface (Thanks to Bernd Bischl for reporting this)</p></li>
+<ul><li><p>Fix bug when automatically generating a legend in <code><a href="../reference/eafplot.html">eafplot()</a></code> with the formula interface (Thanks to Bernd Bischl for reporting this)</p></li>
 <li><p>Improve handling of various newline character formats.</p></li>
 <li><p>Reduce memory consumption (up to four times less memory).</p></li>
 <li><p><code>eafdiff.pl</code>: Mention option <code>--legendpos=none</code> to hide the legend.</p></li>
-<li><p>eafplot.pl: Add options <code>--maximise</code> and <code>--xmaximise</code> and <code>--colors=</code>. Fix bug with <code>--area</code>.</p></li>
+<li><p><code>eafplot.pl</code>: Add options <code>--maximise</code> and <code>--xmaximise</code> and <code>--colors=</code>. Fix bug with <code>--area</code>.</p></li>
 <li><p><code><a href="../reference/eafplot.html">eafplot.default()</a></code> now requires two colors when <code>type=="area"</code> and a palette is interpolated between these two colors for all the different levels plotted (Thanks to Alexandre Quemy for the suggestion).</p></li>
 </ul></div>
     <div class="section level2">
@@ -140,18 +140,18 @@
 <p>Plots will look correct when printed. To get the previous behavior use <code>eafdiffplot(, type = "point")</code>.</p>
 </li>
 <li><p>Attempt to deal with DOS/Unix newlines correctly.</p></li>
-<li><p>eafplot.pl: Cleanups. (<code>--single, --output, --legend</code>): New options. Default to PDF.</p></li>
-<li><p>eafdiff.pl: Many cleanups. EAF diff with <code>type="area"</code> is the default now. Parameter <code>--cex</code> replaced by <code>--scale</code>. Do not require ps2eps. Handle <code>--obj1=</code> better. Crop pdf before converting to png. (<code>--noattsurfs</code>): New option. (<code>--output-dir,--output</code>): New options. (<code>--eps</code>): New option. PDF is the default now.</p></li>
-<li><p>Force eafdiff plots to use a square plotting region.</p></li>
-<li><p><code><a href="../reference/read_datasets.html">read.data.sets()</a></code> normalizes paths, thus it works with files such as ~/file.</p></li>
+<li><p><code>eafplot.pl</code>: Cleanups. (<code>--single, --output, --legend</code>): New options. Default to PDF.</p></li>
+<li><p><code>eafdiff.pl</code>: Many cleanups. EAF diff with <code>type="area"</code> is the default now. Parameter <code>--cex</code> replaced by <code>--scale</code>. Do not require <code>ps2eps</code>. Handle <code>--obj1=</code> better. Crop pdf before converting to <code>PNG</code>. (<code>--noattsurfs</code>): New option. (<code>--output-dir,--output</code>): New options. (<code>--eps</code>): New option. PDF is the default now.</p></li>
+<li><p>Force <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code> to use a square plotting region.</p></li>
+<li><p><code><a href="../reference/read_datasets.html">read.data.sets()</a></code> normalizes paths, thus it works with files such as <code>~/file</code>.</p></li>
 <li><p>Function <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code> handles <code>percentiles=NA</code> and grand.lines parameter.</p></li>
 <li><p>Fix bug with ranges and <code>maximise=TRUE</code> in <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>.</p></li>
-<li><p>Fix points.steps to work correctly for all values of maximise.</p></li>
+<li><p>Fix <code>points.steps</code> to work correctly for all values of <code>maximise</code>.</p></li>
 <li><p>Fix bug in <code>eafdiffplot(..., maximise=c(TRUE,FALSE), full.eaf = TRUE)</code></p></li>
-<li><p>Fix <code>"log"</code> parameter in eafplot and eafdiffplot.</p></li>
+<li><p>Fix <code>"log"</code> parameter in <code><a href="../reference/eafplot.html">eafplot()</a></code> and <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code>.</p></li>
 <li><p>Avoid that <code>eafplot.formula</code> modifies global options.</p></li>
-<li><p>Add <code>'axes'</code> parameter to eafplot.</p></li>
-<li><p>To avoid confusion, the arguments <code>'xaxis.side'</code> and <code>'yaxis.side'</code> of eafplot can only take values <code>c("below", "above")</code> and <code>c("left",   "right")</code>, respectively.</p></li>
+<li><p>Add <code>'axes'</code> parameter to <code><a href="../reference/eafplot.html">eafplot()</a></code>.</p></li>
+<li><p>To avoid confusion, the arguments <code>'xaxis.side'</code> and <code>'yaxis.side'</code> of <code><a href="../reference/eafplot.html">eafplot()</a></code> can only take values <code>c("below", "above")</code> and <code>c("left",   "right")</code>, respectively.</p></li>
 <li><p>Add missing Makefile in <code>inst/scripts/eaf/</code>.</p></li>
 </ul></div>
     <div class="section level2">
@@ -160,8 +160,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.03" id="eaf-103">eaf 1.03<a class="anchor" aria-label="anchor" href="#eaf-103"></a></h2><p class="text-muted">CRAN release: 2011-12-04</p>
-<ul><li><p>Handle maximise argument in eafdiffplot and <code>--maximise</code> command-line option in <code>eafdiff.pl</code></p></li>
-<li><p>R/calls.R (eafplot.data.frame): Fix problem with main parameter.</p></li>
+<ul><li><p>Handle maximise argument in <code><a href="../reference/eafdiffplot.html">eafdiffplot()</a></code> and <code>--maximise</code> command-line option in <code>eafdiff.pl</code></p></li>
+<li><p><code>R/calls.R</code> (<code>eafplot.data.frame</code>): Fix problem with main parameter.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.00" id="eaf-100">eaf 1.00<a class="anchor" aria-label="anchor" href="#eaf-100"></a></h2>
