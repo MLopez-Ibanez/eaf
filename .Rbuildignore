@@ -31,3 +31,5 @@ cran-comments.md
 eafparcoords.R
 ^CRAN-RELEASE$
 ^CRAN-SUBMISSION$
+^devel
+^auc-convergence.R
