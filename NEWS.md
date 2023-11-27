@@ -123,7 +123,7 @@
 
 # eaf 1.06
 
-* Fix bug when automatically generating a legend in eafplot with the
+* Fix bug when automatically generating a legend in `eafplot()` with the
   formula interface (Thanks to Bernd Bischl for reporting this)
 
 * Improve handling of various newline character formats.
@@ -132,7 +132,7 @@
 
 * `eafdiff.pl`: Mention option `--legendpos=none` to hide the legend.
 
-* eafplot.pl: Add options `--maximise` and `--xmaximise` and `--colors=`.
+* `eafplot.pl`: Add options `--maximise` and `--xmaximise` and `--colors=`.
   Fix bug with `--area`.
 
 * `eafplot.default()` now requires two colors when `type=="area"` and a
@@ -150,40 +150,40 @@
 
 * Attempt to deal with DOS/Unix newlines correctly.
 
-* eafplot.pl: Cleanups.
+* `eafplot.pl`: Cleanups.
   (`--single, --output, --legend`): New options.
   Default to PDF.
 
-* eafdiff.pl: Many cleanups.
+* `eafdiff.pl`: Many cleanups.
   EAF diff with `type="area"` is the default now.
   Parameter `--cex` replaced by `--scale`.
-  Do not require ps2eps.
-  Handle `--obj1=` better. Crop pdf before converting to png.
+  Do not require `ps2eps`.
+  Handle `--obj1=` better. Crop pdf before converting to `PNG`.
   (`--noattsurfs`): New option.
   (`--output-dir,--output`): New options.
   (`--eps`): New option. PDF is the default now.
 
-* Force eafdiff plots to use a square plotting region.
+* Force `eafdiffplot()` to use a square plotting region.
 
-* `read.data.sets()` normalizes paths, thus it works with files such as ~/file.
+* `read.data.sets()` normalizes paths, thus it works with files such as `~/file`.
 
 * Function `eafdiffplot()` handles `percentiles=NA` and grand.lines
   parameter.
 
 * Fix bug with ranges and `maximise=TRUE` in `eafdiffplot()`.
 
-* Fix points.steps to work correctly for all values of maximise.
+* Fix `points.steps` to work correctly for all values of `maximise`.
 
 * Fix bug in  `eafdiffplot(..., maximise=c(TRUE,FALSE), full.eaf = TRUE)`
 
-* Fix `"log"` parameter in eafplot and eafdiffplot.
+* Fix `"log"` parameter in `eafplot()` and `eafdiffplot()`.
 
 * Avoid that `eafplot.formula` modifies global options.
 
-* Add `'axes'` parameter to eafplot.
+* Add `'axes'` parameter to `eafplot()`.
 
 * To avoid confusion, the arguments `'xaxis.side'` and `'yaxis.side'` of
-  eafplot can only take values `c("below", "above")` and `c("left",
+  `eafplot()` can only take values `c("below", "above")` and `c("left",
   "right")`, respectively.
 
 * Add missing Makefile in `inst/scripts/eaf/`.
@@ -194,10 +194,10 @@
 
 # eaf 1.03
 
-* Handle maximise argument in eafdiffplot and `--maximise` command-line
+* Handle maximise argument in `eafdiffplot()` and `--maximise` command-line
   option in `eafdiff.pl`
 
-* R/calls.R (eafplot.data.frame): Fix problem with main parameter.
+* `R/calls.R` (`eafplot.data.frame`): Fix problem with main parameter.
 
 # eaf 1.00
 

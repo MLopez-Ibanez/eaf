@@ -164,4 +164,4 @@ DIFF$right[,3] <- -DIFF$right[,3]
 \seealso{
 \code{\link[=read_datasets]{read_datasets()}} \code{\link[=eafplot]{eafplot()}} \code{\link[=pdf_crop]{pdf_crop()}}
 }
-\concept{eafviz}
+\concept{visualisation}

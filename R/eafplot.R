@@ -4,18 +4,18 @@
 #' attainment surfaces for certain percentiles or as points.
 #'
 #' This function can be used to plot random sets of points like those obtained
-#' by different runs of biobjective stochastic optimization algorithms.  An EAF
+#' by different runs of biobjective stochastic optimisation algorithms.  An EAF
 #' curve represents the boundary separating points that are known to be
 #' attainable (that is, dominated in Pareto sense) in at least a fraction
 #' (quantile) of the runs from those that are not. The median EAF represents
 #' the curve where the fraction of attainable points is 50%.  In single
-#' objective optimization the function can be used to plot the profile of
+#' objective optimisation the function can be used to plot the profile of
 #' solution quality over time of a collection of runs of a stochastic optimizer.
 #' 
 #' @param x Either a matrix of data values, or a data frame, or a list of
 #'     data frames of exactly three columns.
 #'
-#' @concept eafviz
+#' @concept visualisation
 #' @export
 eafplot <- function(x, ...) UseMethod("eafplot")
 
@@ -124,7 +124,7 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #'          las = 1, log = "y", main = "SPEA2 (Richmond)",
 #'          legend.pos = "bottomright")
 #' }
-#' @concept eafviz
+#' @concept visualisation
 #' @export
 eafplot.default <-
   function (x, sets = NULL, groups = NULL,
@@ -681,7 +681,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
 #' #             file = "wrots_l100w10_dat-wrots_l10w100_dat-diff.txt",
 #' #             quote = FALSE, row.names = FALSE, col.names = FALSE)
 #'
-#' @concept eafviz
+#' @concept visualisation
 #'@export
 eafdiffplot <-
   function(data.left, data.right,
@@ -891,7 +891,7 @@ seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE,
 #' 
 #'@param data Dataframe containing the fields mentioned in the formula and in groups.
 #'@export
-#'@concept eafviz
+#'@concept visualisation
 eafplot.formula <- function(formula, data, groups = NULL, subset = NULL, ...)
 {
   ## formula of type time+cost~run|inst, groups=alg
@@ -969,7 +969,7 @@ eafplot.formula <- function(formula, data, groups = NULL, subset = NULL, ...)
 #' @describeIn eafplot List interface for lists of data.frames or matrices
 #' 
 #'@export
-#'@concept eafviz
+#'@concept visualisation
 eafplot.list <- function(x, ...)
 {
   if (!is.list(x))

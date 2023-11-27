@@ -89,7 +89,7 @@ read.data.sets <- function(file, col.names)
 #' @param x  The data set to write. The last column must be the set number.
 #' 
 #' @param file either a character string naming a file or a connection open for
-#'   writing. ‘""’ indicates output to the console.
+#'   writing. `""` indicates output to the console.
 #'
 #'@seealso \code{\link[utils]{write.table}}, [read_datasets()]
 #'

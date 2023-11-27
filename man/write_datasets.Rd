@@ -10,7 +10,7 @@ write_datasets(x, file = "")
 \item{x}{The data set to write. The last column must be the set number.}
 
 \item{file}{either a character string naming a file or a connection open for
-writing. ‘""’ indicates output to the console.}
+writing. \code{""} indicates output to the console.}
 }
 \description{
 Write data sets to a file in the same format as \code{\link[=read_datasets]{read_datasets()}}.

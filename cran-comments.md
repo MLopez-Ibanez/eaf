@@ -2,7 +2,7 @@ Dear CRAN maintainers,
 
 I would like to submit a new version of the 'eaf' package to CRAN.
 
-This fixes a -Wuse-after-free warning reported by Prof Brian Ripley.
+This fixes several warnings reported by CRAN.
 
 Regarding this NOTE:
 

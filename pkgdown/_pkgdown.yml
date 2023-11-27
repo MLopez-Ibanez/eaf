@@ -25,7 +25,7 @@ reference:
       - has_concept("eaf")
   - title: Visualizing the Empirical Attainment Function
     contents:
-      - has_concept("eafviz")
+      - has_concept("visualisation")
       - symDifPlot
   - title: Pareto dominance
     contents: has_concept("dominance")

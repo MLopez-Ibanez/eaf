@@ -61,6 +61,6 @@ str(z)
 \code{\link[=read_datasets]{read_datasets()}}
 }
 \author{
-Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
+Manuel López-Ibáñez
 }
 \concept{eaf}

@@ -116,12 +116,12 @@ attainment surfaces for certain percentiles or as points.
 }
 \details{
 This function can be used to plot random sets of points like those obtained
-by different runs of biobjective stochastic optimization algorithms.  An EAF
+by different runs of biobjective stochastic optimisation algorithms.  An EAF
 curve represents the boundary separating points that are known to be
 attainable (that is, dominated in Pareto sense) in at least a fraction
 (quantile) of the runs from those that are not. The median EAF represents
 the curve where the fraction of attainable points is 50\%.  In single
-objective optimization the function can be used to plot the profile of
+objective optimisation the function can be used to plot the profile of
 solution quality over time of a collection of runs of a stochastic optimizer.
 }
 \section{Methods (by class)}{
@@ -189,4 +189,4 @@ eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
 \seealso{
 \code{\link[=read_datasets]{read_datasets()}} \code{\link[=eafdiffplot]{eafdiffplot()}} \code{\link[=pdf_crop]{pdf_crop()}}
 }
-\concept{eafviz}
+\concept{visualisation}

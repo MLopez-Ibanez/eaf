@@ -60,7 +60,7 @@
 #'
 #'@references
 #' \insertAllCited{}
-#' @concept eafviz
+#' @concept visualisation
 #' @export
 choose_eafdiffplot <- function(data.left, data.right, intervals = 5,
                                maximise = c(FALSE, FALSE),

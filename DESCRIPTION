@@ -18,10 +18,12 @@ Imports:
         grDevices,
         matrixStats,
         Rdpack
-Suggests: extrafont,
-          testthat (>= 3.0.0),
-          withr,
-          viridisLite
+Suggests: 
+    extrafont,
+    testthat (>= 3.0.0),
+    withr,
+    viridisLite,
+    spelling
 License: GPL (>= 2)
 BugReports: https://github.com/MLopez-Ibanez/eaf/issues
 URL: https://mlopez-ibanez.github.io/eaf/, https://github.com/MLopez-Ibanez/eaf
@@ -33,3 +35,4 @@ Roxygen: list(markdown = TRUE)
 SystemRequirements: GNU make, Gnu Scientific Library
 RdMacros: Rdpack
 Config/testthat/edition: 3
+Language: en-GB

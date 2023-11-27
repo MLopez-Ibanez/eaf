@@ -78,9 +78,9 @@ releasebuild: clean
 	cd $(BINDIR) &&	R CMD build $(PACKAGEDIR) && tar -atvf $(PACKAGE)_$(PACKAGEVERSION).tar.gz
 
 releasecheck: cran
+	$(Reval) 'devtools::spell_check()'
 	$(Reval) 'urlchecker::url_check()'
-	$(MAKE) winbuild
-	$(MAKE) macbuild
+	$(MAKE) winbuild #$(MAKE) macbuild
 
 cran : build
 	cd $(BINDIR) && _R_CHECK_FORCE_SUGGESTS_=false _R_OPTIONS_STRINGS_AS_FACTORS_=false R CMD check --as-cran $(PACKAGE)_$(PACKAGEVERSION).tar.gz
@@ -144,8 +144,9 @@ submit:
 remotecran: releasebuild
 	$(Reval) "rhub::check_for_cran($(RHUB_COMMON_ARGS), show_status = TRUE)"
 
-macbuild: releasebuild
-	$(Reval) "rhub::check(platform='macos-highsierra-release-cran', $(RHUB_COMMON_ARGS))"
+# Stopped working
+# macbuild: releasebuild
+#	$(Reval) "rhub::check(platform='macos-highsierra-release-cran', $(RHUB_COMMON_ARGS))"
 
 winbuild: releasebuild
 	$(Reval) "devtools::check_win_release()"

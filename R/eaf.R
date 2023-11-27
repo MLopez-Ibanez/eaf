@@ -375,7 +375,7 @@ points.steps <- function(x)
 #'  point. If groups is not `NULL`, then an additional column
 #'  indicates to which group the point belongs.
 #'
-#' @author  Manuel \enc{López-Ibáñez}{Lopez-Ibanez}
+#' @author  Manuel López-Ibáñez
 #'
 #'@note There are several examples of data sets in `system.file(package="eaf","extdata")`. The current implementation only supports two and three dimensional points.
 #'
