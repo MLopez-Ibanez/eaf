@@ -137,7 +137,7 @@ jobs:
           run-only: true
           
   coverage:
-    needs: rchk
+    needs: R-CMD-check
     name: Coverage ${{ matrix.config.os }} (${{ matrix.config.r }})
     runs-on: ${{ matrix.config.os }}
     strategy:
