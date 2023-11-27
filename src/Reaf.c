@@ -48,7 +48,7 @@ compute_eaf_helper (SEXP DATA, int nobj, SEXP CUMSIZES, int nruns,
     DEBUG2(
         Rprintf ("eaf computed\n");
         for (k = 0; k < nlevels; k++) {
-            Rprintf ("eaf[%d] = %d\n", k, eaf[k]->size);
+            Rprintf ("eaf[%d] = %zu\n", k, eaf[k]->size);
         });
 
     return eaf;

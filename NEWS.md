@@ -1,9 +1,7 @@
-# development version
+# eaf 2.5
 
  * The argument `to.range` of `normalise()` has been renamed to `to_range`.
  
-# eaf 2.5
-
  * Silence some warnings with GCC 12.
  
 # eaf 2.4
