@@ -70,6 +70,7 @@ closeversion:
 	git push origin :refs/tags/v$(PACKAGEVERSION) # Remove any existing tag
 	git tag -f -a v$(PACKAGEVERSION) -m "Version $(PACKAGEVERSION)"
 	git push --tags
+	r --interactive -e 'usethis::use_version()'
 
 releasebuild: clean
 	@$(MAKE) scripts
