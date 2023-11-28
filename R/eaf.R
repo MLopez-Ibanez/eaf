@@ -48,7 +48,7 @@
 ################################################################################
 #dyn.load("../src/eaf.so")
 
-check.eaf.data <- function(x)
+check_eaf_data <- function(x)
 {
   name <- deparse(substitute(x))
   if (length(dim(x)) != 2L)
@@ -66,9 +66,9 @@ check.eaf.data <- function(x)
   return(x)
 }
 
-compute.eaf <- function(data, percentiles = NULL)
+compute_eaf <- function(data, percentiles = NULL)
 {
-  data <- check.eaf.data(data)
+  data <- check_eaf_data(data)
   setcol <- ncol(data)
   nobjs <- setcol - 1L
   # The C code expects points within a set to be contiguous.
@@ -90,9 +90,9 @@ compute.eaf <- function(data, percentiles = NULL)
                as.numeric(percentiles)))
 }
 
-compute.eaf.as.list <- function(data, percentiles = NULL)
+compute_eaf_as_list <- function(data, percentiles = NULL)
 {
-  eaf <- compute.eaf (data, percentiles = percentiles)
+  eaf <- compute_eaf (data, percentiles = percentiles)
   setcol <- ncol(eaf)
   nobjs <- setcol - 1L
   eaf_sets <- eaf[, setcol]
@@ -103,7 +103,7 @@ compute.eaf.as.list <- function(data, percentiles = NULL)
                                  labels = uniq_eaf_sets)))
 }
 
-compute.eafdiff.helper <- function(data, intervals)
+compute_eafdiff_helper <- function(data, intervals)
 {
   # Last column is the set number.
   setcol <- ncol(data)
@@ -201,12 +201,12 @@ eafdiff <- function(x, y, intervals = NULL, maximise = c(FALSE, FALSE),
   }
 
   data <- rbind_datasets(x, y)
-  data <- check.eaf.data(data)
+  data <- check_eaf_data(data)
   # FIXME: Is it faster to subset or to multiply the third column by 1?
-  data[,1:2] <- matrix.maximise(data[,1:2, drop=FALSE], maximise = maximise)
+  data[,1:2] <- matrix_maximise(data[,1:2, drop=FALSE], maximise = maximise)
   
-  DIFF <- if (rectangles) compute.eafdiff.rectangles(data, intervals = intervals)
-          else compute.eafdiff.helper(data, intervals = intervals)
+  DIFF <- if (rectangles) compute_eafdiff_rectangles(data, intervals = intervals)
+          else compute_eafdiff_helper(data, intervals = intervals)
   # FIXME: We should remove duplicated rows in C code.
 
   # FIXME: Check that we do not generate duplicated nor overlapping rectangles
@@ -215,9 +215,9 @@ eafdiff <- function(x, y, intervals = NULL, maximise = c(FALSE, FALSE),
   return(DIFF)
 }
 
-compute.eafdiff <- function(data, intervals)
+compute_eafdiff <- function(data, intervals)
 {
-  DIFF <- compute.eafdiff.helper(data, intervals)
+  DIFF <- compute_eafdiff_helper(data, intervals)
   #print(DIFF)
   # FIXME: Do this computation in C code. See compute_eafdiff_area_C
   setcol <- ncol(data)
@@ -230,7 +230,7 @@ compute.eafdiff <- function(data, intervals)
 
 
 # FIXME: The default intervals should be nsets / 2
-compute.eafdiff.rectangles <- function(data, intervals = 1L)
+compute_eafdiff_rectangles <- function(data, intervals = 1L)
 {
   # Last column is the set number.
   nobjs <- ncol(data) - 1L
@@ -248,7 +248,7 @@ compute.eafdiff.rectangles <- function(data, intervals = 1L)
 }
 
 # FIXME: The default intervals should be nsets / 2
-compute.eafdiff.polygon <- function(data, intervals = 1L)
+compute_eafdiff_polygon <- function(data, intervals = 1L)
 {
   # Last column is the set number.
   nobjs <- ncol(data) - 1L
@@ -272,7 +272,7 @@ compute.eafdiff.polygon <- function(data, intervals = 1L)
 }
 
 
-rm.inf <- function(x, xmax)
+rm_inf <- function(x, xmax)
 {
   x[is.infinite(x)] <- xmax
   return(x)
@@ -280,7 +280,7 @@ rm.inf <- function(x, xmax)
 
 
 # FIXME: Accept ...
-max.finite <- function (x)
+max_finite <- function (x)
 {
   x <- as.vector(x)
   x <- x[is.finite(x)]
@@ -289,7 +289,7 @@ max.finite <- function (x)
 }
 
 # FIXME: Accept ...
-min.finite <- function (x)
+min_finite <- function (x)
 {
   x <- as.vector(x)
   x <- x[is.finite(x)]
@@ -298,7 +298,7 @@ min.finite <- function (x)
 }
 
 # FIXME: Accept ...
-range.finite <- function(x)
+range_finite <- function(x)
 {
   x <- as.vector(x)
   x <- x[is.finite(x)]
@@ -306,7 +306,7 @@ range.finite <- function(x)
   return(NULL)
 }
 
-matrix.maximise <- function(z, maximise)
+matrix_maximise <- function(z, maximise)
 {
   stopifnot(ncol(z) == length(maximise))
   if (is.data.frame(z)) {
@@ -341,7 +341,7 @@ rbind_datasets <- function(x,y)
 ## polygon.
 ## Example: given ((1,2), (2,1)), it returns ((1,2), (2,2), (2,1)).
 ## Input should be already in the correct order.
-points.steps <- function(x)
+points_steps <- function(x)
 {
   n <- nrow(x)
   if (n == 1L) return(x)
@@ -419,12 +419,12 @@ eafs <- function (points, sets, groups = NULL, percentiles = NULL)
   
   points <- cbind(points, sets)
   if (is.null(groups)) {
-    attsurfs <- compute.eaf (points, percentiles)
+    attsurfs <- compute_eaf (points, percentiles)
   } else {
     attsurfs <- data.frame()
     groups <- factor(groups)
     for (g in levels(groups)) {
-      tmp <- compute.eaf(points[groups == g,], percentiles)
+      tmp <- compute_eaf(points[groups == g,], percentiles)
       attsurfs <- rbind(attsurfs, data.frame(tmp, groups = g))
     }
   }
@@ -433,7 +433,7 @@ eafs <- function (points, sets, groups = NULL, percentiles = NULL)
 
 
 # Get correct xlim or ylim when maximising / minimising.
-get.xylim <- function(lim, maximise, data)
+get_xylim <- function(lim, maximise, data)
 {
   # FIXME: This seems too complicated.
   if (!is.null(lim) && maximise) lim <- -lim 
@@ -442,7 +442,7 @@ get.xylim <- function(lim, maximise, data)
   lim
 }
   
-get.extremes <- function(xlim, ylim, maximise, log)
+get_extremes <- function(xlim, ylim, maximise, log)
 {
   if (length(log) && log != "")
     log <- strsplit(log, NULL)[[1L]]
@@ -461,7 +461,7 @@ get.extremes <- function(xlim, ylim, maximise, log)
   c(extreme1, extreme2)
 }
 
-add.extremes <- function(x, extremes, maximise)
+add_extremes <- function(x, extremes, maximise)
 {
   best1 <- if (maximise[1]) max else min
   best2 <- if (maximise[2]) max else min
@@ -474,7 +474,7 @@ add.extremes <- function(x, extremes, maximise)
 #'
 #' @param x (`list()`) List of data.frames or matrices. The names of the list
 #'   give the percentiles of the attainment surfaces.  This is the format
-#'   returned by [eafplot()] (and the internal function `compute.eaf.as.list`).
+#'   returned by [eafplot()] (and the internal function `compute_eaf_as_list`).
 #'
 #' @return A data.frame with as many columns as objectives and an additional column `percentiles`.
 #'

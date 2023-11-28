@@ -35,7 +35,7 @@
 #' @export
 vorobT <- function(x, reference)
 {
-  x <- check.eaf.data(x)
+  x <- check_eaf_data(x)
   setcol <- ncol(x)
   nobjs <- setcol - 1L
 
@@ -81,10 +81,10 @@ vorobDev <- function(x, VE, reference)
   x.split <- split.data.frame(x[,1:nobjs, drop=FALSE], x[,setcol])
   H1 <- mean(sapply(x.split, hypervolume, reference = reference))
 
-  hv.union.VE <- function(y)
-    return(hypervolume(rbind(y[, 1:nobjs, drop=FALSE], VE), reference = reference))
+  hv_union_VE <- function(y)
+    hypervolume(rbind(y[, 1:nobjs, drop=FALSE], VE), reference = reference)
   
-  VD <- 2 * sum(sapply(x.split, hv.union.VE))
+  VD <- 2 * sum(sapply(x.split, hv_union_VE))
   nruns <- length(x.split)
   return((VD / nruns) - H1 - H2)
 }
@@ -131,8 +131,8 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
 {
   # FIXME: These maybe should be parameters of the function in the future.
   maximise <- c(FALSE, FALSE)
-  xaxis.side <- "below"
-  yaxis.side <- "left"
+  xaxis_side <- "below"
+  yaxis_side <- "left"
   log <- ""
   xlab <- colnames(x)[1]
   ylab <- colnames(x)[2]
@@ -143,7 +143,7 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
   threshold <- round(threshold, 4)
   seq.levs <- round(seq(0, 100, length.out = nlevels), 4)
   levs <- sort.int(unique.default(c(threshold, seq.levs)))
-  attsurfs <- compute.eaf.as.list(x, percentiles = levs)
+  attsurfs <- compute_eaf_as_list(x, percentiles = levs)
     
   # Denote p_n the attainment probability, the value of the symmetric
   # difference function is p_n if p_n < alpha (Vorob'ev threshold) and 1 - p_n
@@ -165,25 +165,25 @@ symDifPlot <- function(x, VE, threshold, nlevels = 11,
   names(levs) <- cols
     
   # FIXME: We should take the range from the attsurfs to not make x mandatory.
-  xlim <- get.xylim(xlim, maximise[1], data = x[,1])
-  ylim <- get.xylim(ylim, maximise[2], data = x[,2])
-  extreme <- get.extremes(xlim, ylim, maximise, log = log)
+  xlim <- get_xylim(xlim, maximise[1], data = x[,1])
+  ylim <- get_xylim(ylim, maximise[2], data = x[,2])
+  extreme <- get_extremes(xlim, ylim, maximise, log = log)
 
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
        main = main,
        panel.first = {
-         plot.eaf.full.area(attsurfs, extreme = extreme, maximise = maximise, col = cols)
+         plot_eaf_full_area(attsurfs, extreme = extreme, maximise = maximise, col = cols)
          # We place the axis after so that we get grid lines.
-         plot.eaf.axis (xaxis.side, xlab, las = las, sci.notation = sci.notation)
-         plot.eaf.axis (yaxis.side, ylab, las = las, sci.notation = sci.notation,
+         plot_eaf_axis (xaxis_side, xlab, las = las, sci.notation = sci.notation)
+         plot_eaf_axis (yaxis_side, ylab, las = las, sci.notation = sci.notation,
                         line = 2.2)
-         plot.eaf.full.lines(list(VE), extreme, maximise,
+         plot_eaf_full_lines(list(VE), extreme, maximise,
                              col = ve.col, lty = 1, lwd = 2)
        })
 
   # Use first.open to print "(0,X)", because the color for 0 is white.
-  intervals <- seq.intervals.labels(seq.levs, first.open = TRUE)
+  intervals <- seq_intervals_labels(seq.levs, first.open = TRUE)
   intervals <- intervals[1:max.interval]
   names(intervals) <- names(colscale)
   #names(intervals) <- names(colscale[1:max.interval])

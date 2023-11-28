@@ -181,16 +181,16 @@ eafplot.default <-
     # efficient, one large matrix or separate points and sets, then be
     # consistent everywhere.
     if (!is.null(sets)) x <- cbind(x, sets)
-    x <- check.eaf.data(x)
+    x <- check_eaf_data(x)
     sets <- x[, 3L]
     x <- as.matrix(x[,1:2, drop=FALSE])
-    x <- matrix.maximise(x, maximise)
+    x <- matrix_maximise(x, maximise)
 
     # Transform EAF matrix into attsurfs list.
     if (is.null(groups)) {
-      attsurfs <- compute.eaf.as.list(cbind(x, sets), percentiles)
+      attsurfs <- compute_eaf_as_list(cbind(x, sets), percentiles)
     } else {
-      # FIXME: Is this equivalent to compute.eaf.as.list for each g?
+      # FIXME: Is this equivalent to compute_eaf_as_list for each g?
       EAF <- eafs(x, sets, groups, percentiles)
       attsurfs <- list()
       groups <- factor(EAF$groups)
@@ -202,13 +202,13 @@ eafplot.default <-
       }
     }
     # FIXME: rm(EAF) to save memory ?
-    attsurfs <- lapply(attsurfs, matrix.maximise, maximise = maximise)
+    attsurfs <- lapply(attsurfs, matrix_maximise, maximise = maximise)
   }
 
   # FIXME: We should take the range from the attsurfs to not make x mandatory.
-  xlim <- get.xylim(xlim, maximise[1], data = x[,1])
-  ylim <- get.xylim(ylim, maximise[2], data = x[,2])
-  extreme <- get.extremes(xlim, ylim, maximise, log)
+  xlim <- get_xylim(xlim, maximise[1], data = x[,1])
+  ylim <- get_xylim(ylim, maximise[2], data = x[,2])
+  extreme <- get_extremes(xlim, ylim, maximise, log)
 
   # FIXME: Find a better way to handle different x-y scale.
   yscale <- 1
@@ -241,8 +241,8 @@ eafplot.default <-
        xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
        panel.first = ({
          if (axes) {
-           plot.eaf.axis(xaxis.side, xlab, las = las, sci.notation = sci.notation)
-           plot.eaf.axis(yaxis.side, ylab, las = las, sci.notation = sci.notation,
+           plot_eaf_axis(xaxis.side, xlab, las = las, sci.notation = sci.notation)
+           plot_eaf_axis(yaxis.side, ylab, las = las, sci.notation = sci.notation,
                          # FIXME: eafplot uses 2.2, why the difference?
                          line = 2.75)
          }
@@ -260,14 +260,14 @@ eafplot.default <-
            } else if (length(col) != length(attsurfs)) {
              stop ("length(col) != 2, but with 'type=area', eafplot.default needs just two colors")
            }
-           plot.eaf.full.area(attsurfs, extreme, maximise, col = col)
+           plot_eaf_full_area(attsurfs, extreme, maximise, col = col)
          } else {
            ## Recycle values
            lwd <- rep(lwd, length=length(attsurfs))
            lty <- rep(lty, length=length(attsurfs))
            col <- rep(col, length=length(attsurfs))
            if (!is.null(pch)) pch <- rep(pch, length=length(attsurfs))
-           plot.eaf.full.lines(attsurfs, extreme, maximise,
+           plot_eaf_full_lines(attsurfs, extreme, maximise,
                                col = col, lty = lty, lwd = lwd, pch = pch, cex = cex.pch)
          }
        }), ...)
@@ -365,7 +365,7 @@ prettySciNotation <- function(x, digits = 1L)
                            list(base = base, exponent = exponent)))
 }
 
-axis.side <- function(side)
+axis_side <- function(side)
 {
   if (!is.character(side)) return(side)
   return(switch(side,
@@ -375,11 +375,11 @@ axis.side <- function(side)
                 right = 4))
 }
 
-plot.eaf.axis <- function(side, lab, las,
+plot_eaf_axis <- function(side, lab, las,
                           col = 'lightgray', lty = 'dotted', lwd = par("lwd"),
                           line = 2.1, sci.notation = FALSE)
 {
-  side <- axis.side(side)
+  side <- axis_side(side)
   ## FIXME: Do we still need lwd=0.5, lty="26" to work-around for R bug?
   at <- axTicks(if (side %% 2 == 0) 2 else 1)
   labels <- if (sci.notation) prettySciNotation(at) else formatC(at, format = "g")
@@ -409,7 +409,7 @@ plot.eaf.axis <- function(side, lab, las,
         las = 0)
 }
 
-plot.eaf.full.lines <- function(attsurfs, extreme, maximise,
+plot_eaf_full_lines <- function(attsurfs, extreme, maximise,
                                  col, lty, lwd, pch = NULL, cex = par("cex"))
 {
   ## Recycle values
@@ -419,7 +419,7 @@ plot.eaf.full.lines <- function(attsurfs, extreme, maximise,
   if (!is.null(pch))
     pch <- rep(pch, length = length(attsurfs))
 
-  attsurfs = lapply(attsurfs, add.extremes, extreme, maximise)
+  attsurfs = lapply(attsurfs, add_extremes, extreme, maximise)
   for (k in seq_along(attsurfs)) {
     # FIXME: Is there a way to plot points and steps in one call?
     if (!is.null(pch))
@@ -428,17 +428,17 @@ plot.eaf.full.lines <- function(attsurfs, extreme, maximise,
   }
 }
 
-plot.eaf.full.area <- function(attsurfs, extreme, maximise, col)
+plot_eaf_full_area <- function(attsurfs, extreme, maximise, col)
 {
   stopifnot(length(attsurfs) == length(col))
   for (i in seq_along(attsurfs)) {
-    poli <- add.extremes(points.steps(attsurfs[[i]]), extreme, maximise)
+    poli <- add_extremes(points_steps(attsurfs[[i]]), extreme, maximise)
     poli <- rbind(poli, extreme)
     polygon(poli[,1], poli[,2], border = NA, col = col[i])
   }
 }
 
-plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
+plot_eafdiff_side <- function (eafdiff, attsurfs = list(),
                                col,
                                side = stop("Argument 'side' is required"),
                                type = "point",
@@ -480,7 +480,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
   # will override the grid lines.
   col[col %in% c("white", "#FFFFFF")] <- "transparent"
 
-  extreme <- get.extremes(xlim, ylim, maximise, log)
+  extreme <- get_extremes(xlim, ylim, maximise, log)
   yscale <- 1
   ## FIXME log == "y" and yscaling
   #    yscale <- 60
@@ -497,18 +497,18 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
        panel.first = ({
-         plot.eaf.axis (xaxis.side, xlab, las = las, sci.notation = sci.notation)
-         plot.eaf.axis (yaxis.side, ylab, las = las, sci.notation = sci.notation,
+         plot_eaf_axis (xaxis.side, xlab, las = las, sci.notation = sci.notation)
+         plot_eaf_axis (yaxis.side, ylab, las = las, sci.notation = sci.notation,
                         line = 2.2)
                          
          if (nrow(eafdiff)) {
            if (type == "area") {
              if (full.eaf) {
-               plot.eaf.full.area(split.data.frame(eafdiff[,1:2], eafdiff[,3]),
+               plot_eaf_full_area(split.data.frame(eafdiff[,1:2], eafdiff[,3]),
                                    extreme, maximise, col)
              } else {
-               eafdiff[,1] <- rm.inf(eafdiff[,1], extreme[1])
-               eafdiff[,2] <- rm.inf(eafdiff[,2], extreme[2])
+               eafdiff[,1] <- rm_inf(eafdiff[,1], extreme[1])
+               eafdiff[,2] <- rm_inf(eafdiff[,2], extreme[2])
                polycol <- attr(eafdiff, "col")
                #print(unique(polycol))
                #print(length(col))
@@ -544,7 +544,7 @@ plot.eafdiff.side <- function (eafdiff, attsurfs = list(),
     col <- c("black")
   }
 
-  plot.eaf.full.lines(attsurfs, extreme, maximise,
+  plot_eaf_full_lines(attsurfs, extreme, maximise,
                       col = col, lty = lty, lwd = lwd)
   mtext(title, 1, line = 3.5, cex = par("cex.lab"), las = 0, font = 2)
   box()
@@ -705,7 +705,7 @@ eafdiffplot <-
   type <- match.arg (type, c("point", "area"))
   # FIXME: check that it is either an integer or a character vector.
   if (length(intervals) == 1) {
-    intervals <- seq.intervals.labels(
+    intervals <- seq_intervals_labels(
       round(seq(0,1 , length.out = 1 + intervals), 4), digits = 1)
   }
   if (is.function(col)) { # It is a color-map, like viridis()
@@ -728,17 +728,17 @@ eafdiffplot <-
     stop("length of maximise must be either 1 or 2")
   }
 
-  data.left <- check.eaf.data(data.left)
-  data.left[,1:2] <- matrix.maximise(data.left[,1:2, drop=FALSE], maximise)
-  data.right <- check.eaf.data(data.right)
-  data.right[,1:2] <- matrix.maximise(data.right[,1:2, drop=FALSE], maximise)
+  data.left <- check_eaf_data(data.left)
+  data.left[,1:2] <- matrix_maximise(data.left[,1:2, drop=FALSE], maximise)
+  data.right <- check_eaf_data(data.right)
+  data.right[,1:2] <- matrix_maximise(data.right[,1:2, drop=FALSE], maximise)
 
   attsurfs.left <- attsurfs.right <- list()
   if (!any(is.na(percentiles))) {
-    attsurfs.left <- compute.eaf.as.list (data.left, percentiles)
-    attsurfs.left <- lapply(attsurfs.left, matrix.maximise, maximise = maximise)
-    attsurfs.right <- compute.eaf.as.list (data.right, percentiles)
-    attsurfs.right <- lapply(attsurfs.right, matrix.maximise, maximise = maximise)
+    attsurfs.left <- compute_eaf_as_list (data.left, percentiles)
+    attsurfs.left <- lapply(attsurfs.left, matrix_maximise, maximise = maximise)
+    attsurfs.right <- compute_eaf_as_list (data.right, percentiles)
+    attsurfs.right <- lapply(attsurfs.right, matrix_maximise, maximise = maximise)
   }
 
   # FIXME: We do not need this for the full EAF.
@@ -751,12 +751,12 @@ eafdiffplot <-
   if (full.eaf) {
     if (type == "area") {
       lower.boundaries <- 0:(length(intervals)-1) * 100 / length(intervals)
-      diff_left <- compute.eaf (data.left, percentiles = lower.boundaries)
-      diff_right <- compute.eaf (data.right, percentiles = lower.boundaries)
+      diff_left <- compute_eaf (data.left, percentiles = lower.boundaries)
+      diff_right <- compute_eaf (data.right, percentiles = lower.boundaries)
     } else if (type == "point") {
-      diff_left <- compute.eaf (data.left)
-      diff_right <- compute.eaf (data.right)
-      # Since plot.eafdiff.side uses floor to calculate the color, and
+      diff_left <- compute_eaf (data.left)
+      diff_right <- compute_eaf (data.right)
+      # Since plot_eafdiff_side uses floor to calculate the color, and
       # we want color[100] == color[99].
       diff_left[diff_left[,3] == 100, 3] <- 99
       diff_right[diff_right[,3] == 100, 3] <- 99
@@ -767,10 +767,10 @@ eafdiffplot <-
     #remove(data.left,data.right,data.combined) # Free memory?
   } else {
     if (type == "area") {
-      DIFF <- compute.eafdiff.polygon (data.combined, intervals = length(intervals))
+      DIFF <- compute_eafdiff_polygon (data.combined, intervals = length(intervals))
     } else if (type == "point") {
       #remove(data.left,data.right) # Free memory?
-      DIFF <- compute.eafdiff (data.combined, intervals = length(intervals))
+      DIFF <- compute_eafdiff (data.combined, intervals = length(intervals))
       #remove(data.combined) # Free memory?
     }
     diff_left <- DIFF$left
@@ -778,21 +778,21 @@ eafdiffplot <-
   }
     
   # FIXME: This can be avoided and just taken from the full EAF.
-  grand.attsurf <- compute.eaf.as.list (data.combined, c(0, 100))
+  grand.attsurf <- compute_eaf_as_list (data.combined, c(0, 100))
   grand.best <- grand.attsurf[["0"]]
   grand.worst <- grand.attsurf[["100"]]
 
-  xlim <- get.xylim(xlim, maximise[1],
+  xlim <- get_xylim(xlim, maximise[1],
                     data = c(grand.best[,1], grand.worst[,1],
-                             range.finite(diff_left[,1]), range.finite(diff_right[,1])))
-  ylim <- get.xylim(ylim, maximise[2],
+                             range_finite(diff_left[,1]), range_finite(diff_right[,1])))
+  ylim <- get_xylim(ylim, maximise[2],
                     data = c(grand.best[,2], grand.worst[,2],
-                             range.finite(diff_left[,2]), range.finite(diff_right[,2])))
+                             range_finite(diff_left[,2]), range_finite(diff_right[,2])))
 
-  grand.best <- matrix.maximise(grand.best, maximise)
-  grand.worst <- matrix.maximise(grand.worst, maximise)
-  diff_left[,1:2] <- matrix.maximise(diff_left[,1:2, drop=FALSE], maximise)
-  diff_right[,1:2] <- matrix.maximise(diff_right[,1:2, drop=FALSE], maximise)
+  grand.best <- matrix_maximise(grand.best, maximise)
+  grand.worst <- matrix_maximise(grand.worst, maximise)
+  diff_left[,1:2] <- matrix_maximise(diff_left[,1:2, drop=FALSE], maximise)
+  diff_right[,1:2] <- matrix_maximise(diff_right[,1:2, drop=FALSE], maximise)
   
   # FIXME: This does not generate empty space between the two plots, but the
   # plots are not squared.
@@ -824,7 +824,7 @@ eafdiffplot <-
     attsurfs <- attsurfs.left
   }
     
-  plot.eafdiff.side (diff_left,
+  plot_eafdiff_side (diff_left,
                      attsurfs = attsurfs,
                      col = col,
                      type = type, full.eaf = full.eaf,
@@ -848,7 +848,7 @@ eafdiffplot <-
   } else {
     attsurfs <- attsurfs.right
   }
-  plot.eafdiff.side (diff_right,
+  plot_eafdiff_side (diff_right,
                      attsurfs = attsurfs,
                      col = col,
                      type = type, full.eaf = full.eaf,
@@ -861,10 +861,10 @@ eafdiffplot <-
 }
 
 # Create labels:
-# eaf:::seq.intervals.labels(seq(0,1, length.out=5), digits = 1)
+# eaf:::seq_intervals_labels(seq(0,1, length.out=5), digits = 1)
 # "[0.0, 0.2)" "[0.2, 0.4)" "[0.4, 0.6)" "[0.6, 0.8)" "[0.8, 1.0]"
 # FIXME: Add examples and tests
-seq.intervals.labels <- function(s, first.open = FALSE, last.open = FALSE,
+seq_intervals_labels <- function(s, first.open = FALSE, last.open = FALSE,
                                  digits = NULL)
 {
   # FIXME:  This should use:
@@ -977,13 +977,13 @@ eafplot.list <- function(x, ...)
 
   groups <- if (!is.null(names(x))) names(x) else 1:length(x)
 
-  check.elem <- function(elem) {
-    elem <- check.eaf.data(elem)
+  check_elem <- function(elem) {
+    elem <- check_eaf_data(elem)
     if (ncol(elem) != 3L)
-      stop("Each element of the list have exactly three columns. If you have grouping and conditioning variables, please consider using this format: 'eafplot(formula, data, ...)'")
+      stop("Each element of the list have exactly three columns. If you have grouping and conditioning variables, please consider using this format: 'eafplot.formula, data, ...)'")
     return(elem)
   }
-  x <- lapply(x, check.elem)
+  x <- lapply(x, check_elem)
   groups <- rep(groups, sapply(x, nrow))
   x <- do.call(rbind, x)
   

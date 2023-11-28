@@ -101,7 +101,7 @@ pareto_rank <- function(data, maximise = FALSE)
   nobjs <- ncol(data)
   npoints <- nrow(data)
   maximise <- as.logical(rep_len(maximise, nobjs))
-  data <- matrix.maximise(data, maximise)
+  data <- matrix_maximise(data, maximise)
   return(.Call(pareto_ranking_C,
                as.double(t(data)),
                as.integer(nobjs),
