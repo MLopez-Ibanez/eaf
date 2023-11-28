@@ -1,7 +1,7 @@
 Package: eaf
 Type: Package
 Title: Plots of the Empirical Attainment Function
-Version: 2.5
+Version: 2.5.0.9000
 Authors@R: c(person("Manuel", "López-Ibáñez", role = c("aut", "cre"),
                               email = "manuel.lopez-ibanez@manchester.ac.uk",
                               comment = c(ORCID = "0000-0001-9974-1295")),
