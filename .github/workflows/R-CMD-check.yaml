@@ -102,6 +102,7 @@ jobs:
           path: check
 
   rchk:
+    if: false # Skip until https://github.com/r-lib/actions/issues/783
     needs: R-CMD-check
     name: rchk ${{ matrix.config.os }} (${{ matrix.config.r }})
     runs-on: ${{ matrix.config.os }}
