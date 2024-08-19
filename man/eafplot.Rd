@@ -88,11 +88,11 @@ maximised instead of minimised. Either a single logical value that applies
 to all objectives or a vector of logical values, with one value per
 objective.}
 
-\item{xaxis.side}{On which side that xaxis is drawn. Valid values are
-"below" and "above". See \code{\link[=axis]{axis()}}.}
+\item{xaxis.side}{On which side that x-axis is drawn. Valid values are
+\code{"below"} and \code{"above"}. See \code{\link[=axis]{axis()}}.}
 
-\item{yaxis.side}{On which side that yaxis is drawn. Valid values are "left"
-and "right". See \code{\link[=axis]{axis()}}.}
+\item{yaxis.side}{On which side that y-axis is drawn. Valid values are \code{"left"}
+and \code{"right"}. See \code{\link[=axis]{axis()}}.}
 
 \item{axes}{A logical value indicating whether both axes should be drawn
 on the plot.}
@@ -187,6 +187,6 @@ eafplot (SPEA2minstoptimeRichmond, xlab = expression(C[E]),
 }
 }
 \seealso{
-\code{\link[=read_datasets]{read_datasets()}} \code{\link[=eafdiffplot]{eafdiffplot()}} \code{\link[=pdf_crop]{pdf_crop()}}
+\code{\link[=eafdiffplot]{eafdiffplot()}} \code{\link[=pdf_crop]{pdf_crop()}}
 }
 \concept{visualisation}

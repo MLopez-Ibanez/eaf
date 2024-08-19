@@ -1,7 +1,7 @@
 Package: eaf
 Type: Package
 Title: Plots of the Empirical Attainment Function
-Version: 2.5.0.9000
+Version: 2.5.1
 Authors@R: c(person("Manuel", "López-Ibáñez", role = c("aut", "cre"),
                               email = "manuel.lopez-ibanez@manchester.ac.uk",
                               comment = c(ORCID = "0000-0001-9974-1295")),
@@ -30,7 +30,7 @@ URL: https://mlopez-ibanez.github.io/eaf/, https://github.com/MLopez-Ibanez/eaf
 LazyLoad: true
 LazyData: true
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 SystemRequirements: GNU make, Gnu Scientific Library
 RdMacros: Rdpack

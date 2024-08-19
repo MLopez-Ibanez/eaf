@@ -1,4 +1,6 @@
-# eaf (development version)
+# eaf 2.5.1
+
+ * Fix Clang warning.
 
 # eaf 2.5
 

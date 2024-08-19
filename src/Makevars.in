@@ -15,24 +15,12 @@ OBJECTS = $(SOURCES:.c=.o)
 
 export GSL_CFLAGS GSL_LIBS
 
-eaf = eaf/eaf$(EXEEXT)
-igd = mo-tools/igd$(EXEEXT)
-epsilon = mo-tools/epsilon$(EXEEXT)
-dominatedsets = mo-tools/dominatedsets$(EXEEXT)
-nondominated = mo-tools/nondominated$(EXEEXT)
-ndsort = mo-tools/ndsort$(EXEEXT)
-
 .PHONY: all clean
 
 all: $(SHLIB)
-	$(MAKE) -C eaf all march=none CC="$(CC)" CFLAGS="$(CFLAGS) $(LTO)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=$(DEBUG) EXE=$(EXEEXT)
-	$(MAKE) -C mo-tools all march=none CC="$(CC)" CFLAGS="$(CFLAGS) $(LTO)" OPT_CFLAGS="" WARN_CFLAGS="" DEBUG=$(DEBUG) EXE=$(EXEEXT)
 
 $(SHLIB): $(OBJECTS) 
 
 clean:
-	@-rm -f *.o *.so *.dll \
-	eaf/*.o $(eaf) \
-	$(igd) $(epsilon) $(dominatedsets) $(nondominated) $(ndsort) \
-	mo-tools/*.o 
+	@-rm -f *.o *.so *.dll eaf/*.o mo-tools/*.o 
 

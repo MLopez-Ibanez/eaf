@@ -81,14 +81,16 @@ static void usage(void)
 
 static void version(void)
 {
-    printf("%s version %s"
-#ifdef MARCH
-           " (optimised for "MARCH")"
-#endif
 #ifndef VERSION
 #define VERSION "unknown"
 #endif
-           "\n\n", program_invocation_short_name, VERSION);
+#ifdef MARCH
+#define OPTIMISED_FOR_STR " (optimised for "MARCH")"
+#else
+#define OPTIMISED_FOR_STR ""
+#endif
+    printf("%s version " VERSION OPTIMISED_FOR_STR
+           "\n\n", program_invocation_short_name);
     printf(
 "Copyright (C) 2009\n"
 "Carlos Fonseca <cmfonsec@ualg.pt>\n"

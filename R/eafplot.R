@@ -55,11 +55,11 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #' 
 #' @template arg_maximise
 #' 
-#' @param xaxis.side On which side that xaxis is drawn. Valid values are
-#'   "below" and "above". See [axis()].
+#' @param xaxis.side On which side that x-axis is drawn. Valid values are
+#'   `"below"` and `"above"`. See [axis()].
 #' 
-#' @param yaxis.side On which side that yaxis is drawn. Valid values are "left"
-#'   and "right". See [axis()].
+#' @param yaxis.side On which side that y-axis is drawn. Valid values are `"left"`
+#'   and `"right"`. See [axis()].
 #'   
 #' @param axes A logical value indicating whether both axes should be drawn
 #'   on the plot.
@@ -70,7 +70,7 @@ eafplot <- function(x, ...) UseMethod("eafplot")
 #' 
 #' @return Return (invisibly) the attainment surfaces computed.
 #' 
-#' @seealso   [read_datasets()] [eafdiffplot()] [pdf_crop()]
+#' @seealso   [eafdiffplot()] [pdf_crop()]
 #'
 #'@examples
 #' data(gcp2x2)
@@ -157,8 +157,8 @@ eafplot.default <-
 {
   type <- match.arg (type, c("point", "area"))
   maximise <- as.logical(maximise)
-  xaxis.side <- match.arg(xaxis.side, c("below", "above"))
-  yaxis.side <- match.arg(yaxis.side, c("left", "right"))
+  xaxis_side <- match.arg(xaxis.side, c("below", "above"))
+  yaxis_side <- match.arg(yaxis.side, c("left", "right"))
                       
   if (is.null(col)) {
     if (type == "point") {
@@ -241,8 +241,8 @@ eafplot.default <-
        xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
        panel.first = ({
          if (axes) {
-           plot_eaf_axis(xaxis.side, xlab, las = las, sci.notation = sci.notation)
-           plot_eaf_axis(yaxis.side, ylab, las = las, sci.notation = sci.notation,
+           plot_eaf_axis(xaxis_side, xlab, las = las, sci.notation = sci.notation)
+           plot_eaf_axis(yaxis_side, ylab, las = las, sci.notation = sci.notation,
                          # FIXME: eafplot uses 2.2, why the difference?
                          line = 2.75)
          }
@@ -368,11 +368,11 @@ prettySciNotation <- function(x, digits = 1L)
 axis_side <- function(side)
 {
   if (!is.character(side)) return(side)
-  return(switch(side,
-                below = 1,
-                left = 2,
-                above = 3,
-                right = 4))
+  switch(side,
+    below = 1,
+    left = 2,
+    above = 3,
+    right = 4)
 }
 
 plot_eaf_axis <- function(side, lab, las,
@@ -396,8 +396,8 @@ plot_eaf_axis <- function(side, lab, las,
   ##   ## Now do the minor ticks, at 1/10 of each power of 10 interval
   ##   ##at.minor <- 2:9 * rep(c(10^c(1:max.pow)) / 10, each = length(2:9))
   ##   at.minor <- 1:10 * rep(c(10^c(1:max.pow)) / 10, each = length(1:10))
-  ##   axis (yaxis.side, at = at.minor, tcl = -0.25, labels = FALSE, las=las)
-  ##   axis (yaxis.side, at = at.minor, labels = FALSE, tck=1,
+  ##   axis (yaxis_side, at = at.minor, tcl = -0.25, labels = FALSE, las=las)
+  ##   axis (yaxis_side, at = at.minor, labels = FALSE, tck=1,
   ##         col='lightgray', lty='dotted', lwd=par("lwd"))
   ## }
   
@@ -454,8 +454,8 @@ plot_eafdiff_side <- function (eafdiff, attsurfs = list(),
   type <- match.arg (type, c("point", "area"))
   maximise <- as.logical(maximise)
   side <- match.arg (side, c("left", "right"))
-  xaxis.side <- if (side == "left") "below" else "above"
-  yaxis.side <- if (side == "left") "left" else "right"
+  xaxis_side <- if (side == "left") "below" else "above"
+  yaxis_side <- if (side == "left") "left" else "right"
 
   # For !full.eaf && type == "area", str(eafdiff) is a polygon:
   ##  $  num [, 1:2]
@@ -497,8 +497,8 @@ plot_eafdiff_side <- function (eafdiff, attsurfs = list(),
   plot(xlim, ylim, type = "n", xlab = "", ylab = "",
        xlim = xlim, ylim = ylim, log = log, axes = FALSE, las = las,
        panel.first = ({
-         plot_eaf_axis (xaxis.side, xlab, las = las, sci.notation = sci.notation)
-         plot_eaf_axis (yaxis.side, ylab, las = las, sci.notation = sci.notation,
+         plot_eaf_axis (xaxis_side, xlab, las = las, sci.notation = sci.notation)
+         plot_eaf_axis (yaxis_side, ylab, las = las, sci.notation = sci.notation,
                         line = 2.2)
                          
          if (nrow(eafdiff)) {
@@ -585,10 +585,10 @@ plot_eafdiff_side <- function (eafdiff, attsurfs = list(),
 #'   (\samp{points}) or whether to color the areas that have at least a
 #'   certain value (\samp{area}).
 #' 
-#'@param legend.pos The position of the legend. See [legend()].  A value of
+#' @param legend.pos The position of the legend. See [legend()].  A value of
 #'   `"none"` hides the legend.
 #' 
-#'@param title.left,title.right Title for left and right panels, respectively.
+#' @param title.left,title.right Title for left and right panels, respectively.
 #'  
 #' @param xlim,ylim,cex,cex.lab,cex.axis Graphical parameters, see
 #'   [plot.default()].
@@ -647,7 +647,7 @@ plot_eafdiff_side <- function (eafdiff, attsurfs = list(),
 #' 
 #' @return Returns a representation of the EAF differences (invisibly).
 #' 
-#' @seealso    [read_datasets()] [eafplot()] [pdf_crop()]
+#' @seealso    [eafplot()] [pdf_crop()]
 #' 
 #' @examples
 #' ## NOTE: The plots in the website look squashed because of how pkgdown
