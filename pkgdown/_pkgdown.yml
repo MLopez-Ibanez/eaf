@@ -16,6 +16,7 @@ navbar:
     cran:
       icon: fab fa-r-project
       href: https://cloud.r-project.org/package=eaf
+      aria-label: View on CRAN
       
 reference:
   - title: Main

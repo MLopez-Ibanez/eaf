@@ -1,3 +1,7 @@
+> [!CAUTION]
+> This package is now obsolete and it will be archived in the future. Users should move to using either [moocore](https://multi-objective.github.io/moocore/r/) or [mooplot](https://multi-objective.github.io/mooplot/r/).
+
+
 <img src="man/figures/ALG_1_dat-ALG_2_dat.png" width="455" height="242" alt= "EAF
    differences between two bi-objective optimizers" title= "EAF differences
    between two bi-objective optimizers" style= "border:0; align:right; float:right;"/>
