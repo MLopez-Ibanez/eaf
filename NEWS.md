@@ -1,3 +1,7 @@
+# eaf 2.5.2
+
+ * Use gsl from Rtools >= 42 on Windows (contributed by @kalibera).
+
 # eaf 2.5.1
 
  * Fix Clang warning.
