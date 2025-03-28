@@ -1,8 +1,6 @@
 # 							-*- mode: makefile -*-
 # Do not put GCC specific flags here. Put them instead in CFLAGS and
 # CXXFLAGS in ~/.R/Makevars
-#GSL_CFLAGS = -I"$(GSL_ROOT)/include"
-#GSL_LIBS   = -L"$(GSL_ROOT)/lib${R_ARCH}${CRT}" -lgsl -lgslcblas
 ifeq (,$(shell pkg-config --version 2>/dev/null))
   GSL_LIBS = -lgsl -lgslcblas -lm
 else
