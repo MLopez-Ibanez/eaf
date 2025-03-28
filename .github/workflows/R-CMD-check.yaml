@@ -59,7 +59,7 @@ jobs:
 
       - name: Install latex packages
         run: |
-          remotes::install_cran("tinytex")
+          remotes::install_cran(c("xfun", "tinytex"))
           tinytex::tlmgr_install("pdfcrop")
         shell: Rscript {0}
 
